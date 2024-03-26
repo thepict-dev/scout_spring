@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pict.mapper.PictMapper">	
+
+	
+	<select id="test_service" resultType="pictVO">
+		select * from user_info
+	</select>
+	
+	
+	<!-- 공지사항 -->
+	<select id="board_list" resultType="pictVO">
+		select idx, title, text, file1, file2, date_format(regdate, '%Y-%m-%d') as regdate
+		from board_table
+		<if test="search_text != null and search_text != '' ">
+			where (
+				title LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+	</select>
+	
+	<select id="board_list_one" resultType="pictVO">
+		select
+		idx, title, text, file1, file2, date_format(regdate, '%Y-%m-%d') as regdate 
+		from board_table
+		where idx = #{idx}
+	</select>
+	
+	<insert id="board_insert" parameterType="pictVO">
+		INSERT INTO board_table
+			(
+			 title,  text, regdate, file1, file2
+			)
+		VALUES (
+			 #{title}, #{text}, now(), #{file1}, #{file2}
+			  ) 
+	</insert>
+	
+	<update id="board_update" parameterType="pictVO">
+		update board_table
+		set title =#{title}, text = #{text}, regdate = now()
+		<if test="file1 != null and file1 != '' ">
+			, file1 = #{file1}
+		</if>
+		<if test="file2 != null and file2 != '' ">
+			, file2 = #{file2}
+		</if>
+		where idx = #{idx}
+	</update>
+	
+	<delete id="board_delete" parameterType="pictVO">
+		delete from board_table where idx = #{idx}
+	</delete>
+	
+	<!-- 보도자료 -->
+	<select id="news_list" resultType="pict.service.PictVO">
+		select idx, title, newstitle, linkurl, date_format(regdate, '%Y-%m-%d') as regdate
+		from news_table
+		<if test="search_text != null and search_text != '' ">
+			where (
+				title LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+	</select>
+	
+	<select id="news_list_one" resultType="pictVO">
+		select idx, title, newstitle, linkurl, date_format(regdate, '%Y-%m-%d') as regdate 
+		from news_table
+		where idx = #{idx}
+	</select>
+	
+	<insert id="news_insert" parameterType="pict.service.PictVO">
+	INSERT INTO news_table
+		(
+		title, newstitle, regdate, linkurl
+		)
+	VALUES (
+		#{title}, #{newstitle}, now(), #{linkurl}
+		) 
+	</insert>
+	
+	<update id="news_update" parameterType="pictVO">
+		update news_table
+		set title =#{title}, newstitle = #{newstitle}, regdate = now(), linkurl = #{linkurl}
+
+		where idx = #{idx}
+	</update>
+	
+	<delete id="news_delete" parameterType="pictVO">
+		delete from news_table where idx = #{idx}
+	</delete>
+	
+	<!-- 참가영상 -->
+	<select id="video_list" resultType="pict.service.PictVO">
+	
+		select *
+		from video_table
+		where 1=1
+		<if test="search_text != null and search_text != '' ">
+			and (
+				title LIKE CONCAT('%', #{search_text}, '%')
+			) 
+		</if>
+		<if test="type != null and type != '' ">
+			order by rand()
+		</if>
+	</select>
+	
+	<select id="video_list_one" resultType="pictVO">
+		select * from video_table
+		where idx = #{idx}
+	</select>
+	
+	<insert id="video_insert" parameterType="pict.service.PictVO">
+	INSERT INTO video_table
+		(
+		category, title, team, imgurl, videourl, regdate
+		)
+	VALUES (
+		#{category}, #{title}, #{team}, #{imgurl}, #{videourl}, now()
+		) 
+	</insert>
+	
+	<update id="video_update" parameterType="pictVO">
+		update video_table
+		set category =#{category}, title = #{title}, team = #{team}, regdate = now()
+		<if test="imgurl != null and imgurl != '' ">
+			, imgurl = #{imgurl}
+		</if>
+		<if test="videourl != null and videourl != '' ">
+			, videourl = #{videourl}
+		</if>
+
+		where idx = #{idx}
+	</update>
+	
+	<delete id="video_delete" parameterType="pictVO">
+		delete from video_table where idx = #{idx}
+	</delete>
+
+
+</mapper>

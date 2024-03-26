@@ -1,0 +1,55 @@
+footer{
+    width: 100%;
+    height: 237px;
+    padding: 0 100px;
+    background-color: #000;
+}
+.footerInner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1920px;
+    height: 100%;
+    margin: 0 auto;
+}
+.fInfo > p{
+    color: var(--green-500);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 100%; /* 16px */
+    letter-spacing: -0.8px;
+}
+.fLogo{
+    width: 215px;
+} 
+.fLogo a{
+    display: block;
+    width: 100%;
+}
+.fLogo a img{
+    width: 100%;
+}
+.sns{
+    display: flex;
+    column-gap: 34px;
+    padding: 24px 0;
+}
+.tel{
+    display: flex;
+    align-items: flex-end;
+    column-gap: 12px;
+}
+.tel span{
+    padding-bottom: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%; /* 16px */
+    letter-spacing: -0.8px;
+}
+.tel p{
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 100%; /* 40px */
+    letter-spacing: -2px;
+}
