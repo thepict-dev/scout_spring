@@ -6,9 +6,9 @@
 
 body{
     font-family: 'SUIT';
-    background-color: #000;
-    color: #fff;
+    color: #000;
     overflow-x: hidden;
+    padding: 30px;
 }
 :root {
     --fn-suit: 'SUIT';
