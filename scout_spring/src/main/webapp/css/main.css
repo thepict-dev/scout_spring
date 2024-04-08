@@ -105,20 +105,10 @@ input{
     white-space: nowrap;
     background-color: aliceblue;
 }
-<<<<<<< HEAD
-.subTitles span::after{
-    content: "";
-    display:inline-block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: -1;
-=======
 .viewHead p:not(:last-of-type){
     border-right: 1px solid #000;
 }
 .memberViews ul{
->>>>>>> branch 'master' of https://github.com/thepict-dev/scout_spring.git
     width: 100%;
     height: calc(100% - 30px);
     /* overflow-y: auto; */
