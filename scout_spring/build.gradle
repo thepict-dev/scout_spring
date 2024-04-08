@@ -6,8 +6,8 @@ plugins {
 }
 
 bootWar { 
-	archiveBaseName='pict-demo2'
-	archiveFileName='pict-demo2.war'
+	archiveBaseName='scout-spirng'
+	archiveFileName='scout-spirng.war'
 	archiveVersion='0.0.0'
 }
 

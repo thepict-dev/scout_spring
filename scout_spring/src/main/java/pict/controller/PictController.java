@@ -147,10 +147,10 @@ public class PictController {
 	@RequestMapping("/")
 	public String main(@ModelAttribute("pictVO") AdminVO adminVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
-		return "redirect:/front/ko/main.do";
+		return "redirect:/front/main.do";
 	}
 	// 메인
-	@RequestMapping(value = "/front/ko/main.do")
+	@RequestMapping(value = "/front/main.do")
 	public String main(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request)
 			throws Exception {
 		
@@ -160,7 +160,7 @@ public class PictController {
 		model.addAttribute("size", reference_list.size());
 		model.addAttribute("pictVO", pictVO);
 		
-		return "pict/front/ko/main";
+		return "pict/front/main";
 	}
 	// 소개 
 	@RequestMapping(value = "/front/ko/intro.do")

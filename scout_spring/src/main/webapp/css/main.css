@@ -188,7 +188,7 @@ main{
     width: fit-content;
     color: var(--purple-500);
 }
-.subTitles span.active::after{
+.subTitles span::after{
     content: "";
     display:inline-block;
     position: absolute;
