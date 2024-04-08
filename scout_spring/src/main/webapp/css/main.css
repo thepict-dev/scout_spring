@@ -1,193 +1,111 @@
-main{
-    width: 100%;
+
+button{
+    --fn-suit: 'SUIT';
+}
+select{
+    width: 100px;
+    height: 27px;
+    border-radius: 0;
+    border: 1px solid #000;
+}
+input{
+    width: 100px;
+    padding: 5px;
+    border-radius: 0;
+    border: 1px solid #000;
 }
 
-.topSec{
-    position: relative;
-    top: 100px;
+.wrapper{
+    padding: 30px;
+    border: 1px solid #000;
+}
+.bottomSection{
     display: flex;
-    flex-direction: column;
+    column-gap: 30px;
+}
+.search{
+    display: flex;
     align-items: center;
-    width: 100%;
-    height: 847px;
-    padding-top: 99px;
-    overflow: hidden;
+    column-gap: 20px;
+    padding: 30px;
 }
-.mainTitle{
-    position: relative;
-    z-index: 10;
-    width: 70%;
-    max-width: 850px;
-    animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-}
-.mainTitle img{
-    width: 100%;
-}
-.topSec a{
-    display: block;
-    width: 266px;
-    transition: all .2s;
-}
-.topSec .fill{
-    fill: var(--purple-500);
-    transition: all .2s;
-}
-.topSec a:hover .fill{
-    fill: var(--purple-700);
-}
-.topSec a:hover{
-    transform: rotate(7deg);
+.wholeSelect{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
 }
 
-@keyframes scale-out-center {
-    0% {
-        transform: scale(2);
-    }
-    100% {
-        transform: scale(1);
-    }
+.memNumber{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
 }
 
-  
-.dot{
-    position: absolute;
-    top: 202px;
-    left: 0;
-    z-index: -1;
+.sections{
+    width: 440px;
+    border: 1px solid #000;
+}
+.memberList{
+    padding: 10px 30px;
+}
+.memberList h2{
+    padding-bottom: 20px;
+}
+.searchTable{
+    display: grid;
+    grid-template-columns: repeat(2, 170px);
+    gap: 10px;
+}
+.searchInput{
+    display: grid;
+    grid-template-columns: 70px 100px;
+    align-items: center;
+    column-gap: 5px;
+}
+.searchInput p{
+    text-align: center;
+    padding: 5px 0;
+    background-color: aliceblue;
+}
+.dateSreach{
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+}
+.dateSreach p{
+    width: 70px;
+}
+.dateSreach input{
+    width: 150px;
+}
+.btnWrap{
+    display: flex;
+    justify-content: flex-end;
     width: 100%;
-    height: 645px;
+    padding-top: 20px;
 }
-.dot img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.thumb{
-    position: fixed;
-    z-index: 5;
-}
-.thumb1{
-    left: 0;
-}
-.thumb2{
-    left: 0;
-    bottom: 38%;
-}
-.thumb3{
-    right: 0;
-}
-.thumb4{
-    right: 0;
-    bottom: 37%;
-}
-.thumb.off{
-    position: absolute;
-    animation: fadeOut 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-}
-.thumb.off .thumb2{
-    bottom: 160px;
-}
-.thumb.off .thumb4{
-    bottom: 118px;
-}
-
-@keyframes fadeOut {
-    0%{
-        opacity: 1;
-    }
-    100%{
-        opacity: 0;
-    }
-}
-
-.centerSec{
-    position: relative;
-    width: 100%;
-}
-.video{
-    position: relative;
-    /* z-index: 10; */
-    max-width: 1430px;
-    display: block;
-    width: 100%;
-    height: 804px;
-    margin: 0 auto;
-    /* padding: 0 245px; */
-    border-radius: 30px;
-    overflow: hidden;
+.memberList button{
+    padding: 8px 12px;
+    background-color: aliceblue;
     cursor: pointer;
 }
-.video img{
+.memberViews{
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: 800px;
+    overflow-x: auto;
 }
-.videoHover{
-    position: absolute;
-    top: 0;
-    left: 0;
+.viewHead{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    row-gap: 16px;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    transition: all .2s;
 }
-.videoHover p{
-    font-size: 40px;
-    font-weight: 700;
-    letter-spacing: -2px;
-}
-.videoHover span{
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -1px;
-}
-.video:hover .videoHover{
-    opacity: 1;
-}
-.videoBack{
-    position: absolute;
-    left: 0;
-    top: 119px;
-    z-index: -1;
-    width: 100%;
-    height: 1080px;
-    border-radius: 30px;
-    background-color: var(--purple-500);
-    background-image: url(/front_img/dot2.png);
-    background-repeat: no-repeat;
-    background-position: center 100%;
-    background-size: contain;
-}
-
-.intro{
-    position: relative;
-    width: 100%;
-    margin-top: 32px;
-}
-.subTitles{
-    display: flex;
-    flex-direction: column;
-    row-gap: 12px;
-    max-width: 1430px;
-    margin: 0 auto;
-    font-size: 50px;
-    font-weight: 700;
-    line-height: 100%; /* 50px */
-    letter-spacing: -2.5px;
-}
-.subTitles span{
-    position: relative;
-    display: block;
-    padding: 8px;
+.viewHead p{
     width: fit-content;
-    color: var(--purple-500);
+    min-width: 100px;
+    padding: 5px;
+    text-align: center;
+    white-space: nowrap;
+    background-color: aliceblue;
 }
+<<<<<<< HEAD
 .subTitles span::after{
     content: "";
     display:inline-block;
@@ -195,209 +113,98 @@ main{
     left: 0;
     top: 0;
     z-index: -1;
+=======
+.viewHead p:not(:last-of-type){
+    border-right: 1px solid #000;
+}
+.memberViews ul{
+>>>>>>> branch 'master' of https://github.com/thepict-dev/scout_spring.git
     width: 100%;
-    height: 66px;
-    background-color: var(--green-500);
-	animation: highlight 500ms linear;
-	animation-fill-mode: both;
-	animation-delay: 500ms;
+    height: calc(100% - 30px);
+    /* overflow-y: auto; */
+    /* overflow-x: hidden; */
+}
+.memberViews ul li{
+    display: flex;
+    cursor: pointer;
+}
+.memberViews ul li p{
+    width: fit-content;
+    min-width: 100px;
+    padding: 10px;
+    text-align: center;
+    white-space: nowrap;
+    text-align: center;
+}
+.memberViews ul li p:not(:last-of-type){
+    border-right: 1px solid #000;
 }
 
-@keyframes highlight {
-	0% { width: 0; }
-	100% { width: 100%; }
+.sections.right{
+    width: fit-content;
 }
-
-.introContent{
+.sections.right form{
+    padding: 10px;
+}
+.basicInputs{
     display: flex;
-    justify-content: space-between;
-    column-gap: 20px;
-    width: 100%;
-    max-width: 1920px;
-    margin: 94px auto 0;
-    padding: 0 100px;
+    column-gap: 10px;
+    padding-bottom: 10px;
 }
-.introContent li{
-    position: relative;
-    width: calc(100% / 3);
-    height: 406px;
-    padding: 46px;
-    border-radius: 24px;
-    border: 2px solid var(--purple-100);
-    background: var(--purple-900);
-}
-.introContent .topText{
+.basicInput{
     display: flex;
-    align-items: flex-end;
-    column-gap: 8px;
-}
-.introContent .topText p{
-    color: var(--green-500, #00FF67);
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 100%; /* 40px */
-    letter-spacing: -2px;
-}
-.introContent .topText span{
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 150%; /* 30px */
-    letter-spacing: -1px;
-}
-.introContent li > p{
-    position: relative;
-    z-index: 10;
-    padding-top: 15px;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 150%; /* 27px */
-    letter-spacing: -0.9px;
-}
-.introContent li img{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    z-index: 5;
-    width: 65%;
-    max-width: 348px;
-}
-.dot3{
-    position: absolute;
-    top: 360px;
-    left: 0;
-    z-index: -1;
-}
-
-.amb{
-    width: 100%;
-    margin-top: 128px;
-}
-.subTitles.ambTitles{
-    display: flex;
-    align-items: flex-end;
-    text-align: right;
-}
-.subTitles.ambTitles p{
-    line-height: 130%;
-}
-.ambContents{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding-top: 8px;
-}
-.ambContents > img.centerImg{
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 1140px;
-}
-.ambContents > img.ambText{
-    position: absolute;
-    /* left: 50%; */
-    bottom: 81px;
-    z-index: 3;
-    width: 80%;
-    max-width: 1555px;
-    transform: translateZ(0) scale(1) translateX(-50%);
-}
-.ambContents > img.shText{
-    position: absolute;
-    /* left: 50%; */
-    bottom: 347px;
-    z-index: 1;
-    width: 90%;
-    max-width: 1864px;
-    transform: translateZ(0) scale(1) translateX(-50%);
-}
-.ambBack{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    z-index: -1;
-    width: 100%;
-    height: 578px;
-    background-color: var(--purple-500);
-    background-image: url(/front_img/dot2.png);
-    background-repeat: no-repeat;
-    background-position: center 100%;
-    background-size: cover;
-}
-
-.highlight{
-    width: 100%;
-    margin: 80px 0 150px 0;
-}
-.subTitles.highTitles{
     align-items: center;
-    margin-bottom: 38px;
+    column-gap: 5px;
 }
-.swiper-container:not(:last-of-type){
-    margin-bottom: 30px;
+.basicInput > p{
+    padding: 5px 10px;
+    background-color: aliceblue;
 }
-.swiper-wrapper{
-    height: 260px !important;
+.basicInput input[type=radio]{
+    width: fit-content;
 }
-.swiper-slide{
-    height: 260px !important;
-    border-radius: 24px;
-    overflow: hidden;
+.zip{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
 }
-.swiper-slide a{
+input[type=checkbox]{
+    width: fit-content;
+}
+.zip a, .basicInput a{
+    padding: 3px 6px;
+    border: 1px solid #000;
+}
+.addBox input[type=text]{
+    width: 285px;
+}
+.basicInputs p{
+    padding: 5px 10px;
+    background-color: aliceblue;
+}
+.msg{
+    display: flex;
+    align-items: center;
+}
+.msg.job{
+    column-gap: 5px;
+}
+i{
     display: block;
     width: 100%;
-    height: 100%;
+    height: 1px;
+    margin-bottom: 10px;
+    background-color: #000;
 }
-.swiper-slide img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.basicBottom{
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    row-gap: 10px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.videoModal{
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+.basicInputs span{
+    width: 100px;
 }
-.iframeContainer {
-    position: relative;
-    width: 70%;
-    height: 0;
-    padding-top: 38.25%;
-}
-.iframeContainer iframe {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    height: 100%;
+.memberViews.right{
+    width: 664px;
+    height: 300px;
 }
