@@ -56,6 +56,17 @@ public interface PictMapper {
 	void video_insert(PictVO pictVO) throws Exception;
 
 	void video_delete(PictVO pictVO) throws Exception;
+
+	List<PictVO> scout_left_search_list(PictVO pictVO) throws Exception;
+
+	PictVO get_per_info(PictVO pictVO) throws Exception;
+
+	List<?> job_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> leader_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> scout_list(PictVO pictVO)throws Exception;
+
 	
 
 }

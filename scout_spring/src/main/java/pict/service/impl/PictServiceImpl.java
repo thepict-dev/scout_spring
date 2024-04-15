@@ -127,6 +127,35 @@ public class PictServiceImpl implements PictService {
 		pictMapper.video_delete(pictVO);
 	}
 
+	@Override
+	public List<PictVO> scout_left_search_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.scout_left_search_list(pictVO);
+	}
+
+	@Override
+	public PictVO get_per_info(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.get_per_info(pictVO);
+	}
+
+	@Override
+	public List<?> job_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.job_list(pictVO);
+	}
+
+	@Override
+	public List<PictVO> leader_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.leader_list(pictVO);
+	}
+
+	@Override
+	public List<PictVO> scout_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.scout_list(pictVO);
+	}
 	
 	
 }

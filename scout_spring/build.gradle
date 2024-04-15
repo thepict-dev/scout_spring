@@ -53,9 +53,8 @@ dependencies {
 	//파일업로드
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-	
-	
-	
+	//로그레벨
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	
 	
 	compileOnly 'org.projectlombok:lombok'

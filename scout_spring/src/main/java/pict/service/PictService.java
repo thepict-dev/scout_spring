@@ -51,6 +51,16 @@ public interface PictService {
 
 	public void video_insert(PictVO pictVO) throws Exception;
 
-	public void video_delete(PictVO pictVO)throws Exception;
+	public void video_delete(PictVO pictVO) throws Exception;
+
+	public List<PictVO> scout_left_search_list(PictVO pictVO) throws Exception;
+
+	public PictVO get_per_info(PictVO pictVO) throws Exception;
+
+	public List<?> job_list(PictVO pictVO)  throws Exception;
+
+	public List<PictVO> leader_list(PictVO pictVO) throws Exception;
+
+	public List<PictVO> scout_list(PictVO pictVO) throws Exception;
 
 }

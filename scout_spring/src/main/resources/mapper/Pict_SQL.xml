@@ -139,5 +139,72 @@
 		delete from video_table where idx = #{idx}
 	</delete>
 
+	<select id="scout_left_search_list" resultType="pictVO">
+		select m.MEMBERNO, m.KNAME, m.BIRTHDAY, m.MEMCLSCODE, m.MEMGRADECODE, m.TROOPSCOUTY, m.TROOPLEADERY, 
+		(select idx from lifetime li where li.MEMBERNO = m.MEMBERNO) as LIFE_YN,
+		(case when (select group_concat(LEADERPOSITIONCODE1) from leader le where le.MEMBERNO = m.MEMBERNO) like '%03%' then 'Y' else 'N' end) as LEADER
+		from member m
+		inner join memclscode mc on m.MEMCLSCODE = mc.MEMCLSCODE
+		where 1=1
+		<if test="search_kname != null and search_kname != '' ">
+			and KNAME =#{search_kname}
+		</if>
+		<if test="search_memberno != null and search_memberno != '' ">
+			and m.MEMBERNO =#{search_memberno}
+		</if>
+		<if test="search_memberno_se != null and search_memberno_se != '' ">
+			and m.MEMBERNO =#{search_memberno_se}
+		</if>
+		
+		limit 10 offset 0
+	</select>
+
+	<!-- 대원/리더 기본정보 조회 -->
+	<select id="get_per_info" resultType="pictVO">
+		select m.MEMBERNO, m.MEMCLSCODE, m.MEMGRADECODE, m.PICIMG,
+		 m.BIRTHDAY, (case when (select group_concat(LEADERPOSITIONCODE1) from leader le where le.MEMBERNO = m.MEMBERNO) like '%03%' then 'Y' else 'N' end) as LEADER, 
+		 m.KNAME, m.ENAME, m.SEX,
+		 m.MOBILE, m.EMAIL,
+		 m.HPOSTCODE, m.HADDR, m.EMAILYN, m.SMSYN, m.JOBCODE
+		from member m
+		inner join memclscode mc on m.MEMCLSCODE = mc.MEMCLSCODE
+		where m.MEMBERNO = #{MEMBERNO} and m.KNAME = #{KNAME};
+	</select>
+
+	<select id="job_list" resultType="pictVO">
+		select * from jobcode where USEYN = 'Y'
+		order by ORD asc
+	</select>
+
+	<!-- 지도자연공 -->
+	<select id="leader_list" resultType="pictVO">
+		select ifnull(l.ADMINY, '') as ADMINY, substring(l.STARTDAY, 1,4) as YEAR, a.ASSOCIATIONNAME, t.TROOPNAME, t.TROOPNO,
+		(select TROOPNAME from troop t2 where t2.TROOPNO = l.PARENT_TROOPNO) as UNITY,
+		(case when l.LEADERPOSITIONCODE1 = '01' then '협조' when l.LEADERPOSITIONCODE1 = '02' then '훈육' else '전종' end) as LEADERPOSITION,
+		(select LEADERPOSITIONNAME from leaderpositioncode lp where lp.LEADERPOSITIONCODE1 = l.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2) as LEADERPOSITIONNAME,
+		ifnull(o.ORGNAME, '') as ORGNAME
+		from leader l
+		inner join associationcode a on l.ASSOCIATIONCODE = a.ASSOCIATIONCODE
+		inner join troop t on t.TROOPNO = l.TROOPNO
+		left outer join org o on o.ORGNO = l.LEADERORGNO
+		
+		where l.MEMBERNO = #{MEMBERNO}
+		order by year desc, ADMINY desc
+	</select>
+	
+	<!-- 대원연공 -->
+	<select id="scout_list" resultType="pictVO">
+		select substring(s.STARTDAY, 1,4) as YEAR, a.ASSOCIATIONNAME, 
+		(select TROOPNAME from troop t2 where t2.TROOPNO = s.PARENT_TROOPNO) as UNITY, t.TROOPNAME, t.TROOPNO, s.SCOUTSCHOOLYEAR,
+		ifnull(o.ORGNAME, '') as ORGNAME, (select ORGCLSNAME from orgclscode oc where oc.ORGCLSCODE1 = o.ORGCLSCODE1 and oc.ORGCLSCODE2 = o.ORGCLSCODE2) as ORGCLSNAME
+		from scout s
+		inner join associationcode a on s.ASSOCIATIONCODE = a.ASSOCIATIONCODE
+		inner join troop t on t.TROOPNO = s.TROOPNO
+		left outer join org o on o.ORGNO = s.SCOUTORGNO
+		where s.MEMBERNO = #{MEMBERNO}
+		order by year desc
+	</select>
+
+
 
 </mapper>
