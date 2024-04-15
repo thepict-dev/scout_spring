@@ -7,7 +7,10 @@ import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -156,8 +159,12 @@ public class PictController {
 	public String ko_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		
+		System.out.println(pictVO);
 		List<PictVO> scout_list = pictService.scout_left_search_list(pictVO);
 		
+		//회원번호로 정렬
+		scout_list.sort(Comparator.comparing(PictVO::getMEMBERNO));
+
 		
 		
 		model.addAttribute("resultList", scout_list);
@@ -213,6 +220,9 @@ public class PictController {
 	}
 	
 	// 공통메소드
+	
+
+		
 	public String fileUpload(MultipartHttpServletRequest request, MultipartFile uploadFile, String target) {
 		String path = "";
 		String fileName = "";

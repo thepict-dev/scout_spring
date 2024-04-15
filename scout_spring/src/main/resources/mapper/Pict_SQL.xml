@@ -141,10 +141,11 @@
 
 	<select id="scout_left_search_list" resultType="pictVO">
 		select m.MEMBERNO, m.KNAME, m.BIRTHDAY, m.MEMCLSCODE, m.MEMGRADECODE, m.TROOPSCOUTY, m.TROOPLEADERY, 
-		(select idx from lifetime li where li.MEMBERNO = m.MEMBERNO) as LIFE_YN,
+		(case when li.idx is not null then 'Y' else 'N' end) as LIFE_YN,
 		(case when (select group_concat(LEADERPOSITIONCODE1) from leader le where le.MEMBERNO = m.MEMBERNO) like '%03%' then 'Y' else 'N' end) as LEADER
 		from member m
 		inner join memclscode mc on m.MEMCLSCODE = mc.MEMCLSCODE
+		left outer join lifetime li on li.MEMBERNO = m.MEMBERNO
 		where 1=1
 		<if test="search_kname != null and search_kname != '' ">
 			and KNAME =#{search_kname}
@@ -154,6 +155,36 @@
 		</if>
 		<if test="search_memberno_se != null and search_memberno_se != '' ">
 			and m.MEMBERNO =#{search_memberno_se}
+		</if>
+		
+		<if test="search_birthday != null and search_birthday != '' ">
+			and m.BIRTHDAY = #{search_birthday}
+		</if>
+		
+		<if test="search_history != null and search_history != ''">
+			<choose>
+	            <when test="search_history == 3"> 
+	                and li.idx is not null 
+	            </when>
+	            <when test="search_history == 2">
+	            	and m.TROOPLEADERY = 'Y'
+	            </when>
+	            <otherwise> 
+	                and m.TROOPSCOUTY = 'Y'
+	            </otherwise>
+	        </choose>
+		</if>
+		
+		<if test="search_memclscode != null and search_memclscode != ''">
+			and m.MEMCLSCODE = #{search_memclscode}
+		</if>
+		
+		<if test="search_memgradecode != null and search_memgradecode != ''">
+			and m.MEMGRADECODE = #{search_memgradecode}
+		</if>
+		
+		<if test="search_start != null and search_start != '' and search_end != null and search_end != '' ">
+			and m.ENTERDATE between #{search_start} and #{search_end}
 		</if>
 		
 		limit 10 offset 0

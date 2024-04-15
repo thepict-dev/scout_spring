@@ -38,15 +38,15 @@
 	                    <div class="searchTable">
 	                        <div class="searchInput">
 	                            <p>법정생년</p>
-	                            <input type="text" name="birth">
+	                            <input type="text" name="search_birthday" id="search_birthday" value="${pictVO.search_birthday}">
 	                        </div>
 	                        <div class="searchInput">
 	                            <p>가입이력</p>
-	                            <select name="history" id="history">
-	                                <option value="">-----</option>
-	                                <option value="1">대원</option>
-	                                <option value="2">지도자</option>
-	                                <option value="3">평생회원</option>
+	                            <select name="search_history" id="search_history">
+	                                <option value="" <c:if test="${pictVO.search_history eq ''}">selected</c:if>>-----</option>
+	                                <option value="1" <c:if test="${pictVO.search_history eq '1'}">selected</c:if>>대원</option>
+	                                <option value="2" <c:if test="${pictVO.search_history eq '2'}">selected</c:if>>지도자</option>
+	                                <option value="3" <c:if test="${pictVO.search_history eq '3'}">selected</c:if>>평생회원</option>
 	                            </select>
 	                        </div>
 	                        <div class="searchInput">
@@ -56,25 +56,25 @@
 	                        <div class="searchInput">
 	                            <p>회원구분</p>
 	                            <select name="search_memclscode" id="search_memclscode">
-	                                <option value="1">개인</option>
-	                                <option value="2">법인</option>
-	                                <option value="3">단체</option>
+	                                <option value="1" <c:if test="${pictVO.search_memclscode eq '1'}">selected</c:if>>개인</option>
+	                                <option value="2" <c:if test="${pictVO.search_memclscode eq '2'}">selected</c:if>>법인</option>
+	                                <option value="3" <c:if test="${pictVO.search_memclscode eq '3'}">selected</c:if>>단체</option>
 	                            </select>
 	                        </div>
 	                        <div class="searchInput">
 	                            <p>회원등급</p>
 	                            <select name="search_memgradecode" id="search_memgradecode">
-	                                <option value="">대원/지도자</option>
-	                                <option value="grade_1">행사회원</option>
-	                                <option value="grade_1">후원회원</option>
+	                                <option value="" <c:if test="${pictVO.search_memgradecode eq ''}">selected</c:if>>대원/지도자</option>
+	                                <option value="1" <c:if test="${pictVO.search_memgradecode eq '1'}">selected</c:if>>행사회원</option>
+	                                <option value="2" <c:if test="${pictVO.search_memgradecode eq '2'}">selected</c:if>>후원회원</option>
 	                            </select>
 	                        </div>
 	                    </div>
 	                    <div class="dateSreach">
 	                        <p>등록일</p>
-	                        <input type="date" id="start" name="start" value=""/>
+	                        <input type="date" id="search_start" name="search_start" value="${pictVO.search_start}"/>
 	                        -
-	                        <input type="date" id="end" name="end" value=""/>
+	                        <input type="date" id="search_end" name="search_end" value="${pictVO.search_end}"/>
 	                    </div>
 	                    <div class="btnWrap">
 	                        <a href="#lnk" onclick="search_list()">조회</a>
@@ -278,6 +278,7 @@
 	                    </div>
 	                </div>
 	                <i></i>
+	                <!-- 
 	                <div class="memberList basicBottom">
 	                    <div class="basicInput">
 	                        <p>등록</p>
@@ -288,7 +289,7 @@
 	                        <span>상급</span>
 	                    </div>
 	                </div>
-
+ 					-->
 	            <div class="memberViews right">
 	                <div class="viewHead">
 	                    <p>No(지도자)</p>

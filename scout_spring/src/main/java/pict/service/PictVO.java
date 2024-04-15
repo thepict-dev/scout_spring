@@ -83,8 +83,50 @@ public class PictVO extends PictDefaultVO {
 	private String ORGNAME;
 	private String SCOUTSCHOOLYEAR;
 	private String ORGCLSNAME;
+	private String search_birthday;
+	private String search_history;
+	private String search_start;
+	private String search_end;
+	private String search_memclscode;
+	private String search_memgradecode;
 	
 	
+	public String getSearch_memgradecode() {
+		return search_memgradecode;
+	}
+	public void setSearch_memgradecode(String search_memgradecode) {
+		this.search_memgradecode = search_memgradecode;
+	}
+	public String getSearch_memclscode() {
+		return search_memclscode;
+	}
+	public void setSearch_memclscode(String search_memclscode) {
+		this.search_memclscode = search_memclscode;
+	}
+	public String getSearch_birthday() {
+		return search_birthday;
+	}
+	public void setSearch_birthday(String search_birthday) {
+		this.search_birthday = search_birthday;
+	}
+	public String getSearch_history() {
+		return search_history;
+	}
+	public void setSearch_history(String search_history) {
+		this.search_history = search_history;
+	}
+	public String getSearch_start() {
+		return search_start;
+	}
+	public void setSearch_start(String search_start) {
+		this.search_start = search_start;
+	}
+	public String getSearch_end() {
+		return search_end;
+	}
+	public void setSearch_end(String search_end) {
+		this.search_end = search_end;
+	}
 	public String getSCOUTSCHOOLYEAR() {
 		return SCOUTSCHOOLYEAR;
 	}
