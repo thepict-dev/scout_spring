@@ -290,7 +290,7 @@
 	                    </div>
 	                </div>
  					-->
-	            <div class="memberViews right">
+	            <div class="memberViews right" id="div_leader">
 	                <div class="viewHead">
 	                    <p>No(지도자)</p>
 	                    <p>관리자지도여부</p>
@@ -303,14 +303,28 @@
 	                    <p>학교</p>
 	                </div>
 	                <ul id="leader_list">
-						<li>
-							<p>1</p>
-							<p>2</p>
-						</li>
 
 
 	                </ul>
 	            </div>
+	            
+	            <div class="memberViews right" id="div_scout">
+	                <div class="viewHead">
+	                    <p>No(대원)</p>
+	                    <p>년도</p>
+	                    <p>연맹</p>
+	                    <p>연합회</p>
+	                    <p>단위대</p>
+	                    <p>학교</p>
+	                    <p>구분</p>
+	                    <p>학년</p>
+	                </div>
+	                <ul id="scout_list">
+
+
+	                </ul>
+	            </div>
+	            
 	            
 	        </div>
 	    </div>
