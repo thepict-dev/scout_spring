@@ -148,7 +148,7 @@
 		left outer join lifetime li on li.MEMBERNO = m.MEMBERNO
 		where 1=1
 		<if test="search_kname != null and search_kname != '' ">
-			and KNAME =#{search_kname}
+			and KNAME LIKE CONCAT('%', #{search_kname}, '%')
 		</if>
 		<if test="search_memberno != null and search_memberno != '' ">
 			and m.MEMBERNO =#{search_memberno}
@@ -187,7 +187,6 @@
 			and m.ENTERDATE between #{search_start} and #{search_end}
 		</if>
 		
-		limit 10 offset 0
 	</select>
 
 	<!-- 대원/리더 기본정보 조회 -->

@@ -159,20 +159,25 @@ public class PictController {
 	public String ko_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		
-		System.out.println(pictVO);
-		List<PictVO> scout_list = pictService.scout_left_search_list(pictVO);
 		
-		//회원번호로 정렬
-		scout_list.sort(Comparator.comparing(PictVO::getMEMBERNO));
-
+		if(request.getQueryString() == null) {
+			model.addAttribute("resultListCnt", "0");
+			model.addAttribute("resultList", "");
+			model.addAttribute("job_list", "");
+			model.addAttribute("pictVO", null);
+		}
+		else {
+			List<PictVO> scout_list = pictService.scout_left_search_list(pictVO);
+			
+			//회원번호로 정렬
+			scout_list.sort(Comparator.comparing(PictVO::getMEMBERNO));
+			model.addAttribute("resultList", scout_list);
+			List<?> job_list= pictService.job_list(pictVO);
+			model.addAttribute("resultListCnt", scout_list.size());
+			model.addAttribute("job_list", job_list);
+			model.addAttribute("pictVO", pictVO);
+		}
 		
-		
-		model.addAttribute("resultList", scout_list);
-		
-		List<?> job_list= pictService.job_list(pictVO);
-		model.addAttribute("job_list", job_list);
-		
-		model.addAttribute("pictVO", pictVO);
 		
 		return "pict/front/ko/main";
 	}

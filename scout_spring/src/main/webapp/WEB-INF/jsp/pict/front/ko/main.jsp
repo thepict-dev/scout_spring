@@ -77,6 +77,7 @@
 	                        <input type="date" id="search_end" name="search_end" value="${pictVO.search_end}"/>
 	                    </div>
 	                    <div class="btnWrap">
+	                    	<span>건 조회</span>
 	                        <a href="#lnk" onclick="search_list()">조회</a>
 	                    </div>
 	                </div>
@@ -383,24 +384,43 @@
 					
 					var html ="";
 					var arr = data.list;
-					for(var i=0; i<arr.length; i++){
-						
-						html += '<li>'+
-							'<p>' + Number(i+1) + '</p>' +
-							'<p>' + arr[i].adminy + '</p>'+
-							'<p>' + arr[i].year + '</p>'+
-							'<p>' + arr[i].associationname + '</p>'+
-							'<p>' + arr[i].troopname + '</p>'+
-							'<p>' + arr[i].unity + '</p>'+
-							'<p>' + arr[i].leaderposition + '</p>'+
-							'<p>' + arr[i].leaderpositionname + '</p>'+
-							'<p>' + arr[i].orgname  + '</p>'+
-							'</li>'
-						
-					}
-					console.log(html)
 					$('#leader_list').children().remove();
-					$('#leader_list').append(html)
+					$('#scout_list').children().remove();
+					if(leadery == 'Y'){//지도자일경우
+						for(var i=0; i<arr.length; i++){
+							
+							html += '<li>'+
+								'<p>' + Number(i+1) + '</p>' +
+								'<p>' + arr[i].adminy + '</p>'+
+								'<p>' + arr[i].year + '</p>'+
+								'<p>' + arr[i].associationname + '</p>'+
+								'<p>' + arr[i].troopname + '</p>'+
+								'<p>' + arr[i].unity + '</p>'+
+								'<p>' + arr[i].leaderposition + '</p>'+
+								'<p>' + arr[i].leaderpositionname + '</p>'+
+								'<p>' + arr[i].orgname  + '</p>'+
+								'</li>'
+							
+						}
+						$('#leader_list').append(html)
+					}
+					
+					else{//대원일경우
+						for(var i=0; i<arr.length; i++){
+							html += '<li>'+
+								'<p>' + Number(i+1) + '</p>' +
+								'<p>' + arr[i].year + '</p>'+
+								'<p>' + arr[i].associationname + '</p>'+
+								'<p>' + arr[i].unity + '</p>'+
+								'<p>' + arr[i].troopname + '</p>'+
+								'<p>' + arr[i].orgname + '</p>'+
+								'<p>' + arr[i].orgclsname + '</p>'+
+								'<p>' + arr[i].scoutschoolyear + '</p>'+
+								'</li>'
+							
+						}
+						$('#scout_list').append(html)
+					}
 					
 				}
 				, error : function(xhr, status, error) {
