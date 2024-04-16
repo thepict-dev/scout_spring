@@ -194,7 +194,28 @@ i{
 .basicInputs span{
     width: 100px;
 }
+.listNav{
+	display: flex;
+	column-gap: 5px;
+	margin-bottom: 10px;
+}
+.listNav li{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 80px;
+	height: 40px;
+    background-color: aliceblue;
+    cursor: pointer;
+}
+.listNav li.active{
+	background-color: #d6e1eb;
+}
 .memberViews.right{
+	display: none;
     width: 664px;
     height: 300px;
+}
+.memberViews.right.active {
+    display: block;
 }

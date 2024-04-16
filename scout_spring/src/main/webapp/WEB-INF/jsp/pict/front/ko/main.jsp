@@ -228,69 +228,73 @@
                         </div>
                     </div>
                 </div>
-	                <i></i>
-	                <div class="memberList basicBottom">
-	                    <div class="basicInput">
-	                        <p>지도자학교/단체</p>
-	                        <span>(일반)</span>
-	                    </div>
-	                    <div class="basicInput">
-	                        <p>승진가산점</p>
-	                        <input type="text" name="additional" id="additional">
-	                    </div>
-	                    <div class="basicInput">
-	                        <p>훈련과정</p>
-	                        <span></span>
-	                    </div>
-	                    <div class="basicInput">
-	                        <p>전문과정</p>
-	                        <span></span>
-	                    </div>
-	                    <div class="basicInput">
-	                        <p>자격증</p>
-	                        <span></span>
-	                    </div>
-	                    <div class="basicInput">
-	                        <p>평생회원</p>
-	                        <span></span>
-	                    </div>
-	                </div>
-	                <i></i>
-	                <div class="memberList basicBottom2">
-	                    <div class="basicInput">
-	                        <p>대원학교/단체</p>
-	                        <input type="text" name="group" id="group" readonly>
-	                        <a href="#lnk">학교/단체검색</a>
-	                        <input type="text" name="group1" id="group1" style="width: 30px;">
-	                        학년
-	                        <input type="text" name="group2" id="group2" style="width: 30px;">
-	                        반
-	                    </div>
-	                    <div class="basicInputs" style="margin-top: 10px;">
-	                        <div class="basicInput">
-	                            <p>대원진보</p>
-	                            <span></span>
-	                        </div>
-	                        <div class="basicInput">
-	                            <p>대원기능장</p>
-	                            <span></span>
-	                        </div>
-	                    </div>
-	                </div>
-	                <i></i>
-	                <!-- 
-	                <div class="memberList basicBottom">
-	                    <div class="basicInput">
-	                        <p>등록</p>
-	                        <span>상급</span>
-	                    </div>
-	                    <div class="basicInput">
-	                        <p>수정</p>
-	                        <span>상급</span>
-	                    </div>
-	                </div>
- 					-->
-	            <div class="memberViews right" id="div_leader">
+                <i></i>
+                <div class="memberList basicBottom">
+                    <div class="basicInput">
+                        <p>지도자학교/단체</p>
+                        <span>(일반)</span>
+                    </div>
+                    <div class="basicInput">
+                        <p>승진가산점</p>
+                        <input type="text" name="additional" id="additional">
+                    </div>
+                    <div class="basicInput">
+                        <p>훈련과정</p>
+                        <span></span>
+                    </div>
+                    <div class="basicInput">
+                        <p>전문과정</p>
+                        <span></span>
+                    </div>
+                    <div class="basicInput">
+                        <p>자격증</p>
+                        <span></span>
+                    </div>
+                    <div class="basicInput">
+                        <p>평생회원</p>
+                        <span></span>
+                    </div>
+                </div>
+                <i></i>
+                <div class="memberList basicBottom2">
+                    <div class="basicInput">
+                        <p>대원학교/단체</p>
+                        <input type="text" name="group" id="group" readonly>
+                        <a href="#lnk">학교/단체검색</a>
+                        <input type="text" name="group1" id="group1" style="width: 30px;">
+                        학년
+                        <input type="text" name="group2" id="group2" style="width: 30px;">
+                        반
+                    </div>
+                    <div class="basicInputs" style="margin-top: 10px;">
+                        <div class="basicInput">
+                            <p>대원진보</p>
+                            <span></span>
+                        </div>
+                        <div class="basicInput">
+                            <p>대원기능장</p>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <i></i>
+                <!-- 
+                <div class="memberList basicBottom">
+                    <div class="basicInput">
+                        <p>등록</p>
+                        <span>상급</span>
+                    </div>
+                    <div class="basicInput">
+                        <p>수정</p>
+                        <span>상급</span>
+                    </div>
+                </div>
+					-->
+				<ul class="listNav">
+					<li class="active">지도자</li>
+					<li>대원</li>
+				</ul>
+	            <div class="memberViews right active" id="div_leader">
 	                <div class="viewHead">
 	                    <p>No(지도자)</p>
 	                    <p>관리자지도여부</p>
@@ -302,12 +306,8 @@
 	                    <p>직책2</p>
 	                    <p>학교</p>
 	                </div>
-	                <ul id="leader_list">
-
-
-	                </ul>
+	                <ul id="leader_list"></ul>
 	            </div>
-	            
 	            <div class="memberViews right" id="div_scout">
 	                <div class="viewHead">
 	                    <p>No(대원)</p>
@@ -319,13 +319,8 @@
 	                    <p>구분</p>
 	                    <p>학년</p>
 	                </div>
-	                <ul id="scout_list">
-
-
-	                </ul>
+	                <ul id="scout_list"></ul>
 	            </div>
-	            
-	            
 	        </div>
 	    </div>
 	</div>
