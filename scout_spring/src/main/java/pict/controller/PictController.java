@@ -181,6 +181,18 @@ public class PictController {
 		
 		return "pict/front/ko/main";
 	}
+	//테스트 통합조회
+	@RequestMapping("/front/ko/management")
+	public String management(@ModelAttribute("pictVO") AdminVO adminVO, HttpServletRequest request, ModelMap model,
+			HttpSession session, RedirectAttributes rttr) throws Exception {
+		return "pict/front/ko/management";
+	}
+	//테스트 등록
+	@RequestMapping("/front/ko/apply")
+	public String apply(@ModelAttribute("pictVO") AdminVO adminVO, HttpServletRequest request, ModelMap model,
+			HttpSession session, RedirectAttributes rttr) throws Exception {
+		return "pict/front/ko/apply";
+	}
 	//기본정보 가져오기
 	@RequestMapping("/get_per_info")
 	@ResponseBody
