@@ -331,7 +331,6 @@
 			$("#search_fm_memberno").attr("action", "/front/ko/main");
 			$("#search_fm_memberno").submit();
 
-			
 		}
 		function search_list(){
 

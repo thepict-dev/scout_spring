@@ -33,7 +33,6 @@ public class PictServiceImpl implements PictService {
 
     @Override
 	public List<?> test_service(PictVO pictVO) throws Exception {
-		System.out.println("임플까지 타나?");
 		return pictMapper.test_service(pictVO);
 	}
 
@@ -155,6 +154,48 @@ public class PictServiceImpl implements PictService {
 	public List<PictVO> scout_list(PictVO pictVO) throws Exception {
 		// TODO Auto-generated method stub
 		return pictMapper.scout_list(pictVO);
+	}
+
+	@Override
+	public List<PictVO> troop_left_search_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.troop_left_search_list(pictVO);
+	}
+
+	@Override
+	public List<PictVO> association_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.association_list(pictVO);
+	}
+
+	@Override
+	public List<PictVO> unity_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.unity_list(pictVO);
+	}
+
+	@Override
+	public List<PictVO> troop_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.troop_list(pictVO);
+	}
+
+	@Override
+	public List<PictVO> trooplevel_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.trooplevel_list(pictVO);
+	}
+
+	@Override
+	public List<PictVO> scoutcls_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.scoutcls_list(pictVO);
+	}
+
+	@Override
+	public PictVO troop_info(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.troop_info(pictVO);
 	}
 	
 	

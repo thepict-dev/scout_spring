@@ -155,6 +155,7 @@ public class PictController {
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		return "redirect:/front/ko/main";
 	}
+	//대원통합창
 	@RequestMapping("/front/ko/main")
 	public String ko_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
@@ -181,15 +182,114 @@ public class PictController {
 		
 		return "pict/front/ko/main";
 	}
-	//테스트 통합조회
+	//조직통합창
 	@RequestMapping("/front/ko/management")
-	public String management(@ModelAttribute("pictVO") AdminVO adminVO, HttpServletRequest request, ModelMap model,
+	public String management(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
+		
+		List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
+		List<PictVO> scoutcls_list = pictService.scoutcls_list(pictVO);
+		
+		model.addAttribute("trooplevel_list", trooplevel_list);
+		model.addAttribute("scoutcls_list", scoutcls_list);
+		
+		
+		
+		List<PictVO> association_list = pictService.association_list(pictVO);
+		pictVO.setASSOCIATIONCODE("200");
+		List<PictVO> unity_list = pictService.unity_list(pictVO);
+		model.addAttribute("association_list", association_list);
+		model.addAttribute("unity_list", unity_list);
+		
+		if(request.getQueryString() == null) {
+			
+		}
+		else {
+
+
+		}
+		
+				
 		return "pict/front/ko/management";
 	}
+	//지구연합회 가져오기
+	@RequestMapping("/get_unity_list")
+	@ResponseBody
+	public HashMap<String, Object> get_unity_list(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String associationcode = param.get("associationcode").toString();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		pictVO.setASSOCIATIONCODE(associationcode);
+		List<PictVO> unity_list = pictService.unity_list(pictVO);
+		
+		if(unity_list.size() > 0) {
+			map.put("list", unity_list);
+			return map;
+		}
+		else {
+			return map;
+		}
+		
+	}
+	//단위대 가져오기
+	@RequestMapping("/get_troop_list")
+	@ResponseBody
+	public HashMap<String, Object> get_troop_list(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String associationcode = param.get("associationcode").toString();
+		String parenttroopno = param.get("parenttroopno").toString();
+		String trooplevelcode = param.get("trooplevelcode").toString();
+		String scoutclscode = param.get("scoutclscode").toString();
+		String troopclscode = param.get("troopclscode").toString();
+		String troopclscode2 = param.get("troopclscode2").toString();
+		String search_troopno_cate = param.get("search_troopno_cate").toString();
+		String search_troopno = param.get("search_troopno").toString();
+		
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		pictVO.setASSOCIATIONCODE(associationcode);
+		pictVO.setPARENTTROOPNO(parenttroopno);
+		pictVO.setTROOPLEVELCODE(trooplevelcode);
+		pictVO.setSCOUTCLSCODE(scoutclscode);
+		pictVO.setTROOPCLSCODE(troopclscode);
+		pictVO.setTROOPCLSCODE2(troopclscode2);
+		pictVO.setSearch_troopno_cate(search_troopno_cate);
+		pictVO.setSearch_troopno(search_troopno);
+		
+		
+		List<PictVO> troop_list = pictService.troop_list(pictVO);
+		if(troop_list.size() > 0) {
+			map.put("list", troop_list);
+			return map;
+		}
+		else {
+			return map;
+		}
+		
+	}
+	
+	//단위대 정보
+	
+	@RequestMapping("/get_troop_info")
+	@ResponseBody
+	public HashMap<String, Object> get_troop_info(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String troopno = param.get("troopno").toString();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		pictVO.setTROOPNO(troopno);
+
+		pictVO = pictService.troop_info(pictVO);
+		if(pictVO != null) {
+			map.put("rst", pictVO);
+			return map;
+		}
+		else {
+			return map;
+		}
+		
+	}
+	
 	//테스트 등록
 	@RequestMapping("/front/ko/apply")
-	public String apply(@ModelAttribute("pictVO") AdminVO adminVO, HttpServletRequest request, ModelMap model,
+	public String apply(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		return "pict/front/ko/apply";
 	}

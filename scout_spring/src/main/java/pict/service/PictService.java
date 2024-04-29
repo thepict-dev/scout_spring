@@ -63,4 +63,18 @@ public interface PictService {
 
 	public List<PictVO> scout_list(PictVO pictVO) throws Exception;
 
+	public List<PictVO> troop_left_search_list(PictVO pictVO) throws Exception;
+
+	public List<PictVO> association_list(PictVO pictVO) throws Exception;
+
+	public List<PictVO> unity_list(PictVO pictVO) throws Exception;
+
+	public List<PictVO> troop_list(PictVO pictVO) throws Exception;
+
+	public List<PictVO> trooplevel_list(PictVO pictVO) throws Exception;
+
+	public List<PictVO> scoutcls_list(PictVO pictVO) throws Exception;
+
+	public PictVO troop_info(PictVO pictVO) throws Exception;
+
 }

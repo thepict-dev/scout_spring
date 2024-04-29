@@ -75,6 +75,7 @@ public class PictVO extends PictDefaultVO {
 	private String ADMINY;
 	private String YEAR;
 	private String ASSOCIATIONNAME;
+	private String ASSOCIATIONCODE;
 	private String TROOPNAME; 
 	private String TROOPNO;
 	private String UNITY;
@@ -83,14 +84,228 @@ public class PictVO extends PictDefaultVO {
 	private String ORGNAME;
 	private String SCOUTSCHOOLYEAR;
 	private String ORGCLSNAME;
+	private String PARENTTROOPNO;
+	private String SCOUTCLSCODE;
+	private String SCOUTCLSNAME;
+	
+	private String TROOPLEVELCODE;
+	private String TROOPLEVELNAME;
+	private String TROOPCLSCODE;
+	private String TROOPCLSCODE1;
+	private String TROOPCLSCODE2;
+	private String DISPTROOPNO;
+	private String UNREGDAY;
+	private String POSTCODE;
+	private String ADDR;
+	private String TELNO;
+	private String FAXNO;
+	private String BIGO;
+	private String SCOUTMCNT;
+	private String SCOUTWCNT;
+	private String LEADERMCNT;
+	private String LEADERWCNT;
+	private String LASTREGYEAR;
+	private String TROOPCLSNAME;
+	
+	
+	
 	private String search_birthday;
 	private String search_history;
 	private String search_start;
 	private String search_end;
 	private String search_memclscode;
 	private String search_memgradecode;
+	private String search_associationcode;
+	private String search_unitycode;
+	private String search_level;
+	private String search_scoutcls;
+	private String search_troopcls;
+	private String search_troopcls2;
+	private String search_troopno_cate;
+	private String search_troopno;
 	
 	
+	
+	public String getTROOPCLSCODE1() {
+		return TROOPCLSCODE1;
+	}
+	public void setTROOPCLSCODE1(String tROOPCLSCODE1) {
+		TROOPCLSCODE1 = tROOPCLSCODE1;
+	}
+	public String getTROOPCLSNAME() {
+		return TROOPCLSNAME;
+	}
+	public void setTROOPCLSNAME(String tROOPCLSNAME) {
+		TROOPCLSNAME = tROOPCLSNAME;
+	}
+	public String getUNREGDAY() {
+		return UNREGDAY;
+	}
+	public void setUNREGDAY(String uNREGDAY) {
+		UNREGDAY = uNREGDAY;
+	}
+	public String getPOSTCODE() {
+		return POSTCODE;
+	}
+	public void setPOSTCODE(String pOSTCODE) {
+		POSTCODE = pOSTCODE;
+	}
+	public String getADDR() {
+		return ADDR;
+	}
+	public void setADDR(String aDDR) {
+		ADDR = aDDR;
+	}
+	public String getTELNO() {
+		return TELNO;
+	}
+	public void setTELNO(String tELNO) {
+		TELNO = tELNO;
+	}
+	public String getFAXNO() {
+		return FAXNO;
+	}
+	public void setFAXNO(String fAXNO) {
+		FAXNO = fAXNO;
+	}
+	public String getBIGO() {
+		return BIGO;
+	}
+	public void setBIGO(String bIGO) {
+		BIGO = bIGO;
+	}
+	public String getSCOUTMCNT() {
+		return SCOUTMCNT;
+	}
+	public void setSCOUTMCNT(String sCOUTMCNT) {
+		SCOUTMCNT = sCOUTMCNT;
+	}
+	public String getSCOUTWCNT() {
+		return SCOUTWCNT;
+	}
+	public void setSCOUTWCNT(String sCOUTWCNT) {
+		SCOUTWCNT = sCOUTWCNT;
+	}
+	public String getLEADERMCNT() {
+		return LEADERMCNT;
+	}
+	public void setLEADERMCNT(String lEADERMCNT) {
+		LEADERMCNT = lEADERMCNT;
+	}
+	public String getLEADERWCNT() {
+		return LEADERWCNT;
+	}
+	public void setLEADERWCNT(String lEADERWCNT) {
+		LEADERWCNT = lEADERWCNT;
+	}
+	public String getLASTREGYEAR() {
+		return LASTREGYEAR;
+	}
+	public void setLASTREGYEAR(String lASTREGYEAR) {
+		LASTREGYEAR = lASTREGYEAR;
+	}
+	public String getDISPTROOPNO() {
+		return DISPTROOPNO;
+	}
+	public void setDISPTROOPNO(String dISPTROOPNO) {
+		DISPTROOPNO = dISPTROOPNO;
+	}
+	public String getTROOPCLSCODE() {
+		return TROOPCLSCODE;
+	}
+	public void setTROOPCLSCODE(String tROOPCLSCODE) {
+		TROOPCLSCODE = tROOPCLSCODE;
+	}
+	public String getTROOPCLSCODE2() {
+		return TROOPCLSCODE2;
+	}
+	public void setTROOPCLSCODE2(String tROOPCLSCODE2) {
+		TROOPCLSCODE2 = tROOPCLSCODE2;
+	}
+	public String getSearch_associationcode() {
+		return search_associationcode;
+	}
+	public void setSearch_associationcode(String search_associationcode) {
+		this.search_associationcode = search_associationcode;
+	}
+	public String getSearch_unitycode() {
+		return search_unitycode;
+	}
+	public void setSearch_unitycode(String search_unitycode) {
+		this.search_unitycode = search_unitycode;
+	}
+	public String getSearch_level() {
+		return search_level;
+	}
+	public void setSearch_level(String search_level) {
+		this.search_level = search_level;
+	}
+	public String getSearch_scoutcls() {
+		return search_scoutcls;
+	}
+	public void setSearch_scoutcls(String search_scoutcls) {
+		this.search_scoutcls = search_scoutcls;
+	}
+	public String getSearch_troopcls() {
+		return search_troopcls;
+	}
+	public void setSearch_troopcls(String search_troopcls) {
+		this.search_troopcls = search_troopcls;
+	}
+	public String getSearch_troopcls2() {
+		return search_troopcls2;
+	}
+	public void setSearch_troopcls2(String search_troopcls2) {
+		this.search_troopcls2 = search_troopcls2;
+	}
+	public String getSearch_troopno_cate() {
+		return search_troopno_cate;
+	}
+	public void setSearch_troopno_cate(String search_troopno_cate) {
+		this.search_troopno_cate = search_troopno_cate;
+	}
+	public String getSearch_troopno() {
+		return search_troopno;
+	}
+	public void setSearch_troopno(String search_troopno) {
+		this.search_troopno = search_troopno;
+	}
+	public String getSCOUTCLSCODE() {
+		return SCOUTCLSCODE;
+	}
+	public void setSCOUTCLSCODE(String sCOUTCLSCODE) {
+		SCOUTCLSCODE = sCOUTCLSCODE;
+	}
+	public String getSCOUTCLSNAME() {
+		return SCOUTCLSNAME;
+	}
+	public void setSCOUTCLSNAME(String sCOUTCLSNAME) {
+		SCOUTCLSNAME = sCOUTCLSNAME;
+	}
+	public String getTROOPLEVELCODE() {
+		return TROOPLEVELCODE;
+	}
+	public void setTROOPLEVELCODE(String tROOPLEVELCODE) {
+		TROOPLEVELCODE = tROOPLEVELCODE;
+	}
+	public String getTROOPLEVELNAME() {
+		return TROOPLEVELNAME;
+	}
+	public void setTROOPLEVELNAME(String tROOPLEVELNAME) {
+		TROOPLEVELNAME = tROOPLEVELNAME;
+	}
+	public String getPARENTTROOPNO() {
+		return PARENTTROOPNO;
+	}
+	public void setPARENTTROOPNO(String pARENTTROOPNO) {
+		PARENTTROOPNO = pARENTTROOPNO;
+	}
+	public String getASSOCIATIONCODE() {
+		return ASSOCIATIONCODE;
+	}
+	public void setASSOCIATIONCODE(String aSSOCIATIONCODE) {
+		ASSOCIATIONCODE = aSSOCIATIONCODE;
+	}
 	public String getSearch_memgradecode() {
 		return search_memgradecode;
 	}

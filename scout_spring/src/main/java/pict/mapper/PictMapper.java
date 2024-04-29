@@ -65,7 +65,21 @@ public interface PictMapper {
 
 	List<PictVO> leader_list(PictVO pictVO) throws Exception;
 
-	List<PictVO> scout_list(PictVO pictVO)throws Exception;
+	List<PictVO> scout_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> troop_left_search_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> association_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> unity_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> troop_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> trooplevel_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> scoutcls_list(PictVO pictVO) throws Exception;
+
+	PictVO troop_info(PictVO pictVO) throws Exception; 
 
 	
 

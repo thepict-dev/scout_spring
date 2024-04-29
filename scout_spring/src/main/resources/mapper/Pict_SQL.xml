@@ -235,6 +235,77 @@
 		order by year desc
 	</select>
 
+	<!-- 연맹에서 리스트 -->
+	<select id="association_list" resultType="pictVO">
+		select a.*
+		from associationcode a
+		where a.USE_AT = 'Y'
+		group by a.idx
+		order by  cast(PRINTORDER as unsigned) 
+	</select>
+	
+	<!-- 지구연합회 리스트 -->
+	<select id="unity_list" resultType="pictVO">
+		select *, PARENT_TROOPNO as PARENTTROOPNO from troop 
+		where ASSOCIATIONCODE = #{ASSOCIATIONCODE} 
+		and PARENT_TROOPNO = (select TROOPNO from troop where ASSOCIATIONCODE = #{ASSOCIATIONCODE} and DISPTROOPNO like '%ASS%' limit 1 offset 0)
+		order by TROOPNO asc
+	</select>
+	
+	<!-- 단위대 리스트 -->
+	<select id="troop_list" resultType="pictVO">
+		 
+		select t1.*, sc.SCOUTCLSNAME, tc.TROOPCLSNAME,
+		(select TROOPNAME from troop t2 where t2.TROOPNO = t1.PARENT_TROOPNO) as UNITY
+		from troop t1 
+		left outer join scoutclscode sc on t1.SCOUTCLSCODE = sc.SCOUTCLSCODE
+		left outer join troopclscode tc on t1.TROOPCLSCODE1 = tc.TROOPCLSCODE1 and t1.TROOPCLSCODE2 = tc.TROOPCLSCODE2
+		where 1=1
+		
+		<if test="ASSOCIATIONCODE != null and ASSOCIATIONCODE != ''">
+        	and t1.ASSOCIATIONCODE = #{ASSOCIATIONCODE} #연맹
+        </if>
+        <if test="PARENTTROOPNO != null and PARENTTROOPNO != ''">
+        	and t1.PARENT_TROOPNO = #{PARENTTROOPNO}	#지구
+        </if>
+        <if test="TROOPLEVELCODE != null and TROOPLEVELCODE != ''">
+        	and t1.TROOPLEVELCODE = #{TROOPLEVELCODE}	#단위대
+        </if>
+        <if test="TROOPCLSCODE != null and TROOPCLSCODE != ''">
+        	and t1.TROOPCLSCODE1 = #{TROOPCLSCODE}
+        </if>
+		order by length(t1.DISPTROOPNO), cast(t1.DISPTROOPNO as unsigned)
+	</select>
+	
+	<!-- 등급리스트 -->
+	<select id="trooplevel_list" resultType="pictVO">
+		select * from trooplevelcode
+	</select>
+	
+	<!-- 스카우트구분리스트 -->
+	<select id="scoutcls_list" resultType="pictVO">
+		select * from scoutclscode order by ORD;
+	</select>
+	
+	<!-- 단위대정보 -->
+	<select id="troop_info" resultType="pictVO">
+		select * from troop where TROOPNO = #{TROOPNO}
+	</select>
+
+
+	
+	
+	<!-- 그뭐야 제일 위에[꺼 -->
+	<select id="troop_left_search_list" resultType="pictVO">
+		select t.*
+		from troop t
+		inner join associationcode a on t.ASSOCIATIONCODE = a.ASSOCIATIONCODE
+		left outer join org o on o.ORGNO = t.ORGNO
+		where 1=1
+		and a.ASSOCIATIONCODE = '120'
+		#and t.TROOPCLSCODE1 = '02'
+		and t.PARENT_TROOPNO = '9701'
+	</select>
 
 
 </mapper>
