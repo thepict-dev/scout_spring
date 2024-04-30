@@ -109,6 +109,15 @@ public class PictVO extends PictDefaultVO {
 	
 	
 	
+	
+	private String search_dan;
+	private String search_troop;
+	private String search_toopcls;
+	private String search_enddate;
+	
+	
+	
+	
 	private String search_birthday;
 	private String search_history;
 	private String search_start;
@@ -126,6 +135,31 @@ public class PictVO extends PictDefaultVO {
 	
 	
 	
+	
+	public String getSearch_dan() {
+		return search_dan;
+	}
+	public void setSearch_dan(String search_dan) {
+		this.search_dan = search_dan;
+	}
+	public String getSearch_troop() {
+		return search_troop;
+	}
+	public void setSearch_troop(String search_troop) {
+		this.search_troop = search_troop;
+	}
+	public String getSearch_toopcls() {
+		return search_toopcls;
+	}
+	public void setSearch_toopcls(String search_toopcls) {
+		this.search_toopcls = search_toopcls;
+	}
+	public String getSearch_enddate() {
+		return search_enddate;
+	}
+	public void setSearch_enddate(String search_enddate) {
+		this.search_enddate = search_enddate;
+	}
 	public String getTROOPCLSCODE1() {
 		return TROOPCLSCODE1;
 	}
