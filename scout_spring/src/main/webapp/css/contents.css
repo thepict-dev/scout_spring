@@ -53,6 +53,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
+    width: 100%;
 }
 .inputBox{
     display: flex;
@@ -491,7 +492,7 @@
 }
 .tableContainer.addTable .tableWrapper input[type=checkbox] + label{
     width: 10px;
-    height: 13px;
+    width: 10px;
 }
 @media all and (max-width : 1024px){
     .addScroll{
@@ -512,4 +513,85 @@
         margin-bottom: 4px;
     }
 
+}
+
+#joinPopup, #relationPopup{
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+#joinPopup.active, #relationPopup.active{
+    display: flex;
+}
+#joinPopup .popupInner{
+    position: relative;
+    width: 80%;
+    height: 70%;
+    max-width: 1200px;
+    max-height: 800px;
+    background-color: #fff;
+    border-radius: 4px;
+    overflow-y: scroll;
+}
+#relationPopup .popupInner{
+    position: relative;
+    width: 80%;
+    height: 70%;
+    max-width: 600px;
+    max-height: 800px;
+   	padding: 24px 0;
+    background-color: #fff;
+    border-radius: 4px;
+    overflow-y: scroll;
+}
+#relationPopup .tableContainer.relationContainer{
+	padding: 16px 24px;
+}
+.popupInner::-webkit-scrollbar-track{
+	background-color: #fff;
+}
+.popupInner::-webkit-scrollbar{
+	width: 1px;
+    height: 5px;
+	background-color: #fff;
+}
+.popupInner::-webkit-scrollbar-thumb{
+	background-color: var(--grey-500);
+}
+.popupInner button{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.popupInner button img{
+    width: 100%;
+}
+.popupInner form{
+    width: 100%;
+}
+.inputsAlign{
+	display: flex;
+	align-items: center;
+	column-gap: 4px;
+}
+.saveBox{
+	display: flex;
+	justify-content: center;
+	width: 100%;	
+	margin-top: 16px;
+}
+.inputsAlign.relationSearch{
+	padding: 16px 24px 0 24px;
+	justify-content: flex-end;
+	width: 100%;
 }

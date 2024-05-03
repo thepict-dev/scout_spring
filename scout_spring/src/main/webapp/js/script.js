@@ -141,3 +141,40 @@ addTabItem.forEach((tab, idx)=> {
         addTabInner[idx].classList.add('active')
     });
 });
+
+// 팝업 열기
+$(document).on("click", ".relationBtn", function (e){
+    let target = $(this).attr("href");
+    $(target).addClass("active");
+});
+
+// 외부영역 클릭 시 팝업 닫기
+$(document).mouseup(function (e){
+    let LayerPopup = $("#relationPopup");
+    if(LayerPopup.has(e.target).length === 0){
+        LayerPopup.removeClass("active");
+    }
+});
+
+// 팝업 열기
+$(document).on("click", ".joinBtn", function (e){
+    let target = $(this).attr("href");
+    $(target).addClass("active");
+});
+
+// 외부영역 클릭 시 팝업 닫기
+$(document).mouseup(function (e){
+    let LayerPopup = $("#joinPopup");
+    if(LayerPopup.has(e.target).length === 0){
+        LayerPopup.removeClass("active");
+    }
+});
+
+// 팝업닫기
+$(".popupInner button").click(function(){
+    $("#relationPopup").removeClass("active");
+});
+// 팝업닫기
+$(".popupInner button").click(function(){
+    $("#joinPopup").removeClass("active");
+});
