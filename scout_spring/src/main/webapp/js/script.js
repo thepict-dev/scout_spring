@@ -1,118 +1,95 @@
-AOS.init();
+$(document).ready(function() {
+    $('select').niceSelect();
+});
 
 
-//스크롤 엄지 클래스
-$(window).on('scroll', function () {
-    if ($(window).scrollTop() < 845) {
-        $('.thumb').removeClass('off');
+// 각 nav 항목의 클릭 이벤트를 설정
+$('.nav > li > a').click(function(e) {
+    e.preventDefault();  // 기본 이벤트를 막음
+
+    // 현재 클릭한 항목의 부모 요소 (li)를 찾고 그 안의 subNav를 선택
+    var $subNav = $(this).parent().find('.subNav');
+
+    // 현재 subNav가 보이는지 확인
+    if ($subNav.is(':visible')) {
+        $subNav.fadeIn(500);  // 이미 보이면 숨김
     } else {
-        $('.thumb').addClass('off');
+        $('.subNav').fadeOut();  // 다른 모든 subNav를 숨김
+        $subNav.fadeIn(500);  // 현재 subNav만 표시
     }
 });
-
-//스크롤 엄지
-let scrollTop = 0;
-
-$(window).on('scroll', function(){
-	
-	scrollTop = $(window).scrollTop();
-	
-	$('.thumb1').css('transform', 'translateX(' + scrollTop * -0.15 + 'px)');
-	$('.thumb2').css('transform', 'translateX(' + scrollTop * -0.15 + 'px)');
-	$('.thumb3').css('transform', 'translateX(' + scrollTop * 0.15 + 'px)');
-	$('.thumb4').css('transform', 'translateX(' + scrollTop * 0.15 + 'px)');
-})
-	
-//h2 스크롤 밑줄
-//$(window).scroll(function() {
-//	var scroll = $(document).scrollTop();
-//	var minusH = $(document).innerHeight() / 10;
-//	var target1 = $('.subTitles span').offset().top;//
-//	if (scroll > target1 - minusH) {
-//		$('.subTitles span').addClass('active');
-//	}
-//});
-
-//스와이퍼
-const swiper1 = new Swiper('.swiper-container', {
-    autoplay: {
-      delay: 1000,
-      disableOnInteraction: false
-    },
-    pagination: false,
-    slidesPerView: "auto",
-    spaceBetween: 20,
-    loop: true,	// 무한 루프 적용
-    speed: 1000,
-    breakpoints: {
-        0: {
-            slidesPerView: 1.7,
-        },
-        769: {
-            slidesPerView: 2.5,  //브라우저가 768보다 클 때
-        },
-        1025: {
-            slidesPerView: 4.7,  //브라우저가 1024보다 클 때
-        },
-    }
+$('.lnb').mouseleave(function() {
+    $('.subNav').fadeOut(100);  // 모든 subNav 숨김
 });
 
-//서브 스크롤
-var ovf, slider;
-$(function(){
-    ovf = this.querySelector(".subContents");
-    slider = this.querySelector(".subTop");
-    winResize();
-    $(window).bind({resize: winResize, scroll: winScroll});
-});
+// 대상 Element 선택
+const resizer = document.getElementById("dragMe");
+const leftSide = resizer.previousElementSibling;
+const rightSide = resizer.nextElementSibling;
 
-function winResize(){   
-    ovf.style.top = slider.offsetHeight + 100 + "px";
-}
+// 마우스의 위치값 저장을 위해 선언
+let x = 0;
+let y = 0;
 
-function winScroll(){
-    var op = 1 - (window.pageYOffset / slider.offsetHeight);
-    slider.style.opacity = op; 
-}
+// 크기 조절시 왼쪽 Element를 기준으로 삼기 위해 선언
+let leftWidth = 0;
 
-// 컨텐츠 로드(더보기)
-$(function(){
-    $(".videoList ul li").slice(0, 12).css('display', 'block'); // 초기갯수
-    $(".moreButton button").click(function(e){ // 클릭시 more
-        // e.preventDefault();
-        $(".videoList ul li:hidden").slice(0, 12).css('display', 'block'); // 클릭시 more 갯수 지저정
-        if($(".videoList ul li:hidden").length === 0){ // 컨텐츠 남아있는지 확인
-            $(".moreButton button").hide() // 컨텐츠 없을시 버튼 없앰
-        }
-    });
-});
+// resizer에 마우스 이벤트가 발생하면 실행하는 Handler
+const mouseDownHandler = function (e) {
+  // 마우스 위치값을 가져와 x, y에 할당
+  x = e.clientX;
+  y = e.clientY;
+  // left Element에 Viewport 상 width 값을 가져와 넣음
+  leftWidth = leftSide.getBoundingClientRect().width;
 
-// 컨텐츠 로드(더보기)
-$(function(){
-    $(".bdLists.boardL li").slice(0, 10).css('display', 'block'); // 초기갯수
-    $(".moreButton.bd button").click(function(e){ // 클릭시 more
-        e.preventDefault();
-        $(".bdLists.boardL li:hidden").slice(0, 10).css('display', 'block'); // 클릭시 more 갯수 지저정
-        if($(".bdLists.boardL li:hidden").length === 0){ // 컨텐츠 남아있는지 확인
-            $(".moreButton.bd button").hide() // 컨텐츠 없을시 버튼 없앰
-        }
-    });
-});
+  // 마우스 이동과 해제 이벤트를 등록
+  document.addEventListener("mousemove", mouseMoveHandler);
+  document.addEventListener("mouseup", mouseUpHandler);
+};
 
-// 컨텐츠 로드(더보기)
-$(function(){
-    $(".bdLists.news li").slice(0, 10).css('display', 'block'); // 초기갯수
-    $(".moreButton.bd.news button").click(function(e){ // 클릭시 more
-        e.preventDefault();
-        $(".bdLists.news li:hidden").slice(0, 10).css('display', 'block'); // 클릭시 more 갯수 지저정
-        if($(".bdLists.news li:hidden").length === 0){ // 컨텐츠 남아있는지 확인
-            $(".moreButton.bd.news button").hide() // 컨텐츠 없을시 버튼 없앰
-        }
-    });
-});
+const mouseMoveHandler = function (e) {
+  // 마우스가 움직이면 기존 초기 마우스 위치에서 현재 위치값과의 차이를 계산
+  const dx = e.clientX - x;
+  const dy = e.clientY - y;
 
-const tabItem = document.querySelectorAll('.listNav li');
-const tabInner = document.querySelectorAll('.memberViews.right');
+  // 크기 조절 중 마우스 커서를 변경함
+  // class="resizer"에 적용하면 위치가 변경되면서 커서가 해제되기 때문에 body에 적용
+  document.body.style.cursor = "col-resize";
+
+  // 이동 중 양쪽 영역(왼쪽, 오른쪽)에서 마우스 이벤트와 텍스트 선택을 방지하기 위해 추가
+  leftSide.style.userSelect = "none";
+  leftSide.style.pointerEvents = "none";
+
+  rightSide.style.userSelect = "none";
+  rightSide.style.pointerEvents = "none";
+
+  //
+  const newLeftWidth =
+    ((leftWidth + dx) * 100) / resizer.parentNode.getBoundingClientRect().width;
+  leftSide.style.width = `${newLeftWidth}%`;
+};
+
+const mouseUpHandler = function () {
+  // 모든 커서 관련 사항은 마우스 이동이 끝나면 제거됨
+  resizer.style.removeProperty("cursor");
+  document.body.style.removeProperty("cursor");
+
+  leftSide.style.removeProperty("user-select");
+  leftSide.style.removeProperty("pointer-events");
+
+  rightSide.style.removeProperty("user-select");
+  rightSide.style.removeProperty("pointer-events");
+
+  // 등록한 마우스 이벤트를 제거
+  document.removeEventListener("mousemove", mouseMoveHandler);
+  document.removeEventListener("mouseup", mouseUpHandler);
+};
+
+// 마우스 down 이벤트를 등록
+resizer.addEventListener("mousedown", mouseDownHandler);
+
+const tabItem = document.querySelectorAll('.formTabNav li');
+const tabInner = document.querySelectorAll('.fomrTabContent');
 
 tabItem.forEach((tab, idx)=> {
     tab.addEventListener('click', function(){
@@ -126,5 +103,41 @@ tabItem.forEach((tab, idx)=> {
 
         tabItem[idx].classList.add('active')
         tabInner[idx].classList.add('active')
+    });
+});
+
+const historyTabItem = document.querySelectorAll('.historyNav li');
+const historyTabInner = document.querySelectorAll('.historyContent');
+
+historyTabItem.forEach((tab, idx)=> {
+    tab.addEventListener('click', function(){
+        historyTabInner.forEach((inner)=> {
+            inner.classList.remove('active')
+        });
+
+        historyTabItem.forEach((item)=> {
+            item.classList.remove('active')
+        });
+
+        historyTabItem[idx].classList.add('active')
+        historyTabInner[idx].classList.add('active')
+    });
+});
+
+const addTabItem = document.querySelectorAll('.addNav li');
+const addTabInner = document.querySelectorAll('.addContent');
+
+addTabItem.forEach((tab, idx)=> {
+    tab.addEventListener('click', function(){
+        addTabInner.forEach((inner)=> {
+            inner.classList.remove('active')
+        });
+
+        addTabItem.forEach((item)=> {
+            item.classList.remove('active')
+        });
+
+        addTabItem[idx].classList.add('active')
+        addTabInner[idx].classList.add('active')
     });
 });

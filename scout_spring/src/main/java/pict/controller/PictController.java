@@ -153,10 +153,10 @@ public class PictController {
 	@RequestMapping("/")
 	public String main(@ModelAttribute("pictVO") AdminVO adminVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
-		return "redirect:/front/ko/main";
+		return "redirect:/front/users";
 	}
 	//대원통합창
-	@RequestMapping("/front/ko/main")
+	@RequestMapping("/front/users")
 	public String ko_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		
@@ -180,7 +180,7 @@ public class PictController {
 		}
 		
 		
-		return "pict/front/ko/main";
+		return "pict/front/users";
 	}
 	//조직통합창
 	@RequestMapping("/front/ko/management")

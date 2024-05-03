@@ -4,38 +4,24 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn"	   uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<%
-	String url = request.getRequestURL().toString();
-	pageContext.setAttribute("url", url);
-	
-%>
-
-
-
-<c:set var="main" value="${fn:indexOf(url, 'main')}"/>
-<c:set var="intro" value="${fn:indexOf(url, 'intro')}"/>
-<c:set var="highlight" value="${fn:indexOf(url, 'highlight')}"/>
-<c:set var="board" value="${fn:indexOf(url, 'board')}"/>
-
-
-<header>
+<div class="header">
     <div class="headerInner">
-        <h1>
-            <a href="/"><img src="/front_img/logo.png" alt="로고"></a>
-        </h1>
-        <ul class="nav">
-            <li <c:if test="${main ne -1}">class="active"</c:if> >
-                <a href="/front/ko/main.do">홈</a>
-            </li>
-            <li <c:if test="${intro ne -1}">class="active"</c:if> >
-                <a href="/front/ko/intro.do">라이징스타 소개</a>
-            </li>
-            <li <c:if test="${highlight ne -1}">class="active"</c:if> >
-                <a href="/front/ko/highlight.do">참가자 구경하러 가기</a>
-            </li>
-            <li <c:if test="${board ne -1}">class="active"</c:if> >
-                <a href="/front/ko/board_list.do">소식보기</a>
-            </li>
+        <ul class="crumb">
+            <li>스카우트 통합 관리</li>
+            <li>회원 통합창</li>
         </ul>
+        <div class="topNav">
+            <div class="profile">
+                <span><img src="/front_img/profile.png" alt="프로필 이미지"></span>
+                <div class="profileTexts">
+                    <p>유학준</p>
+                    <span>중앙본부<span>•</span>부장</span>
+                </div>
+            </div>
+            <div class="navBtns">
+                <a href=""><img src="/front_img/logout.png" alt="">로그아웃</a>
+                <a href="">홈페이지 바로가기</a>
+            </div>
+        </div>
     </div>
-</header>
+</div>

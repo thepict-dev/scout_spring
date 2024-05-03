@@ -6,7 +6,7 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html>	
 <html lang="ko">
 	<%@ include file="../include/head.jsp" %>
 	<div class="wrapper">
