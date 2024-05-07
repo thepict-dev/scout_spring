@@ -172,6 +172,7 @@
                 </ul>
                 <div class="fomrTabContent active">
                     <form action="">
+                        <h2 class="subTitles" style="padding: 16px 0 0 24px;">가입정보</h2>
                         <div class="basicInfo1 inputsPd">
                             <div class="mainProfile">
                                 <img src="/front_img/profile.png" alt="프로필 이미지">
@@ -192,18 +193,10 @@
                                     </div>
                                     <div class="inputBox">
                                         <p class="inputCaption">회원등급</p>
-                                        <select name="MEMGRADECODE" id="MEMGRADECODE" class="smThinSelect">
+                                        <select name="MEMGRADECODE" id="MEMGRADECODE" class="lgThinSelect">
                                             <option value="0">대원/지도자</option>
                                             <option value="1">후원회원</option>
                                             <option value="2">행사회원</option>
-                                        </select>
-                                    </div>
-                                    <div class="inputBox">
-                                        <p class="inputCaption">가입이력</p>
-                                        <select name="search_history" id="search_history" class="lgThinSelect">
-                                            <option value="1">대원</option>
-                                            <option value="2">지도자</option>
-                                            <option value="3">평생회원</option>
                                         </select>
                                     </div>
                                 </div>
@@ -277,7 +270,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="inputsContainer inputsPd_ bottomBd">
+                        <div class="inputsContainer inputsPd_">
                             <div class="inputBox">
                                 <p class="inputCaption">집주소</p>
                                 <div class="zip">
@@ -287,58 +280,66 @@
                                 <input type="text" name="HADDR" id="HADDR" readonly class="lgThinInput post">
                             </div>
                         </div>
+                        <div class="tableButtons inputsPd bottomBd" style="justify-content: flex-end;">
+                            <div class="buttons">
+                                <a href="#lnk" class="smButton"><img src="/front_img/sms.png" alt="">SMS</a>
+                                <a href="#lnk" class="smButton"><img src="/front_img/email.png" alt="">이메일</a>
+                                <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">저장</a>
+                                <a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">화면 초기화</a>
+                            </div>
+                        </div>
                         <div class="inputsContainer inputsPd bottomBd">
                             <div class="inputBox">
                                 <p class="inputCaption">지도자단체</p>
-                                <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                <input type="text" name="" id="" readonly class="lgThinInput">
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">승진 가산점</p>
-                                <input type="text" name="additional" id="additional" placeholder="내용을 입력하세요…" class="smThinInput">
+                                <input type="text" name="additional" id="additional"  class="smThinInput">
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">훈련과정</p>
-                                <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                <input type="text" name="" id="" readonly class="lgThinInput">
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">자격증</p>
-                                <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                <input type="text" name="" id="" readonly class="lgThinInput">
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">평생회원</p>
-                                <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                <input type="text" name="" id="" readonly class="lgThinInput">
                             </div>
                         </div>
                         <div class="inputsContainer inputsPd bottomBd">
                             <div class="inputBox">
                                 <p class="inputCaption">대원학교</p>
-                                <input type="text" name="group" id="group" readonly placeholder="내용을 입력하세요…" class="lgThinInput">
+                                <input type="text" name="group" id="group" readonly readonly class="lgThinInput">
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">학년</p>
-                                <input type="text" name="group1" id="group1" placeholder="내용을 입력하세요…" class="smThinInput">
+                                <input type="text" name="group1" id="group1" readonly class="smThinInput">
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">반</p>
-                                <input type="text" name="group2" id="group2" placeholder="내용을 입력하세요…" class="smThinInput">
+                                <input type="text" name="group2" id="group2" readonly class="smThinInput">
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">대원 진보</p>
-                                <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                <input type="text" name="" id="" readonly class="lgThinInput">
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">대원 기능장</p>
-                                <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                <input type="text" name="" id="" readonly class="lgThinInput">
                             </div>
                         </div>
                         <div class="inputsContainer inputsPd bottomBd">
                             <div class="inputBox">
                                 <p class="inputCaption">등록</p>
-                                <input type="text" name="" id="" readonly placeholder="내용을 입력하세요…" class="lgThinInput">
+                                <input type="text" name="" id="" readonly readonly class="lgThinInput">
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">수정</p>
-                                <input type="text" name="" id="" readonly placeholder="내용을 입력하세요…" class="lgThinInput">
+                                <input type="text" name="" id="" readonly readonly class="lgThinInput">
                             </div>
                         </div>
                         <div class="tableTab bottomBd">
@@ -361,14 +362,14 @@
                                         </colgroup>
                                         <thead id="div_scout">
                                             <tr>
-                                                <td>No</td>
-                                                <td>년도</td>
-                                                <td>연맹</td>
-                                                <td>연합회</td>
-                                                <td>단위대</td>
-                                                <td>학교</td>
-                                                <td>구분</td>
-                                                <td>학년</td>
+                                                <th>No</th>
+                                                <th>년도</th>
+                                                <th>연맹</th>
+                                                <th>연합회</th>
+                                                <th>단위대</th>
+                                                <th>학교</th>
+                                                <th>구분</th>
+                                                <th>학년</th>
                                             </tr>
                                         </thead>
 	                					<tbody id="scout_list"></tbody>
@@ -453,8 +454,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="tableButtons">
-                                <p>0<span>rows</span></p>
+                            <div class="tableButtons" style="justify-content: flex-end;">
                                 <div class="buttons">
                                     <a href="#relationPopup" class="smButton relationBtn"><img src="/front_img/modify.png" alt="">수정</a>
                                 </div>
@@ -494,8 +494,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="tableButtons">
-                                <p>0<span>rows</span></p>
+                            <div class="tableButtons" style="justify-content: flex-end;">
                                 <div class="buttons">
                                     <a href="#lnk" class="smButton"><img src="/front_img/add.png" alt="">추가</a>
                                     <a href="#lnk" class="smButton"><img src="/front_img/modify.png" alt="">수정</a>
@@ -505,13 +504,6 @@
                             </div>
                         </div>
                         <div class="tableButtons rightBtns topBd">
-                            <p>0<span>rows</span></p>
-                            <div class="buttons">
-                                <a href="#lnk" class="smButton"><img src="/front_img/sms.png" alt="">SMS</a>
-                                <a href="#lnk" class="smButton"><img src="/front_img/email.png" alt="">이메일</a>
-                                <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">저장</a>
-                                <a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">화면 초기화</a>
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -1501,6 +1493,11 @@
                         <p>0<span>rows</span></p>
                     </div>
                 </div>	
+                <div class="tableButtons" style="justify-content: flex-end; padding: 16px 24px 60px 0;">
+                    <div class="buttons">
+                        <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">저장</a>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

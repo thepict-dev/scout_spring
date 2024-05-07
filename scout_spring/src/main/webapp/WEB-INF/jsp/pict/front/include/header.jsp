@@ -4,7 +4,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn"	   uri="http://java.sun.com/jsp/jstl/functions"%>
 
+
 <div class="header">
+    <h1><a href="/"></a></h1>
     <div class="headerInner">
         <ul class="crumb">
             <li>스카우트 통합 관리</li>

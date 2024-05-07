@@ -1,33 +1,15 @@
 .lnb{
     position: absolute;
     left: 0;
-    top: 0;
+    top: 56px;
     z-index: 10;
     width: 56px;
-    height: 100%;
+    height: calc(100% - 56px);
     transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-.lnb h1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 56px;
-    background-image: url(/front_img/sm-logo.png);
-    background-position: center center;
-    background-size: 24px;
-    background-repeat: no-repeat;
-    border-right: 1px solid var(--grey-100);
-    background-color: #fff;
-}
-.lnb h1 a{
-    display: block;
-    width: calc(100% - 44px);
-    height: 100%;
 }
 nav{
     width: 100%;
-    height: calc(100% - 56px);
+    height: 100%;
     background: var(--grey-800);
     border-right: 1px solid var(--grey-100);
 }
@@ -66,10 +48,6 @@ nav::-webkit-scrollbar{
 }
 .lnb:hover{
     width: 176px;
-}
-.lnb:hover h1{
-    background-image: url(/front_img/logo.png);
-    background-size: contain;
 }
 .lnb:hover .nav > li > a{
     display: flex;

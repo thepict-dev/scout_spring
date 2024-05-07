@@ -2,6 +2,12 @@ $(document).ready(function() {
     $('select').niceSelect();
 });
 
+$('.lnb').mouseover(function(){
+    $('.header h1').addClass('active');
+});
+$('.lnb').mouseleave(function(){
+    $('.header h1').removeClass('active');
+});
 
 // 각 nav 항목의 클릭 이벤트를 설정
 $('.nav > li > a').click(function(e) {
