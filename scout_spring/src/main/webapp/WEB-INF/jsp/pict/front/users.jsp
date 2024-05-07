@@ -1534,7 +1534,7 @@
 				, success : function(data, status, xhr) {
 					console.log(data)
 					console.log("성공")
-					$('#MEMBERNO').text(data.info.memberno)
+					$('#MEMBERNO').val(data.info.memberno)
 					$('#MEMCLSCODE').val(data.info.memclscode)
 					
 					var memgradecode = "";
