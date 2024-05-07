@@ -4,8 +4,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn"	   uri="http://java.sun.com/jsp/jstl/functions"%>
 
-
-
 <!DOCTYPE html>	
 <html lang="ko">
 	<%@ include file="./include/head.jsp" %>
@@ -85,7 +83,7 @@
                         </div>
                         <div class="btnContainer">
                         	<!-- 여기 -->
-                            <a href="#lnk" class="basicButton white"><img src="/front_img/reset.png" alt="">화면 초기화</a>
+                            <a href="#lnk" class="basicButton white" onclick="search_reset()"><img src="/front_img/reset.png" alt="">화면 초기화</a>
                             <a href="#lnk" class="basicButton purple" onclick="search_list()"><img src="/front_img/search.png" alt="">조회</a>
                         </div>
                     </form>
@@ -157,7 +155,7 @@
                         </table>
                     </div>
                     <div class="tableButtons">
-                        <p>0<span>rows</span></p>
+                        <p>${resultListCnt }<span>rows</span></p>
                         <div class="buttons">
                             <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
                         </div>
@@ -376,7 +374,7 @@
                                     </table>
                                 </div>
                                 <div class="tableButtons">
-                                    <p>0<span>rows</span></p>
+                                    <p id="year_cnt_scout">0 rows</p>
                                     <div class="buttons">
                                         <a href="#lnk" class="smButton"><img src="/front_img/add.png" alt="">추가</a>
                                         <a href="#lnk" class="smButton"><img src="/front_img/modify.png" alt="">수정</a>
@@ -416,7 +414,7 @@
                                     </table>
                                 </div>
                                 <div class="tableButtons">
-                                    <p>0<span>rows</span></p>
+                                    <p id="year_cnt_leader">0 rows</p>
                                     <div class="buttons">
                                         <a href="#joinPopup" class="smButton joinBtn"><img src="/front_img/add.png" alt="">추가</a>
                                         <a href="#lnk" class="smButton"><img src="/front_img/modify.png" alt="">수정</a>
@@ -474,22 +472,22 @@
                                         <tr>
                                             <th></th>
                                             <th>최초가입일</th>
-                                            <th>관계</th>
-                                            <th>비고</th>
+                                            <th>총등록</th>
+                                            <th>연공</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <th style="white-space: nowrap;">대원</th>
-                                            <td>김김김김</td>
-                                            <td>년도</td>
-                                            <td>연맹</td>
+                                            <td id="scout_date"></td>
+                                            <td id="scout_whole_incnt"></td>
+                                            <td id="scout_incnt"></td>
                                         </tr>
                                         <tr>
                                             <th style="white-space: nowrap;">지도자</th>
-                                            <td>김김김김</td>
-                                            <td>년도</td>
-                                            <td>연맹</td>
+                                            <td id="leader_date"></td>
+                                            <td id="leader_whole_incnt"></td>
+                                            <td id="leader_incnt"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -1502,14 +1500,26 @@
         </div>
     </div>
 	<script>
+		function search_reset(){
+			$("#search_birthday").val("");
+			
+			$("#search_history option:eq('')").attr("selected", "selected");
+			$("#search_kname").val("");
+			$("#search_memclscode").val("1");
+			$("#search_start").val("");
+			$("#search_end").val("");
+			
+			
+			
+		}
 		function search_list_memberno(){
-			$("#search_fm_memberno").attr("action", "/front/ko/main");
+			$("#search_fm_memberno").attr("action", "/front/users");
 			$("#search_fm_memberno").submit();
 
 		}
 		function search_list(){
 
-			$("#search_fm").attr("action", "/front/ko/main");
+			$("#search_fm").attr("action", "/front/users");
 			$("#search_fm").submit();
 		}
 		function fn_info(memberno, kname, scouty, leadery){
@@ -1560,7 +1570,31 @@
 					var arr = data.list;
 					$('#leader_list').children().remove();
 					$('#scout_list').children().remove();
+
+					
+					//연공이력 개수
+					$('#year_cnt_leader').text('0 rows')
+					$('#year_cnt_scout').text('0 rows')
+					
+					
+					//가입정보 초기화
+					$('#leader_date').text("")
+					$('#leader_whole_incnt').text("")
+					$('#leader_incnt').text("")
+					$('#scout_date').text("")
+					$('#scout_whole_incnt').text("")
+					$('#scout_incnt').text("")
+					
+					
+					
 					if(leadery == 'Y'){//지도자일경우
+						//가입정보 기입
+						$('#leader_date').text(data.info.enterdate)
+						$('#leader_whole_incnt').text(arr.length)
+						$('#leader_incnt').text(data.info.leaderincnt)
+						
+						
+						$('#year_cnt_leader').text(arr.length + " rows")
 						for(var i=0; i<arr.length; i++){
 							
 							html += '<tr>'+
@@ -1580,6 +1614,10 @@
 					}
 					
 					else{//대원일경우
+						$('#scout_date').text(data.info.enterdate)
+						$('#scout_whole_incnt').text(arr.length)
+						$('#scout_incnt').text(data.info.scoutincnt)
+						$('#year_cnt_scout').text(arr.length + " rows")
 						for(var i=0; i<arr.length; i++){
 							html += '<tr>'+
 								'<td>' + Number(i+1) + '</td>' +

@@ -106,15 +106,10 @@ public class PictVO extends PictDefaultVO {
 	private String LEADERWCNT;
 	private String LASTREGYEAR;
 	private String TROOPCLSNAME;
-	
-	
-	
-	
-	private String search_dan;
-	private String search_troop;
-	private String search_toopcls;
-	private String search_enddate;
-	
+	private String SEX;
+	private String LEADERINCNT;
+	private String ENTERDATE;
+	private String SCOUTINCNT;
 	
 	
 	
@@ -136,29 +131,29 @@ public class PictVO extends PictDefaultVO {
 	
 	
 	
-	public String getSearch_dan() {
-		return search_dan;
+	public String getSCOUTINCNT() {
+		return SCOUTINCNT;
 	}
-	public void setSearch_dan(String search_dan) {
-		this.search_dan = search_dan;
+	public void setSCOUTINCNT(String sCOUTINCNT) {
+		SCOUTINCNT = sCOUTINCNT;
 	}
-	public String getSearch_troop() {
-		return search_troop;
+	public String getENTERDATE() {
+		return ENTERDATE;
 	}
-	public void setSearch_troop(String search_troop) {
-		this.search_troop = search_troop;
+	public void setENTERDATE(String eNTERDATE) {
+		ENTERDATE = eNTERDATE;
 	}
-	public String getSearch_toopcls() {
-		return search_toopcls;
+	public String getLEADERINCNT() {
+		return LEADERINCNT;
 	}
-	public void setSearch_toopcls(String search_toopcls) {
-		this.search_toopcls = search_toopcls;
+	public void setLEADERINCNT(String lEADERINCNT) {
+		LEADERINCNT = lEADERINCNT;
 	}
-	public String getSearch_enddate() {
-		return search_enddate;
+	public String getSEX() {
+		return SEX;
 	}
-	public void setSearch_enddate(String search_enddate) {
-		this.search_enddate = search_enddate;
+	public void setSEX(String sEX) {
+		SEX = sEX;
 	}
 	public String getTROOPCLSCODE1() {
 		return TROOPCLSCODE1;
