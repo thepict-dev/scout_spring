@@ -13,7 +13,7 @@
 	<%@ include file="./include/lnb.jsp" %>
 	<%@ include file="./include/header.jsp" %>
     <div class="contentsContainer">
-        <form action="" class="searchForm">
+        <form action="" id="search_fm_memberno" name="search_fm_memberno" method="get" class="searchForm">
             <div class="searchContainer">
                 <p class="inputCaption">조회조건</p>
                 <select name="search" id="search" class="lgSelect">
@@ -29,7 +29,7 @@
             <div class="left">
                 <div class="wholeInquiry">
                     <h2 class="subTitles">통합조회</h2>
-                    <form action="">
+                    <form action="" id="search_fm" name="search_fm" method="get">
 	            		<input type="hidden" id="search_memberno" name="search_memberno" value="${pictVO.search_memberno}"/>
                         <div class="inputsContainer">
                             <div class="inputBox">
@@ -95,38 +95,64 @@
                     <div class="tableWrapper">
                         <table>
                             <colgroup>
-                                <col width="96px" />
-                                <col width="96px" />
-                                <col width="142px" />
-                                <col width="96px" />
-                                <col width="96px" />
-                                <col width="142px" />
-                                <col width="142px" />
-                                <col width="96px" />
+                                <col width="13.5%" />
+                                <col width="8%" />
+                                <col width="14.5%" />
+                                <col width="12.5%" />
+                                <col width="10.5%" />
+                                <col width="10%" />
+                                <col width="10%" />
+                                <col width="12%" />
+                                <col width="10%" />
                             </colgroup>
                             <thead>
                                 <tr>
-                                <th>회원번호</th>
-                                <th>회원명</th>
-                                <th>법정생년월일</th>
-                                <th>회원구분</th>
-                                <th>대원여부</th>
-                                <th>지도자여부</th>
-                                <th>평생회원여부</th>
-                                <th>전종여부</th>
+	                                <th>회원번호</th>
+	                                <th>회원명</th>
+	                                <th>법정생년월일</th>
+	                                <th>회원구분</th>
+	                    			<th>회원등급</th>
+	                                <th>대원여부</th>
+	                                <th>지도자여부</th>
+	                                <th>평생회원여부</th>
+	                                <th>전종여부</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Cell01</td>
-                                    <td>Cell02</td>
-                                    <td>Cell03</td>
-                                    <td>Cell04</td>
-                                    <td>Cell05</td>
-                                    <td>Cell06</td>
-                                    <td>Cell07</td>
-                                    <td>Cell08</td>
-                                </tr>
+	                			<c:forEach var="resultList" items="${resultList}" varStatus="status">
+	                                <tr onclick="fn_info('${resultList.MEMBERNO}', '${resultList.KNAME}', '${resultList.TROOPSCOUTY}', '${resultList.TROOPLEADERY}')" style="cursor: pointer;">
+	                                    <td>${resultList.MEMBERNO}</td>
+	                                    <td>${resultList.KNAME}</td>
+	                         			<td>${resultList.BIRTHDAY}</td>
+	                                    <td>
+				                         	<c:if test='${resultList.MEMCLSCODE eq "1"}'>개인</c:if>
+				                         	<c:if test='${resultList.MEMCLSCODE eq "2"}'>법인</c:if>
+				                         	<c:if test='${resultList.MEMCLSCODE eq "3"}'>단체</c:if>
+	                                    </td>
+	                                    <td>
+				                         	<c:choose>
+					                         	<c:when test='${resultList.MEMGRADECODE eq "1"}'>행사회원</c:when>
+					                         	<c:when test='${resultList.MEMGRADECODE eq "2"}'>후원회원</c:when>
+				                         	</c:choose>
+	                                    </td>
+	                                    <td>
+				                         	<c:if test='${resultList.TROOPSCOUTY eq "Y"}'>Y</c:if>
+				                         	<c:if test='${resultList.TROOPSCOUTY ne "Y"}'>N</c:if>
+	                                    </td>
+	                                    <td>
+				                         	<c:if test='${resultList.TROOPLEADERY eq "Y"}'>Y</c:if>
+				                         	<c:if test='${resultList.TROOPLEADERY ne "Y"}'>N</c:if>
+	                                    </td>
+	                                    <td>
+				                         	<c:if test='${resultList.LIFE eq "Y"}'>Y</c:if>
+				                         	<c:if test='${resultList.LIFE ne "Y"}'>N</c:if>
+	                                    </td>
+	                                    <td>
+				                         	<c:if test='${resultList.LEADER eq "Y"}'>Y</c:if>
+				                         	<c:if test='${resultList.LEADER ne "Y"}'>N</c:if>
+	                                    </td>
+	                                </tr>
+	                    		</c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -154,7 +180,7 @@
                                 <div class="inputsContainer">
                                     <div class="inputBox">
                                         <p class="inputCaption">회원번호</p>
-                                        <input type="text" name="MEMBERNO" id="MEMBERNO" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                        <input type="text" name="MEMBERNO" id="MEMBERNO" readonly placeholder="내용을 입력하세요…" class="lgThinInput">
                                     </div>
                                     <div class="inputBox">
                                         <p class="inputCaption">회원구분</p>
@@ -203,11 +229,6 @@
                                     <div class="inputBox">
                                         <p class="inputCaption">성명(한글)</p>
                                         <input type="text"  name="KNAME" id="KNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                    </div>
-                                    <div class="inputBox">
-                                    	<!-- 여기 -->
-                                        <p class="inputCaption">성명(한문)</p>
-                                        <input type="text" name="USERNAME" id="USERNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
                                     </div>
                                     <div class="inputBox">
                                         <p class="inputCaption">성명(영문)</p>
@@ -263,7 +284,7 @@
                                     <input type="text" name="HPOSTCODE" id="HPOSTCODE" readonly class="lgThinInput">
                                     <a href="#lnk" class="normalButton white">우편번호 검색</a>
                                 </div>
-                                <input type="text" name="get_post" id="get_post" readonly class="lgThinInput post">
+                                <input type="text" name="HADDR" id="HADDR" readonly class="lgThinInput post">
                             </div>
                         </div>
                         <div class="inputsContainer inputsPd bottomBd">
@@ -332,36 +353,25 @@
                                             <col width="60px" />
                                             <col width="96px" />
                                             <col width="142px" />
-                                            <col width="211px" />
-                                            <col width="211px" />
                                             <col width="142px" />
-                                            <col width="60px" />
+                                            <col width="211px" />
+                                            <col width="201px" />
+                                            <col width="80px" />
                                             <col width="60px" />
                                         </colgroup>
-                                        <thead>
+                                        <thead id="div_scout">
                                             <tr>
-                                                <th>No</th>
-                                                <th>년도</th>
-                                                <th>연맹</th>
-                                                <th>연합회</th>
-                                                <th>단위대</th>
-                                                <th>학교</th>
-                                                <th>구분</th>
-                                                <th>학년</th>
+                                                <td>No</td>
+                                                <td>년도</td>
+                                                <td>연맹</td>
+                                                <td>연합회</td>
+                                                <td>단위대</td>
+                                                <td>학교</td>
+                                                <td>구분</td>
+                                                <td>학년</td>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Cell01</td>
-                                                <td>Cell02</td>
-                                                <td>Cell03</td>
-                                                <td>Cell04</td>
-                                                <td>Cell05</td>
-                                                <td>Cell06</td>
-                                                <td>Cell07</td>
-                                                <td>Cell08</td>
-                                            </tr>
-                                        </tbody>
+	                					<tbody id="scout_list"></tbody>
                                     </table>
                                 </div>
                                 <div class="tableButtons">
@@ -375,7 +385,7 @@
                                 </div>
                             </div>
                             <div class="tableContainer historyContent">
-                                <div class="tableWrapper">
+                                <div class="tableWrapper" id="div_leader">
                                     <table>
                                         <colgroup>
                                             <col width="60px" />
@@ -383,12 +393,12 @@
                                             <col width="96px" />
                                             <col width="142px" />
                                             <col width="211px" />
-                                            <col width="211px" />
+                                            <col width="201px" />
                                             <col width="80px" />
-                                            <col width="80px" />
-                                            <col width="142px" />
+                                            <col width="105px" />
+                                            <col width="138px" />
                                         </colgroup>
-                                        <thead>
+                                        <thead id="div_leader">
                                             <tr>
                                                 <th>No</th>
                                                 <th>지도자지도여부</th>
@@ -401,19 +411,7 @@
                                                 <th>학교</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>No</td>
-                                                <td>지도자지도여부</td>
-                                                <td>년도</td>
-                                                <td>연맹</td>
-                                                <td>연합회</td>
-                                                <td>단위대</td>
-                                                <td>직책1</td>
-                                                <td>직책2</td>
-                                                <td>학교</td>
-                                            </tr>
-                                        </tbody>
+                                        <tbody id="leader_list"></tbody>
                                     </table>
                                 </div>
                                 <div class="tableButtons">
@@ -1568,17 +1566,17 @@
 					if(leadery == 'Y'){//지도자일경우
 						for(var i=0; i<arr.length; i++){
 							
-							html += '<li>'+
-								'<p>' + Number(i+1) + '</p>' +
-								'<p>' + arr[i].adminy + '</p>'+
-								'<p>' + arr[i].year + '</p>'+
-								'<p>' + arr[i].associationname + '</p>'+
-								'<p>' + arr[i].troopname + '</p>'+
-								'<p>' + arr[i].unity + '</p>'+
-								'<p>' + arr[i].leaderposition + '</p>'+
-								'<p>' + arr[i].leaderpositionname + '</p>'+
-								'<p>' + arr[i].orgname  + '</p>'+
-								'</li>'
+							html += '<tr>'+
+								'<td>' + Number(i+1) + '</td>' +
+								'<td>' + arr[i].adminy + '</td>'+
+								'<td>' + arr[i].year + '</td>'+
+								'<td>' + arr[i].associationname + '</td>'+
+								'<td>' + arr[i].troopname + '</td>'+
+								'<td>' + arr[i].unity + '</td>'+
+								'<td>' + arr[i].leaderposition + '</td>'+
+								'<td>' + arr[i].leaderpositionname + '</td>'+
+								'<td>' + arr[i].orgname  + '</td>'+
+								'</tr>'
 							
 						}
 						$('#leader_list').append(html)
@@ -1586,16 +1584,16 @@
 					
 					else{//대원일경우
 						for(var i=0; i<arr.length; i++){
-							html += '<li>'+
-								'<p>' + Number(i+1) + '</p>' +
-								'<p>' + arr[i].year + '</p>'+
-								'<p>' + arr[i].associationname + '</p>'+
-								'<p>' + arr[i].unity + '</p>'+
-								'<p>' + arr[i].troopname + '</p>'+
-								'<p>' + arr[i].orgname + '</p>'+
-								'<p>' + arr[i].orgclsname + '</p>'+
-								'<p>' + arr[i].scoutschoolyear + '</p>'+
-								'</li>'
+							html += '<tr>'+
+								'<td>' + Number(i+1) + '</td>' +
+								'<td>' + arr[i].year + '</td>'+
+								'<td>' + arr[i].associationname + '</td>'+
+								'<td>' + arr[i].unity + '</td>'+
+								'<td>' + arr[i].troopname + '</td>'+
+								'<td>' + arr[i].orgname + '</td>'+
+								'<td>' + arr[i].orgclsname + '</td>'+
+								'<td>' + arr[i].scoutschoolyear + '</td>'+
+								'</tr>'
 							
 						}
 						$('#scout_list').append(html)
