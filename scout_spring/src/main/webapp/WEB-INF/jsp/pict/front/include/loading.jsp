@@ -40,9 +40,7 @@
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function() {
-  setTimeout(removeInitialLoading, 3000); // 3초 후 초기 로딩 화면 제거
-});
+setTimeout(removeInitialLoading, 3000); // 3초 후 초기 로딩 화면 제거
 
 function removeInitialLoading() {
   var loadingElement = document.getElementById('initial-loading');
