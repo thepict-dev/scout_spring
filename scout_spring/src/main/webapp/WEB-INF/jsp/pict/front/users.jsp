@@ -206,7 +206,7 @@
                                     <div class="inputBox">
                                         <p class="inputCaption">전종여부</p>
                                         <select name="LEADER" id="LEADER" class="smThinSelect">
-                                            <option value="N">비전종</option>
+                                            <option value="N">-</option>
                                             <option value="Y">전종</option>
                                         </select>
                                     </div>
@@ -1499,6 +1499,7 @@
             </form>
         </div>
     </div>
+    <%@ include file="./include/loading.jsp" %>
 	<script>
 		function search_reset(){
 			$("#search_birthday").val("");
@@ -1513,16 +1514,20 @@
 			
 		}
 		function search_list_memberno(){
+			$('#initial-loading').css('display', 'flex')
 			$("#search_fm_memberno").attr("action", "/front/users");
 			$("#search_fm_memberno").submit();
+			$('#initial-loading').css('display', 'none')
 
 		}
 		function search_list(){
-
+			$('#initial-loading').css('display', 'flex')
 			$("#search_fm").attr("action", "/front/users");
 			$("#search_fm").submit();
+			$('#initial-loading').css('display', 'none')
 		}
 		function fn_info(memberno, kname, scouty, leadery){
+			$('#initial-loading').css('display', 'flex')
 			var param = {
 				memberno : memberno,
 				kname : kname,
@@ -1633,11 +1638,13 @@
 						}
 						$('#scout_list').append(html)
 					}
-					
+					$('#initial-loading').css('display', 'none')
 				}
 				, error : function(xhr, status, error) {
 					console.log(xhr)
 					console.log("에러")
+					//지현이 에러
+					$('#initial-loading').css('display', 'none')
 				}
 			});
 		}
