@@ -41,7 +41,6 @@
 <script>
 
 document.addEventListener("DOMContentLoaded", function() {
-  // 페이지가 완전히 로드되었을 때 실행
   setTimeout(removeInitialLoading, 3000); // 3초 후 초기 로딩 화면 제거
 });
 
