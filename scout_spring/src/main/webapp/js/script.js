@@ -3,10 +3,10 @@ $(document).ready(function() {
 });
 
 $('.lnb').mouseover(function(){
-    $('.header h1').addClass('active');
+    $('.header').addClass('active');
 });
 $('.lnb').mouseleave(function(){
-    $('.header h1').removeClass('active');
+    $('.header').removeClass('active');
 });
 
 // 각 nav 항목의 클릭 이벤트를 설정

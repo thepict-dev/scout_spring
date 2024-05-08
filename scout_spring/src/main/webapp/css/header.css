@@ -154,11 +154,11 @@
     background: var(--purple-600);
 }
 
-.header h1.active{ 
-    width: 187px;
+.header.active h1{ 
+    width: 176px;
     background-image: url(/front_img/logo.png);
     background-size: contain;
 }
-.header h1.active .headerInner{ 
-    width: calc(100% - 187px);
+.header.active .headerInner{ 
+    width: calc(100% - 176px);
 }

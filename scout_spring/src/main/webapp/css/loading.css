@@ -1,0 +1,44 @@
+.bounce {
+  animation: bounce 1s linear infinite;
+}
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(-25%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: none;
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+  .scaleAndFadeOut {
+    opacity: 0;
+    animation: scaleAndFadeOut 0.2s linear;
+  }
+  @keyframes scaleAndFadeOut {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+  }
+  .overflow-hidden {
+    overflow: hidden;
+  }
+
+  #initial-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
