@@ -311,6 +311,11 @@
                                 <p class="inputCaption">평생회원</p>
                                 <input type="text" name="" id="" readonly class="lgThinInput">
                             </div>
+                            <div class="tableButtons" style="justify-content: flex-end;">
+                                <div class="buttons">
+                                    <a href="#lnk" class="smButton relationBtn"><img src="/front_img/modify.png" alt="">수정</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="inputsContainer inputsPd bottomBd">
                             <div class="inputBox">
@@ -333,6 +338,11 @@
                                 <p class="inputCaption">대원 기능장</p>
                                 <input type="text" name="" id="" readonly class="lgThinInput">
                             </div>
+                            <div class="tableButtons" style="justify-content: flex-end;">
+                                <div class="buttons">
+                                    <a href="#lnk" class="smButton relationBtn"><img src="/front_img/search3.png" alt="">학교/단체찾기</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="inputsContainer inputsPd bottomBd">
                             <div class="inputBox">
@@ -353,25 +363,40 @@
                                 <div class="tableWrapper">
                                     <table>
                                         <colgroup>
-                                            <col width="60px" />
-                                            <col width="96px" />
-                                            <col width="142px" />
-                                            <col width="142px" />
-                                            <col width="211px" />
-                                            <col width="201px" />
-                                            <col width="80px" />
-                                            <col width="60px" />
+                                            <col width="2.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="6.5%" />
+                                            <col width="6.5%" />
+                                            <col width="4.5%" />
+                                            <col width="2.5%" />
+                                            <col width="2.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="6.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
                                         </colgroup>
                                         <thead id="div_scout">
                                             <tr>
                                                 <th>No</th>
+                                                <th>구분</th>
                                                 <th>년도</th>
                                                 <th>연맹</th>
                                                 <th>연합회</th>
                                                 <th>단위대</th>
                                                 <th>학교</th>
-                                                <th>구분</th>
                                                 <th>학년</th>
+                                                <th>반</th>
                                                 <th>연맹지(부수)</th>
                                                 <th>정산대상</th>
                                                 <th>승인</th>
@@ -381,7 +406,6 @@
                                                 <th>납부이력</th>
                                                 <th>직책</th>
                                                 <th>스카우트구분</th>
-                                                <th>반</th>
                                                 <th>등록비</th>
                                                 <th>월간지</th>
                                                 <th>보험료</th>
@@ -405,15 +429,28 @@
                                 <div class="tableWrapper" id="div_leader">
                                     <table>
                                         <colgroup>
-                                            <col width="60px" />
-                                            <col width="130px" />
-                                            <col width="96px" />
-                                            <col width="142px" />
-                                            <col width="211px" />
-                                            <col width="201px" />
-                                            <col width="80px" />
-                                            <col width="105px" />
-                                            <col width="138px" />
+                                            <col width="2.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="6.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
                                         </colgroup>
                                         <thead id="div_leader">
                                             <tr>
@@ -537,999 +574,15 @@
                     </form>
                 </div>
                 <!-- 추가정보 탭 -->
-                <div class="fomrTabContent">
-                    <div class="addContainer">
-                        <ul class="addNav">
-                            <li class="active">부가정보</li>
-                            <li>행사참가관련</li>
-                            <li>임원이력</li>
-                            <li>대원진보</li>
-                            <li>지도자조직/직책이력</li>
-                            <li>훈련/자격</li>
-                            <li>활동기록</li>
-                            <li>봉사기록</li>
-                            <li>포상기록</li>
-                        </ul>
-                        <!-- 부가정보 -->
-                        <div class="addContent mt20 active">
-                            <form action="">
-                                <div class="inputsContainer">
-                                    <div class="inputBox">
-                                        <p class="inputCaption">보호자성명</p>
-                                        <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                    </div>
-                                    <div class="inputBox">
-                                        <p class="inputCaption">보호자 휴대전화</p>
-                                        <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                    </div>
-                                </div>
-                                <div class="inputsContainer mt20">
-                                    <div class="inputBox">
-                                        <p class="inputCaption">최종학력</p>
-                                        <select name="" id="" class="lgThinSelect">
-                                            <option value="1">대원</option>
-                                            <option value="2">지도자</option>
-                                            <option value="3">평생회원</option>
-                                        </select>
-                                    </div>
-                                    <div class="inputBox">
-                                        <p class="inputCaption">최종학교명</p>
-                                        <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                    </div>
-                                    <div class="inputBox">
-                                        <p class="inputCaption">전공/학과</p>
-                                        <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                    </div>
-                                </div>
-                                <div class="inputsContainer mt20">
-                                    <div class="inputBox">
-                                        <p class="inputCaption">직장명</p>
-                                        <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                    </div>
-                                    <div class="inputBox">
-                                        <p class="inputCaption">직장직책</p>
-                                        <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                    </div>
-                                    <div class="inputBox">
-                                        <p class="inputCaption">직장전화</p>
-                                        <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                    </div>
-                                    <div class="inputBox">
-                                        <p class="inputCaption">팩스번호</p>
-                                        <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                    </div>
-                                    <div class="inputBox">
-                                        <p class="inputCaption">직장주소</p>
-                                        <div class="zip">
-                                            <input type="text" name="HPOSTCODE" id="HPOSTCODE" readonly class="lgThinInput">
-                                            <a href="#lnk" class="normalButton white">우편번호 검색</a>
-                                        </div>
-                                        <input type="text" name="get_post" id="get_post" readonly class="lgThinInput post">
-                                    </div>
-                                </div>
-                                <div class="inputsContainer mt20 pb16">
-                                    <div class="inputBox">
-                                        <p class="inputCaption">결혼여부</p>
-                                        <div class="marrige">
-                                            <select name="" id="" class="smThinSelect">
-                                                <option value="">선택하세요.</option>
-                                                <option value="1">기혼</option>
-                                                <option value="2">미혼</option>
-                                            </select>
-                                            <input type="date" name="" id="" class="lgThinInput">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tableButtons addBtns topBd">
-                                    <div class="buttons">
-                                        <a href="#lnk" class="smButton"><img src="/front_img/modify.png" alt="">수정</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">저장</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- 행사참가관련 -->
-                        <div class="addContent mt20">
-                            <form action="">
-                                <div class="inputsContainer">
-                                    <div class="inputBox">
-                                        <p class="inputCaption">혈액형</p>
-                                        <select name="" id="" class="smThinSelect">
-                                            <option value="">선택하세요.</option>
-                                            <option value="1">A</option>
-                                            <option value="2">B</option>
-                                            <option value="3">AB</option>
-                                        </select>
-                                    </div>
-                                    <div class="inputBox">
-                                        <p class="inputCaption">셔츠사이즈</p>
-                                        <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                    </div>
-                                    <div class="inputBox">
-                                        <p class="inputCaption">종교</p>
-                                        <select name="" id="" class="smThinSelect">
-                                            <option value="">선택하세요.</option>
-                                            <option value="1">불교</option>
-                                            <option value="2">천주교</option>
-                                            <option value="3">기독교</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="inputsContainer mt20">
-                                    <div class="inputBox">
-                                        <p class="inputCaption">여권번호</p>
-                                        <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                    </div>
-                                    <div class="inputBox">
-                                        <p class="inputCaption">유효기간</p>
-                                        <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                    </div>
-                                    <div class="inputBox">
-                                        <p class="inputCaption">외국어능력</p>
-                                        <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                    </div>
-                                </div>
-                                <div class="inputsContainer mt20">
-                                    <div class="inputBox">
-                                        <p class="inputCaption">개인병력</p>
-                                        <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                    </div>
-                                    <div class="inputBox">
-                                        <p class="inputCaption">알러지</p>
-                                        <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                    </div>
-                                </div>
-                                <div class="inputsContainer mt20 pb16">
-                                    <div class="inputBox">
-                                        <p class="inputCaption">비고</p>
-                                        <textarea name="" id="" cols="100"></textarea>
-                                    </div>
-                                </div>
-                                <div class="tableButtons addBtns topBd">
-                                    <div class="buttons">
-                                        <a href="#lnk" class="smButton"><img src="/front_img/modify.png" alt="">수정</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">저장</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- 임원이력 -->
-                        <div class="addContent">
-                            <form action="" class="tableContainer relationContainer addTable">
-                                <div class="tableWrapper">
-                                    <table>
-                                        <colgroup>
-                                            <col width="5%" />
-                                            <col width="30%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="15%" />
-                                            <col width="15%" />
-                                            <col width="15%" />
-                                        </colgroup>
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>단위대</th>
-                                                <th>임원분류1</th>
-                                                <th>임원분류2</th>
-                                                <th>임기</th>
-                                                <th>비고</th>
-                                                <th>등록일</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>지도자</td>
-                                                <td>년도</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="tableButtons topBd">
-                                    <p>0<span>rows</span></p>
-                                    <div class="buttons">
-                                        <a href="#lnk" class="smButton"><img src="/front_img/add.png" alt="">추가</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/modify.png" alt="">수정</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">삭제</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- 대원진보 -->
-                        <div class="addContent">
-                            <form action="" class="tableContainer relationContainer addTable max">
-                                <div class="addSearch">
-                                    <select name="" id="" class="smThinSelect">
-                                        <option value="">진보</option>
-                                    </select>
-                                    <a href="" class="smButton"><img src="/front_img/search2.png" alt="">조회</a>
-                                </div>
-                                <div class="tableWrapper">
-                                    <table>
-                                        <colgroup>
-                                            <col width="5%" />
-                                            <col width="5%" />
-                                            <col width="10%" />
-                                            <col width="7%" />
-                                            <col width="7%" />
-                                            <col width="7%" />
-                                            <col width="7%" />
-                                            <col width="7%" />
-                                            <col width="7%" />
-                                            <col width="7%" />
-                                            <col width="7%" />
-                                        </colgroup>
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>급위</th>
-                                                <th>진급연맹</th>
-                                                <th>진급일</th>
-                                                <th>최종승인상태</th>
-                                                <th>지사승인상태</th>
-                                                <th>등록자</th>
-                                                <th>등록일</th>
-                                                <th>승인자</th>
-                                                <th>승인일</th>
-                                                <th>비고</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>지도자</td>
-                                                <td>년도</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="tableButtons topBd">
-                                    <p>0<span>rows</span></p>
-                                    <div class="buttons">
-                                        <a href="#lnk" class="smButton"><img src="/front_img/add.png" alt="">추가</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/modify.png" alt="">수정</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">삭제</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- 지도자조직/직책 -->
-                        <div class="addContent">
-                            <form action="" class="tableContainer relationContainer addTable">
-                                <div class="addSearch">
-                                    <input type="date" name="" id="" class="lgThinInput"> -
-                                    <input type="date" name="" id="" class="lgThinInput"> 
-                                    <a href="" class="smButton"><img src="/front_img/search2.png" alt="">조회</a>
-                                </div>
-                                <div class="tableWrapper">
-                                    <table>
-                                        <colgroup>
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="15%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                        </colgroup>
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>회원번호</th>
-                                                <th>회원명</th>
-                                                <th>학교/단체명</th>
-                                                <th>지도자직책명</th>
-                                                <th>시작일</th>
-                                                <th>마감일</th>
-                                                <th>등록자</th>
-                                                <th>등록일</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>지도자</td>
-                                                <td>년도</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="tableButtons topBd">
-                                    <p>0<span>rows</span></p>
-                                    <div class="buttons">
-                                        <a href="#lnk" class="smButton"><img src="/front_img/add.png" alt="">추가</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/modify.png" alt="">수정</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">삭제</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- 훈련/자격 -->
-                        <div class="addContent">
-                            <form action="" class="tableContainer relationContainer addTable max">
-                                <div class="addSearch">
-                                    <select name="" id="" class="smThinSelect">
-                                        <option value="">훈련과정</option>
-                                    </select>
-                                    <a href="" class="smButton"><img src="/front_img/search2.png" alt="">조회</a>
-                                </div>
-                                <div class="tableWrapper">
-                                    <table>
-                                        <colgroup>
-                                            <col width="5%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="15%" />
-                                        </colgroup>
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>훈련과정1</th>
-                                                <th>훈련과정2</th>
-                                                <th>수료일</th>
-                                                <th>수료번호</th>
-                                                <th>이수시간</th>
-                                                <th>자격번호</th>
-                                                <th>직무연수번호</th>
-                                                <th>직무연수점수</th>
-                                                <th>비고</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>지도자</td>
-                                                <td>년도</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="tableButtons topBd">
-                                    <p>0<span>rows</span></p>
-                                    <div class="buttons">
-                                        <a href="#lnk" class="smButton"><img src="/front_img/add.png" alt="">추가</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/modify.png" alt="">수정</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">삭제</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- 활동기록 -->
-                        <div class="addContent">
-                            <form action="" class="tableContainer relationContainer addTable max2">
-                                <div class="addSearch">
-                                    <div class="addScroll">
-                                        <div class="addSearchScroll">
-                                            <select name="" id="" class="smThinSelect">
-                                                <option value="">진보</option>
-                                            </select>
-                                            <input type="date" name="" id="" class="lgThinInput"> -
-                                            <input type="date" name="" id="" class="lgThinInput"> 
-                                            <input type="checkbox" name="wholeBongsa" id="wholeBongsa">
-                                            <label for="wholeBongsa">전체</label>
-                                        </div>
-                                        <div class="addSearchScroll">
-                                            <select name="" id="" class="smThinSelect">
-                                                <option value="">진보</option>
-                                            </select>
-                                            <select name="" id="" class="smThinSelect">
-                                                <option value="">진보</option>
-                                            </select>
-                                            <select name="" id="" class="smThinSelect">
-                                                <option value="">진보</option>
-                                            </select>
-                                        <a href="" class="smButton"><img src="/front_img/search2.png" alt="">조회</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tableWrapper">
-                                    <table>
-                                        <colgroup>
-                                            <col width="3%" />
-                                            <col width="5%" />
-                                            <col width="5%" />
-                                            <col width="5%" />
-                                            <col width="12%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                        </colgroup>
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                    <input type="checkbox" name="choice" id="checkAll">
-                                                    <label for="checkAll"></label>
-                                                </th>
-                                                <th>No</th>
-                                                <th>행사번호</th>
-                                                <th>수료여부</th>
-                                                <th>행사명</th>
-                                                <th>행사시작일</th>
-                                                <th>행사마침일</th>
-                                                <th>주관연맹</th>
-                                                <th>지구연합회</th>
-                                                <th>행사구분1</th>
-                                                <th>행사구분2</th>
-                                                <th>행사구분3</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" name="choice" id="choice">
-                                                    <label for="choice"></label>
-                                                </td>
-                                                <td>1</td>
-                                                <td>년도</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" name="choice" id="choice">
-                                                    <label for="choice"></label>
-                                                </td>
-                                                <td>1</td>
-                                                <td>년도</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="tableButtons topBd">
-                                    <p>0<span>rows</span></p>
-                                    <div class="buttons">
-                                        <a href="#lnk" class="smButton"><img src="/front_img/add.png" alt="">추가</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/modify.png" alt="">수정</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">삭제</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
-                                        <a href="#lnk" class="smButton">활동내역인쇄</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- 봉사기록 -->
-                        <div class="addContent">
-                            <form action="" class="tableContainer relationContainer addTable max3">
-                                <div class="addSearch">
-                                    <div class="addScroll">
-                                        <div class="addSearchScroll">
-                                            <input type="date" name="" id="" class="lgThinInput"> -
-                                            <input type="date" name="" id="" class="lgThinInput"> 
-                                            <input type="checkbox" name="wholePeriod" id="wholePeriod">
-                                            <label for="wholePeriod">전체</label>
-                                        </div>
-                                        <div class="addSearchScroll">
-                                            <select name="" id="" class="smThinSelect">
-                                                <option value="">진보</option>
-                                            </select>
-                                            <select name="" id="" class="smThinSelect">
-                                                <option value="">진보</option>
-                                            </select>
-                                            <select name="" id="" class="smThinSelect">
-                                                <option value="">진보</option>
-                                            </select>
-                                        <a href="" class="smButton"><img src="/front_img/search2.png" alt="">조회</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tableWrapper">
-                                    <table>
-                                        <colgroup>
-                                            <col width="1%" />
-                                            <col width="2%" />
-                                            <col width="9%" />
-                                            <col width="3%" />
-                                            <col width="9%" />
-                                            <col width="9%" />
-                                            <col width="9%" />
-                                            <col width="5%" />
-                                            <col width="8%" />
-                                            <col width="9%" />
-                                            <col width="9%" />
-                                            <col width="9%" />
-                                            <col width="9%" />
-                                            <col width="9%" />
-                                        </colgroup>
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                    <input type="checkbox" name="" id="">
-                                                    <label for=""></label>
-                                                </th>
-                                                <th>No</th>
-                                                <th>행사번호</th>
-                                                <th>행사명</th>
-                                                <th>행사시작일</th>
-                                                <th>행사마침일</th>
-                                                <th>봉사직책</th>
-                                                <th>개인봉사시간</th>
-                                                <th>봉사번호</th>
-                                                <th>주관연맹</th>
-                                                <th>지구연합회</th>
-                                                <th>행사구분1</th>
-                                                <th>행사구분2</th>
-                                                <th>행사구분3</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" name="" id="">
-                                                    <label for=""></label>
-                                                </td>
-                                                <td>1</td>
-                                                <td>년도</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="tableButtons topBd">
-                                    <p>0<span>rows</span></p>
-                                    <div class="buttons">
-                                        <a href="#lnk" class="smButton"><img src="/front_img/add.png" alt="">추가</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/modify.png" alt="">수정</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">삭제</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
-                                        <a href="#lnk" class="smButton">활동내역인쇄</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- 포상기록 -->
-                        <div class="addContent">
-                            <form action="" class="tableContainer relationContainer addTable">
-                                <div class="tableWrapper">
-                                    <table>
-                                        <colgroup>
-                                            <col width="5%" />
-                                            <col width="10%" />
-                                            <col width="15%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="15%" />
-                                        </colgroup>
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>포상번호</th>
-                                                <th>수여연맹</th>
-                                                <th>포상일</th>
-                                                <th>포상구분1</th>
-                                                <th>포상구분2</th>
-                                                <th>포상명</th>
-                                                <th>포상비고</th>
-                                                <th>등록</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>지도자</td>
-                                                <td>년도</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                                <td>연맹</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="tableButtons topBd">
-                                    <p>0<span>rows</span></p>
-                                    <div class="buttons">
-                                        <a href="#lnk" class="smButton"><img src="/front_img/add.png" alt="">추가</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/modify.png" alt="">수정</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">삭제</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+    			<%@ include file="./include/add_info.jsp" %>
             </div>
         </div>
     </div>
      <!-- 지도자 가입 모달 -->
-	<div id="joinPopup">
-	    <div class="popupInner">
-	        <button type="button"><img src="/front_img/close.png" alt=""></button>
-            <form action="">
-                <div class="basicInfo1 inputsPd">
-                    <div class="stackInputs">
-                        <div class="inputsContainer">
-                            <div class="inputBox">
-                                <p class="inputCaption">성명</p>
-                                <input type="text" name="KNAME" id="KNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
-                            </div>
-                            <div class="inputBox">
-                                <p class="inputCaption">연차년도</p>
-                                <select name="" id="" class="smThinSelect">
-                                    <option value="1">개인</option>
-                                    <option value="2">법인</option>
-                                    <option value="3">단체</option>
-                                </select>
-                            </div>
-                            <div class="inputBox">
-                                <p class="inputCaption">승인여부</p>
-                                <select name="" id="" class="smThinSelect">
-                                    <option value="0">대원/지도자</option>
-                                    <option value="1">후원회원</option>
-                                    <option value="2">행사회원</option>
-                                </select>
-                            </div>
-                            <div class="inputBox">
-                                <p class="inputCaption">연맹</p>
-                                <select name="" id="" class="smThinSelect">
-                                    <option value="1">대원</option>
-                                    <option value="2">지도자</option>
-                                    <option value="3">평생회원</option>
-                                </select>
-                            </div>
-                            <div class="inputBox">
-                                <p class="inputCaption">연합회</p>
-                                <select name="" id="" class="smThinSelect">
-                                    <option value="1">대원</option>
-                                    <option value="2">지도자</option>
-                                    <option value="3">평생회원</option>
-                                </select>
-                            </div>
-                            <div class="inputBox">
-                                <p class="inputCaption">단위대</p>
-                                <select name="" id="" class="lgThinSelect">
-                                    <option value="0">대원/지도자</option>
-                                    <option value="1">후원회원</option>
-                                    <option value="2">행사회원</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="inputsContainer">
-                            <div class="inputBox">
-                                <p class="inputCaption">소속학교</p>
-                               	<div class="inputsAlign">
-	                                <input type="text"  name="KNAME" id="KNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
-	                               	<a href="#lnk" class="smButton"><img src="/front_img/search2.png" alt="">조회</a>
-	                                <select name="LEADER" id="LEADER" class="lgThinSelect">
-	                                    <option value="N">비전종</option>
-	                                    <option value="Y">전종</option>
-	                                </select>
-                               	</div>
-                            </div>
-                        </div>
-                        <div class="inputsContainer">
-                            <div class="inputBox">
-                                <p class="inputCaption">지도자직책</p>
-                               	<div class="inputsAlign">
-	                                <select name="" id="" class="lgThinSelect">
-	                                    <option value="N">비전종</option>
-	                                    <option value="Y">전종</option>
-	                                </select>
-	                                <select name="" id="" class="lgThinSelect">
-	                                    <option value="N">비전종</option>
-	                                    <option value="Y">전종</option>
-	                                </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="inputsContainer inputsPd_">
-                    <div class="inputBox">
-                        <p class="inputCaption">관리지도자</p>
-                        <div class="recive">
-                            <input type="checkbox" name="admin" id="admin"><label for="admin">관리지도자</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="inputsContainer inputsPd_ bottomBd">
-                    <div class="inputBox">
-                        <p class="inputCaption">회비면제</p>
-                       	<div class="inputsAlign">
-	                        <div>
-	                            <input type="checkbox" name="free" id="free"><label for="free">면제</label>
-	                        </div>
-	                        <select name="" id="" class="lgThinSelect">
-	                            <option value="N">비전종</option>
-	                            <option value="Y">전종</option>
-	                        </select>
-                        </div>
-                    </div>
-                    <div class="inputBox">
-                        <p class="inputCaption">회비정산입금일</p>
-                       	<div class="inputsAlign">
-	                       	<input type="date" name="" id="" value="" class="lgThinInput">
-	                        <div>
-	                            <input type="checkbox" name="recived" id="recived"><label for="recived">납부완료</label>
-	                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="paymentForm">
-                	<h3 class="subTitles" style="padding: 16px 24px 0 24px;">회비</h3>
-	                <div class="inputsContainer inputsPd bottomBd">
-	                    <div class="inputBox">
-	                        <p class="inputCaption">등록</p>
-                       		<div class="inputsAlign">
-								<input type="text" name="" id="" placeholder="내용을 입력하세요…" class="smThinInput">
-		                        <p class="inputCaption" style="margin-top:7px;">원</p>
-	                        </div>
-	                    </div>
-	                    <div class="inputBox">
-	                        <p class="inputCaption">안전활동부담금</p>
-                       		<div class="inputsAlign">
-								<input type="text" name="" id="" placeholder="내용을 입력하세요…" class="smThinInput">
-		                        <p class="inputCaption" style="margin-top:7px;">원</p>
-	                        </div>
-	                    </div>
-	                    <div class="inputBox">
-	                    	<div class="inputsAlign">
-	                        	<p class="inputCaption">월간지</p>
-	                        	<input type="checkbox" name="" id=""><label for="" style="margin-bottom:8px;width: 10px;height: 13px;"></label>
-                       		</div>
-                       		<div class="inputsAlign">
-								<input type="text" name="" id="" placeholder="내용을 입력하세요…" class="smThinInput">
-		                        <p class="inputCaption" style="margin-top:7px;">부</p>
-	                        </div>
-	                    </div>
-	                    <div class="inputBox">
-	                    	<div class="inputsAlign">
-	                        	<p class="inputCaption">격월간지</p>
-	                        	<input type="checkbox" name="" id=""><label for="" style="margin-bottom:8px;width: 10px;height: 13px;"></label>
-                       		</div>
-                       		<div class="inputsAlign">
-								<input type="text" name="" id="" placeholder="내용을 입력하세요…" class="smThinInput">
-		                        <p class="inputCaption" style="margin-top:7px;">부</p>
-	                        </div>
-	                    </div>
-	                    <div class="inputBox">
-	                        <p class="inputCaption">총계</p>
-                       		<div class="inputsAlign">
-								<input type="text" name="" id="" readonly class="smThinInput">
-		                        <p class="inputCaption" style="margin-top:7px;">원</p>
-	                        </div>
-	                    </div>
-	                </div>
-                </div>
-                <div class="inputsContainer inputsPd bottomBd">
-                    <div class="inputBox">
-                        <p class="inputCaption">비고</p>
-                        <textarea name="" id="" cols="100"></textarea>
-                    </div>
-                </div>
-                <div class="inputsContainer inputsPd bottomBd">
-                    <div class="inputBox">
-                        <p class="inputCaption">등록</p>
-                        <input type="text" name="" id="" readonly placeholder="내용을 입력하세요…" class="lgThinInput">
-                    </div>
-                    <div class="inputBox">
-                        <p class="inputCaption">수정</p>
-                        <input type="text" name="" id="" readonly placeholder="내용을 입력하세요…" class="lgThinInput">
-                    </div>
-                </div>
-                <div class="inputsContainer inputsPd bottomBd">
-                    <div class="inputBox">
-                        <p class="inputCaption">승인</p>
-                        <input type="text" name="" id="" readonly placeholder="내용을 입력하세요…" class="lgThinInput">
-                    </div>
-                </div>
-                <div class="saveBox">
-                	<input type="checkbox" name="save" id="save"><label for="save">입력한 정보를 최신 신상정보로 갱신</label>
-                </div>
-                <div class="tableButtons" style="justify-content: flex-end; padding: 16px 24px 60px 0;">
-                    <div class="buttons">
-                        <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">저장</a>
-                    </div>
-                </div>
-            </form>
-	    </div>
-	</div>
+	<%@ include file="./include/relation_modal.jsp" %>
+     <!-- 관계연결 모달 -->
+	<%@ include file="./include/relation_modal.jsp" %>
 	
-	<div id="relationPopup">
-	    <div class="popupInner">
-	        <button type="button"><img src="/front_img/close.png" alt=""></button>
-            <form action="">
-                <div class="tableContainer relationContainer bottomBd mb20">
-                    <h2 class="subTitles">관계 목록</h2>
-                    <div class="tableWrapper" style="height: 150px; overflow-x: scroll;">
-                        <table style="min-width: 630px;">
-                            <colgroup>
-                                <col width="10%" />
-                                <col width="15%" />
-                                <col width="20%" />
-                                <col width="20%" />
-                                <col width="15%" />
-                                <col width="20%" />
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th>코드</th>
-                                    <th>관계</th>
-                                    <th>회원명</th>
-                                    <th>법정생년월일</th>
-                                    <th>성별</th>
-                                    <th>등록일</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>지도자</td>
-                                    <td>년도</td>
-                                    <td>연맹</td>
-                                    <td>년도</td>
-                                    <td>연맹</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="tableButtons">
-                        <p>0<span>rows</span></p>
-                        <div class="buttons">
-                            <a href="#relationPopup" class="smButton relationBtn"><img src="/front_img/reset.png" alt="">관계삭제</a>
-                        </div>
-                    </div>
-                </div>	
-                <h2 class="subTitles" style="padding: 0 24px;">관계 검색</h2>
-                <div class="inputsContainer inputsPd">
-                    <div class="inputBox">
-                        <p class="inputCaption">회원명</p>
-                        <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                    </div>
-                    <div class="inputBox">
-                        <p class="inputCaption">회원번호</p>
-                        <input type="text" class="lgThinInput" name="" id="" value="${pictVO.search_memberno_se}" onkeypress="if(event.keyCode == 13){search_list();}" placeholder="내용을 입력하세요…">
-                    </div>
-                </div>
-               	<div class="inputsContainer" style="padding: 0 24px;">
-                    <div class="inputBox genderContainer" style="align-items: center;">
-                        <p class="inputCaption" style="margin: 0;">성별</p>
-                        <div class="gender">
-                            <input type="radio" name="SEX" value="" id="SEX">
-                            <label for="SEX">전체</label>
-                        </div>
-                        <div class="gender">
-                            <input type="radio" name="SEX" value="M" id="SEX_M">
-                            <label for="SEX_M">남</label>
-                        </div>
-                        <div class="gender">
-                            <input type="radio" name="SEX" value="W" id="SEX_W">
-                            <label for="SEX_W">여</label>
-                        </div>
-                    </div>
-                 </div>
-                 <div class="tableButtons addSearch bottomBd" style="padding:16px 24px;">
-                     <div class="buttons">
-                         <a href="#relationPopup" class="smButton relationBtn"><img src="/front_img/search2.png" alt="">조회</a>
-                     </div>
-                 </div>
-               	<div class="inputsContainer">
-	                <div class="inputBox">
-	                   	<div class="inputsAlign relationSearch">
-		                     <select name="" id="" class="lgThinSelect">
-		                         <option value="">자식이(가) 부모 등록</option>
-		                     </select>
-		                     <a href="#relationPopup" class="smButton relationBtn"><img src="/front_img/add.png" alt="">관계추가</a>
-	                	</div>
-	                </div>
-                </div>
-                <div class="tableContainer relationContainer bottomBd mb20">
-                    <h2 class="subTitles">조회 결과</h2>
-                    <div class="tableWrapper" style="height: 150px;">
-                        <table>
-                            <colgroup>
-                                <col width="15%" />
-                                <col width="20%" />
-                                <col width="25%" />
-                                <col width="15%" />
-                                <col width="25%" />
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th>회원번호</th>
-                                    <th>회원명</th>
-                                    <th>법정생년월일</th>
-                                    <th>성별</th>
-                                    <th>등록일</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>지도자</td>
-                                    <td>년도</td>
-                                    <td>연맹</td>
-                                    <td>연맹</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="tableButtons">
-                        <p>0<span>rows</span></p>
-                    </div>
-                </div>	
-                <div class="tableButtons" style="justify-content: flex-end; padding: 16px 24px 60px 0;">
-                    <div class="buttons">
-                        <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">저장</a>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
     <%@ include file="./include/loading.jsp" %>
     <%@ include file="./include/error_page.jsp" %>
     
@@ -1638,6 +691,10 @@
 					$('#idx').val(data.info.idx)
 					$('#MEMBERNO').val(data.info.memberno)
 					$('#MEMCLSCODE').val(data.info.memclscode)//셀렉트
+					
+					$("#EMPLOYEEY").val("Y").prop("selected", true);
+					$('#EMPLOYEEY').niceSelect('update');
+					
 					//$("#EMPLOYEEY").val("Y").prop("selected", true);
 					var memgradecode = "";
 					if(data.info.memgradecode == null || data.info.memgradecode == undefined || data.info.memgradecode == "null") memgradecode = "0"
