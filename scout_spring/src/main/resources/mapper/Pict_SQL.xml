@@ -140,9 +140,9 @@
 	</delete>
 
 	<select id="scout_left_search_list" resultType="pictVO">
-		select m.MEMBERNO, m.KNAME, m.BIRTHDAY, m.MEMCLSCODE, m.MEMGRADECODE, m.TROOPSCOUTY, m.TROOPLEADERY, m.LEADERINCNT, m.ENTERDATE, m.SCOUTINCNT, 
+		select m.idx, m.MEMBERNO, m.KNAME, m.BIRTHDAY, m.MEMCLSCODE, m.MEMGRADECODE, m.TROOPSCOUTY, m.TROOPLEADERY, m.LEADERINCNT, m.ENTERDATE, m.SCOUTINCNT, 
 		(case when li.idx is not null then 'Y' else 'N' end) as LIFE_YN,
-		(case when (select group_concat(LEADERPOSITIONCODE1) from leader le where le.MEMBERNO = m.MEMBERNO) like '%03%' then 'Y' else 'N' end) as LEADER
+		(case when m.EMPLOYEEY = '' then 'N' when m.EMPLOYEEY is null then 'N' else 'Y' end) as EMPLOYEEY
 		from member m
 		inner join memclscode mc on m.MEMCLSCODE = mc.MEMCLSCODE
 		left outer join lifetime li on li.MEMBERNO = m.MEMBERNO
@@ -191,11 +191,12 @@
 
 	<!-- 대원/리더 기본정보 조회 -->
 	<select id="get_per_info" resultType="pictVO">
-		select m.MEMBERNO, m.MEMCLSCODE, m.MEMGRADECODE, m.PICIMG, m.LEADERINCNT, m.ENTERDATE, m.SCOUTINCNT,
-		 m.BIRTHDAY, (case when (select group_concat(LEADERPOSITIONCODE1) from leader le where le.MEMBERNO = m.MEMBERNO) like '%03%' then 'Y' else 'N' end) as LEADER, 
+		select m.idx, m.MEMBERNO, m.MEMCLSCODE, m.MEMGRADECODE, m.PICIMG, m.LEADERINCNT, m.ENTERDATE, m.SCOUTINCNT,
+		 m.BIRTHDAY, 
+		 (case when m.EMPLOYEEY = '' then 'N' when m.EMPLOYEEY is null then 'N' else 'Y' end) as EMPLOYEEY, 
 		 m.KNAME, m.ENAME, m.SEX,
-		 m.MOBILE, m.EMAIL,
-		 m.HPOSTCODE, m.HADDR, m.EMAILYN, m.SMSYN, m.JOBCODE
+		 m.MOBILE, m.EMAIL,m.HTELNO,
+		 m.HPOSTCODE, m.HADDR, m.EMAILYN, m.SMSYN, m.JOBCODE, m.SCOUTSCHOOLYEAR, m.SCOUTSCHOOLBAN, m.LEADERSCORE
 		from member m
 		inner join memclscode mc on m.MEMCLSCODE = mc.MEMCLSCODE
 		where m.MEMBERNO = #{MEMBERNO} and m.KNAME = #{KNAME};
@@ -292,7 +293,14 @@
 		select * from troop where TROOPNO = #{TROOPNO}
 	</select>
 
-
+	<!-- 회원정보 수정 -->
+	<update id="person_save" parameterType="pictVO">
+		update member set MEMCLSCODE= #{MEMCLSCODE}, MEMGRADECODE =#{MEMGRADECODE}, BIRTHDAY=#{BIRTHDAY}, KNAME=#{KNAME}, ENAME=#{ENAME}, SEX=#{SEX}, MOBILE=#{MOBILE}, EMAIL=#{EMAIL},
+		SMSYN=#{SMSYN}, EMAILYN=#{EMAILYN}, JOBCODE=#{JOBCODE}, HPOSTCODE= #{HPOSTCODE}, HADDR=#{HADDR}, UPDATEDATE = now(), EMPLOYEEY = #{EMPLOYEEY}, HTELNO =#{HTELNO},
+		LEADERSCORE =#{LEADERSCORE}, SCOUTSCHOOLYEAR =#{SCOUTSCHOOLYEAR}, SCOUTSCHOOLBAN =#{SCOUTSCHOOLBAN}
+		
+		where MEMBERNO = #{MEMBERNO} and idx = #{idx}
+	</update>
 	
 	
 	<!-- 그뭐야 제일 위에[꺼 -->

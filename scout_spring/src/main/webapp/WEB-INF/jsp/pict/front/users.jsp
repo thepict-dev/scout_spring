@@ -131,6 +131,9 @@
 				                         	<c:choose>
 					                         	<c:when test='${resultList.MEMGRADECODE eq "1"}'>행사회원</c:when>
 					                         	<c:when test='${resultList.MEMGRADECODE eq "2"}'>후원회원</c:when>
+					                         	<c:otherwise>
+					                         		대원/지도자
+					                         	</c:otherwise>
 				                         	</c:choose>
 	                                    </td>
 	                                    <td>
@@ -146,8 +149,8 @@
 				                         	<c:if test='${resultList.LIFE ne "Y"}'>N</c:if>
 	                                    </td>
 	                                    <td>
-				                         	<c:if test='${resultList.LEADER eq "Y"}'>Y</c:if>
-				                         	<c:if test='${resultList.LEADER ne "Y"}'>N</c:if>
+				                         	<c:if test='${resultList.EMPLOYEEY eq "Y"}'>Y</c:if>
+				                         	<c:if test='${resultList.EMPLOYEEY ne "Y"}'>N</c:if>
 	                                    </td>
 	                                </tr>
 	                    		</c:forEach>
@@ -169,8 +172,8 @@
                     <li>추가정보</li>
                 </ul>
                 <div class="fomrTabContent active">
-                    <form action="">
-                        <h2 class="subTitles" style="padding: 16px 0 0 24px;">가입정보</h2>
+                    <form action="" id="register" name="register" method="post" enctype="multipart/form-data">
+                        <h2 class="subTitles" style="padding: 16px 0 0 24px;">기본정보</h2>
                         <div class="basicInfo1 inputsPd">
                             <div class="mainProfile">
                                 <img src="/front_img/profile.png" alt="프로필 이미지">
@@ -179,6 +182,7 @@
                                 <div class="inputsContainer">
                                     <div class="inputBox">
                                         <p class="inputCaption">회원번호</p>
+                                        <input type="hidden" name="idx" id="idx" readonly>
                                         <input type="text" name="MEMBERNO" id="MEMBERNO" readonly placeholder="내용을 입력하세요…" class="lgThinInput">
                                     </div>
                                     <div class="inputBox">
@@ -205,7 +209,7 @@
                                     </div>
                                     <div class="inputBox">
                                         <p class="inputCaption">전종여부</p>
-                                        <select name="LEADER" id="LEADER" class="smThinSelect">
+                                        <select name="EMPLOYEEY" id="EMPLOYEEY" class="smThinSelect">
                                             <option value="N">-</option>
                                             <option value="Y">전종</option>
                                         </select>
@@ -241,7 +245,7 @@
                         <div class="inputsContainer inputsPd_">
                             <div class="inputBox">
                                 <p class="inputCaption">집전화</p>
-                                <input type="text" name="MOBILE" id="MOBILE" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                <input type="text" name="HTELNO" id="HTELNO" placeholder="내용을 입력하세요…" class="lgThinInput">
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">휴대전화</p>
@@ -282,7 +286,7 @@
                             <div class="buttons">
                                 <a href="#lnk" class="smButton"><img src="/front_img/sms.png" alt="">SMS</a>
                                 <a href="#lnk" class="smButton"><img src="/front_img/email.png" alt="">이메일</a>
-                                <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">저장</a>
+                                <a href="#lnk" class="smButton" onclick="person_save()"><img src="/front_img/download.png" alt="">저장</a>
                                 <a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">화면 초기화</a>
                             </div>
                         </div>
@@ -293,7 +297,7 @@
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">승진 가산점</p>
-                                <input type="text" name="additional" id="additional"  class="smThinInput">
+                                <input type="text" name="LEADERSCORE" id="LEADERSCORE" class="smThinInput">
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">훈련과정</p>
@@ -315,11 +319,11 @@
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">학년</p>
-                                <input type="text" name="group1" id="group1" readonly class="smThinInput">
+                                <input type="text" name="SCOUTSCHOOLYEAR" id="SCOUTSCHOOLYEAR" class="smThinInput">
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">반</p>
-                                <input type="text" name="group2" id="group2" readonly class="smThinInput">
+                                <input type="text" name="SCOUTSCHOOLBAN" id="SCOUTSCHOOLBAN" class="smThinInput">
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">대원 진보</p>
@@ -368,6 +372,20 @@
                                                 <th>학교</th>
                                                 <th>구분</th>
                                                 <th>학년</th>
+                                                <th>연맹지(부수)</th>
+                                                <th>정산대상</th>
+                                                <th>승인</th>
+                                                <th>납부</th>
+                                                <th>등록일</th>
+                                                <th>승인신청</th>
+                                                <th>납부이력</th>
+                                                <th>직책</th>
+                                                <th>스카우트구분</th>
+                                                <th>반</th>
+                                                <th>등록비</th>
+                                                <th>월간지</th>
+                                                <th>보험료</th>
+                                                <th>회원기간</th>
                                             </tr>
                                         </thead>
 	                					<tbody id="scout_list"></tbody>
@@ -408,6 +426,19 @@
                                                 <th>직책1</th>
                                                 <th>직책2</th>
                                                 <th>학교</th>
+                                                <th>연맹지(부수)</th>
+                                                <th>정산대상</th>
+                                                <th>승인</th>
+                                                <th>납부</th>
+                                                <th>등록일</th>
+                                                <th>승인신청</th>
+                                                <th>납부이력</th>
+                                                <th>학교직책</th>
+                                                <th>등록비</th>
+                                                <th>월간지</th>
+                                                <th>격월간지</th>
+                                                <th>보험료</th>
+                                                <th>회원기간</th>
                                             </tr>
                                         </thead>
                                         <tbody id="leader_list"></tbody>
@@ -1500,7 +1531,65 @@
         </div>
     </div>
     <%@ include file="./include/loading.jsp" %>
+    <%@ include file="./include/error_page.jsp" %>
+    
+    
 	<script>
+		function person_save(){
+			var sex = "M"
+			if(document.getElementById("SEX_W").checked) sex = "W";
+			
+			var param = {
+				idx : $('#idx').val(),
+				MEMBERNO : $('#MEMBERNO').val(),
+				KNAME : $('#KNAME').val(),
+				MEMCLSCODE : $('#MEMCLSCODE').val(),
+				MEMGRADECODE : $('#MEMGRADECODE').val(),
+				BIRTHDAY : $('#BIRTHDAY').val(),
+				KNAME : $('#KNAME').val(),
+				ENAME : $('#ENAME').val(),
+				SEX : sex,
+				HTELNO : $('#HTELNO').val(),
+				MOBILE : $('#MOBILE').val(),
+				EMAIL : $('#EMAIL').val(),
+				SMSYN : document.getElementById("SMSYN").checked ? "Y" : "N",
+				EMAILYN : document.getElementById("EMAILYN").checked ? "Y" : "N",
+				JOBCODE : $('#JOBCODE').val(),
+				HPOSTCODE : $('#HPOSTCODE').val(),
+				HADDR : $('#HADDR').val(),
+				EMPLOYEEY : $('#EMPLOYEEY').val(),
+				
+				LEADERSCORE : $('#LEADERSCORE').val(),
+				SCOUTSCHOOLYEAR : $('#SCOUTSCHOOLYEAR').val(),
+				SCOUTSCHOOLBAN : $('#SCOUTSCHOOLBAN').val(),
+			}
+			
+			var text ="등록하시겠습니까?";
+			if(confirm (text)){
+				$('#initial-loading').css('display', 'flex')
+				
+				$.ajax({
+					url : "/person_save"
+					, type : "POST"
+					, data : JSON.stringify(param)
+					, contentType : "application/json"
+					, async : true
+					, success : function(data, status, xhr) {
+						alert("정상적으로 저장되었습니다.")
+						$('#initial-loading').css('display', 'none')
+					},
+					error : function(err){
+						console.log("에러가 났어")
+						console.log(err)
+						$('#initial-loading').css('display', 'none')
+						$('#error').css('display', 'flex')
+					}
+				})
+				
+			}
+		}
+	
+	
 		function search_reset(){
 			$("#search_birthday").val("");
 			
@@ -1542,30 +1631,39 @@
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
 				, dataType : "json"
-				, async : false
+				, async : true
 				, success : function(data, status, xhr) {
 					console.log(data)
 					console.log("성공")
+					$('#idx').val(data.info.idx)
 					$('#MEMBERNO').val(data.info.memberno)
-					$('#MEMCLSCODE').val(data.info.memclscode)
-					
+					$('#MEMCLSCODE').val(data.info.memclscode)//셀렉트
+					//$("#EMPLOYEEY").val("Y").prop("selected", true);
 					var memgradecode = "";
 					if(data.info.memgradecode == null || data.info.memgradecode == undefined || data.info.memgradecode == "null") memgradecode = "0"
 					else memgradecode = data.info.memgradecode
-					$('#MEMGRADECODE').val(memgradecode)
+					$('#MEMGRADECODE').val(memgradecode)//셀렉트
 					$('#BIRTHDAY').val(data.info.birthday)
-					$('#LEADER').val(data.info.leader)
+					$('#EMPLOYEEY').val(data.info.employeey)//셀렉트
 					$('#KNAME').val(data.info.kname)
 					$('#ENAME').val(data.info.ename)
 					
 					if(data.info.sex == "M") $(":radio[id='SEX_M']").attr("checked", true);
 					else $(":radio[id='SEX_W']").attr("checked", true);
 					
+					$("#HTELNO").val(data.info.htelno)
 					$("#MOBILE").val(data.info.mobile)
-					$("EMAIL").val(data.info.email)
+					$("#EMAIL").val(data.info.email)
 					$("#HPOSTCODE").val(data.info.hpostcode)
 					$("#HADDR").val(data.info.haddr)
 					$("#JOBCODE").val(data.info.jobcode)
+					
+					
+					$('#LEADERSCORE').val(data.info.leaderscore)
+					$('#SCOUTSCHOOLYEAR').val(data.info.scoutschoolyear)
+					$('#SCOUTSCHOOLBAN').val(data.info.scoutschoolban)
+					
+					
 					
 					if(data.info.smsyn == "Y") $("input:checkbox[id=SMSYN]").attr("checked", true);
 					if(data.info.emailyn == "Y") $("input:checkbox[id=EMAILYN]").attr("checked", true);

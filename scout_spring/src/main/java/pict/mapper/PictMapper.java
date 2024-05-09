@@ -79,7 +79,9 @@ public interface PictMapper {
 
 	List<PictVO> scoutcls_list(PictVO pictVO) throws Exception;
 
-	PictVO troop_info(PictVO pictVO) throws Exception; 
+	PictVO troop_info(PictVO pictVO) throws Exception;
+
+	void person_save(PictVO pictVO) throws Exception; 
 
 	
 

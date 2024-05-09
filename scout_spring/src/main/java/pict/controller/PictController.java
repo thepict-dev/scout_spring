@@ -186,6 +186,66 @@ public class PictController {
 		
 		return "pict/front/users";
 	}
+	
+	@RequestMapping("/person_save")
+	@ResponseBody
+	public String person_save(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		try {
+			String idx = param.get("idx").toString();
+			String MEMBERNO = param.get("MEMBERNO").toString();
+			String MEMCLSCODE = param.get("MEMCLSCODE").toString();
+			String MEMGRADECODE = param.get("MEMGRADECODE").toString();
+			String BIRTHDAY = param.get("BIRTHDAY").toString();
+			String KNAME = param.get("KNAME").toString();
+			String ENAME = param.get("ENAME").toString();
+			String SEX = param.get("SEX").toString();
+			String HTELNO = param.get("HTELNO").toString();
+			String MOBILE = param.get("MOBILE").toString();
+			String EMAIL = param.get("EMAIL").toString();
+			String SMSYN = param.get("SMSYN").toString();
+			String EMAILYN = param.get("EMAILYN").toString();
+			String JOBCODE = param.get("JOBCODE").toString();
+			String HPOSTCODE = param.get("HPOSTCODE").toString();
+			String HADDR = param.get("HADDR").toString();
+			String EMPLOYEEY = param.get("EMPLOYEEY").toString();
+			
+			String LEADERSCORE = param.get("LEADERSCORE").toString();
+			String SCOUTSCHOOLYEAR = param.get("SCOUTSCHOOLYEAR").toString();
+			String SCOUTSCHOOLBAN = param.get("SCOUTSCHOOLBAN").toString();
+			
+			
+			pictVO.setIdx(Integer.parseInt(idx));
+			pictVO.setMEMBERNO(MEMBERNO);
+			pictVO.setMEMCLSCODE(MEMCLSCODE);
+			pictVO.setMEMGRADECODE(MEMGRADECODE);
+			pictVO.setBIRTHDAY(BIRTHDAY);
+			pictVO.setKNAME(KNAME);
+			pictVO.setENAME(ENAME);
+			pictVO.setSEX(SEX);
+			pictVO.setHTELNO(HTELNO);
+			pictVO.setMOBILE(MOBILE);
+			pictVO.setEMAIL(EMAIL);
+			pictVO.setSMSYN(SMSYN);
+			pictVO.setEMAILYN(EMAILYN);
+			pictVO.setJOBCODE(JOBCODE);
+			pictVO.setHPOSTCODE(HPOSTCODE);
+			pictVO.setHADDR(HADDR);
+			pictVO.setEMPLOYEEY(EMPLOYEEY);
+			
+			pictVO.setLEADERSCORE(LEADERSCORE);
+			pictVO.setSCOUTSCHOOLYEAR(SCOUTSCHOOLYEAR);
+			pictVO.setSCOUTSCHOOLBAN(SCOUTSCHOOLBAN);
+			
+			pictService.person_save(pictVO);
+			
+			return "Y";
+		}
+		catch(Exception e) {
+			return "N";
+		}
+		
+	}
+	
 	//조직통합창
 	@RequestMapping("/front/ko/management")
 	public String management(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
@@ -272,7 +332,6 @@ public class PictController {
 	}
 	
 	//단위대 정보
-	
 	@RequestMapping("/get_troop_info")
 	@ResponseBody
 	public HashMap<String, Object> get_troop_info(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
@@ -341,9 +400,6 @@ public class PictController {
 	}
 	
 	// 공통메소드
-	
-
-		
 	public String fileUpload(MultipartHttpServletRequest request, MultipartFile uploadFile, String target) {
 		String path = "";
 		String fileName = "";

@@ -77,4 +77,6 @@ public interface PictService {
 
 	public PictVO troop_info(PictVO pictVO) throws Exception;
 
+	public void person_save(PictVO pictVO) throws Exception;
+
 }

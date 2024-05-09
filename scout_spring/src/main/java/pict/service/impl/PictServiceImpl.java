@@ -197,6 +197,12 @@ public class PictServiceImpl implements PictService {
 		// TODO Auto-generated method stub
 		return pictMapper.troop_info(pictVO);
 	}
+
+	@Override
+	public void person_save(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.person_save(pictVO);
+	}
 	
 	
 }

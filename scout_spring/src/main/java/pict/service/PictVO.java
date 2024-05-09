@@ -110,6 +110,13 @@ public class PictVO extends PictDefaultVO {
 	private String LEADERINCNT;
 	private String ENTERDATE;
 	private String SCOUTINCNT;
+	private String UPDATEDATE;
+	private String ENAME;
+	private String EMPLOYEEY;
+	private String HTELNO;
+	private String SCOUTSCHOOLBAN;
+	private String LEADERSCORE;
+	
 	
 	
 	
@@ -131,6 +138,42 @@ public class PictVO extends PictDefaultVO {
 	
 	
 	
+	public String getSCOUTSCHOOLBAN() {
+		return SCOUTSCHOOLBAN;
+	}
+	public void setSCOUTSCHOOLBAN(String sCOUTSCHOOLBAN) {
+		SCOUTSCHOOLBAN = sCOUTSCHOOLBAN;
+	}
+	public String getLEADERSCORE() {
+		return LEADERSCORE;
+	}
+	public void setLEADERSCORE(String lEADERSCORE) {
+		LEADERSCORE = lEADERSCORE;
+	}
+	public String getHTELNO() {
+		return HTELNO;
+	}
+	public void setHTELNO(String hTELNO) {
+		HTELNO = hTELNO;
+	}
+	public String getEMPLOYEEY() {
+		return EMPLOYEEY;
+	}
+	public void setEMPLOYEEY(String eMPLOYEEY) {
+		EMPLOYEEY = eMPLOYEEY;
+	}
+	public String getENAME() {
+		return ENAME;
+	}
+	public void setENAME(String eNAME) {
+		ENAME = eNAME;
+	}
+	public String getUPDATEDATE() {
+		return UPDATEDATE;
+	}
+	public void setUPDATEDATE(String uPDATEDATE) {
+		UPDATEDATE = uPDATEDATE;
+	}
 	public String getSCOUTINCNT() {
 		return SCOUTINCNT;
 	}

@@ -37,26 +37,3 @@
 		</div>
 	</div>
 </div>
-
-<script>
-
-//setTimeout(removeInitialLoading, 3000); // 3초 후 초기 로딩 화면 제거
-
-function removeInitialLoading() {
-	
-  var loadingElement = document.getElementById('initial-loading');
-  if (loadingElement !== null) {
-      // bounce 애니메이션 제거
-      loadingElement.classList.remove('bounce');
-      // scaleAndFadeOut 애니메이션 추가
-      loadingElement.classList.add('scaleAndFadeOut');
-
-      // 애니메이션이 끝나는 시점을 계산하여 제거
-      setTimeout(function() {
-          loadingElement.remove(); // 제거
-          document.body.classList.remove('overflow-hidden'); // overflow 스타일 변경
-      }, 200); // 애니메이션 0.2초
-  }
-}
-
-</script>
