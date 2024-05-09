@@ -186,6 +186,12 @@ public class PictController {
 		
 		return "pict/front/users";
 	}
+
+	@RequestMapping("/front/signup")
+	public String signup(@ModelAttribute("pictVO") AdminVO adminVO, HttpServletRequest request, ModelMap model,
+			HttpSession session, RedirectAttributes rttr) throws Exception {
+		return "pict/front/signup";
+	}
 	
 	@RequestMapping("/person_save")
 	@ResponseBody
