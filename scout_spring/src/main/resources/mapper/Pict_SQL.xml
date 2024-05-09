@@ -209,7 +209,7 @@
 
 	<!-- 지도자연공 -->
 	<select id="leader_list" resultType="pictVO">
-		select ifnull(l.ADMINY, '') as ADMINY, substring(l.STARTDAY, 1,4) as YEAR, a.ASSOCIATIONNAME, t.TROOPNAME, t.TROOPNO,
+		select l.idx, ifnull(l.ADMINY, '') as ADMINY, substring(l.STARTDAY, 1,4) as YEAR, a.ASSOCIATIONNAME, t.TROOPNAME, t.TROOPNO,
 		(select TROOPNAME from troop t2 where t2.TROOPNO = l.PARENT_TROOPNO) as UNITY,
 		(case when l.LEADERPOSITIONCODE1 = '01' then '협조' when l.LEADERPOSITIONCODE1 = '02' then '훈육' else '전종' end) as LEADERPOSITION,
 		(select LEADERPOSITIONNAME from leaderpositioncode lp where lp.LEADERPOSITIONCODE1 = l.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2) as LEADERPOSITIONNAME,
@@ -225,7 +225,7 @@
 	
 	<!-- 대원연공 -->
 	<select id="scout_list" resultType="pictVO">
-		select substring(s.STARTDAY, 1,4) as YEAR, a.ASSOCIATIONNAME, 
+		select s.idx, substring(s.STARTDAY, 1,4) as YEAR, a.ASSOCIATIONNAME, 
 		(select TROOPNAME from troop t2 where t2.TROOPNO = s.PARENT_TROOPNO) as UNITY, t.TROOPNAME, t.TROOPNO, s.SCOUTSCHOOLYEAR,
 		ifnull(o.ORGNAME, '') as ORGNAME, (select ORGCLSNAME from orgclscode oc where oc.ORGCLSCODE1 = o.ORGCLSCODE1 and oc.ORGCLSCODE2 = o.ORGCLSCODE2) as ORGCLSNAME
 		from scout s

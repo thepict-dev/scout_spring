@@ -579,7 +579,7 @@
         </div>
     </div>
      <!-- 지도자 가입 모달 -->
-	<%@ include file="./include/relation_modal.jsp" %>
+	<%@ include file="./include/leader_modal.jsp" %>
      <!-- 관계연결 모달 -->
 	<%@ include file="./include/relation_modal.jsp" %>
 	
@@ -651,8 +651,9 @@
 			$("#search_memclscode").val("1");
 			$("#search_start").val("");
 			$("#search_end").val("");
+			$('#search_memgradecode').val("");
 			
-			
+			$('.contentsContainer select').niceSelect('update')
 			
 		}
 		function search_list_memberno(){
@@ -693,7 +694,7 @@
 					$('#MEMCLSCODE').val(data.info.memclscode)//셀렉트
 					
 					$("#EMPLOYEEY").val("Y").prop("selected", true);
-					$('#EMPLOYEEY').niceSelect('update');
+					
 					
 					//$("#EMPLOYEEY").val("Y").prop("selected", true);
 					var memgradecode = "";
@@ -704,6 +705,8 @@
 					$('#EMPLOYEEY').val(data.info.employeey)//셀렉트
 					$('#KNAME').val(data.info.kname)
 					$('#ENAME').val(data.info.ename)
+					
+					$('.contentsContainer select').niceSelect('update')
 					
 					if(data.info.sex == "M") $(":radio[id='SEX_M']").attr("checked", true);
 					else $(":radio[id='SEX_W']").attr("checked", true);
