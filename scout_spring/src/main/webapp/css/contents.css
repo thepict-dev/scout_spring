@@ -261,12 +261,26 @@
     column-gap: 24px;
 }
 .mainProfile{
+    width: 176px;
     min-width: 176px;
     height: 220px;
+    transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.mainProfile:hover{
+	opacity: 0.7;
+}
+.mainProfile input{
+	display: none;
+}
+.mainProfile label{
+	display: block;
+	width: 100%;
+	height: 100%;
     border-radius: 4px;
     border: 1px solid var(--grey-50);
+	overflow: hidden;
 }
-.mainProfile img{
+.mainProfile label img{
     width: 100%;
     height: 100%;
     object-fit: cover;

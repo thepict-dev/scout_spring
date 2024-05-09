@@ -176,7 +176,10 @@
                         <h2 class="subTitles" style="padding: 16px 0 0 24px;">기본정보</h2>
                         <div class="basicInfo1 inputsPd">
                             <div class="mainProfile">
-                                <img src="/front_img/profile.png" alt="프로필 이미지">
+                            <label for="imgUpload">
+                                <img src="/front_img/profile.png" alt="프로필 이미지" class="profileImg">
+						    </label>
+                            <input type="file" class="imgUpload" id="imgUpload" accept="image/*" >
                             </div>
                             <div class="stackInputs">
                                 <div class="inputsContainer">
@@ -277,9 +280,12 @@
                                 <p class="inputCaption">집주소</p>
                                 <div class="zip">
                                     <input type="text" name="HPOSTCODE" id="HPOSTCODE" readonly class="lgThinInput">
-                                    <a href="#lnk" class="normalButton white">우편번호 검색</a>
+                                    <a href="#lnk" class="normalButton white" id="searchZip">우편번호 검색</a>
                                 </div>
-                                <input type="text" name="HADDR" id="HADDR" readonly class="lgThinInput post">
+                                <div class="zip2">
+	                                <input type="text" name="HADDR" id="HADDR" readonly class="lgThinInput post">
+	                                <input type="text" name="HADDR_2" id="HADDR_2" class="lgThinInput">
+                            	</div>
                             </div>
                         </div>
                         <div class="tableButtons inputsPd bottomBd" style="justify-content: flex-end;">
@@ -587,6 +593,7 @@
     <%@ include file="./include/error_page.jsp" %>
     
     
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		function person_save(){
 			var sex = "M"
@@ -820,6 +827,19 @@
 				LayerPopup.removeClass("active");
 			}
 		});
+
+		window.onload = function(){
+		    document.getElementById("searchZip").addEventListener("click", function(){ //주소입력칸을 클릭하면
+		        //카카오 지도 발생
+		        new daum.Postcode({
+		            oncomplete: function(data) { //선택시 입력값 세팅
+		                document.getElementById("HPOSTCODE").value = data.zonecode;
+		                document.getElementById("HADDR").value = data.address; // 주소 넣기
+		                document.getElementById("HADDR_2").focus();
+		            }
+		        }).open();
+		    });
+		}    
 	</script>
 </body>
 </html>
