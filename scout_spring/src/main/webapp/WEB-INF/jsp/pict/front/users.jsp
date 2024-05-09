@@ -340,7 +340,7 @@
                             </div>
                             <div class="tableButtons" style="justify-content: flex-end;">
                                 <div class="buttons">
-                                    <a href="#lnk" class="smButton relationBtn"><img src="/front_img/search3.png" alt="">학교/단체찾기</a>
+                                    <a href="#lnk" class="smButton relationBtn"><img src="/front_img/search2.png" alt="">학교/단체찾기</a>
                                 </div>
                             </div>
                         </div>
