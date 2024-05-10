@@ -203,6 +203,34 @@ public class PictServiceImpl implements PictService {
 		// TODO Auto-generated method stub
 		pictMapper.person_save(pictVO);
 	}
-	
+
+	@Override
+	public List<PictVO> get_relation_info(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.get_relation_info(pictVO);
+	}
+
+	@Override
+	public List<PictVO> get_relation_clscode(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.get_relation_clscode(pictVO);
+	}
+
+	@Override
+	public List<PictVO> get_relation_person_search(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.get_relation_person_search(pictVO);
+	}
+
+	@Override
+	public void relation_insert(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.relation_insert(pictVO);
+	}
+	@Override
+	public void relation_delete(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.relation_delete(pictVO);
+	}
 	
 }

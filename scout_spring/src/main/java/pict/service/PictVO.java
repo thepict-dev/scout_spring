@@ -116,7 +116,18 @@ public class PictVO extends PictDefaultVO {
 	private String HTELNO;
 	private String SCOUTSCHOOLBAN;
 	private String LEADERSCORE;
-	
+	private String FROMMEMBERNO;
+	private String TOMEMBERNO;
+	private String RELATIONCODE;
+	private String RELATIONNAME1;
+	private String RELATIONNAME2;
+	private String FROMNAME;
+	private String TONAME;
+	private String FROMBIRTHDAY;
+	private String TOBIRTHDAY;
+	private String FROMENTERDATE;
+	private String TOENTERDATE;
+	private String RELATIONINFO;
 	
 	
 	
@@ -138,6 +149,78 @@ public class PictVO extends PictDefaultVO {
 	
 	
 	
+	public String getRELATIONINFO() {
+		return RELATIONINFO;
+	}
+	public void setRELATIONINFO(String rELATIONINFO) {
+		RELATIONINFO = rELATIONINFO;
+	}
+	public String getFROMMEMBERNO() {
+		return FROMMEMBERNO;
+	}
+	public void setFROMMEMBERNO(String fROMMEMBERNO) {
+		FROMMEMBERNO = fROMMEMBERNO;
+	}
+	public String getTOMEMBERNO() {
+		return TOMEMBERNO;
+	}
+	public void setTOMEMBERNO(String tOMEMBERNO) {
+		TOMEMBERNO = tOMEMBERNO;
+	}
+	public String getRELATIONCODE() {
+		return RELATIONCODE;
+	}
+	public void setRELATIONCODE(String rELATIONCODE) {
+		RELATIONCODE = rELATIONCODE;
+	}
+	public String getRELATIONNAME1() {
+		return RELATIONNAME1;
+	}
+	public void setRELATIONNAME1(String rELATIONNAME1) {
+		RELATIONNAME1 = rELATIONNAME1;
+	}
+	public String getRELATIONNAME2() {
+		return RELATIONNAME2;
+	}
+	public void setRELATIONNAME2(String rELATIONNAME2) {
+		RELATIONNAME2 = rELATIONNAME2;
+	}
+	public String getFROMNAME() {
+		return FROMNAME;
+	}
+	public void setFROMNAME(String fROMNAME) {
+		FROMNAME = fROMNAME;
+	}
+	public String getTONAME() {
+		return TONAME;
+	}
+	public void setTONAME(String tONAME) {
+		TONAME = tONAME;
+	}
+	public String getFROMBIRTHDAY() {
+		return FROMBIRTHDAY;
+	}
+	public void setFROMBIRTHDAY(String fROMBIRTHDAY) {
+		FROMBIRTHDAY = fROMBIRTHDAY;
+	}
+	public String getTOBIRTHDAY() {
+		return TOBIRTHDAY;
+	}
+	public void setTOBIRTHDAY(String tOBIRTHDAY) {
+		TOBIRTHDAY = tOBIRTHDAY;
+	}
+	public String getFROMENTERDATE() {
+		return FROMENTERDATE;
+	}
+	public void setFROMENTERDATE(String fROMENTERDATE) {
+		FROMENTERDATE = fROMENTERDATE;
+	}
+	public String getTOENTERDATE() {
+		return TOENTERDATE;
+	}
+	public void setTOENTERDATE(String tOENTERDATE) {
+		TOENTERDATE = tOENTERDATE;
+	}
 	public String getSCOUTSCHOOLBAN() {
 		return SCOUTSCHOOLBAN;
 	}

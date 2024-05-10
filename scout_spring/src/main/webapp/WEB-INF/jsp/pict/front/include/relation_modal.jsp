@@ -4,7 +4,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn"	   uri="http://java.sun.com/jsp/jstl/functions"%>
 
-
 <div id="relationPopup">
     <div class="popupInner">
         <button type="button"><img src="/front_img/close.png" alt=""></button>
@@ -31,22 +30,15 @@
                                    <th>등록일</th>
                                </tr>
                            </thead>
-                           <tbody>
-                               <tr>
-                                   <td>1</td>
-                                   <td>지도자</td>
-                                   <td>년도</td>
-                                   <td>연맹</td>
-                                   <td>년도</td>
-                                   <td>연맹</td>
-                               </tr>
+                           <tbody id="relation_list">
+                               
                            </tbody>
                        </table>
                    </div>
                    <div class="tableButtons">
-                       <p>0<span>rows</span></p>
+                       <p id="relation_cnt">0 rows</p>
                        <div class="buttons">
-                           <a href="#relationPopup" class="smButton relationBtn"><img src="/front_img/reset.png" alt="">관계삭제</a>
+                           <a href="#relationPopup" onclick="relation_delete()" class="smButton relationBtn"><img src="/front_img/reset.png" alt="">관계삭제</a>
                        </div>
                    </div>
                </div>	
@@ -54,42 +46,42 @@
                <div class="inputsContainer inputsPd">
                    <div class="inputBox">
                        <p class="inputCaption">회원명</p>
-                       <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+                       <input type="text" name="search_relation_kname" id="search_relation_kname" placeholder="내용을 입력하세요…" class="lgThinInput">
                    </div>
                    <div class="inputBox">
                        <p class="inputCaption">회원번호</p>
-                       <input type="text" class="lgThinInput" name="" id="" value="${pictVO.search_memberno_se}" onkeypress="if(event.keyCode == 13){search_list();}" placeholder="내용을 입력하세요…">
+                       <input type="text" class="lgThinInput" name="search_relation_memberno" id="search_relation_memberno" placeholder="내용을 입력하세요…">
                    </div>
                </div>
               	<div class="inputsContainer" style="padding: 0 24px;">
                    <div class="inputBox genderContainer" style="align-items: center;">
                        <p class="inputCaption" style="margin: 0;">성별</p>
                        <div class="gender">
-                           <input type="radio" name="SEX" value="" id="SEX">
-                           <label for="SEX">전체</label>
+                           <input type="radio" name="search_relation_sex" value="" id="search_relation_sex_all">
+                           <label for="search_relation_sex_all">전체</label>
                        </div>
                        <div class="gender">
-                           <input type="radio" name="SEX" value="M" id="SEX_M">
-                           <label for="SEX_M">남</label>
+                           <input type="radio" name="search_relation_sex" value="M" id="search_relation_sex_m">
+                           <label for="search_relation_sex_m">남</label>
                        </div>
                        <div class="gender">
-                           <input type="radio" name="SEX" value="W" id="SEX_W">
-                           <label for="SEX_W">여</label>
+                           <input type="radio" name="search_relation_sex" value="W" id="search_relation_sex_w">
+                           <label for="search_relation_sex_w">여</label>
                        </div>
                    </div>
                 </div>
                 <div class="tableButtons addSearch bottomBd" style="padding:16px 24px;">
                     <div class="buttons">
-                        <a href="#relationPopup" class="smButton relationBtn"><img src="/front_img/search2.png" alt="">조회</a>
+                        <a href="#relationPopup" onclick="fn_relation_person_search()" class="smButton relationBtn"><img src="/front_img/search2.png" alt="">조회</a>
                     </div>
                 </div>
               	<div class="inputsContainer">
                 <div class="inputBox">
                    	<div class="inputsAlign relationSearch">
-	                     <select name="" id="" class="lgThinSelect">
-	                         <option value="">자식이(가) 부모 등록</option>
+	                     <select name="relationclslist" id="relationclslist" class="lgThinSelect">
+	                     
 	                     </select>
-	                     <a href="#relationPopup" class="smButton relationBtn"><img src="/front_img/add.png" alt="">관계추가</a>
+	                     <a href="#relationPopup" onclick="relation_insert()" class="smButton relationBtn"><img src="/front_img/add.png" alt="">관계추가</a>
                 	</div>
                 </div>
                </div>
@@ -113,14 +105,8 @@
                                    <th>등록일</th>
                                </tr>
                            </thead>
-                           <tbody>
-                               <tr>
-                                   <td>1</td>
-                                   <td>지도자</td>
-                                   <td>년도</td>
-                                   <td>연맹</td>
-                                   <td>연맹</td>
-                               </tr>
+                           <tbody id="search_relation_list">
+                               
                            </tbody>
                        </table>
                    </div>
@@ -130,9 +116,130 @@
                </div>	
                <div class="tableButtons" style="justify-content: flex-end; padding: 16px 24px 60px 0;">
                    <div class="buttons">
-                       <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">저장</a>
+                       <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">창닫기</a>
                    </div>
                </div>
            </form>
        </div>
    </div>
+   <script>
+   		
+	function fn_relation_info(){
+		$('#initial-loading').css('display', 'flex')
+		var param = {}
+		$.ajax({
+			url : "/get_relation_clscode"
+			, type : "POST"
+			, data : JSON.stringify(param)
+			, contentType : "application/json"
+			, dataType : "json"
+			, async : true
+			, success : function(data, status, xhr) {
+				console.log(data)
+				var arr = data.list
+				var html =""
+				for(var i=0; i<arr.length; i++){
+					html +=
+					'<option value='+ arr[i].relationcode+' >' + arr[i].relationname1 + arr[i].relationname2 + '</option>'
+
+				}
+				$('#relationclslist').append(html)
+				$('#relationPopup select').niceSelect('update')
+				$('#initial-loading').css('display', 'none')
+			},
+			error : function(err){
+				$('#error').css('display', 'flex')
+			}
+		})
+	  }
+	function fn_relation_person_search(){
+		$('#initial-loading').css('display', 'flex')
+		$('#search_relation_list').children().remove()
+		var param = {
+			memberno : $('#search_relation_memberno').val(),
+			kname : $('#search_relation_kname').val()
+		}
+		$.ajax({
+			url : "/get_relation_person_search"
+			, type : "POST"
+			, data : JSON.stringify(param)
+			, contentType : "application/json"
+			, dataType : "json"
+			, async : true
+			, success : function(data, status, xhr) {
+				console.log(data)
+				var arr = data.list
+				var html =""
+				if(arr.length > 0){
+					for(var i=0; i<arr.length; i++){
+						html += '<tr>'+
+						'<td>' + arr[i].memberno + '</td>'+
+						'<td>' + arr[i].kname + '</td>'+
+						'<td>' + arr[i].birthday + '</td>'+
+						'<td>' + arr[i].sex + '</td>'+
+						'<td>' + arr[i].enterdate + '</td>'+
+						'</tr>'
+					}
+				}
+				$('#search_relation_list').append(html)
+				$('#initial-loading').css('display', 'none')
+			},
+			error : function(err){
+				$('#error').css('display', 'flex')
+			}
+		})
+	}
+	
+	function relation_insert(){
+		$('#initial-loading').css('display', 'flex')
+		
+		
+		var param = {
+			frommemberno: $('#MEMBERNO').val(),
+			relationcode : $('#relationclslist').val(),
+			tomemberno : "645849"
+		}
+		$.ajax({
+			url : "/relation_insert"
+			, type : "POST"
+			, data : JSON.stringify(param)
+			, contentType : "application/json"
+			, async : true
+			, success : function(data, status, xhr) {
+				alert("저장되었습니다.")
+				$('#initial-loading').css('display', 'none')
+			},
+			error : function(err){
+				console.log(err)
+				$('#error').css('display', 'flex')
+			}
+		})
+	}
+	function relation_delete(){
+		$('#initial-loading').css('display', 'flex')
+		var text= "관계를 삭제하시겠습니까?"
+		if(confirm (text)){
+			var param = {
+				frommemberno: $('#MEMBERNO').val(),
+				idx : '2',
+				tomemberno : "645849"
+			}
+			$.ajax({
+				url : "/relation_delete"
+				, type : "POST"
+				, data : JSON.stringify(param)
+				, contentType : "application/json"
+				, async : true
+				, success : function(data, status, xhr) {
+					alert("삭제되었습니다.")
+					$('#initial-loading').css('display', 'none')
+				},
+				error : function(err){
+					console.log(err)
+					$('#error').css('display', 'flex')
+				}
+			})
+		}
+	}
+				
+   </script>

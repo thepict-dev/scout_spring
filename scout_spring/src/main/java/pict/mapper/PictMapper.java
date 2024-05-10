@@ -81,7 +81,17 @@ public interface PictMapper {
 
 	PictVO troop_info(PictVO pictVO) throws Exception;
 
-	void person_save(PictVO pictVO) throws Exception; 
+	void person_save(PictVO pictVO) throws Exception;
+
+	List<PictVO> get_relation_info(PictVO pictVO) throws Exception;
+
+	List<PictVO> get_relation_clscode(PictVO pictVO) throws Exception;
+
+	List<PictVO> get_relation_person_search(PictVO pictVO) throws Exception;
+
+	void relation_insert(PictVO pictVO) throws Exception;
+	
+	void relation_delete(PictVO pictVO) throws Exception;  
 
 	
 

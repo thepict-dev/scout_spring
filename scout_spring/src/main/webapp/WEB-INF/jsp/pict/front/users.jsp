@@ -217,11 +217,12 @@
                                             <option value="Y">전종</option>
                                         </select>
                                     </div>
+                                    <!-- 
                                     <div class="inputBox">
-                                    <!-- 여기 -->
                                         <p class="inputCaption">홈페이지 ID</p>
                                         <input type="text" name="USERNAME" id="USERNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
                                     </div>
+                                     -->
                                 </div>
                                 <div class="inputsContainer">
                                     <div class="inputBox">
@@ -283,8 +284,7 @@
                                     <a href="#lnk" class="normalButton white" id="searchZip">우편번호 검색</a>
                                 </div>
                                 <div class="zip2">
-	                                <input type="text" name="HADDR" id="HADDR" readonly class="lgThinInput post">
-	                                <input type="text" name="HADDR_2" id="HADDR_2" class="lgThinInput">
+	                                <input type="text" name="HADDR" id="HADDR" class="lgThinInput post">
                             	</div>
                             </div>
                         </div>
@@ -350,6 +350,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- 
                         <div class="inputsContainer inputsPd bottomBd">
                             <div class="inputBox">
                                 <p class="inputCaption">등록</p>
@@ -360,6 +361,7 @@
                                 <input type="text" name="" id="" readonly readonly class="lgThinInput">
                             </div>
                         </div>
+                         -->
                         <div class="tableTab bottomBd">
                             <ul class="historyNav">
                                 <li class="active">대원 가입 이력</li>
@@ -516,19 +518,14 @@
                                             <th>비고</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>지도자</td>
-                                            <td>년도</td>
-                                            <td>연맹</td>
-                                        </tr>
+                                    <tbody id="main_relation">
+                                        
                                     </tbody>
                                 </table>
                             </div>
                             <div class="tableButtons" style="justify-content: flex-end;">
                                 <div class="buttons">
-                                    <a href="#relationPopup" class="smButton relationBtn"><img src="/front_img/modify.png" alt="">수정</a>
+                                    <a href="#relationPopup" onclick="fn_relation_info()" class="smButton relationBtn"><img src="/front_img/modify.png" alt="">수정</a>
                                 </div>
                             </div>
                         </div>
@@ -566,6 +563,7 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <!-- 
                             <div class="tableButtons" style="justify-content: flex-end;">
                                 <div class="buttons">
                                     <a href="#lnk" class="smButton"><img src="/front_img/add.png" alt="">추가</a>
@@ -574,6 +572,7 @@
                                     <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
                                 </div>
                             </div>
+                             -->
                         </div>
                         <div class="tableButtons rightBtns topBd">
                         </div>
@@ -700,18 +699,21 @@
 					$('#MEMBERNO').val(data.info.memberno)
 					$('#MEMCLSCODE').val(data.info.memclscode)//셀렉트
 					
-					$("#EMPLOYEEY").val("Y").prop("selected", true);
 					
-					
-					//$("#EMPLOYEEY").val("Y").prop("selected", true);
 					var memgradecode = "";
 					if(data.info.memgradecode == null || data.info.memgradecode == undefined || data.info.memgradecode == "null") memgradecode = "0"
 					else memgradecode = data.info.memgradecode
-					$('#MEMGRADECODE').val(memgradecode)//셀렉트
+					
 					$('#BIRTHDAY').val(data.info.birthday)
-					$('#EMPLOYEEY').val(data.info.employeey)//셀렉트
+					
 					$('#KNAME').val(data.info.kname)
 					$('#ENAME').val(data.info.ename)
+					
+					$("#EMPLOYEEY").val(data.info.employeey).prop("selected", true);
+					
+					$("#MEMGRADECODE").val(memgradecode).prop("selected", true);
+					$("#EMPLOYEEY").val(data.info.employeey).prop("selected", true);
+			
 					
 					$('.contentsContainer select').niceSelect('update')
 					
@@ -737,10 +739,15 @@
 					
 					
 					var html ="";
+					var relation_html = "";
 					var arr = data.list;
+					var relation_arr = data.relation_list;
 					$('#leader_list').children().remove();
 					$('#scout_list').children().remove();
-
+					$('#main_relation').children().remove();
+					$('#relation_list').children().remove();
+					
+					
 					
 					//연공이력 개수
 					$('#year_cnt_leader').text('0 rows')
@@ -766,7 +773,6 @@
 						
 						$('#year_cnt_leader').text(arr.length + " rows")
 						for(var i=0; i<arr.length; i++){
-							
 							html += '<tr>'+
 								'<td>' + Number(i+1) + '</td>' +
 								'<td>' + arr[i].adminy + '</td>'+
@@ -777,12 +783,11 @@
 								'<td>' + arr[i].leaderposition + '</td>'+
 								'<td>' + arr[i].leaderpositionname + '</td>'+
 								'<td>' + arr[i].orgname  + '</td>'+
-								'</tr>'
-							
+								'</tr>';
 						}
 						$('#leader_list').append(html)
+						
 					}
-					
 					else{//대원일경우
 						$('#scout_date').text(data.info.enterdate)
 						$('#scout_whole_incnt').text(arr.length)
@@ -798,11 +803,35 @@
 								'<td>' + arr[i].orgname + '</td>'+
 								'<td>' + arr[i].orgclsname + '</td>'+
 								'<td>' + arr[i].scoutschoolyear + '</td>'+
-								'</tr>'
+								'</tr>';
 							
 						}
 						$('#scout_list').append(html)
 					}
+					//관계연결
+					var relation_popup = ""
+					for(var i=0; i<relation_arr.length; i++){
+						relation_html += '<tr>'+
+						'<td>' + relation_arr[i].relationinfo.split(',')[0] + '</td>' +
+						'<td>' + relation_arr[i].relationinfo.split(',')[1] + '</td>'+
+						'<td>' + relation_arr[i].relationname1 + '</td>'+
+						'<td>' + relation_arr[i].bigo + '</td>'+
+						'</tr>'
+						
+						relation_popup += '<tr>'+
+						'<td>' + relation_arr[i].relationcode + '</td>' +
+						'<td>' + relation_arr[i].relationname1 + '</td>'+
+						'<td>' + relation_arr[i].relationinfo.split(',')[1] + '</td>'+
+						'<td>' + relation_arr[i].relationinfo.split(',')[2] + '</td>'+
+						'<td>' + relation_arr[i].relationinfo.split(',')[4] + '</td>'+
+						'<td>' + relation_arr[i].relationinfo.split(',')[3] + '</td>'+
+						'</tr>'
+					
+					}
+					
+					$('#main_relation').append(relation_html)
+					$('#relation_list').append(relation_popup)
+					
 					$('#initial-loading').css('display', 'none')
 				}
 				, error : function(xhr, status, error) {
@@ -811,7 +840,8 @@
 					//지현이 에러
 					$('#initial-loading').css('display', 'none')
 				}
-			});
+			})
+	
 		}
 		
 		// 팝업 열기
@@ -835,7 +865,7 @@
 		            oncomplete: function(data) { //선택시 입력값 세팅
 		                document.getElementById("HPOSTCODE").value = data.zonecode;
 		                document.getElementById("HADDR").value = data.address; // 주소 넣기
-		                document.getElementById("HADDR_2").focus();
+		                document.getElementById("HADDR").focus();
 		            }
 		        }).open();
 		    });

@@ -249,7 +249,87 @@ public class PictController {
 		catch(Exception e) {
 			return "N";
 		}
+	}
+
+
+	@RequestMapping("/get_relation_clscode")
+	@ResponseBody
+	public HashMap<String, Object> get_relation_clscode(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+
 		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		List<PictVO> relation_list = pictService.get_relation_clscode(pictVO);
+		
+		if(relation_list.size() > 0) {
+			map.put("list", relation_list);
+			return map;
+		}
+		else {
+			return map;
+		}
+	}
+	
+	@RequestMapping("/get_relation_person_search")
+	@ResponseBody
+	public HashMap<String, Object> get_relation_person_search(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String memberno = param.get("memberno").toString();
+		String kname = param.get("kname").toString();
+		
+		pictVO.setMEMBERNO(memberno);
+		pictVO.setKNAME(kname);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		List<PictVO> relation_list = pictService.get_relation_person_search(pictVO);
+		
+		if(relation_list.size() > 0) {
+			map.put("list", relation_list);
+			return map;
+		}
+		else {
+			return map;
+		}
+	}
+	
+	@RequestMapping("/relation_insert")
+	@ResponseBody
+	public String relation_insert(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		try {
+			String frommemberno = param.get("frommemberno").toString();
+			String tomemberno = param.get("tomemberno").toString();
+			String relationcode = param.get("relationcode").toString();
+			
+			pictVO.setFROMMEMBERNO(frommemberno);
+			pictVO.setTOMEMBERNO(tomemberno);
+			pictVO.setRELATIONCODE(relationcode);
+			
+			pictService.relation_insert(pictVO);
+			
+			return "Y";
+		}
+		catch(Exception e) {
+			return "N";
+		}
+	}
+	@RequestMapping("/relation_delete")
+	@ResponseBody
+	public String relation_delete(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		try {
+			String frommemberno = param.get("frommemberno").toString();
+			String tomemberno = param.get("tomemberno").toString();
+			String idx = param.get("idx").toString();
+			
+			pictVO.setFROMMEMBERNO(frommemberno);
+			pictVO.setTOMEMBERNO(tomemberno);
+			pictVO.setIdx(Integer.parseInt(idx));
+			
+			pictService.relation_delete(pictVO);
+			
+			return "Y";
+		}
+		catch(Exception e) {
+			return "N";
+		}
 	}
 	
 	//조직통합창
@@ -379,14 +459,22 @@ public class PictController {
 		
 		pictVO = pictService.get_per_info(pictVO);
 		
+		PictVO vo = new PictVO();
+		vo.setMEMBERNO(memberno);
+		
 		if(pictVO != null) {
-			System.out.println("데이터가 있지용");
+			List<PictVO> relation_list = pictService.get_relation_info(vo);
+			map.put("relation_list", relation_list);
+			
+			System.out.println(relation_list.get(0).getMEMBERNO());
+			
 			//지도자일경우
 			if(leadery.equals("Y")) {
 				List<PictVO> leader_list = pictService.leader_list(pictVO);
 				
 				map.put("info", pictVO);
 				map.put("list", leader_list);
+				
 				return map;
 			}
 			//대원의경우
@@ -396,8 +484,10 @@ public class PictController {
 				
 				map.put("info", pictVO);
 				map.put("list", scout_list);
+				
 				return map;
 			}
+			
 		}
 		else {
 			return map;
