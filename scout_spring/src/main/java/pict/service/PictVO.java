@@ -128,7 +128,7 @@ public class PictVO extends PictDefaultVO {
 	private String FROMENTERDATE;
 	private String TOENTERDATE;
 	private String RELATIONINFO;
-	
+	private String PICIMG;
 	
 	
 	private String search_birthday;
@@ -149,6 +149,12 @@ public class PictVO extends PictDefaultVO {
 	
 	
 	
+	public String getPICIMG() {
+		return PICIMG;
+	}
+	public void setPICIMG(String pICIMG) {
+		PICIMG = pICIMG;
+	}
 	public String getRELATIONINFO() {
 		return RELATIONINFO;
 	}

@@ -176,10 +176,10 @@
                         <h2 class="subTitles" style="padding: 16px 0 0 24px;">기본정보</h2>
                         <div class="basicInfo1 inputsPd">
                             <div class="mainProfile">
-                            <label for="imgUpload">
-                                <img src="/front_img/profile.png" alt="프로필 이미지" class="profileImg">
+                            <label for="attach_file">
+                                <img src="/front_img/profile.png" alt="프로필 이미지" class="profileImg" id="profile_img">
 						    </label>
-                            <input type="file" class="imgUpload" id="imgUpload" accept="image/*" >
+                            <input type="file" class="imgUpload" id="attach_file" name="attach_file" accept="image/*" >
                             </div>
                             <div class="stackInputs">
                                 <div class="inputsContainer">
@@ -594,6 +594,41 @@
     
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
+		$("#attach_file").change(function(){
+			var memberno = $("#MEMBERNO").val()
+			if(memberno == '' || memberno == undefined || memberno == null){
+				alert("회원을 선택해주세요.")
+				return false;
+			}
+			else{
+				 var requestData = {
+			        memberno : $("#MEMBERNO").val(),
+			    }
+			 
+				var form = $('#attach_file')[0].files[0];
+				var formData = new FormData();
+				formData.append('img', form);
+				formData.append("request", new Blob([JSON.stringify(requestData)], {type: "application/json"}));
+				
+				$.ajax({
+					url: '/profile_img',
+					processData : false,
+					contentType : false,
+					data : formData,
+					type : 'POST',
+					success : function(result){
+						alert("Uploaded");
+						
+					},
+					error : function(err){
+						console.log(err)
+					}
+					
+				});
+			}
+			
+		})
+		
 		function person_save(){
 			var sex = "M"
 			if(document.getElementById("SEX_W").checked) sex = "W";
@@ -617,7 +652,6 @@
 				HPOSTCODE : $('#HPOSTCODE').val(),
 				HADDR : $('#HADDR').val(),
 				EMPLOYEEY : $('#EMPLOYEEY').val(),
-				
 				LEADERSCORE : $('#LEADERSCORE').val(),
 				SCOUTSCHOOLYEAR : $('#SCOUTSCHOOLYEAR').val(),
 				SCOUTSCHOOLBAN : $('#SCOUTSCHOOLBAN').val(),
@@ -736,6 +770,10 @@
 					
 					if(data.info.smsyn == "Y") $("input:checkbox[id=SMSYN]").attr("checked", true);
 					if(data.info.emailyn == "Y") $("input:checkbox[id=EMAILYN]").attr("checked", true);
+					
+					//프로필이미지 바인딩
+					$('#profile_img').attr("src",data.info.picimg)
+					
 					
 					
 					var html ="";

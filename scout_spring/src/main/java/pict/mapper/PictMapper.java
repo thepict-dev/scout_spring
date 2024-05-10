@@ -91,7 +91,9 @@ public interface PictMapper {
 
 	void relation_insert(PictVO pictVO) throws Exception;
 	
-	void relation_delete(PictVO pictVO) throws Exception;  
+	void relation_delete(PictVO pictVO) throws Exception;
+
+	void profile_img(PictVO pictVO) throws Exception;  
 
 	
 

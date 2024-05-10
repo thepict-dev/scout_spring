@@ -232,5 +232,11 @@ public class PictServiceImpl implements PictService {
 		// TODO Auto-generated method stub
 		pictMapper.relation_delete(pictVO);
 	}
+
+	@Override
+	public void profile_img(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.profile_img(pictVO);
+	}
 	
 }

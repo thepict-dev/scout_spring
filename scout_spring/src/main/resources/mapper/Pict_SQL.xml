@@ -191,7 +191,7 @@
 
 	<!-- 대원/리더 기본정보 조회 -->
 	<select id="get_per_info" resultType="pictVO">
-		select m.idx, m.MEMBERNO, m.MEMCLSCODE, m.MEMGRADECODE, m.PICIMG, m.LEADERINCNT, m.ENTERDATE, m.SCOUTINCNT,
+		select m.idx, m.MEMBERNO, m.MEMCLSCODE, m.MEMGRADECODE, m.PICIMG, m.LEADERINCNT, m.ENTERDATE, m.SCOUTINCNT, m.PICIMG,
 		 m.BIRTHDAY, 
 		 (case when m.EMPLOYEEY = '' then 'N' when m.EMPLOYEEY is null then 'N' when m.EMPLOYEEY = 'N' then 'N' else 'Y' end) as EMPLOYEEY,
 		 m.KNAME, m.ENAME, m.SEX,
@@ -346,6 +346,11 @@
 	<delete id="relation_delete" parameterType="pictVO">
 		delete from member_relation where idx = #{idx}
 	</delete>
+	
+	<!-- 프로필 이미지오ㅓㅂ로드 -->
+	<update id="profile_img" parameterType="pictVO">
+		update member set PICIMG = #{PICIMG} where MEMBERNO = #{MEMBERNO}
+	</update>	
 	
 	<!-- 그뭐야 제일 위에[꺼 -->
 	<select id="troop_left_search_list" resultType="pictVO">

@@ -89,4 +89,6 @@ public interface PictService {
 	
 	public void relation_delete(PictVO pictVO) throws Exception;
 
+	public void profile_img(PictVO pictVO) throws Exception;
+
 }
