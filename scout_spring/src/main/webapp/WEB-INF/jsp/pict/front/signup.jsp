@@ -14,7 +14,7 @@
 	        <div class="formContainer">
 	            <div class="joinContainer">
 	                <div class="fomrTabContent signContainer">
-	                    <form action="">
+	                    <form action="" id="register" name="register" method="post" enctype="multipart/form-data">
 	                        <h2 class="subTitles" style="padding: 16px 0 0 24px;">가입정보</h2>
 	                        <div class="basicInfo1 inputsPd">
 	                            <div class="mainProfile">
@@ -50,7 +50,7 @@
 	                                    </div>
 	                                    <div class="inputBox">
 	                                        <p class="inputCaption">전종여부</p>
-	                                        <select name="LEADER" id="LEADER" class="smThinSelect">
+	                                        <select name="EMPLOYEEY" id="EMPLOYEEY" class="smThinSelect">
 	                                            <option value="N">-</option>
 	                                            <option value="Y">전종</option>
 	                                        </select>
@@ -64,7 +64,7 @@
 	                                <div class="inputsContainer">
 	                                    <div class="inputBox">
 	                                        <p class="inputCaption">성명(한글)</p>
-	                                        <input type="text"  name="KNAME" id="KNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
+	                                        <input type="text" name="KNAME2" id="KNAME2" placeholder="내용을 입력하세요…" class="lgThinInput" value="${pictVO.KNAME}">
 	                                    </div>
 	                                    <div class="inputBox">
 	                                        <p class="inputCaption">성명(영문)</p>
@@ -125,7 +125,7 @@
 	                        </div>
 	                        <div class="tableButtons inputsPd bottomBd" style="justify-content: flex-end;">
 	                            <div class="buttons">
-	                                <a href="#lnk" class="smButton"><img src="/front_img/sign.png" alt="">등록하기</a>
+	                                <a href="#lnk" onclick="fn_submit()" class="smButton"><img src="/front_img/sign.png" alt="">등록하기</a>
 	                            </div>
 	                        </div>
 	                    </form>
@@ -134,4 +134,21 @@
 	        </div>
 	    </div>
 	</body>
+	<script>
+		function fn_submit(){
+			var text = "등록하시겠습니까?";
+			var kname = $('#KNAME').val();
+			
+			if(kname == null || kname == undefined || kname == ''){
+				alert("국문 성명을 입력해주세요.");
+				return false;
+			}
+
+			if (confirm(text)) {
+				$("#register").attr("action", "/new_person");
+				$("#register").submit();
+			}
+		}
+	
+	</script>
 </html>

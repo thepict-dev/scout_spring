@@ -93,7 +93,11 @@ public interface PictMapper {
 	
 	void relation_delete(PictVO pictVO) throws Exception;
 
-	void profile_img(PictVO pictVO) throws Exception;  
+	void profile_img(PictVO pictVO) throws Exception;
+
+	void leader_save(PictVO pictVO) throws Exception;
+
+	void new_person(PictVO pictVO) throws Exception;  
 
 	
 

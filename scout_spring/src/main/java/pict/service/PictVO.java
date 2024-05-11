@@ -129,6 +129,24 @@ public class PictVO extends PictDefaultVO {
 	private String TOENTERDATE;
 	private String RELATIONINFO;
 	private String PICIMG;
+	private String STARTDAY;
+	private String ENDDAY;
+	private String CONFIRMY;
+	private String ORGNO;
+	private String LEADERORGPOSITIONCODE;
+	private String LEADERPOSITIONCODE1;
+	private String LEADERPOSITIONCODE2;
+	private String FEEEXCLUDECODE;
+	private String BANKDAY;
+	private String PAYY;
+	private String ENTRYFEE;
+	private String INSURANCEFEE;
+	private String SCOUTMAGACNT;
+	private String SCOUTMAGAFEE;
+	private String LEADERMAGACNT;
+	private String LEADERMAGAFEE;
+	private String LEADERORGNO;
+	
 	
 	
 	private String search_birthday;
@@ -149,6 +167,111 @@ public class PictVO extends PictDefaultVO {
 	
 	
 	
+	public String getLEADERORGNO() {
+		return LEADERORGNO;
+	}
+	public void setLEADERORGNO(String lEADERORGNO) {
+		LEADERORGNO = lEADERORGNO;
+	}
+	public String getSTARTDAY() {
+		return STARTDAY;
+	}
+	public void setSTARTDAY(String sTARTDAY) {
+		STARTDAY = sTARTDAY;
+	}
+	public String getENDDAY() {
+		return ENDDAY;
+	}
+	public void setENDDAY(String eNDDAY) {
+		ENDDAY = eNDDAY;
+	}
+	public String getCONFIRMY() {
+		return CONFIRMY;
+	}
+	public void setCONFIRMY(String cONFIRMY) {
+		CONFIRMY = cONFIRMY;
+	}
+	public String getORGNO() {
+		return ORGNO;
+	}
+	public void setORGNO(String oRGNO) {
+		ORGNO = oRGNO;
+	}
+	public String getLEADERORGPOSITIONCODE() {
+		return LEADERORGPOSITIONCODE;
+	}
+	public void setLEADERORGPOSITIONCODE(String lEADERORGPOSITIONCODE) {
+		LEADERORGPOSITIONCODE = lEADERORGPOSITIONCODE;
+	}
+	public String getLEADERPOSITIONCODE1() {
+		return LEADERPOSITIONCODE1;
+	}
+	public void setLEADERPOSITIONCODE1(String lEADERPOSITIONCODE1) {
+		LEADERPOSITIONCODE1 = lEADERPOSITIONCODE1;
+	}
+	public String getLEADERPOSITIONCODE2() {
+		return LEADERPOSITIONCODE2;
+	}
+	public void setLEADERPOSITIONCODE2(String lEADERPOSITIONCODE2) {
+		LEADERPOSITIONCODE2 = lEADERPOSITIONCODE2;
+	}
+	public String getFEEEXCLUDECODE() {
+		return FEEEXCLUDECODE;
+	}
+	public void setFEEEXCLUDECODE(String fEEEXCLUDECODE) {
+		FEEEXCLUDECODE = fEEEXCLUDECODE;
+	}
+	public String getBANKDAY() {
+		return BANKDAY;
+	}
+	public void setBANKDAY(String bANKDAY) {
+		BANKDAY = bANKDAY;
+	}
+	public String getPAYY() {
+		return PAYY;
+	}
+	public void setPAYY(String pAYY) {
+		PAYY = pAYY;
+	}
+
+
+	public String getENTRYFEE() {
+		return ENTRYFEE;
+	}
+	public void setENTRYFEE(String eNTRYFEE) {
+		ENTRYFEE = eNTRYFEE;
+	}
+	public String getINSURANCEFEE() {
+		return INSURANCEFEE;
+	}
+	public void setINSURANCEFEE(String iNSURANCEFEE) {
+		INSURANCEFEE = iNSURANCEFEE;
+	}
+
+	public String getSCOUTMAGACNT() {
+		return SCOUTMAGACNT;
+	}
+	public void setSCOUTMAGACNT(String sCOUTMAGACNT) {
+		SCOUTMAGACNT = sCOUTMAGACNT;
+	}
+	public String getSCOUTMAGAFEE() {
+		return SCOUTMAGAFEE;
+	}
+	public void setSCOUTMAGAFEE(String sCOUTMAGAFEE) {
+		SCOUTMAGAFEE = sCOUTMAGAFEE;
+	}
+	public String getLEADERMAGACNT() {
+		return LEADERMAGACNT;
+	}
+	public void setLEADERMAGACNT(String lEADERMAGACNT) {
+		LEADERMAGACNT = lEADERMAGACNT;
+	}
+	public String getLEADERMAGAFEE() {
+		return LEADERMAGAFEE;
+	}
+	public void setLEADERMAGAFEE(String lEADERMAGAFEE) {
+		LEADERMAGAFEE = lEADERMAGAFEE;
+	}
 	public String getPICIMG() {
 		return PICIMG;
 	}

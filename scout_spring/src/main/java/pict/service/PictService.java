@@ -91,4 +91,8 @@ public interface PictService {
 
 	public void profile_img(PictVO pictVO) throws Exception;
 
+	public void leader_save(PictVO pictVO) throws Exception;
+
+	public void new_person(PictVO pictVO) throws Exception;
+
 }

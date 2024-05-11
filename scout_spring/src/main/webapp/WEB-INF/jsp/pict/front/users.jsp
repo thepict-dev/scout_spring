@@ -741,7 +741,7 @@
 					$('#MEMBERNO').val(data.info.memberno)
 					$('#MEMCLSCODE').val(data.info.memclscode)//셀렉트
 					
-					
+			
 					var memgradecode = "";
 					if(data.info.memgradecode == null || data.info.memgradecode == undefined || data.info.memgradecode == "null") memgradecode = "0"
 					else memgradecode = data.info.memgradecode
@@ -820,7 +820,7 @@
 						
 						$('#year_cnt_leader').text(arr.length + " rows")
 						for(var i=0; i<arr.length; i++){
-							html += '<tr onclick="fn_leader_info()">'+
+							html += '<tr onclick="fn_leader_info('+arr[i].idx+')">'+
 								'<td>' + Number(i+1) + '</td>' +
 								'<td>' + arr[i].adminy + '</td>'+
 								'<td>' + arr[i].year + '</td>'+

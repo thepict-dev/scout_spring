@@ -347,10 +347,17 @@
 		delete from member_relation where idx = #{idx}
 	</delete>
 	
-	<!-- 프로필 이미지오ㅓㅂ로드 -->
+	<!-- 프로필 이미지업로드 -->
 	<update id="profile_img" parameterType="pictVO">
 		update member set PICIMG = #{PICIMG} where MEMBERNO = #{MEMBERNO}
-	</update>	
+	</update>
+	
+	
+	<insert id="leader_save" parameterType="pictVO">
+		INSERT INTO leader(MEMBERNO, TROOPNO, STARTDAY, ENDDAY, ASSOCIATIONCODE, PARENT_TROOPNO, LEADERPOSITIONCODE1, LEADERPOSITIONCODE2, LEADERORGNO, LEADERORGPOSITIONCODE, FEEEXCLUDECODE, ENTRYFEE, INSURANCEFEE, SCOUTMAGAFEE, LEADERMAGAFEE, INSURANCEY, SCOUTMAGACNT, LEADERMAGACNT, BANKDAY, PAYY, CONFIRMY, CONFIRMDATE, ENTERDATE, ADMINY) 
+		VALUES (#{MEMBERNO}, #{TROOPNO}, #{STARTDAY}, #{ENDDAY}, #{ASSOCIATIONCODE}, #{PARENTTROOPNO}, #{LEADERPOSITIONCODE1}, #{LEADERPOSITIONCODE2}, #{LEADERORGNO}, #{LEADERORGPOSITIONCODE}, #{FEEEXCLUDECODE}, #{ENTRYFEE}, #{INSURANCEFEE}, #{SCOUTMAGAFEE}, #{LEADERMAGAFEE}, 'Y', #{SCOUTMAGACNT}, #{LEADERMAGACNT}, #{BANKDAY}, #{PAYY}, #{CONFIRMY}, now(), now(), #{ADMINY});
+	</insert>
+	
 	
 	<!-- 그뭐야 제일 위에[꺼 -->
 	<select id="troop_left_search_list" resultType="pictVO">
@@ -364,5 +371,12 @@
 		and t.PARENT_TROOPNO = '9701'
 	</select>
 
+
+	<insert id="new_person" parameterType="pictVO">
+		insert into member (MEMBERNO, KNAME, ENAME)
+		values(
+			(select max(MEMBERNO + 1) from member t), #{KNAME}, #{ENAME}
+		)
+	</insert>
 
 </mapper>

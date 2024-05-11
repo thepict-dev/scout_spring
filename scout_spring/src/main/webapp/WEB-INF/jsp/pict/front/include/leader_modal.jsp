@@ -90,7 +90,7 @@
                                     <option value="N">비전종</option>
                                     <option value="Y">전종</option>
                                 </select>
-                                <input type="checkbox" name="ADMINY" id="ADMINY" class="circleCheck"><label for="ADMINY">관리지도자</label>
+                                <input type="checkbox" name="ADMINY" id="ADMINY" class="circleCheck" value="Y"><label for="ADMINY">관리지도자</label>
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                             <div>
                                 <input type="checkbox" name="FEEEXCLUDE" id="FEEEXCLUDE" class="circleCheck"><label for="FEEEXCLUDE">면제</label>
                             </div>
-                            <select name="FEEEXCLUDCODE" id="FEEEXCLUDCODE" class="smThinSelect" disabled>
+                            <select name="FEEEXCLUDCODE" id="FEEEXCLUDCODE" class="smThinSelect">
                                 <option value="01">연맹지원</option>
                                 <option value="02">신체장애</option>
                                 <option value="03">계속등록</option>
@@ -124,7 +124,7 @@
                             <div class="inputsAlign">
                             <input type="date" name="BANKDAY" id="BANKDAY" class="lgThinInput">
                             <div>
-                                <input type="checkbox" name="PAYY" id="PAYY" class="circleCheck"><label for="PAYY">납부완료</label>
+                                <input type="checkbox" name="PAYY" id="PAYY" class="circleCheck" value="Y"><label for="PAYY">납부완료</label>
                             </div>
                         </div>
                     </div>
@@ -141,7 +141,7 @@
                         <div class="inputBox">
                             <div class="inputsAlign">
                                 <label for="">
-                                    <input type="text" name="ENTERFEE" id="ENTERFEE" placeholder="0" class="smThinInput mountInput">
+                                    <input type="text" name="ENTRYFEE" id="ENTRYFEE" placeholder="0" class="smThinInput mountInput">
                                     <span class="mountCaption">원</span>
                                 </label>
                             </div>
@@ -224,7 +224,7 @@
                                     <p class="inputCaption">부수</p>
                                     <div class="inputsAlign">
                                         <label for="">
-                                            <input type="text" name="LEADERMAGACNT" id="LEADERMAGACNT" placeholder="00" class="smThinInput">
+                                            <input type="text" name="LEADERMAGACNT" id="LEADERMAGACNT" placeholder="0" class="smThinInput">
                                         </label>
                                     </div>
                                 </div>
@@ -343,28 +343,45 @@
 		});
 	}
 	function leader_save(){
+		var adminy = "N"
+		if(document.getElementById("ADMINY").checked) adminy = "Y";
+		var payy = "N"
+		if(document.getElementById("PAYY").checked) payy = "Y";
+		
 		var param = {
-			memberno : $('#memberno').val(),
+			memberno : $('#MEMBERNO').val(),
 			startday : $('#YEAR').val()+ "-01-01",
 			endday : $('#YEAR').val()+ "-12-31",
 			confirmy : $('#CONFIRMY').val(),
 			associationcode: $('#associationcode_leader').val(),
 			parenttroopno : $('#unitycode_leader').val(),
 			troopno : $('#troop_leader').val(),
-			orgno : $('#leader_orgno').val(),
+			leaderorgno : $('#leader_orgno').val(),
+			leaderorgpositioncode : $('#LEADERORGPOSITIONCODE').val(),
+			leaderpositioncode1 :$('#LEADERPOSITIONCODE1').val(),
+			leaderpositioncode2 :$('#LEADERPOSITIONCODE2').val(),
+			adminy : adminy,
 			
-			associationcode : $('#associationcode_leader').val(),
-			parenttroopno : $('#unitycode_leader').val()
+			feeexcludcode : $('#FEEEXCLUDCODE').val(),
+			bankday : $('#BANKDAY').val(),
+			payy : payy,
+			entryfee : $('#ENTRYFEE').val(),
+			insurancefee : $('#INSURANCEFEE').val(),
+			scoutmagacnt : $('#SCOUTMAGACNT').val(),
+			scoutmagafee : $('#SCOUTMAGAFEE').val(),
+			leadermagacnt : $('#LEADERMAGACNT').val(),
+			ledermagafee : $('#LEADERMAGAFEE').val(),
+		
 		}
+		debugger
 		$.ajax({
-			url : "/"
+			url : "/leader_save"
 			, type : "POST"
 			, data : JSON.stringify(param)
 			, contentType : "application/json"
-			, dataType : "json"
 			, async : false
 			, success : function(data, status, xhr) {
-				console.log(data.list)
+				console.log(data)
 				
 			}
 			, error : function(xhr, status, error) {

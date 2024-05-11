@@ -195,8 +195,10 @@ public class PictController {
 	}
 
 	@RequestMapping("/front/signup")
-	public String signup(@ModelAttribute("pictVO") AdminVO adminVO, HttpServletRequest request, ModelMap model,
+	public String signup(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
+		
+		model.addAttribute("pictVO", pictVO);
 		return "pict/front/signup";
 	}
 	
@@ -298,6 +300,7 @@ public class PictController {
 		}
 	}
 	
+	//관계
 	@RequestMapping("/relation_insert")
 	@ResponseBody
 	public String relation_insert(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
@@ -338,6 +341,93 @@ public class PictController {
 			return "N";
 		}
 	}
+	
+	//지도자연공기입
+	@RequestMapping("/leader_save")
+	@ResponseBody
+	public String leader_save(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+		System.out.println("들어와!!!!!!!!!!!!!!!!!");
+		try {
+			String memberno = param.get("memberno").toString();
+			String startday = param.get("startday").toString();
+			String endday = param.get("endday").toString();
+			String confirmy = param.get("confirmy").toString();
+			String associationcode = param.get("associationcode").toString();
+			String parenttroopno = param.get("parenttroopno").toString();
+			String troopno = param.get("troopno").toString();
+			String leaderorgno = param.get("leaderorgno").toString();
+			String leaderorgpositioncode = param.get("leaderorgpositioncode").toString();
+			String leaderpositioncode1 = param.get("leaderpositioncode1").toString();
+			String leaderpositioncode2 = param.get("leaderpositioncode2").toString();
+			String adminy = param.get("adminy").toString();
+			
+			String feeexcludcode = param.get("feeexcludcode").toString();
+			String bankday = param.get("bankday").toString();
+			String payy = param.get("payy").toString();
+			String entryfee = param.get("entryfee").toString();
+			String insurancefee = param.get("insurancefee").toString();
+			String scoutmagacnt = param.get("scoutmagacnt").toString();
+			String scoutmagafee = param.get("scoutmagafee").toString();
+			String leadermagacnt = param.get("leadermagacnt").toString();
+			String ledermagafee = param.get("ledermagafee").toString();
+			
+			pictVO.setMEMBERNO(memberno);
+			pictVO.setSTARTDAY(startday);
+			pictVO.setENDDAY(endday);
+			pictVO.setCONFIRMY(confirmy);
+			pictVO.setASSOCIATIONCODE(associationcode);
+			pictVO.setPARENTTROOPNO(parenttroopno);
+			pictVO.setTROOPNO(troopno);
+			pictVO.setLEADERORGNO(leaderorgno);
+			pictVO.setLEADERORGPOSITIONCODE(leaderorgpositioncode);
+			pictVO.setLEADERPOSITIONCODE1(leaderpositioncode1);
+			pictVO.setLEADERPOSITIONCODE2(leaderpositioncode2);
+			pictVO.setADMINY(adminy);
+			
+			pictVO.setFEEEXCLUDECODE(feeexcludcode);
+			pictVO.setBANKDAY(bankday);
+			pictVO.setPAYY(payy);
+			pictVO.setENTRYFEE(entryfee);
+			pictVO.setINSURANCEFEE(insurancefee);
+			pictVO.setSCOUTMAGACNT(scoutmagacnt);
+			pictVO.setSCOUTMAGAFEE(scoutmagafee);
+			pictVO.setLEADERMAGACNT(leadermagacnt);
+			pictVO.setLEADERMAGAFEE(ledermagafee);
+			
+			
+			System.out.println(memberno);
+			System.out.println(startday);
+			System.out.println(endday);
+			System.out.println(confirmy);
+			System.out.println(associationcode);
+			System.out.println(parenttroopno);
+			System.out.println(troopno);
+			System.out.println(leaderorgno);
+			System.out.println(leaderorgpositioncode);
+			System.out.println(leaderpositioncode1);
+			System.out.println(leaderpositioncode2);
+			System.out.println(adminy);
+			System.out.println(feeexcludcode);
+			System.out.println(bankday);
+			System.out.println(payy);
+			System.out.println(entryfee);
+			System.out.println(insurancefee);
+			System.out.println(scoutmagacnt);
+			System.out.println(scoutmagafee);
+			System.out.println(leadermagacnt);
+			System.out.println(ledermagafee);
+			
+			
+			pictService.leader_save(pictVO);
+			
+			return "Y";
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			return "N";
+		}
+	}
+	
 	
 	//프로필사진 업로드
 	@RequestMapping("/profile_img")
@@ -483,6 +573,24 @@ public class PictController {
 		
 	}
 	
+	//조직통합창
+	@RequestMapping("/new_person")
+	public String new_person(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		System.out.println(pictVO.getKNAME());
+		
+		System.out.println(pictVO.getENAME());
+		
+		
+		pictService.new_person(pictVO);
+		
+		
+		model.addAttribute("message", "정상적으로 저장되었습니다.");
+		model.addAttribute("retType", ":location");
+		model.addAttribute("retUrl", "/front/signup");
+		return "pict/main/message";	
+		//return "pict/front/ko/management";
+	}
 	
 	
 	//단위대 정보
