@@ -182,17 +182,17 @@ $(document).on("click", ".joinBtn", function (e){
 
 // 외부영역 클릭 시 팝업 닫기
 $(document).mouseup(function (e){
-    let LayerPopup = $("#joinPopup");
+    let LayerPopup = $(".modalContainer");
     if(LayerPopup.has(e.target).length === 0){
         LayerPopup.removeClass("active");
     }
 });
 
 // 팝업닫기
-$(".popupInner button").click(function(){
+$(".modalInner button").click(function(){
     $("#relationPopup").removeClass("active");
 });
 // 팝업닫기
-$(".popupInner button").click(function(){
+$(".modalInner button").click(function(){
     $("#joinPopup").removeClass("active");
 });
