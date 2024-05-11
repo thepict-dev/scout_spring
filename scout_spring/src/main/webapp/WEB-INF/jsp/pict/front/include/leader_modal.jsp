@@ -21,17 +21,17 @@
                         </div>
                         <div class="inputBox">
                             <p class="inputCaption">연차년도</p>
-                            <select name="STARTDAY" id="STARTDAY" class="smThinSelect">
-                                <option value="2020-01-01">2020</option>
-                                <option value="2021-01-01">2021</option>
-                                <option value="2022-01-01">2022</option>
-                                <option value="2023-01-01">2023</option>
-                                <option value="2024-01-01">2024</option>
-                                <option value="2025-01-01">2025</option>
-                                <option value="2026-01-01">2026</option>
-                                <option value="2027-01-01">2027</option>
-                                <option value="2028-01-01">2028</option>
-                                <option value="2029-01-01">2029</option>
+                            <select name="YEAR" id="YEAR" class="smThinSelect">
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                                <option value="2029">2029</option>
                             </select>
                         </div>
                         <div class="inputBox">
@@ -69,9 +69,9 @@
                         <div class="inputBox">
                             <p class="inputCaption">소속학교</p>
                             <div class="inputsAlign">
-                                <input type="text"  name="KNAME" id="KNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                <input type="text"  name="leader_orgno" id="leader_orgno" placeholder="내용을 입력하세요…" class="lgThinInput">
                                 <a href="#lnk" class="smButton searches" style="margin-right: 12px;"><img src="/front_img/search2.png" alt="">조회</a>
-                                <select name="" id="" class="smThinSelect">
+                                <select name="LEADERORGPOSITIONCODE" id="LEADERORGPOSITIONCODE" class="smThinSelect">
                                     <option value="N">비전종</option>
                                     <option value="Y">전종</option>
                                 </select>
@@ -82,11 +82,11 @@
                         <div class="inputBox">
                             <p class="inputCaption">지도자직책</p>
                             <div class="inputsAlign">
-                                <select name="" id="" class="lgThinSelect">
+                                <select name="LEADERPOSITIONCODE1" id="LEADERPOSITIONCODE1" class="lgThinSelect">
                                     <option value="N">비전종</option>
                                     <option value="Y">전종</option>
                                 </select>
-                                <select name="" id="" class="lgThinSelect">
+                                <select name="LEADERPOSITIONCODE2" id="LEADERPOSITIONCODE2" class="lgThinSelect">
                                     <option value="N">비전종</option>
                                     <option value="Y">전종</option>
                                 </select>
@@ -345,7 +345,14 @@
 	function leader_save(){
 		var param = {
 			memberno : $('#memberno').val(),
-			startday : $('#STARTDAY').val(),
+			startday : $('#YEAR').val()+ "-01-01",
+			endday : $('#YEAR').val()+ "-12-31",
+			confirmy : $('#CONFIRMY').val(),
+			associationcode: $('#associationcode_leader').val(),
+			parenttroopno : $('#unitycode_leader').val(),
+			troopno : $('#troop_leader').val(),
+			orgno : $('#leader_orgno').val(),
+			
 			associationcode : $('#associationcode_leader').val(),
 			parenttroopno : $('#unitycode_leader').val()
 		}

@@ -534,7 +534,6 @@ public class PictController {
 			List<PictVO> relation_list = pictService.get_relation_info(vo);
 			map.put("relation_list", relation_list);
 			
-			System.out.println(relation_list.get(0).getMEMBERNO());
 			
 			//지도자일경우
 			if(leadery.equals("Y")) {
