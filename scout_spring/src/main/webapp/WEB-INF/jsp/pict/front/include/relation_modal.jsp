@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn"	   uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<div id="relationPopup">
+<div id="relationPopup" class="modalContainer">
     <div class="popupInner">
         <button type="button"><img src="/front_img/close.png" alt=""></button>
            <form action="">
@@ -42,7 +42,7 @@
                        </div>
                    </div>
                </div>	
-               <h2 class="subTitles" style="padding: 0 24px;">관계 검색</h2>
+               <h2 class="subTitles" style="padding: 16px 24px 0 24px;">관계 검색</h2>
                <div class="inputsContainer inputsPd">
                    <div class="inputBox">
                        <p class="inputCaption">회원명</p>
