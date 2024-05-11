@@ -64,7 +64,7 @@
 	                                <div class="inputsContainer">
 	                                    <div class="inputBox">
 	                                        <p class="inputCaption">성명(한글)</p>
-	                                        <input type="text" name="KNAME2" id="KNAME2" placeholder="내용을 입력하세요…" class="lgThinInput" value="${pictVO.KNAME}">
+	                                        <input type="text" name="KNAME" id="KNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
 	                                    </div>
 	                                    <div class="inputBox">
 	                                        <p class="inputCaption">성명(영문)</p>
