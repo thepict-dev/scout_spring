@@ -103,7 +103,7 @@
             </div>
             <div class="paymentForm">
             <h3 class="subTitles" style="padding: 16px 24px 0 24px;">회비 정보</h3>
-            <div class="inputsContainer inputsPd bottomBd">
+            <div class="inputsContainer inputsPd bottomBd gapRow">
                 <div class="inputsContainer">
                     <div class="inputBox">
                         <p class="inputCaption">면제여부</p>
@@ -128,9 +128,15 @@
                     </div>
                 </div>
                 <div class="stackInputs">
-                    <div class="inpustFlex">
+                    <div class="inpustFlex" style="margin-bottom: 10px;">
+                        <div class="mountResult">
+                        	<p class="inputCaption mount">등록</p>
+                            <p class="mountCaption">
+                                <span>0</span>
+                                원
+                            </p>
+                        </div>
                         <div class="inputBox">
-                            <p class="inputCaption">등록</p>
                             <div class="inputsAlign">
                                 <label for="">
                                     <input type="text" name="" id="" placeholder="0" class="smThinInput mountInput">
@@ -138,45 +144,43 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="mountResult">
-                            <p class="mountCaption">
-                                <span>0</span>
-                                원
-                            </p>
-                        </div>
                     </div>
                 </div>
                 <div class="stackInputs">
                     <div class="inpustFlex">
-                        <div class="inputBox">
-                            <p class="inputCaption">안전활동부담금</p>
+                        <div class="mountResult">
+                        	<p class="inputCaption mount">안전활동부담금</p>
                             <div class="inputsAlign">
-                                <label for="">
-                                    <input type="text" name="" id="" placeholder="0" class="smThinInput mountInput">
-                                    <span class="mountCaption">원</span>
-                                </label>
-                                <div>
-                                    <input type="checkbox" name="" id="" class="circleCheck"><label for="" class="lableOnly"></label>
-                                </div>
+	                            <p class="mountCaption">
+	                                <span>0</span>
+	                                원
+	                            </p>
+                            </div>
+                            <div style="position: absolute;right: -35px;">
+                                <input type="checkbox" name="" id="" class="circleCheck"><label for="" class="lableOnly"></label>
                             </div>
                         </div>
-                        <div class="mountResult">
-                            <p class="mountCaption">
-                                <span>0</span>
-                                원
-                            </p>
+                        <div class="inputBox">
+                            <div class="inputsAlign">
+                                <label for="">
+                                    <input type="text" name="" id="" placeholder="0" class="smThinInput mountInput">
+                                    <span class="mountCaption">원</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="stackInputs">
                     <div class="inpustFlex">
                         <div class="inputBox">
-                            <p class="inputCaption">월간지</p>
                             <div class="inputsAlign">
-                                <label for="">
-                                    <input type="text" name="" id="" placeholder="0" class="smThinInput mountInput">
-                                    <span class="mountCaption">원</span>
-                                </label>
+		                        <div class="mountResult">
+                            		<p class="inputCaption mount">월간지</p>
+		                            <p class="mountCaption">
+		                                <span>0</span>
+		                                원
+		                            </p>
+		                        </div>
                                 <div>
                                     <input type="checkbox" name="" id="" class="circleCheck"><label for="" class="lableOnly"></label>
                                 </div>
@@ -190,18 +194,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mountResult">
-                            <p class="mountCaption">
-                                <span>0</span>
-                                원
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="stackInputs">
-                    <div class="inpustFlex">
-                        <div class="inputBox">
-                            <p class="inputCaption">총계</p>
+                        <div class="inputBox" style="margin-bottom: 10px;">
                             <div class="inputsAlign">
                                 <label for="">
                                     <input type="text" name="" id="" placeholder="0" class="smThinInput mountInput">
@@ -209,11 +202,24 @@
                                 </label>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="stackInputs">
+                    <div class="inpustFlex">
                         <div class="mountResult">
+                         	<p class="inputCaption mount">총계</p>
                             <p class="mountCaption">
                                 <span>0</span>
                                 원
                             </p>
+                        </div>
+                        <div class="inputBox">
+                            <div class="inputsAlign">
+                                <label for="">
+                                    <input type="text" name="" id="" placeholder="0" class="smThinInput mountInput">
+                                    <span class="mountCaption">원</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -233,7 +239,7 @@
             </div>
             <div class="tableButtons" style="justify-content: flex-end; padding: 0 24px 60px 0;">
                 <div class="buttons">
-                    <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">저장</a>
+                    <a href="#lnk" class="smButton bigBtn">저장</a>
                 </div>
             </div>
         </form>

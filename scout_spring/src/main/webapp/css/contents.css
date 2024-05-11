@@ -612,6 +612,17 @@
 .inpustFlex input[type="text"].mountInput::placeholder{
     font-size: 18px;
 }
+.mountResult{
+    position: relative;
+    display: flex;
+    width: 146px;
+    height: 34px;
+    padding: 8px 16px;
+    justify-content: flex-end;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--grey-50);
+    background: var(--grey-50);
+}
 .mountCaption{
     position: absolute;
     right: 16px;
@@ -626,18 +637,7 @@
     line-height: 100%;
     letter-spacing: -0.7px;
 }
-.mountResult{
-    position: relative;
-    display: flex;
-    width: 146px;
-    height: 34px;
-    padding: 8px 16px;
-    justify-content: flex-end;
-    align-items: flex-end;
-    border-bottom: 1px solid var(--grey-50);
-    background: var(--grey-50);
-}
-.mountResult p span{
+.mountCaption span{
     color: var(--TEXT, #242A30);
     text-align: right;
     font-family: SUIT;
@@ -646,6 +646,12 @@
     font-weight: 400;
     line-height: 100%; /* 18px */
     letter-spacing: -0.9px;
+}
+.inputCaption.mount{
+	position: absolute;
+    bottom: 31px;
+    left: 0;
+}
 }
 
 .joinContainer{
@@ -662,4 +668,7 @@
     bottom: 6px;
     display: flex;
     align-items: center;
+}
+.inputsContainer.gapRow{
+	row-gap: 30px;
 }
