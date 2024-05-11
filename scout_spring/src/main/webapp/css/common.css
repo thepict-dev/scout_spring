@@ -232,7 +232,7 @@ input[type=checkbox] + label {
     line-height: 100%; /* 14px */
     letter-spacing: -0.7px;
     background-repeat: no-repeat;
-    background-image: url('/front_img/uncheck2.png');
+    background-image: url('/front_img/uncheck.png');
     background-size: 10px;
     background-position: 0 2px;
 }

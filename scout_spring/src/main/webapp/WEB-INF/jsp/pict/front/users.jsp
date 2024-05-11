@@ -426,7 +426,7 @@
                                 <div class="tableButtons">
                                     <p id="year_cnt_scout">0 rows</p>
                                     <div class="buttons">
-                                        <a href="#lnk" class="smButton"><img src="/front_img/add.png" alt="">추가</a>
+                                        <a href="#joinMemPopup" class="smButton joinMemBtn"><img src="/front_img/add.png" alt="">추가</a>
                                         <a href="#lnk" class="smButton"><img src="/front_img/modify.png" alt="">수정</a>
                                         <a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">삭제</a>
                                         <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
@@ -583,6 +583,8 @@
             </div>
         </div>
     </div>
+     <!-- 대원 가입 모달 -->
+	<%@ include file="./include/member_modal.jsp" %>
      <!-- 지도자 가입 모달 -->
 	<%@ include file="./include/leader_modal.jsp" %>
      <!-- 관계연결 모달 -->

@@ -160,25 +160,39 @@ addTabItem.forEach((tab, idx)=> {
     });
 });
 
+//관계연결
 // 팝업 열기
 $(document).on("click", ".relationBtn", function (e){
     let target = $(this).attr("href");
     $(target).addClass("active");
+}); 
+//팝업닫기
+$(".modalInner button").click(function(){
+    $("#relationPopup").removeClass("active");
 });
 
-// 외부영역 클릭 시 팝업 닫기
-$(document).mouseup(function (e){
-    let LayerPopup = $("#relationPopup");
-    if(LayerPopup.has(e.target).length === 0){
-        LayerPopup.removeClass("active");
-    }
-});
-
+//지도자 가입
 // 팝업 열기
 $(document).on("click", ".joinBtn", function (e){
     let target = $(this).attr("href");
     $(target).addClass("active");
 });
+// 팝업닫기
+$(".modalInner button").click(function(){
+    $("#joinPopup").removeClass("active");
+});
+
+//대원 가입
+// 팝업 열기
+$(document).on("click", ".joinMemBtn", function (e){
+    let target = $(this).attr("href");
+    $(target).addClass("active");
+});
+// 팝업닫기
+$(".modalInner button").click(function(){
+    $("#joinMemPopup").removeClass("active");
+});
+
 
 // 외부영역 클릭 시 팝업 닫기
 $(document).mouseup(function (e){
@@ -186,13 +200,4 @@ $(document).mouseup(function (e){
     if(LayerPopup.has(e.target).length === 0){
         LayerPopup.removeClass("active");
     }
-});
-
-// 팝업닫기
-$(".modalInner button").click(function(){
-    $("#relationPopup").removeClass("active");
-});
-// 팝업닫기
-$(".modalInner button").click(function(){
-    $("#joinPopup").removeClass("active");
 });
