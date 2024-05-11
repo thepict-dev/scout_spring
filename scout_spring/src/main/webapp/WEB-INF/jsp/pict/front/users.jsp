@@ -749,7 +749,7 @@
 					$("#EMPLOYEEY").val(data.info.employeey).prop("selected", true);
 			
 					
-					$('.contentsContainer select').niceSelect('update')
+					
 					
 					if(data.info.sex == "M") $(":radio[id='SEX_M']").attr("checked", true);
 					else $(":radio[id='SEX_W']").attr("checked", true);
@@ -759,7 +759,7 @@
 					$("#EMAIL").val(data.info.email)
 					$("#HPOSTCODE").val(data.info.hpostcode)
 					$("#HADDR").val(data.info.haddr)
-					$("#JOBCODE").val(data.info.jobcode)
+					$("#JOBCODE").val(data.info.jobcode).prop("selected", true);
 					
 					
 					$('#LEADERSCORE').val(data.info.leaderscore)
@@ -767,6 +767,7 @@
 					$('#SCOUTSCHOOLBAN').val(data.info.scoutschoolban)
 					
 					
+					$('.contentsContainer select').niceSelect('update')
 					
 					if(data.info.smsyn == "Y") $("input:checkbox[id=SMSYN]").attr("checked", true);
 					if(data.info.emailyn == "Y") $("input:checkbox[id=EMAILYN]").attr("checked", true);
@@ -848,20 +849,28 @@
 					}
 					//관계연결
 					var relation_popup = ""
+					var target_memberno = $('#MEMBERNO').val()
 					for(var i=0; i<relation_arr.length; i++){
+						var relationname = ""
+						if(target_memberno == relation_arr[i].frommemberno) relationname = relation_arr[i].relationname2
+						if(target_memberno == relation_arr[i].tomemberno) relationname = relation_arr[i].relationname1
+						
 						relation_html += '<tr>'+
 						'<td>' + relation_arr[i].relationinfo.split(',')[0] + '</td>' +
 						'<td>' + relation_arr[i].relationinfo.split(',')[1] + '</td>'+
-						'<td>' + relation_arr[i].relationname1 + '</td>'+
+						'<td>' + relationname + '</td>'+
 						'<td>' + relation_arr[i].bigo + '</td>'+
 						'</tr>'
 						
+						var sex = "남"
+						if(relation_arr[i].relationinfo.split(',')[4] == 'W') sex = "여"
+						
 						relation_popup += '<tr>'+
 						'<td>' + relation_arr[i].relationcode + '</td>' +
-						'<td>' + relation_arr[i].relationname1 + '</td>'+
+						'<td>' + relationname + '</td>'+
 						'<td>' + relation_arr[i].relationinfo.split(',')[1] + '</td>'+
 						'<td>' + relation_arr[i].relationinfo.split(',')[2] + '</td>'+
-						'<td>' + relation_arr[i].relationinfo.split(',')[4] + '</td>'+
+						'<td>' + sex + '</td>'+
 						'<td>' + relation_arr[i].relationinfo.split(',')[3] + '</td>'+
 						'</tr>'
 					
