@@ -116,7 +116,7 @@
 	                                <th>전종여부</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="searchResultList">
 	                			<c:forEach var="resultList" items="${resultList}" varStatus="status">
 	                                <tr onclick="fn_info('${resultList.MEMBERNO}', '${resultList.KNAME}', '${resultList.TROOPSCOUTY}', '${resultList.TROOPLEADERY}')" style="cursor: pointer;">
 	                                    <td>${resultList.MEMBERNO}</td>
@@ -583,14 +583,18 @@
             </div>
         </div>
     </div>
-     <!-- 대원 가입 모달 -->
-	<%@ include file="./include/member_modal.jsp" %>
-     <!-- 지도자 가입 모달 -->
-	<%@ include file="./include/leader_modal.jsp" %>
+	
      <!-- 관계연결 모달 -->
 	<%@ include file="./include/relation_modal.jsp" %>
+	
      <!-- 학교검색 모달 -->
 	<%@ include file="./include/group_modal.jsp" %>
+	
+     <!-- 대원 가입 모달 -->
+	<%@ include file="./include/member_modal.jsp" %>
+	
+     <!-- 지도자 가입 모달 -->
+	<%@ include file="./include/leader_modal.jsp" %>
 	
     <%@ include file="./include/loading.jsp" %>
     <%@ include file="./include/error_page.jsp" %>
@@ -816,7 +820,7 @@
 						
 						$('#year_cnt_leader').text(arr.length + " rows")
 						for(var i=0; i<arr.length; i++){
-							html += '<tr>'+
+							html += '<tr onclick="fn_leader_info()">'+
 								'<td>' + Number(i+1) + '</td>' +
 								'<td>' + arr[i].adminy + '</td>'+
 								'<td>' + arr[i].year + '</td>'+
@@ -851,6 +855,7 @@
 						}
 						$('#scout_list').append(html)
 					}
+					
 					//관계연결
 					var relation_popup = ""
 					var target_memberno = $('#MEMBERNO').val()
@@ -884,6 +889,7 @@
 					$('#relation_list').append(relation_popup)
 					
 					$('#initial-loading').css('display', 'none')
+					
 				}
 				, error : function(xhr, status, error) {
 					console.log(xhr)
@@ -894,20 +900,6 @@
 			})
 	
 		}
-		
-		// 팝업 열기
-		$(document).on("click", ".btn-open", function (e){
-			let target = $(this).attr("href");
-			$(target).addClass("active");
-		});
-
-		// 외부영역 클릭 시 팝업 닫기
-		$(document).mouseup(function (e){
-			let LayerPopup = $(".layer-popup");
-			if(LayerPopup.has(e.target).length === 0){
-				LayerPopup.removeClass("active");
-			}
-		});
 
 		window.onload = function(){
 		    document.getElementById("searchZip").addEventListener("click", function(){ //주소입력칸을 클릭하면
@@ -921,6 +913,8 @@
 		        }).open();
 		    });
 		}    
+		
+
 	</script>
 </body>
 </html>

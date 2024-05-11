@@ -160,17 +160,6 @@ addTabItem.forEach((tab, idx)=> {
     });
 });
 
-//관계연결
-// 팝업 열기
-$(document).on("click", ".relationBtn", function (e){
-    let target = $(this).attr("href");
-    $(target).addClass("active");
-}); 
-//팝업닫기
-$(".modalInner button").click(function(){
-    $("#relationPopup").removeClass("active");
-});
-
 //지도자 가입
 // 팝업 열기
 $(document).on("click", ".joinBtn", function (e){
@@ -204,10 +193,39 @@ $(".modalInner button").click(function(){
     $("#groupPopup").removeClass("active");
 });
 
+//관계연결
+// 팝업 열기
+$(document).on("click", ".relationBtn", function (e){
+    let target = $(this).attr("href");
+    $(target).addClass("active");
+}); 
+//팝업닫기
+$(".popupInner button").click(function(){
+    $("#relationPopup").removeClass("active");
+});
+
 // 외부영역 클릭 시 팝업 닫기
 $(document).mouseup(function (e){
     let LayerPopup = $(".modalContainer");
     if(LayerPopup.has(e.target).length === 0){
         LayerPopup.removeClass("active");
     }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // leader_list와 scout_list 테이블에 이벤트 위임 설정
+    document.addEventListener('click', function(event) {
+        // 클릭된 요소가 leader_list 또는 scout_list 내의 tr 요소인지 확인
+        const clickedRow = event.target.closest('#leader_list tr, #scout_list tr, #searchResultList tr, #relation_list tr, #search_relation_list tr');
+        if (clickedRow) {
+            const table = clickedRow.closest('table');
+            const rows = table.querySelectorAll('tr');
+
+            rows.forEach(tr => {
+                tr.classList.remove('active');
+            });
+
+            clickedRow.classList.add('active');
+        }
+    });
 });

@@ -652,7 +652,6 @@
     bottom: 31px;
     left: 0;
 }
-}
 
 .joinContainer{
 	width: 100%;
@@ -671,4 +670,11 @@
 }
 .inputsContainer.gapRow{
 	row-gap: 30px;
+}
+
+#leader_list tr, #scout_list tr, #searchResultList tr, #relation_list tr, #search_relation_list tr{
+	cursor: pointer;
+}
+tbody tr.active td{
+	background-color: var(--grey-50);
 }
