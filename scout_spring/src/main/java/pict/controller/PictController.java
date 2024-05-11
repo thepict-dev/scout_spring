@@ -166,6 +166,11 @@ public class PictController {
 	public String ko_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		
+		List<PictVO> association_list = pictService.association_list(pictVO);
+		pictVO.setASSOCIATIONCODE("200");
+		List<PictVO> unity_list = pictService.unity_list(pictVO);
+		model.addAttribute("association_list", association_list);
+		model.addAttribute("unity_list", unity_list);
 		
 		if(request.getQueryString() == null) {
 			model.addAttribute("resultListCnt", "0");
@@ -455,6 +460,30 @@ public class PictController {
 		}
 		
 	}
+	//지도자가입에서 단위대 목록가져오기
+	@RequestMapping("/get_troop_list_leader")
+	@ResponseBody
+	public HashMap<String, Object> get_troop_list_leader(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String associationcode = param.get("associationcode").toString();
+		String parenttroopno = param.get("parenttroopno").toString();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		pictVO.setASSOCIATIONCODE(associationcode);
+		pictVO.setPARENTTROOPNO(parenttroopno);
+		
+		
+		List<PictVO> troop_list = pictService.troop_list(pictVO);
+		if(troop_list.size() > 0) {
+			map.put("list", troop_list);
+			return map;
+		}
+		else {
+			return map;
+		}
+		
+	}
+	
+	
 	
 	//단위대 정보
 	@RequestMapping("/get_troop_info")
