@@ -168,6 +168,12 @@ input[type="date"]::after{
   transform: translateY(-50%);
   z-index: 0;
 }
+input[type="date"]:disabled{
+  color: var(--grey-500) !important; 
+  border-radius: 4px !important;
+  border: 1px solid var(--grey-200) !important;
+  background: var(--grey-200) !important;
+}
 
 /* selects */
 .lgSelect{
@@ -364,6 +370,15 @@ textarea:focus{
 .smButton.searches img{
     width: 16px;
 }
+.smButton.bigBtn{
+    height: 32px;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+	border: 1px solid var(--purple-600);
+	background: var(--purple-500);
+	color: #fff;
+} 
 .marrige{
     display: flex;
     column-gap: 4px;

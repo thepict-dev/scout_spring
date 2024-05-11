@@ -193,6 +193,16 @@ $(".modalInner button").click(function(){
     $("#joinMemPopup").removeClass("active");
 });
 
+//학교/단체 찾기
+// 팝업 열기
+$(document).on("click", ".groupBtn", function (e){
+    let target = $(this).attr("href");
+    $(target).addClass("active");
+});
+// 팝업닫기
+$(".modalInner button").click(function(){
+    $("#groupPopup").removeClass("active");
+});
 
 // 외부영역 클릭 시 팝업 닫기
 $(document).mouseup(function (e){
