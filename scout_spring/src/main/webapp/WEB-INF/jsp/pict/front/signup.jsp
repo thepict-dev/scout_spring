@@ -29,6 +29,7 @@
 	                                    <div class="inputBox">
 	                                        <p class="inputCaption">회원구분</p>
 	                                        <select name="MEMCLSCODE" id="MEMCLSCODE" class="smThinSelect">
+	                                            <option value="">선택하세요.</option>
 	                                            <option value="1">개인</option>
 	                                            <option value="2">법인</option>
 	                                            <option value="3">단체</option>
@@ -37,6 +38,7 @@
 	                                    <div class="inputBox">
 	                                        <p class="inputCaption">회원등급</p>
 	                                        <select name="MEMGRADECODE" id="MEMGRADECODE" class="lgThinSelect">
+	                                            <option value="">선택하세요.</option>
 	                                            <option value="0">대원/지도자</option>
 	                                            <option value="1">후원회원</option>
 	                                            <option value="2">행사회원</option>
@@ -46,11 +48,12 @@
 	                                <div class="inputsContainer">
 	                                    <div class="inputBox">
 	                                        <p class="inputCaption">생년월일</p>
-	                                        <input type="date" name="BIRTHDAY" id="BIRTHDAY" class="lgThinInput">
+	                                        <input type="date" name="BIRTHDAY" id="BIRTHDAY" class="lgThinInput" required>
 	                                    </div>
 	                                    <div class="inputBox">
 	                                        <p class="inputCaption">전종여부</p>
 	                                        <select name="EMPLOYEEY" id="EMPLOYEEY" class="smThinSelect">
+	                                            <option value="">선택하세요.</option>
 	                                            <option value="N">-</option>
 	                                            <option value="Y">전종</option>
 	                                        </select>
@@ -86,7 +89,7 @@
 	                        <div class="inputsContainer inputsPd_">
 	                            <div class="inputBox">
 	                                <p class="inputCaption">집전화</p>
-	                                <input type="text" name="MOBILE" id="MOBILE" placeholder="내용을 입력하세요…" class="lgThinInput">
+	                                <input type="text" name="HTELNO" id="HTELNO" placeholder="내용을 입력하세요…" class="lgThinInput">
 	                            </div>
 	                            <div class="inputBox">
 	                                <p class="inputCaption">휴대전화</p>
@@ -106,8 +109,8 @@
 	                            <div class="inputBox">
 	                                <p class="inputCaption">직업</p>
 	                                <select name="JOBCODE" id="JOBCODE" class="lgThinSelect">
-		                                <option value="">선택하세요.</option>
-										<c:forEach var="job_list" items="${job_list}" varStatus="status">
+	                                	<option value="">선택하세요.</option>
+										<c:forEach var="JOBCODE" items="${job_list}" varStatus="status">
 	                                    	<option value="${job_list.JOBCODE}">${job_list.JOBNAME}</option>	
 	                                   	</c:forEach>
 	                                </select>
@@ -120,7 +123,7 @@
 	                                    <input type="text" name="HPOSTCODE" id="HPOSTCODE" readonly class="lgThinInput">
 	                                    <a href="#lnk" class="normalButton white">우편번호 검색</a>
 	                                </div>
-	                                <input type="text" name="HADDR" id="HADDR" readonly class="lgThinInput post">
+	                                <input type="text" name="HADDR" id="HADDR" class="lgThinInput post">
 	                            </div>
 	                        </div>
 	                        <div class="tableButtons inputsPd bottomBd" style="justify-content: flex-end;">
@@ -135,15 +138,71 @@
 	    </div>
 	</body>
 	<script>
+	
 		function fn_submit(){
 			var text = "등록하시겠습니까?";
+			var memcls = $('#MEMCLSCODE').val();
+			var memgrade = $('#MEMGRADECODE').val();
+			var employeey = $('#EMPLOYEEY').val()
 			var kname = $('#KNAME').val();
+			var ename = $('#ENAME').val();
+			var birth = $('#BIRTHDAY').val();
+			var mobile = $('#MOBILE').val();
+			var email = $('#EMAIL').val();
+			var gender = $("input[name='SEX']:checked").length < 1;
+			var job = $('#JOBCODE').val();
+
+			if (memcls == undefined || memcls == ''){
+				alert("회원구분을 선택해주세요.");
+				return false;
+			}
 			
-			if(kname == null || kname == undefined || kname == ''){
+			if (memgrade == undefined || memgrade == ''){
+				alert("회원등급을 선택해주세요.");
+				return false;
+			}
+			
+			if (employeey == undefined || employeey == ''){
+				alert("전종여부를 선택해주세요.");
+				return false;
+			}
+			
+			if (kname == null || kname == undefined || kname == ''){
 				alert("국문 성명을 입력해주세요.");
+				$("#KNAME").focus();
+				return false;
+			}
+			
+			if (ename == null || ename == undefined || ename == ''){
+				alert("영문 성명을 입력해주세요.");
+				$("#ENAME").focus();
 				return false;
 			}
 
+			if (gender == "" || gender == undefined) {
+				alert("성별을 선택해주세요.");
+				$("#SEX_M").focus();
+				return false;
+			}
+
+			if (mobile == "" || mobile == undefined || mobile == '') {
+				alert("휴대전화 번호를 입력해주세요.");
+				$('#MOBILE').focus();
+				return false;
+			}
+			
+			if (email == "" || email == undefined || email == '') {
+				alert("이메일을 입력해주세요.");
+				$('#EMAIL').focus();
+				return false;
+			}
+
+			if (job == "" || job == undefined) {
+				window.alert("성별을 선택해주세요.");
+				$("#JOBCODE").focus();
+				return false;
+			}
+			
 			if (confirm(text)) {
 				$("#register").attr("action", "/new_person");
 				$("#register").submit();
