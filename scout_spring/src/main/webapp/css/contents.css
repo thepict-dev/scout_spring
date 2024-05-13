@@ -678,3 +678,26 @@
 tbody tr.active td{
 	background-color: var(--grey-50);
 }
+
+.mainProfile.sign{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	row-gap: 10px;
+    width: 176px;
+    min-width: 176px;
+    height: 220px;
+    transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    background-color: var(--grey-50);
+}
+.mainProfile.sign img{
+	width: 55px;
+}
+.mainProfile.sign p{
+	font-size: 12px;
+	text-align: center;
+}
+.mainProfile.sign:hover{
+	opacity: 1;
+}

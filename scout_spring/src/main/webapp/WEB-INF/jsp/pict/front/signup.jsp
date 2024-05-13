@@ -18,8 +18,9 @@
 	                    <form action="" id="register" name="register" method="post" enctype="multipart/form-data">
 	                        <h2 class="subTitles" style="padding: 16px 0 0 24px;">가입정보</h2>
 	                        <div class="basicInfo1 inputsPd">
-	                            <div class="mainProfile">
-	                                <img src="/front_img/profile.png" alt="프로필 이미지">
+	                            <div class="mainProfile sign">
+	                            	<img src="/front_img/users.png" alt="">
+	                                <p>프로필 사진은 회원 등록 후<br>회원 통합창에서 설정 가능합니다.</p>
 	                            </div>
 	                            <div class="stackInputs">
 	                                <div class="inputsContainer">
