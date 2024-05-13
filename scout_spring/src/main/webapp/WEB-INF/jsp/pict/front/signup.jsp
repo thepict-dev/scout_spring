@@ -7,6 +7,7 @@
 <!DOCTYPE html>	
 <html lang="ko">
 	<%@ include file="./include/head.jsp" %>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<body>
 		<%@ include file="./include/lnb.jsp" %>
 		<%@ include file="./include/header.jsp" %>
@@ -38,7 +39,6 @@
 	                                    <div class="inputBox">
 	                                        <p class="inputCaption">회원등급</p>
 	                                        <select name="MEMGRADECODE" id="MEMGRADECODE" class="lgThinSelect">
-	                                            <option value="">선택하세요.</option>
 	                                            <option value="0">대원/지도자</option>
 	                                            <option value="1">후원회원</option>
 	                                            <option value="2">행사회원</option>
@@ -53,15 +53,9 @@
 	                                    <div class="inputBox">
 	                                        <p class="inputCaption">전종여부</p>
 	                                        <select name="EMPLOYEEY" id="EMPLOYEEY" class="smThinSelect">
-	                                            <option value="">선택하세요.</option>
 	                                            <option value="N">-</option>
 	                                            <option value="Y">전종</option>
 	                                        </select>
-	                                    </div>
-	                                    <div class="inputBox">
-	                                    <!-- 여기 -->
-	                                        <p class="inputCaption">홈페이지 ID</p>
-	                                        <input type="text" name="USERNAME" id="USERNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
 	                                    </div>
 	                                </div>
 	                                <div class="inputsContainer">
@@ -71,11 +65,11 @@
 	                                    </div>
 	                                    <div class="inputBox">
 	                                        <p class="inputCaption">성명(영문)</p>
-	                                        <input type="text"  name="ENAME" id="ENAME" placeholder="내용을 입력하세요…" class="lgThinInput">
+	                                        <input type="text" name="ENAME" id="ENAME" placeholder="내용을 입력하세요…" class="lgThinInput">
 	                                    </div>
 	                                    <div class="inputBox genderContainer">
 	                                        <div class="gender">
-	                                            <input type="radio" name="SEX" value="M" id="SEX_M">
+	                                            <input type="radio" name="SEX" value="M" id="SEX_M" checked>
 	                                            <label for="SEX_M">남</label>
 	                                        </div>
 	                                        <div class="gender">
@@ -89,11 +83,11 @@
 	                        <div class="inputsContainer inputsPd_">
 	                            <div class="inputBox">
 	                                <p class="inputCaption">집전화</p>
-	                                <input type="text" name="HTELNO" id="HTELNO" placeholder="내용을 입력하세요…" class="lgThinInput">
+	                                <input type="text" name="" id="HTELNO" placeholder="내용을 입력하세요…" class="lgThinInput">
 	                            </div>
 	                            <div class="inputBox">
 	                                <p class="inputCaption">휴대전화</p>
-	                                <input type="text" name="MOBILE" id="MOBILE" placeholder="내용을 입력하세요…" class="lgThinInput">
+	                                <input type="text" name="" id="MOBILE" placeholder="내용을 입력하세요…" class="lgThinInput">
 	                            </div>
 	                            <div class="inputBox">
 	                                <p class="inputCaption">이메일</p>
@@ -110,7 +104,7 @@
 	                                <p class="inputCaption">직업</p>
 	                                <select name="JOBCODE" id="JOBCODE" class="lgThinSelect">
 	                                	<option value="">선택하세요.</option>
-										<c:forEach var="JOBCODE" items="${job_list}" varStatus="status">
+										<c:forEach var="job_list" items="${job_list}" varStatus="status">
 	                                    	<option value="${job_list.JOBCODE}">${job_list.JOBNAME}</option>	
 	                                   	</c:forEach>
 	                                </select>
@@ -121,7 +115,7 @@
 	                                <p class="inputCaption">집주소</p>
 	                                <div class="zip">
 	                                    <input type="text" name="HPOSTCODE" id="HPOSTCODE" readonly class="lgThinInput">
-	                                    <a href="#lnk" class="normalButton white">우편번호 검색</a>
+	                                    <a href="#lnk" class="normalButton white" id="searchZip">우편번호 검색</a>
 	                                </div>
 	                                <input type="text" name="HADDR" id="HADDR" class="lgThinInput post">
 	                            </div>
@@ -138,35 +132,41 @@
 	    </div>
 	</body>
 	<script>
-	
 		function fn_submit(){
 			var text = "등록하시겠습니까?";
 			var memcls = $('#MEMCLSCODE').val();
-			var memgrade = $('#MEMGRADECODE').val();
-			var employeey = $('#EMPLOYEEY').val()
 			var kname = $('#KNAME').val();
 			var ename = $('#ENAME').val();
 			var birth = $('#BIRTHDAY').val();
 			var mobile = $('#MOBILE').val();
-			var email = $('#EMAIL').val();
-			var gender = $("input[name='SEX']:checked").length < 1;
+			var gender = "M"
+			if($('input:radio[id=SEX_W]').is(':checked')){
+				gender = "W"
+			}
+			$('#SEX').val(gender)
+			
 			var job = $('#JOBCODE').val();
-
+			var SMSYN = "N"
+			if($('input:checkbox[id=SMSYN]').is(':checked')) SMSYN = "Y"
+			
+			$('#SMSYN').val(SMSYN)
+			
+			var EMAILYN = "N"
+			if($('input:checkbox[id=EMAILYN]').is(':checked')) EMAILYN = "Y"
+			$('#EMAILYN').val(EMAILYN)
+			
+			
 			if (memcls == undefined || memcls == ''){
 				alert("회원구분을 선택해주세요.");
+				$('#MEMCLSCODE').focus();
 				return false;
 			}
 			
-			if (memgrade == undefined || memgrade == ''){
-				alert("회원등급을 선택해주세요.");
+			if (birth == undefined || birth == ''){
+				alert("생년월일을 선택해주세요.");
 				return false;
 			}
-			
-			if (employeey == undefined || employeey == ''){
-				alert("전종여부를 선택해주세요.");
-				return false;
-			}
-			
+
 			if (kname == null || kname == undefined || kname == ''){
 				alert("국문 성명을 입력해주세요.");
 				$("#KNAME").focus();
@@ -178,27 +178,16 @@
 				$("#ENAME").focus();
 				return false;
 			}
-
-			if (gender == "" || gender == undefined) {
-				alert("성별을 선택해주세요.");
-				$("#SEX_M").focus();
-				return false;
-			}
-
+			
 			if (mobile == "" || mobile == undefined || mobile == '') {
 				alert("휴대전화 번호를 입력해주세요.");
 				$('#MOBILE').focus();
 				return false;
 			}
 			
-			if (email == "" || email == undefined || email == '') {
-				alert("이메일을 입력해주세요.");
-				$('#EMAIL').focus();
-				return false;
-			}
 
 			if (job == "" || job == undefined) {
-				window.alert("성별을 선택해주세요.");
+				window.alert("직업을 선택해주세요.");
 				$("#JOBCODE").focus();
 				return false;
 			}
@@ -207,6 +196,19 @@
 				$("#register").attr("action", "/new_person");
 				$("#register").submit();
 			}
+		}
+		
+		window.onload = function(){
+		    document.getElementById("searchZip").addEventListener("click", function(){ //주소입력칸을 클릭하면
+		        //카카오 지도 발생
+		        new daum.Postcode({
+		            oncomplete: function(data) { //선택시 입력값 세팅
+		                document.getElementById("HPOSTCODE").value = data.zonecode;
+		                document.getElementById("HADDR").value = data.address; // 주소 넣기
+		                document.getElementById("HADDR").focus();
+		            }
+		        }).open();
+		    });
 		}
 	
 	</script>

@@ -388,9 +388,9 @@
 
 
 	<insert id="new_person" parameterType="pictVO">
-		insert into member (MEMBERNO, KNAME, ENAME)
+		insert into member (MEMBERNO, MEMCLSCODE, MEMGRADECODE, BIRTHDAY, EMPLOYEEY, KNAME, ENAME, SEX, HTELNO, MOBILE, EMAIL, SMSYN, EMAILYN, JOBCODE, HPOSTCODE, HADDR, ENTERDATE)
 		values(
-			(select max(MEMBERNO + 1) from member t), #{KNAME}, #{ENAME}
+			(select max(MEMBERNO + 1) from member t), #{MEMCLSCODE}, #{MEMGRADECODE}, #{BIRTHDAY}, #{EMPLOYEEY}, #{KNAME}, #{ENAME}, #{SEX}, #{HTELNO}, #{MOBILE}, #{EMAIL}, #{SMSYN}, #{EMAILYN}, #{JOBCODE}, #{HPOSTCODE}, #{HADDR}, now()
 		)
 	</insert>
 

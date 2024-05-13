@@ -198,6 +198,9 @@ public class PictController {
 	public String signup(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		
+		List<?> job_list= pictService.job_list(pictVO);
+		
+		model.addAttribute("job_list", job_list);
 		model.addAttribute("pictVO", pictVO);
 		return "pict/front/signup";
 	}
@@ -576,11 +579,6 @@ public class PictController {
 	//조직통합창
 	@RequestMapping("/new_person")
 	public String new_person(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		
-		System.out.println(pictVO.getKNAME());
-		
-		System.out.println(pictVO.getENAME());
-		
 		
 		pictService.new_person(pictVO);
 		
