@@ -288,6 +288,16 @@
     </div>
 </div>
 <script>
+	function leader_add(){
+		var memberno = $('#MEMBERNO').val();
+		
+		if(memberno == undefined || memberno == null || memberno == '' || memberno == 0){
+			alert("회원을 선택해주세요.")
+			return false;
+		}
+	}
+
+
 	function leader_mod(){
 		var idx = $('#leader_idx').val();
 		
