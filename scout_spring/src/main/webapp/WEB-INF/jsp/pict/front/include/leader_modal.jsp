@@ -78,8 +78,12 @@
                                 <input type="text"  name="leader_orgno" id="leader_orgno" placeholder="내용을 입력하세요…" class="lgThinInput">
                                 <a href="#lnk" class="smButton searches" style="margin-right: 12px;"><img src="/front_img/search2.png" alt="">조회</a>
                                 <select name="LEADERORGPOSITIONCODE" id="LEADERORGPOSITIONCODE" class="smThinSelect">
-                                    <option value="N">비전종</option>
-                                    <option value="Y">전종</option>
+                                    <option value="">------</option>
+                                    <option value="01">교장</option>
+                                    <option value="02">교감</option>
+                                    <option value="03">교사</option>
+                                    <option value="04">일반</option>
+                                    <option value="05">없음</option>
                                 </select>
                             </div>
                         </div>
@@ -88,13 +92,14 @@
                         <div class="inputBox">
                             <p class="inputCaption">지도자직책</p>
                             <div class="inputsAlign">
-                                <select name="LEADERPOSITIONCODE1" id="LEADERPOSITIONCODE1" class="lgThinSelect">
-                                    <option value="N">비전종</option>
-                                    <option value="Y">전종</option>
+                                <select name="LEADERPOSITIONCODE1" id="LEADERPOSITIONCODE1" class="lgThinSelect" onchange="fn_get_leaderposition()">
+                                    <option value="">-----</option>
+                                    <option value="01">협조</option>
+                                    <option value="02">훈육</option>
+                                    <option value="03">전종</option>
                                 </select>
                                 <select name="LEADERPOSITIONCODE2" id="LEADERPOSITIONCODE2" class="lgThinSelect">
-                                    <option value="N">비전종</option>
-                                    <option value="Y">전종</option>
+                                    <option value="">-----</option>
                                 </select>
                                 <input type="checkbox" name="ADMINY" id="ADMINY" class="circleCheck" value="Y"><label for="ADMINY">관리지도자</label>
                             </div>
@@ -148,7 +153,7 @@
                         <div class="inputBox">
                             <div class="inputsAlign">
                                 <label for="">
-                                    <input type="text" name="ENTRYFEE" id="ENTRYFEE" placeholder="0" class="smThinInput mountInput">
+                                    <input type="text" name="ENTRYFEE" id="ENTRYFEE" class="smThinInput mountInput">
                                     <span class="mountCaption">원</span>
                                 </label>
                             </div>
@@ -165,14 +170,16 @@
 	                                원
 	                            </p>
                             </div>
+                            <!-- 
                             <div style="position: absolute;right: -35px;">
                                 <input type="checkbox" name="" id="" class="circleCheck"><label for="" class="lableOnly"></label>
                             </div>
+                             -->
                         </div>
                         <div class="inputBox">
                             <div class="inputsAlign">
                                 <label for="">
-                                    <input type="text" name="INSURANCEFEE" id="INSURANCEFEE" placeholder="0" class="smThinInput mountInput">
+                                    <input type="text" name="INSURANCEFEE" id="INSURANCEFEE" class="smThinInput mountInput">
                                     <span class="mountCaption">원</span>
                                 </label>
                             </div>
@@ -190,14 +197,16 @@
 		                                원
 		                            </p>
 		                        </div>
+		                        <!-- 
                                 <div>
                                     <input type="checkbox" name="" id="" class="circleCheck"><label for="" class="lableOnly"></label>
                                 </div>
+                                 -->
                                 <div class="inputBox" style="position: relative; bottom: 9px;">
                                     <p class="inputCaption">부수</p>
                                     <div class="inputsAlign">
                                         <label for="">
-                                            <input type="text" name="SCOUTMAGACNT" id="SCOUTMAGACNT" placeholder="00" class="smThinInput">
+                                            <input type="text" name="SCOUTMAGACNT" id="SCOUTMAGACNT"  class="smThinInput">
                                         </label>
                                     </div>
                                 </div>
@@ -206,7 +215,7 @@
                         <div class="inputBox" style="margin-bottom: 10px;">
                             <div class="inputsAlign">
                                 <label for="">
-                                    <input type="text" name="SCOUTMAGAFEE" id="SCOUTMAGAFEE" placeholder="0" class="smThinInput mountInput">
+                                    <input type="text" name="SCOUTMAGAFEE" id="SCOUTMAGAFEE" class="smThinInput mountInput">
                                     <span class="mountCaption">원</span>
                                 </label>
                             </div>
@@ -224,14 +233,16 @@
 		                                원
 		                            </p>
 		                        </div>
+		                        <!-- 
                                 <div>
                                     <input type="checkbox" name="" id="" class="circleCheck"><label for="" class="lableOnly"></label>
                                 </div>
+                                 -->
                                 <div class="inputBox" style="position: relative; bottom: 9px;">
                                     <p class="inputCaption">부수</p>
                                     <div class="inputsAlign">
                                         <label for="">
-                                            <input type="text" name="LEADERMAGACNT" id="LEADERMAGACNT" placeholder="0" class="smThinInput">
+                                            <input type="text" name="LEADERMAGACNT" id="LEADERMAGACNT"  class="smThinInput">
                                         </label>
                                     </div>
                                 </div>
@@ -240,7 +251,7 @@
                         <div class="inputBox" style="margin-bottom: 10px;">
                             <div class="inputsAlign">
                                 <label for="">
-                                    <input type="text" name="LEADERMAGAFEE" id="LEADERMAGAFEE" placeholder="0" class="smThinInput mountInput">
+                                    <input type="text" name="LEADERMAGAFEE" id="LEADERMAGAFEE" class="smThinInput mountInput">
                                     <span class="mountCaption">원</span>
                                 </label>
                             </div>
@@ -259,7 +270,7 @@
                         <div class="inputBox">
                             <div class="inputsAlign">
                                 <label for="">
-                                    <input type="text" name="total_amount" id="total_amount" placeholder="0" class="smThinInput mountInput">
+                                    <input type="text" name="total_amount" id="total_amount" class="smThinInput mountInput">
                                     <span class="mountCaption">원</span>
                                 </label>
                             </div>
@@ -295,6 +306,7 @@
 			alert("회원을 선택해주세요.")
 			return false;
 		}
+		$('#joinPopup select').niceSelect('update')
 	}
 
 
@@ -315,12 +327,11 @@
 			, data : JSON.stringify(param)
 			, contentType : "application/json"
 			, dataType : "json"
-			, async : false
+			, async : true
 			, success : function(data, status, xhr) {
 				console.log(data.rst)
-				
 				$('#YEAR').val(data.rst.startday.substring(0,4))
-				$('#COMFIRMY').val(data.rst.confirmy)
+				$('#CONFIRMY').val(data.rst.confirmy)
 				$('#associationcode_leader').val(data.rst.associationcode)
 				fn_get_unitylist()
 				$('#unitycode_leader').val(data.rst.parenttroopno)
@@ -330,11 +341,15 @@
 				$('#LEADERORGPOSITIONCODE').val(data.rst.leaderorgpositioncode)
 				$('#LEADERPOSITIONCODE1').val(data.rst.leaderpositioncode1)
 				$('#LEADERPOSITIONCODE2').val(data.rst.leaderpositioncode2)
-				$('#ADMINY').val(data.rst.adminy)
-				$('#FEEEXCLUDE').val(data.rst.feeexclude)
+				
+				if(data.rst.adminy == "Y") $(":radio[id='ADMINY']").attr("checked", true);
+				if(data.rst.feeexclude == "Y") $(":radio[id='FEEEXCLUDE']").attr("checked", true);
+				if(data.rst.payy == "Y") $(":radio[id='PAYY']").attr("checked", true);
+				
+				
 				$('#FEEEXCLUDCODE').val(data.rst.feeexcludcode)
 				$('#BANKDAY').val(data.rst.bankday)
-				$('#PAYY').val(data.rst.payy)
+				
 				$('#ENTRYFEE').val(data.rst.entryfee)
 				$('#INSURANCEFEE').val(data.rst.insurancefee)
 				$('#SCOUTMAGACNT').val(data.rst.scoutmagacnt)
@@ -365,7 +380,6 @@
 			, dataType : "json"
 			, async : false
 			, success : function(data, status, xhr) {
-				console.log(data.list)
 				var html ="";
 				if(data.list){
 					var arr = data.list;
@@ -396,7 +410,6 @@
 			, dataType : "json"
 			, async : false
 			, success : function(data, status, xhr) {
-				console.log(data.list)
 				var html ="";
 				if(data.list){
 					var arr = data.list;
@@ -414,11 +427,53 @@
 			}
 		});
 	}
+	
+	function fn_get_leaderposition(){
+		$('#LEADERPOSITIONCODE2').children().remove();
+		
+		if($('#LEADERPOSITIONCODE1').val() == ''){
+			console.log("여기를 와야해")
+			$('#LEADERPOSITIONCODE2').val("")
+			var html2 ='<option value="">-----</option>';
+			$('#LEADERPOSITIONCODE2').append(html2)
+			$('#joinPopup select').niceSelect('update')
+		}
+		var param = {
+			leaderpositioncode1: $('#LEADERPOSITIONCODE1').val(),
+		}
+		
+		$.ajax({
+			url : "/fn_get_leaderposition"
+			, type : "POST"
+			, data : JSON.stringify(param)
+			, contentType : "application/json"
+			, dataType : "json"
+			, async : false
+			, success : function(data, status, xhr) {
+				var html ='<option value="">-----</option>';
+				if(data.list){
+					var arr = data.list;
+					
+					for(var i=0; i<arr.length; i++){
+						html += '<option value="'+ arr[i].leaderpositioncode2 +'">'+arr[i].leaderpositionname +'</option>'
+					}
+					$('#LEADERPOSITIONCODE2').append(html)
+					$('#joinPopup select').niceSelect('update')
+				}
+			}
+			, error : function(xhr, status, error) {
+				console.log(xhr)
+				console.log("에러")
+			}
+		});
+	}
+	
 	function leader_save(){
 		var adminy = "N"
 		if(document.getElementById("ADMINY").checked) adminy = "Y";
 		var payy = "N"
 		if(document.getElementById("PAYY").checked) payy = "Y";
+		
 		
 		var param = {
 			memberno : $('#MEMBERNO').val(),
@@ -443,24 +498,55 @@
 			scoutmagafee : $('#SCOUTMAGAFEE').val(),
 			leadermagacnt : $('#LEADERMAGACNT').val(),
 			ledermagafee : $('#LEADERMAGAFEE').val(),
-		
+			leader_idx : $('#leader_idx').val(),
+			savetype : "update"
 		}
-		debugger
-		$.ajax({
-			url : "/leader_save"
-			, type : "POST"
-			, data : JSON.stringify(param)
-			, contentType : "application/json"
-			, async : false
-			, success : function(data, status, xhr) {
-				console.log(data)
-				
+		
+		var text ="선택한 연공을 수정하시겠습니까?";
+		if($('#leader_idx').val() == '' || $('#leader_idx').val() == undefined || $('#leader_idx').val() == null){
+			text ="신규 연공을 등록하시겠습니까?";
+			param.savetype = "insert"
+			param.leader_idx = "0"
+			
+			if(confirm (text)){
+				$.ajax({
+					url : "/leader_save"
+					, type : "POST"
+					, data : JSON.stringify(param)
+					, contentType : "application/json"
+					, async : true
+					, success : function(data, status, xhr) {
+						console.log(data)
+						
+					}
+					, error : function(xhr, status, error) {
+						console.log(xhr)
+						console.log("에러")
+					}
+				});
 			}
-			, error : function(xhr, status, error) {
-				console.log(xhr)
-				console.log("에러")
+		}
+		else{
+			if(confirm (text)){
+				$.ajax({
+					url : "/leader_update"
+					, type : "POST"
+					, data : JSON.stringify(param)
+					, contentType : "application/json"
+					, async : true
+					, success : function(data, status, xhr) {
+						console.log(data)
+						
+					}
+					, error : function(xhr, status, error) {
+						console.log(xhr)
+						console.log("에러")
+					}
+				});
 			}
-		});
+		}
+		
+		
 	}
 	
 	

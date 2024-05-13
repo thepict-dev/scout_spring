@@ -254,6 +254,7 @@ public class PictController {
 			pictVO.setSCOUTSCHOOLYEAR(SCOUTSCHOOLYEAR);
 			pictVO.setSCOUTSCHOOLBAN(SCOUTSCHOOLBAN);
 			
+			
 			pictService.person_save(pictVO);
 			
 			return "Y";
@@ -349,7 +350,6 @@ public class PictController {
 	@RequestMapping("/leader_save")
 	@ResponseBody
 	public String leader_save(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
-		System.out.println("들어와!!!!!!!!!!!!!!!!!");
 		try {
 			String memberno = param.get("memberno").toString();
 			String startday = param.get("startday").toString();
@@ -396,8 +396,59 @@ public class PictController {
 			pictVO.setSCOUTMAGAFEE(scoutmagafee);
 			pictVO.setLEADERMAGACNT(leadermagacnt);
 			pictVO.setLEADERMAGAFEE(ledermagafee);
+
+			pictService.leader_save(pictVO);
 			
+			return "Y";
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			return "N";
+		}
+	}
+	
+	//지도자연공기입
+	@RequestMapping("/leader_update")
+	@ResponseBody
+	public String leader_update(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+		try {
+			String leader_idx = param.get("leader_idx").toString();
+			String memberno = param.get("memberno").toString();
+			String leaderorgno = param.get("leaderorgno").toString();
+			String leaderorgpositioncode = param.get("leaderorgpositioncode").toString();
+			String leaderpositioncode1 = param.get("leaderpositioncode1").toString();
+			String leaderpositioncode2 = param.get("leaderpositioncode2").toString();
+			String adminy = param.get("adminy").toString();
 			
+			String feeexcludcode = param.get("feeexcludcode").toString();
+			String bankday = param.get("bankday").toString();
+			String payy = param.get("payy").toString();
+			String entryfee = param.get("entryfee").toString();
+			String insurancefee = param.get("insurancefee").toString();
+			String scoutmagacnt = param.get("scoutmagacnt").toString();
+			String scoutmagafee = param.get("scoutmagafee").toString();
+			String leadermagacnt = param.get("leadermagacnt").toString();
+			String ledermagafee = param.get("ledermagafee").toString();
+			
+			pictVO.setIdx(Integer.parseInt(leader_idx));
+			pictVO.setMEMBERNO(memberno);
+			pictVO.setLEADERORGNO(leaderorgno);
+			pictVO.setLEADERORGPOSITIONCODE(leaderorgpositioncode);
+			pictVO.setLEADERPOSITIONCODE1(leaderpositioncode1);
+			pictVO.setLEADERPOSITIONCODE2(leaderpositioncode2);
+			pictVO.setADMINY(adminy);
+			
+			pictVO.setFEEEXCLUDECODE(feeexcludcode);
+			pictVO.setBANKDAY(bankday);
+			pictVO.setPAYY(payy);
+			pictVO.setENTRYFEE(entryfee);
+			pictVO.setINSURANCEFEE(insurancefee);
+			pictVO.setSCOUTMAGACNT(scoutmagacnt);
+			pictVO.setSCOUTMAGAFEE(scoutmagafee);
+			pictVO.setLEADERMAGACNT(leadermagacnt);
+			pictVO.setLEADERMAGAFEE(ledermagafee);
+			
+			/*
 			System.out.println(memberno);
 			System.out.println(startday);
 			System.out.println(endday);
@@ -419,15 +470,35 @@ public class PictController {
 			System.out.println(scoutmagafee);
 			System.out.println(leadermagacnt);
 			System.out.println(ledermagafee);
+			*/
 			
-			
-			pictService.leader_save(pictVO);
+			System.out.println("업데이트를 타야해");
+			//pictService.leader_update(pictVO);
 			
 			return "Y";
 		}
 		catch(Exception e) {
 			System.out.println(e);
 			return "N";
+		}
+	}
+	
+	//지도자포지션가져오기
+	@RequestMapping("/fn_get_leaderposition")
+	@ResponseBody
+	public HashMap<String, Object> fn_get_leaderposition(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		String leaderpositioncode1 = param.get("leaderpositioncode1").toString();
+		
+		pictVO.setLEADERPOSITIONCODE1(leaderpositioncode1);
+		List<PictVO> relation_list = pictService.fn_get_leaderposition(pictVO);
+		
+		if(relation_list.size() > 0) {
+			map.put("list", relation_list);
+			return map;
+		}
+		else {
+			return map;
 		}
 	}
 	

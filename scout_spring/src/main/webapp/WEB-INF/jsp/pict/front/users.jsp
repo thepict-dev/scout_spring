@@ -772,10 +772,14 @@
 					console.log(data)
 					console.log("성공")
 					$('#idx').val(data.info.idx)
+					
+					$('#leader_idx').val("")
+					$('#scout_idx').val("")
+					
 					$('#MEMBERNO').val(data.info.memberno)
 					$('#MEMCLSCODE').val(data.info.memclscode)//셀렉트
 					
-			
+					
 					var memgradecode = "";
 					if(data.info.memgradecode == null || data.info.memgradecode == undefined || data.info.memgradecode == "null") memgradecode = "0"
 					else memgradecode = data.info.memgradecode

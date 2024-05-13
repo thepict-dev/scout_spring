@@ -163,11 +163,56 @@ addTabItem.forEach((tab, idx)=> {
 //지도자 가입
 // 팝업 열기
 $(document).on("click", ".joinBtn", function (e){
+	$('#leader_idx').val("");
+	$('#YEAR').val("");
+	$('#CONFIRMY').val("");
+	$('#associationcode_leader').val("");
+	$('#unitycode_leader').val("");
+	$('#troop_leader').val("");
+	$('#leader_orgno').val("");
+	$('#LEADERORGPOSITIONCODE').val("");
+	$('#LEADERPOSITIONCODE1').val("");
+	$('#LEADERPOSITIONCODE2').val("");
+	$('#ADMINY').val("");
+	$('#FEEEXCLUDE').val("");
+	$('#FEEEXCLUDCODE').val("");
+	$('#BANKDAY').val("");
+	$('#PAYY').val("");
+	$('#ENTRYFEE').val("");
+	$('#INSURANCEFEE').val("");
+	$('#SCOUTMAGACNT').val("");
+	$('#SCOUTMAGAFEE').val("");
+	$('#LEADERMAGACNT').val("");
+	$('#LEADERMAGAFEE').val("");
+	$('#joinPopup select').niceSelect('update')
+    
     let target = $(this).attr("href");
     $(target).addClass("active");
 });
 // 팝업닫기
 $(".modalInner button").click(function(){
+	$('#leader_idx').val("");
+	$('#YEAR').val("");
+	$('#CONFIRMY').val("");
+	$('#associationcode_leader').val("");
+	$('#unitycode_leader').val("");
+	$('#troop_leader').val("");
+	$('#leader_orgno').val("");
+	$('#LEADERORGPOSITIONCODE').val("");
+	$('#LEADERPOSITIONCODE1').val("");
+	$('#LEADERPOSITIONCODE2').val("");
+	$('#ADMINY').val("");
+	$('#FEEEXCLUDE').val("");
+	$('#FEEEXCLUDCODE').val("");
+	$('#BANKDAY').val("");
+	$('#PAYY').val("");
+	$('#ENTRYFEE').val("");
+	$('#INSURANCEFEE').val("");
+	$('#SCOUTMAGACNT').val("");
+	$('#SCOUTMAGAFEE').val("");
+	$('#LEADERMAGACNT').val("");
+	$('#LEADERMAGAFEE').val("");
+	$('#joinPopup select').niceSelect('update')
     $("#joinPopup").removeClass("active");
 });
 

@@ -101,7 +101,9 @@ public interface PictMapper {
 
 	void leader_del(PictVO pictVO) throws Exception;
 
-	PictVO get_leader_mod(PictVO pictVO) throws Exception;  
+	PictVO get_leader_mod(PictVO pictVO) throws Exception;
+
+	List<PictVO> fn_get_leaderposition(PictVO pictVO) throws Exception;  
 
 	
 

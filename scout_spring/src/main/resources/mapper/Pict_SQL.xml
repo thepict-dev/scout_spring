@@ -242,7 +242,7 @@
 		from associationcode a
 		where a.USE_AT = 'Y'
 		group by a.idx
-		order by  cast(PRINTORDER as unsigned) 
+		order by cast(PRINTORDER as unsigned) 
 	</select>
 	
 	<!-- 지구연합회 리스트 -->
@@ -369,6 +369,12 @@
 		left outer join troop t on l.TROOPNO = t.TROOPNO
 		left outer join troop t2 on l.PARENT_TROOPNO = t2.TROOPNO
 		where l.idx = #{idx} and l.MEMBERNO = #{MEMBERNO}
+	</select>
+	
+	<select id="fn_get_leaderposition" resultType="pictVO">
+		select * from leaderpositioncode
+		where USEYN = 'Y' and LEADERPOSITIONCODE1 = #{LEADERPOSITIONCODE1} and LEADERPOSITIONCODE2 != '00' 
+		order by cast(ORD as unsigned)
 	</select>
 	
 	

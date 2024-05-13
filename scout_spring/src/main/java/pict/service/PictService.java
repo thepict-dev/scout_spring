@@ -99,4 +99,6 @@ public interface PictService {
 
 	public PictVO get_leader_mod(PictVO pictVO) throws Exception;
 
+	public List<PictVO> fn_get_leaderposition(PictVO pictVO) throws Exception;
+
 }

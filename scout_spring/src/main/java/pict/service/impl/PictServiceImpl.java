@@ -262,5 +262,11 @@ public class PictServiceImpl implements PictService {
 		// TODO Auto-generated method stub
 		return pictMapper.get_leader_mod(pictVO);
 	}
+
+	@Override
+	public List<PictVO> fn_get_leaderposition(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.fn_get_leaderposition(pictVO);
+	}
 	
 }
