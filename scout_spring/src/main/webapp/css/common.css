@@ -452,3 +452,20 @@ select:disabled{
   border: 1px solid var(--grey-200) !important;
   background: var(--grey-200) !important;
 }
+
+.bindingText{
+    width: 208px;
+    height: 34px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid var(--grey-50);
+    background: #FFF;
+    color: var(--text-color);
+    font-family: SUIT;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 14px */
+    letter-spacing: -0.7px;
+	
+}

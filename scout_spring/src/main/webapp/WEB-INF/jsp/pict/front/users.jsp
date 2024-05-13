@@ -307,15 +307,19 @@
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">훈련과정</p>
-                                <input type="text" name="" id="" readonly class="lgThinInput">
+                                <span class="bindingText"></span>
+                            </div>
+                            <div class="inputBox">
+                                <p class="inputCaption">전문과정</p>
+                                <span class="bindingText"></span>
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">자격증</p>
-                                <input type="text" name="" id="" readonly class="lgThinInput">
+                                <span class="bindingText"></span>
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">평생회원</p>
-                                <input type="text" name="" id="" readonly class="lgThinInput">
+                                <span class="bindingText"></span>
                             </div>
                             <div class="tableButtons" style="justify-content: flex-end;">
                                 <div class="buttons">
@@ -338,11 +342,11 @@
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">대원 진보</p>
-                                <input type="text" name="" id="" readonly class="lgThinInput">
+                                <span class="bindingText"></span>
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">대원 기능장</p>
-                                <input type="text" name="" id="" readonly class="lgThinInput">
+                                <span class="bindingText"></span>
                             </div>
                             <div class="tableButtons" style="justify-content: flex-end;">
                                 <div class="buttons">
