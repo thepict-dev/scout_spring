@@ -22,16 +22,22 @@
                         <div class="inputBox">
                             <p class="inputCaption">연차년도</p>
                             <select name="YEAR" id="YEAR" class="smThinSelect">
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
-                                <option value="2024">2024</option>
-                                <option value="2025">2025</option>
-                                <option value="2026">2026</option>
                                 <option value="2027">2027</option>
-                                <option value="2028">2028</option>
-                                <option value="2029">2029</option>
+                                <option value="2026">2026</option>
+                                <option value="2025">2025</option>
+                                <option value="2024" selected>2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                                <option value="2014">2014</option>
+                                <option value="2013">2013</option>
+                                <option value="2012">2012</option>
                             </select>
                         </div>
                         <div class="inputBox">
@@ -48,14 +54,14 @@
                             <div class="inputsAlign">   
                                 <select name="associationcode_leader" id="associationcode_leader" onchange="fn_get_unitylist()" class="smThinSelect">
                              		<c:forEach var="association_list" items="${association_list}" varStatus="status">
-	                                	<option value="${association_list.ASSOCIATIONCODE}" <c:if test="${association_list.ASSOCIATIONCODE eq pictVO.search_associationcode}">selected</c:if> > ${association_list.ASSOCIATIONNAME}</option>
+	                                	<option value="${association_list.ASSOCIATIONCODE}"> ${association_list.ASSOCIATIONNAME}</option>
 	                                </c:forEach>
                                 </select>
                                 
                                 <select name="unitycode_leader" id="unitycode_leader" class="smThinSelect" onchange="fn_get_trooplist()">
 	                            	<option value="">전체</option>
 									<c:forEach var="unity_list" items="${unity_list}" varStatus="status">
-										<option value="${unity_list.TROOPNO}" <c:if test="${unity_list.PARENTTROOPNO eq pictVO.search_unitycode}">selected</c:if>>${unity_list.TROOPNAME}</option>
+										<option value="${unity_list.TROOPNO}">${unity_list.TROOPNAME}</option>
 									</c:forEach>
 	                            </select>
                             </div>
@@ -107,6 +113,7 @@
                                 <input type="checkbox" name="FEEEXCLUDE" id="FEEEXCLUDE" class="circleCheck"><label for="FEEEXCLUDE">면제</label>
                             </div>
                             <select name="FEEEXCLUDCODE" id="FEEEXCLUDCODE" class="smThinSelect">
+                            	<option value="">면제없음</option>
                                 <option value="01">연맹지원</option>
                                 <option value="02">신체장애</option>
                                 <option value="03">계속등록</option>
@@ -281,6 +288,61 @@
     </div>
 </div>
 <script>
+	function leader_mod(){
+		var idx = $('#leader_idx').val();
+		
+		if(idx == undefined || idx == null || idx == '' || idx == 0){
+			alert("선택할 연공 데이터를 선택해주세요")
+			return false;
+		}
+		var param = {
+			idx : idx,
+			memberno : $('#MEMBERNO').val(),
+		}
+		$.ajax({
+			url : "/get_leader_mod"
+			, type : "POST"
+			, data : JSON.stringify(param)
+			, contentType : "application/json"
+			, dataType : "json"
+			, async : false
+			, success : function(data, status, xhr) {
+				console.log(data.rst)
+				
+				$('#YEAR').val(data.rst.startday.substring(0,4))
+				$('#COMFIRMY').val(data.rst.confirmy)
+				$('#associationcode_leader').val(data.rst.associationcode)
+				fn_get_unitylist()
+				$('#unitycode_leader').val(data.rst.parenttroopno)
+				fn_get_trooplist()
+				$('#troop_leader').val(data.rst.troopno)
+				$('#leader_orgno').val(data.rst.leaderorgno)
+				$('#LEADERORGPOSITIONCODE').val(data.rst.leaderorgpositioncode)
+				$('#LEADERPOSITIONCODE1').val(data.rst.leaderpositioncode1)
+				$('#LEADERPOSITIONCODE2').val(data.rst.leaderpositioncode2)
+				$('#ADMINY').val(data.rst.adminy)
+				$('#FEEEXCLUDE').val(data.rst.feeexclude)
+				$('#FEEEXCLUDCODE').val(data.rst.feeexcludcode)
+				$('#BANKDAY').val(data.rst.bankday)
+				$('#PAYY').val(data.rst.payy)
+				$('#ENTRYFEE').val(data.rst.entryfee)
+				$('#INSURANCEFEE').val(data.rst.insurancefee)
+				$('#SCOUTMAGACNT').val(data.rst.scoutmagacnt)
+				$('#SCOUTMAGAFEE').val(data.rst.scoutmagafee)
+				$('#LEADERMAGACNT').val(data.rst.leadermagacnt)
+				$('#LEADERMAGAFEE').val(data.rst.leadermagafee)
+				$('#BIGO').val(data.rst.bigo)
+				
+				$('#joinPopup select').niceSelect('update')
+			}
+			, error : function(xhr, status, error) {
+				console.log(xhr)
+				console.log("에러")
+			}
+		});
+		
+	}
+
 	function fn_get_unitylist(){
 		var param = {
 				associationcode : $('#associationcode_leader').val(),

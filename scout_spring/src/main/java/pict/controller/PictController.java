@@ -593,6 +593,46 @@ public class PictController {
 	}
 	
 	
+	//지도자연공 삭제
+	@RequestMapping("/leader_del")
+	@ResponseBody
+	public String leader_del(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, 
+			@RequestBody Map<String, Object> param) throws Exception {	
+		try {
+			String idx = param.get("idx").toString();
+			pictVO.setIdx(Integer.parseInt(idx));
+			
+			System.out.println(pictVO.getIdx());
+			pictService.leader_del(pictVO);
+
+			return "Y";
+		}
+		catch(Exception e) {
+			return "N";
+		}
+	}
+	//지도자 연공 수정창
+	@RequestMapping("/get_leader_mod")
+	@ResponseBody
+	public HashMap<String, Object> get_leader_mod(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String idx = param.get("idx").toString();
+		String memberno = param.get("memberno").toString();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		pictVO.setIdx(Integer.parseInt(idx));
+		pictVO.setMEMBERNO(memberno);
+		
+		pictVO = pictService.get_leader_mod(pictVO);
+		if(pictVO != null) {
+			map.put("rst", pictVO);
+			return map;
+		}
+		else {
+			return map;
+		}
+		
+	}
+
+	
 	//단위대 정보
 	@RequestMapping("/get_troop_info")
 	@ResponseBody

@@ -346,7 +346,7 @@
                             </div>
                             <div class="tableButtons" style="justify-content: flex-end;">
                                 <div class="buttons">
-                                    <a href="#groupPopup" class="smButton groupBtn"><img src="/front_img/search2.png" alt="">학교/단체찾기</a>
+                                    <a href="#groupPopup" onclick="fn_orgnize()" class="smButton groupBtn"><img src="/front_img/search2.png" alt="">학교/단체찾기</a>
                                 </div>
                             </div>
                         </div>
@@ -427,8 +427,8 @@
                                     <p id="year_cnt_scout">0 rows</p>
                                     <div class="buttons">
                                         <a href="#joinMemPopup" class="smButton joinMemBtn"><img src="/front_img/add.png" alt="">추가</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/modify.png" alt="">수정</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">삭제</a>
+                                        <a href="#lnk" class="smButton" onclick="scout_mod()"><img src="/front_img/modify.png" alt="">수정</a>
+                                        <a href="#lnk" class="smButton" onclick="scout_del()"><img src="/front_img/reset.png" alt="">삭제</a>
                                         <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
                                     </div>
                                 </div>
@@ -493,8 +493,8 @@
                                     <p id="year_cnt_leader">0 rows</p>
                                     <div class="buttons">
                                         <a href="#joinPopup" class="smButton joinBtn"><img src="/front_img/add.png" alt="">추가</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/modify.png" alt="">수정</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">삭제</a>
+                                        <a href="#joinPopup" class="smButton joinBtn" onclick="leader_mod()"><img src="/front_img/modify.png" alt="">수정</a>
+                                        <a href="#lnk" class="smButton" onclick="leader_del()"><img src="/front_img/reset.png" alt="">삭제</a>
                                         <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
                                     </div>
                                 </div>
@@ -583,7 +583,9 @@
             </div>
         </div>
     </div>
-	
+	<%@ include file="./include/loading.jsp" %>
+    <%@ include file="./include/error_page.jsp" %>
+    
      <!-- 관계연결 모달 -->
 	<%@ include file="./include/relation_modal.jsp" %>
 	
@@ -596,12 +598,40 @@
      <!-- 지도자 가입 모달 -->
 	<%@ include file="./include/leader_modal.jsp" %>
 	
-    <%@ include file="./include/loading.jsp" %>
-    <%@ include file="./include/error_page.jsp" %>
     
     
+    <input type="hidden" id="leader_idx" />
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
+		function fn_leader_info(idx){
+			$('#leader_idx').val(idx)
+			console.log(idx)
+		}
+		
+		function leader_del(){
+			var text ="해당 연공 데이터를 삭제하시겠습니까?";
+			if(confirm (text)){
+				var param = {
+					idx : $('#leader_idx').val()
+				}
+				
+				$.ajax({
+					url : "/leader_del"
+					, type : "POST"
+					, data : JSON.stringify(param)
+					, contentType : "application/json"
+					, async : true
+					, success : function(data, status, xhr) {
+				
+						alert("삭제되었습니다.");
+					},
+					error : function(err){
+						console.log(err)
+					}
+					
+				});
+			}
+		}
 		$("#attach_file").change(function(){
 			var memberno = $("#MEMBERNO").val()
 			if(memberno == '' || memberno == undefined || memberno == null){

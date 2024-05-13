@@ -97,7 +97,11 @@ public interface PictMapper {
 
 	void leader_save(PictVO pictVO) throws Exception;
 
-	void new_person(PictVO pictVO) throws Exception;  
+	void new_person(PictVO pictVO) throws Exception;
+
+	void leader_del(PictVO pictVO) throws Exception;
+
+	PictVO get_leader_mod(PictVO pictVO) throws Exception;  
 
 	
 

@@ -250,5 +250,17 @@ public class PictServiceImpl implements PictService {
 		// TODO Auto-generated method stub
 		pictMapper.new_person(pictVO);
 	}
+
+	@Override
+	public void leader_del(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.leader_del(pictVO);
+	}
+
+	@Override
+	public PictVO get_leader_mod(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.get_leader_mod(pictVO);
+	}
 	
 }

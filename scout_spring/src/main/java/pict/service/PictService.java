@@ -95,4 +95,8 @@ public interface PictService {
 
 	public void new_person(PictVO pictVO) throws Exception;
 
+	public void leader_del(PictVO pictVO) throws Exception;
+
+	public PictVO get_leader_mod(PictVO pictVO) throws Exception;
+
 }

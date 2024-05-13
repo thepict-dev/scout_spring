@@ -353,10 +353,25 @@
 	</update>
 	
 	
+	<!-- 지도자 연공 -->
 	<insert id="leader_save" parameterType="pictVO">
 		INSERT INTO leader(MEMBERNO, TROOPNO, STARTDAY, ENDDAY, ASSOCIATIONCODE, PARENT_TROOPNO, LEADERPOSITIONCODE1, LEADERPOSITIONCODE2, LEADERORGNO, LEADERORGPOSITIONCODE, FEEEXCLUDECODE, ENTRYFEE, INSURANCEFEE, SCOUTMAGAFEE, LEADERMAGAFEE, INSURANCEY, SCOUTMAGACNT, LEADERMAGACNT, BANKDAY, PAYY, CONFIRMY, CONFIRMDATE, ENTERDATE, ADMINY) 
 		VALUES (#{MEMBERNO}, #{TROOPNO}, #{STARTDAY}, #{ENDDAY}, #{ASSOCIATIONCODE}, #{PARENTTROOPNO}, #{LEADERPOSITIONCODE1}, #{LEADERPOSITIONCODE2}, #{LEADERORGNO}, #{LEADERORGPOSITIONCODE}, #{FEEEXCLUDECODE}, #{ENTRYFEE}, #{INSURANCEFEE}, #{SCOUTMAGAFEE}, #{LEADERMAGAFEE}, 'Y', #{SCOUTMAGACNT}, #{LEADERMAGACNT}, #{BANKDAY}, #{PAYY}, #{CONFIRMY}, now(), now(), #{ADMINY});
 	</insert>
+	
+	<delete id="leader_del" parameterType="pictVO">
+		delete from leader where idx = #{idx}
+	</delete>
+	
+	<select id="get_leader_mod" resultType="pictVO">
+		select t.TROOPNAME, t2.TROOPNAME as UNITY,  l.*
+		from leader l
+		left outer join troop t on l.TROOPNO = t.TROOPNO
+		left outer join troop t2 on l.PARENT_TROOPNO = t2.TROOPNO
+		where l.idx = #{idx} and l.MEMBERNO = #{MEMBERNO}
+	</select>
+	
+	
 	
 	
 	<!-- 그뭐야 제일 위에[꺼 -->
