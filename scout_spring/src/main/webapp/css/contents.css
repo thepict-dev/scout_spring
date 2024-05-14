@@ -540,6 +540,7 @@
 }
 #groupPopup{
     display: none;
+    z-index: 100;
 }
 #joinPopup.active{
     display: flex;
