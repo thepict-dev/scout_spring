@@ -529,7 +529,28 @@
 
 }
 
-.modalContainer.active{
+#joinPopup{
+    display: none;
+}
+#joinMemPopup{
+    display: none;
+}
+#relationPopup{
+    display: none;
+}
+#groupPopup{
+    display: none;
+}
+#joinPopup.active{
+    display: flex;
+}
+#joinMemPopup.active{
+    display: flex;
+}
+#relationPopup.active{
+    display: flex;
+}
+#groupPopup.active{
     display: flex;
 }
 #relationPopup .popupInner{

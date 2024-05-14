@@ -497,7 +497,7 @@
                                     <p id="year_cnt_leader">0 rows</p>
                                     <div class="buttons">
                                         <a href="#joinPopup" class="smButton joinBtn" onclick="leader_add()"><img src="/front_img/add.png" alt="">추가</a>
-                                        <a href="#joinPopup" class="smButton joinBtn" onclick="leader_mod()"><img src="/front_img/modify.png" alt="">수정</a>
+                                        <a href="#joinPopup" class="smButton joinModeBtn" onclick="leader_mod()"><img src="/front_img/modify.png" alt="">수정</a>
                                         <a href="#lnk" class="smButton" onclick="leader_del()"><img src="/front_img/reset.png" alt="">삭제</a>
                                         <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
                                     </div>

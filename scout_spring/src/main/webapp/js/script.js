@@ -187,7 +187,6 @@ $(document).on("click", ".joinBtn", function (e){
 	$('#joinPopup select').niceSelect('update')
     
     let target = $(this).attr("href");
-    $(target).addClass("active");
 });
 // 팝업닫기
 $(".modalInner button").click(function(){
@@ -223,7 +222,7 @@ $(document).on("click", ".joinMemBtn", function (e){
     $(target).addClass("active");
 });
 // 팝업닫기
-$(".modalInner button").click(function(){
+$("#join_modal button").click(function(){
     $("#joinMemPopup").removeClass("active");
 });
 

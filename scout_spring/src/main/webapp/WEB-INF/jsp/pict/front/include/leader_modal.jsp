@@ -299,13 +299,8 @@
     </div>
 </div>
 <script>
+
 	function leader_add(){
-		var memberno = $('#MEMBERNO').val();
-		
-		if(memberno == undefined || memberno == null || memberno == '' || memberno == 0){
-			alert("회원을 선택해주세요.")
-			return false;
-		}
 		$('#joinPopup select').niceSelect('update')
 	}
 
@@ -313,10 +308,7 @@
 	function leader_mod(){
 		var idx = $('#leader_idx').val();
 		
-		if(idx == undefined || idx == null || idx == '' || idx == 0){
-			alert("선택할 연공 데이터를 선택해주세요")
-			return false;
-		}
+		
 		var param = {
 			idx : idx,
 			memberno : $('#MEMBERNO').val(),
@@ -368,6 +360,32 @@
 		
 	}
 
+	$(document).on("click", ".joinBtn", function (e) {
+	    var memberno = $('#MEMBERNO').val();
+	
+	    if (memberno == undefined || memberno == null || memberno == '' || memberno == 0) {
+	        alert("회원을 선택해주세요.");
+	        return false; // 모달을 열지 않음
+	    }
+	
+	    let target = $(this).attr("href");
+	    $(target).addClass("active");
+	    $('#joinPopup select').niceSelect('update');
+	});
+	
+	// 수정 버튼 클릭 이벤트
+	$(document).on("click", ".joinModeBtn", function (e) {
+	    var idx = $('#leader_idx').val();
+	
+	    if (idx == undefined || idx == null || idx == '' || idx == 0) {
+	        alert("선택할 연공 데이터를 선택해주세요");
+	        return false; // 모달을 열지 않음
+	    }
+	
+	    let target = $(this).attr("href");
+	    $(target).addClass("active");
+	    leader_mod(); // 이미 조건이 충족되었으므로 모달 내부 데이터를 업데이트
+	});
 	function fn_get_unitylist(){
 		var param = {
 				associationcode : $('#associationcode_leader').val(),
