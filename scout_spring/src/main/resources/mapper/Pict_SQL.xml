@@ -378,6 +378,21 @@
 	</select>
 	
 	
+	<!-- 대원연공 -->
+	<select id="fn_get_scoutpositioncode" resultType="pictVO">
+		select * from scoutpositioncode
+		where USEYN = 'Y' and SCOUTCLSCODE = #{SCOUTCLSCODE}
+		order by cast(ORD as unsigned)
+	</select>
+	
+	<select id="get_scout_mod" resultType="pictVO">
+		select t.TROOPNAME, t2.TROOPNAME as UNITY, s.*
+		from scout s
+		left outer join troop t on s.TROOPNO = t.TROOPNO
+		left outer join troop t2 on s.PARENT_TROOPNO = t2.TROOPNO
+		where s.idx = #{idx} and s.MEMBERNO = #{MEMBERNO}
+	</select>
+	
 	
 	
 	<!-- 그뭐야 제일 위에[꺼 -->

@@ -103,7 +103,11 @@ public interface PictMapper {
 
 	PictVO get_leader_mod(PictVO pictVO) throws Exception;
 
-	List<PictVO> fn_get_leaderposition(PictVO pictVO) throws Exception;  
+	List<PictVO> fn_get_leaderposition(PictVO pictVO) throws Exception;
+
+	List<PictVO> fn_get_scoutpositioncode(PictVO pictVO) throws Exception;
+
+	PictVO get_scout_mod(PictVO pictVO) throws Exception;  
 
 	
 

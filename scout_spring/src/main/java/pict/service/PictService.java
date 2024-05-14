@@ -101,4 +101,8 @@ public interface PictService {
 
 	public List<PictVO> fn_get_leaderposition(PictVO pictVO) throws Exception;
 
+	public List<PictVO> fn_get_scoutpositioncode(PictVO pictVO) throws Exception;
+
+	public PictVO get_scout_mod(PictVO pictVO) throws Exception;
+
 }

@@ -163,6 +163,7 @@ addTabItem.forEach((tab, idx)=> {
 //지도자 가입
 // 팝업 열기
 $(document).on("click", ".joinBtn", function (e){
+	console.log("스크립트에서 팝업열기")
 	$('#leader_idx').val("");
 	$('#YEAR').val("");
 	$('#CONFIRMY').val("");
@@ -173,11 +174,13 @@ $(document).on("click", ".joinBtn", function (e){
 	$('#LEADERORGPOSITIONCODE').val("");
 	$('#LEADERPOSITIONCODE1').val("");
 	$('#LEADERPOSITIONCODE2').val("");
-	$('#ADMINY').val("");
-	$('#FEEEXCLUDE').val("");
+	
+	$(":checkbox[id='ADMINY']").attr("checked", false)
+	$(":checkbox[id='PAYY']").attr("checked", false)
+	$(":checkbox[id='FEEEXCLUDE']").attr("checked", false)
+	
 	$('#FEEEXCLUDCODE').val("");
 	$('#BANKDAY').val("");
-	$('#PAYY').val("");
 	$('#ENTRYFEE').val("");
 	$('#INSURANCEFEE').val("");
 	$('#SCOUTMAGACNT').val("");
@@ -190,6 +193,7 @@ $(document).on("click", ".joinBtn", function (e){
 });
 // 팝업닫기
 $(".modalInner button").click(function(){
+	console.log("스크립트에서 닫기")
 	$('#leader_idx').val("");
 	$('#YEAR').val("");
 	$('#CONFIRMY').val("");
@@ -200,11 +204,14 @@ $(".modalInner button").click(function(){
 	$('#LEADERORGPOSITIONCODE').val("");
 	$('#LEADERPOSITIONCODE1').val("");
 	$('#LEADERPOSITIONCODE2').val("");
-	$('#ADMINY').val("");
-	$('#FEEEXCLUDE').val("");
+	
+	$(":checkbox[id='ADMINY']").attr("checked", false)
+	$(":checkbox[id='PAYY']").attr("checked", false)
+	$(":checkbox[id='FEEEXCLUDE']").attr("checked", false)
+	
+
 	$('#FEEEXCLUDCODE').val("");
 	$('#BANKDAY').val("");
-	$('#PAYY').val("");
 	$('#ENTRYFEE').val("");
 	$('#INSURANCEFEE').val("");
 	$('#SCOUTMAGACNT').val("");
@@ -218,11 +225,64 @@ $(".modalInner button").click(function(){
 //대원 가입
 // 팝업 열기
 $(document).on("click", ".joinMemBtn", function (e){
+	$('#scout_idx').val("");
+	$('#YEAR_SCOUT').val("");
+	$('#CONFIRMY_SCOUT').val("");
+	$('#associationcode_scout').val("");
+	$('#unitycode_scout').val("");
+	$('#troop_scout').val("");
+	$('#scout_orgno').val("");
+	
+	$('#SCOUTSCHOOLYEAR').val("")
+	$('#SCOUTSCHOOLBAN').val("")
+	$('#SCOUTCLSCODE').val("")
+	$('#SCOUTBAN').val("")
+	$('#SCOUTPOSITIONCODE').val("")
+	
+	
+	$('#ADMINY_SCOUT').val("");
+	$('#FEEEXCLUDE_SCOUT').val("");
+	$('#FEEEXCLUDCODE_SCOUT').val("");
+	$('#BANKDAY_SCOUT').val("");
+	$('#PAYY_SCOUT').val("");
+	$('#ENTRYFEE_SCOUT').val("");
+	$('#INSURANCEFEE_SCOUT').val("");
+	$('#SCOUTMAGACNT_SCOUT').val("");
+	$('#SCOUTMAGAFEE_SCOUT').val("");
+	
+	$('#joinMemPopup select').niceSelect('update')
+	
     let target = $(this).attr("href");
     $(target).addClass("active");
 });
 // 팝업닫기
 $("#join_modal button").click(function(){
+	$('#scout_idx').val("");
+	$('#YEAR_SCOUT').val("");
+	$('#CONFIRMY_SCOUT').val("");
+	$('#associationcode_scout').val("");
+	$('#unitycode_scout').val("");
+	$('#troop_scout').val("");
+	$('#scout_orgno').val("");
+	
+	$('#SCOUTSCHOOLYEAR').val("")
+	$('#SCOUTSCHOOLBAN').val("")
+	$('#SCOUTCLSCODE').val("")
+	$('#SCOUTBAN').val("")
+	$('#SCOUTPOSITIONCODE').val("")
+	
+	
+	$('#ADMINY_SCOUT').val("");
+	$('#FEEEXCLUDE_SCOUT').val("");
+	$('#FEEEXCLUDCODE_SCOUT').val("");
+	$('#BANKDAY_SCOUT').val("");
+	$('#PAYY_SCOUT').val("");
+	$('#ENTRYFEE_SCOUT').val("");
+	$('#INSURANCEFEE_SCOUT').val("");
+	$('#SCOUTMAGACNT_SCOUT').val("");
+	$('#SCOUTMAGAFEE_SCOUT').val("");
+	
+	$('#joinMemPopup select').niceSelect('update')
     $("#joinMemPopup").removeClass("active");
 });
 

@@ -397,6 +397,30 @@ public class PictController {
 			pictVO.setLEADERMAGACNT(leadermagacnt);
 			pictVO.setLEADERMAGAFEE(ledermagafee);
 
+			
+			System.out.println(memberno);
+			System.out.println(startday);
+			System.out.println(endday);
+			System.out.println(confirmy);
+			System.out.println(associationcode);
+			System.out.println(parenttroopno);
+			System.out.println(troopno);
+			System.out.println(leaderorgno);
+			System.out.println(leaderorgpositioncode);
+			System.out.println(leaderpositioncode1);
+			System.out.println(leaderpositioncode2);
+			System.out.println(adminy);
+			System.out.println(feeexcludcode);
+			System.out.println(bankday);
+			System.out.println(payy);
+			System.out.println(entryfee);
+			System.out.println(insurancefee);
+			System.out.println(scoutmagacnt);
+			System.out.println(scoutmagafee);
+			System.out.println(leadermagacnt);
+			System.out.println(ledermagafee);
+			
+			
 			pictService.leader_save(pictVO);
 			
 			return "Y";
@@ -500,6 +524,47 @@ public class PictController {
 		else {
 			return map;
 		}
+	}
+	
+	//대원 포지션 가져오기
+	@RequestMapping("/fn_get_scoutpositioncode")
+	@ResponseBody
+	public HashMap<String, Object> fn_get_scoutpositioncode(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		String scoutclscode = param.get("scoutclscode").toString();
+		
+		pictVO.setSCOUTCLSCODE(scoutclscode);
+		List<PictVO> relation_list = pictService.fn_get_scoutpositioncode(pictVO);
+		
+		if(relation_list.size() > 0) {
+			map.put("list", relation_list);
+			return map;
+		}
+		else {
+			return map;
+		}
+	}
+	
+	
+	//대원 연공 수정창
+	@RequestMapping("/get_scout_mod")
+	@ResponseBody
+	public HashMap<String, Object> get_scout_mod(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String idx = param.get("idx").toString();
+		String memberno = param.get("memberno").toString();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		pictVO.setIdx(Integer.parseInt(idx));
+		pictVO.setMEMBERNO(memberno);
+		
+		pictVO = pictService.get_scout_mod(pictVO);
+		if(pictVO != null) {
+			map.put("rst", pictVO);
+			return map;
+		}
+		else {
+			return map;
+		}
+		
 	}
 	
 	

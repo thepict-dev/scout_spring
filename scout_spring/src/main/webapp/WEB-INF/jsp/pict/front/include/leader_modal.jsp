@@ -108,175 +108,176 @@
                 </div>
             </div>
             <div class="paymentForm">
-            <h3 class="subTitles" style="padding: 16px 24px 0 24px;">회비 정보</h3>
-            <div class="inputsContainer inputsPd bottomBd gapRow">
-                <div class="inputsContainer">
-                    <div class="inputBox">
-                        <p class="inputCaption">면제여부</p>
-                            <div class="inputsAlign">
-                            <div>
-                                <input type="checkbox" name="FEEEXCLUDE" id="FEEEXCLUDE" class="circleCheck"><label for="FEEEXCLUDE">면제</label>
-                            </div>
-                            <select name="FEEEXCLUDCODE" id="FEEEXCLUDCODE" class="smThinSelect">
-                            	<option value="">면제없음</option>
-                                <option value="01">연맹지원</option>
-                                <option value="02">신체장애</option>
-                                <option value="03">계속등록</option>
-                                <option value="04">조직변경</option>
-                                <option value="05">평생회원</option>
-                                <option value="06">육성단체대표</option>
-                                <option value="07">중복가입</option>
-                                <option value="08">다문화</option>
-                                <option value="99">기타</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="inputBox">
-                        <p class="inputCaption">회비정산입금일</p>
-                            <div class="inputsAlign">
-                            <input type="date" name="BANKDAY" id="BANKDAY" class="lgThinInput">
-                            <div>
-                                <input type="checkbox" name="PAYY" id="PAYY" class="circleCheck" value="Y"><label for="PAYY">납부완료</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="stackInputs">
-                    <div class="inpustFlex" style="margin-bottom: 10px;">
-                        <div class="mountResult">
-                        	<p class="inputCaption mount">등록</p>
-                            <p class="mountCaption">
-                                <span>0</span>
-                                원
-                            </p>
-                        </div>
-                        <div class="inputBox">
-                            <div class="inputsAlign">
-                                <label for="">
-                                    <input type="text" name="ENTRYFEE" id="ENTRYFEE" class="smThinInput mountInput">
-                                    <span class="mountCaption">원</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="stackInputs">
-                    <div class="inpustFlex">
-                        <div class="mountResult">
-                        	<p class="inputCaption mount">안전활동부담금</p>
-                            <div class="inputsAlign">
+	            <h3 class="subTitles" style="padding: 16px 24px 0 24px;">회비 정보</h3>
+	            <div class="inputsContainer inputsPd bottomBd gapRow">
+	                <div class="inputsContainer">
+	                    <div class="inputBox">
+	                        <p class="inputCaption">면제여부</p>
+	                            <div class="inputsAlign">
+	                            <div>
+	                                <input type="checkbox" name="FEEEXCLUDE" id="FEEEXCLUDE" class="circleCheck"><label for="FEEEXCLUDE">면제</label>
+	                            </div>
+	                            <select name="FEEEXCLUDCODE" id="FEEEXCLUDCODE" class="smThinSelect">
+	                            	<option value="">면제없음</option>
+	                                <option value="01">연맹지원</option>
+	                                <option value="02">신체장애</option>
+	                                <option value="03">계속등록</option>
+	                                <option value="04">조직변경</option>
+	                                <option value="05">평생회원</option>
+	                                <option value="06">육성단체대표</option>
+	                                <option value="07">중복가입</option>
+	                                <option value="08">다문화</option>
+	                                <option value="99">기타</option>
+	                            </select>
+	                        </div>
+	                    </div>
+	                    <div class="inputBox">
+	                        <p class="inputCaption">회비정산입금일</p>
+	                            <div class="inputsAlign">
+	                            <input type="date" name="BANKDAY" id="BANKDAY" class="lgThinInput">
+	                            <div>
+	                                <input type="checkbox" name="PAYY" id="PAYY" class="circleCheck" value="Y"><label for="PAYY">납부완료</label>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="stackInputs">
+	                    <div class="inpustFlex" style="margin-bottom: 10px;">
+	                        <div class="mountResult">
+	                        	<p class="inputCaption mount">등록</p>
 	                            <p class="mountCaption">
 	                                <span>0</span>
 	                                원
 	                            </p>
-                            </div>
-                            <!-- 
-                            <div style="position: absolute;right: -35px;">
-                                <input type="checkbox" name="" id="" class="circleCheck"><label for="" class="lableOnly"></label>
-                            </div>
-                             -->
-                        </div>
-                        <div class="inputBox">
-                            <div class="inputsAlign">
-                                <label for="">
-                                    <input type="text" name="INSURANCEFEE" id="INSURANCEFEE" class="smThinInput mountInput">
-                                    <span class="mountCaption">원</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="stackInputs">
-                    <div class="inpustFlex">
-                        <div class="inputBox">
-                            <div class="inputsAlign">
-		                        <div class="mountResult">
-                            		<p class="inputCaption mount">월간지</p>
+	                        </div>
+	                        <div class="inputBox">
+	                            <div class="inputsAlign">
+	                                <label for="">
+	                                    <input type="text" name="ENTRYFEE" id="ENTRYFEE" class="smThinInput mountInput">
+	                                    <span class="mountCaption">원</span>
+	                                </label>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="stackInputs">
+	                    <div class="inpustFlex">
+	                        <div class="mountResult">
+	                        	<p class="inputCaption mount">안전활동부담금</p>
+	                            <div class="inputsAlign">
 		                            <p class="mountCaption">
 		                                <span>0</span>
 		                                원
 		                            </p>
-		                        </div>
-		                        <!-- 
-                                <div>
-                                    <input type="checkbox" name="" id="" class="circleCheck"><label for="" class="lableOnly"></label>
-                                </div>
-                                 -->
-                                <div class="inputBox" style="position: relative; bottom: 9px;">
-                                    <p class="inputCaption">부수</p>
-                                    <div class="inputsAlign">
-                                        <label for="">
-                                            <input type="text" name="SCOUTMAGACNT" id="SCOUTMAGACNT"  class="smThinInput">
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="inputBox" style="margin-bottom: 10px;">
-                            <div class="inputsAlign">
-                                <label for="">
-                                    <input type="text" name="SCOUTMAGAFEE" id="SCOUTMAGAFEE" class="smThinInput mountInput">
-                                    <span class="mountCaption">원</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="stackInputs">
-                    <div class="inpustFlex">
-                        <div class="inputBox">
-                            <div class="inputsAlign">
-		                        <div class="mountResult">
-                            		<p class="inputCaption mount">격월간지</p>
-		                            <p class="mountCaption">
-		                                <span>0</span>
-		                                원
-		                            </p>
-		                        </div>
-		                        <!-- 
-                                <div>
-                                    <input type="checkbox" name="" id="" class="circleCheck"><label for="" class="lableOnly"></label>
-                                </div>
-                                 -->
-                                <div class="inputBox" style="position: relative; bottom: 9px;">
-                                    <p class="inputCaption">부수</p>
-                                    <div class="inputsAlign">
-                                        <label for="">
-                                            <input type="text" name="LEADERMAGACNT" id="LEADERMAGACNT"  class="smThinInput">
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="inputBox" style="margin-bottom: 10px;">
-                            <div class="inputsAlign">
-                                <label for="">
-                                    <input type="text" name="LEADERMAGAFEE" id="LEADERMAGAFEE" class="smThinInput mountInput">
-                                    <span class="mountCaption">원</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="stackInputs">
-                    <div class="inpustFlex">
-                        <div class="mountResult">
-                         	<p class="inputCaption mount">총계</p>
-                            <p class="mountCaption">
-                                <span>0</span>
-                                원
-                            </p>
-                        </div>
-                        <div class="inputBox">
-                            <div class="inputsAlign">
-                                <label for="">
-                                    <input type="text" name="total_amount" id="total_amount" class="smThinInput mountInput">
-                                    <span class="mountCaption">원</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+	                            </div>
+	                            <!-- 
+	                            <div style="position: absolute;right: -35px;">
+	                                <input type="checkbox" name="" id="" class="circleCheck"><label for="" class="lableOnly"></label>
+	                            </div>
+	                             -->
+	                        </div>
+	                        <div class="inputBox">
+	                            <div class="inputsAlign">
+	                                <label for="">
+	                                    <input type="text" name="INSURANCEFEE" id="INSURANCEFEE" class="smThinInput mountInput">
+	                                    <span class="mountCaption">원</span>
+	                                </label>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="stackInputs">
+	                    <div class="inpustFlex">
+	                        <div class="inputBox">
+	                            <div class="inputsAlign">
+			                        <div class="mountResult">
+	                            		<p class="inputCaption mount">월간지</p>
+			                            <p class="mountCaption">
+			                                <span>0</span>
+			                                원
+			                            </p>
+			                        </div>
+			                        <!-- 
+	                                <div>
+	                                    <input type="checkbox" name="" id="" class="circleCheck"><label for="" class="lableOnly"></label>
+	                                </div>
+	                                 -->
+	                                <div class="inputBox" style="position: relative; bottom: 9px;">
+	                                    <p class="inputCaption">부수</p>
+	                                    <div class="inputsAlign">
+	                                        <label for="">
+	                                            <input type="text" name="SCOUTMAGACNT" id="SCOUTMAGACNT"  class="smThinInput">
+	                                        </label>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="inputBox" style="margin-bottom: 10px;">
+	                            <div class="inputsAlign">
+	                                <label for="">
+	                                    <input type="text" name="SCOUTMAGAFEE" id="SCOUTMAGAFEE" class="smThinInput mountInput">
+	                                    <span class="mountCaption">원</span>
+	                                </label>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="stackInputs">
+	                    <div class="inpustFlex">
+	                        <div class="inputBox">
+	                            <div class="inputsAlign">
+			                        <div class="mountResult">
+	                            		<p class="inputCaption mount">격월간지</p>
+			                            <p class="mountCaption">
+			                                <span>0</span>
+			                                원
+			                            </p>
+			                        </div>
+			                        <!-- 
+	                                <div>
+	                                    <input type="checkbox" name="" id="" class="circleCheck"><label for="" class="lableOnly"></label>
+	                                </div>
+	                                 -->
+	                                <div class="inputBox" style="position: relative; bottom: 9px;">
+	                                    <p class="inputCaption">부수</p>
+	                                    <div class="inputsAlign">
+	                                        <label for="">
+	                                            <input type="text" name="LEADERMAGACNT" id="LEADERMAGACNT"  class="smThinInput">
+	                                        </label>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="inputBox" style="margin-bottom: 10px;">
+	                            <div class="inputsAlign">
+	                                <label for="">
+	                                    <input type="text" name="LEADERMAGAFEE" id="LEADERMAGAFEE" class="smThinInput mountInput">
+	                                    <span class="mountCaption">원</span>
+	                                </label>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="stackInputs">
+	                    <div class="inpustFlex">
+	                        <div class="mountResult">
+	                         	<p class="inputCaption mount">총계</p>
+	                            <p class="mountCaption">
+	                                <span>0</span>
+	                                원
+	                            </p>
+	                        </div>
+	                        <div class="inputBox">
+	                            <div class="inputsAlign">
+	                                <label for="">
+	                                    <input type="text" name="total_amount" id="total_amount" class="smThinInput mountInput">
+	                                    <span class="mountCaption">원</span>
+	                                </label>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
             </div>
             <div class="inputsContainer inputsPd bottomBd">
                 <div class="stackInputs">
@@ -301,91 +302,86 @@
 <script>
 
 	function leader_add(){
-		$('#joinPopup select').niceSelect('update')
-	}
-
-
-	function leader_mod(){
-		var idx = $('#leader_idx').val();
+		var memberno = $('#MEMBERNO').val();
 		
-		
-		var param = {
-			idx : idx,
-			memberno : $('#MEMBERNO').val(),
-		}
-		$.ajax({
-			url : "/get_leader_mod"
-			, type : "POST"
-			, data : JSON.stringify(param)
-			, contentType : "application/json"
-			, dataType : "json"
-			, async : true
-			, success : function(data, status, xhr) {
-				console.log(data.rst)
-				$('#YEAR').val(data.rst.startday.substring(0,4))
-				$('#CONFIRMY').val(data.rst.confirmy)
-				$('#associationcode_leader').val(data.rst.associationcode)
-				fn_get_unitylist()
-				$('#unitycode_leader').val(data.rst.parenttroopno)
-				fn_get_trooplist()
-				$('#troop_leader').val(data.rst.troopno)
-				$('#leader_orgno').val(data.rst.leaderorgno)
-				$('#LEADERORGPOSITIONCODE').val(data.rst.leaderorgpositioncode)
-				$('#LEADERPOSITIONCODE1').val(data.rst.leaderpositioncode1)
-				$('#LEADERPOSITIONCODE2').val(data.rst.leaderpositioncode2)
-				
-				if(data.rst.adminy == "Y") $(":radio[id='ADMINY']").attr("checked", true);
-				if(data.rst.feeexclude == "Y") $(":radio[id='FEEEXCLUDE']").attr("checked", true);
-				if(data.rst.payy == "Y") $(":radio[id='PAYY']").attr("checked", true);
-				
-				
-				$('#FEEEXCLUDCODE').val(data.rst.feeexcludcode)
-				$('#BANKDAY').val(data.rst.bankday)
-				
-				$('#ENTRYFEE').val(data.rst.entryfee)
-				$('#INSURANCEFEE').val(data.rst.insurancefee)
-				$('#SCOUTMAGACNT').val(data.rst.scoutmagacnt)
-				$('#SCOUTMAGAFEE').val(data.rst.scoutmagafee)
-				$('#LEADERMAGACNT').val(data.rst.leadermagacnt)
-				$('#LEADERMAGAFEE').val(data.rst.leadermagafee)
-				$('#BIGO').val(data.rst.bigo)
-				
-				$('#joinPopup select').niceSelect('update')
-			}
-			, error : function(xhr, status, error) {
-				console.log(xhr)
-				console.log("에러")
-			}
-		});
-		
-	}
-
-	$(document).on("click", ".joinBtn", function (e) {
-	    var memberno = $('#MEMBERNO').val();
-	
-	    if (memberno == undefined || memberno == null || memberno == '' || memberno == 0) {
+		if (memberno == undefined || memberno == null || memberno == '' || memberno == 0) {
 	        alert("회원을 선택해주세요.");
 	        return false; // 모달을 열지 않음
 	    }
 	
-	    let target = $(this).attr("href");
+	    let target = $('.joinBtn').attr("href");
 	    $(target).addClass("active");
-	    $('#joinPopup select').niceSelect('update');
-	});
+	    
+		$('#joinPopup select').niceSelect('update')
+	}
+
+
 	
-	// 수정 버튼 클릭 이벤트
-	$(document).on("click", ".joinModeBtn", function (e) {
-	    var idx = $('#leader_idx').val();
-	
-	    if (idx == undefined || idx == null || idx == '' || idx == 0) {
+
+	function leader_mod(){
+		var idx = $('#leader_idx').val();
+		
+		if (idx == undefined || idx == null || idx == '' || idx == 0) {
 	        alert("선택할 연공 데이터를 선택해주세요");
 	        return false; // 모달을 열지 않음
 	    }
-	
-	    let target = $(this).attr("href");
-	    $(target).addClass("active");
-	    leader_mod(); // 이미 조건이 충족되었으므로 모달 내부 데이터를 업데이트
-	});
+		
+		else{
+			let target = $('.joinModeBtn').attr("href");
+		    $(target).addClass("active");
+		    
+			var param = {
+				idx : idx,
+				memberno : $('#MEMBERNO').val(),
+			}
+			$.ajax({
+				url : "/get_leader_mod"
+				, type : "POST"
+				, data : JSON.stringify(param)
+				, contentType : "application/json"
+				, dataType : "json"
+				, async : true
+				, success : function(data, status, xhr) {
+					console.log(data.rst)
+					$('#YEAR').val(data.rst.startday.substring(0,4))
+					$('#CONFIRMY').val(data.rst.confirmy)
+					$('#associationcode_leader').val(data.rst.associationcode)
+					fn_get_unitylist()
+					$('#unitycode_leader').val(data.rst.parenttroopno)
+					fn_get_trooplist()
+					$('#troop_leader').val(data.rst.troopno)
+					$('#leader_orgno').val(data.rst.leaderorgno)
+					$('#LEADERORGPOSITIONCODE').val(data.rst.leaderorgpositioncode)
+					$('#LEADERPOSITIONCODE1').val(data.rst.leaderpositioncode1)
+					$('#LEADERPOSITIONCODE2').val(data.rst.leaderpositioncode2)
+					fn_get_leaderposition()
+					
+					if(data.rst.adminy == "Y") $(":checkbox[id='ADMINY']").attr("checked", true);
+					if(data.rst.feeexclude == "Y") $(":checkbox[id='FEEEXCLUDE']").attr("checked", true);
+					if(data.rst.payy == "Y") $(":checkbox[id='PAYY']").attr("checked", true);
+					
+					
+					$('#FEEEXCLUDCODE').val(data.rst.feeexcludcode)
+					$('#BANKDAY').val(data.rst.bankday)
+					
+					$('#ENTRYFEE').val(data.rst.entryfee)
+					$('#INSURANCEFEE').val(data.rst.insurancefee)
+					$('#SCOUTMAGACNT').val(data.rst.scoutmagacnt)
+					$('#SCOUTMAGAFEE').val(data.rst.scoutmagafee)
+					$('#LEADERMAGACNT').val(data.rst.leadermagacnt)
+					$('#LEADERMAGAFEE').val(data.rst.leadermagafee)
+					$('#BIGO').val(data.rst.bigo)
+					
+					console.log("리더모달에서 스크립트연결")
+					$('#joinPopup select').niceSelect('update')
+				}
+				, error : function(xhr, status, error) {
+					console.log(xhr)
+					console.log("에러")
+				}
+			});
+		}
+	}
 	function fn_get_unitylist(){
 		var param = {
 				associationcode : $('#associationcode_leader').val(),
@@ -519,7 +515,7 @@
 			leader_idx : $('#leader_idx').val(),
 			savetype : "update"
 		}
-		
+		debugger
 		var text ="선택한 연공을 수정하시겠습니까?";
 		if($('#leader_idx').val() == '' || $('#leader_idx').val() == undefined || $('#leader_idx').val() == null){
 			text ="신규 연공을 등록하시겠습니까?";

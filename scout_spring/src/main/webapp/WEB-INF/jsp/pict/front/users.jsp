@@ -431,7 +431,7 @@
                                     <p id="year_cnt_scout">0 rows</p>
                                     <div class="buttons">
                                         <a href="#joinMemPopup" class="smButton joinMemBtn"><img src="/front_img/add.png" alt="">추가</a>
-                                        <a href="#lnk" class="smButton" onclick="scout_mod()"><img src="/front_img/modify.png" alt="">수정</a>
+                                        <a href="#lnk" class="smButton joinMemBtn" onclick="scout_mod()"><img src="/front_img/modify.png" alt="">수정</a>
                                         <a href="#lnk" class="smButton" onclick="scout_del()"><img src="/front_img/reset.png" alt="">삭제</a>
                                         <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
                                     </div>
@@ -605,10 +605,15 @@
     
     
     <input type="hidden" id="leader_idx" />
+    <input type="hidden" id="scout_idx" />
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		function fn_leader_info(idx){
 			$('#leader_idx').val(idx)
+			console.log(idx)
+		}
+		function fn_scout_info(idx){
+			$('#scout_idx').val(idx)
 			console.log(idx)
 		}
 		
@@ -879,7 +884,7 @@
 						$('#scout_incnt').text(data.info.scoutincnt)
 						$('#year_cnt_scout').text(arr.length + " rows")
 						for(var i=0; i<arr.length; i++){
-							html += '<tr>'+
+							html += '<tr onclick="fn_scout_info('+arr[i].idx+')">'+
 								'<td>' + Number(i+1) + '</td>' +
 								'<td>' + arr[i].year + '</td>'+
 								'<td>' + arr[i].associationname + '</td>'+

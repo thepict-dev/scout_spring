@@ -146,6 +146,13 @@ public class PictVO extends PictDefaultVO {
 	private String LEADERMAGACNT;
 	private String LEADERMAGAFEE;
 	private String LEADERORGNO;
+	private String SCOUTPOSITIONCODE;
+	private String SCOUTPOSITIONNAME;
+	private String SCOUTORGNO;
+	private String SCOUTORGCLSCODE1;
+	private String SCOUTORGCLSCODE2;
+	private String SCOUTBAN;
+	private String YEARREGYN;
 	
 	
 	
@@ -167,6 +174,48 @@ public class PictVO extends PictDefaultVO {
 	
 	
 	
+	public String getSCOUTPOSITIONCODE() {
+		return SCOUTPOSITIONCODE;
+	}
+	public void setSCOUTPOSITIONCODE(String sCOUTPOSITIONCODE) {
+		SCOUTPOSITIONCODE = sCOUTPOSITIONCODE;
+	}
+	public String getSCOUTPOSITIONNAME() {
+		return SCOUTPOSITIONNAME;
+	}
+	public void setSCOUTPOSITIONNAME(String sCOUTPOSITIONNAME) {
+		SCOUTPOSITIONNAME = sCOUTPOSITIONNAME;
+	}
+	public String getSCOUTORGNO() {
+		return SCOUTORGNO;
+	}
+	public void setSCOUTORGNO(String sCOUTORGNO) {
+		SCOUTORGNO = sCOUTORGNO;
+	}
+	public String getSCOUTORGCLSCODE1() {
+		return SCOUTORGCLSCODE1;
+	}
+	public void setSCOUTORGCLSCODE1(String sCOUTORGCLSCODE1) {
+		SCOUTORGCLSCODE1 = sCOUTORGCLSCODE1;
+	}
+	public String getSCOUTORGCLSCODE2() {
+		return SCOUTORGCLSCODE2;
+	}
+	public void setSCOUTORGCLSCODE2(String sCOUTORGCLSCODE2) {
+		SCOUTORGCLSCODE2 = sCOUTORGCLSCODE2;
+	}
+	public String getSCOUTBAN() {
+		return SCOUTBAN;
+	}
+	public void setSCOUTBAN(String sCOUTBAN) {
+		SCOUTBAN = sCOUTBAN;
+	}
+	public String getYEARREGYN() {
+		return YEARREGYN;
+	}
+	public void setYEARREGYN(String yEARREGYN) {
+		YEARREGYN = yEARREGYN;
+	}
 	public String getLEADERORGNO() {
 		return LEADERORGNO;
 	}
