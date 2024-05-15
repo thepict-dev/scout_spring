@@ -121,7 +121,9 @@ public interface PictMapper {
 
 	List<PictVO> fn_get_parentorgno(PictVO pictVO) throws Exception;
 
-	List<PictVO> search_org(PictVO pictVO) throws Exception;  
+	List<PictVO> search_org(PictVO pictVO) throws Exception;
+
+	void main_scout_org_save(PictVO pictVO) throws Exception;  
  
 	
 

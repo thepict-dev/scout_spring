@@ -299,7 +299,7 @@
                         <div class="inputsContainer inputsPd bottomBd">
                             <div class="inputBox">
                                 <p class="inputCaption">지도자단체</p>
-                                <input type="text" name="" id="" readonly class="lgThinInput">
+                                <input type="text" name="main_leader_org" id="main_leader_org" readonly class="lgThinInput">
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">승진 가산점</p>
@@ -330,7 +330,7 @@
                         <div class="inputsContainer inputsPd bottomBd">
                             <div class="inputBox">
                                 <p class="inputCaption">대원학교</p>
-                                <input type="text" name="group" id="group" readonly readonly class="lgThinInput">
+                                <input type="text" name="main_scout_org" id="main_scout_org" readonly readonly class="lgThinInput">
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">학년</p>
@@ -604,6 +604,7 @@
     
     <input type="hidden" id="leader_idx" />
     <input type="hidden" id="scout_idx" />
+    <input type="hidden" id="org_popup" />
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		function fn_leader_info(idx){
@@ -852,6 +853,25 @@
 					$('#profile_img').attr("src",data.info.picimg)
 					
 					
+					//지도자 단체
+					$('#main_scout_org').val(data.info.scoutorgname)
+					
+					//대원 단체
+					var leaderorgpositionname = ""
+					if(data.info.leaderorgpositioncode == '01') leaderorgpositionname = "교장"
+					if(data.info.leaderorgpositioncode == '02') leaderorgpositionname = "교감"
+					if(data.info.leaderorgpositioncode == '03') leaderorgpositionname = "교사"
+					if(data.info.leaderorgpositioncode == '04') leaderorgpositionname = "일반"
+					if(data.info.leaderorgpositioncode == '05') leaderorgpositionname = "없음"
+					
+					var leaderorgname =""
+					if(data.info.leaderorgname != ''){
+						leaderorgname = data.info.leaderorgname
+					}
+					if(leaderorgpositionname != ''){
+						leaderorgname += "(" +leaderorgpositionname + ")"
+					}
+					$('#main_leader_org').val(leaderorgname)
 					
 					var html ="";
 					var relation_html = "";

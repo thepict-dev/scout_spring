@@ -134,25 +134,76 @@
                	</div>
                	<div class="inputBox">
 	                <p class="inputCaption">조직직책</p>
-	                <select name="" id="" class="smThinSelect">
-	                    <option value="1"></option>
-	                    <option value="2"></option>
-	                    <option value="3"></option>
+	                <select name="LEADERORGPOSITIONCODE" id="LEADERORGPOSITIONCODE" class="smThinSelect">
+	                	<option value="">-----</option>
+	                    <option value="01">교장</option>
+	                    <option value="02">교감</option>
+	                    <option value="03">교사</option>
+	                    <option value="04">일반</option>
+	                    <option value="05">없음</option>
 	                </select>
 	            </div>
             </div>
             
             <div class="tableButtons" style="justify-content: flex-end; padding: 40px 24px 60px 0;">
                 <div class="buttons">
-                    <a href="#lnk" class="smButton bigBtn">저장</a>
+                    <a href="#lnk" onclick="fn_orgsave()" class="smButton bigBtn">저장</a>
                 </div>
             </div>
         </form>
     </div>
+    <input type="hidden" id="org_no" name="org_no">
+    <input type="hidden" id="org_code1" name="org_code1">
+    <input type="hidden" id="org_code2" name="org_code2">
+    <input type="hidden" id="org_position" name="org_position">
+    <input type="hidden" id="org_name" name="org_name">
 </div>
 <script>
+	function fn_orgsave(){
+		$('#initial-loading').css('display', 'flex')
+		
+		var org_popup = $('#org_popup').val()
+		if(org_popup == 'main_scout'){//메인에 대원 단체
+			var param = {
+				memberno : $('#MEMBERNO').val(),
+				scoutorgno : $('#org_no').val(),
+				scoutorgclscode1 : $('#org_code1').val(),
+				scoutorgclscode2 : $('#org_code2').val(),
+			}
+			
+			$.ajax({
+				url : "/main_scout_org_save"
+				, type : "POST"
+				, data : JSON.stringify(param)
+				, contentType : "application/json"
+				, async : true
+				, success : function(data, status, xhr) {
+					if(data == 'Y'){
+						$('#groupPopup').css("display", "none")
+						$("#main_scout_org").val($('#org_name').val())
+					}
+					$('#initial-loading').css('display', 'none')
+				}
+				, error : function(xhr, status, error) {
+					console.log(xhr)
+					console.log("에러")
+				}
+			});
+		}
+		else if(org_popup == 'main_leader'){	//메인에 리더 단체
+			
+		}
+		
+		
+	}
+	function fn_orgno_select(idx, orgcode1, orgcode2, orgname){
+		$('#org_no').val(idx)
+		$('#org_code1').val(orgcode1)
+		$('#org_code2').val(orgcode2)
+		$('#org_name').val(orgname)
+	}
 	function fn_orgnize(target){
-		console.log(target)
+		$('#org_popup').val(target)
 	}
 	function fn_get_orgclscode(){
 		$('#ORGCLSCODE2').children().remove();
@@ -258,7 +309,8 @@
 					var arr = data.list;
 					$('#group_list').children().remove();
 					for(var i=0; i<arr.length; i++){
-						html += '<tr onclick="fn_orgno_select('+arr[i].idx+')">'+
+						html += '<tr onclick="fn_orgno_select(\'' + arr[i].orgno + '\', \'' + arr[i].orgclscode1 + '\', \'' + arr[i].orgclscode2 + '\', \'' + arr[i].orgname + '\')">'+
+						
 						'<td>' + Number(i+1) + '</td>' +
 						'<td>' + arr[i].associationname + '</td>'+
 						'<td>' + arr[i].orgclsname1 + '</td>'+
@@ -278,3 +330,4 @@
 	}
 	
 </script>
+

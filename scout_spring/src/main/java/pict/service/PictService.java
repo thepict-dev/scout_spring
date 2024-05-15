@@ -119,4 +119,6 @@ public interface PictService {
 
 	public List<PictVO> search_org(PictVO pictVO) throws Exception;
 
+	public void main_scout_org_save(PictVO pictVO) throws Exception;
+
 }

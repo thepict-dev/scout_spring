@@ -191,7 +191,10 @@
 
 	<!-- 대원/리더 기본정보 조회 -->
 	<select id="get_per_info" resultType="pictVO">
-		select m.idx, m.MEMBERNO, m.MEMCLSCODE, m.MEMGRADECODE, m.PICIMG, m.LEADERINCNT, m.ENTERDATE, m.SCOUTINCNT, m.PICIMG,
+		select m.idx, m.MEMBERNO, m.MEMCLSCODE, m.MEMGRADECODE, m.PICIMG, m.LEADERINCNT, m.ENTERDATE, m.SCOUTINCNT, m.PICIMG, m.SCOUTCLSCODE, m.SCOUTORGNO, 
+		ifnull((select orgname from org o where o.ORGNO = m.SCOUTORGNO), '') SCOUTORGNAME,
+		ifnull((select orgname from org o where o.ORGNO = m.LEADERORGNO),'') LEADERORGNAME,
+		ifnull(m.LEADERORGPOSITIONCODE, '') LEADERORGPOSITIONCODE,
 		 m.BIRTHDAY, 
 		 (case when m.EMPLOYEEY = '' then 'N' when m.EMPLOYEEY is null then 'N' when m.EMPLOYEEY = 'N' then 'N' else 'Y' end) as EMPLOYEEY,
 		 m.KNAME, m.ENAME, m.SEX,
@@ -490,10 +493,13 @@
 			) 
 		</if>
 		order by ORGCLSCODE1 desc, ORGNAME asc;
-
-		
 	</select>
 	
+	<!-- 메인 대원 단체 저장 -->
+	<update id="main_scout_org_save" parameterType="pictVO">
+		update member set SCOUTORGNO = #{SCOUTORGNO}, SCOUTORGCLSCODE1 = #{SCOUTORGCLSCODE1}, SCOUTORGCLSCODE2 = #{SCOUTORGCLSCODE2}
+		where MEMBERNO = #{MEMBERNO}
+	</update>
 	
 	
 	

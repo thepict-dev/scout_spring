@@ -786,6 +786,33 @@ public class PictController {
 		}
 	}
 	
+	//메인 대원 단체 저장
+	@RequestMapping("/main_scout_org_save")
+	@ResponseBody
+	public String main_scout_org_save(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, 
+			@RequestBody Map<String, Object> param) throws Exception {	
+		try {
+			String memberno = param.get("memberno").toString();
+			String scoutorgno = param.get("scoutorgno").toString();
+			String scoutorgclscode1 = param.get("scoutorgclscode1").toString();
+			String scoutorgclscode2 = param.get("scoutorgclscode2").toString();
+			
+			
+			pictVO.setMEMBERNO(memberno);
+			pictVO.setSCOUTORGNO(scoutorgno);
+			pictVO.setSCOUTORGCLSCODE1(scoutorgclscode1);
+			pictVO.setSCOUTORGCLSCODE2(scoutorgclscode2);
+			
+			pictService.main_scout_org_save(pictVO);
+
+			return "Y";
+		}
+		catch(Exception e) {
+			return "N";
+		}
+	}
+	
+	
 	
 	//프로필사진 업로드
 	@RequestMapping("/profile_img")
