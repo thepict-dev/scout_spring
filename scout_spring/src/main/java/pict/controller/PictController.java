@@ -720,6 +720,73 @@ public class PictController {
 	}
 	
 	
+	//기본 정보 대원학교단체에서 구분 검색
+	@RequestMapping("/fn_get_orgclscode")
+	@ResponseBody
+	public HashMap<String, Object> fn_get_orgclscode(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String orgclscode1 = param.get("orgclscode1").toString();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		pictVO.setORGCLSCODE1(orgclscode1);
+		
+		List<PictVO> relation_list = pictService.fn_get_orgclscode(pictVO);
+		if(relation_list.size() > 0) {
+			map.put("list", relation_list);
+			return map;
+		}
+		else {
+			return map;
+		}
+		
+	}
+	//기본정보 대원학교단체에서 관할교육청검색
+	@RequestMapping("/fn_get_parentorgno")
+	@ResponseBody
+	public HashMap<String, Object> fn_get_parentorgno(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String associationcode = param.get("associationcode").toString();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		pictVO.setASSOCIATIONCODE(associationcode);
+		
+		List<PictVO> relation_list = pictService.fn_get_parentorgno(pictVO);
+		if(relation_list.size() > 0) {
+			map.put("list", relation_list);
+			return map;
+		}
+		else {
+			return map;
+		}
+	}
+	
+	//기본정보 대원학교단체에서 조회 버튼 클릭
+	@RequestMapping("/search_org")
+	@ResponseBody
+	public HashMap<String, Object> search_org(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String associationcode = param.get("associationcode").toString();
+		String orgclscode1 = param.get("orgclscode1").toString();
+		String orgclscode2 = param.get("orgclscode2").toString();
+		String parentorgno = param.get("parentorgno").toString();
+		String search_orgtext = param.get("search_orgtext").toString();
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		pictVO.setASSOCIATIONCODE(associationcode);
+		pictVO.setORGCLSCODE1(orgclscode1);
+		pictVO.setORGCLSCODE2(orgclscode2);
+		pictVO.setPARENTORGNO(parentorgno);
+		pictVO.setSearch_orgtext(search_orgtext);
+		
+		List<PictVO> relation_list = pictService.search_org(pictVO);
+		if(relation_list.size() > 0) {
+			map.put("list", relation_list);
+			return map;
+		}
+		else {
+			return map;
+		}
+	}
+	
+	
 	//프로필사진 업로드
 	@RequestMapping("/profile_img")
 	@ResponseBody

@@ -113,4 +113,10 @@ public interface PictService {
 
 	public void scout_del(PictVO pictVO) throws Exception;
 
+	public List<PictVO> fn_get_orgclscode(PictVO pictVO) throws Exception;
+
+	public List<PictVO> fn_get_parentorgno(PictVO pictVO) throws Exception;
+
+	public List<PictVO> search_org(PictVO pictVO) throws Exception;
+
 }

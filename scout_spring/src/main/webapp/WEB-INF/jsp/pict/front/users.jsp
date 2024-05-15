@@ -323,7 +323,7 @@
                             </div>
                             <div class="tableButtons" style="justify-content: flex-end;">
                                 <div class="buttons">
-                                    <a href="#lnk" class="smButton relationBtn"><img src="/front_img/modify.png" alt="">수정</a>
+                                    <a href="#groupPopup" onclick="fn_orgnize('main_leader')" class="smButton relationBtn"><img src="/front_img/modify.png" alt="">수정</a>
                                 </div>
                             </div>
                         </div>
@@ -350,7 +350,7 @@
                             </div>
                             <div class="tableButtons" style="justify-content: flex-end;">
                                 <div class="buttons">
-                                    <a href="#groupPopup" onclick="fn_orgnize()" class="smButton groupBtn"><img src="/front_img/search2.png" alt="">학교/단체찾기</a>
+                                    <a href="#groupPopup" onclick="fn_orgnize('main_scout')" class="smButton groupBtn"><img src="/front_img/search2.png" alt="">학교/단체찾기</a>
                                 </div>
                             </div>
                         </div>

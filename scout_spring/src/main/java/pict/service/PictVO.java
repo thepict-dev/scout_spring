@@ -154,6 +154,11 @@ public class PictVO extends PictDefaultVO {
 	private String SCOUTBAN;
 	private String YEARREGYN;
 	private String INSURANCEY;
+	private String ORGCLSCODE1;
+	private String ORGCLSCODE2;
+	private String PARENTORGNO;
+	private String ORGCLSNAME1;
+	private String ORGCLSNAME2;
 	
 	
 	private String search_birthday;
@@ -170,10 +175,46 @@ public class PictVO extends PictDefaultVO {
 	private String search_troopcls2;
 	private String search_troopno_cate;
 	private String search_troopno;
+	private String search_orgtext;
 	
 	
 	
-	
+	public String getORGCLSNAME1() {
+		return ORGCLSNAME1;
+	}
+	public void setORGCLSNAME1(String oRGCLSNAME1) {
+		ORGCLSNAME1 = oRGCLSNAME1;
+	}
+	public String getORGCLSNAME2() {
+		return ORGCLSNAME2;
+	}
+	public void setORGCLSNAME2(String oRGCLSNAME2) {
+		ORGCLSNAME2 = oRGCLSNAME2;
+	}
+	public String getSearch_orgtext() {
+		return search_orgtext;
+	}
+	public void setSearch_orgtext(String search_orgtext) {
+		this.search_orgtext = search_orgtext;
+	}
+	public String getPARENTORGNO() {
+		return PARENTORGNO;
+	}
+	public void setPARENTORGNO(String pARENTORGNO) {
+		PARENTORGNO = pARENTORGNO;
+	}
+	public String getORGCLSCODE1() {
+		return ORGCLSCODE1;
+	}
+	public void setORGCLSCODE1(String oRGCLSCODE1) {
+		ORGCLSCODE1 = oRGCLSCODE1;
+	}
+	public String getORGCLSCODE2() {
+		return ORGCLSCODE2;
+	}
+	public void setORGCLSCODE2(String oRGCLSCODE2) {
+		ORGCLSCODE2 = oRGCLSCODE2;
+	}
 	public String getINSURANCEY() {
 		return INSURANCEY;
 	}

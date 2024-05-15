@@ -304,6 +304,24 @@ public class PictServiceImpl implements PictService {
 		// TODO Auto-generated method stub
 		pictMapper.scout_del(pictVO);
 	}
+
+	@Override
+	public List<PictVO> fn_get_orgclscode(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.fn_get_orgclscode(pictVO);
+	}
+
+	@Override
+	public List<PictVO> fn_get_parentorgno(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.fn_get_parentorgno(pictVO);
+	}
+
+	@Override
+	public List<PictVO> search_org(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.search_org(pictVO);
+	}
 	
 	
 }

@@ -450,6 +450,57 @@
 	</delete>
 	
 	
+	<!-- 지도자/대원 학교단체에서 구분조회 -->
+	<select id="fn_get_orgclscode" resultType="pictVO">
+		select * 
+		from orgclscode
+		where ORGCLSCODE1 = #{ORGCLSCODE1}
+		and ORGCLSCODE2 != '00'
+		order by cast(ORD as unsigned)
+	</select>
+	
+	<!-- 지도자/대원 학교단체에서 관할교육청조회 -->
+	<select id="fn_get_parentorgno" resultType="pictVO">
+		select * from org where associationcode = #{ASSOCIATIONCODE} and ORGCLSCODE1 = '02'
+		order by ORGNAME asc
+	</select>
+	
+	<!-- 학교 단체 검색 버튼 클릭! -->
+	<select id="search_org" resultType="pictVO">
+		select a.ASSOCIATIONNAME
+		, (select ORGCLSNAME from orgclscode oc where ORGCLSCODE1 = o.ORGCLSCODE1 limit 1) as ORGCLSNAME1
+		, (select ORGCLSNAME from orgclscode oc where ORGCLSCODE1 = o.ORGCLSCODE1 and ORGCLSCODE2 = o.ORGCLSCODE2  limit 1) as ORGCLSNAME2
+		 , o.* 
+		from org o
+		left outer join associationcode a on a.ASSOCIATIONCODE = o.ASSOCIATIONCODE
+		where 1=1
+		
+		<if test="ASSOCIATIONCODE != null and ASSOCIATIONCODE != '' ">
+			and o.ASSOCIATIONCODE = #{ASSOCIATIONCODE} 
+		</if>
+		<if test="ORGCLSCODE1 != null and ORGCLSCODE1 != '' ">
+			and o.ORGCLSCODE1 = #{ORGCLSCODE1}
+		</if>
+		<if test="ORGCLSCODE2 != null and ORGCLSCODE2 != '' ">
+			and o.ORGCLSCODE2 = #{ORGCLSCODE2}
+		</if>
+		<if test="search_orgtext != null and search_orgtext != '' ">
+			and (
+				o.ORGNAME LIKE CONCAT('%', #{search_orgtext}, '%')
+			) 
+		</if>
+		order by ORGCLSCODE1 desc, ORGNAME asc;
+
+		
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- 그뭐야 제일 위에[꺼 -->
 	<select id="troop_left_search_list" resultType="pictVO">
 		select t.*

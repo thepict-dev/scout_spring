@@ -115,8 +115,14 @@ public interface PictMapper {
 
 	void scout_update(PictVO pictVO) throws Exception;
 
-	void scout_del(PictVO pictVO) throws Exception;  
+	void scout_del(PictVO pictVO) throws Exception;
 
+	List<PictVO> fn_get_orgclscode(PictVO pictVO) throws Exception;
+
+	List<PictVO> fn_get_parentorgno(PictVO pictVO) throws Exception;
+
+	List<PictVO> search_org(PictVO pictVO) throws Exception;  
+ 
 	
 
 }
