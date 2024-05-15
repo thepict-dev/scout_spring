@@ -378,7 +378,6 @@
                                             <col width="2.5%" />
                                             <col width="4.5%" />
                                             <col width="4.5%" />
-                                            <col width="4.5%" />
                                             <col width="6.5%" />
                                             <col width="6.5%" />
                                             <col width="4.5%" />
@@ -401,7 +400,6 @@
                                         <thead id="div_scout">
                                             <tr>
                                                 <th>No</th>
-                                                <th>구분</th>
                                                 <th>년도</th>
                                                 <th>연맹</th>
                                                 <th>연합회</th>
@@ -431,7 +429,7 @@
                                     <p id="year_cnt_scout">0 rows</p>
                                     <div class="buttons">
                                         <a href="#joinMemPopup" class="smButton joinMemBtn"><img src="/front_img/add.png" alt="">추가</a>
-                                        <a href="#lnk" class="smButton joinMemBtn" onclick="scout_mod()"><img src="/front_img/modify.png" alt="">수정</a>
+                                        <a href="#joinMemPopup" class="smButton joinMemBtn" onclick="scout_mod()"><img src="/front_img/modify.png" alt="">수정</a>
                                         <a href="#lnk" class="smButton" onclick="scout_del()"><img src="/front_img/reset.png" alt="">삭제</a>
                                         <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
                                     </div>
@@ -621,7 +619,8 @@
 			var text ="해당 연공 데이터를 삭제하시겠습니까?";
 			if(confirm (text)){
 				var param = {
-					idx : $('#leader_idx').val()
+					idx : $('#leader_idx').val(),
+					memberno : $('#MEMBERNO').val()
 				}
 				
 				$.ajax({
@@ -641,6 +640,33 @@
 				});
 			}
 		}
+		function scout_del(){
+			var text ="해당 연공 데이터를 삭제하시겠습니까?";
+			if(confirm (text)){
+				var param = {
+					idx : $('#scout_idx').val(),
+					memberno : $('#MEMBERNO').val()
+				}
+				
+				$.ajax({
+					url : "/scout_del"
+					, type : "POST"
+					, data : JSON.stringify(param)
+					, contentType : "application/json"
+					, async : true
+					, success : function(data, status, xhr) {
+				
+						alert("삭제되었습니다.");
+					},
+					error : function(err){
+						console.log(err)
+					}
+					
+				});
+			}
+		}
+		
+		
 		$("#attach_file").change(function(){
 			var memberno = $("#MEMBERNO").val()
 			if(memberno == '' || memberno == undefined || memberno == null){
@@ -784,7 +810,6 @@
 					$('#MEMBERNO').val(data.info.memberno)
 					$('#MEMCLSCODE').val(data.info.memclscode)//셀렉트
 					
-					
 					var memgradecode = "";
 					if(data.info.memgradecode == null || data.info.memgradecode == undefined || data.info.memgradecode == "null") memgradecode = "0"
 					else memgradecode = data.info.memgradecode
@@ -868,8 +893,8 @@
 								'<td>' + arr[i].adminy + '</td>'+
 								'<td>' + arr[i].year + '</td>'+
 								'<td>' + arr[i].associationname + '</td>'+
-								'<td>' + arr[i].troopname + '</td>'+
 								'<td>' + arr[i].unity + '</td>'+
+								'<td>' + arr[i].troopname + '</td>'+
 								'<td>' + arr[i].leaderposition + '</td>'+
 								'<td>' + arr[i].leaderpositionname + '</td>'+
 								'<td>' + arr[i].orgname  + '</td>'+

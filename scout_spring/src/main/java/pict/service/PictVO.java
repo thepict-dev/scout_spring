@@ -153,7 +153,7 @@ public class PictVO extends PictDefaultVO {
 	private String SCOUTORGCLSCODE2;
 	private String SCOUTBAN;
 	private String YEARREGYN;
-	
+	private String INSURANCEY;
 	
 	
 	private String search_birthday;
@@ -174,6 +174,12 @@ public class PictVO extends PictDefaultVO {
 	
 	
 	
+	public String getINSURANCEY() {
+		return INSURANCEY;
+	}
+	public void setINSURANCEY(String iNSURANCEY) {
+		INSURANCEY = iNSURANCEY;
+	}
 	public String getSCOUTPOSITIONCODE() {
 		return SCOUTPOSITIONCODE;
 	}

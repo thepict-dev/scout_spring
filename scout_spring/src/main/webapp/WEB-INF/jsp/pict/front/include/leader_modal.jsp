@@ -153,7 +153,7 @@
 	                        <div class="inputBox">
 	                            <div class="inputsAlign">
 	                                <label for="">
-	                                    <input type="text" name="ENTRYFEE" id="ENTRYFEE" class="smThinInput mountInput">
+	                                    <input type="text" name="ENTRYFEE" id="ENTRYFEE" class="smThinInput mountInput" onchange="calculate_leader()">
 	                                    <span class="mountCaption">원</span>
 	                                </label>
 	                            </div>
@@ -179,7 +179,7 @@
 	                        <div class="inputBox">
 	                            <div class="inputsAlign">
 	                                <label for="">
-	                                    <input type="text" name="INSURANCEFEE" id="INSURANCEFEE" class="smThinInput mountInput">
+	                                    <input type="text" name="INSURANCEFEE" id="INSURANCEFEE" class="smThinInput mountInput" onchange="calculate_leader()">
 	                                    <span class="mountCaption">원</span>
 	                                </label>
 	                            </div>
@@ -206,7 +206,7 @@
 	                                    <p class="inputCaption">부수</p>
 	                                    <div class="inputsAlign">
 	                                        <label for="">
-	                                            <input type="text" name="SCOUTMAGACNT" id="SCOUTMAGACNT"  class="smThinInput">
+	                                            <input type="text" name="SCOUTMAGACNT" id="SCOUTMAGACNT"  class="smThinInput" onchange="calculate_boo_leader()">
 	                                        </label>
 	                                    </div>
 	                                </div>
@@ -215,7 +215,7 @@
 	                        <div class="inputBox" style="margin-bottom: 10px;">
 	                            <div class="inputsAlign">
 	                                <label for="">
-	                                    <input type="text" name="SCOUTMAGAFEE" id="SCOUTMAGAFEE" class="smThinInput mountInput">
+	                                    <input type="text" name="SCOUTMAGAFEE" id="SCOUTMAGAFEE" class="smThinInput mountInput" onchange="calculate_leader()">
 	                                    <span class="mountCaption">원</span>
 	                                </label>
 	                            </div>
@@ -242,7 +242,7 @@
 	                                    <p class="inputCaption">부수</p>
 	                                    <div class="inputsAlign">
 	                                        <label for="">
-	                                            <input type="text" name="LEADERMAGACNT" id="LEADERMAGACNT"  class="smThinInput">
+	                                            <input type="text" name="LEADERMAGACNT" id="LEADERMAGACNT"  class="smThinInput" onchange="calculate_boo_leader()">
 	                                        </label>
 	                                    </div>
 	                                </div>
@@ -251,7 +251,7 @@
 	                        <div class="inputBox" style="margin-bottom: 10px;">
 	                            <div class="inputsAlign">
 	                                <label for="">
-	                                    <input type="text" name="LEADERMAGAFEE" id="LEADERMAGAFEE" class="smThinInput mountInput">
+	                                    <input type="text" name="LEADERMAGAFEE" id="LEADERMAGAFEE" class="smThinInput mountInput" onchange="calculate_leader()">
 	                                    <span class="mountCaption">원</span>
 	                                </label>
 	                            </div>
@@ -300,7 +300,6 @@
     </div>
 </div>
 <script>
-
 	function leader_add(){
 		var memberno = $('#MEMBERNO').val();
 		
@@ -314,8 +313,6 @@
 	    
 		$('#joinPopup select').niceSelect('update')
 	}
-
-
 	
 
 	function leader_mod(){
@@ -357,11 +354,11 @@
 					fn_get_leaderposition()
 					
 					if(data.rst.adminy == "Y") $(":checkbox[id='ADMINY']").attr("checked", true);
-					if(data.rst.feeexclude == "Y") $(":checkbox[id='FEEEXCLUDE']").attr("checked", true);
+					if(data.rst.feeexcludecode != "") $(":checkbox[id='FEEEXCLUDE']").attr("checked", true);
 					if(data.rst.payy == "Y") $(":checkbox[id='PAYY']").attr("checked", true);
 					
 					
-					$('#FEEEXCLUDCODE').val(data.rst.feeexcludcode)
+					$('#FEEEXCLUDCODE').val(data.rst.feeexcludecode)
 					$('#BANKDAY').val(data.rst.bankday)
 					
 					$('#ENTRYFEE').val(data.rst.entryfee)
@@ -371,8 +368,14 @@
 					$('#LEADERMAGACNT').val(data.rst.leadermagacnt)
 					$('#LEADERMAGAFEE').val(data.rst.leadermagafee)
 					$('#BIGO').val(data.rst.bigo)
-					
-					console.log("리더모달에서 스크립트연결")
+					calculate_leader()
+					//상단 항목 리드온리
+					/*
+				    $("input[name=YEAR]").attr("disabled", true);
+				    $("input[name=CONFIRMY]").attr("disabled", true);
+				    $("input[name=associationcode_leader]").attr("disabled", true);
+				    $("input[name=troop_leader]").attr("disabled", true);
+				    */
 					$('#joinPopup select').niceSelect('update')
 				}
 				, error : function(xhr, status, error) {
@@ -559,7 +562,34 @@
 				});
 			}
 		}
+	}
+	
+	function calculate_leader(){
+		var ENTRYFEE = $('#ENTRYFEE').val()
+		var INSURANCEFEE = $('#INSURANCEFEE').val()
+		var SCOUTMAGAFEE = $('#SCOUTMAGAFEE').val()
+		var LEADERMAGAFEE = $('#LEADERMAGAFEE').val()
 		
+		var total_amount = Number(ENTRYFEE) + Number(INSURANCEFEE) + Number(SCOUTMAGAFEE) + Number(LEADERMAGAFEE)
+		
+		$('#total_amount').val(total_amount)
+		
+	}
+	function calculate_boo_leader(){
+		var ENTRYFEE = $('#ENTRYFEE').val()
+		var INSURANCEFEE = $('#INSURANCEFEE').val()
+		
+		var SCOUTMAGACNT = $('#SCOUTMAGACNT').val()
+		var SCOUTMAGAFEE = Number(SCOUTMAGACNT) * 10000
+		$('#SCOUTMAGAFEE').val(SCOUTMAGAFEE)
+		
+		var LEADERMAGACNT = $('#LEADERMAGACNT').val()
+		var LEADERMAGAFEE = Number(LEADERMAGACNT) * 10000
+		$('#LEADERMAGAFEE').val(LEADERMAGAFEE);
+		
+		var total_amount = Number(ENTRYFEE) + Number(INSURANCEFEE) + Number(SCOUTMAGAFEE) + Number(LEADERMAGAFEE)
+		
+		$('#total_amount').val(total_amount)
 		
 	}
 	

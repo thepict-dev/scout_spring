@@ -280,5 +280,30 @@ public class PictServiceImpl implements PictService {
 		// TODO Auto-generated method stub
 		return pictMapper.get_scout_mod(pictVO);
 	}
+
+	@Override
+	public void leader_update(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.leader_update(pictVO);
+	}
+
+	@Override
+	public void scout_save(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.scout_save(pictVO);
+	}
+
+	@Override
+	public void scout_update(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.scout_update(pictVO);
+	}
+
+	@Override
+	public void scout_del(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.scout_del(pictVO);
+	}
+	
 	
 }

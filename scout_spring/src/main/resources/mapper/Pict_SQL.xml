@@ -360,7 +360,7 @@
 	</insert>
 	
 	<delete id="leader_del" parameterType="pictVO">
-		delete from leader where idx = #{idx}
+		delete from leader where idx = #{idx} and MEMBERNO = #{MEMBERNO}
 	</delete>
 	
 	<select id="get_leader_mod" resultType="pictVO">
@@ -376,6 +376,30 @@
 		where USEYN = 'Y' and LEADERPOSITIONCODE1 = #{LEADERPOSITIONCODE1} and LEADERPOSITIONCODE2 != '00' 
 		order by cast(ORD as unsigned)
 	</select>
+	
+	<update id="leader_update" parameterType="pictVO">
+		update leader set 
+		LEADERPOSITIONCODE1 = #{LEADERPOSITIONCODE1}, 
+		LEADERPOSITIONCODE2= #{LEADERPOSITIONCODE2}, 
+		LEADERORGNO = #{LEADERORGNO}, 
+		LEADERORGPOSITIONCODE = #{LEADERORGPOSITIONCODE}, 
+		FEEEXCLUDECODE = #{FEEEXCLUDECODE}, 
+		ENTRYFEE =#{ENTRYFEE}, 
+		INSURANCEFEE = #{INSURANCEFEE}, 
+		SCOUTMAGAFEE =#{SCOUTMAGAFEE}, 
+		LEADERMAGAFEE = #{LEADERMAGAFEE}, 
+		INSURANCEY = #{INSURANCEY}, 
+		SCOUTMAGACNT = #{SCOUTMAGACNT}, 
+		LEADERMAGACNT= #{LEADERMAGACNT}, 
+		BANKDAY = #{BANKDAY}, 
+		PAYY= #{PAYY}, 
+		UPDATEDATE = now(), 
+		ADMINY = #{ADMINY}
+		
+		where idx = #{idx} and MEMBERNO = #{MEMBERNO}
+	</update>
+	
+	
 	
 	
 	<!-- 대원연공 -->
@@ -393,6 +417,37 @@
 		where s.idx = #{idx} and s.MEMBERNO = #{MEMBERNO}
 	</select>
 	
+	<insert id="scout_save" parameterType="pictVO">
+		INSERT INTO scout(MEMBERNO, TROOPNO, STARTDAY, ENDDAY, ASSOCIATIONCODE, PARENT_TROOPNO, SCOUTORGNO, SCOUTSCHOOLYEAR, SCOUTSCHOOLBAN, SCOUTCLSCODE, SCOUTPOSITIONCODE, SCOUTBAN, FEEEXCLUDECODE, ENTRYFEE, INSURANCEFEE, SCOUTMAGAFEE, INSURANCEY, SCOUTMAGACNT, BANKDAY, PAYY, CONFIRMY, CONFIRMDATE, ENTERDATE) 
+		VALUES (#{MEMBERNO}, #{TROOPNO}, #{STARTDAY}, #{ENDDAY}, #{ASSOCIATIONCODE}, #{PARENTTROOPNO}, #{SCOUTORGNO}, #{SCOUTSCHOOLYEAR}, #{SCOUTSCHOOLBAN}, #{SCOUTCLSCODE}, #{SCOUTPOSITIONCODE}, #{SCOUTBAN}, #{FEEEXCLUDECODE}, #{ENTRYFEE}, #{INSURANCEFEE}, #{SCOUTMAGAFEE}, 'Y', #{SCOUTMAGACNT}, #{BANKDAY}, #{PAYY}, #{CONFIRMY}, now(), now());
+	</insert>
+	
+	<update id="scout_update" parameterType="pictVO">
+		update scout set
+		SCOUTORGNO = #{SCOUTORGNO},
+		SCOUTSCHOOLYEAR = #{SCOUTSCHOOLYEAR}, 
+		SCOUTSCHOOLBAN= #{SCOUTSCHOOLBAN}, 
+		
+		SCOUTCLSCODE = #{SCOUTCLSCODE},
+		SCOUTPOSITIONCODE = #{SCOUTPOSITIONCODE},
+		SCOUTBAN = #{SCOUTBAN},
+		 
+		FEEEXCLUDECODE = #{FEEEXCLUDECODE}, 
+		ENTRYFEE =#{ENTRYFEE}, 
+		INSURANCEFEE = #{INSURANCEFEE}, 
+		SCOUTMAGAFEE =#{SCOUTMAGAFEE}, 
+		INSURANCEY = #{INSURANCEY}, 
+		SCOUTMAGACNT = #{SCOUTMAGACNT}, 
+		BANKDAY = #{BANKDAY}, 
+		PAYY= #{PAYY}, 
+		UPDATEDATE = now()
+		
+		where idx = #{idx} and MEMBERNO = #{MEMBERNO}
+	</update>
+	
+	<delete id="scout_del" parameterType="pictVO">
+		delete from scout where idx = #{idx} and MEMBERNO = #{MEMBERNO}
+	</delete>
 	
 	
 	<!-- 그뭐야 제일 위에[꺼 -->

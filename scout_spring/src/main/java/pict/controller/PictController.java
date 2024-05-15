@@ -497,7 +497,7 @@ public class PictController {
 			*/
 			
 			System.out.println("업데이트를 타야해");
-			//pictService.leader_update(pictVO);
+			pictService.leader_update(pictVO);
 			
 			return "Y";
 		}
@@ -565,6 +565,158 @@ public class PictController {
 			return map;
 		}
 		
+	}
+	
+	//대원연공기입
+	@RequestMapping("/scout_save")
+	@ResponseBody
+	public String scout_save(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+		try {
+			String memberno = param.get("memberno").toString();
+			String startday = param.get("startday").toString();
+			String endday = param.get("endday").toString();
+			String confirmy = param.get("confirmy").toString();
+			String associationcode = param.get("associationcode").toString();
+			String parenttroopno = param.get("parenttroopno").toString();
+			String troopno = param.get("troopno").toString();
+			
+			String scoutorgno = param.get("scoutorgno").toString();
+			String scoutschoolyear = param.get("scoutschoolyear").toString();
+			String scoutschoolban = param.get("scoutschoolban").toString();
+			
+			String scoutclscode = param.get("scoutclscode").toString();
+			String scoutpositioncode = param.get("scoutpositioncode").toString();
+			String scoutban = param.get("scoutban").toString();
+			
+			String feeexcludcode = param.get("feeexcludcode").toString();
+			String bankday = param.get("bankday").toString();
+			String payy = param.get("payy").toString();
+			String entryfee = param.get("entryfee").toString();
+			String insurancefee = param.get("insurancefee").toString();
+			String scoutmagacnt = param.get("scoutmagacnt").toString();
+			String scoutmagafee = param.get("scoutmagafee").toString();
+			
+			pictVO.setMEMBERNO(memberno);
+			pictVO.setSTARTDAY(startday);
+			pictVO.setENDDAY(endday);
+			pictVO.setCONFIRMY(confirmy);
+			pictVO.setASSOCIATIONCODE(associationcode);
+			pictVO.setPARENTTROOPNO(parenttroopno);
+			pictVO.setTROOPNO(troopno);
+			
+			pictVO.setSCOUTORGNO(scoutorgno);
+			pictVO.setSCOUTSCHOOLYEAR(scoutschoolyear);
+			pictVO.setSCOUTSCHOOLBAN(scoutschoolban);
+			
+			pictVO.setSCOUTCLSCODE(scoutclscode);
+			pictVO.setSCOUTPOSITIONCODE(scoutpositioncode);
+			pictVO.setSCOUTBAN(scoutban);
+			
+			
+			pictVO.setFEEEXCLUDECODE(feeexcludcode);
+			pictVO.setBANKDAY(bankday);
+			pictVO.setPAYY(payy);
+			pictVO.setENTRYFEE(entryfee);
+			pictVO.setINSURANCEFEE(insurancefee);
+			pictVO.setSCOUTMAGACNT(scoutmagacnt);
+			pictVO.setSCOUTMAGAFEE(scoutmagafee);
+
+			pictService.scout_save(pictVO);
+			
+			return "Y";
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			return "N";
+		}
+	}
+	
+	//대원 연공기입
+	@RequestMapping("/scout_update")
+	@ResponseBody
+	public String scout_update(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+		try {
+			String scout_idx = param.get("scout_idx").toString();
+			String memberno = param.get("memberno").toString();
+			String startday = param.get("startday").toString();
+			String endday = param.get("endday").toString();
+			String confirmy = param.get("confirmy").toString();
+			String associationcode = param.get("associationcode").toString();
+			String parenttroopno = param.get("parenttroopno").toString();
+			String troopno = param.get("troopno").toString();
+			
+			String scoutorgno = param.get("scoutorgno").toString();
+			String scoutschoolyear = param.get("scoutschoolyear").toString();
+			String scoutschoolban = param.get("scoutschoolban").toString();
+			
+			String scoutclscode = param.get("scoutclscode").toString();
+			String scoutpositioncode = param.get("scoutpositioncode").toString();
+			String scoutban = param.get("scoutban").toString();
+			
+			String feeexcludcode = param.get("feeexcludcode").toString();
+			String bankday = param.get("bankday").toString();
+			String payy = param.get("payy").toString();
+			String entryfee = param.get("entryfee").toString();
+			String insurancefee = param.get("insurancefee").toString();
+			String scoutmagacnt = param.get("scoutmagacnt").toString();
+			String scoutmagafee = param.get("scoutmagafee").toString();
+			
+			pictVO.setIdx(Integer.parseInt(scout_idx));
+			pictVO.setMEMBERNO(memberno);
+			pictVO.setSTARTDAY(startday);
+			pictVO.setENDDAY(endday);
+			pictVO.setCONFIRMY(confirmy);
+			pictVO.setASSOCIATIONCODE(associationcode);
+			pictVO.setPARENTTROOPNO(parenttroopno);
+			pictVO.setTROOPNO(troopno);
+			
+			pictVO.setSCOUTORGNO(scoutorgno);
+			pictVO.setSCOUTSCHOOLYEAR(scoutschoolyear);
+			pictVO.setSCOUTSCHOOLBAN(scoutschoolban);
+			
+			pictVO.setSCOUTCLSCODE(scoutclscode);
+			pictVO.setSCOUTPOSITIONCODE(scoutpositioncode);
+			pictVO.setSCOUTBAN(scoutban);
+			
+			
+			pictVO.setFEEEXCLUDECODE(feeexcludcode);
+			pictVO.setBANKDAY(bankday);
+			pictVO.setPAYY(payy);
+			pictVO.setENTRYFEE(entryfee);
+			pictVO.setINSURANCEFEE(insurancefee);
+			pictVO.setSCOUTMAGACNT(scoutmagacnt);
+			pictVO.setSCOUTMAGAFEE(scoutmagafee);
+			
+
+			System.out.println("업데이트를 타야해");
+			pictService.scout_update(pictVO);
+			
+			return "Y";
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			return "N";
+		}
+	}
+	@RequestMapping("/scout_del")
+	@ResponseBody
+	public String scout_del(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, 
+			@RequestBody Map<String, Object> param) throws Exception {	
+		try {
+			String idx = param.get("idx").toString();
+			String memberno = param.get("memberno").toString();
+			
+			pictVO.setIdx(Integer.parseInt(idx));
+			pictVO.setMEMBERNO(memberno);
+			
+			System.out.println(pictVO.getIdx());
+			pictService.scout_del(pictVO);
+
+			return "Y";
+		}
+		catch(Exception e) {
+			return "N";
+		}
 	}
 	
 	
@@ -734,7 +886,10 @@ public class PictController {
 			@RequestBody Map<String, Object> param) throws Exception {	
 		try {
 			String idx = param.get("idx").toString();
+			String memberno = param.get("memberno").toString();
+			
 			pictVO.setIdx(Integer.parseInt(idx));
+			pictVO.setMEMBERNO(memberno);
 			
 			System.out.println(pictVO.getIdx());
 			pictService.leader_del(pictVO);

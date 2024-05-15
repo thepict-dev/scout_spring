@@ -107,7 +107,15 @@ public interface PictMapper {
 
 	List<PictVO> fn_get_scoutpositioncode(PictVO pictVO) throws Exception;
 
-	PictVO get_scout_mod(PictVO pictVO) throws Exception;  
+	PictVO get_scout_mod(PictVO pictVO) throws Exception;
+
+	void leader_update(PictVO pictVO) throws Exception;
+
+	void scout_save(PictVO pictVO) throws Exception;
+
+	void scout_update(PictVO pictVO) throws Exception;
+
+	void scout_del(PictVO pictVO) throws Exception;  
 
 	
 

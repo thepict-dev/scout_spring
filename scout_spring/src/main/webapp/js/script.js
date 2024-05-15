@@ -163,7 +163,7 @@ addTabItem.forEach((tab, idx)=> {
 //지도자 가입
 // 팝업 열기
 $(document).on("click", ".joinBtn", function (e){
-	console.log("스크립트에서 팝업열기")
+	console.log("스크립트에서 팝업열기 리더")
 	$('#leader_idx').val("");
 	$('#YEAR').val("");
 	$('#CONFIRMY').val("");
@@ -224,7 +224,9 @@ $(".modalInner button").click(function(){
 
 //대원 가입
 // 팝업 열기
+/*
 $(document).on("click", ".joinMemBtn", function (e){
+	console.log("스크립트에서 팝업열기 대원")
 	$('#scout_idx').val("");
 	$('#YEAR_SCOUT').val("");
 	$('#CONFIRMY_SCOUT').val("");
@@ -285,7 +287,7 @@ $("#join_modal button").click(function(){
 	$('#joinMemPopup select').niceSelect('update')
     $("#joinMemPopup").removeClass("active");
 });
-
+*/
 //학교/단체 찾기
 // 팝업 열기
 $(document).on("click", ".groupBtn", function (e){

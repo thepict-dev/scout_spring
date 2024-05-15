@@ -105,4 +105,12 @@ public interface PictService {
 
 	public PictVO get_scout_mod(PictVO pictVO) throws Exception;
 
+	public void leader_update(PictVO pictVO) throws Exception;
+
+	public void scout_save(PictVO pictVO) throws Exception;
+
+	public void scout_update(PictVO pictVO) throws Exception;
+
+	public void scout_del(PictVO pictVO) throws Exception;
+
 }

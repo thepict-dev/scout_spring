@@ -127,7 +127,7 @@
 	                        <p class="inputCaption">면제여부</p>
 	                            <div class="inputsAlign">
 	                            <div>
-	                                <input type="checkbox" name="FEEEXCLUDE_SCOUT" id="FEEEXCLUDE_SCOUT" class="circleCheck"><label for="FEEEXCLUDE">면제</label>
+	                                <input type="checkbox" name="FEEEXCLUDE_SCOUT" id="FEEEXCLUDE_SCOUT" class="circleCheck"><label for="FEEEXCLUDE_SCOUT">면제</label>
 	                            </div>
 	                            <select name="FEEEXCLUDCODE_SCOUT" id="FEEEXCLUDCODE_SCOUT" class="smThinSelect">
 	                            	<option value="">면제없음</option>
@@ -165,7 +165,7 @@
 	                        <div class="inputBox">
 	                            <div class="inputsAlign">
 	                                <label for="">
-	                                    <input type="text" name="ENTRYFEE_SCOUT" id="ENTRYFEE_SCOUT" class="smThinInput mountInput">
+	                                    <input type="text" name="ENTRYFEE_SCOUT" id="ENTRYFEE_SCOUT" class="smThinInput mountInput" onchange="calculate_scout()">
 	                                    <span class="mountCaption">원</span>
 	                                </label>
 	                            </div>
@@ -191,7 +191,7 @@
 	                        <div class="inputBox">
 	                            <div class="inputsAlign">
 	                                <label for="">
-	                                    <input type="text" name="INSURANCEFEE_SCOUT" id="INSURANCEFEE_SCOUT" class="smThinInput mountInput">
+	                                    <input type="text" name="INSURANCEFEE_SCOUT" id="INSURANCEFEE_SCOUT" class="smThinInput mountInput" onchange="calculate_scout()">
 	                                    <span class="mountCaption">원</span>
 	                                </label>
 	                            </div>
@@ -218,7 +218,7 @@
 	                                    <p class="inputCaption">부수</p>
 	                                    <div class="inputsAlign">
 	                                        <label for="">
-	                                            <input type="text" name="SCOUTMAGACNT_SCOUT" id="SCOUTMAGACNT_SCOUT"  class="smThinInput">
+	                                            <input type="text" name="SCOUTMAGACNT_SCOUT" id="SCOUTMAGACNT_SCOUT"  class="smThinInput" onchange="calculate_boo_scout()">
 	                                        </label>
 	                                    </div>
 	                                </div>
@@ -227,7 +227,7 @@
 	                        <div class="inputBox" style="margin-bottom: 10px;">
 	                            <div class="inputsAlign">
 	                                <label for="">
-	                                    <input type="text" name="SCOUTMAGAFEE_SCOUT" id="SCOUTMAGAFEE_SCOUT" class="smThinInput mountInput">
+	                                    <input type="text" name="SCOUTMAGAFEE_SCOUT" id="SCOUTMAGAFEE_SCOUT" class="smThinInput mountInput" onchange="calculate_scout()">
 	                                    <span class="mountCaption">원</span>
 	                                </label>
 	                            </div>
@@ -335,10 +335,10 @@
 					
 					$('#SCOUTBAN').val(data.rst.scoutban)
 					
-					if(data.rst.feeexclude == "Y") $(":checkbox[id='FEEEXCLUDE_SCOUT']").attr("checked", true);
+					if(data.rst.feeexcludecode != "") $(":checkbox[id='FEEEXCLUDE_SCOUT']").attr("checked", true);
 					if(data.rst.payy == "Y") $(":checkbox[id='PAYY_SCOUT']").attr("checked", true);
 					
-					$('#FEEEXCLUDCODE_SCOUT').val(data.rst.feeexcludcode)
+					$('#FEEEXCLUDCODE_SCOUT').val(data.rst.feeexcludecode)
 					$('#BANKDAY_SCOUT').val(data.rst.bankday)
 					
 					$('#ENTRYFEE_SCOUT').val(data.rst.entryfee)
@@ -346,7 +346,7 @@
 					$('#SCOUTMAGACNT_SCOUT').val(data.rst.scoutmagacnt)
 					$('#SCOUTMAGAFEE_SCOUT').val(data.rst.scoutmagafee)
 					$('#BIGO_SCOUT').val(data.rst.bigo)
-					
+					calculate_scout()
 					$('#joinMemPopup select').niceSelect('update')
 				}
 				, error : function(xhr, status, error) {
@@ -459,41 +459,42 @@
 	
 	function scout_save(){
 		var payy = "N"
-		if(document.getElementById("PAYY").checked) payy = "Y";
+		if(document.getElementById("PAYY_SCOUT").checked) payy = "Y";
 		
 		
 		var param = {
 			memberno : $('#MEMBERNO').val(),
-			startday : $('#YEAR').val()+ "-01-01",
-			endday : $('#YEAR').val()+ "-12-31",
-			confirmy : $('#CONFIRMY').val(),
+			startday : $('#YEAR_SCOUT').val()+ "-01-01",
+			endday : $('#YEAR_SCOUT').val()+ "-12-31",
+			confirmy : $('#CONFIRMY_SCOUT').val(),
 			associationcode: $('#associationcode_scout').val(),
 			parenttroopno : $('#unitycode_scout').val(),
 			troopno : $('#troop_scout').val(),
+			
 			scoutorgno : $('#scout_orgno').val(),
 			scoutschoolyear : $('#SCOUTSCHOOLYEAR').val(),
 			scoutschoolban :$('#SCOUTSCHOOLBAN').val(),
+			
 			scoutclscode :$('#SCOUTCLSCODE').val(),
 			scoutpositioncode :$('#SCOUTPOSITIONCODE').val(),
+			scoutban :$('#SCOUTBAN').val(),
 			
-			feeexcludcode : $('#FEEEXCLUDCODE').val(),
-			bankday : $('#BANKDAY').val(),
+			feeexcludcode : $('#FEEEXCLUDCODE_SCOUT').val(),
+			bankday : $('#BANKDAY_SCOUT').val(),
 			payy : payy,
-			entryfee : $('#ENTRYFEE').val(),
-			insurancefee : $('#INSURANCEFEE').val(),
-			scoutmagacnt : $('#SCOUTMAGACNT').val(),
-			scoutmagafee : $('#SCOUTMAGAFEE').val(),
-			leadermagacnt : $('#LEADERMAGACNT').val(),
-			ledermagafee : $('#LEADERMAGAFEE').val(),
-			leader_idx : $('#scout_idx').val(),
+			entryfee : $('#ENTRYFEE_SCOUT').val(),
+			insurancefee : $('#INSURANCEFEE_SCOUT').val(),
+			scoutmagacnt : $('#SCOUTMAGACNT_SCOUT').val(),
+			scoutmagafee : $('#SCOUTMAGAFEE_SCOUT').val(),
+			scout_idx : $('#scout_idx').val(),
 			savetype : "update"
 		}
-		
+		debugger
 		var text ="선택한 연공을 수정하시겠습니까?";
-		if($('#leader_idx').val() == '' || $('#leader_idx').val() == undefined || $('#leader_idx').val() == null){
+		if($('#scout_idx').val() == '' || $('#scout_idx').val() == undefined || $('#scout_idx').val() == null){
 			text ="신규 연공을 등록하시겠습니까?";
 			param.savetype = "insert"
-			param.leader_idx = "0"
+			param.scout_idx = "0"
 			
 			if(confirm (text)){
 				$.ajax({
@@ -532,7 +533,29 @@
 				});
 			}
 		}
+	}
+	
+	function calculate_scout(){
+		var ENTRYFEE = $('#ENTRYFEE_SCOUT').val()
+		var INSURANCEFEE = $('#INSURANCEFEE_SCOUT').val()
+		var SCOUTMAGAFEE = $('#SCOUTMAGAFEE_SCOUT').val()
+		var total_amount = Number(ENTRYFEE) + Number(INSURANCEFEE) + Number(SCOUTMAGAFEE)
 		
+		$('#total_amount_scout').val(total_amount)
+		
+	}
+	function calculate_boo_scout(){
+		var ENTRYFEE = $('#ENTRYFEE_SCOUT').val()
+		var INSURANCEFEE = $('#INSURANCEFEE_SCOUT').val()
+		
+		var SCOUTMAGACNT = $('#SCOUTMAGACNT_SCOUT').val()
+		var SCOUTMAGAFEE = Number(SCOUTMAGACNT) * 10000
+		$('#SCOUTMAGAFEE_SCOUT').val(SCOUTMAGAFEE)
+		
+
+		var total_amount = Number(ENTRYFEE) + Number(INSURANCEFEE) + Number(SCOUTMAGAFEE)
+		
+		$('#total_amount_scout').val(total_amount)
 		
 	}
 </script>
