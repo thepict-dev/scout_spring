@@ -232,7 +232,7 @@
 	<select id="scout_list" resultType="pictVO">
 		select s.idx, substring(s.STARTDAY, 1,4) as YEAR, a.ASSOCIATIONNAME, 
 		(select TROOPNAME from troop t2 where t2.TROOPNO = s.PARENT_TROOPNO) as UNITY, t.TROOPNAME, t.TROOPNO, s.SCOUTSCHOOLYEAR,
-		ifnull(o.ORGNAME, '') as ORGNAME, (select ORGCLSNAME from orgclscode oc where oc.ORGCLSCODE1 = o.ORGCLSCODE1 and oc.ORGCLSCODE2 = o.ORGCLSCODE2) as ORGCLSNAME
+		ifnull(o.ORGNAME, '') as ORGNAME, ifnull((select ORGCLSNAME from orgclscode oc where oc.ORGCLSCODE1 = o.ORGCLSCODE1 and oc.ORGCLSCODE2 = o.ORGCLSCODE2), '') as ORGCLSNAME
 		, SCOUTMAGACNT, CONFIRMY, PAYY, s.ENTERDATE, ENTRYFEE, s.SCOUTCLSCODE, s.SCOUTPOSITIONCODE, SCOUTBAN, SCOUTSCHOOLBAN, sc.SCOUTCLSNAME, sp.SCOUTPOSITIONNAME
 		from scout s
 		inner join associationcode a on s.ASSOCIATIONCODE = a.ASSOCIATIONCODE
