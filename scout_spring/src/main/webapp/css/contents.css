@@ -736,6 +736,7 @@ tbody tr.active td{
 }
 .organSearch{
     display: flex;
+    column-gap: 16px;
     width: 100%;
 }
 .organSearchForm .subTitles{

@@ -193,7 +193,7 @@ $(document).on("click", ".joinBtn", function (e){
     let target = $(this).attr("href");
 });
 // 팝업닫기
-$(".modalInner button").click(function(){
+$("#joinPopup button").click(function(){
 	console.log("스크립트에서 닫기")
 	$('#leader_idx').val("");
 	$('#YEAR').val("");
@@ -260,7 +260,7 @@ $(document).on("click", ".scoutJoinBtn", function (e){
     let target = $(this).attr("href");
 });
 // 팝업닫기
-$("#join_modal button").click(function(){
+$("#joinMemPopup button").click(function(){
 	$('#scout_idx').val("");
 	$('#YEAR_SCOUT').val("");
 	$('#CONFIRMY_SCOUT').val("");
@@ -315,12 +315,6 @@ $(document).on("click", ".searches", function (e){
 //팝업닫기
 $(".popupInner button").click(function(){
     $("#relationPopup").removeClass("active");
-});
-$("#joinPopup button").click(function(){
-    $("#joinPopup").removeClass("active");
-});
-$("#joinMemPopup button").click(function(){
-    $("#joinMemPopup").removeClass("active");
 });
 
 

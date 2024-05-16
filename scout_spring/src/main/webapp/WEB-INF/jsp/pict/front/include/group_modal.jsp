@@ -8,7 +8,7 @@
     <div class="modalInner lg">
         <button type="button"><img src="/front_img/close.png" alt=""></button>
         <div class="modalTit">
-            <p>지도자 소속 변경</p>
+            <p>학교/단체 소속 변경</p>
         </div>
         <form action="">
         	<!-- 
@@ -197,7 +197,7 @@
 					, async : true
 					, success : function(data, status, xhr) {
 						if(data == 'Y'){
-							$('#groupPopup').css("display", "none")
+							$('#groupPopup').removeClass("active")
 
 							var leaderorgpositionname = ""
 							if($('#LEADERORGPOSITIONCODE').val() == '01') leaderorgpositionname = "교장"
