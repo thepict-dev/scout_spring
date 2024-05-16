@@ -161,6 +161,8 @@ public class PictVO extends PictDefaultVO {
 	private String ORGCLSNAME2;
 	private String SCOUTORGNAME;
 	private String LEADERORGNAME;
+	private String LEADERORGPOSITIONNAME;
+	
 	
 	private String search_birthday;
 	private String search_history;
@@ -180,6 +182,12 @@ public class PictVO extends PictDefaultVO {
 	
 	
 	
+	public String getLEADERORGPOSITIONNAME() {
+		return LEADERORGPOSITIONNAME;
+	}
+	public void setLEADERORGPOSITIONNAME(String lEADERORGPOSITIONNAME) {
+		LEADERORGPOSITIONNAME = lEADERORGPOSITIONNAME;
+	}
 	public String getSCOUTORGNAME() {
 		return SCOUTORGNAME;
 	}
