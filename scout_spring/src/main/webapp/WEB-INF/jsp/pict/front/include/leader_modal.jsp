@@ -76,7 +76,7 @@
                             <p class="inputCaption">소속학교</p>
                             <div class="inputsAlign">
                                 <input type="text"  name="leader_orgno" id="leader_orgno" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                <a href="#lnk" class="smButton searches" style="margin-right: 12px;"><img src="/front_img/search2.png" alt="">조회</a>
+                                <a href="#groupPopup" class="smButton searches" style="margin-right: 12px;"><img src="/front_img/search2.png" alt="">조회</a>
                                 <select name="LEADERORGPOSITIONCODE" id="LEADERORGPOSITIONCODE" class="smThinSelect">
                                     <option value="">------</option>
                                     <option value="01">교장</option>

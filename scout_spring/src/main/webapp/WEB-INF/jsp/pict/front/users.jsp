@@ -428,7 +428,7 @@
                                 <div class="tableButtons">
                                     <p id="year_cnt_scout">0 rows</p>
                                     <div class="buttons">
-                                        <a href="#joinMemPopup" class="smButton joinMemBtn"><img src="/front_img/add.png" alt="">추가</a>
+                                        <a href="#joinMemPopup" class="smButton joinMemBtn" onclick="scout_add()"><img src="/front_img/add.png" alt="">추가</a>
                                         <a href="#joinMemPopup" class="smButton joinMemBtn" onclick="scout_mod()"><img src="/front_img/modify.png" alt="">수정</a>
                                         <a href="#lnk" class="smButton" onclick="scout_del()"><img src="/front_img/reset.png" alt="">삭제</a>
                                         <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>

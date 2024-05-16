@@ -120,15 +120,7 @@
 	                                <th>학교/단체명</th>
 	                            </tr>
 	                        </thead>
-	                        <tbody id="group_list">
-	                        	<tr>
-		                        	<td>No</td>
-	                                <td>연맹</td>
-	                                <td>구분1</td>
-	                                <td>구분2</td>
-	                                <td>학교/단체명</td>
-	                        	</tr>
-	                        </tbody>
+	                        <tbody id="group_list"></tbody>
 	                    </table>
                    	</div>
                	</div>
