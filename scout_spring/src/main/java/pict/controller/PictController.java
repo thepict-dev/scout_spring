@@ -361,12 +361,8 @@ public class PictController {
 	@ResponseBody
 	public String relation_delete(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
 		try {
-			String frommemberno = param.get("frommemberno").toString();
-			String tomemberno = param.get("tomemberno").toString();
 			String idx = param.get("idx").toString();
 			
-			pictVO.setFROMMEMBERNO(frommemberno);
-			pictVO.setTOMEMBERNO(tomemberno);
 			pictVO.setIdx(Integer.parseInt(idx));
 			
 			pictService.relation_delete(pictVO);

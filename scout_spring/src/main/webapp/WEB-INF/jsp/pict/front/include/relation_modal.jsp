@@ -122,8 +122,12 @@
            </form>
        </div>
    </div>
+   <input type="hidden" id="del_relation_idx" name ="del_relation_idx" />
    <script>
-   		
+   	function fn_relation_idx(idx){
+   		$('#del_relation_idx').val(idx)
+   	}	
+   
 	function fn_relation_info(){
 		$('#initial-loading').css('display', 'flex')
 		var param = {}
@@ -220,9 +224,7 @@
 		var text= "관계를 삭제하시겠습니까?"
 		if(confirm (text)){
 			var param = {
-				frommemberno: $('#MEMBERNO').val(),
-				idx : '2',
-				tomemberno : "645849"
+				idx : $('#del_relation_idx').val(),
 			}
 			$.ajax({
 				url : "/relation_delete"
