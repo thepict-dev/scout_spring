@@ -252,7 +252,7 @@ public class PictController {
 	@ResponseBody
 	public String person_save(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
 		try {
-			String idx = param.get("idx").toString();
+			
 			String MEMBERNO = param.get("MEMBERNO").toString();
 			String MEMCLSCODE = param.get("MEMCLSCODE").toString();
 			String MEMGRADECODE = param.get("MEMGRADECODE").toString();
@@ -275,7 +275,6 @@ public class PictController {
 			String SCOUTSCHOOLBAN = param.get("SCOUTSCHOOLBAN").toString();
 			
 			
-			pictVO.setIdx(Integer.parseInt(idx));
 			pictVO.setMEMBERNO(MEMBERNO);
 			pictVO.setMEMCLSCODE(MEMCLSCODE);
 			pictVO.setMEMGRADECODE(MEMGRADECODE);

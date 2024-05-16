@@ -75,9 +75,10 @@
                         <div class="inputBox">
                             <p class="inputCaption">소속학교</p>
                             <div class="inputsAlign">
-                                <input type="text"  name="leader_orgno" id="leader_orgno" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                <a href="#groupPopup" class="smButton searches" style="margin-right: 12px;"><img src="/front_img/search2.png" alt="">조회</a>
-                                <select name="LEADERORGPOSITIONCODE" id="LEADERORGPOSITIONCODE" class="smThinSelect">
+                                <input type="text" name="leader_orgname" id="leader_orgname" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                <input type="hidden" name="leader_orgno" id="leader_orgno">
+                                <a href="#groupPopup" onclick="fn_orgnize('modal_leader')" class="smButton searches" style="margin-right: 12px;"><img src="/front_img/search2.png" alt="">조회</a>
+                                <select name="LEADERORGPOSITIONCODE_LEADER" id="LEADERORGPOSITIONCODE_LEADER" class="smThinSelect">
                                     <option value="">------</option>
                                     <option value="01">교장</option>
                                     <option value="02">교감</option>
@@ -348,10 +349,12 @@
 					fn_get_trooplist()
 					$('#troop_leader').val(data.rst.troopno)
 					$('#leader_orgno').val(data.rst.leaderorgno)
-					$('#LEADERORGPOSITIONCODE').val(data.rst.leaderorgpositioncode)
+					$('#leader_orgname').val(data.rst.orgname)
+					$('#LEADERORGPOSITIONCODE_LEADER').val(data.rst.leaderorgpositioncode)
 					$('#LEADERPOSITIONCODE1').val(data.rst.leaderpositioncode1)
-					$('#LEADERPOSITIONCODE2').val(data.rst.leaderpositioncode2)
+					
 					fn_get_leaderposition()
+					$('#LEADERPOSITIONCODE2').val(data.rst.leaderpositioncode2)
 					
 					if(data.rst.adminy == "Y") $(":checkbox[id='ADMINY']").attr("checked", true);
 					if(data.rst.feeexcludecode != "") $(":checkbox[id='FEEEXCLUDE']").attr("checked", true);
@@ -501,7 +504,7 @@
 			parenttroopno : $('#unitycode_leader').val(),
 			troopno : $('#troop_leader').val(),
 			leaderorgno : $('#leader_orgno').val(),
-			leaderorgpositioncode : $('#LEADERORGPOSITIONCODE').val(),
+			leaderorgpositioncode : $('#LEADERORGPOSITIONCODE_LEADER').val(),
 			leaderpositioncode1 :$('#LEADERPOSITIONCODE1').val(),
 			leaderpositioncode2 :$('#LEADERPOSITIONCODE2').val(),
 			adminy : adminy,
@@ -518,7 +521,7 @@
 			leader_idx : $('#leader_idx').val(),
 			savetype : "update"
 		}
-		debugger
+		
 		var text ="선택한 연공을 수정하시겠습니까?";
 		if($('#leader_idx').val() == '' || $('#leader_idx').val() == undefined || $('#leader_idx').val() == null){
 			text ="신규 연공을 등록하시겠습니까?";

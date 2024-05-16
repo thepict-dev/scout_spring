@@ -123,117 +123,96 @@
        </div>
    </div>
    <input type="hidden" id="del_relation_idx" name ="del_relation_idx" />
-   <script>
-   	function fn_relation_idx(idx){
-   		$('#del_relation_idx').val(idx)
-   	}	
+   <input type="hidden" id="tomemberno" name ="tomemberno" />
    
-	function fn_relation_info(){
-		$('#initial-loading').css('display', 'flex')
-		var param = {}
-		$.ajax({
-			url : "/get_relation_clscode"
-			, type : "POST"
-			, data : JSON.stringify(param)
-			, contentType : "application/json"
-			, dataType : "json"
-			, async : true
-			, success : function(data, status, xhr) {
-				console.log(data)
-				var arr = data.list
-				var html =""
-				for(var i=0; i<arr.length; i++){
-					html +=
-					'<option value='+ arr[i].relationcode+' >' + arr[i].relationname1 + arr[i].relationname2 + '</option>'
-
-				}
-				$('#relationclslist').append(html)
-				$('#relationPopup select').niceSelect('update')
-				$('#initial-loading').css('display', 'none')
-			},
-			error : function(err){
-				$('#error').css('display', 'flex')
-			}
-		})
-	  }
-	function fn_relation_person_search(){
-		$('#initial-loading').css('display', 'flex')
-		$('#search_relation_list').children().remove()
-		var param = {
-			memberno : $('#search_relation_memberno').val(),
-			kname : $('#search_relation_kname').val()
+	<script>
+		function fn_relation_idx(idx){
+	  		$('#del_relation_idx').val(idx)
 		}
-		$.ajax({
-			url : "/get_relation_person_search"
-			, type : "POST"
-			, data : JSON.stringify(param)
-			, contentType : "application/json"
-			, dataType : "json"
-			, async : true
-			, success : function(data, status, xhr) {
-				console.log(data)
-				var arr = data.list
-				var html =""
-				if(arr.length > 0){
+		function fn_relation_memberno(memberno){
+	  		$('#tomemberno').val(memberno)
+		}
+   
+		function fn_relation_info(){
+			$('#initial-loading').css('display', 'flex')
+			var param = {}
+			$.ajax({
+				url : "/get_relation_clscode"
+				, type : "POST"
+				, data : JSON.stringify(param)
+				, contentType : "application/json"
+				, dataType : "json"
+				, async : true
+				, success : function(data, status, xhr) {
+					var arr = data.list
+					var html =""
 					for(var i=0; i<arr.length; i++){
-						html += '<tr>'+
-						'<td>' + arr[i].memberno + '</td>'+
-						'<td>' + arr[i].kname + '</td>'+
-						'<td>' + arr[i].birthday + '</td>'+
-						'<td>' + arr[i].sex + '</td>'+
-						'<td>' + arr[i].enterdate + '</td>'+
-						'</tr>'
+						html +=
+						'<option value='+ arr[i].relationcode+' >' + arr[i].relationname1 + arr[i].relationname2 + '</option>'
+		
 					}
+					$('#relationclslist').append(html)
+					$('#relationPopup select').niceSelect('update')
+					$('#initial-loading').css('display', 'none')
+				},
+				error : function(err){
+					$('#error').css('display', 'flex')
 				}
-				$('#search_relation_list').append(html)
-				$('#initial-loading').css('display', 'none')
-			},
-			error : function(err){
-				$('#error').css('display', 'flex')
-			}
-		})
-	}
-	
-	function relation_insert(){
-		$('#initial-loading').css('display', 'flex')
-		
-		
-		var param = {
-			frommemberno: $('#MEMBERNO').val(),
-			relationcode : $('#relationclslist').val(),
-			tomemberno : "645849"
+			})
 		}
-		$.ajax({
-			url : "/relation_insert"
-			, type : "POST"
-			, data : JSON.stringify(param)
-			, contentType : "application/json"
-			, async : true
-			, success : function(data, status, xhr) {
-				alert("저장되었습니다.")
-				$('#initial-loading').css('display', 'none')
-			},
-			error : function(err){
-				console.log(err)
-				$('#error').css('display', 'flex')
-			}
-		})
-	}
-	function relation_delete(){
-		$('#initial-loading').css('display', 'flex')
-		var text= "관계를 삭제하시겠습니까?"
-		if(confirm (text)){
+		function fn_relation_person_search(){
+			$('#initial-loading').css('display', 'flex')
+			$('#search_relation_list').children().remove()
 			var param = {
-				idx : $('#del_relation_idx').val(),
+				memberno : $('#search_relation_memberno').val(),
+				kname : $('#search_relation_kname').val()
 			}
 			$.ajax({
-				url : "/relation_delete"
+				url : "/get_relation_person_search"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
 				, async : true
 				, success : function(data, status, xhr) {
-					alert("삭제되었습니다.")
+					console.log(data)
+					var arr = data.list
+					var html =""
+					if(arr.length > 0){
+						for(var i=0; i<arr.length; i++){
+							html += '<tr onclick="fn_relation_memberno('+arr[i].memberno+')">'+
+							'<td>' + arr[i].memberno + '</td>'+
+							'<td>' + arr[i].kname + '</td>'+
+							'<td>' + arr[i].birthday + '</td>'+
+							'<td>' + arr[i].sex + '</td>'+
+							'<td>' + arr[i].enterdate + '</td>'+
+							'</tr>'
+						}
+					}
+					$('#search_relation_list').append(html)
+					$('#initial-loading').css('display', 'none')
+				},
+				error : function(err){
+					$('#error').css('display', 'flex')
+				}
+			})
+		}
+	
+		function relation_insert(){
+			$('#initial-loading').css('display', 'flex')
+			
+			var param = {
+				frommemberno: $('#MEMBERNO').val(),
+				relationcode : $('#relationclslist').val(),
+				tomemberno : $('#tomemberno').val()
+			}
+			$.ajax({
+				url : "/relation_insert"
+				, type : "POST"
+				, data : JSON.stringify(param)
+				, contentType : "application/json"
+				, async : true
+				, success : function(data, status, xhr) {
+					alert("저장되었습니다.")
 					$('#initial-loading').css('display', 'none')
 				},
 				error : function(err){
@@ -242,6 +221,28 @@
 				}
 			})
 		}
-	}
-				
+		function relation_delete(){
+			$('#initial-loading').css('display', 'flex')
+			var text= "관계를 삭제하시겠습니까?"
+			if(confirm (text)){
+				var param = {
+					idx : $('#del_relation_idx').val(),
+				}
+				$.ajax({
+					url : "/relation_delete"
+					, type : "POST"
+					, data : JSON.stringify(param)
+					, contentType : "application/json"
+					, async : true
+					, success : function(data, status, xhr) {
+						alert("삭제되었습니다.")
+						$('#initial-loading').css('display', 'none')
+					},
+					error : function(err){
+						console.log(err)
+						$('#error').css('display', 'flex')
+					}
+				})
+			}
+		}
    </script>

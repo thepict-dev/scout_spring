@@ -75,8 +75,9 @@
                         <div class="inputBox">
                             <p class="inputCaption">소속학교</p>
                             <div class="inputsAlign">
-                                <input type="text"  name="scout_orgno" id="scout_orgno" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                <a href="#groupPopup" class="smButton searches" style="margin-right: 12px;"><img src="/front_img/search2.png" alt="">조회</a>
+                                <input type="text"  name="scout_orgname" id="scout_orgname" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                <input type="hidden"  name="scout_orgno" id="scout_orgno" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                <a href="#groupPopup" onclick="fn_orgnize('modal_scout')" class="smButton searches" style="margin-right: 12px;"><img src="/front_img/search2.png" alt="">조회</a>
                             </div>
                         </div>
                         <div class="inputBox">
@@ -324,6 +325,7 @@
 					fn_get_trooplist_scout()
 					$('#troop_scout').val(data.rst.troopno)
 					$('#scout_orgno').val(data.rst.scoutorgno)
+					$('#scout_orgname').val(data.rst.orgname)
 					
 
 					$('#SCOUTSCHOOLYEAR_SCOUT').val(data.rst.scoutschoolyear)					

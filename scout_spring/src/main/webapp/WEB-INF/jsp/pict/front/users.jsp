@@ -185,7 +185,6 @@
                                 <div class="inputsContainer">
                                     <div class="inputBox">
                                         <p class="inputCaption">회원번호</p>
-                                        <input type="hidden" name="idx" id="idx" readonly>
                                         <input type="text" name="MEMBERNO" id="MEMBERNO" readonly placeholder="내용을 입력하세요…" class="lgThinInput">
                                     </div>
                                     <div class="inputBox">
@@ -611,6 +610,8 @@
     <input type="hidden" id="org_popup" />
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
+		
+		
 		function fn_leader_info(idx){
 			$('#leader_idx').val(idx)
 			console.log(idx)
@@ -712,7 +713,6 @@
 			if(document.getElementById("SEX_W").checked) sex = "W";
 			
 			var param = {
-				idx : $('#idx').val(),
 				MEMBERNO : $('#MEMBERNO').val(),
 				KNAME : $('#KNAME').val(),
 				MEMCLSCODE : $('#MEMCLSCODE').val(),
@@ -807,7 +807,6 @@
 				, success : function(data, status, xhr) {
 					console.log(data)
 					console.log("성공")
-					$('#idx').val(data.info.idx)
 					
 					$('#leader_idx').val("")
 					$('#scout_idx').val("")

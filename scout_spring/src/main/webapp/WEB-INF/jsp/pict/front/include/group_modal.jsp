@@ -152,10 +152,10 @@
 </div>
 <script>
 	function fn_orgsave(){
-		$('#initial-loading').css('display', 'flex')
-		
 		var org_popup = $('#org_popup').val()
+		
 		if(org_popup == 'main_scout'){//메인에 대원 단체
+			$('#initial-loading').css('display', 'flex')
 			var param = {
 				memberno : $('#MEMBERNO').val(),
 				scoutorgno : $('#org_no').val(),
@@ -183,46 +183,63 @@
 			});
 		}
 		else if(org_popup == 'main_leader'){	//메인에 리더 단체
+			$('#initial-loading').css('display', 'flex')
 			var param = {
-					memberno : $('#MEMBERNO').val(),
-					leaderorgno : $('#org_no').val(),
-					leaderorgpositioncode : $('#LEADERORGPOSITIONCODE').val(),
-				}
-				
-				$.ajax({
-					url : "/main_leader_org_save"
-					, type : "POST"
-					, data : JSON.stringify(param)
-					, contentType : "application/json"
-					, async : true
-					, success : function(data, status, xhr) {
-						if(data == 'Y'){
-							$('#groupPopup').removeClass("active")
+				memberno : $('#MEMBERNO').val(),
+				leaderorgno : $('#org_no').val(),
+				leaderorgpositioncode : $('#LEADERORGPOSITIONCODE').val(),
+			}
+			
+			$.ajax({
+				url : "/main_leader_org_save"
+				, type : "POST"
+				, data : JSON.stringify(param)
+				, contentType : "application/json"
+				, async : true
+				, success : function(data, status, xhr) {
+					if(data == 'Y'){
+						$('#groupPopup').removeClass("active")
 
-							var leaderorgpositionname = ""
-							if($('#LEADERORGPOSITIONCODE').val() == '01') leaderorgpositionname = "교장"
-							if($('#LEADERORGPOSITIONCODE').val() == '02') leaderorgpositionname = "교감"
-							if($('#LEADERORGPOSITIONCODE').val() == '03') leaderorgpositionname = "교사"
-							if($('#LEADERORGPOSITIONCODE').val() == '04') leaderorgpositionname = "일반"
-							if($('#LEADERORGPOSITIONCODE').val() == '05') leaderorgpositionname = "없음"
-							
-							var leaderorgname =""
-							if($('#org_name').val() != ''){
-								leaderorgname = $('#org_name').val()
-							}
-							if(leaderorgpositionname != ''){
-								leaderorgname += "(" +leaderorgpositionname + ")"
-							}
-
-							$("#main_leader_org").val(leaderorgname)
+						var leaderorgpositionname = ""
+						if($('#LEADERORGPOSITIONCODE').val() == '01') leaderorgpositionname = "교장"
+						if($('#LEADERORGPOSITIONCODE').val() == '02') leaderorgpositionname = "교감"
+						if($('#LEADERORGPOSITIONCODE').val() == '03') leaderorgpositionname = "교사"
+						if($('#LEADERORGPOSITIONCODE').val() == '04') leaderorgpositionname = "일반"
+						if($('#LEADERORGPOSITIONCODE').val() == '05') leaderorgpositionname = "없음"
+						
+						var leaderorgname =""
+						if($('#org_name').val() != ''){
+							leaderorgname = $('#org_name').val()
 						}
-						$('#initial-loading').css('display', 'none')
+						if(leaderorgpositionname != ''){
+							leaderorgname += "(" +leaderorgpositionname + ")"
+						}
+
+						$("#main_leader_org").val(leaderorgname)
 					}
-					, error : function(xhr, status, error) {
-						console.log(xhr)
-						console.log("에러")
-					}
-				});
+					$('#initial-loading').css('display', 'none')
+				}
+				, error : function(xhr, status, error) {
+					console.log(xhr)
+					console.log("에러")
+				}
+			});
+		}
+		else if(org_popup == 'modal_scout'){//대원연공에서 단체
+			var scoutorgno = $('#org_no').val()
+			var orgname = $('#org_name').val()
+			
+			$('#scout_orgno').val(scoutorgno)
+			$('#scout_orgname').val(orgname)
+			$('#groupPopup').removeClass('active')
+		}
+		else if(org_popup == 'modal_leader'){	//지도자연공 리더 단체
+			var leaderorgno = $('#org_no').val()
+			var orgname = $('#org_name').val()
+			
+			$('#leader_orgno').val(leaderorgno)
+			$('#leader_orgname').val(orgname)
+			$('#groupPopup').removeClass('active')
 		}
 		
 		

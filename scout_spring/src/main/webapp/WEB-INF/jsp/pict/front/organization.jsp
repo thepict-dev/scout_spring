@@ -433,7 +433,6 @@
 			if(document.getElementById("SEX_W").checked) sex = "W";
 			
 			var param = {
-				idx : $('#idx').val(),
 				MEMBERNO : $('#MEMBERNO').val(),
 				KNAME : $('#KNAME').val(),
 				MEMCLSCODE : $('#MEMCLSCODE').val(),
@@ -528,7 +527,6 @@
 				, success : function(data, status, xhr) {
 					console.log(data)
 					console.log("성공")
-					$('#idx').val(data.info.idx)
 					
 					$('#leader_idx').val("")
 					$('#scout_idx').val("")
