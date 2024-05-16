@@ -396,6 +396,8 @@
                                             <col width="4.5%" />
                                             <col width="4.5%" />
                                             <col width="4.5%" />
+                                            <col width="4.5%" />
+                                            <col width="4.5%" />
                                         </colgroup>
                                         <thead id="div_scout">
                                             <tr>
@@ -416,6 +418,8 @@
                                                 <th>납부이력</th>
                                                 <th>직책</th>
                                                 <th>스카우트구분</th>
+                                                <th>스카우트반</th>
+                                                <th>반</th>
                                                 <th>등록비</th>
                                                 <th>월간지</th>
                                                 <th>보험료</th>
@@ -731,7 +735,7 @@
 				SCOUTSCHOOLBAN : $('#SCOUTSCHOOLBAN').val(),
 			}
 			
-			var text ="등록하시겠습니까?";
+			var text ="회원정보를 수정하시겠습니까?";
 			if(confirm (text)){
 				$('#initial-loading').css('display', 'flex')
 				
@@ -918,6 +922,19 @@
 								'<td>' + arr[i].leaderposition + '</td>'+
 								'<td>' + arr[i].leaderpositionname + '</td>'+
 								'<td>' + arr[i].orgname  + '</td>'+
+								'<td>' + arr[i].scoutmagacnt  + '</td>'+
+								'<td>Y</td>'+
+								'<td>' + arr[i].confirmy + '</td>'+
+								'<td>' + arr[i].payy + '</td>'+
+								'<td>' + arr[i].enterdate.substring(0,11) + '</td>'+
+								'<td></td>'+
+								'<td></td>'+
+								'<td>' + arr[i].leaderorgpositioncode + '</td>'+
+								'<td>' + arr[i].entryfee + '</td>'+
+								'<td>' + Number(arr[i].scoutmagacnt) * 10000  + '</td>'+
+								'<td>X</td>'+
+								'<td>X</td>'+
+								'<td>' + arr[i].year + '-01-01 ~ ' + arr[i].year + '-12-31' + '</td>'+
 								'</tr>';
 						}
 						$('#leader_list').append(html)
@@ -938,6 +955,21 @@
 								'<td>' + arr[i].orgname + '</td>'+
 								'<td>' + arr[i].orgclsname + '</td>'+
 								'<td>' + arr[i].scoutschoolyear + '</td>'+
+								'<td>' + arr[i].scoutmagacnt + '</td>'+
+								'<td>Y</td>'+
+								'<td>' + arr[i].confirmy + '</td>'+
+								'<td>' + arr[i].payy + '</td>'+
+								'<td>' + arr[i].enterdate + '</td>'+
+								'<td></td>'+
+								'<td></td>'+
+								'<td>' + arr[i].scoutpositioncode + '</td>'+
+								'<td>' + arr[i].scoutclscode + '</td>'+
+								'<td>' + arr[i].scoutban + '</td>'+
+								'<td>' + arr[i].scoutschoolban + '</td>'+
+								'<td>' + arr[i].entryfee + '</td>'+
+								'<td>' + Number(arr[i].scoutmagacnt) * 10000 + '</td>'+
+								'<td></td>'+
+								'<td>' + arr[i].year + '-01-01 ~ ' + arr[i].year + '-12-31' + '</td>'+
 								'</tr>';
 							
 						}
