@@ -378,8 +378,12 @@
                                             <col width="2.5%" />
                                             <col width="4.5%" />
                                             <col width="4.5%" />
+                                            <col width="4.5%" />
                                             <col width="6.5%" />
-                                            <col width="6.5%" />
+                                            <col width="5.5%" />
+                                            <col width="2.5%" />
+                                            <col width="2.5%" />
+                                            <col width="4.5%" />
                                             <col width="4.5%" />
                                             <col width="2.5%" />
                                             <col width="2.5%" />
@@ -390,14 +394,10 @@
                                             <col width="4.5%" />
                                             <col width="4.5%" />
                                             <col width="4.5%" />
-                                            <col width="6.5%" />
                                             <col width="4.5%" />
+                                            <col width="3.5%" />
                                             <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
+                                            <col width="8.5%" />
                                         </colgroup>
                                         <thead id="div_scout">
                                             <tr>
@@ -454,6 +454,8 @@
                                             <col width="4.5%" />
                                             <col width="4.5%" />
                                             <col width="4.5%" />
+                                            <col width="2.5%" />
+                                            <col width="2.5%" />
                                             <col width="4.5%" />
                                             <col width="4.5%" />
                                             <col width="4.5%" />
@@ -462,9 +464,7 @@
                                             <col width="4.5%" />
                                             <col width="4.5%" />
                                             <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
+                                            <col width="8.5%" />
                                         </colgroup>
                                         <thead id="div_leader">
                                             <tr>
@@ -929,7 +929,7 @@
 								'<td>' + arr[i].enterdate.substring(0,11) + '</td>'+
 								'<td></td>'+
 								'<td></td>'+
-								'<td>' + arr[i].leaderorgpositioncode + '</td>'+
+								'<td>' + arr[i].leaderorgpositionname + '</td>'+
 								'<td>' + arr[i].entryfee + '</td>'+
 								'<td>' + Number(arr[i].scoutmagacnt) * 10000  + '</td>'+
 								'<td>X</td>'+
@@ -959,11 +959,11 @@
 								'<td>Y</td>'+
 								'<td>' + arr[i].confirmy + '</td>'+
 								'<td>' + arr[i].payy + '</td>'+
-								'<td>' + arr[i].enterdate + '</td>'+
+								'<td>' + arr[i].enterdate.substring(0, 11) + '</td>'+
 								'<td></td>'+
 								'<td></td>'+
-								'<td>' + arr[i].scoutpositioncode + '</td>'+
-								'<td>' + arr[i].scoutclscode + '</td>'+
+								'<td>' + arr[i].scoutpositionname + '</td>'+
+								'<td>' + arr[i].scoutclsname + '</td>'+
 								'<td>' + arr[i].scoutban + '</td>'+
 								'<td>' + arr[i].scoutschoolban + '</td>'+
 								'<td>' + arr[i].entryfee + '</td>'+
