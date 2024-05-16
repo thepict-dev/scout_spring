@@ -723,3 +723,30 @@ tbody tr.active td{
 .mainProfile.sign:hover{
 	opacity: 1;
 }
+
+/* 조직통합창 */
+.organSearchForm{
+    display: flex;
+    flex-direction: column;
+    column-gap: 16px;
+    width: 100%;
+    padding: 16px;
+    background: var(--grey-50);
+    border-bottom: 1px solid var(--grey-100);
+}
+.organSearch{
+    display: flex;
+    width: 100%;
+}
+.organSearchForm .subTitles{
+    padding-bottom: 16px;
+}
+.btnContainer.organ{
+    padding-top: 16px;
+}
+.formContainer.organ{
+    height: calc(100% - 167px);
+}
+.organForm{
+    /* padding: 16px 24px; */
+}

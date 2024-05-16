@@ -17,7 +17,7 @@
                 <img src="/front_img/lnb1.png" alt="">
                 <a href="#lnk">스카우트 통합 관리</a>
                 <ul class="subNav">
-                    <li><a href="/">조직 통합창</a></li>
+                    <li><a href="/front/organization">조직 통합창</a></li>
                     <li><a href="/front/users">회원 통합창</a></li>
                     <li><a href="/">단위대 통합창</a></li>
                     <li><a href="/front/signup">신규 회원 등록</a></li>
