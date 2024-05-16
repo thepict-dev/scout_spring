@@ -883,8 +883,8 @@ public class PictController {
 			@RequestParam("img") MultipartFile multi,
 			@RequestPart(value = "request") Map<String, Object> param) throws Exception {	
 		try {
-			//String uploadPath = "/user1/upload_file/risingstar/";
-			String uploadpath  = "D:\\user1\\upload_file\\default";
+			String uploadpath = "/user1/upload_file/scout/";
+			//String uploadpath  = "D:\\user1\\upload_file\\default";
             String originFilename = multi.getOriginalFilename();
             String extName = originFilename.substring(originFilename.lastIndexOf("."),originFilename.length());
             long size = multi.getSize();
@@ -1185,8 +1185,8 @@ public class PictController {
 	}
 
 	private String getSaveLocation(MultipartHttpServletRequest request, MultipartFile uploadFile) {
-		//String uploadPath = "/user1/upload_file/risingstar/";
-		String uploadPath = "D:\\user1\\upload_file\\default";
+		String uploadPath = "/user1/upload_file/scout/";
+		//String uploadPath = "D:\\user1\\upload_file\\default";
 		return uploadPath;
 	}
 

@@ -6,8 +6,8 @@ plugins {
 }
 
 bootWar { 
-	archiveBaseName='scout-spirng'
-	archiveFileName='scout-spirng.war'
+	archiveBaseName='scout_spring'
+	archiveFileName='scout_spring.war'
 	archiveVersion='0.0.0'
 }
 
