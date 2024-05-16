@@ -376,8 +376,8 @@
                                     <table>
                                         <colgroup>
                                             <col width="2.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
+                                            <col width="3.5%" />
+                                            <col width="3.5%" />
                                             <col width="4.5%" />
                                             <col width="6.5%" />
                                             <col width="5.5%" />
@@ -385,7 +385,7 @@
                                             <col width="2.5%" />
                                             <col width="4.5%" />
                                             <col width="4.5%" />
-                                            <col width="2.5%" />
+                                            <col width="4.5%" />
                                             <col width="2.5%" />
                                             <col width="4.5%" />
                                             <col width="4.5%" />

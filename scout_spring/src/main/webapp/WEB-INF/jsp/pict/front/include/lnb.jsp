@@ -20,6 +20,7 @@
                     <li><a href="/front/organization">조직 통합창</a></li>
                     <li><a href="/front/users">회원 통합창</a></li>
                     <li><a href="/">단위대 통합창</a></li>
+                    <li><a href="/front/signup_organ">신규 조직 등록</a></li>
                     <li><a href="/front/signup">신규 회원 등록</a></li>
                 </ul>
             </li>
