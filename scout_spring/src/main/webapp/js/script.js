@@ -187,6 +187,7 @@ $(document).on("click", ".joinBtn", function (e){
 	$('#SCOUTMAGAFEE').val("");
 	$('#LEADERMAGACNT').val("");
 	$('#LEADERMAGAFEE').val("");
+	$('#total_amount').val("");
 	$('#joinPopup select').niceSelect('update')
     
     let target = $(this).attr("href");
@@ -218,6 +219,7 @@ $(".modalInner button").click(function(){
 	$('#SCOUTMAGAFEE').val("");
 	$('#LEADERMAGACNT').val("");
 	$('#LEADERMAGAFEE').val("");
+	$('#total_amount').val("");
 	$('#joinPopup select').niceSelect('update')
     $("#joinPopup").removeClass("active");
 });
@@ -284,6 +286,7 @@ $("#join_modal button").click(function(){
 	$('#SCOUTMAGACNT_SCOUT').val("");
 	$('#SCOUTMAGAFEE_SCOUT').val("");
 	
+	$('#total_amount_scout').val("");
 	$('#joinMemPopup select').niceSelect('update')
     $("#joinMemPopup").removeClass("active");
 });
