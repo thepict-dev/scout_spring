@@ -224,7 +224,7 @@ $(".modalInner button").click(function(){
 
 //대원 가입
 // 팝업 열기
-$(document).on("click", ".joinMemBtn", function (e){
+$(document).on("click", ".scoutJoinBtn", function (e){
 	console.log("스크립트에서 팝업열기 대원")
 	$('#scout_idx').val("");
 	$('#YEAR_SCOUT').val("");
@@ -239,6 +239,7 @@ $(document).on("click", ".joinMemBtn", function (e){
 	$('#SCOUTCLSCODE').val("")
 	$('#SCOUTBAN').val("")
 	$('#SCOUTPOSITIONCODE').val("")
+	$('#SCOUTSCHOOLYEAR_SCOUT').val("")
 	
 	
 	$('#ADMINY_SCOUT').val("");
@@ -250,11 +251,11 @@ $(document).on("click", ".joinMemBtn", function (e){
 	$('#INSURANCEFEE_SCOUT').val("");
 	$('#SCOUTMAGACNT_SCOUT').val("");
 	$('#SCOUTMAGAFEE_SCOUT').val("");
+	$('#total_amount_scout').val("");
 	
 	$('#joinMemPopup select').niceSelect('update')
 	
     let target = $(this).attr("href");
-    $(target).addClass("active");
 });
 // 팝업닫기
 $("#join_modal button").click(function(){
@@ -320,26 +321,11 @@ $("#joinMemPopup button").click(function(){
 });
 
 
-// 외부영역 클릭 시 팝업 닫기
-$(document).mouseup(function (e){
-    let LayerPopup = $("#groupPopup");
-    if(LayerPopup.has(e.target).length === 0){
-        LayerPopup.removeClass("active");
-    }
-});
-// 외부영역 클릭 시 팝업 닫기
-$(document).mouseup(function (e){
-    let LayerPopup = $("#relationPopup");
-    if(LayerPopup.has(e.target).length === 0){
-        LayerPopup.removeClass("active");
-    }
-});
-
 document.addEventListener('DOMContentLoaded', function() {
     // leader_list와 scout_list 테이블에 이벤트 위임 설정
     document.addEventListener('click', function(event) {
         // 클릭된 요소가 leader_list 또는 scout_list 내의 tr 요소인지 확인
-        const clickedRow = event.target.closest('#leader_list tr, #scout_list tr, #searchResultList tr, #relation_list tr, #search_relation_list tr');
+        const clickedRow = event.target.closest('#leader_list tr, #scout_list tr, #searchResultList tr, #relation_list tr, #search_relation_list tr, #group_list tr');
         if (clickedRow) {
             const table = clickedRow.closest('table');
             const rows = table.querySelectorAll('tr');

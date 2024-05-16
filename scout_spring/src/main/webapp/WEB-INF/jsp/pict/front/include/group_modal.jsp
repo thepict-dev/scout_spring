@@ -171,7 +171,7 @@
 				, async : true
 				, success : function(data, status, xhr) {
 					if(data == 'Y'){
-						$('#groupPopup').css("display", "none")
+						$('#groupPopup').removeClass('active')
 						$("#main_scout_org").val($('#org_name').val())
 					}
 					$('#initial-loading').css('display', 'none')

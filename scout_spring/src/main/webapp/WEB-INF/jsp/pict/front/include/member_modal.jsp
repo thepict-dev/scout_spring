@@ -284,7 +284,7 @@
 	        return false; // 모달을 열지 않음
 	    }
 	
-	    let target = $('.joinMemBtn').attr("href");
+	    let target = $('.scoutJoinBtn').attr("href");
 	    $(target).addClass("active");
 	    
 		$('#joinMemPopup select').niceSelect('update')
@@ -300,7 +300,7 @@
 	    }
 		
 		else{
-			let target = $('.joinMemBtn').attr("href");
+			let target = $('.scoutJoinMemBtn').attr("href");
 		    $(target).addClass("active");
 		    
 			var param = {
