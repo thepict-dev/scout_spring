@@ -497,10 +497,15 @@
 	
 	<!-- 메인 대원 단체 저장 -->
 	<update id="main_scout_org_save" parameterType="pictVO">
-		update member set SCOUTORGNO = #{SCOUTORGNO}, SCOUTORGCLSCODE1 = #{SCOUTORGCLSCODE1}, SCOUTORGCLSCODE2 = #{SCOUTORGCLSCODE2}
+		update member set SCOUTORGNO = #{SCOUTORGNO}, SCOUTORGCLSCODE1 = #{SCOUTORGCLSCODE1}, SCOUTORGCLSCODE2 = #{SCOUTORGCLSCODE2}, UPDATEDATE = now()
 		where MEMBERNO = #{MEMBERNO}
 	</update>
 	
+	<!-- 메인 지도자 단체 저장 -->
+	<update id="main_leader_org_save" parameterType="pictVO">
+		update member set LEADERORGNO = #{LEADERORGNO}, LEADERORGPOSITIONCODE = #{LEADERORGPOSITIONCODE}, UPDATEDATE = now()
+		where MEMBERNO = #{MEMBERNO}
+	</update>
 	
 	
 	

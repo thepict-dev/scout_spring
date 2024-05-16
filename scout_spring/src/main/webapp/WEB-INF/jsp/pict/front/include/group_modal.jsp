@@ -183,7 +183,46 @@
 			});
 		}
 		else if(org_popup == 'main_leader'){	//메인에 리더 단체
-			
+			var param = {
+					memberno : $('#MEMBERNO').val(),
+					leaderorgno : $('#org_no').val(),
+					leaderorgpositioncode : $('#LEADERORGPOSITIONCODE').val(),
+				}
+				
+				$.ajax({
+					url : "/main_leader_org_save"
+					, type : "POST"
+					, data : JSON.stringify(param)
+					, contentType : "application/json"
+					, async : true
+					, success : function(data, status, xhr) {
+						if(data == 'Y'){
+							$('#groupPopup').css("display", "none")
+
+							var leaderorgpositionname = ""
+							if($('#LEADERORGPOSITIONCODE').val() == '01') leaderorgpositionname = "교장"
+							if($('#LEADERORGPOSITIONCODE').val() == '02') leaderorgpositionname = "교감"
+							if($('#LEADERORGPOSITIONCODE').val() == '03') leaderorgpositionname = "교사"
+							if($('#LEADERORGPOSITIONCODE').val() == '04') leaderorgpositionname = "일반"
+							if($('#LEADERORGPOSITIONCODE').val() == '05') leaderorgpositionname = "없음"
+							
+							var leaderorgname =""
+							if($('#org_name').val() != ''){
+								leaderorgname = $('#org_name').val()
+							}
+							if(leaderorgpositionname != ''){
+								leaderorgname += "(" +leaderorgpositionname + ")"
+							}
+
+							$("#main_leader_org").val(leaderorgname)
+						}
+						$('#initial-loading').css('display', 'none')
+					}
+					, error : function(xhr, status, error) {
+						console.log(xhr)
+						console.log("에러")
+					}
+				});
 		}
 		
 		

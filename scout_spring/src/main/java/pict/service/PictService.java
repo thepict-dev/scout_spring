@@ -121,4 +121,6 @@ public interface PictService {
 
 	public void main_scout_org_save(PictVO pictVO) throws Exception;
 
+	public void main_leader_org_save(PictVO pictVO) throws Exception;
+
 }

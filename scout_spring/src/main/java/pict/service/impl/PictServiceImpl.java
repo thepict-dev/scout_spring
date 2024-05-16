@@ -328,6 +328,12 @@ public class PictServiceImpl implements PictService {
 		// TODO Auto-generated method stub
 		pictMapper.main_scout_org_save(pictVO);
 	}
+
+	@Override
+	public void main_leader_org_save(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.main_leader_org_save(pictVO);
+	}
 	
 	
 }

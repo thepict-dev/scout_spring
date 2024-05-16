@@ -123,7 +123,9 @@ public interface PictMapper {
 
 	List<PictVO> search_org(PictVO pictVO) throws Exception;
 
-	void main_scout_org_save(PictVO pictVO) throws Exception;  
+	void main_scout_org_save(PictVO pictVO) throws Exception;
+
+	void main_leader_org_save(PictVO pictVO) throws Exception;  
  
 	
 

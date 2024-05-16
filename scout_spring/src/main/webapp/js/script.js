@@ -224,7 +224,6 @@ $(".modalInner button").click(function(){
 
 //대원 가입
 // 팝업 열기
-/*
 $(document).on("click", ".joinMemBtn", function (e){
 	console.log("스크립트에서 팝업열기 대원")
 	$('#scout_idx').val("");
@@ -287,7 +286,6 @@ $("#join_modal button").click(function(){
 	$('#joinMemPopup select').niceSelect('update')
     $("#joinMemPopup").removeClass("active");
 });
-*/
 //학교/단체 찾기
 // 팝업 열기
 $(document).on("click", ".groupBtn", function (e){
