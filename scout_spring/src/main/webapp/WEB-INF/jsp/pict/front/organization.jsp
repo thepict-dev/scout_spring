@@ -96,7 +96,7 @@
 	                                <th rowspan="2">스카우트구분</th>
 	                                <th rowspan="2">단위대구분</th>
 	                                <th rowspan="2">최종대활동년도</th>
-	                                <th colspan="4" style="border-bottom: 0;">최종활동년도</th>
+	                                <th colspan="4" style="border-bottom: 0;text-align: center;">최종활동년도</th>
                                 </tr>
                                 <tr>
                                 	<th style="z-index: 2;">남자대원수</th>
