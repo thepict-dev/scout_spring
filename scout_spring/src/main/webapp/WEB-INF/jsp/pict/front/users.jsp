@@ -1033,7 +1033,18 @@
 		        }).open();
 		    });
 		}    
-		
+
+		//파일업로드
+		const file = document.querySelector(".imgUpload");
+		const preview = document.querySelector(".profileImg");
+
+		file.addEventListener("change", () => {
+		    const reader = new FileReader();
+		    reader.onload = () => {
+		        preview.src = reader.result;
+		    }
+		    reader.readAsDataURL(file.files[0]);
+		});
 
 	</script>
 </body>

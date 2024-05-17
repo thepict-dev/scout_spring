@@ -10,28 +10,32 @@
 <body>
 	<%@ include file="./include/lnb.jsp" %>
 	<%@ include file="./include/header.jsp" %>
-        <div class="contentsContainer">
+
+    <div class="contentsContainer">
         <form action="" class="organSearchForm">
-            <h2 class="subTitles">조회 결과</h2>
+            <h2 class="subTitles">조회 조건</h2>
             <div class="organSearch">
+                <div class="searchContainer">
+                    <p class="inputCaption">연도</p>
+                    <div class="inputsAlign">
+                        <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="smThinInput">
+                        <a href="#lnk" class="smButton bigWhiteBtn">초기화</a>
+                    </div>
+                </div>
                 <div class="searchContainer">
                     <p class="inputCaption">연맹/지구</p>
                     <div class="inputsAlign">
-                        <select name="" id="" class="lgThinSelect">
+                        <select name="" id="" class="smThinSelect">
                             <option value="1">중앙본부</option>
                         </select>
-                        <select name="" id="" class="lgThinSelect">
-                            <option value="">-</option>
+                        <select name="" id="" class="smThinSelect">
+                            <option value="">지구 선택</option>
                         </select>
                     </div>
                 </div>
                 <div class="searchContainer">
-                    <p class="inputCaption">등급</p>
-                    <div class="inputsAlign">
-                        <select name="" id="" class="lgThinSelect">
-                            <option value="1">단위대</option>
-                        </select>
-                    </div>
+                    <p class="inputCaption">법정생년월일</p>
+                    <input type="date" name="" id="" value="${pictVO.search_birthday}" class="lgThinInput">
                 </div>
                 <div class="searchContainer">
                     <p class="inputCaption">단위대 구분</p>
@@ -42,14 +46,10 @@
                         <select name="" id="" class="lgThinSelect">
                             <option value="">-</option>
                         </select>
-                    </div>
-                </div>
-                <div class="searchContainer">
-                    <p class="inputCaption">관할교육청</p>
-                    <div class="inputsAlign">
-                        <select name="" id="" class="lgThinSelect">
-                            <option value="">-</option>
+                        <select name="" id="" class="smThinSelect">
+                            <option value="1">성명</option>
                         </select>
+                        <input type="text" name="" id="" class="smThinInput" placeholder="내용을 입력해주세요...">
                     </div>
                 </div>
                 <div class="searchContainer">
@@ -61,7 +61,7 @@
                         <select name="" id="" class="smThinSelect">
                             <option value="">대번호</option>
                         </select>
-                        <input type="text" name="" id="" class="smThinInput" placeholder="내용을 입력해주세요...">
+                        <input type="text" name="" id="" class="lgThinInput" placeholder="내용을 입력해주세요...">
                     </div>
                 </div>
             </div>
@@ -100,7 +100,18 @@
 	                                <th>전종여부</th>
                                 </tr>
                             </thead>
-                            <tbody id="org_list">
+                            <tbody id="unit_list">
+                                <tr>
+                                    <td>Cell01</td>
+                                    <td>Cell02</td>
+                                    <td>Cell03</td>
+                                    <td>Cell04</td>
+                                    <td>Cell05</td>
+                                    <td>Cell06</td>
+                                    <td>Cell07</td>
+                                    <td>Cell08</td>
+                                    <td>Cell08</td>
+                                </tr>
                                 <tr>
                                     <td>Cell01</td>
                                     <td>Cell02</td>
@@ -124,45 +135,25 @@
                 </div>
             </div>
             <div class="resizer" id="dragMe"></div>
-            <div class="right">
-                <ul class="formTabNav">
-                    <li class="active">기본정보</li>
-                    <li>상세정보</li>
-                </ul>
+            <div class="right" style="background-color: var(--grey-50);">
                 <div class="fomrTabContent active">
-                    <form action="" class="organForm">
-                        <h2 class="subTitles" style="padding: 16px 24px 0 24px;">기본정보</h2>
+                    <form action="" class="organForm" style="background-color: #fff;">
+                        <h2 class="subTitles" style="padding: 16px 24px 0 24px;">단위대정보</h2>
                         <div class="stackInputs bottomBd" style="padding: 12px 24px 16px 24px;">
                             <div class="inputsContainer">
                                 <div class="inputBox">
-                                    <p class="inputCaption">연맹/지구</p>
-                                    <div class="inputsAlign">
-                                        <select name="" id="" class="smThinSelect">
-                                            <option value="1">중앙본부</option>
-                                        </select>
-                                        <select name="" id="" class="smThinSelect">
-                                            <option value="">지구 선택</option>
-                                        </select>
-                                    </div>
+                                    <p class="inputCaption">대번호</p>
+                                    <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="smThinInput">
                                 </div>
                                 <div class="inputBox">
-                                    <p class="inputCaption">등급</p>
-                                    <select name="" id="" class="lgThinSelect">
-                                        <option value="1"></option>
-                                        <option value="2"></option>
-                                        <option value="3"></option>
-                                    </select>
+                                    <p class="inputCaption">단위대명</p>
+                                    <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
                                 </div>
                                 <div class="inputBox">
                                     <p class="inputCaption">단위대 구분</p>
-                                    <div class="inputsAlign">
-                                        <select name="" id="" class="lgThinSelect">
-                                            <option value="1">중앙본부</option>
-                                        </select>
-                                        <select name="" id="" class="lgThinSelect">
-                                            <option value="">-</option>
-                                        </select>
-                                    </div>
+                                    <select name="" id="" class="lgThinSelect">
+                                        <option value="1">중앙본부</option>
+                                    </select>
                                 </div>
                                 <div class="inputBox">
                                     <p class="inputCaption">스카우트 구분</p>
@@ -175,71 +166,46 @@
                             </div>
                             <div class="inputsContainer">
                                 <div class="inputBox">
-                                    <p class="inputCaption">대번호</p>
+                                    <p class="inputCaption">주소</p>
                                     <div class="inputsAlign">
-                                        <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="smThinInput">
-                                        <a href="#lnk" class="smButton bigWhiteBtn">변경</a>
+                                        <div class="zip">
+                                            <input type="text" name="HPOSTCODE" id="HPOSTCODE" readonly class="lgThinInput" placeholder="00000">
+                                        </div>
+                                        <input type="text" name="get_post" id="get_post" class="lgThinInput post" style="margin-top: 0;" placeholder="내용을 입력하세요…">
                                     </div>
-                                </div>
-                                <div class="inputBox">
-                                    <p class="inputCaption">결성일</p>
-                                    <input type="date" name="" id="" value="${pictVO.search_birthday}" class="lgThinInput">
                                 </div>
                             </div>
                             <div class="inputsContainer">
                                 <div class="inputBox">
-                                    <p class="inputCaption">영문명</p>
+                                    <p class="inputCaption">대표관리지도자</p>
                                     <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
                                 </div>
                             </div>
                             <div class="inputsContainer">
                                 <div class="inputBox">
-                                    <p class="inputCaption">단위대명</p>
+                                    <p class="inputCaption">지도자수</p>
                                     <div class="inputsAlign">
                                         <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                        <a href="#lnk" class="smButton bigWhiteBtn">변경</a>
+                                        <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
                                     </div>
                                 </div>
                                 <div class="inputBox">
-                                    <p class="inputCaption">관할교육청</p>
-
+                                    <p class="inputCaption">대원수</p>
                                     <div class="inputsAlign">
-                                        <input type="date" name="" id="" value="${pictVO.search_birthday}" class="lgThinInput">
-                                        <div class="recive" style="margin-left: 15px;">
-                                            <input type="checkbox" name="" id=""><label for="" style="padding-left: 14px;">관할교육청 수정</label>
-                                        </div>
+                                        <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                        <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
                                     </div>
                                 </div>
                             </div>
                             <div class="inputsContainer">
                                 <div class="inputBox">
-                                    <p class="inputCaption">집주소</p>
-                                    <div class="zip">
-                                        <input type="text" name="HPOSTCODE" id="HPOSTCODE" readonly class="lgThinInput">
-                                        <a href="#lnk" class="normalButton white">우편번호 검색</a>
-                                    </div>
-                                    <input type="text" name="get_post" id="get_post" class="lgThinInput post">
-                                </div>
-                            </div>
-                            <div class="inputsContainer">
-                                <div class="inputBox">
-                                    <p class="inputCaption">전화</p>
+                                    <p class="inputCaption">월간지</p>
                                     <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                </div>
-                                <div class="inputBox">
-                                    <p class="inputCaption">팩스</p>
-                                    <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                </div>
-                            </div>
-                            <div class="inputsContainer">
-                                <div class="inputBox">
-                                    <p class="inputCaption">비고</p>
-                                    <textarea name="" id="" cols="100"></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="tableContainer relationContainer bottomBd">
-                            <h2 class="subTitles">관리지도자</h2>
+                            <h2 class="subTitles">지도자</h2>
                             <div class="tableWrapper">
                                 <table>
                                     <colgroup>
@@ -263,18 +229,18 @@
                                             <td>년도</td>
                                             <td>연맹</td>
                                         </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>지도자</td>
+                                            <td>년도</td>
+                                            <td>연맹</td>
+                                        </tr>
                                     </tbody>
                                 </table>
-                            </div>
-                            <div class="tableButtons">
-                                <p>0<span>rows</span></p>
-                                <!-- <div class="buttons">
-                                    <a href="#relationPopup" class="smButton relationBtn"><img src="/front_img/modify.png" alt="">수정</a>
-                                </div> -->
                             </div>
                         </div>
                         <div class="tableContainer relationContainer">
-                            <h2 class="subTitles">연소지도자</h2>
+                            <h2 class="subTitles">대원</h2>
                             <div class="tableWrapper">
                                 <table>
                                     <colgroup>
@@ -300,28 +266,10 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
-                            <div class="tableButtons">
-                                <p>0<span>rows</span></p>
-                                <!-- <div class="buttons">
-                                    <a href="#relationPopup" class="smButton relationBtn"><img src="/front_img/modify.png" alt="">수정</a>
-                                </div> -->
-                            </div>
-                        </div>
-                        <div class="tableButtons rightBtns">
-                            <a href="#lnk" class="smButton"><img src="/front_img/refresh.png" alt="">조직이전</a>
-                            <div class="buttons">
-                                <a href="#lnk" class="smButton"><img src="/front_img/doc.png" alt="">청소년단체등록확인서</a>
-                                <a href="#lnk" class="smButton"><img src="/front_img/doc.png" alt="">가맹등록확인서</a>
-                                <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">저장</a>
-                                <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">계속저장</a>
-                                <a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">화면 초기화</a>
                             </div>
                         </div>
                     </form>
                 </div>
-                <div class="fomrTabContent">2</div>
-
             </div>
         </div>
     </div>

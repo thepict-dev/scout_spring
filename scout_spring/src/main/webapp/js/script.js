@@ -94,18 +94,6 @@ const mouseUpHandler = function () {
 // 마우스 down 이벤트를 등록
 resizer.addEventListener("mousedown", mouseDownHandler);
 
-//파일업로드
-const file = document.querySelector(".imgUpload");
-const preview = document.querySelector(".profileImg");
-
-file.addEventListener("change", () => {
-    const reader = new FileReader();
-    reader.onload = () => {
-        preview.src = reader.result;
-    }
-    reader.readAsDataURL(file.files[0]);
-});
-
 const tabItem = document.querySelectorAll('.formTabNav li');
 const tabInner = document.querySelectorAll('.fomrTabContent');
 
@@ -322,7 +310,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // leader_list와 scout_list 테이블에 이벤트 위임 설정
     document.addEventListener('click', function(event) {
         // 클릭된 요소가 leader_list 또는 scout_list 내의 tr 요소인지 확인
-        const clickedRow = event.target.closest('#leader_list tr, #scout_list tr, #searchResultList tr, #relation_list tr, #search_relation_list tr, #group_list tr');
+        const clickedRow = event.target.closest('#leader_list tr, #scout_list tr, #searchResultList tr, #relation_list tr, #search_relation_list tr, #group_list tr, #org_list tr, #unit_list tr');
         if (clickedRow) {
             const table = clickedRow.closest('table');
             const rows = table.querySelectorAll('tr');

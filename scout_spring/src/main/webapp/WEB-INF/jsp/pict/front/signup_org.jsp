@@ -10,120 +10,251 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<body>
 		<%@ include file="./include/lnb.jsp" %>
-		<%@ include file="./include/header.jsp" %>
-	    <div class="contentsContainer">
-	        <div class="formContainer">
-	            <div class="joinContainer">
-	                <div class="fomrTabContent signContainer">
-	                    <form action="" id="register" name="register" method="post" enctype="multipart/form-data">
-	                        <h2 class="subTitles" style="padding: 16px 0 0 24px;">가입정보</h2>
-	                        <div class="basicInfo1 inputsPd">
-	                            <div class="mainProfile sign">
-	                            	<img src="/front_img/users.png" alt="">
-	                                <p>프로필 사진은 회원 등록 후<br>회원 통합창에서 설정 가능합니다.</p>
+		<%@ include file="./include/header.jsp" %>    
+		<div class="contentsContainer">
+	        <form action="" class="organSearchForm">
+	            <h2 class="subTitles">조회 조건</h2>
+	            <div class="organSearch">
+	                <div class="searchContainer">
+	                    <p class="inputCaption">연도</p>
+	                    <div class="inputsAlign">
+	                        <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="smThinInput">
+	                        <a href="#lnk" class="smButton bigWhiteBtn">초기화</a>
+	                    </div>
+	                </div>
+	                <div class="searchContainer">
+	                    <p class="inputCaption">연맹/지구</p>
+	                    <div class="inputsAlign">
+	                        <select name="" id="" class="smThinSelect">
+	                            <option value="1">중앙본부</option>
+	                        </select>
+	                        <select name="" id="" class="smThinSelect">
+	                            <option value="">지구 선택</option>
+	                        </select>
+	                    </div>
+	                </div>
+	                <div class="searchContainer">
+	                    <p class="inputCaption">법정생년월일</p>
+	                    <input type="date" name="" id="" value="${pictVO.search_birthday}" class="lgThinInput">
+	                </div>
+	                <div class="searchContainer">
+	                    <p class="inputCaption">단위대 구분</p>
+	                    <div class="inputsAlign">
+	                        <select name="" id="" class="lgThinSelect">
+	                            <option value="1">중앙본부</option>
+	                        </select>
+	                        <select name="" id="" class="lgThinSelect">
+	                            <option value="">-</option>
+	                        </select>
+	                        <select name="" id="" class="smThinSelect">
+	                            <option value="1">성명</option>
+	                        </select>
+	                        <input type="text" name="" id="" class="smThinInput" placeholder="내용을 입력해주세요...">
+	                    </div>
+	                </div>
+	                <div class="searchContainer">
+	                    <p class="inputCaption">스카우트구분</p>
+	                    <div class="inputsAlign">
+	                        <select name="" id="" class="lgThinSelect" style="margin-right: 50px;">
+	                            <option value="1">중앙본부</option>
+	                        </select>
+	                        <select name="" id="" class="smThinSelect">
+	                            <option value="">대번호</option>
+	                        </select>
+	                        <input type="text" name="" id="" class="lgThinInput" placeholder="내용을 입력해주세요...">
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="btnContainer organ">
+	                <a href="#lnk" class="basicButton white"><img src="/front_img/reset.png" alt="">취소</a>
+	                <a href="#lnk" class="basicButton purple"><img src="/front_img/search.png" alt="">조회</a>
+	            </div>
+	        </form>
+	        <div class="formContainer organ">
+	            <div class="left">
+	                <div class="tableContainer">
+	                    <h2 class="subTitles">단위대 목록</h2>
+	                    <div class="tableWrapper">
+	                        <table>
+	                            <colgroup>
+	                                <col width="13.5%" />
+	                                <col width="8%" />
+	                                <col width="14.5%" />
+	                                <col width="12.5%" />
+	                                <col width="10.5%" />
+	                                <col width="10%" />
+	                                <col width="10%" />
+	                                <col width="12%" />
+	                                <col width="10%" />
+	                            </colgroup>
+	                            <thead>
+	                                <tr>
+		                                <th>회원번호</th>
+		                                <th>회원명</th>
+		                                <th>법정생년월일</th>
+		                                <th>회원구분</th>
+		                    			<th>회원등급</th>
+		                                <th>대원여부</th>
+		                                <th>지도자여부</th>
+		                                <th>평생회원여부</th>
+		                                <th>전종여부</th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                                <tr>
+	                                    <td>Cell01</td>
+	                                    <td>Cell02</td>
+	                                    <td>Cell03</td>
+	                                    <td>Cell04</td>
+	                                    <td>Cell05</td>
+	                                    <td>Cell06</td>
+	                                    <td>Cell07</td>
+	                                    <td>Cell08</td>
+	                                    <td>Cell08</td>
+	                                </tr>
+	                            </tbody>
+	                        </table>
+	                    </div>
+	                    <div class="tableButtons">
+	                        <p>0<span>rows</span></p>
+	                        <div class="buttons">
+	                            <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="resizer" id="dragMe"></div>
+	            <div class="right" style="background-color: var(--grey-50);">
+	                <div class="fomrTabContent active">
+	                    <form action="" class="organForm" style="background-color: #fff;">
+	                        <h2 class="subTitles" style="padding: 16px 24px 0 24px;">단위대정보</h2>
+	                        <div class="stackInputs bottomBd" style="padding: 12px 24px 16px 24px;">
+	                            <div class="inputsContainer">
+	                                <div class="inputBox">
+	                                    <p class="inputCaption">대번호</p>
+	                                    <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="smThinInput">
+	                                </div>
+	                                <div class="inputBox">
+	                                    <p class="inputCaption">단위대명</p>
+	                                    <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+	                                </div>
+	                                <div class="inputBox">
+	                                    <p class="inputCaption">단위대 구분</p>
+	                                    <select name="" id="" class="lgThinSelect">
+	                                        <option value="1">중앙본부</option>
+	                                    </select>
+	                                </div>
+	                                <div class="inputBox">
+	                                    <p class="inputCaption">스카우트 구분</p>
+	                                    <select name="" id="" class="lgThinSelect">
+	                                        <option value="1"></option>
+	                                        <option value="2"></option>
+	                                        <option value="3"></option>
+	                                    </select>
+	                                </div>
 	                            </div>
-	                            <div class="stackInputs">
-	                                <div class="inputsContainer">
-	                                    <div class="inputBox">
-	                                        <p class="inputCaption">회원번호</p>
-	                                        <input type="text" name="MEMBERNO" id="MEMBERNO" readonly placeholder="내용을 입력하세요…" class="lgThinInput">
-	                                    </div>
-	                                    <div class="inputBox">
-	                                        <p class="inputCaption">회원구분</p>
-	                                        <select name="MEMCLSCODE" id="MEMCLSCODE" class="smThinSelect">
-	                                            <option value="">선택하세요.</option>
-	                                            <option value="1">개인</option>
-	                                            <option value="2">법인</option>
-	                                            <option value="3">단체</option>
-	                                        </select>
-	                                    </div>
-	                                    <div class="inputBox">
-	                                        <p class="inputCaption">회원등급</p>
-	                                        <select name="MEMGRADECODE" id="MEMGRADECODE" class="lgThinSelect">
-	                                            <option value="0">대원/지도자</option>
-	                                            <option value="1">후원회원</option>
-	                                            <option value="2">행사회원</option>
-	                                        </select>
-	                                    </div>
-	                                </div>
-	                                <div class="inputsContainer">
-	                                    <div class="inputBox">
-	                                        <p class="inputCaption">생년월일</p>
-	                                        <input type="date" name="BIRTHDAY" id="BIRTHDAY" class="lgThinInput" required>
-	                                    </div>
-	                                    <div class="inputBox">
-	                                        <p class="inputCaption">전종여부</p>
-	                                        <select name="EMPLOYEEY" id="EMPLOYEEY" class="smThinSelect">
-	                                            <option value="N">-</option>
-	                                            <option value="Y">전종</option>
-	                                        </select>
-	                                    </div>
-	                                </div>
-	                                <div class="inputsContainer">
-	                                    <div class="inputBox">
-	                                        <p class="inputCaption">성명(한글)</p>
-	                                        <input type="text" name="KNAME" id="KNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
-	                                    </div>
-	                                    <div class="inputBox">
-	                                        <p class="inputCaption">성명(영문)</p>
-	                                        <input type="text" name="ENAME" id="ENAME" placeholder="내용을 입력하세요…" class="lgThinInput">
-	                                    </div>
-	                                    <div class="inputBox genderContainer">
-	                                        <div class="gender">
-	                                            <input type="radio" name="SEX" value="M" id="SEX_M" checked>
-	                                            <label for="SEX_M">남</label>
+	                            <div class="inputsContainer">
+	                                <div class="inputBox">
+	                                    <p class="inputCaption">주소</p>
+	                                    <div class="inputsAlign">
+	                                        <div class="zip">
+	                                            <input type="text" name="HPOSTCODE" id="HPOSTCODE" readonly class="lgThinInput" placeholder="00000">
 	                                        </div>
-	                                        <div class="gender">
-	                                            <input type="radio" name="SEX" value="W" id="SEX_W">
-	                                            <label for="SEX_W">여</label>
-	                                        </div>
+	                                        <input type="text" name="get_post" id="get_post" class="lgThinInput post" style="margin-top: 0;" placeholder="내용을 입력하세요…">
 	                                    </div>
 	                                </div>
 	                            </div>
-	                        </div>
-	                        <div class="inputsContainer inputsPd_">
-	                            <div class="inputBox">
-	                                <p class="inputCaption">집전화</p>
-	                                <input type="text" name="" id="HTELNO" placeholder="내용을 입력하세요…" class="lgThinInput">
-	                            </div>
-	                            <div class="inputBox">
-	                                <p class="inputCaption">휴대전화</p>
-	                                <input type="text" name="" id="MOBILE" placeholder="내용을 입력하세요…" class="lgThinInput">
-	                            </div>
-	                            <div class="inputBox">
-	                                <p class="inputCaption">이메일</p>
-	                                <input type="text" name="EMAIL" id="EMAIL" placeholder="내용을 입력하세요…" class="lgThinInput">
-	                            </div>
-	                            <div class="inputBox">
-	                                <p class="inputCaption">수신여부</p>
-	                                <div class="recive">
-	                                    <input type="checkbox" name="SMSYN" id="SMSYN"><label for="SMSYN">SMS</label>
-	                                    <input type="checkbox" name="EMAILYN" id="EMAILYN"><label for="EMAILYN">EMAIL</label>
+	                            <div class="inputsContainer">
+	                                <div class="inputBox">
+	                                    <p class="inputCaption">대표관리지도자</p>
+	                                    <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
 	                                </div>
 	                            </div>
-	                            <div class="inputBox">
-	                                <p class="inputCaption">직업</p>
-	                                <select name="JOBCODE" id="JOBCODE" class="lgThinSelect">
-	                                	<option value="">선택하세요.</option>
-										<c:forEach var="job_list" items="${job_list}" varStatus="status">
-	                                    	<option value="${job_list.JOBCODE}">${job_list.JOBNAME}</option>	
-	                                   	</c:forEach>
-	                                </select>
-	                            </div>
-	                        </div>
-	                        <div class="inputsContainer inputsPd_">
-	                            <div class="inputBox">
-	                                <p class="inputCaption">집주소</p>
-	                                <div class="zip">
-	                                    <input type="text" name="HPOSTCODE" id="HPOSTCODE" readonly class="lgThinInput">
-	                                    <a href="#lnk" class="normalButton white" id="searchZip">우편번호 검색</a>
+	                            <div class="inputsContainer">
+	                                <div class="inputBox">
+	                                    <p class="inputCaption">지도자수</p>
+	                                    <div class="inputsAlign">
+	                                        <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+	                                        <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+	                                    </div>
 	                                </div>
-	                                <input type="text" name="HADDR" id="HADDR" class="lgThinInput post">
+	                                <div class="inputBox">
+	                                    <p class="inputCaption">대원수</p>
+	                                    <div class="inputsAlign">
+	                                        <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+	                                        <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="inputsContainer">
+	                                <div class="inputBox">
+	                                    <p class="inputCaption">월간지</p>
+	                                    <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+	                                </div>
 	                            </div>
 	                        </div>
-	                        <div class="tableButtons inputsPd bottomBd" style="justify-content: flex-end;">
-	                            <div class="buttons">
-	                                <a href="#lnk" onclick="fn_submit()" class="smButton"><img src="/front_img/sign.png" alt="">등록하기</a>
+	                        <div class="tableContainer relationContainer bottomBd">
+	                            <h2 class="subTitles">지도자</h2>
+	                            <div class="tableWrapper">
+	                                <table>
+	                                    <colgroup>
+	                                        <col width="20%" />
+	                                        <col width="20%" />
+	                                        <col width="20%" />
+	                                        <col width="40%" />
+	                                    </colgroup>
+	                                    <thead>
+	                                        <tr>
+	                                            <th>회원번호</th>
+	                                            <th>회원명</th>
+	                                            <th>관계</th>
+	                                            <th>비고</th>
+	                                        </tr>
+	                                    </thead>
+	                                    <tbody>
+	                                        <tr>
+	                                            <td>1</td>
+	                                            <td>지도자</td>
+	                                            <td>년도</td>
+	                                            <td>연맹</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td>1</td>
+	                                            <td>지도자</td>
+	                                            <td>년도</td>
+	                                            <td>연맹</td>
+	                                        </tr>
+	                                    </tbody>
+	                                </table>
+	                            </div>
+	                        </div>
+	                        <div class="tableContainer relationContainer">
+	                            <h2 class="subTitles">대원</h2>
+	                            <div class="tableWrapper">
+	                                <table>
+	                                    <colgroup>
+	                                        <col width="20%" />
+	                                        <col width="20%" />
+	                                        <col width="20%" />
+	                                        <col width="40%" />
+	                                    </colgroup>
+	                                    <thead>
+	                                        <tr>
+	                                            <th>회원번호</th>
+	                                            <th>회원명</th>
+	                                            <th>관계</th>
+	                                            <th>비고</th>
+	                                        </tr>
+	                                    </thead>
+	                                    <tbody>
+	                                        <tr>
+	                                            <td>1</td>
+	                                            <td>지도자</td>
+	                                            <td>년도</td>
+	                                            <td>연맹</td>
+	                                        </tr>
+	                                    </tbody>
+	                                </table>
 	                            </div>
 	                        </div>
 	                    </form>
@@ -134,70 +265,6 @@
 	</body>
 	<script>
 		function fn_submit(){
-			var text = "등록하시겠습니까?";
-			var memcls = $('#MEMCLSCODE').val();
-			var kname = $('#KNAME').val();
-			var ename = $('#ENAME').val();
-			var birth = $('#BIRTHDAY').val();
-			var mobile = $('#MOBILE').val();
-			var gender = "M"
-			if($('input:radio[id=SEX_W]').is(':checked')){
-				gender = "W"
-			}
-			$('#SEX').val(gender)
-			
-			var job = $('#JOBCODE').val();
-			var SMSYN = "N"
-			if($('input:checkbox[id=SMSYN]').is(':checked')) SMSYN = "Y"
-			
-			$('#SMSYN').val(SMSYN)
-			
-			var EMAILYN = "N"
-			if($('input:checkbox[id=EMAILYN]').is(':checked')) EMAILYN = "Y"
-			$('#EMAILYN').val(EMAILYN)
-			
-			
-			if (memcls == undefined || memcls == ''){
-				alert("회원구분을 선택해주세요.");
-				$('#MEMCLSCODE').focus();
-				return false;
-			}
-			
-			if (birth == undefined || birth == ''){
-				alert("생년월일을 선택해주세요.");
-				return false;
-			}
-
-			if (kname == null || kname == undefined || kname == ''){
-				alert("국문 성명을 입력해주세요.");
-				$("#KNAME").focus();
-				return false;
-			}
-			
-			if (ename == null || ename == undefined || ename == ''){
-				alert("영문 성명을 입력해주세요.");
-				$("#ENAME").focus();
-				return false;
-			}
-			
-			if (mobile == "" || mobile == undefined || mobile == '') {
-				alert("휴대전화 번호를 입력해주세요.");
-				$('#MOBILE').focus();
-				return false;
-			}
-			
-
-			if (job == "" || job == undefined) {
-				window.alert("직업을 선택해주세요.");
-				$("#JOBCODE").focus();
-				return false;
-			}
-			
-			if (confirm(text)) {
-				$("#register").attr("action", "/new_person");
-				$("#register").submit();
-			}
-		}
 		
 		window.onload = function(){
 		    document.getElementById("searchZip").addEventListener("click", function(){ //주소입력칸을 클릭하면

@@ -193,7 +193,7 @@ public class PictController {
 		
 		return "pict/front/users";
 	}
-	//조통합창
+	//조직통합창
 	@RequestMapping("/front/organization")
 	public String organization(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
@@ -225,16 +225,21 @@ public class PictController {
 		
 		return "pict/front/organization";
 	}
-	//신규 조직 등록
-	@RequestMapping("/front/signup_organ")
-	public String signup_organ(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
+	//단위대 통합창
+	@RequestMapping("/front/units")
+	public String units(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		
-		List<?> job_list= pictService.job_list(pictVO);
-		
-		model.addAttribute("job_list", job_list);
 		model.addAttribute("pictVO", pictVO);
-		return "pict/front/signup";
+		return "pict/front/units";
+	}
+	//신규 조직 등록
+	@RequestMapping("/front/signup_org")
+	public String signup_org(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
+			HttpSession session, RedirectAttributes rttr) throws Exception {
+		
+		model.addAttribute("pictVO", pictVO);
+		return "pict/front/signup_org";
 	}
 	//신규 회원 등록
 	@RequestMapping("/front/signup")
