@@ -12,7 +12,7 @@
 	<%@ include file="./include/header.jsp" %>
         <div class="contentsContainer">
         <form action="" class="organSearchForm">
-            <h2 class="subTitles">조회 결과</h2>
+            <h2 class="subTitles">조회 조건</h2>
             <div class="organSearch">
                 <div class="searchContainer">
                     <p class="inputCaption">연맹/지구</p>
