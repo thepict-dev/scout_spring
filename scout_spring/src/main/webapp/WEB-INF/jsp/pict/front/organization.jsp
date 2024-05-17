@@ -11,63 +11,85 @@
 	<%@ include file="./include/lnb.jsp" %>
 	<%@ include file="./include/header.jsp" %>
         <div class="contentsContainer">
-        <form action="" class="organSearchForm">
+        <form action="" class="organSearchForm" onsubmit="return false;">
             <h2 class="subTitles">조회 조건</h2>
             <div class="organSearch">
                 <div class="searchContainer">
                     <p class="inputCaption">연맹/지구</p>
                     <div class="inputsAlign">
-                        <select name="" id="" class="lgThinSelect">
-                            <option value="1">중앙본부</option>
-                        </select>
-                        <select name="" id="" class="lgThinSelect">
-                            <option value="">-</option>
-                        </select>
+                        <select name="associationcode_search" id="associationcode_search" onchange="fn_get_unitylist_organ()" class="lgThinSelect">
+							<c:forEach var="association_list" items="${association_list}" varStatus="status">
+								<option value="${association_list.ASSOCIATIONCODE}"> ${association_list.ASSOCIATIONNAME}</option>
+							</c:forEach>
+						</select>
+						<select name="unitycode_search" id="unitycode_search" class="lgThinSelect">
+							<option value="">전체</option>
+							<c:forEach var="unity_list" items="${unity_list}" varStatus="status">
+								<option value="${unity_list.TROOPNO}">${unity_list.TROOPNAME}</option>
+							</c:forEach>
+						</select>
+
                     </div>
                 </div>
                 <div class="searchContainer">
                     <p class="inputCaption">등급</p>
                     <div class="inputsAlign">
-                        <select name="" id="" class="lgThinSelect">
-                            <option value="1">단위대</option>
+                        <select name="trooplevelcode_search" id="trooplevelcode_search" class="lgThinSelect">
+                            <option value="01">중앙</option>
+                            <option value="02">지방/특수연맹</option>
+                            <option value="03">지구연합회</option>
+                            <option value="04">단</option>
+                            <option value="05" selected>단위대</option>
                         </select>
                     </div>
                 </div>
                 <div class="searchContainer">
                     <p class="inputCaption">단위대 구분</p>
                     <div class="inputsAlign">
-                        <select name="" id="" class="lgThinSelect">
-                            <option value="1">중앙본부</option>
+                        <select name="troopclscode1_search" id="troopclscode1_search" class="lgThinSelect" onchange="fn_troopclscode_search()">
+                        	<option value="">-----</option>
+                            <option value="01">학교대</option>
+                            <option value="02">지역대</option>
+                            <option value="03">동우대</option>
+                            <option value="04">특수대</option>
                         </select>
-                        <select name="" id="" class="lgThinSelect">
-                            <option value="">-</option>
+                        <select name="troopclscode2_search" id="troopclscode2_search" class="lgThinSelect">
+                            <option value="">-----</option>
                         </select>
                     </div>
                 </div>
                 <div class="searchContainer">
                     <p class="inputCaption">관할교육청</p>
                     <div class="inputsAlign">
-                        <select name="" id="" class="lgThinSelect">
-                            <option value="">-</option>
+                        <select name="parentorgno_search" id="parentorgno_search" class="lgThinSelect">
+                            <option value="">-----</option>
                         </select>
                     </div>
                 </div>
                 <div class="searchContainer">
                     <p class="inputCaption">스카우트구분</p>
                     <div class="inputsAlign">
-                        <select name="" id="" class="lgThinSelect" style="margin-right: 50px;">
-                            <option value="1">중앙본부</option>
+                        <select name="scoutclscode_search" id="scoutclscode_search" class="lgThinSelect" style="margin-right: 50px;">
+                            <option value="">-----</option>
+                            <option value="01">비버</option>
+                            <option value="02">컵</option>
+                            <option value="03">스카우트</option>
+                            <option value="04">벤처</option>
+                            <option value="99">복합</option>
+                            <option value="05">로버</option>
+                            <option value="06">기타</option>
                         </select>
-                        <select name="" id="" class="smThinSelect">
-                            <option value="">대번호</option>
+                        <select name="search_type" id="search_type" class="smThinSelect">
+                            <option value="number">대번호</option>
+                            <option value="text">단위대명</option>
                         </select>
-                        <input type="text" name="" id="" class="smThinInput" placeholder="내용을 입력해주세요...">
+                        <input type="text" name="search_text" id="search_text" class="smThinInput" placeholder="내용을 입력해주세요..." onkeypress="if(event.keyCode == 13){organ_search();}">
                     </div>
                 </div>
             </div>
             <div class="btnContainer organ">
                 <a href="#lnk" class="basicButton white"><img src="/front_img/reset.png" alt="">취소</a>
-                <a href="#lnk" class="basicButton purple"><img src="/front_img/search.png" alt="">조회</a>
+                <a href="#lnk" class="basicButton purple" onclick="organ_search()"><img src="/front_img/search.png" alt="">조회</a>
             </div>
         </form>
         <div class="formContainer organ">
@@ -109,7 +131,7 @@
                         </table>
                     </div>
                     <div class="tableButtons">
-                        <p>0<span>rows</span></p>
+                        <p id="organ_cnt">0 rows</p>
                         <div class="buttons">
                             <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
                         </div>
@@ -205,7 +227,7 @@
                                     <p class="inputCaption">집주소</p>
                                     <div class="zip">
                                         <input type="text" name="HPOSTCODE" id="HPOSTCODE" readonly class="lgThinInput">
-                                        <a href="#lnk" class="normalButton white">우편번호 검색</a>
+                                        <a href="#lnk" class="normalButton white" id="searchZip">우편번호 검색</a>
                                     </div>
                                     <input type="text" name="get_post" id="get_post" class="lgThinInput post">
                                 </div>
@@ -315,389 +337,163 @@
 	<%@ include file="./include/loading.jsp" %>
     <%@ include file="./include/error_page.jsp" %>
     
-	
-    
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-		function fn_leader_info(idx){
-			$('#leader_idx').val(idx)
-			console.log(idx)
-		}
-		function fn_scout_info(idx){
-			$('#scout_idx').val(idx)
-			console.log(idx)
-		}
-		
-		function leader_del(){
-			var text ="해당 연공 데이터를 삭제하시겠습니까?";
-			if(confirm (text)){
-				var param = {
-					idx : $('#leader_idx').val(),
-					memberno : $('#MEMBERNO').val()
-				}
-				
-				$.ajax({
-					url : "/leader_del"
-					, type : "POST"
-					, data : JSON.stringify(param)
-					, contentType : "application/json"
-					, async : true
-					, success : function(data, status, xhr) {
-				
-						alert("삭제되었습니다.");
-					},
-					error : function(err){
-						console.log(err)
-					}
-					
-				});
-			}
-		}
-		function scout_del(){
-			var text ="해당 연공 데이터를 삭제하시겠습니까?";
-			if(confirm (text)){
-				var param = {
-					idx : $('#scout_idx').val(),
-					memberno : $('#MEMBERNO').val()
-				}
-				
-				$.ajax({
-					url : "/scout_del"
-					, type : "POST"
-					, data : JSON.stringify(param)
-					, contentType : "application/json"
-					, async : true
-					, success : function(data, status, xhr) {
-				
-						alert("삭제되었습니다.");
-					},
-					error : function(err){
-						console.log(err)
-					}
-					
-				});
-			}
-		}
-		
-		
-		$("#attach_file").change(function(){
-			var memberno = $("#MEMBERNO").val()
-			if(memberno == '' || memberno == undefined || memberno == null){
-				alert("회원을 선택해주세요.")
-				return false;
-			}
-			else{
-				 var requestData = {
-			        memberno : $("#MEMBERNO").val(),
-			    }
-			 
-				var form = $('#attach_file')[0].files[0];
-				var formData = new FormData();
-				formData.append('img', form);
-				formData.append("request", new Blob([JSON.stringify(requestData)], {type: "application/json"}));
-				
-				$.ajax({
-					url: '/profile_img',
-					processData : false,
-					contentType : false,
-					data : formData,
-					type : 'POST',
-					success : function(result){
-						alert("Uploaded");
-						
-					},
-					error : function(err){
-						console.log(err)
-					}
-					
-				});
-			}
-			
-		})
-		
-		function person_save(){
-			var sex = "M"
-			if(document.getElementById("SEX_W").checked) sex = "W";
-			
-			var param = {
-				MEMBERNO : $('#MEMBERNO').val(),
-				KNAME : $('#KNAME').val(),
-				MEMCLSCODE : $('#MEMCLSCODE').val(),
-				MEMGRADECODE : $('#MEMGRADECODE').val(),
-				BIRTHDAY : $('#BIRTHDAY').val(),
-				KNAME : $('#KNAME').val(),
-				ENAME : $('#ENAME').val(),
-				SEX : sex,
-				HTELNO : $('#HTELNO').val(),
-				MOBILE : $('#MOBILE').val(),
-				EMAIL : $('#EMAIL').val(),
-				SMSYN : document.getElementById("SMSYN").checked ? "Y" : "N",
-				EMAILYN : document.getElementById("EMAILYN").checked ? "Y" : "N",
-				JOBCODE : $('#JOBCODE').val(),
-				HPOSTCODE : $('#HPOSTCODE').val(),
-				HADDR : $('#HADDR').val(),
-				EMPLOYEEY : $('#EMPLOYEEY').val(),
-				LEADERSCORE : $('#LEADERSCORE').val(),
-				SCOUTSCHOOLYEAR : $('#SCOUTSCHOOLYEAR').val(),
-				SCOUTSCHOOLBAN : $('#SCOUTSCHOOLBAN').val(),
-			}
-			
-			var text ="등록하시겠습니까?";
-			if(confirm (text)){
-				$('#initial-loading').css('display', 'flex')
-				
-				$.ajax({
-					url : "/person_save"
-					, type : "POST"
-					, data : JSON.stringify(param)
-					, contentType : "application/json"
-					, async : true
-					, success : function(data, status, xhr) {
-						alert("정상적으로 저장되었습니다.")
-						$('#initial-loading').css('display', 'none')
-					},
-					error : function(err){
-						console.log("에러가 났어")
-						console.log(err)
-						$('#initial-loading').css('display', 'none')
-						$('#error').css('display', 'flex')
-					}
-				})
-				
-			}
+		function fn_organ_info(troopno){
+			console.log("이제 여기에 연결하면 될듯")
 		}
 	
-	
-		function search_reset(){
-			$("#search_birthday").val("");
+		function organ_search(){
+			$('#organ_cnt').text("0 rows")
+			$('#org_list').children().remove();
 			
-			$("#search_history option:eq('')").attr("selected", "selected");
-			$("#search_kname").val("");
-			$("#search_memclscode").val("1");
-			$("#search_start").val("");
-			$("#search_end").val("");
-			$('#search_memgradecode').val("");
-			
-			$('.contentsContainer select').niceSelect('update')
-			
-		}
-		function search_list_memberno(){
-			$('#initial-loading').css('display', 'flex')
-			$("#search_fm_memberno").attr("action", "/front/users");
-			$("#search_fm_memberno").submit();
-			$('#initial-loading').css('display', 'none')
-
-		}
-		function search_list(){
-			$('#initial-loading').css('display', 'flex')
-			$("#search_fm").attr("action", "/front/users");
-			$("#search_fm").submit();
-			$('#initial-loading').css('display', 'none')
-		}
-		function fn_info(memberno, kname, scouty, leadery){
-			$('#initial-loading').css('display', 'flex')
 			var param = {
-				memberno : memberno,
-				kname : kname,
-				scouty : scouty,
-				leadery : leadery,
+				associationcode : $('#associationcode_search').val(),
+				parenttroopno : $('#unitycode_search').val(),
+				trooplevelcode : $('#trooplevelcode_search').val(),
+				troopclscode1 : $('#troopclscode1_search').val(),
+				troopclscode2 : $('#troopclscode2_search').val(),
+				parentorgno : $('#parentorgno_search').val(),
+				scoutclscode : $('#scoutclscode_search').val(),
+				search_type : $('#search_type').val(),
+				search_text : $('#search_text').val(),
 			}
-
 			
 			$.ajax({
-				url : "/get_per_info"
+				url : "/organ_search"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
 				, dataType : "json"
 				, async : true
 				, success : function(data, status, xhr) {
+					var html ='';
 					console.log(data)
-					console.log("성공")
-					
-					$('#leader_idx').val("")
-					$('#scout_idx').val("")
-					
-					$('#MEMBERNO').val(data.info.memberno)
-					$('#MEMCLSCODE').val(data.info.memclscode)//셀렉트
-					
-					var memgradecode = "";
-					if(data.info.memgradecode == null || data.info.memgradecode == undefined || data.info.memgradecode == "null") memgradecode = "0"
-					else memgradecode = data.info.memgradecode
-					
-					$('#BIRTHDAY').val(data.info.birthday)
-					
-					$('#KNAME').val(data.info.kname)
-					$('#ENAME').val(data.info.ename)
-					
-					$("#EMPLOYEEY").val(data.info.employeey).prop("selected", true);
-					
-					$("#MEMGRADECODE").val(memgradecode).prop("selected", true);
-					$("#EMPLOYEEY").val(data.info.employeey).prop("selected", true);
-			
-					
-					
-					
-					if(data.info.sex == "M") $(":radio[id='SEX_M']").attr("checked", true);
-					else $(":radio[id='SEX_W']").attr("checked", true);
-					
-					$("#HTELNO").val(data.info.htelno)
-					$("#MOBILE").val(data.info.mobile)
-					$("#EMAIL").val(data.info.email)
-					$("#HPOSTCODE").val(data.info.hpostcode)
-					$("#HADDR").val(data.info.haddr)
-					$("#JOBCODE").val(data.info.jobcode).prop("selected", true);
-					
-					
-					$('#LEADERSCORE').val(data.info.leaderscore)
-					$('#SCOUTSCHOOLYEAR').val(data.info.scoutschoolyear)
-					$('#SCOUTSCHOOLBAN').val(data.info.scoutschoolban)
-					
-					
-					$('.contentsContainer select').niceSelect('update')
-					
-					if(data.info.smsyn == "Y") $("input:checkbox[id=SMSYN]").attr("checked", true);
-					if(data.info.emailyn == "Y") $("input:checkbox[id=EMAILYN]").attr("checked", true);
-					
-					//프로필이미지 바인딩
-					$('#profile_img').attr("src",data.info.picimg)
-					
-					
-					//지도자 단체
-					$('#main_scout_org').val(data.info.scoutorgname)
-					
-					//대원 단체
-					var leaderorgpositionname = ""
-					if(data.info.leaderorgpositioncode == '01') leaderorgpositionname = "교장"
-					if(data.info.leaderorgpositioncode == '02') leaderorgpositionname = "교감"
-					if(data.info.leaderorgpositioncode == '03') leaderorgpositionname = "교사"
-					if(data.info.leaderorgpositioncode == '04') leaderorgpositionname = "일반"
-					if(data.info.leaderorgpositioncode == '05') leaderorgpositionname = "없음"
-					
-					var leaderorgname =""
-					if(data.info.leaderorgname != ''){
-						leaderorgname = data.info.leaderorgname
-					}
-					if(leaderorgpositionname != ''){
-						leaderorgname += "(" +leaderorgpositionname + ")"
-					}
-					$('#main_leader_org').val(leaderorgname)
-					
-					var html ="";
-					var relation_html = "";
-					var arr = data.list;
-					var relation_arr = data.relation_list;
-					$('#leader_list').children().remove();
-					$('#scout_list').children().remove();
-					$('#main_relation').children().remove();
-					$('#relation_list').children().remove();
-					
-					
-					
-					//연공이력 개수
-					$('#year_cnt_leader').text('0 rows')
-					$('#year_cnt_scout').text('0 rows')
-					
-					
-					//가입정보 초기화
-					$('#leader_date').text("")
-					$('#leader_whole_incnt').text("")
-					$('#leader_incnt').text("")
-					$('#scout_date').text("")
-					$('#scout_whole_incnt').text("")
-					$('#scout_incnt').text("")
-					
-					
-					
-					if(leadery == 'Y'){//지도자일경우
-						//가입정보 기입
-						$('#leader_date').text(data.info.enterdate)
-						$('#leader_whole_incnt').text(arr.length)
-						$('#leader_incnt').text(data.info.leaderincnt)
-						
-						
-						$('#year_cnt_leader').text(arr.length + " rows")
+					if(data.list){
+						var arr = data.list;
+						$('#organ_cnt').text(arr.length + " rows")
+						$('#org_list').children().remove();
 						for(var i=0; i<arr.length; i++){
-							html += '<tr onclick="fn_leader_info('+arr[i].idx+')">'+
-								'<td>' + Number(i+1) + '</td>' +
-								'<td>' + arr[i].adminy + '</td>'+
-								'<td>' + arr[i].year + '</td>'+
-								'<td>' + arr[i].associationname + '</td>'+
-								'<td>' + arr[i].unity + '</td>'+
-								'<td>' + arr[i].troopname + '</td>'+
-								'<td>' + arr[i].leaderposition + '</td>'+
-								'<td>' + arr[i].leaderpositionname + '</td>'+
-								'<td>' + arr[i].orgname  + '</td>'+
-								'</tr>';
+							html += '<tr onclick="fn_organ_info('+arr[i].troopno+')">'+
+							'<td>' + arr[i].parenttroopname + '</td>' +
+							'<td>' + arr[i].disptroopno + '</td>'+
+							'<td>' + arr[i].troopname + '</td>'+
+							'<td>' + arr[i].scoutclsname + '</td>'+
+							'<td>' + arr[i].troopclsname + '</td>'+
+							'<td>' + arr[i].lastregyear + '</td>'+
+							'<td>' + arr[i].scoutmcnt + '</td>'+
+							'<td>' + arr[i].scoutwcnt + '</td>'+
+							'<td>' + arr[i].leadermcnt + '</td>'+
+							'<td>' + arr[i].leaderwcnt + '</td>'+
+							'</tr>'
 						}
-						$('#leader_list').append(html)
-						
+						$('#org_list').append(html)
+						$('.contentsContainer select').niceSelect('update')
 					}
-					else{//대원일경우
-						$('#scout_date').text(data.info.enterdate)
-						$('#scout_whole_incnt').text(arr.length)
-						$('#scout_incnt').text(data.info.scoutincnt)
-						$('#year_cnt_scout').text(arr.length + " rows")
-						for(var i=0; i<arr.length; i++){
-							html += '<tr onclick="fn_scout_info('+arr[i].idx+')">'+
-								'<td>' + Number(i+1) + '</td>' +
-								'<td>' + arr[i].year + '</td>'+
-								'<td>' + arr[i].associationname + '</td>'+
-								'<td>' + arr[i].unity + '</td>'+
-								'<td>' + arr[i].troopname + '</td>'+
-								'<td>' + arr[i].orgname + '</td>'+
-								'<td>' + arr[i].scoutschoolyear + '</td>'+
-								'<td>' + arr[i].scoutban + '</td>'+
-								'</tr>';
-							
-						}
-						$('#scout_list').append(html)
-					}
-					
-					//관계연결
-					var relation_popup = ""
-					var target_memberno = $('#MEMBERNO').val()
-					for(var i=0; i<relation_arr.length; i++){
-						var relationname = ""
-						if(target_memberno == relation_arr[i].frommemberno) relationname = relation_arr[i].relationname2
-						if(target_memberno == relation_arr[i].tomemberno) relationname = relation_arr[i].relationname1
-						
-						relation_html += '<tr>'+
-						'<td>' + relation_arr[i].relationinfo.split(',')[0] + '</td>' +
-						'<td>' + relation_arr[i].relationinfo.split(',')[1] + '</td>'+
-						'<td>' + relationname + '</td>'+
-						'<td>' + relation_arr[i].bigo + '</td>'+
-						'</tr>'
-						
-						var sex = "남"
-						if(relation_arr[i].relationinfo.split(',')[4] == 'W') sex = "여"
-						
-						relation_popup += '<tr>'+
-						'<td>' + relation_arr[i].relationcode + '</td>' +
-						'<td>' + relationname + '</td>'+
-						'<td>' + relation_arr[i].relationinfo.split(',')[1] + '</td>'+
-						'<td>' + relation_arr[i].relationinfo.split(',')[2] + '</td>'+
-						'<td>' + sex + '</td>'+
-						'<td>' + relation_arr[i].relationinfo.split(',')[3] + '</td>'+
-						'</tr>'
-					
-					}
-					
-					$('#main_relation').append(relation_html)
-					$('#relation_list').append(relation_popup)
-					
-					$('#initial-loading').css('display', 'none')
-					
 				}
 				, error : function(xhr, status, error) {
 					console.log(xhr)
 					console.log("에러")
-					//지현이 에러
-					$('#initial-loading').css('display', 'none')
 				}
-			})
-	
+			});
 		}
+		
+		
+		function fn_troopclscode_search(){
+			var param = {
+				troopclscode1 : $('#troopclscode1_search').val(),
+			}
+			$.ajax({
+				url : "/troopclscode1_search"
+				, type : "POST"
+				, data : JSON.stringify(param)
+				, contentType : "application/json"
+				, dataType : "json"
+				, async : true
+				, success : function(data, status, xhr) {
+					var html ='<option value="">-----</option>';
+					if(data.list){
+						var arr = data.list;
+						$('#troopclscode2_search').children().remove();
+						for(var i=0; i<arr.length; i++){
+							html += '<option value="'+ arr[i].troopclscode2 +'">'+ arr[i].troopclsname +'</option>'
+						}
+						$('#troopclscode2_search').append(html)
+						$('.contentsContainer select').niceSelect('update')
+					}
+				}
+				, error : function(xhr, status, error) {
+					console.log(xhr)
+					console.log("에러")
+				}
+			});
+		}
+		function fn_get_unitylist_organ(){
+			var param = {
+					associationcode : $('#associationcode_search').val(),
+			}
+			$.ajax({
+				url : "/get_unity_list"
+				, type : "POST"
+				, data : JSON.stringify(param)
+				, contentType : "application/json"
+				, dataType : "json"
+				, async : true
+				, success : function(data, status, xhr) {
+					var html ='<option value="">-----</option>';
+					if(data.list){
+						var arr = data.list;
+						$('#unitycode_search').children().remove();
+						for(var i=0; i<arr.length; i++){
+							html += '<option value="'+ arr[i].troopno +'">'+ arr[i].troopname +'</option>'
+						}
+						$('#unitycode_search').append(html)
+						$('.contentsContainer select').niceSelect('update')
+					}
+				}
+				, error : function(xhr, status, error) {
+					console.log(xhr)
+					console.log("에러")
+				}
+			});
+			
+			
+			
+			$('#parentorgno_search').children().remove();
+			if($('#associationcode_search').val() == '200'){
+				$('#parentorgno_search').val("")
+				var html2 ='<option value="">전체</option>';
+				$('#parentorgno_search').append(html2)
+				$('.contentsContainer select').niceSelect('update')
+			}
+			
+			
+			$.ajax({
+				url : "/fn_get_parentorgno"
+				, type : "POST"
+				, data : JSON.stringify(param)
+				, contentType : "application/json"
+				, dataType : "json"
+				, async : false
+				, success : function(data, status, xhr) {
+					var html ='<option value="">전체</option>'
+					if(data.list){
+						var arr = data.list;
+						$('#parentorgno_search').children().remove();
+						for(var i=0; i<arr.length; i++){
+							html += '<option value="'+ arr[i].orgno +'">'+arr[i].orgname +'</option>'
+						}
+						$('#parentorgno_search').append(html)
+						$('.contentsContainer select').niceSelect('update')
+					}
+				}
+				, error : function(xhr, status, error) {
+					console.log(xhr)
+					console.log("에러")
+				}
+			});
+		}
+
 
 		window.onload = function(){
 		    document.getElementById("searchZip").addEventListener("click", function(){ //주소입력칸을 클릭하면

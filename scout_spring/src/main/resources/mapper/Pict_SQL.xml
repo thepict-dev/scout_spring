@@ -358,6 +358,9 @@
 		<if test="ORGCLSCODE2 != null and ORGCLSCODE2 != '' ">
 			and o.ORGCLSCODE2 = #{ORGCLSCODE2}
 		</if>
+		<if test="PARENTORGNO != null and PARENTORGNO != '' ">
+			and o.PARENT_ORGNO = #{PARENTORGNO}
+		</if>
 		<if test="search_orgtext != null and search_orgtext != '' ">
 			and (
 				o.ORGNAME LIKE CONCAT('%', #{search_orgtext}, '%')
@@ -378,29 +381,80 @@
 		where MEMBERNO = #{MEMBERNO}
 	</update>
 	
-	
-	
-	
-	
-	
-	<!-- 그뭐야 제일 위에[꺼 -->
-	<select id="troop_left_search_list" resultType="pictVO">
-		select t.*
-		from troop t
-		inner join associationcode a on t.ASSOCIATIONCODE = a.ASSOCIATIONCODE
-		left outer join org o on o.ORGNO = t.ORGNO
-		where 1=1
-		and a.ASSOCIATIONCODE = '120'
-		#and t.TROOPCLSCODE1 = '02'
-		and t.PARENT_TROOPNO = '9701'
-	</select>
-
-
+	<!-- 대원 신규 등록 -->
 	<insert id="new_person" parameterType="pictVO">
 		insert into member (MEMBERNO, MEMCLSCODE, MEMGRADECODE, BIRTHDAY, EMPLOYEEY, KNAME, ENAME, SEX, HTELNO, MOBILE, EMAIL, SMSYN, EMAILYN, JOBCODE, HPOSTCODE, HADDR, ENTERDATE)
 		values(
 			(select max(MEMBERNO + 1) from member t), #{MEMCLSCODE}, #{MEMGRADECODE}, #{BIRTHDAY}, #{EMPLOYEEY}, #{KNAME}, #{ENAME}, #{SEX}, #{HTELNO}, #{MOBILE}, #{EMAIL}, #{SMSYN}, #{EMAILYN}, #{JOBCODE}, #{HPOSTCODE}, #{HADDR}, now()
 		)
 	</insert>
+	
+	
+	
+	
+	
+	<!-- 그뭐야 제일 위에[꺼 -->
+	<select id="organ_search" resultType="pictVO">
+		select 
+			(select TROOPNAME from troop t1 where t1.TROOPNO = t.PARENT_TROOPNO limit 1) as PARENTTROOPNAME, 
+		    sc.SCOUTCLSNAME,
+		    (select TROOPCLSNAME from troopclscode tc where tc.TROOPCLSCODE1 = t.TROOPCLSCODE1 and tc.TROOPCLSCODE2 = t.TROOPCLSCODE2) as TROOPCLSNAME,
+			t.*
+		from troop t
+		inner join associationcode a on t.ASSOCIATIONCODE = a.ASSOCIATIONCODE
+        left outer join scoutclscode sc on sc.SCOUTCLSCODE = t.SCOUTCLSCODE
+        left outer join org o on o.ORGNO = t.ORGNO
+        where 1=1
+		<if test="ASSOCIATIONCODE != null and ASSOCIATIONCODE != ''">
+        	and t.ASSOCIATIONCODE = #{ASSOCIATIONCODE} 
+        </if>
+        <if test="PARENTTROOPNO != null and PARENTTROOPNO != ''">
+        	and t.PARENT_TROOPNO = #{PARENTTROOPNO}
+        </if>
+        <if test="TROOPLEVELCODE != null and TROOPLEVELCODE != ''">
+        	 and t.TROOPLEVELCODE = #{TROOPLEVELCODE}
+        </if>
+        <if test="TROOPCLSCODE1 != null and TROOPCLSCODE1 != ''">
+        	and t.TROOPCLSCODE1 = #{TROOPCLSCODE1}
+        </if>
+        <if test="TROOPCLSCODE2 != null and TROOPCLSCODE2 != ''">
+        	and t.TROOPCLSCODE2 = #{TROOPCLSCODE2}
+        </if>
+        <if test="SCOUTCLSCODE != null and SCOUTCLSCODE != ''">
+        	and t.SCOUTCLSCODE = #{SCOUTCLSCODE}
+        </if>
+        <if test="PARENTORGNO != null and PARENTORGNO != ''">
+        	and o.PARENT_ORGNO = #{PARENTORGNO}
+        </if>
+        <if test="search_text != null and search_text != ''">
+	        <if test="search_type != null and search_type != '' and search_type == 'number'">
+	        	and t.DISPTROOPNO = #{search_text}
+	        </if>
+	        <if test="search_type != null and search_type != '' and search_type == 'text'">
+				and (
+					t.TROOPNAME LIKE CONCAT('%', #{search_text}, '%')
+				) 
+	        </if>
+        </if>
+        
+        #and t.PARENT_TROOPNO = 9689 and t.ORGNO is not null and t.ORGNO != ''
+        
+        order by cast(t.PARENT_TROOPNO as unsigned), length(t.DISPTROOPNO), cast(t.DISPTROOPNO as unsigned)
+		
+	</select>
+	
+	<select id="troopclscode1_search" resultType="pictVO">
+		select * from 
+		troopclscode
+		where USEYN= 'Y'
+		and TROOPCLSCODE1 = #{TROOPCLSCODE1}
+		and TROOPCLSCODE2 != '00'
+		order by ORD
+		
+	</select>
+
+
+
+	
 
 </mapper>

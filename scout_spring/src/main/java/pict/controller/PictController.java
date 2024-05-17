@@ -203,25 +203,7 @@ public class PictController {
 		List<PictVO> unity_list = pictService.unity_list(pictVO);
 		model.addAttribute("association_list", association_list);
 		model.addAttribute("unity_list", unity_list);
-		
-		if(request.getQueryString() == null) {
-			model.addAttribute("resultListCnt", "0");
-			model.addAttribute("resultList", "");
-			model.addAttribute("job_list", "");
-			model.addAttribute("pictVO", null);
-		}
-		else {
-			List<PictVO> scout_list = pictService.scout_left_search_list(pictVO);
-			
-			//회원번호로 정렬
-			scout_list.sort(Comparator.comparing(PictVO::getMEMBERNO));
-			model.addAttribute("resultList", scout_list);
-			List<?> job_list= pictService.job_list(pictVO);
-			model.addAttribute("resultListCnt", scout_list.size());
-			model.addAttribute("job_list", job_list);
-			model.addAttribute("pictVO", pictVO);
-		}
-		
+		model.addAttribute("pictVO", pictVO);
 		
 		return "pict/front/organization";
 	}
@@ -1025,7 +1007,7 @@ public class PictController {
 		
 	}
 	
-	//조직통합창
+	//회원 등록
 	@RequestMapping("/new_person")
 	public String new_person(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		
@@ -1037,6 +1019,63 @@ public class PictController {
 		model.addAttribute("retUrl", "/front/signup");
 		return "pict/main/message";	
 		//return "pict/front/ko/management";
+	}
+	
+	//조직통합창에서 단위대 구분 검색
+	@RequestMapping("/troopclscode1_search")
+	@ResponseBody
+	public HashMap<String, Object> troopclscode1_search(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String troopclscode1 = param.get("troopclscode1").toString();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		pictVO.setTROOPCLSCODE1(troopclscode1);
+		
+		
+		List<PictVO> troop_list = pictService.troopclscode1_search(pictVO);
+		if(troop_list.size() > 0) {
+			map.put("list", troop_list);
+			return map;
+		}
+		else {
+			return map;
+		}
+	}
+	//조직통합창에서 조회!
+	@RequestMapping("/organ_search")
+	@ResponseBody
+	public HashMap<String, Object> organ_search(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String associationcode = param.get("associationcode").toString();
+		String parenttroopno = param.get("parenttroopno").toString();
+		String trooplevelcode = param.get("trooplevelcode").toString();
+		String troopclscode1 = param.get("troopclscode1").toString();
+		String troopclscode2 = param.get("troopclscode2").toString();
+		String parentorgno = param.get("parentorgno").toString();
+		String scoutclscode = param.get("scoutclscode").toString();
+		String search_type = param.get("search_type").toString();
+		String search_text = param.get("search_text").toString();
+		
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		pictVO.setASSOCIATIONCODE(associationcode);
+		pictVO.setPARENTTROOPNO(parenttroopno);
+		pictVO.setTROOPLEVELCODE(trooplevelcode);
+		pictVO.setTROOPCLSCODE1(troopclscode1);
+		pictVO.setTROOPCLSCODE2(troopclscode2);
+		pictVO.setPARENTORGNO(parentorgno);
+		pictVO.setSCOUTCLSCODE(scoutclscode);
+		pictVO.setSearch_type(search_type);
+		pictVO.setSearch_text(search_text);
+		
+		
+		List<PictVO> troop_list = pictService.organ_search(pictVO);
+		if(troop_list.size() > 0) {
+			map.put("list", troop_list);
+			return map;
+		}
+		else {
+			return map;
+		}
 	}
 	
 	

@@ -123,4 +123,8 @@ public interface PictService {
 
 	public void main_leader_org_save(PictVO pictVO) throws Exception;
 
+	public List<PictVO> troopclscode1_search(PictVO pictVO) throws Exception;
+
+	public List<PictVO> organ_search(PictVO pictVO) throws Exception;
+
 }

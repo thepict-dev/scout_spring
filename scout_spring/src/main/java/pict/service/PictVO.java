@@ -162,7 +162,8 @@ public class PictVO extends PictDefaultVO {
 	private String SCOUTORGNAME;
 	private String LEADERORGNAME;
 	private String LEADERORGPOSITIONNAME;
-	
+	private String PARENTTROOPNAME;
+	private String LASTREGDAY;
 	
 	private String search_birthday;
 	private String search_history;
@@ -179,9 +180,35 @@ public class PictVO extends PictDefaultVO {
 	private String search_troopno_cate;
 	private String search_troopno;
 	private String search_orgtext;
+	private String search_type;
+	private String search_text;
 	
 	
 	
+	public String getPARENTTROOPNAME() {
+		return PARENTTROOPNAME;
+	}
+	public void setPARENTTROOPNAME(String pARENTTROOPNAME) {
+		PARENTTROOPNAME = pARENTTROOPNAME;
+	}
+	public String getLASTREGDAY() {
+		return LASTREGDAY;
+	}
+	public void setLASTREGDAY(String lASTREGDAY) {
+		LASTREGDAY = lASTREGDAY;
+	}
+	public String getSearch_text() {
+		return search_text;
+	}
+	public void setSearch_text(String search_text) {
+		this.search_text = search_text;
+	}
+	public String getSearch_type() {
+		return search_type;
+	}
+	public void setSearch_type(String search_type) {
+		this.search_type = search_type;
+	}
 	public String getLEADERORGPOSITIONNAME() {
 		return LEADERORGPOSITIONNAME;
 	}
