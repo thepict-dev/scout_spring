@@ -117,6 +117,9 @@
     width: 100%;
     min-width: 952px;
 }
+.tableWrapper.orgTableWrapper table{
+    min-width: 1150px;
+}
 .tableWrapper table th{
     height: 44px; 
     padding: 8px 24px 8px 12px;

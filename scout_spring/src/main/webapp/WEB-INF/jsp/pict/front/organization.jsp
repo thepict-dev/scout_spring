@@ -93,16 +93,16 @@
 	                                <th rowspan="2">지구연합회</th>
 	                                <th rowspan="2" style="left: 95.5px;">대번호</th>
 	                                <th rowspan="2">단위대명</th>
-	                                <th rowspan="2" style="text-align: center;">스카우트<br>구분</th>
-	                                <th rowspan="2" style="text-align: center;">단위대<br>구분</th>
-	                                <th rowspan="2" style="text-align: center;">최종대<br>활동년도</th>
+	                                <th rowspan="2">스카우트구분</th>
+	                                <th rowspan="2">단위대구분</th>
+	                                <th rowspan="2">최종대활동년도</th>
 	                                <th colspan="4" style="border-bottom: 0;">최종활동년도</th>
                                 </tr>
                                 <tr>
-                                	<th>남자대원수</th>
-                                	<th>여자대원수</th>
-                                	<th>남자지도자수</th>
-                                	<th>여자지도자수</th>
+                                	<th style="z-index: 2;">남자대원수</th>
+                                	<th style="z-index: 2;">여자대원수</th>
+                                	<th style="z-index: 2;">남자지도자수</th>
+                                	<th style="z-index: 2;">여자지도자수</th>
                                 </tr>
                             </thead>
                             <tbody id="org_list"></tbody>
