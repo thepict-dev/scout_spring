@@ -100,19 +100,7 @@
 	                                <th>전종여부</th>
                                 </tr>
                             </thead>
-                            <tbody id="org_list">
-                                <tr>
-                                    <td>Cell01</td>
-                                    <td>Cell02</td>
-                                    <td>Cell03</td>
-                                    <td>Cell04</td>
-                                    <td>Cell05</td>
-                                    <td>Cell06</td>
-                                    <td>Cell07</td>
-                                    <td>Cell08</td>
-                                    <td>Cell08</td>
-                                </tr>
-                            </tbody>
+                            <tbody id="org_list"></tbody>
                         </table>
                     </div>
                     <div class="tableButtons">
@@ -202,12 +190,8 @@
                                 </div>
                                 <div class="inputBox">
                                     <p class="inputCaption">관할교육청</p>
-
                                     <div class="inputsAlign">
-                                        <input type="date" name="" id="" value="${pictVO.search_birthday}" class="lgThinInput">
-                                        <div class="recive" style="margin-left: 15px;">
-                                            <input type="checkbox" name="" id=""><label for="" style="padding-left: 14px;">관할교육청 수정</label>
-                                        </div>
+                                		<span class="bindingText"></span>
                                     </div>
                                 </div>
                             </div>
