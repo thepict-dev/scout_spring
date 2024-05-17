@@ -132,6 +132,9 @@
     line-height: 100%; /* 14px */
     letter-spacing: -0.7px;
 }
+.tableWrapper.orgTableWrapper table th{
+	height: unset;
+}
 .tableWrapper table th{
     position: sticky; 
     top: 0;
@@ -359,6 +362,10 @@
     padding: 0 24px;
     padding-right: 143px;
 }
+.tableContainer.orgContainer{
+    width: 100%;
+    padding-right: 143px;
+}
 .tableContainer.relationContainer{
     padding: 16px 143px 16px 24px;
 }
@@ -370,6 +377,11 @@
     width: 100%;
     height: 171px;
     margin-top: 0;
+    overflow-x: scroll;
+}
+.tableContainer.orgContainer .tableWrapper{
+    width: 100%;
+    height: 104px;
     overflow-x: scroll;
 }
 .tableContainer.relationContainer .tableWrapper{
@@ -386,9 +398,13 @@
     width: 100%;
     min-width: 2600px;
 }
+.tableContainer.orgContainer .tableWrapper table{
+    min-width: 998px;
+}
 .tableContainer.historyContent .tableWrapper table th,
 .tableContainer.relationContainer .tableWrapper table th,
-.tableContainer.infoTableContainer .tableWrapper table th{
+.tableContainer.infoTableContainer .tableWrapper table th,
+.tableContainer.orgContainer .tableWrapper table th{
     height: 22px; 
     padding: 8px 24px 8px 12px;
     vertical-align: middle;
@@ -399,22 +415,26 @@
 }
 .tableContainer.historyContent .tableWrapper table th:first-child,
 .tableContainer.relationContainer .tableWrapper table th:first-child,
-.tableContainer.infoTableContainer .tableWrapper table th:first-child{
+.tableContainer.infoTableContainer .tableWrapper table th:first-child,
+.tableContainer.orgContainer .tableWrapper table th:first-child{
     left: unset;
 } 
 .tableContainer.historyContent .tableWrapper table th:nth-child(2),
 .tableContainer.relationContainer .tableWrapper table th:nth-child(2),
-.tableContainer.infoTableContainer .tableWrapper table th:nth-child(2){
+.tableContainer.infoTableContainer .tableWrapper table th:nth-child(2),
+.tableContainer.orgContainer .tableWrapper table th:nth-child(2){
     left: unset;
 }
 .tableContainer.historyContent .tableWrapper table td:first-child,
 .tableContainer.relationContainer .tableWrapper table td:first-child,
-.tableContainer.infoTableContainer .tableWrapper table td:first-child{
+.tableContainer.infoTableContainer .tableWrapper table td:first-child,
+.tableContainer.orgContainer .tableWrapper table td:first-child{
     position: unset; 
 }
 .tableContainer.historyContent .tableWrapper table td:nth-child(2),
 .tableContainer.relationContainer .tableWrapper table td:nth-child(2),
-.tableContainer.infoTableContainer .tableWrapper table td:nth-child(2){
+.tableContainer.infoTableContainer .tableWrapper table td:nth-child(2),
+.tableContainer.orgContainer .tableWrapper table td:nth-child(2){
     position: unset; 
 }
 

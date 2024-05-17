@@ -74,30 +74,35 @@
             <div class="left">
                 <div class="tableContainer">
                     <h2 class="subTitles">단위대 목록</h2>
-                    <div class="tableWrapper">
+                    <div class="tableWrapper orgTableWrapper">
                         <table>
                             <colgroup>
-                                <col width="13.5%" />
+                                <col width="10%" />
                                 <col width="8%" />
-                                <col width="14.5%" />
-                                <col width="12.5%" />
-                                <col width="10.5%" />
+                                <col width="10%" />
+                                <col width="9%" />
+                                <col width="9%" />
                                 <col width="10%" />
                                 <col width="10%" />
-                                <col width="12%" />
                                 <col width="10%" />
+                                <col width="11%" />
+                                <col width="11%" />
                             </colgroup>
                             <thead>
                                 <tr>
-	                                <th>회원번호</th>
-	                                <th>회원명</th>
-	                                <th>법정생년월일</th>
-	                                <th>회원구분</th>
-	                    			<th>회원등급</th>
-	                                <th>대원여부</th>
-	                                <th>지도자여부</th>
-	                                <th>평생회원여부</th>
-	                                <th>전종여부</th>
+	                                <th rowspan="2">지구연합회</th>
+	                                <th rowspan="2" style="left: 95.5px;">대번호</th>
+	                                <th rowspan="2">단위대명</th>
+	                                <th rowspan="2" style="text-align: center;">스카우트<br>구분</th>
+	                                <th rowspan="2" style="text-align: center;">단위대<br>구분</th>
+	                                <th rowspan="2" style="text-align: center;">최종대<br>활동년도</th>
+	                                <th colspan="4" style="border-bottom: 0;">최종활동년도</th>
+                                </tr>
+                                <tr>
+                                	<th>남자대원수</th>
+                                	<th>여자대원수</th>
+                                	<th>남자지도자수</th>
+                                	<th>여자지도자수</th>
                                 </tr>
                             </thead>
                             <tbody id="org_list"></tbody>
@@ -171,7 +176,7 @@
                                 </div>
                                 <div class="inputBox">
                                     <p class="inputCaption">결성일</p>
-                                    <input type="date" name="" id="" value="${pictVO.search_birthday}" class="lgThinInput">
+                                    <input type="date" name="" id="" value="" class="lgThinInput">
                                 </div>
                             </div>
                             <div class="inputsContainer">
@@ -222,74 +227,72 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tableContainer relationContainer bottomBd">
+                        <div class="tableContainer orgContainer bottomBd">
                             <h2 class="subTitles">관리지도자</h2>
                             <div class="tableWrapper">
                                 <table>
                                     <colgroup>
-                                        <col width="20%" />
-                                        <col width="20%" />
-                                        <col width="20%" />
-                                        <col width="40%" />
+                                        <col width="10%" />
+                                        <col width="10%" />
+                                        <col width="10%" />
+                                        <col width="10%" />
+                                        <col width="10%" />
+                                        <col width="10%" />
+                                        <col width="10%" />
+                                        <col width="15%" />
+                                        <col width="10%" />
                                     </colgroup>
                                     <thead>
                                         <tr>
+                                            <th>No</th>
                                             <th>회원번호</th>
-                                            <th>회원명</th>
-                                            <th>관계</th>
-                                            <th>비고</th>
+                                            <th>지도자직책</th>
+                                            <th>성명</th>
+                                            <th>단위대직책</th>
+                                            <th>집전화</th>
+                                            <th>사무실전화</th>
+                                            <th>이메일</th>
+                                            <th>휴대전화</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>지도자</td>
-                                            <td>년도</td>
-                                            <td>연맹</td>
-                                        </tr>
-                                    </tbody>
+                                    <tbody id="org_leader_list"></tbody>
                                 </table>
                             </div>
                             <div class="tableButtons">
                                 <p>0<span>rows</span></p>
-                                <!-- <div class="buttons">
-                                    <a href="#relationPopup" class="smButton relationBtn"><img src="/front_img/modify.png" alt="">수정</a>
-                                </div> -->
                             </div>
                         </div>
-                        <div class="tableContainer relationContainer">
+                        <div class="tableContainer orgContainer">
                             <h2 class="subTitles">연소지도자</h2>
                             <div class="tableWrapper">
                                 <table>
                                     <colgroup>
-                                        <col width="20%" />
-                                        <col width="20%" />
-                                        <col width="20%" />
-                                        <col width="40%" />
+                                        <col width="10%" />
+                                        <col width="10%" />
+                                        <col width="10%" />
+                                        <col width="10%" />
+                                        <col width="10%" />
+                                        <col width="10%" />
+                                        <col width="10%" />
+                                        <col width="15%" />
                                     </colgroup>
                                     <thead>
                                         <tr>
+                                            <th>No</th>
                                             <th>회원번호</th>
-                                            <th>회원명</th>
-                                            <th>관계</th>
-                                            <th>비고</th>
+                                            <th>대원직책</th>
+                                            <th>성명</th>
+                                            <th>집전화</th>
+                                            <th>사무실전화</th>
+                                            <th>이메일</th>
+                                            <th>휴대전화</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>지도자</td>
-                                            <td>년도</td>
-                                            <td>연맹</td>
-                                        </tr>
-                                    </tbody>
+                                    <tbody id="org_scout_list"></tbody>
                                 </table>
                             </div>
                             <div class="tableButtons">
                                 <p>0<span>rows</span></p>
-                                <!-- <div class="buttons">
-                                    <a href="#relationPopup" class="smButton relationBtn"><img src="/front_img/modify.png" alt="">수정</a>
-                                </div> -->
                             </div>
                         </div>
                         <div class="tableButtons rightBtns">
