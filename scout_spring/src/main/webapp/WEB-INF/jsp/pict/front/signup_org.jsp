@@ -101,7 +101,7 @@
 	                                    <p class="inputCaption">관할교육청</p>
 	                                    <div class="inputsAlign">
 	                                    	<span class="bindingText" id="SCHOOLHALL"></span>
-                                			<a href="#groupPopup" class="smButton bigWhiteBtn groupBtn">육성단체지정</a>
+                                			<a href="#groupPopup" onclick="fn_orgnize('new_organ')" class="smButton bigWhiteBtn groupBtn">육성단체지정</a>
                                 			<input type="hidden" name="ORGNO" id="ORGNO">
                                			</div>
 	                                </div>
@@ -149,6 +149,7 @@
 	</body>
 	<script>
 
+		
 		function fn_get_unitylist_org(){
 			var param = {
 					associationcode : $('#ASSOCIATIONCODE').val(),

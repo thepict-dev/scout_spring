@@ -241,6 +241,20 @@
 			$('#leader_orgname').val(orgname)
 			$('#groupPopup').removeClass('active')
 		}
+		else if(org_popup == 'new_organ'){	//조직 신규 등록
+			var leaderorgno = $('#org_no').val()
+			var orgname = $('#org_name').val()
+			
+			console.log("조직통합에서 눌러봄")
+			$('#groupPopup').removeClass('active')
+		}
+		else if(org_popup == 'update_organ'){	//조직 등록창
+			var leaderorgno = $('#org_no').val()
+			var orgname = $('#org_name').val()
+			
+			console.log("조직통합에서 눌러봄")
+			$('#groupPopup').removeClass('active')
+		}
 		
 		
 	}

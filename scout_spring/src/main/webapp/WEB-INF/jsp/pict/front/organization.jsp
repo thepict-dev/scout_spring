@@ -226,7 +226,7 @@
                                     <p class="inputCaption">단위대명</p>
                                     <div class="inputsAlign">
                                         <input type="text" name="TROOPNAME" id="TROOPNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                        <a href="#groupPopup" class="smButton bigWhiteBtn groupBtn">육성단체지정</a>
+                                        <a href="#groupPopup" onclick="fn_orgnize('update_organ')" class="smButton bigWhiteBtn groupBtn">육성단체지정</a>
                                     </div>
                                 </div>
                                 <div class="inputBox">
