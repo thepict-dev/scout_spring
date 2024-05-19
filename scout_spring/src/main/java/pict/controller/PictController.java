@@ -1078,6 +1078,25 @@ public class PictController {
 		}
 	}
 	
+	@RequestMapping("/organ_info")
+	@ResponseBody
+	public HashMap<String, Object> organ_info(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String troopno = param.get("troopno").toString();
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		pictVO.setTROOPNO(troopno);		
+		
+		pictVO = pictService.organ_info(pictVO);
+		if(pictVO != null) {
+			map.put("rst", pictVO);
+			return map;
+		}
+		else {
+			return map;
+		}
+		
+	}
+	
 	
 	//지도자연공 삭제
 	@RequestMapping("/leader_del")

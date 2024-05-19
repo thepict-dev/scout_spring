@@ -127,4 +127,6 @@ public interface PictService {
 
 	public List<PictVO> organ_search(PictVO pictVO) throws Exception;
 
+	public PictVO organ_info(PictVO pictVO) throws Exception;
+
 }

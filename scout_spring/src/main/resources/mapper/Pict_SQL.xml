@@ -393,7 +393,7 @@
 	
 	
 	
-	<!-- 그뭐야 제일 위에[꺼 -->
+	<!-- 조직통합창에서 단위대 리스트 조회 -->
 	<select id="organ_search" resultType="pictVO">
 		select 
 			(select TROOPNAME from troop t1 where t1.TROOPNO = t.PARENT_TROOPNO limit 1) as PARENTTROOPNAME, 
@@ -453,7 +453,20 @@
 		
 	</select>
 
-
+	<select id="organ_info" resultType="pictVO">
+		select 
+		ifnull(o.ORGNAME, "") as ORGNMAE,
+		(select TROOPNAME from troop t1 where t1.TROOPNO = t.PARENT_TROOPNO limit 1) as PARENTTROOPNAME, 
+		sc.SCOUTCLSNAME,
+		(select TROOPCLSNAME from troopclscode tc where tc.TROOPCLSCODE1 = t.TROOPCLSCODE1 and tc.TROOPCLSCODE2 = t.TROOPCLSCODE2) as TROOPCLSNAME,
+		t.*
+	from troop t
+	inner join associationcode a on t.ASSOCIATIONCODE = a.ASSOCIATIONCODE
+	   left outer join scoutclscode sc on sc.SCOUTCLSCODE = t.SCOUTCLSCODE
+	   left outer join org o on o.ORGNO = t.ORGNO
+	   where 1=1
+	   and t.TROOPNO = #{TROOPNO}
+      </select>
 
 	
 

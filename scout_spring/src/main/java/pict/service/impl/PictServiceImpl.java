@@ -346,6 +346,12 @@ public class PictServiceImpl implements PictService {
 		// TODO Auto-generated method stub
 		return pictMapper.organ_search(pictVO);
 	}
+
+	@Override
+	public PictVO organ_info(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.organ_info(pictVO);
+	}
 	
 	
 }
