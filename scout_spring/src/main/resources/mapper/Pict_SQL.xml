@@ -344,6 +344,7 @@
 		select a.ASSOCIATIONNAME
 		, (select ORGCLSNAME from orgclscode oc where ORGCLSCODE1 = o.ORGCLSCODE1 limit 1) as ORGCLSNAME1
 		, (select ORGCLSNAME from orgclscode oc where ORGCLSCODE1 = o.ORGCLSCODE1 and ORGCLSCODE2 = o.ORGCLSCODE2  limit 1) as ORGCLSNAME2
+        , ifnull((select ORGNAME from org o2 where o.PARENT_ORGNO = o2.ORGNO), '') as PARENTORGNAME
 		 , o.* 
 		from org o
 		left outer join associationcode a on a.ASSOCIATIONCODE = o.ASSOCIATIONCODE
@@ -475,6 +476,26 @@
 			(select max(TROOPNO + 1) from troop t), #{ASSOCIATIONCODE}, #{PARENTTROOPNO}, #{TROOPLEVELCODE}, #{TROOPCLSCODE1}, #{TROOPCLSCODE2}, #{SCOUTCLSCODE}, #{DISPTROOPNO}, #{REGDAY}, #{ENGTROOPNAME}, #{TROOPNAME}, #{ORGNO}, #{POSTCODE}, #{ADDR}, #{TELNO}, #{FAXNO}, #{BIGO}, now() 
 		)
 	</insert>
+	
+	<!-- 조직 수정 저장 -->
+	<update id="organ_update" parameterType="pictVO">
+		update troop set 
+		SCOUTCLSCODE = #{SCOUTCLSCODE},
+		DISPTROOPNO = #{DISPTROOPNO},
+		REGDAY = #{REGDAY},
+		ENGTROOPNAME = #{ENGTROOPNAME},
+		TROOPNAME = #{TROOPNAME},
+		ORGNO = #{ORGNO},
+		POSTCODE = #{POSTCODE},
+		ADDR = #{ADDR},
+		TELNO = #{TELNO},
+		FAXNO = #{FAXNO},
+		BIGO = #{BIGO},
+		UPDATEDATE = now()
+		
+		where TROOPNO = #{TROOPNO}
+	</update>
+	
 	
 
 </mapper>

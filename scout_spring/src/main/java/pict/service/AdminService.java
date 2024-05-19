@@ -22,7 +22,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface AdminService {
 
-	AdminVO get_user_info(AdminVO adminVO) throws Exception;
 	
 	void insert_user(AdminVO adminVO) throws Exception;
 
@@ -41,5 +40,7 @@ public interface AdminService {
 	void update_user(AdminVO adminVO)throws Exception;
 
 	void user_delete(AdminVO adminVO) throws Exception;
+
+	PictVO get_user_info(PictVO pictVO) throws Exception;
 	
 }

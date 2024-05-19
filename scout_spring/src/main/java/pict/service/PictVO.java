@@ -166,7 +166,7 @@ public class PictVO extends PictDefaultVO {
 	private String LASTREGDAY;
 	private String ENGTROOPNAME;
 	private String REGDAY;
-	
+	private String PARENTORGNAME;
 	
 	
 	
@@ -187,10 +187,22 @@ public class PictVO extends PictDefaultVO {
 	private String search_orgtext;
 	private String search_type;
 	private String search_text;
+	private String password;
 	
 	
 	
-	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getPARENTORGNAME() {
+		return PARENTORGNAME;
+	}
+	public void setPARENTORGNAME(String pARENTORGNAME) {
+		PARENTORGNAME = pARENTORGNAME;
+	}
 	public String getREGDAY() {
 		return REGDAY;
 	}

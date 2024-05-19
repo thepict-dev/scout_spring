@@ -25,7 +25,7 @@ import pict.service.PictVO;
 @Mapper
 public interface AdminMapper {
 	
-	AdminVO get_user_info(AdminVO adminVO) throws Exception;
+	PictVO get_user_info(PictVO pictVO) throws Exception;
 
 	void insert_user(AdminVO adminVO) throws Exception;
 

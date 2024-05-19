@@ -50,27 +50,28 @@ public class PictController {
 
 
 	
-	@RequestMapping("/pict_main.do")
-	public String pict_main(@ModelAttribute("pictVO") AdminVO adminVO, HttpServletRequest request, ModelMap model,
+	
+	@RequestMapping("/pict_main")
+	public String pict_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		String sessions = (String) request.getSession().getAttribute("id");
 		if (sessions == null || sessions == "null") {
-			return "redirect:/pict_login.do";
+			return "redirect:/pict_login";
 		} else {
 			String user_id = (String) request.getSession().getAttribute("id");
 			if (request.getSession().getAttribute("id") != null) {
-				adminVO.setAdminId((String) request.getSession().getAttribute("id"));
-				adminVO = adminService.get_user_info(adminVO);
-				model.addAttribute("adminVO", adminVO);
+				pictVO.setMEMBERNO((String) request.getSession().getAttribute("id"));
+				pictVO = adminService.get_user_info(pictVO);
+				model.addAttribute("adminVO", pictVO);
 			}
 
-			return "redirect:/board/board_list.do";
+			return "redirect:/front/users";
 
 		}
 	}
 
-	@RequestMapping("/pict_login.do")
-	public String login_main(@ModelAttribute("pictVO") AdminVO adminVO, HttpServletRequest request, ModelMap model,
+	@RequestMapping("/pict_login")
+	public String login_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpServletResponse response) throws Exception {
 		String userAgent = request.getHeader("user-agent");
 		String sessions = (String) request.getSession().getAttribute("id");
@@ -89,77 +90,72 @@ public class PictController {
 			return "pict/main/login";
 		} else {
 			// 나중에 여기 계정별로 리다이렉트 분기처리
-			return "redirect:/board/board_list.do";
+			return "redirect:/front/users";
 
 		}
 
 	}
 
-	@RequestMapping("/login.do")
-	public String login(@ModelAttribute("adminVO") AdminVO adminVO, HttpServletRequest request, ModelMap model)
+	@RequestMapping("/login")
+	public String login(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model)
 			throws Exception {
 		// 처음 드러와서 세션에 정보있으면 메인으로 보내줘야함
-		String inpuId = adminVO.getAdminId();
-		String inputPw = adminVO.getAdminPw();
+		String inpuId = pictVO.getMEMBERNO();
+		String inputPw = pictVO.getPassword();
+		System.out.println("입력 아이디 : " + inpuId);
+		System.out.println("입력 비번 : " + inputPw);
+		pictVO = adminService.get_user_info(pictVO);
 
-		adminVO = adminService.get_user_info(adminVO);
-
-		if (adminVO != null && adminVO.getId() != null && !adminVO.getId().equals("")) {
-			String user_id = adminVO.getId();
+		if (pictVO != null && pictVO.getMEMBERNO() != null && !pictVO.getMEMBERNO().equals("")) {
+			String user_id = pictVO.getMEMBERNO();
 			String enpassword = encryptPassword(inputPw, inpuId); // 입력비밀번호
+			System.out.println(user_id + " @@@@@@@@@@@@@@@@@@");
+			System.out.println(enpassword + " #################");
+			if (enpassword.equals(pictVO.getPassword())) {
+				request.getSession().setAttribute("id", pictVO.getMEMBERNO());
+				request.getSession().setAttribute("name", pictVO.getKNAME());
+				request.getSession().setAttribute("associationname", pictVO.getASSOCIATIONNAME());
+				request.getSession().setAttribute("leaderpositionname", pictVO.getLEADERPOSITIONNAME());
+				request.getSession().setAttribute("picimg", pictVO.getPICIMG());
 
-			if (enpassword.equals(adminVO.getPassword())) {
-				request.getSession().setAttribute("id", adminVO.getId());
-				request.getSession().setAttribute("name", adminVO.getName());
-				request.getSession().setAttribute("depart", adminVO.getDepart());
+				
+				pictVO.setMEMBERNO(user_id);
+				pictVO = adminService.get_user_info(pictVO);
 
-				String ip = request.getRemoteAddr();
-				DateFormat format2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-				String now = format2.format(Calendar.getInstance().getTime());
-
-				adminVO.setLast_login_ip(ip);
-				adminVO.setLast_login_date(now);
-				adminService.insert_login_info(adminVO);
-
-				adminVO.setAdminId(user_id);
-				adminVO = adminService.get_user_info(adminVO);
-
-				return "redirect:/pict_main.do";
+				return "redirect:/pict_main";
 
 			} else {
-				model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.");
+				model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.1");
 				model.addAttribute("retType", ":location");
-				model.addAttribute("retUrl", "/pict_login.do");
+				model.addAttribute("retUrl", "/pict_login");
 				return "pict/main/message";
 			}
 		} else {
-			model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.");
+			model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.2");
 			model.addAttribute("retType", ":location");
-			model.addAttribute("retUrl", "/pict_login.do");
+			model.addAttribute("retUrl", "/pict_login");
 			return "pict/main/message";
 		}
 	}
 
-	@RequestMapping("/logout.do")
+	@RequestMapping("/logout")
 	public String logout(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model)
 			throws Exception {
 		request.getSession().setAttribute("id", null);
 		request.getSession().setAttribute("name", null);
+		request.getSession().setAttribute("associationname", null);
+		request.getSession().setAttribute("leaderpositionname", null);
+		request.getSession().setAttribute("picimg", null);
 
-		return "redirect:/pict_login.do";
+		return "redirect:/pict_login";
 
 	}
 
-	// 사용자
-	@RequestMapping("/mains")
-	public String main_11(@ModelAttribute("pictVO") AdminVO adminVO, HttpServletRequest request, ModelMap model,
-			HttpSession session, RedirectAttributes rttr) throws Exception {
-		return "redirect:/front/ko/main";
-	}
+	
 	@RequestMapping("/")
 	public String main(@ModelAttribute("pictVO") AdminVO adminVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
-		return "redirect:/front/users";
+		return "redirect:/pict_login";
 	}
 	//대원통합창
 	@RequestMapping("/front/users")
@@ -251,6 +247,47 @@ public class PictController {
 		return "pict/main/message";	
 	}
 	
+	//조직 수정 저장
+	@RequestMapping("/organ_update")
+	@ResponseBody
+	public String organ_update(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, 
+			@RequestBody Map<String, Object> param) throws Exception {	
+		try {
+			String troopno = param.get("troopno").toString();
+			String scoutclscode = param.get("scoutclscode").toString();
+			String disptroopno = param.get("disptroopno").toString();
+			String regday = param.get("regday").toString();
+			String engtroopname = param.get("engtroopname").toString();
+			String troopname = param.get("troopname").toString();
+			String orgno = param.get("orgno").toString();
+			String postcode = param.get("postcode").toString();
+			String addr = param.get("addr").toString();
+			String telno = param.get("telno").toString();
+			String faxno = param.get("faxno").toString();
+			String bigo = param.get("bigo").toString();
+			
+			
+			pictVO.setTROOPNO(troopno);
+			pictVO.setSCOUTCLSCODE(scoutclscode);
+			pictVO.setDISPTROOPNO(disptroopno);
+			pictVO.setREGDAY(regday);
+			pictVO.setENGTROOPNAME(engtroopname);
+			pictVO.setTROOPNAME(troopname);
+			pictVO.setORGNO(orgno);
+			pictVO.setPOSTCODE(postcode);
+			pictVO.setADDR(addr);
+			pictVO.setTELNO(telno);
+			pictVO.setFAXNO(faxno);
+			pictVO.setBIGO(bigo);
+		
+			pictService.organ_update(pictVO);
+
+			return "Y";
+		}
+		catch(Exception e) {
+			return "N";
+		}
+	}
 	
 	//신규 회원 등록
 	@RequestMapping("/front/signup")

@@ -149,11 +149,16 @@
     <input type="hidden" id="org_code2" name="org_code2">
     <input type="hidden" id="org_position" name="org_position">
     <input type="hidden" id="org_name" name="org_name">
+    
+    <input type="hidden" id="parentorgname" name="parentorgname">
+    <input type="hidden" id="postcode" name="postcode">
+    <input type="hidden" id="addr" name="addr">
+    <input type="hidden" id="telno" name="telno">
+    <input type="hidden" id="faxno" name="faxno">
 </div>
 <script>
 	function fn_orgsave(){
 		var org_popup = $('#org_popup').val()
-		
 		if(org_popup == 'main_scout'){//메인에 대원 단체
 			$('#initial-loading').css('display', 'flex')
 			var param = {
@@ -244,25 +249,58 @@
 		else if(org_popup == 'new_organ'){	//조직 신규 등록
 			var leaderorgno = $('#org_no').val()
 			var orgname = $('#org_name').val()
+			var parentorgname = $('#parentorgname').val()
+			var postcode = $('#postcode').val()
+			var addr = $('#addr').val()
+			var telno = $('#telno').val()
+			var faxno = $('#faxno').val()
 			
-			console.log("조직통합에서 눌러봄")
+			
+			$('#ORGNO').val(leaderorgno)
+			$('#TROOPNAME').val(orgname)
+			$('#SCHOOLHALL').text(parentorgname)
+			$('#POSTCODE').val(postcode)
+			$('#ADDR').val(addr)
+			$('#TELNO').val(telno)
+			$('#FAXNO').val(faxno)
+			
+			
 			$('#groupPopup').removeClass('active')
 		}
 		else if(org_popup == 'update_organ'){	//조직 등록창
 			var leaderorgno = $('#org_no').val()
 			var orgname = $('#org_name').val()
+			var parentorgname = $('#parentorgname').val()
+			var postcode = $('#postcode').val()
+			var addr = $('#addr').val()
+			var telno = $('#telno').val()
+			var faxno = $('#faxno').val()
 			
-			console.log("조직통합에서 눌러봄")
+			
+			$('#ORGNO').val(leaderorgno)
+			$('#TROOPNAME').val(orgname)
+			$('#SCHOOLHALL').text(parentorgname)
+			$('#POSTCODE').val(postcode)
+			$('#ADDR').val(addr)
+			$('#TELNO').val(telno)
+			$('#FAXNO').val(faxno)
+			
 			$('#groupPopup').removeClass('active')
 		}
 		
 		
 	}
-	function fn_orgno_select(idx, orgcode1, orgcode2, orgname){
+	function fn_orgno_select(idx, orgcode1, orgcode2, orgname, parentorgname, postcode, addr, telno, faxno){
 		$('#org_no').val(idx)
 		$('#org_code1').val(orgcode1)
 		$('#org_code2').val(orgcode2)
 		$('#org_name').val(orgname)
+		
+		$('#parentorgname').val(parentorgname)
+		$('#postcode').val(postcode)
+		$('#addr').val(addr)
+		$('#telno').val(telno)
+		$('#faxno').val(faxno)
 	}
 	function fn_orgnize(target){
 		$('#org_popup').val(target)
@@ -371,7 +409,7 @@
 					var arr = data.list;
 					$('#group_list').children().remove();
 					for(var i=0; i<arr.length; i++){
-						html += '<tr onclick="fn_orgno_select(\'' + arr[i].orgno + '\', \'' + arr[i].orgclscode1 + '\', \'' + arr[i].orgclscode2 + '\', \'' + arr[i].orgname + '\')">'+
+						html += '<tr onclick="fn_orgno_select(\'' + arr[i].orgno + '\', \'' + arr[i].orgclscode1 + '\', \'' + arr[i].orgclscode2 + '\', \'' + arr[i].orgname + '\', \'' + arr[i].parentorgname + '\', \'' + arr[i].postcode + '\', \'' + arr[i].addr + '\', \'' + arr[i].telno + '\', \'' + arr[i].faxno + '\')">'+
 						
 						'<td>' + Number(i+1) + '</td>' +
 						'<td>' + arr[i].associationname + '</td>'+

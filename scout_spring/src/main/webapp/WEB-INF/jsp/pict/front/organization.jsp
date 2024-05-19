@@ -7,6 +7,7 @@
 <!DOCTYPE html>	
 <html lang="ko">
 	<%@ include file="./include/head.jsp" %>
+	<script src="/js/script.js" defer></script>
 <body>
 	<%@ include file="./include/lnb.jsp" %>
 	<%@ include file="./include/header.jsp" %>
@@ -240,7 +241,7 @@
                             </div>
                             <div class="inputsContainer">
                                 <div class="inputBox">
-                                    <p class="inputCaption">집주소</p>
+                                    <p class="inputCaption">주소</p>
                                     <div class="zip">
                                         <input type="text" name="POSTCODE" id="POSTCODE" readonly class="lgThinInput">
                                         <a href="#lnk" class="normalButton white" id="searchZip">우편번호 검색</a>
@@ -305,7 +306,7 @@
 	                            <div class="buttons">
 	                                <a href="#lnk" class="smButton"><img src="/front_img/doc.png" alt="">청소년단체등록확인서</a>
 	                                <a href="#lnk" class="smButton"><img src="/front_img/doc.png" alt="">가맹등록확인서</a>
-	                                <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">수정</a>
+	                                <a href="#lnk" class="smButton" onclick="organ_update()"><img src="/front_img/download.png" alt="">수정</a>
 	                            </div>
 		                    </div>
                         </div>
@@ -384,6 +385,8 @@
             </div>
         </div>
     </div>
+    <input type="hidden" id="org_popup" />
+    <input type="hidden" id="idx" />
 	<%@ include file="./include/loading.jsp" %>
     <%@ include file="./include/error_page.jsp" %>
     
@@ -392,9 +395,51 @@
 	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
+	
+		function organ_update(){
+			var idx = $('#idx').val()
+			
+			if(idx == '' || idx == null || idx == undefined){
+				alert("단위대를 선택해주세요.")
+				return false;
+			}
+				
+			if(confirm("수정하시겠습니까?")){
+				var param = {
+					troopno : idx,
+					scoutclscode : $('#SCOUTCLSCODE').val(),
+					disptroopno : $('#DISPTROOPNO').val(),
+					regday: $('#REGDAY').val(),
+					engtroopname : $('#ENGTROOPNAME').val(),
+					troopname: $('#TROOPNAME').val(),
+					orgno : $('#ORGNO').val(),
+					postcode : $('#POSTCODE').val(),
+					addr : $('#ADDR').val(),
+					telno : $('#TELNO').val(),
+					faxno : $('#FAXNO').val(),
+					bigo: $('#BIGO').val(),
+					
+				}
+				console.log(param)
+				$.ajax({
+					url : "/organ_update"
+					, type : "POST"
+					, data : JSON.stringify(param)
+					, contentType : "application/json"
+					, async : true
+					, success : function(data, status, xhr) {
+						alert("정상적으로 수정되었습니다.");
+					},
+					error: function(err){
+						console.log(err)
+					}
+				})
+			}
+			
+		}
 		function fn_organ_info(troopno){
 			
-			
+			$('#idx').val(troopno)
 			var param = {
 				troopno : troopno
 			}

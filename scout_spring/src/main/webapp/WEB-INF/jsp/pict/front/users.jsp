@@ -7,6 +7,7 @@
 <!DOCTYPE html>	
 <html lang="ko">
 	<%@ include file="./include/head.jsp" %>
+	<script src="/js/script.js" defer></script>
 <body>
 	<%@ include file="./include/lnb.jsp" %>
 	<%@ include file="./include/header.jsp" %>
@@ -709,6 +710,12 @@
 		})
 		
 		function person_save(){
+			var memberno = $('#MEMBERNO').val()
+			if(memberno == '' || memberno == null || memberno == undefined){
+				alert("회원을 선택해주세요.")
+				return false;
+			}
+			
 			var sex = "M"
 			if(document.getElementById("SEX_W").checked) sex = "W";
 			
@@ -853,7 +860,12 @@
 					if(data.info.emailyn == "Y") $("input:checkbox[id=EMAILYN]").attr("checked", true);
 					
 					//프로필이미지 바인딩
-					$('#profile_img').attr("src",data.info.picimg)
+					var picimg = "http://localhost:8080/front_img/profile.png"
+					if(data.info.picimg != '' && data.info.picimg != null && data.info.picimg != undefined)
+						picimg = data.info.picimg
+						
+						
+					$('#profile_img').attr("src",picimg)
 					
 					
 					//지도자 단체

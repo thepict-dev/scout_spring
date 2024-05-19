@@ -15,11 +15,7 @@
 		if(msg != "" && msg != null){
 			alert(msg);
 		}
-		function fn_login2(){
-			var option = "width = 1000, height = 600, top = 100, left = 200, location = no"
-			window.open("https://kcloud.kangwon.ac.kr/login?return_url=http://localhost:8080/sso.do", "강원대학교 통합로그인", option)
 
-		}
 		function fn_login() {
 			
 			// rsa 암호화
@@ -32,18 +28,18 @@
 				return false;
 			} else {
 				//$("#adminId").val(rsa.encrypt($("#id").val()));
-				$("#adminId").val($("#id").val());
+				$("#MEMBERNO").val($("#id").val());
 			}
 			
-			if ($("#password").val() == "") {
+			if ($("#password2").val() == "") {
 				alert("비밀번호를 입력하세요.");
-				$("#password").focus();
+				$("#password2").focus();
 				return false;
 			} else {
 				//$("#adminPw").val(rsa.encrypt($("#pw").val()));
-				$("#adminPw").val($("#password").val());
+				$("#password").val($("#password2").val());
 			}
-			document.loginForm.action = "/login.do";
+			document.loginForm.action = "/login";
 			document.loginForm.submit();
 			
 		}
@@ -119,8 +115,8 @@
 	                    	<input type="text" id="id" class="input" placeholder="yourname@company.com" onkeypress="if(event.keyCode == 13){fn_login();}" autocomplete="off">
 	                	</div>
 	                	<div class="login-item">
-	                		<label for="password" class="title">Password*</label>
-	                    	<input type="password" id="password" class="input" placeholder="*********" onkeypress="if(event.keyCode == 13){fn_login();}" autocomplete="off">
+	                		<label for="password2" class="title">Password*</label>
+	                    	<input type="password" id="password2" class="input" placeholder="*********" onkeypress="if(event.keyCode == 13){fn_login();}" autocomplete="off">
 	                	</div>
 		                <button type="button" class="login-btn" onclick="javascript:fn_login();">Login</button>
 		                <!-- <button type="button" class="btn" onclick="javascript:fn_login2();">학사</button> -->
@@ -135,6 +131,6 @@
 		<input type="hidden" id="RSAModulus" value="${RSAModulus}"/>
 		<input type="hidden" id="RSAExponent" value="${RSAExponent}"/>
 		--%>
-		<input type="hidden" name="adminId" id="adminId" value="">
-		<input type="hidden" name="adminPw" id="adminPw" value="">
+		<input type="hidden" name="MEMBERNO" id="MEMBERNO" value="">
+		<input type="hidden" name="password" id="password" value="">
 	</form>

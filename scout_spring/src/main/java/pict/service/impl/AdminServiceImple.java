@@ -31,11 +31,7 @@ public class AdminServiceImple implements AdminService {
 	@Autowired
     AdminMapper adminMapper;
 	
-	@Override
-	public AdminVO get_user_info(AdminVO adminVO) throws Exception {
-		return adminMapper.get_user_info(adminVO);
-	}
-	
+
 	@Override
 	public void insert_user(AdminVO adminVO) throws Exception {
 		adminMapper.insert_user(adminVO);
@@ -83,6 +79,12 @@ public class AdminServiceImple implements AdminService {
 	@Override
 	public void user_delete(AdminVO adminVO) throws Exception {
 		adminMapper.user_delete(adminVO);
+	}
+
+	@Override
+	public PictVO get_user_info(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return adminMapper.get_user_info(pictVO);
 	}
 	
 	

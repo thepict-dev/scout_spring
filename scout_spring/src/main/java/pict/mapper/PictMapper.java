@@ -133,7 +133,9 @@ public interface PictMapper {
 
 	PictVO organ_info(PictVO pictVO) throws Exception;
 
-	void new_org(PictVO pictVO) throws Exception;  
+	void new_org(PictVO pictVO) throws Exception;
+
+	void organ_update(PictVO pictVO) throws Exception;  
  
 	
 

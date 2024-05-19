@@ -2,11 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pict.mapper.AdminMapper">
 	
-	<select id="get_user_info" resultType="adminVO">
-		SELECT 
-			*
-		FROM user_info
-		WHERE id = #{adminId}
+	<select id="get_user_info" resultType="pictVO">
+		select m.MEMBERNO, m.KNAME, m.password, a.ASSOCIATIONNAME, m.PICIMG,
+		(select LEADERPOSITIONNAME from leaderpositioncode lp where lp.LEADERPOSITIONCODE1 = l.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2) as LEADERPOSITIONNAME
+		from member m
+		inner join leader l on m.MEMBERNO = l.MEMBERNO
+		left outer join associationcode a on a.ASSOCIATIONCODE = l.ASSOCIATIONCODE
+		where m.MEMBERNO = #{MEMBERNO}
+		
+		order by l.STARTDAY desc 
+		limit 1 offset 0;
 	</select>
 	
 	<update id="update_user" parameterType="adminVO">

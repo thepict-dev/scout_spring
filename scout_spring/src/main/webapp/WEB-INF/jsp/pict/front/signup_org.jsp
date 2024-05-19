@@ -7,6 +7,7 @@
 <!DOCTYPE html>	
 <html lang="ko">
 	<%@ include file="./include/head.jsp" %>
+	<script src="/js/script_signup.js" defer></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<body>
 		<%@ include file="./include/lnb.jsp" %>
@@ -102,7 +103,7 @@
 	                                    <div class="inputsAlign">
 	                                    	<span class="bindingText" id="SCHOOLHALL"></span>
                                 			<a href="#groupPopup" onclick="fn_orgnize('new_organ')" class="smButton bigWhiteBtn groupBtn">육성단체지정</a>
-                                			<input type="hidden" name="ORGNO" id="ORGNO">
+                                			<input type="text" name="ORGNO" id="ORGNO" class="lgThinInput" readonly>
                                			</div>
 	                                </div>
 	                            </div>
@@ -145,7 +146,7 @@
 	    </div>
 	     <!-- 학교검색 모달 -->
 		<%@ include file="./include/group_modal.jsp" %>
-	
+		<input type="hidden" id="org_popup" />
 	</body>
 	<script>
 
