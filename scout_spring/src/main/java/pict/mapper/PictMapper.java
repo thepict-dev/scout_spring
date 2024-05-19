@@ -131,7 +131,9 @@ public interface PictMapper {
 
 	List<PictVO> organ_search(PictVO pictVO) throws Exception;
 
-	PictVO organ_info(PictVO pictVO) throws Exception;  
+	PictVO organ_info(PictVO pictVO) throws Exception;
+
+	void new_org(PictVO pictVO) throws Exception;  
  
 	
 

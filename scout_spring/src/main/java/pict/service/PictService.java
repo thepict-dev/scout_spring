@@ -129,4 +129,6 @@ public interface PictService {
 
 	public PictVO organ_info(PictVO pictVO) throws Exception;
 
+	public void new_org(PictVO pictVO) throws Exception;
+
 }

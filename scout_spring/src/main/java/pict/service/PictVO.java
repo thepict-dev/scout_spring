@@ -165,6 +165,10 @@ public class PictVO extends PictDefaultVO {
 	private String PARENTTROOPNAME;
 	private String LASTREGDAY;
 	private String ENGTROOPNAME;
+	private String REGDAY;
+	
+	
+	
 	
 	private String search_birthday;
 	private String search_history;
@@ -187,6 +191,12 @@ public class PictVO extends PictDefaultVO {
 	
 	
 	
+	public String getREGDAY() {
+		return REGDAY;
+	}
+	public void setREGDAY(String rEGDAY) {
+		REGDAY = rEGDAY;
+	}
 	public String getENGTROOPNAME() {
 		return ENGTROOPNAME;
 	}

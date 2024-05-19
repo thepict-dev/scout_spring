@@ -220,9 +220,38 @@ public class PictController {
 	public String signup_org(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		
+		List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
+		List<PictVO> scoutcls_list = pictService.scoutcls_list(pictVO);
+		
+		model.addAttribute("trooplevel_list", trooplevel_list);
+		model.addAttribute("scoutcls_list", scoutcls_list);
+		
+		
+		
+		List<PictVO> association_list = pictService.association_list(pictVO);
+		pictVO.setASSOCIATIONCODE("200");
+		List<PictVO> unity_list = pictService.unity_list(pictVO);
+		model.addAttribute("association_list", association_list);
+		model.addAttribute("unity_list", unity_list);
+		
 		model.addAttribute("pictVO", pictVO);
 		return "pict/front/signup_org";
 	}
+	//신규 조직 저장
+	@RequestMapping("/new_org")
+	public String new_org(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		
+		pictService.new_org(pictVO);
+		
+		
+		model.addAttribute("message", "정상적으로 저장되었습니다.");
+		model.addAttribute("retType", ":location");
+		model.addAttribute("retUrl", "/front/signup_org");
+		return "pict/main/message";	
+	}
+	
+	
 	//신규 회원 등록
 	@RequestMapping("/front/signup")
 	public String signup(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,

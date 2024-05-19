@@ -27,7 +27,7 @@
 				                                	<option value="${association_list.ASSOCIATIONCODE}"> ${association_list.ASSOCIATIONNAME}</option>
 				                                </c:forEach>
 				                            </select>
-	                                        <select name="UNITYCODE" id="UNITYCODE" class="smThinSelect">
+	                                        <select name="PARENTTROOPNO" id="PARENTTROOPNO" class="smThinSelect">
 	                                            <option value="">지구 선택</option>
 												<c:forEach var="unity_list" items="${unity_list}" varStatus="status">
 													<option value="${unity_list.TROOPNO}">${unity_list.TROOPNAME}</option>
@@ -79,12 +79,11 @@
 	                                    <p class="inputCaption">대번호</p>
 	                                    <div class="inputsAlign">
 	                                        <input type="text"  name="DISPTROOPNO" id="DISPTROOPNO" placeholder="내용을 입력하세요…" class="smThinInput">
-	                                        <a href="#lnk" class="smButton bigWhiteBtn">조회</a>
 	                                    </div>
 	                                </div>
 	                                <div class="inputBox">
 	                                    <p class="inputCaption">결성일</p>
-	                                    <input type="date" name="UNREGDAY" id="UNREGDAY" value="${pictVO.search_birthday}" class="lgThinInput">
+	                                    <input type="date" name="REGDAY" id="REGDAY" value="${pictVO.REGDAY}" class="lgThinInput">
 	                                </div>
 	                            </div>
 	                            <div class="inputsContainer">
@@ -96,40 +95,41 @@
 	                            <div class="inputsContainer">
 	                                <div class="inputBox">
 	                                    <p class="inputCaption">단위대명</p>
-	                                    <div class="inputsAlign">
-	                                        <input type="text"  name="TROOPNAME" id="TROOPNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
-	                                        <a href="#lnk" class="smButton bigWhiteBtn">조회</a>
-	                                    </div>
+	                                    <input type="text"  name="TROOPNAME" id="TROOPNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
 	                                </div>
 	                                <div class="inputBox">
 	                                    <p class="inputCaption">관할교육청</p>
-                                		<span class="bindingText" id="SCHOOLHALL"></span>
+	                                    <div class="inputsAlign">
+	                                    	<span class="bindingText" id="SCHOOLHALL"></span>
+                                			<a href="#lnk" class="smButton bigWhiteBtn">육성단체지정</a>
+                                			<input type="hidden" name="ORGNO" id="ORGNO">
+                               			</div>
 	                                </div>
 	                            </div>
 	                            <div class="inputsContainer">
 	                                <div class="inputBox">
 	                                    <p class="inputCaption">주소</p>
 	                                    <div class="zip">
-	                                        <input type="text" name="HPOSTCODE" id="HPOSTCODE" readonly class="lgThinInput">
+	                                        <input type="text" name="POSTCODE" id="POSTCODE" readonly class="lgThinInput">
 	                                        <a href="#lnk" id="searchZip" class="normalButton white">우편번호 검색</a>
 	                                    </div>
-	                                    <input type="text" name="get_post" id="get_post" class="lgThinInput post">
+	                                    <input type="text" name="ADDR" id="ADDR" class="lgThinInput post">
 	                                </div>
 	                            </div>
 	                            <div class="inputsContainer">
 	                                <div class="inputBox">
 	                                    <p class="inputCaption">전화</p>
-	                                    <input type="text"  name="TELNO" id="TELNO" placeholder="내용을 입력하세요…" class="lgThinInput">
+	                                    <input type="text" name="TELNO" id="TELNO" placeholder="내용을 입력하세요…" class="lgThinInput">
 	                                </div>
 	                                <div class="inputBox">
 	                                    <p class="inputCaption">팩스</p>
-	                                    <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+	                                    <input type="text" name="FAXNO" id="FAXNO" placeholder="내용을 입력하세요…" class="lgThinInput">
 	                                </div>
 	                            </div>
 	                            <div class="inputsContainer">
 	                                <div class="inputBox">
 	                                    <p class="inputCaption">비고</p>
-	                                    <textarea name="FAXNO" id="FAXNO" cols="100"></textarea>
+	                                    <textarea name="BIGO" id="BIGO" cols="100"></textarea>
 	                                </div>
 	                            </div>
 		                        <div class="tableButtons inputsPd" style="justify-content: flex-end;">
@@ -161,11 +161,11 @@
 					var html ="";
 					if(data.list){
 						var arr = data.list;
-						$('#UNITYCODE').children().remove();
+						$('#PARENTTROOPNO').children().remove();
 						for(var i=0; i<arr.length; i++){
 							html += '<option value="'+ arr[i].troopno +'">'+ arr[i].troopname +'</option>'
 						}
-						$('#UNITYCODE').append(html)
+						$('#PARENTTROOPNO').append(html)
 						$('.contentsContainer select').niceSelect('update')
 					}
 				}
@@ -194,7 +194,7 @@
 						for(var i=0; i<arr.length; i++){
 							html += '<option value="'+ arr[i].troopclscode2 +'">'+ arr[i].troopclsname +'</option>'
 						}
-						$('#TROOPCLSCODE12').append(html)
+						$('#TROOPCLSCODE2').append(html)
 						$('.contentsContainer select').niceSelect('update')
 					}
 				}
@@ -206,19 +206,7 @@
 		}
 		function fn_submit(){
 			var text = "등록하시겠습니까?";
-			var unity_code = $('#UNITYCODE').val();
-			var kname = $('#KNAME').val();
-			var ename = $('#ENAME').val();
-			var birth = $('#BIRTHDAY').val();
-			var mobile = $('#MOBILE').val();
-			
-			if (unity_code == undefined || unity_code == ''){
-				alert("지구를 선택해주세요.");
-				$('#UNITYCODE').focus();
-				return false;
-			}
-			
-			
+
 
 			if (confirm(text)) {
 				$("#register_org").attr("action", "/new_org");
@@ -231,9 +219,9 @@
 		        //카카오 지도 발생
 		        new daum.Postcode({
 		            oncomplete: function(data) { //선택시 입력값 세팅
-		                document.getElementById("HPOSTCODE").value = data.zonecode;
-		                document.getElementById("get_post").value = data.address; // 주소 넣기
-		                document.getElementById("get_post").focus();
+		                document.getElementById("POSTCODE").value = data.zonecode;
+		                document.getElementById("ADDR").value = data.address; // 주소 넣기
+		                document.getElementById("ADDR").focus();
 		            }
 		        }).open();
 		    });

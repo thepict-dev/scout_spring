@@ -212,7 +212,7 @@
                                 </div>
                                 <div class="inputBox">
                                     <p class="inputCaption">결성일</p>
-                                    <input type="date" name="UNREGDAY" id="UNREGDAY" class="lgThinInput">
+                                    <input type="date" name="REGDAY" id="REGDAY" class="lgThinInput">
                                 </div>
                             </div>
                             <div class="inputsContainer">
@@ -267,37 +267,37 @@
 	                        <div class="inputsContainer">
 	                            <div class="inputBox">
 	                                <p class="inputCaption">최종등록년도</p>
-	                                <span class="bindingText"></span>
+	                                <span class="bindingText" id="LASTREGYEAR"></span>
 	                            </div>
 	                            <div class="inputBox">
 	                                <p class="inputCaption">대원수</p>
-	                                <span class="bindingText"></span>
+	                                <span class="bindingText" id="SCOUTCNT"></span>
 	                            </div>
 	                            <div class="inputBox">
 	                                <p class="inputCaption">남자</p>
-	                                <span class="bindingText"></span>
+	                                <span class="bindingText" id="SCOUTMCNT"></span>
 	                            </div>
 	                            <div class="inputBox">
 	                                <p class="inputCaption">여자</p>
-	                                <span class="bindingText"></span>
+	                                <span class="bindingText" id="SCOUTWCNT"></span>
 	                            </div>
 	                        </div>
 	                        <div class="inputsContainer">
 	                            <div class="inputBox">
 	                                <p class="inputCaption">최종등록일</p>
-	                                <span class="bindingText"></span>
+	                                <span class="bindingText" id="LASTREGDAY"></span>
 	                            </div>
 	                            <div class="inputBox">
 	                                <p class="inputCaption">지도자수</p>
-	                                <span class="bindingText"></span>
+	                                <span class="bindingText" id="LEADERCNT"></span>
 	                            </div>
 	                            <div class="inputBox">
 	                                <p class="inputCaption">남자</p>
-	                                <span class="bindingText"></span>
+	                                <span class="bindingText" id="LEADERMCNT"></span>
 	                            </div>
 	                            <div class="inputBox">
 	                                <p class="inputCaption">여자</p>
-	                                <span class="bindingText"></span>
+	                                <span class="bindingText" id="LEADERWCNT"></span>
 	                            </div>
 	                        </div>
 		                    <div class="tableButtons rights">
@@ -413,11 +413,11 @@
 						$('#TROOPCLSCODE2').val("");
 						$('#SCOUTCLSCODE').val("");
 						$('#DISPTROOPNO').val("");
-						$('#UNREGDAYE').val("");
+						$('#REGDAY').val("");
 						$('#ENGTROOPNAME').val("");
 						
 						$('#TROOPNAME').val("");
-						$('#SCHOOLHALL').val("");
+						$('#SCHOOLHALL').text("");
 						$('#ORGNO').val("");
 						
 						$('#HPOSTCODE').val("");
@@ -425,6 +425,18 @@
 						$('#TELNO').val("");
 						$('#FAXNO').val("");
 						$('#BIGO').val("");
+						
+						$('#LASTREGYEAR').text("");
+						$('#SCOUTCNT').text("");
+						$('#SCOUTMCNT').text("");
+						$('#SCOUTWCNT').text("");
+						
+						$('#LASTREGDAY').text("");
+						$('#LEADERCNT').text("");
+						$('#LEADERMCNT').text("");
+						$('#LEADERWCNT').text("");
+						
+						
 						
 						
 						$('#ASSOCIATIONCODE').val(data.rst.associationcode);
@@ -439,7 +451,7 @@
 						
 						
 						$('#DISPTROOPNO').val(data.rst.disptroopno);
-						$('#UNREGDAY').val(data.rst.unregday);
+						$('#REGDAY').val(data.rst.regday);
 						$('#ENGTROOPNAME').val(data.rst.engtroopname);
 						
 						$('#TROOPNAME').val(data.rst.troopname);
@@ -453,6 +465,16 @@
 						$('#TELNO').val(data.rst.telno);
 						$('#FAXNO').val(data.rst.faxno);
 						$('#BIGO').val(data.rst.bigo);
+						
+						$('#LASTREGYEAR').text(data.rst.lastregyear);
+						$('#SCOUTCNT').text(Number(data.rst.scoutmcnt) + Number(data.rst.scoutwcnt));
+						$('#SCOUTMCNT').text(data.rst.scoutmcnt);
+						$('#SCOUTWCNT').text(data.rst.scoutwcnt);
+						
+						$('#LASTREGDAY').text(data.rst.lastregday);
+						$('#LEADERCNT').text(Number(data.rst.leadermcnt) + Number(data.rst.leaderwcnt));
+						$('#LEADERMCNT').text(data.rst.leadermcnt);
+						$('#LEADERWCNT').text(data.rst.leaderwcnt);
 
 						$('.contentsContainer select').niceSelect('update')
 					}
