@@ -264,6 +264,50 @@
                                     <textarea name="BIGO" id="BIGO" cols="100"></textarea>
                                 </div>
                             </div>
+	                        <div class="inputsContainer">
+	                            <div class="inputBox">
+	                                <p class="inputCaption">최종등록년도</p>
+	                                <span class="bindingText"></span>
+	                            </div>
+	                            <div class="inputBox">
+	                                <p class="inputCaption">대원수</p>
+	                                <span class="bindingText"></span>
+	                            </div>
+	                            <div class="inputBox">
+	                                <p class="inputCaption">남자</p>
+	                                <span class="bindingText"></span>
+	                            </div>
+	                            <div class="inputBox">
+	                                <p class="inputCaption">여자</p>
+	                                <span class="bindingText"></span>
+	                            </div>
+	                        </div>
+	                        <div class="inputsContainer">
+	                            <div class="inputBox">
+	                                <p class="inputCaption">최종등록일</p>
+	                                <span class="bindingText"></span>
+	                            </div>
+	                            <div class="inputBox">
+	                                <p class="inputCaption">지도자수</p>
+	                                <span class="bindingText"></span>
+	                            </div>
+	                            <div class="inputBox">
+	                                <p class="inputCaption">남자</p>
+	                                <span class="bindingText"></span>
+	                            </div>
+	                            <div class="inputBox">
+	                                <p class="inputCaption">여자</p>
+	                                <span class="bindingText"></span>
+	                            </div>
+	                        </div>
+		                    <div class="tableButtons rights">
+	                            <a href="#lnk" class="smButton"><img src="/front_img/refresh.png" alt="">조직이전</a>
+	                            <div class="buttons">
+	                                <a href="#lnk" class="smButton"><img src="/front_img/doc.png" alt="">청소년단체등록확인서</a>
+	                                <a href="#lnk" class="smButton"><img src="/front_img/doc.png" alt="">가맹등록확인서</a>
+	                                <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">수정</a>
+	                            </div>
+		                    </div>
                         </div>
                         <div class="tableContainer orgContainer bottomBd">
                             <h2 class="subTitles">관리지도자</h2>
@@ -332,15 +376,7 @@
                             <div class="tableButtons">
                                 <p>0<span>rows</span></p>
                             </div>
-                        </div>
-                        <div class="tableButtons rightBtns">
-                            <a href="#lnk" class="smButton"><img src="/front_img/refresh.png" alt="">조직이전</a>
-                            <div class="buttons">
-                                <a href="#lnk" class="smButton"><img src="/front_img/doc.png" alt="">청소년단체등록확인서</a>
-                                <a href="#lnk" class="smButton"><img src="/front_img/doc.png" alt="">가맹등록확인서</a>
-                                <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">수정</a>
-                            </div>
-                        </div>
+                        </div> 
                     </form>
                 </div>
                 <div class="fomrTabContent">2</div>
