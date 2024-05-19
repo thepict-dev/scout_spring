@@ -74,56 +74,60 @@
             <div class="left">
                 <div class="tableContainer">
                     <h2 class="subTitles">단위대 목록</h2>
-                    <div class="tableWrapper">
+                    <div class="tableWrapper unitTableWrapper">
                         <table>
                             <colgroup>
-                                <col width="13.5%" />
-                                <col width="8%" />
-                                <col width="14.5%" />
-                                <col width="12.5%" />
-                                <col width="10.5%" />
-                                <col width="10%" />
-                                <col width="10%" />
-                                <col width="12%" />
-                                <col width="10%" />
+                                <col width="5.2%" />
+                                <col width="5.2%" />
+                                <col width="5.2%" />
+                                <col width="5.2%" />
+                                <col width="5.2%" />
+                                <col width="4.5%" />
+                                <col width="5.9%" />
+                                <col width="5.2%" />
+                                <col width="5.2%" />
+                                <col width="5.2%" />
+                                <col width="5.2%" />
+                                <col width="5.2%" />
+                                <col width="5.2%" />
+                                <col width="5.2%" />
+                                <col width="5.2%" />
+                                <col width="5.2%" />
+                                <col width="5.2%" />
+                                <col width="5.2%" />
+                                <col width="5.2%" />
                             </colgroup>
                             <thead>
                                 <tr>
-	                                <th>회원번호</th>
-	                                <th>회원명</th>
-	                                <th>법정생년월일</th>
-	                                <th>회원구분</th>
-	                    			<th>회원등급</th>
-	                                <th>대원여부</th>
-	                                <th>지도자여부</th>
-	                                <th>평생회원여부</th>
-	                                <th>전종여부</th>
+	                                <th rowspan="2">지구연합회</th>
+	                                <th rowspan="2" style="left: 95.5px;">대번호</th>
+	                                <th rowspan="2">단위대명</th>
+	                                <th rowspan="2">스카우트구분</th>
+	                                <th rowspan="2">단위대구분</th>
+	                                <th rowspan="2">상세</th>
+	                                <th rowspan="2">최종대활동년도</th>
+	                                <th colspan="2" style="border-bottom: 0">2023년도 승인자수</th>
+	                                <th colspan="2" style="border-bottom: 0">2024년도 승인자수</th>
+	                                <th colspan="2" style="border-bottom: 0">당해년도 납부자수</th>
+	                                <th colspan="2" style="border-bottom: 0">지도자등록유형(승인)</th>
+	                                <th colspan="3" style="border-bottom: 0">대원등록유형(승인)</th>
+	                                <th rowspan="2">지구연합회</th>
+                                </tr>
+                                <tr>
+                                	<th style="position: unset; z-index: 2;">남자대원수</th>
+                                	<th style="position: unset; z-index: 2;">여자대원수</th>
+                                	<th style="position: unset; z-index: 2;">남자대원수</th>
+                                	<th style="position: unset; z-index: 2;">여자대원수</th>
+                                	<th style="position: unset; z-index: 2;">남자대원수</th>
+                                	<th style="position: unset; z-index: 2;">여자대원수</th>
+                                	<th style="position: unset; z-index: 2;">남자대원수</th>
+                                	<th style="position: unset; z-index: 2;">여자대원수</th>
+                                	<th style="position: unset; z-index: 2;">남자대원수</th>
+                                	<th style="position: unset; z-index: 2;">여자대원수</th>
+                                	<th style="position: unset; z-index: 2;">여자대원수</th>
                                 </tr>
                             </thead>
-                            <tbody id="unit_list">
-                                <tr>
-                                    <td>Cell01</td>
-                                    <td>Cell02</td>
-                                    <td>Cell03</td>
-                                    <td>Cell04</td>
-                                    <td>Cell05</td>
-                                    <td>Cell06</td>
-                                    <td>Cell07</td>
-                                    <td>Cell08</td>
-                                    <td>Cell08</td>
-                                </tr>
-                                <tr>
-                                    <td>Cell01</td>
-                                    <td>Cell02</td>
-                                    <td>Cell03</td>
-                                    <td>Cell04</td>
-                                    <td>Cell05</td>
-                                    <td>Cell06</td>
-                                    <td>Cell07</td>
-                                    <td>Cell08</td>
-                                    <td>Cell08</td>
-                                </tr>
-                            </tbody>
+                            <tbody id="unit_list"></tbody>
                         </table>
                     </div>
                     <div class="tableButtons">
@@ -136,8 +140,8 @@
             </div>
             <div class="resizer" id="dragMe"></div>
             <div class="right" style="background-color: var(--grey-50);">
-                <div class="fomrTabContent active">
-                    <form action="" class="organForm" style="background-color: #fff;">
+                <div class="fomrTabContent active unitScroll" style="height: 100%;">
+                    <form action="" class="organForm">
                         <h2 class="subTitles" style="padding: 16px 24px 0 24px;">단위대정보</h2>
                         <div class="stackInputs bottomBd" style="padding: 12px 24px 16px 24px;">
                             <div class="inputsContainer">
@@ -204,67 +208,85 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tableContainer relationContainer bottomBd">
+                        <div class="tableContainer orgContainer unitTable bottomBd">
                             <h2 class="subTitles">지도자</h2>
                             <div class="tableWrapper">
                                 <table>
                                     <colgroup>
-                                        <col width="20%" />
-                                        <col width="20%" />
-                                        <col width="20%" />
-                                        <col width="40%" />
+                                        <col width="5%" />
+                                        <col width="7.1%" />
+                                        <col width="7.1%" />
+                                        <col width="7.1%" />
+                                        <col width="7.1%" />
+                                        <col width="7.1%" />
+                                        <col width="7.1%" />
+                                        <col width="8.2%" />
+                                        <col width="7.1%" />
+                                        <col width="8.1%" />
+                                        <col width="7.1%" />
+                                        <col width="7.1%" />
+                                        <col width="7.1%" />
+                                        <col width="7.1%" />
                                     </colgroup>
                                     <thead>
                                         <tr>
                                             <th>회원번호</th>
-                                            <th>회원명</th>
-                                            <th>관계</th>
-                                            <th>비고</th>
+                                            <th>성명</th>
+                                            <th>지도자직책</th>
+                                            <th>단위대직책</th>
+                                            <th>면제코드</th>
+                                            <th>월간지구독부수</th>
+                                            <th>휴대전화</th>
+                                            <th>이메일</th>
+                                            <th>연공</th>
+                                            <th>훈련과정</th>
+                                            <th>포상</th>
+                                            <th>평생회원</th>
+                                            <th>승인여부</th>
+                                            <th>관리자지도여부</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>지도자</td>
-                                            <td>년도</td>
-                                            <td>연맹</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>지도자</td>
-                                            <td>년도</td>
-                                            <td>연맹</td>
-                                        </tr>
-                                    </tbody>
+                                    <tbody id="unit_leader_list"></tbody>
                                 </table>
                             </div>
                         </div>
-                        <div class="tableContainer relationContainer">
+                        <div class="tableContainer orgContainer unitTable">
                             <h2 class="subTitles">대원</h2>
                             <div class="tableWrapper">
                                 <table>
                                     <colgroup>
-                                        <col width="20%" />
-                                        <col width="20%" />
-                                        <col width="20%" />
-                                        <col width="40%" />
+                                        <col width="5.2%" />
+                                        <col width="7.6%" />
+                                        <col width="7.6%" />
+                                        <col width="7.6%" />
+                                        <col width="7.6%" />
+                                        <col width="7.6%" />
+                                        <col width="7.6%" />
+                                        <col width="7.6%" />
+                                        <col width="10%" />
+                                        <col width="7.6%" />
+                                        <col width="7.6%" />
+                                        <col width="7.6%" />
+                                        <col width="7.6%" />
                                     </colgroup>
                                     <thead>
                                         <tr>
                                             <th>회원번호</th>
-                                            <th>회원명</th>
-                                            <th>관계</th>
-                                            <th>비고</th>
+                                            <th>성명</th>
+                                            <th>스카우트구분</th>
+                                            <th>스카우트직책</th>
+                                            <th>면제코드</th>
+                                            <th>월간지구독부수</th>
+                                            <th>학년</th>
+                                            <th>휴대전화</th>
+                                            <th>이메일</th>
+                                            <th>연공</th>
+                                            <th>승인여부</th>
+                                            <th>진급신청내역</th>
+                                            <th>진급승인내역</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>지도자</td>
-                                            <td>년도</td>
-                                            <td>연맹</td>
-                                        </tr>
-                                    </tbody>
+                                    <tbody id="unit_scout_list"></tbody>
                                 </table>
                             </div>
                         </div>
