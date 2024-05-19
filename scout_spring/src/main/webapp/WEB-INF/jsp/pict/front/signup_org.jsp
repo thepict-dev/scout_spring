@@ -101,7 +101,7 @@
 	                                    <p class="inputCaption">관할교육청</p>
 	                                    <div class="inputsAlign">
 	                                    	<span class="bindingText" id="SCHOOLHALL"></span>
-                                			<a href="#lnk" class="smButton bigWhiteBtn">육성단체지정</a>
+                                			<a href="#groupPopup" class="smButton bigWhiteBtn groupBtn">육성단체지정</a>
                                 			<input type="hidden" name="ORGNO" id="ORGNO">
                                			</div>
 	                                </div>
@@ -143,6 +143,9 @@
 	            </div>
 	        </div>
 	    </div>
+	     <!-- 학교검색 모달 -->
+		<%@ include file="./include/group_modal.jsp" %>
+	
 	</body>
 	<script>
 

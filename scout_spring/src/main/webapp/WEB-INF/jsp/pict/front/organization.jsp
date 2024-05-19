@@ -226,7 +226,7 @@
                                     <p class="inputCaption">단위대명</p>
                                     <div class="inputsAlign">
                                         <input type="text" name="TROOPNAME" id="TROOPNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                        <a href="#lnk" class="smButton bigWhiteBtn">육성단체지정</a>
+                                        <a href="#groupPopup" class="smButton bigWhiteBtn groupBtn">육성단체지정</a>
                                     </div>
                                 </div>
                                 <div class="inputBox">
@@ -387,6 +387,9 @@
 	<%@ include file="./include/loading.jsp" %>
     <%@ include file="./include/error_page.jsp" %>
     
+     <!-- 학교검색 모달 -->
+	<%@ include file="./include/group_modal.jsp" %>
+	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		function fn_organ_info(troopno){
