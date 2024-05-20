@@ -44,87 +44,31 @@
 			
 		}
 	</script>
-   	<link href="../../../../../css/egovframework/pict/reset.css" rel="stylesheet">
-	<style type="text/css">
-		@import url("//fonts.googleapis.com/earlyaccess/notosanskr.css");
-		html, input, select, textarea, button { 
-			font-family: 'Noto Sans KR', sans-serif;
-		}
-	    .login-wrap {
-		    width: 400px;
-		    text-align: center;
-		    position: absolute;
-		    left: 50%;
-		    top: 50%;
-		    transform: translate(-50%,-50%);
-		    padding-bottom:50px;
-	    }
-	    .login-box {
-		    margin: 0 auto;
-		    background: #fff;
-	    }
-	    .login-inner {
-    	    width: 100%;
-		    margin-top: 40px;
-	    }
-		.login-btn {
-			width:280px;
-		    margin:30px auto 0;
-		    border-radius: 50px;
-		    background: #00498e;
-		    color: #fff;
-		    border: none;
-		    line-height: 50px;
-		   	font-size:16px;
-		}
-		.desc-box {
-			margin-top:70px;
-			color:#b3b6bd;
-		}
-		.login-inner .title {
-			color:#686e7c;
-		}
-		.login-item {
-			margin-bottom:20px;
-			text-align:left;
-		}
-		.login-item .title {
-			display:block;
-			margin-bottom:4px;
-		}
-		.login-item .input {
-			border:1px solid #e9ebec;
-			height:45px;
-			line-height:45px;
-			width:100%;
-			padding:0 10px;
-		}
-		.login-item .input::placeholder {
-			color:#abafb3;
-		}
-	</style>
-
-	<div class="login-wrapper">
-	    <div class="login-wrap">
-        	<h1 class="login-title"><img src="/front_img/logo.png" alt="라이징스타" style="width:100%"></h1>
-	        <div class="login-box">
-		        <form action="#" id="entryForm" name="entryForm" method="post">
-	                <div class="login-inner">
-	                	<div class="login-item">
-	                		<label for="id" class="title">ID*</label>
-	                    	<input type="text" id="id" class="input" placeholder="yourname@company.com" onkeypress="if(event.keyCode == 13){fn_login();}" autocomplete="off">
-	                	</div>
-	                	<div class="login-item">
-	                		<label for="password2" class="title">Password*</label>
-	                    	<input type="password" id="password2" class="input" placeholder="*********" onkeypress="if(event.keyCode == 13){fn_login();}" autocomplete="off">
-	                	</div>
-		                <button type="button" class="login-btn" onclick="javascript:fn_login();">Login</button>
-		                <!-- <button type="button" class="btn" onclick="javascript:fn_login2();">학사</button> -->
-	                </div>
-	            </form>
-	        </div>
-	    </div>
-	</div>
+   	<link href="/css/reset.css" rel="stylesheet">
+   	<link href="/css/common.css" rel="stylesheet">
+   	<link href="/css/login.css" rel="stylesheet">
+   	
+	<div class="loginContainer">
+        <div class="loginInner">
+            <form action="#" id="entryForm" name="entryForm" method="post" class="loginContents">
+                <div class="loginTitle">
+                    <h1><img src="/front_img/login-logo.png" alt=""></h1>
+                    <h2>로그인</h2>
+                </div>
+                <div class="loginInputs">
+                    <div class="loginInput">
+                        <p class="inputCaption">아이디</p>
+                        <input type="text" id="id" onkeypress="if(event.keyCode == 13){fn_login();}" autocomplete="off" class="loginInput" placeholder="아이디를 입력하세요.">
+                    </div>
+                    <div class="loginInput">
+                        <p class="inputCaption">비밀번호</p>
+                        <input type="password" id="password2" onkeypress="if(event.keyCode == 13){fn_login();}" autocomplete="off" class="loginInput" placeholder="비밀번호를 입력하세요.">
+                    </div>
+                </div>
+                <button type="button" onclick="javascript:fn_login();">로그인</button>
+            </form>
+        </div>
+    </div>
 	
 	<form action="#" id="loginForm" name="loginForm" method="post">
 		<%-- 

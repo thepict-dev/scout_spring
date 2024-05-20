@@ -98,10 +98,10 @@ body{
 input:focus{
     outline: 1px solid var(--grey-500);
 }
-input[type="text"]{
+input[type="text"], input[type="password"]{
     padding: 8px 16px;
     border-radius: 4px;
-    border: 1px solid var(--grey-50);
+    border: 1px solid var(--grey-100);
     background: #FFF;
     color: var(--text-color);
     font-family: SUIT;
@@ -138,7 +138,7 @@ input[type="date"]{
     position: relative;
     padding: 8px 16px;
     border-radius: 4px;
-    border: 1px solid var(--grey-50);
+    border: 1px solid var(--grey-100);
     background: #FFF;
     color: var(--text-color);
     font-family: SUIT;
@@ -266,7 +266,7 @@ textarea{
     height: 120px;
     padding: 16px;
     border-radius: 4px;
-    border: 1px solid var(--grey-50);
+    border: 1px solid var(--grey-100);
     background: #FFF;
     color: var(--text-color);
     font-family: SUIT;
@@ -469,7 +469,7 @@ select:disabled{
     height: 34px;
     padding: 8px 16px;
     border-radius: 4px;
-    border: 1px solid var(--grey-50);
+    border: 1px solid var(--grey-100);
     background: #FFF;
     color: var(--text-color);
     font-family: SUIT;
@@ -479,4 +479,30 @@ select:disabled{
     line-height: 100%; /* 14px */
     letter-spacing: -0.7px;
 	
+}
+
+/* login */
+.loginInput{
+    width: 287px;
+    height: 60px;
+}
+.loginContents > button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 288px;
+    height: 40px;
+    padding: 8px 16px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 100%; /* 14px */
+    letter-spacing: -0.7px;
+    border-radius: 4px;
+    border: 1px solid var(--blue-600);
+    background: var(--purple-500);
+    cursor: pointer;
+}
+.loginContents > button:hover{
+    background-color: var(--purple-600);
 }
