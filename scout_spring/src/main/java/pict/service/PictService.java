@@ -133,4 +133,7 @@ public interface PictService {
 
 	public void organ_update(PictVO pictVO) throws Exception;
 
+	public String login_user_info(String loginNo) throws Exception;
+
+
 }

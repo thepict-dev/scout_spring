@@ -135,7 +135,10 @@ public interface PictMapper {
 
 	void new_org(PictVO pictVO) throws Exception;
 
-	void organ_update(PictVO pictVO) throws Exception;  
+	void organ_update(PictVO pictVO) throws Exception;
+
+	String login_user_info(String loginNo) throws Exception;
+
  
 	
 

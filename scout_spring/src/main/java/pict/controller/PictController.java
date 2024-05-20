@@ -162,6 +162,14 @@ public class PictController {
 	public String ko_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		
+		String loginNo = request.getSession().getAttribute("id").toString();
+		System.out.println("로그인한 사람!!! " +loginNo);
+		
+		
+		String flag = pictService.login_user_info(loginNo);
+		model.addAttribute("flag", flag);
+		
+		
 		List<PictVO> association_list = pictService.association_list(pictVO);
 		pictVO.setASSOCIATIONCODE("200");
 		List<PictVO> unity_list = pictService.unity_list(pictVO);
@@ -928,6 +936,27 @@ public class PictController {
 	}
 	
 	
+	//관리자 비밀번호 초기화
+	@RequestMapping("/admin_reset")
+	@ResponseBody
+	public String admin_reset(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, 
+			@RequestBody Map<String, Object> param) throws Exception {	
+		try {
+			String memberno = param.get("memberno").toString();
+			
+			String enpassword = encryptPassword(memberno+"1!", memberno);
+			pictVO.setPassword(enpassword);
+			pictVO.setMEMBERNO(memberno);
+			
+			adminService.user_reset(pictVO);
+			
+
+			return "Y";
+		}
+		catch(Exception e) {
+			return "N";
+		}
+	}
 	
 	//프로필사진 업로드
 	@RequestMapping("/profile_img")

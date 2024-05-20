@@ -496,6 +496,10 @@
 		where TROOPNO = #{TROOPNO}
 	</update>
 	
+	<!-- 로그인 한 유저의 비밀번호초기화 상태 확인 -->
+	<select id="login_user_info" resultType="string">
+		select password_flag from member where MEMBERNO = #{MEMBERNO}
+	</select>
 	
 
 </mapper>

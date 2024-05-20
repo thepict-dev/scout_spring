@@ -364,6 +364,14 @@ public class PictServiceImpl implements PictService {
 		// TODO Auto-generated method stub
 		pictMapper.organ_update(pictVO);
 	}
+
+	@Override
+	public String login_user_info(String loginNo) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.login_user_info(loginNo);
+	}
+
+
 	
 	
 }

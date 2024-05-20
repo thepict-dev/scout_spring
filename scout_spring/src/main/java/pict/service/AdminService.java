@@ -27,7 +27,7 @@ public interface AdminService {
 
 	List<?> user_list(AdminVO adminVO) throws Exception;
 
-	void user_reset(AdminVO adminVO) throws Exception;
+	void user_reset(PictVO pictVO) throws Exception;
 
 	void insert_login_info(AdminVO adminVO) throws Exception;
 

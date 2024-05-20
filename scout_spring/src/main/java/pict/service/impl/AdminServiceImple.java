@@ -44,8 +44,8 @@ public class AdminServiceImple implements AdminService {
 	}
 
 	@Override
-	public void user_reset(AdminVO adminVO) throws Exception {
-		adminMapper.user_reset(adminVO);
+	public void user_reset(PictVO pictVO) throws Exception {
+		adminMapper.user_reset(pictVO);
 		
 	}
 	@Override

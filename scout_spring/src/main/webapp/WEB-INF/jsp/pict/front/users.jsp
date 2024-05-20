@@ -15,7 +15,7 @@
         <form action="" id="search_fm_memberno" name="search_fm_memberno" method="get" class="searchForm">
             <div class="searchContainer">
                 <p class="inputCaption">조회조건</p>
-                <select name="search" id="search" class="lgSelect" disabled>
+                <select name="search" id="search" class="lgSelect">
                     <option value="1">선택하세요</option>
                 </select>
             </div>
@@ -290,6 +290,7 @@
                         </div>
                         <div class="tableButtons inputsPd bottomBd" style="justify-content: flex-end;">
                             <div class="buttons">
+                            	<a href="#lnk" class="smButton" onclick="admin_reset()"><img src="/front_img/reset.png" alt="">관리자비밀번호초기화</a>
                                 <a href="#lnk" class="smButton"><img src="/front_img/sms.png" alt="">SMS</a>
                                 <a href="#lnk" class="smButton"><img src="/front_img/email.png" alt="">이메일</a>
                                 <a href="#lnk" class="smButton" onclick="person_save()"><img src="/front_img/download.png" alt="">저장</a>
@@ -611,8 +612,39 @@
     <input type="hidden" id="org_popup" />
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-		
-		
+		$(document).ready(function() {
+		    var flag = '${flag}';
+	    	
+    		
+    		console.log(flag)
+		});
+		function admin_reset(){
+			var memberno = $('#MEMBERNO').val();
+			if(memberno == '' || memberno == null || memberno == undefined){
+				alert("회원을 선택해주세요.")
+				return false;
+			}
+			var text ="선택한 회원의 관리자 비밀번호를 초기화 하시겠습니까?";
+			if(confirm (text)){
+				var param = {
+					memberno : $('#MEMBERNO').val()
+				}
+				$.ajax({
+					url : "/admin_reset"
+					, type : "POST"
+					, data : JSON.stringify(param)
+					, contentType : "application/json"
+					, async : true
+					, success : function(data, status, xhr) {
+						alert("정상적으로 초기화 되었습니다.");
+					},
+					error : function(err){
+						console.log(err)
+					}
+					
+				});
+			}
+		}
 		function fn_leader_info(idx){
 			$('#leader_idx').val(idx)
 			console.log(idx)
@@ -623,6 +655,12 @@
 		}
 		
 		function leader_del(){
+			var idx = $('#leader_idx').val();
+			
+			if (idx == undefined || idx == null || idx == '' || idx == 0) {
+		        alert("선택할 연공 데이터를 선택해주세요");
+		        return false; // 모달을 열지 않음
+		    }
 			var text ="해당 연공 데이터를 삭제하시겠습니까?";
 			if(confirm (text)){
 				var param = {
@@ -648,6 +686,12 @@
 			}
 		}
 		function scout_del(){
+			var idx = $('#scout_idx').val();
+			
+			if (idx == undefined || idx == null || idx == '' || idx == 0) {
+		        alert("선택할 연공 데이터를 선택해주세요");
+		        return false; // 모달을 열지 않음
+		    }
 			var text ="해당 연공 데이터를 삭제하시겠습니까?";
 			if(confirm (text)){
 				var param = {

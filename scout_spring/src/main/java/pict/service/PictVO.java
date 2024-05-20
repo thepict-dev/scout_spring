@@ -188,9 +188,16 @@ public class PictVO extends PictDefaultVO {
 	private String search_type;
 	private String search_text;
 	private String password;
+	private String password_flag;
 	
 	
 	
+	public String getPassword_flag() {
+		return password_flag;
+	}
+	public void setPassword_flag(String password_flag) {
+		this.password_flag = password_flag;
+	}
 	public String getPassword() {
 		return password;
 	}

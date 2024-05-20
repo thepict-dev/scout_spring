@@ -14,6 +14,13 @@
 		limit 1 offset 0;
 	</select>
 	
+	<update id="user_reset">
+		UPDATE member
+		SET password=#{password}, password_flag = "N"
+		  WHERE MEMBERNO=#{MEMBERNO}
+	</update>
+	
+	
 	<update id="update_user" parameterType="adminVO">
 		update user_info
 		set name =#{name}, mobile=#{mobile}, depart=#{depart}
@@ -57,11 +64,7 @@
 		order by reg_date
 	</select>
 	
-	<update id="user_reset">
-		UPDATE user_info
-		SET password=#{password}
-		  WHERE ID=#{id}
-	</update>
+	
 	
 	<update id="insert_login_info">
 		UPDATE user_info
