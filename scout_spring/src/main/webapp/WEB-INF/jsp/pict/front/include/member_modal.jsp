@@ -349,6 +349,14 @@
 					$('#SCOUTMAGAFEE_SCOUT').val(data.rst.scoutmagafee)
 					$('#BIGO_SCOUT').val(data.rst.bigo)
 					calculate_scout()
+					
+					//상단 항목 리드온리
+				    $("select[name=YEAR_SCOUT]").attr("disabled", true);
+				    $("select[name=CONFIRMY_SCOUT]").attr("disabled", true);
+				    $("select[name=associationcode_scout]").attr("disabled", true);
+				    $("select[name=unitycode_scout]").attr("disabled", true);
+				    $("select[name=troop_scout]").attr("disabled", true);
+					
 					$('#joinMemPopup select').niceSelect('update')
 				}
 				, error : function(xhr, status, error) {
@@ -507,7 +515,8 @@
 					, async : true
 					, success : function(data, status, xhr) {
 						console.log(data)
-						
+						alert("정상적으로 저장되었습니다.")
+						$('#joinMemPopup').removeClass('active');
 					}
 					, error : function(xhr, status, error) {
 						console.log(xhr)
@@ -526,7 +535,8 @@
 					, async : true
 					, success : function(data, status, xhr) {
 						console.log(data)
-						
+						alert("정상적으로 저장되었습니다.")
+						$('#joinMemPopup').removeClass('active');
 					}
 					, error : function(xhr, status, error) {
 						console.log(xhr)

@@ -538,6 +538,8 @@
 					, async : true
 					, success : function(data, status, xhr) {
 						console.log(data)
+						alert("정상적으로 저장되었습니다.")
+						$('#joinPopup').removeClass('active');
 						
 					}
 					, error : function(xhr, status, error) {
@@ -557,6 +559,8 @@
 					, async : true
 					, success : function(data, status, xhr) {
 						console.log(data)
+						alert("정상적으로 저장되었습니다.")
+						$('#joinPopup').removeClass('active');
 						
 					}
 					, error : function(xhr, status, error) {

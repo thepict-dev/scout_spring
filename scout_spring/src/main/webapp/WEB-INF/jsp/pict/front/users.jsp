@@ -15,7 +15,7 @@
         <form action="" id="search_fm_memberno" name="search_fm_memberno" method="get" class="searchForm">
             <div class="searchContainer">
                 <p class="inputCaption">조회조건</p>
-                <select name="search" id="search" class="lgSelect">
+                <select name="search" id="search" class="lgSelect" disabled>
                     <option value="1">선택하세요</option>
                 </select>
             </div>

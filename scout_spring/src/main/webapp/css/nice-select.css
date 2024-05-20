@@ -69,7 +69,8 @@
   color: var(--grey-500) !important; 
   border-radius: 4px !important;
   border: 1px solid var(--grey-200) !important;
-  background: var(--grey-200) !important; }
+  background: var(--grey-200) !important;
+    pointer-events: none;  }
     .nice-select.disabled:after {
       border-color: #cccccc; }
   .nice-select.wide {
