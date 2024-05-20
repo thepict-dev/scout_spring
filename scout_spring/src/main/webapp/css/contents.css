@@ -182,6 +182,9 @@
     position: sticky; 
     left: 110.5px;
 }
+.tableWrapper.orgTableWrapper table td:nth-child(2){
+    left: 93.5px;
+}
 .tableWrapper table td:last-child{
     border-right: 0;
 }
@@ -210,7 +213,7 @@
 }
 
 .resizer{
-    width: 1px;
+    width: 2px;
     height: 100%;
     background-color: var(--grey-100);
     cursor: ew-resize;
@@ -771,7 +774,8 @@ tbody tr.active td{
 }
 .organSearch{
     display: flex;
-    column-gap: 16px;
+    flex-wrap: wrap;
+    gap: 16px;
     width: 100%;
 }
 .organSearchForm .subTitles{

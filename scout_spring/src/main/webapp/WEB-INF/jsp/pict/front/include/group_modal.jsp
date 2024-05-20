@@ -106,10 +106,10 @@
 	                    <table>
 	                        <colgroup>
 	                            <col width="10%" />
+	                            <col width="12%" />
+	                            <col width="12%" />
 	                            <col width="15%" />
-	                            <col width="20%" />
-	                            <col width="20%" />
-	                            <col width="15%" />
+	                            <col width="31%" />
 	                        </colgroup>
 	                        <thead>
 	                            <tr>

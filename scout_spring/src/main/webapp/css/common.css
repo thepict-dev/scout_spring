@@ -126,7 +126,7 @@ input::placeholder{
     text-overflow: ellipsis;
     word-break: break-all;
 }
-input[disabled] {
+input:disabled{
     color: var(--grey-500);
     border-radius: 4px;
     border: 1px solid var(--grey-200);

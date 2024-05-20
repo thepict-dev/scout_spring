@@ -25,7 +25,7 @@ $('.nav > li > a').click(function(e) {
     }
 });
 $('.lnb').mouseleave(function() {
-    $('.subNav').fadeOut(100);  // 모든 subNav 숨김
+    $('.subNav').fadeOut(300);  // 모든 subNav 숨김
 });
 
 // 대상 Element 선택

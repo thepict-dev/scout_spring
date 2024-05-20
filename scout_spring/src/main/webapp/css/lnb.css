@@ -47,7 +47,7 @@ nav::-webkit-scrollbar{
     background: var(--purple-500);
 }
 .lnb:hover{
-    width: 176px;
+    width: 200px;
 }
 .lnb:hover .nav > li > a{
     display: flex;

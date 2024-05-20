@@ -7,6 +7,7 @@
 <!DOCTYPE html>	
 <html lang="ko">
 	<%@ include file="./include/head.jsp" %>
+	<script src="/js/script.js" defer></script>
 <body>
 	<%@ include file="./include/lnb.jsp" %>
 	<%@ include file="./include/header.jsp" %>

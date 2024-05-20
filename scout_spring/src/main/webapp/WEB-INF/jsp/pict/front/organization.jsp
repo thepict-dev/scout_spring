@@ -83,7 +83,7 @@
                             <option value="number">대번호</option>
                             <option value="text">단위대명</option>
                         </select>
-                        <input type="text" name="search_text" id="search_text" class="smThinInput" placeholder="내용을 입력해주세요..." onkeypress="if(event.keyCode == 13){organ_search();}">
+                        <input type="text" name="search_text" id="search_text" class="lgThinInput" placeholder="내용을 입력해주세요..." onkeypress="if(event.keyCode == 13){organ_search();}">
                     </div>
                 </div>
             </div>
@@ -99,21 +99,21 @@
                     <div class="tableWrapper orgTableWrapper">
                         <table>
                             <colgroup>
-                                <col width="10%" />
-                                <col width="8%" />
-                                <col width="10%" />
+                                <col width="9%" />
+                                <col width="7%" />
+                                <col width="14%" />
                                 <col width="9%" />
                                 <col width="9%" />
                                 <col width="10%" />
                                 <col width="10%" />
                                 <col width="10%" />
-                                <col width="11%" />
-                                <col width="11%" />
+                                <col width="10%" />
+                                <col width="10%" />
                             </colgroup>
                             <thead>
                                 <tr>
 	                                <th rowspan="2">지구연합회</th>
-	                                <th rowspan="2" style="left: 95.5px;">대번호</th>
+	                                <th rowspan="2" style="left: 93.5px;">대번호</th>
 	                                <th rowspan="2">단위대명</th>
 	                                <th rowspan="2">스카우트구분</th>
 	                                <th rowspan="2">단위대구분</th>
