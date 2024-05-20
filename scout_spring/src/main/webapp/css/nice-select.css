@@ -66,9 +66,10 @@
         -ms-transform: scale(1) translateY(0);
             transform: scale(1) translateY(0); }
   .nice-select.disabled {
-    border-color: #ededed;
-    color: #999;
-    pointer-events: none; }
+  color: var(--grey-500) !important; 
+  border-radius: 4px !important;
+  border: 1px solid var(--grey-200) !important;
+  background: var(--grey-200) !important; }
     .nice-select.disabled:after {
       border-color: #cccccc; }
   .nice-select.wide {
@@ -171,9 +172,10 @@
       background-size: 100%;
     }
     .nice-select .option.disabled {
-      background-color: transparent;
-      color: #999;
-      cursor: default; }
+  color: var(--grey-500) !important; 
+  border-radius: 4px !important;
+  border: 1px solid var(--grey-200) !important;
+  background: var(--grey-200) !important; }
 
 .no-csspointerevents .nice-select .list {
   display: none; }
