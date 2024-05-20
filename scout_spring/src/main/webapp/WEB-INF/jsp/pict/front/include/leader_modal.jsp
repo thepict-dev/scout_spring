@@ -373,12 +373,13 @@
 					$('#BIGO').val(data.rst.bigo)
 					calculate_leader()
 					//상단 항목 리드온리
-					/*
-				    $("input[name=YEAR]").attr("disabled", true);
-				    $("input[name=CONFIRMY]").attr("disabled", true);
-				    $("input[name=associationcode_leader]").attr("disabled", true);
-				    $("input[name=troop_leader]").attr("disabled", true);
-				    */
+					
+				    $("select[name=YEAR]").attr("disabled", true);
+				    $("select[name=CONFIRMY]").attr("disabled", true);
+				    $("select[name=associationcode_leader]").attr("disabled", true);
+				    $("select[name=unitycode_leader]").attr("disabled", true);
+				    $("select[name=troop_leader]").attr("disabled", true);
+				    
 					$('#joinPopup select').niceSelect('update')
 				}
 				, error : function(xhr, status, error) {
