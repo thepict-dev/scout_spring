@@ -204,6 +204,14 @@
                                             <option value="2">행사회원</option>
                                         </select>
                                     </div>
+                                    <div class="inputBox">
+                                        <p class="inputCaption">세부등급</p>
+                                        <select name="TROOPRANK" id="TROOPRANK" class="lgThinSelect">
+                                        	<option value="">------</option>
+                                            <option value="0">대원</option>
+                                            <option value="1">지도자</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="inputsContainer">
                                     <div class="inputBox">
@@ -784,6 +792,7 @@
 				LEADERSCORE : $('#LEADERSCORE').val(),
 				SCOUTSCHOOLYEAR : $('#SCOUTSCHOOLYEAR').val(),
 				SCOUTSCHOOLBAN : $('#SCOUTSCHOOLBAN').val(),
+				TROOPRANK : $('#TROOPRANK').val(),
 			}
 			
 			var text ="회원정보를 수정하시겠습니까?";
@@ -878,8 +887,13 @@
 					
 					$("#MEMGRADECODE").val(memgradecode).prop("selected", true);
 					$("#EMPLOYEEY").val(data.info.employeey).prop("selected", true);
-			
 					
+					
+					var trooprank = ""
+					if(data.info.troopscouty == "Y") trooprank = "0"
+					else if(data.info.troopleadery == "Y") trooprank = "1"
+					
+					$("#TROOPRANK").val(trooprank)
 					
 					
 					if(data.info.sex == "M") $(":radio[id='SEX_M']").attr("checked", true);

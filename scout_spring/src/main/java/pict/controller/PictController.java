@@ -108,7 +108,7 @@ public class PictController {
 
 		if (pictVO != null && pictVO.getMEMBERNO() != null && !pictVO.getMEMBERNO().equals("")) {
 			String user_id = pictVO.getMEMBERNO();
-			String enpassword = encryptPassword(inputPw, inpuId); // 입력비밀번호
+			String enpassword = encryptPassword(inputPw); // 입력비밀번호
 			System.out.println(user_id + " @@@@@@@@@@@@@@@@@@");
 			System.out.println(enpassword + " #################");
 			if (enpassword.equals(pictVO.getPassword())) {
@@ -335,6 +335,13 @@ public class PictController {
 			String SCOUTSCHOOLYEAR = param.get("SCOUTSCHOOLYEAR").toString();
 			String SCOUTSCHOOLBAN = param.get("SCOUTSCHOOLBAN").toString();
 			
+			String TROOPRANK = param.get("TROOPRANK").toString();
+			if(TROOPRANK.equals("0")) {
+				pictVO.setTROOPSCOUTY("Y");
+			}
+			else if(TROOPRANK.equals("1")) {
+				pictVO.setTROOPLEADERY("Y");
+			}
 			
 			pictVO.setMEMBERNO(MEMBERNO);
 			pictVO.setMEMCLSCODE(MEMCLSCODE);
@@ -944,10 +951,11 @@ public class PictController {
 		try {
 			String memberno = param.get("memberno").toString();
 			
-			String enpassword = encryptPassword(memberno+"1!", memberno);
+			String enpassword = encryptPassword(memberno+"1!");
 			pictVO.setPassword(enpassword);
 			pictVO.setMEMBERNO(memberno);
 			
+			System.out.println(enpassword);
 			adminService.user_reset(pictVO);
 			
 
@@ -1364,19 +1372,17 @@ public class PictController {
         return fileName;
     }
 	
-	public static String encryptPassword(String password, String id) throws Exception {
-		if (password == null)
-			return "";
-		if (id == null)
-			return ""; // KISA 보안약점 조치 (2018-12-11, 신용호)
-		byte[] hashValue = null; // 해쉬값
-
+	public static String encryptPassword(String password) throws Exception {
 		MessageDigest md = MessageDigest.getInstance("SHA-256");
-		md.reset();
-		md.update(id.getBytes());
-		hashValue = md.digest(password.getBytes());
-
-		return new String(Base64.encodeBase64(hashValue));
+		md.update(password.getBytes());
+		return bytesToHex(md.digest());
+	}
+	private static String bytesToHex(byte[] bytes) {
+		StringBuilder sb = new StringBuilder();
+		for(byte b : bytes) {
+			sb.append(String.format("%02x", b));
+		}
+		return sb.toString();
 	}
 
 }

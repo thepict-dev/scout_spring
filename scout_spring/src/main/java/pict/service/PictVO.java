@@ -167,7 +167,7 @@ public class PictVO extends PictDefaultVO {
 	private String ENGTROOPNAME;
 	private String REGDAY;
 	private String PARENTORGNAME;
-	
+	private String TROOPRANK;
 	
 	
 	private String search_birthday;
@@ -192,6 +192,12 @@ public class PictVO extends PictDefaultVO {
 	
 	
 	
+	public String getTROOPRANK() {
+		return TROOPRANK;
+	}
+	public void setTROOPRANK(String tROOPRANK) {
+		TROOPRANK = tROOPRANK;
+	}
 	public String getPassword_flag() {
 		return password_flag;
 	}
