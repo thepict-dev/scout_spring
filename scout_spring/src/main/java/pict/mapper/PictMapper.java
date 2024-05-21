@@ -139,6 +139,8 @@ public interface PictMapper {
 
 	String login_user_info(String loginNo) throws Exception;
 
+	List<PictVO> units_list(PictVO pictVO) throws Exception;
+
  
 	
 

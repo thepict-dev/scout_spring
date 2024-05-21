@@ -371,6 +371,12 @@ public class PictServiceImpl implements PictService {
 		return pictMapper.login_user_info(loginNo);
 	}
 
+	@Override
+	public List<PictVO> units_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.units_list(pictVO);
+	}
+
 
 	
 	

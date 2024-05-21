@@ -135,5 +135,7 @@ public interface PictService {
 
 	public String login_user_info(String loginNo) throws Exception;
 
+	public List<PictVO> units_list(PictVO pictVO) throws Exception;
+
 
 }

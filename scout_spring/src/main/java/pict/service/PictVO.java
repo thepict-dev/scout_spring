@@ -189,9 +189,30 @@ public class PictVO extends PictDefaultVO {
 	private String search_text;
 	private String password;
 	private String password_flag;
+	private String search_type2;
+	private String search_text2;
+	private String search_parenttroopno;
 	
 	
 	
+	public String getSearch_parenttroopno() {
+		return search_parenttroopno;
+	}
+	public void setSearch_parenttroopno(String search_parenttroopno) {
+		this.search_parenttroopno = search_parenttroopno;
+	}
+	public String getSearch_type2() {
+		return search_type2;
+	}
+	public void setSearch_type2(String search_type2) {
+		this.search_type2 = search_type2;
+	}
+	public String getSearch_text2() {
+		return search_text2;
+	}
+	public void setSearch_text2(String search_text2) {
+		this.search_text2 = search_text2;
+	}
 	public String getTROOPRANK() {
 		return TROOPRANK;
 	}

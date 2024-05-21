@@ -216,6 +216,21 @@ public class PictController {
 	public String units(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		
+		List<PictVO> association_list = pictService.association_list(pictVO);
+		if(pictVO == null) {
+			pictVO.setASSOCIATIONCODE("200");
+		}
+		else {
+			pictVO.setASSOCIATIONCODE(pictVO.getSearch_associationcode());
+			
+			List<PictVO> units_list = pictService.units_list(pictVO);
+			model.addAttribute("units_list", units_list);
+		}
+		
+		List<PictVO> unity_list = pictService.unity_list(pictVO);
+		model.addAttribute("association_list", association_list);
+		model.addAttribute("unity_list", unity_list);
+		
 		model.addAttribute("pictVO", pictVO);
 		return "pict/front/units";
 	}
