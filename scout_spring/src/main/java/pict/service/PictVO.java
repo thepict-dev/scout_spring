@@ -168,6 +168,7 @@ public class PictVO extends PictDefaultVO {
 	private String REGDAY;
 	private String PARENTORGNAME;
 	private String TROOPRANK;
+	private String DETAIL;
 	
 	
 	private String search_birthday;
@@ -192,9 +193,63 @@ public class PictVO extends PictDefaultVO {
 	private String search_type2;
 	private String search_text2;
 	private String search_parenttroopno;
+	private String pre_leader;
+	private String pre_scout;
+	private String this_leader;
+	private String this_scout;
+	private String pay_leader;
+	private String pay_scout;
+	private String search_year;
 	
 	
-	
+	public String getPre_leader() {
+		return pre_leader;
+	}
+	public void setPre_leader(String pre_leader) {
+		this.pre_leader = pre_leader;
+	}
+	public String getPre_scout() {
+		return pre_scout;
+	}
+	public void setPre_scout(String pre_scout) {
+		this.pre_scout = pre_scout;
+	}
+	public String getThis_leader() {
+		return this_leader;
+	}
+	public void setThis_leader(String this_leader) {
+		this.this_leader = this_leader;
+	}
+	public String getThis_scout() {
+		return this_scout;
+	}
+	public void setThis_scout(String this_scout) {
+		this.this_scout = this_scout;
+	}
+	public String getPay_leader() {
+		return pay_leader;
+	}
+	public void setPay_leader(String pay_leader) {
+		this.pay_leader = pay_leader;
+	}
+	public String getPay_scout() {
+		return pay_scout;
+	}
+	public void setPay_scout(String pay_scout) {
+		this.pay_scout = pay_scout;
+	}
+	public String getSearch_year() {
+		return search_year;
+	}
+	public void setSearch_year(String search_year) {
+		this.search_year = search_year;
+	}
+	public String getDETAIL() {
+		return DETAIL;
+	}
+	public void setDETAIL(String dETAIL) {
+		DETAIL = dETAIL;
+	}
 	public String getSearch_parenttroopno() {
 		return search_parenttroopno;
 	}

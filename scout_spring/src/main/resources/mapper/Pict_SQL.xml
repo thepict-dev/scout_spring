@@ -502,51 +502,116 @@
 	</select>
 	
 	<!-- 단위대 통합창 리스트 조회 -->
-	
+	<!--
+	,(
+		select count(m.MEMBERNO) 
+        from leader l
+        left outer join member m on m.MEMBERNO = l.MEMBERNO
+		where 1=1
+        and l.ASSOCIATIONCODE = t.ASSOCIATIONCODE and l.TROOPNO = t.TROOPNO
+        and l.STARTDAY = '2024-01-01'
+	) as '당해지도자'
+	,(
+		select count(m.MEMBERNO) 
+        from scout s 
+        left outer join member m on m.MEMBERNO = s.MEMBERNO
+		where 1=1
+        and s.ASSOCIATIONCODE = t.ASSOCIATIONCODE and s.TROOPNO = t.TROOPNO
+        and s.STARTDAY = '2024-01-01'
+	) as '당해대원' 
+	 -->
 	<select id="units_list" resultType="pictVO">
+		WITH LeaderCount AS (
+		    SELECT 
+		        l.ASSOCIATIONCODE, 
+		        l.TROOPNO, 
+		        SUM(CASE WHEN left(l.STARTDAY, 4) = '2024' THEN 1 ELSE 0 END) AS LeaderCount,
+		        SUM(CASE WHEN left(l.STARTDAY, 4) = '2023' THEN 1 ELSE 0 END) AS PLeaderCount,
+		        SUM(CASE WHEN l.PAYY = 'Y' and left(l.STARTDAY, 4) = '2024' THEN 1 ELSE 0 END) AS LeaderPayCount
+		    FROM leader l
+		    LEFT JOIN member m ON m.MEMBERNO = l.MEMBERNO
+		    WHERE 
+		    left(l.STARTDAY, 4) IN ('2024', '2023')
+		    and l.ASSOCIATIONCODE = '120'
+		    GROUP BY l.ASSOCIATIONCODE, l.TROOPNO
+		),
+		ScoutCount AS (
+		    SELECT 
+		        s.ASSOCIATIONCODE, 
+		        s.TROOPNO, 
+		        SUM(CASE WHEN left(s.STARTDAY, 4) = '2024' THEN 1 ELSE 0 END) AS ScoutCount,
+		        SUM(CASE WHEN left(s.STARTDAY, 4) = '2023' THEN 1 ELSE 0 END) AS PScoutCount,
+		        SUM(CASE WHEN s.PAYY = 'Y' and left(s.STARTDAY, 4) = '2024' THEN 1 ELSE 0 END) AS ScoutPayCount
+		    FROM scout s
+		    LEFT JOIN member m ON m.MEMBERNO = s.MEMBERNO
+		    WHERE 
+		    left(s.STARTDAY, 4) IN ('2024', '2023')
+		    and s.ASSOCIATIONCODE = '120'
+		    GROUP BY s.ASSOCIATIONCODE, s.TROOPNO
+		),
+		 PayCount AS (
+		    SELECT 
+		        s.ASSOCIATIONCODE, 
+		        s.TROOPNO, 
+		        COUNT(m.MEMBERNO) AS ScoutCount,
+		        SUM(CASE WHEN left(s.STARTDAY, 4) = '2023' THEN 1 ELSE 0 END) AS PScoutCount
+		    FROM scout s
+		    LEFT JOIN member m ON m.MEMBERNO = s.MEMBERNO
+		    WHERE 
+		    left(s.STARTDAY, 4) IN ('2024')
+		    and s.ASSOCIATIONCODE = '120'
+		    GROUP BY s.ASSOCIATIONCODE, s.TROOPNO
+		)
 		select 
-			(select TROOPNAME from troop t1 where t1.TROOPNO = t.PARENT_TROOPNO limit 1) as PARENTTROOPNAME, 
-		    sc.SCOUTCLSNAME,
-		    (select TROOPCLSNAME from troopclscode tc where tc.TROOPCLSCODE1 = t.TROOPCLSCODE1 and tc.TROOPCLSCODE2 = t.TROOPCLSCODE2) as TROOPCLSNAME,
-			t.*
+			t.TROOPNO,
+		    ifnull((select TROOPNAME from troop t1 where t1.TROOPNO = t.PARENT_TROOPNO), '' ) as PARENTTROOPNAME, 
+		    t.PARENT_TROOPNO,
+		    t.DISPTROOPNO,
+			t.TROOPNAME,
+			sc.SCOUTCLSNAME,
+			(select TROOPCLSNAME from troopclscode tc where tc.TROOPCLSCODE1 = t.TROOPCLSCODE1 and tc.TROOPCLSCODE2 = t.TROOPCLSCODE2) as TROOPCLSNAME,
+			'일반' as DETAIL,
+			t.LASTREGYEAR
+            , COALESCE(lc.PLeaderCount, 0) AS pre_leader
+			, COALESCE(sc.PScoutCount, 0) AS pre_scout
+			, COALESCE(lc.LeaderCount, 0) AS this_leader
+            , COALESCE(sc.ScoutCount, 0) AS this_scout
+			
+            , COALESCE(lc.LeaderPayCount, 0) AS pay_leader
+            , COALESCE(sc.ScoutPayCount, 0) AS pay_scout
 		from troop t
-		inner join associationcode a on t.ASSOCIATIONCODE = a.ASSOCIATIONCODE
-        left outer join scoutclscode sc on sc.SCOUTCLSCODE = t.SCOUTCLSCODE
-        left outer join org o on o.ORGNO = t.ORGNO
-        where 1=1
-		<if test="ASSOCIATIONCODE != null and ASSOCIATIONCODE != ''">
-        	and t.ASSOCIATIONCODE = #{ASSOCIATIONCODE} 
+		left outer join associationcode a on t.ASSOCIATIONCODE = a.ASSOCIATIONCODE
+		left outer join scoutclscode sc on sc.SCOUTCLSCODE = t.SCOUTCLSCODE
+        LEFT JOIN LeaderCount lc ON lc.ASSOCIATIONCODE = t.ASSOCIATIONCODE AND lc.TROOPNO = t.TROOPNO
+        LEFT JOIN ScoutCount sc ON sc.ASSOCIATIONCODE = t.ASSOCIATIONCODE AND sc.TROOPNO = t.TROOPNO
+		where 1=1
+		<if test="search_associationcode != null and search_associationcode != ''">
+        	and t.ASSOCIATIONCODE = #{search_associationcode} 
         </if>
-        <if test="PARENTTROOPNO != null and PARENTTROOPNO != ''">
-        	and t.PARENT_TROOPNO = #{PARENTTROOPNO}
+        <if test="search_parenttroopno != null and search_parenttroopno != ''">
+        	and t.PARENT_TROOPNO = #{search_parenttroopno}
         </if>
-        <if test="TROOPLEVELCODE != null and TROOPLEVELCODE != ''">
-        	 and t.TROOPLEVELCODE = #{TROOPLEVELCODE}
+        <if test="search_troopcls != null and search_troopcls != ''">
+        	and t.TROOPCLSCODE1 = #{search_troopcls}
         </if>
-        <if test="TROOPCLSCODE1 != null and TROOPCLSCODE1 != ''">
-        	and t.TROOPCLSCODE1 = #{TROOPCLSCODE1}
+        <if test="search_troopcls2 != null and search_troopcls2 != ''">
+        	and t.TROOPCLSCODE2 = #{search_troopcls2}
         </if>
-        <if test="TROOPCLSCODE2 != null and TROOPCLSCODE2 != ''">
-        	and t.TROOPCLSCODE2 = #{TROOPCLSCODE2}
+        <if test="search_level != null and search_level != ''">
+        	and t.SCOUTCLSCODE = #{search_level}
         </if>
-        <if test="SCOUTCLSCODE != null and SCOUTCLSCODE != ''">
-        	and t.SCOUTCLSCODE = #{SCOUTCLSCODE}
-        </if>
-        <if test="PARENTORGNO != null and PARENTORGNO != ''">
-        	and o.PARENT_ORGNO = #{PARENTORGNO}
-        </if>
-        <if test="search_text != null and search_text != ''">
-	        <if test="search_type != null and search_type != '' and search_type == 'number'">
-	        	and t.DISPTROOPNO = #{search_text}
+
+        <if test="search_text2 != null and search_text2 != ''">
+	        <if test="search_type2 != null and search_type2 != '' and search_type2 == 'number'">
+	        	and t.DISPTROOPNO = #{search_text2}
 	        </if>
-	        <if test="search_type != null and search_type != '' and search_type == 'text'">
+	        <if test="search_type2 != null and search_type2 != '' and search_type2 == 'name'">
 				and (
-					t.TROOPNAME LIKE CONCAT('%', #{search_text}, '%')
+					t.TROOPNAME LIKE CONCAT('%', #{search_text2}, '%')
 				) 
 	        </if>
         </if>
         
-        #and t.PARENT_TROOPNO = 9689 and t.ORGNO is not null and t.ORGNO != ''
         
         order by cast(t.PARENT_TROOPNO as unsigned), length(t.DISPTROOPNO), cast(t.DISPTROOPNO as unsigned)
 		

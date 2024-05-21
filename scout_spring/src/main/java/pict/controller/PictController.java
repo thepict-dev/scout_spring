@@ -162,12 +162,12 @@ public class PictController {
 	public String ko_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		
-		String loginNo = request.getSession().getAttribute("id").toString();
-		System.out.println("로그인한 사람!!! " +loginNo);
+		//String loginNo = request.getSession().getAttribute("id").toString();
+		//System.out.println("로그인한 사람!!! " +loginNo);
 		
 		
-		String flag = pictService.login_user_info(loginNo);
-		model.addAttribute("flag", flag);
+		//String flag = pictService.login_user_info(loginNo);
+		//model.addAttribute("flag", flag);
 		
 		
 		List<PictVO> association_list = pictService.association_list(pictVO);
@@ -224,6 +224,7 @@ public class PictController {
 			pictVO.setASSOCIATIONCODE(pictVO.getSearch_associationcode());
 			
 			List<PictVO> units_list = pictService.units_list(pictVO);
+			System.out.println("사이즈 ::::::::::::::::"+units_list.size());
 			model.addAttribute("units_list", units_list);
 		}
 		
@@ -234,6 +235,28 @@ public class PictController {
 		model.addAttribute("pictVO", pictVO);
 		return "pict/front/units";
 	}
+	
+	//단위대 통합창 단위대 선택했을때
+	@RequestMapping("/fn_get_units_info")
+	@ResponseBody
+	public HashMap<String, Object> fn_get_units_info(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+		String troopno = param.get("troopno").toString();
+		
+		pictVO.setTROOPNO(troopno);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		List<PictVO> relation_list = pictService.get_relation_person_search(pictVO);
+		
+		if(relation_list.size() > 0) {
+			map.put("list", relation_list);
+			return map;
+		}
+		else {
+			return map;
+		}
+	}
+	
+	
 	//신규 조직 등록
 	@RequestMapping("/front/signup_org")
 	public String signup_org(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,

@@ -236,6 +236,7 @@
 					, async : true
 					, success : function(data, status, xhr) {
 						alert("삭제되었습니다.")
+						$('#relation_popup_' + $('#del_relation_idx').val()).remove()
 						$('#initial-loading').css('display', 'none')
 					},
 					error : function(err){

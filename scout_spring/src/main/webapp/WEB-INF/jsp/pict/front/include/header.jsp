@@ -5,11 +5,13 @@
 <%@ taglib prefix="fn"	   uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <%
+/*
 	pageContext.setAttribute("id", session.getAttribute("id"));
 	pageContext.setAttribute("name", session.getAttribute("name"));
 	pageContext.setAttribute("associationname", session.getAttribute("associationname"));
 	pageContext.setAttribute("leaderpositionname", session.getAttribute("leaderpositionname"));
 	pageContext.setAttribute("picimg", session.getAttribute("picimg"));
+	*/
 %>
 
 <div class="header">
@@ -27,8 +29,7 @@
                 	<c:if test="${picimg ne null and pictimg ne ''}">${picimg }</c:if>" alt="프로필 이미지">
                	</span>
                 <div class="profileTexts">
-                    <p>${name}(${id})</p>
-                    <span>${associationname}<span>•</span>${leaderpositionname}</span>
+                    
                 </div>
             </div>
             <div class="navBtns">

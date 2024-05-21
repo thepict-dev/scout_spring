@@ -19,7 +19,7 @@
                 <div class="searchContainer">
                     <p class="inputCaption">연도</p>
                     <div class="inputsAlign">
-                        <input type="text"  name="YEAR" id="" placeholder="내용을 입력하세요…" class="smThinInput">
+                        <input type="text" name="search_year" id="search_year" value="${pictVO.search_year}" placeholder="내용을 입력하세요…" class="smThinInput">
                         <a href="#lnk" class="smButton bigWhiteBtn">초기화</a>
                     </div>
                 </div>
@@ -146,7 +146,18 @@
                                 	<th style="position: unset; z-index: 2;">여자대원수</th>
                                 </tr>
                             </thead>
-                            <tbody id="unit_list"></tbody>
+                            <tbody id="unit_list">
+	                            <c:forEach var="units_list" items="${units_list}" varStatus="status">
+									<tr onclick="fn_get_units_info(${units_list.TROOPNO})">
+										<td>${units_list.PARENTTROOPNAME}</td>
+										<td>${units_list.DISPTROOPNO}</td>
+										<td>${units_list.TROOPNAME}</td>
+										<td>${units_list.SCOUTCLSNAME}</td>
+										<td>${units_list.TROOPCLSNAME}</td>
+										<td>${units_list.DETAIL}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
                         </table>
                     </div>
                     <div class="tableButtons">
@@ -259,7 +270,9 @@
                                             <th>관리자지도여부</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="unit_leader_list"></tbody>
+                                    <tbody id="unit_leader_list">
+                                    	
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -323,6 +336,32 @@
 			$("#search_fm_units").attr("action", "/front/units");
 			$("#search_fm_units").submit();
 		}
+		
+		function fn_get_units_info(troopno){
+			var param = {
+					troopno : troopno,
+			}
+			$.ajax({
+				url : "/fn_get_units_info"
+				, type : "POST"
+				, data : JSON.stringify(param)
+				, contentType : "application/json"
+				, dataType : "json"
+				, async : true
+				, success : function(data, status, xhr) {
+					var html ='<option value="">-----</option>';
+					if(data){
+						
+						$('.contentsContainer select').niceSelect('update')
+					}
+				}
+				, error : function(xhr, status, error) {
+					console.log(xhr)
+					console.log("에러")
+				}
+			});
+		}
+		
 		function fn_get_unitylist_organ(){
 			var param = {
 					associationcode : $('#search_associationcode').val(),

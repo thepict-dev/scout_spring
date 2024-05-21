@@ -1064,7 +1064,7 @@
 						var sex = "남"
 						if(relation_arr[i].relationinfo.split(',')[4] == 'W') sex = "여"
 						
-						relation_popup += '<tr onclick="fn_relation_idx('+relation_arr[i].idx+')">'+
+						relation_popup += '<tr id="relation_popup_'+relation_arr[i].idx+'" onclick="fn_relation_idx('+relation_arr[i].idx+')">'+
 						'<td>' + relation_arr[i].relationcode + '</td>' +
 						'<td>' + relationname + '</td>'+
 						'<td>' + relation_arr[i].relationinfo.split(',')[1] + '</td>'+
