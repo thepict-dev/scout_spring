@@ -25,17 +25,19 @@
                 </div>
                 <div class="searchContainer">
                     <p class="inputCaption">연맹/지구</p>
-                    <select name="search_associationcode" id="search_associationcode" onchange="fn_get_unitylist_organ()" class="smThinSelect">
-						<c:forEach var="association_list" items="${association_list}" varStatus="status">
-							<option value="${association_list.ASSOCIATIONCODE}" <c:if test="${association_list.ASSOCIATIONCODE eq pictVO.search_associationcode}">selected</c:if>> ${association_list.ASSOCIATIONNAME}</option>
-						</c:forEach>
-					</select>
-					<select name="search_parenttroopno" id="search_parenttroopno" class="smThinSelect">
-						<option value="">전체</option>
-						<c:forEach var="unity_list" items="${unity_list}" varStatus="status">
-							<option value="${unity_list.TROOPNO}" <c:if test="${unity_list.TROOPNO eq pictVO.search_parenttroopno}">selected</c:if>>${unity_list.TROOPNAME}</option>
-						</c:forEach>
-					</select>
+                    <div class="inputsAlign">
+	                    <select name="search_associationcode" id="search_associationcode" onchange="fn_get_unitylist_organ()" class="smThinSelect">
+							<c:forEach var="association_list" items="${association_list}" varStatus="status">
+								<option value="${association_list.ASSOCIATIONCODE}" <c:if test="${association_list.ASSOCIATIONCODE eq pictVO.search_associationcode}">selected</c:if>> ${association_list.ASSOCIATIONNAME}</option>
+							</c:forEach>
+						</select>
+						<select name="search_parenttroopno" id="search_parenttroopno" class="smThinSelect">
+							<option value="">전체</option>
+							<c:forEach var="unity_list" items="${unity_list}" varStatus="status">
+								<option value="${unity_list.TROOPNO}" <c:if test="${unity_list.TROOPNO eq pictVO.search_parenttroopno}">selected</c:if>>${unity_list.TROOPNAME}</option>
+							</c:forEach>
+						</select>
+					</div>
                 </div>
                 <div class="searchContainer">
                     <p class="inputCaption">법정생년월일</p>
@@ -164,25 +166,19 @@
                             <div class="inputsContainer">
                                 <div class="inputBox">
                                     <p class="inputCaption">대번호</p>
-                                    <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="smThinInput">
+                                    <span class="bindingText bindingSm"></span>
                                 </div>
                                 <div class="inputBox">
                                     <p class="inputCaption">단위대명</p>
-                                    <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                    <span class="bindingText"></span>
                                 </div>
                                 <div class="inputBox">
                                     <p class="inputCaption">단위대 구분</p>
-                                    <select name="" id="" class="lgThinSelect">
-                                        <option value="1">중앙본부</option>
-                                    </select>
+                                    <span class="bindingText"></span>
                                 </div>
                                 <div class="inputBox">
                                     <p class="inputCaption">스카우트 구분</p>
-                                    <select name="" id="" class="lgThinSelect">
-                                        <option value="1"></option>
-                                        <option value="2"></option>
-                                        <option value="3"></option>
-                                    </select>
+                                    <span class="bindingText"></span>
                                 </div>
                             </div>
                             <div class="inputsContainer">
@@ -190,38 +186,38 @@
                                     <p class="inputCaption">주소</p>
                                     <div class="inputsAlign">
                                         <div class="zip">
-                                            <input type="text" name="HPOSTCODE" id="HPOSTCODE" readonly class="lgThinInput" placeholder="00000">
+                                    		<span class="bindingText" style="width: 73px;"></span>
                                         </div>
-                                        <input type="text" name="get_post" id="get_post" class="lgThinInput post" style="margin-top: 0;" placeholder="내용을 입력하세요…">
+                                   		<span class="bindingText" style="width: 443px;"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="inputsContainer">
                                 <div class="inputBox">
                                     <p class="inputCaption">대표관리지도자</p>
-                                    <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                    <span class="bindingText"></span>
                                 </div>
                             </div>
                             <div class="inputsContainer">
                                 <div class="inputBox">
                                     <p class="inputCaption">지도자수</p>
                                     <div class="inputsAlign">
-                                        <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                        <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                        <span class="bindingText"></span>
+                                        <span class="bindingText"></span>
                                     </div>
                                 </div>
                                 <div class="inputBox">
                                     <p class="inputCaption">대원수</p>
                                     <div class="inputsAlign">
-                                        <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                        <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                        <span class="bindingText"></span>
+                                        <span class="bindingText"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="inputsContainer">
                                 <div class="inputBox">
                                     <p class="inputCaption">월간지</p>
-                                    <input type="text"  name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                    <span class="bindingText"></span>
                                 </div>
                             </div>
                         </div>

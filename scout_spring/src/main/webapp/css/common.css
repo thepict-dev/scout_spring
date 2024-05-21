@@ -465,6 +465,7 @@ select:disabled{
 }
 
 .bindingText{
+	display: block;
     width: 208px;
     height: 34px;
     padding: 8px 16px;
@@ -478,9 +479,11 @@ select:disabled{
     font-weight: 400;
     line-height: 100%; /* 14px */
     letter-spacing: -0.7px;
-	
 }
 
+.bindingText.bindingSm{
+    width: 112px;
+}
 /* login */
 .loginInput{
     width: 287px;
