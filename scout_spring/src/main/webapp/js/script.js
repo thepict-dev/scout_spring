@@ -304,6 +304,10 @@ $(document).on("click", ".searches", function (e){
 $(".popupInner button").click(function(){
     $("#relationPopup").removeClass("active");
 });
+// 팝업닫기
+$("#pwPopup button").click(function(){
+    $("#pwPopup").removeClass("active");
+});
 
 
 document.addEventListener('DOMContentLoaded', function() {

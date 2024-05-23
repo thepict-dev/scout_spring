@@ -380,8 +380,250 @@
                         </div> 
                     </form>
                 </div>
-                <div class="fomrTabContent">2</div>
-
+                <div class="fomrTabContent">
+					<div class="addContainer">
+					    <ul class="addNav">
+					        <li class="active">연혁</li>
+					        <li>포상</li>
+					        <li>임원관리</li>
+					        <li>조직변경이력</li>
+					    </ul>
+					    <!-- 연혁 -->
+					    <div class="addContent active">
+						   	<form class="tableContainer relationContainer addTable">
+						   		<div class="addTableBack">
+				                    <div class="tableWrapper" style="margin-top: 0;">
+				                        <table>
+				                            <colgroup>
+				                                <col width="8%" />
+				                                <col width="10%" />
+				                                <col width="10%" />
+				                                <col width="12%" />
+				                                <col width="10%" />
+				                                <col width="10%" />
+				                                <col width="10%" />
+				                                <col width="10%" />
+				                                <col width="10%" />
+				                                <col width="10%" />
+				                            </colgroup>
+				                            <thead>
+				                                <tr>
+					                                <th rowspan="2">No</th>
+					                                <th rowspan="2">년도</th>
+					                                <th rowspan="2">연맹</th>
+					                                <th rowspan="2">단위대번호</th>
+					                                <th colspan="3" style="text-align: center;">대원수</th>
+					                                <th colspan="3" style="text-align: center;">지도자수</th>
+				                                </tr>
+				                                <tr>
+				                                	<th style="position: unset; z-index: 2;">남</th>
+				                                	<th style="position: unset; z-index: 2;">여</th>
+				                                	<th style="position: unset; z-index: 2;">계</th>
+				                                	<th style="position: unset; z-index: 2;">남</th>
+				                                	<th style="position: unset; z-index: 2;">여</th>
+				                                	<th style="position: unset; z-index: 2;">계</th>
+				                                </tr>
+				                            </thead>
+				                            <tbody id="unit_list"></tbody>
+				                        </table>
+				                    </div>
+			                    </div>
+					            <div class="tableButtons topBd" style="padding: 12px 16px;">
+					                <p>0<span>rows</span></p>
+					                <div class="buttons">
+				                    	<a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
+					            	</div>
+					            </div>
+						    </form>
+					    </div>
+					    <!-- 포상 -->
+					    <div class="addContent">
+					        <form action="" class="tableContainer relationContainer addTable">
+						   		<div class="addTableBack">
+						            <div class="tableWrapper" style="margin-top: 0;">
+						                <table>
+						                    <colgroup>
+				                                <col width="8%" />
+				                                <col width="10%" />
+				                                <col width="10%" />
+				                                <col width="10%" />
+				                                <col width="10%" />
+				                                <col width="10%" />
+				                                <col width="10%" />
+				                                <col width="12%" />
+				                                <col width="10%" />
+				                                <col width="10%" />
+						                    </colgroup>
+						                    <thead>
+						                        <tr>
+						                            <th>No</th>
+						                            <th>포상번호</th>
+						                            <th>수여연맹</th>
+						                            <th>포상일</th>
+						                            <th>포상구분1</th>
+						                            <th>포상구분2</th>
+						                            <th>포상명</th>
+						                            <th>수여기관</th>
+						                            <th>포상비고</th>
+						                            <th>등록자</th>
+						                        </tr>
+						                    </thead>
+						                    <tbody></tbody>
+						                </table>
+						            </div>
+					            </div>
+					            <div class="tableButtons topBd" style="padding: 12px 16px;">
+					                <p>0<span>rows</span></p>
+					                <div class="buttons">
+					                    <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
+					                </div>
+					            </div>
+					        </form>
+					    </div>
+					    <!-- 임원관리 -->
+					    <div class="addContent">
+					        <form action="" class="tableContainer relationContainer addTable max2">
+						   		<div class="addTableBack">
+						            <div class="addSearch">
+						                <div class="addScroll">
+						                    <div class="addSearchScroll">
+						                        <input type="radio" name="Mng_period" id="recent" style="margin-bottom: 3px;">
+						                        <label for="recent">현재</label>
+						                        <input type="radio" name="Mng_period" id="whole" style="margin-bottom: 3px;">
+						                        <label for="whole" style="margin-right: 9px;">전체</label>
+						                        <select name="" id="" class="smThinSelect">
+						                            <option value="">진보</option>
+						                        </select>
+						                        <select name="" id="" class="smThinSelect">
+						                            <option value="">진보</option>
+						                        </select>
+						                    	<a href="" class="smButton"><img src="/front_img/search2.png" alt="">조회</a>
+						                    </div>
+						                </div>
+						            </div>
+						            <div class="tableWrapper">
+						                <table>
+						                    <colgroup>
+						                        <col width="3%" />
+						                        <col width="5%" />
+						                        <col width="5%" />
+						                        <col width="5%" />
+						                        <col width="12%" />
+						                        <col width="10%" />
+						                        <col width="10%" />
+						                        <col width="10%" />
+						                        <col width="10%" />
+						                        <col width="10%" />
+						                        <col width="10%" />
+						                        <col width="10%" />
+						                    </colgroup>
+						                    <thead>
+						                        <tr>
+						                            <th>
+						                                <input type="checkbox" name="choice" id="checkAll">
+						                                <label for="checkAll"></label>
+						                            </th>
+						                            <th>No</th>
+						                            <th>행사번호</th>
+						                            <th>수료여부</th>
+						                            <th>행사명</th>
+						                            <th>행사시작일</th>
+						                            <th>행사마침일</th>
+						                            <th>주관연맹</th>
+						                            <th>지구연합회</th>
+						                            <th>행사구분1</th>
+						                            <th>행사구분2</th>
+						                            <th>행사구분3</th>
+						                        </tr>
+						                    </thead>
+						                    <tbody>
+						                        <tr>
+						                            <td>
+						                                <input type="checkbox" name="choice" id="choice">
+						                                <label for="choice"></label>
+						                            </td>
+						                            <td>1</td>
+						                            <td>년도</td>
+						                            <td>연맹</td>
+						                            <td>연맹</td>
+						                            <td>연맹</td>
+						                            <td>연맹</td>
+						                            <td>연맹</td>
+						                            <td>연맹</td>
+						                            <td>연맹</td>
+						                            <td>연맹</td>
+						                            <td>연맹</td>
+						                        </tr>
+						                        <tr>
+						                            <td>
+						                                <input type="checkbox" name="choice" id="choice">
+						                                <label for="choice"></label>
+						                            </td>
+						                            <td>1</td>
+						                            <td>년도</td>
+						                            <td>연맹</td>
+						                            <td>연맹</td>
+						                            <td>연맹</td>
+						                            <td>연맹</td>
+						                            <td>연맹</td>
+						                            <td>연맹</td>
+						                            <td>연맹</td>
+						                            <td>연맹</td>
+						                            <td>연맹</td>
+						                        </tr>
+						                    </tbody>
+						                </table>
+						            </div>
+					            </div>
+					            <div class="tableButtons topBd" style="padding: 12px 16px;">
+					                <p>0<span>rows</span></p>
+					                <div class="buttons">
+					                    <a href="#lnk" class="smButton"><img src="/front_img/add.png" alt="">임원추가</a>
+					                    <a href="#lnk" class="smButton"><img src="/front_img/modify.png" alt="">임원수정</a>
+					                    <a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">임원삭제</a>
+					                    <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
+					                </div>
+					            </div>
+				            </form>
+			            </div>
+					    <!-- 조직변경이력 -->
+					    <div class="addContent">
+					        <form action="" class="tableContainer relationContainer addTable">
+						   		<div class="addTableBack">
+						            <div class="tableWrapper" style="margin-top: 0;">
+						                <table>
+						                    <colgroup>
+				                                <col width="12%" />
+				                                <col width="40%" />
+				                                <col width="12%" />
+				                                <col width="12%" />
+				                                <col width="12%" />
+				                                <col width="12%" />
+						                    </colgroup>
+						                    <thead>
+						                        <tr>
+						                            <th>No</th>
+						                            <th>소속연맹</th>
+						                            <th>시작일</th>
+						                            <th>마침일</th>
+						                            <th>작업자</th>
+						                            <th>작업일</th>
+						                        </tr>
+						                    </thead>
+						                    <tbody></tbody>
+						                </table>
+						            </div>
+					            </div>
+					            <div class="tableButtons topBd" style="padding: 12px 16px;">
+					                <p>0<span>rows</span></p>
+					                <div class="buttons">
+					                    <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
+					                </div>
+					            </div>
+					        </form>
+					    </div>
+				    </div>        
+                </div>
             </div>
         </div>
     </div>

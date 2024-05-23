@@ -99,6 +99,7 @@
     overflow-x: scroll;
     border-radius: 4px;
     border: 1px solid var(--grey-100);
+    background-color: #fff;
 }
 .tableWrapper::-webkit-scrollbar-track{
 	background-color: #fff;
@@ -252,6 +253,7 @@
 }
 .fomrTabContent{
     display: none;
+    background-color: var(--grey-50);
 }
 .fomrTabContent.unitScroll{
     background-color: #fff;
@@ -269,6 +271,8 @@
     width: 100%;
     height: 100%;
     overflow-y: scroll;
+    background-color: #fff;
+    
 }
 .fomrTabContent form::-webkit-scrollbar{
     display: none;
@@ -482,7 +486,6 @@
 .addContainer{
     width: 100%;
     height: 100%;
-    padding: 16px 24px;
     overflow-y: auto;
 }
 .addContainer::-webkit-scrollbar-track{
@@ -493,7 +496,8 @@
     flex-wrap: wrap;
     gap: 4px;
     width: 100%;
-    padding-bottom: 12px;
+    padding: 16px 24px 12px 24px;
+	background-color: #fff;
 }
 .addContent form{
     width: 100%;
@@ -504,10 +508,15 @@
 .tableContainer.addTable{
     padding: 0;
 }
+.addTableBack{
+	width: 100%;
+	height: fit-content;
+    padding: 0 24px 16px 24px;
+	background-color: #fff;
+}
 .tableContainer.relationContainer.addTable .tableWrapper{
     height: 504px;
     overflow-x: auto;
-    margin-bottom: 16px;
 }
 .tableContainer.relationContainer.addTable .tableWrapper table{
     min-width: 1022px;
@@ -538,6 +547,9 @@
     display: flex;
     align-items: center;
     column-gap: 4px;
+}
+.addSearchScroll > label{
+	font-size: 14px;
 }
 .addSearchScroll:first-child{
     margin-right: 20px;

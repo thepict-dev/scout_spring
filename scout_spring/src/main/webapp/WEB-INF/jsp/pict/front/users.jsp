@@ -614,6 +614,7 @@
 	<%@ include file="./include/leader_modal.jsp" %>
 	
     
+	<%@ include file="./include/pw_modal.jsp" %>
     
     <input type="hidden" id="leader_idx" />
     <input type="hidden" id="scout_idx" />
@@ -666,7 +667,7 @@
 			var idx = $('#leader_idx').val();
 			
 			if (idx == undefined || idx == null || idx == '' || idx == 0) {
-		        alert("선택할 연공 데이터를 선택해주세요");
+		        alert("삭제할 연공 데이터를 선택해주세요");
 		        return false; // 모달을 열지 않음
 		    }
 			var text ="해당 연공 데이터를 삭제하시겠습니까?";
@@ -685,6 +686,7 @@
 					, success : function(data, status, xhr) {
 				
 						alert("삭제되었습니다.");
+						$('#leader_list_row_' + $('#leader_idx').val()).remove();
 					},
 					error : function(err){
 						console.log(err)
@@ -697,7 +699,7 @@
 			var idx = $('#scout_idx').val();
 			
 			if (idx == undefined || idx == null || idx == '' || idx == 0) {
-		        alert("선택할 연공 데이터를 선택해주세요");
+		        alert("삭제할 연공 데이터를 선택해주세요");
 		        return false; // 모달을 열지 않음
 		    }
 			var text ="해당 연공 데이터를 삭제하시겠습니까?";
@@ -716,6 +718,7 @@
 					, success : function(data, status, xhr) {
 				
 						alert("삭제되었습니다.");
+						$('#scout_list_row_' + $('#scout_idx').val()).remove();
 					},
 					error : function(err){
 						console.log(err)
@@ -981,7 +984,7 @@
 						
 						$('#year_cnt_leader').text(arr.length + " rows")
 						for(var i=0; i<arr.length; i++){
-							html += '<tr onclick="fn_leader_info('+arr[i].idx+')">'+
+							html += '<tr id="leader_list_row_'+arr[i].idx+'" onclick="fn_leader_info('+arr[i].idx+')">'+
 								'<td>' + Number(i+1) + '</td>' +
 								'<td>' + arr[i].adminy + '</td>'+
 								'<td>' + arr[i].year + '</td>'+
@@ -1015,7 +1018,7 @@
 						$('#scout_incnt').text(data.info.scoutincnt)
 						$('#year_cnt_scout').text(arr.length + " rows")
 						for(var i=0; i<arr.length; i++){
-							html += '<tr onclick="fn_scout_info('+arr[i].idx+')">'+
+							html += '<tr id="scout_list_row_'+arr[i].idx+'" onclick="fn_scout_info('+arr[i].idx+')">'+
 								'<td>' + Number(i+1) + '</td>' +
 								'<td>' + arr[i].year + '</td>'+
 								'<td>' + arr[i].associationname + '</td>'+
@@ -1054,7 +1057,7 @@
 						if(target_memberno == relation_arr[i].frommemberno) relationname = relation_arr[i].relationname2
 						if(target_memberno == relation_arr[i].tomemberno) relationname = relation_arr[i].relationname1
 						
-						relation_html += '<tr>'+
+						relation_html += '<tr id="relation_main_'+relation_arr[i].idx+'">'+
 						'<td>' + relation_arr[i].relationinfo.split(',')[0] + '</td>' +
 						'<td>' + relation_arr[i].relationinfo.split(',')[1] + '</td>'+
 						'<td>' + relationname + '</td>'+
