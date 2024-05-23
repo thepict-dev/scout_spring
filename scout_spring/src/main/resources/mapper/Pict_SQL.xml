@@ -217,6 +217,7 @@
 	
 	<delete id="relation_delete" parameterType="pictVO">
 		delete from member_relation where idx = #{idx}
+
 	</delete>
 	
 	<!-- 프로필 이미지업로드 -->

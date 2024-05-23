@@ -491,18 +491,23 @@ public class PictController {
 	}
 	@RequestMapping("/relation_delete")
 	@ResponseBody
-	public String relation_delete(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+	public HashMap<String, Object> relation_delete(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		try {
 			String idx = param.get("idx").toString();
+			String memberno = param.get("memberno").toString();
 			
 			pictVO.setIdx(Integer.parseInt(idx));
-			
 			pictService.relation_delete(pictVO);
 			
-			return "Y";
+			
+			pictVO.setMEMBERNO(memberno);
+			List<PictVO> relation_list = pictService.get_relation_info(pictVO);
+			map.put("relation_list", relation_list);
+			return map;
 		}
 		catch(Exception e) {
-			return "N";
+			return map;
 		}
 	}
 	

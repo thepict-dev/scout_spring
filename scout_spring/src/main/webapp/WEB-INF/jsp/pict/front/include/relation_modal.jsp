@@ -198,12 +198,17 @@
 		}
 	
 		function relation_insert(){
+			var tomemberno = $('#tomemberno').val();
+			if(tomemberno == '' || tomemberno == null || tomemberno == undefined){
+				alert("관계를 연결할 대상을 선택해주세요.")
+				return false
+			}
 			$('#initial-loading').css('display', 'flex')
 			
 			var param = {
 				frommemberno: $('#MEMBERNO').val(),
 				relationcode : $('#relationclslist').val(),
-				tomemberno : $('#tomemberno').val()
+				tomemberno : tomemberno
 			}
 			$.ajax({
 				url : "/relation_insert"
@@ -213,7 +218,7 @@
 				, async : true
 				, success : function(data, status, xhr) {
 					alert("저장되었습니다.")
-					$('#relation_popup_' + $('#tomemberno').val()).append();
+					
 					$('#initial-loading').css('display', 'none')
 				},
 				error : function(err){
@@ -228,6 +233,7 @@
 			if(confirm (text)){
 				var param = {
 					idx : $('#del_relation_idx').val(),
+					memberno : $('#MEMBERNO').val()
 				}
 				$.ajax({
 					url : "/relation_delete"
@@ -237,8 +243,47 @@
 					, async : true
 					, success : function(data, status, xhr) {
 						alert("삭제되었습니다.")
-						$('#relation_popup_' + $('#del_relation_idx').val()).remove();
-						$('#relation_main_' + $('#del_relation_idx').val()).remove();
+						$('#main_relation').children().remove();
+						$('#relation_list').children().remove();
+						
+						if(data){
+							var relation_arr = data.relation_list;
+							var relation_html = ""
+							var relation_popup = ""
+							var target_memberno = $('#MEMBERNO').val()
+							
+							for(var i=0; i<data.relation_list.length; i++){
+								var relationname = ""
+								if(target_memberno == relation_arr[i].frommemberno) relationname = relation_arr[i].relationname2
+								if(target_memberno == relation_arr[i].tomemberno) relationname = relation_arr[i].relationname1
+								
+								relation_html += '<tr id="relation_main_'+relation_arr[i].idx+'">'+
+								'<td>' + relation_arr[i].relationinfo.split(',')[0] + '</td>' +
+								'<td>' + relation_arr[i].relationinfo.split(',')[1] + '</td>'+
+								'<td>' + relationname + '</td>'+
+								'<td>' + relation_arr[i].bigo + '</td>'+
+								'</tr>'
+								
+								var sex = "남"
+								if(relation_arr[i].relationinfo.split(',')[4] == 'W') sex = "여"
+								
+								relation_popup += '<tr id="relation_popup_'+relation_arr[i].idx+'" onclick="fn_relation_idx('+relation_arr[i].idx+')">'+
+								'<td>' + relation_arr[i].relationcode + '</td>' +
+								'<td>' + relationname + '</td>'+
+								'<td>' + relation_arr[i].relationinfo.split(',')[1] + '</td>'+
+								'<td>' + relation_arr[i].relationinfo.split(',')[2] + '</td>'+
+								'<td>' + sex + '</td>'+
+								'<td>' + relation_arr[i].relationinfo.split(',')[3] + '</td>'+
+								'</tr>'
+							
+							}
+							
+							$('#main_relation').append(relation_html)
+							$('#relation_list').append(relation_popup)
+							
+						}
+						
+						
 						$('#initial-loading').css('display', 'none')
 					},
 					error : function(err){
