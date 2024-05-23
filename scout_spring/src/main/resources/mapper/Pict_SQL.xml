@@ -525,41 +525,28 @@
 		    SELECT 
 		        l.ASSOCIATIONCODE, 
 		        l.TROOPNO, 
-		        SUM(CASE WHEN left(l.STARTDAY, 4) = '2024' THEN 1 ELSE 0 END) AS LeaderCount,
-		        SUM(CASE WHEN left(l.STARTDAY, 4) = '2023' THEN 1 ELSE 0 END) AS PLeaderCount,
-		        SUM(CASE WHEN l.PAYY = 'Y' and left(l.STARTDAY, 4) = '2024' THEN 1 ELSE 0 END) AS LeaderPayCount
+		        SUM(CASE WHEN left(l.STARTDAY, 4) = #{search_year} THEN 1 ELSE 0 END) AS LeaderCount,
+		        SUM(CASE WHEN left(l.STARTDAY, 4) = #{pre_year} THEN 1 ELSE 0 END) AS PLeaderCount,
+		        SUM(CASE WHEN l.PAYY = 'Y' and left(l.STARTDAY, 4) = #{search_year} THEN 1 ELSE 0 END) AS LeaderPayCount
 		    FROM leader l
 		    LEFT JOIN member m ON m.MEMBERNO = l.MEMBERNO
 		    WHERE 
-		    left(l.STARTDAY, 4) IN ('2024', '2023')
-		    and l.ASSOCIATIONCODE = '120'
+		    left(l.STARTDAY, 4) IN (#{search_year}, #{pre_year})
+		    and l.ASSOCIATIONCODE = #{search_associationcode}
 		    GROUP BY l.ASSOCIATIONCODE, l.TROOPNO
 		),
 		ScoutCount AS (
 		    SELECT 
 		        s.ASSOCIATIONCODE, 
 		        s.TROOPNO, 
-		        SUM(CASE WHEN left(s.STARTDAY, 4) = '2024' THEN 1 ELSE 0 END) AS ScoutCount,
-		        SUM(CASE WHEN left(s.STARTDAY, 4) = '2023' THEN 1 ELSE 0 END) AS PScoutCount,
-		        SUM(CASE WHEN s.PAYY = 'Y' and left(s.STARTDAY, 4) = '2024' THEN 1 ELSE 0 END) AS ScoutPayCount
+		        SUM(CASE WHEN left(s.STARTDAY, 4) = #{search_year} THEN 1 ELSE 0 END) AS ScoutCount,
+		        SUM(CASE WHEN left(s.STARTDAY, 4) = #{pre_year} THEN 1 ELSE 0 END) AS PScoutCount,
+		        SUM(CASE WHEN s.PAYY = 'Y' and left(s.STARTDAY, 4) = #{search_year} THEN 1 ELSE 0 END) AS ScoutPayCount
 		    FROM scout s
 		    LEFT JOIN member m ON m.MEMBERNO = s.MEMBERNO
 		    WHERE 
-		    left(s.STARTDAY, 4) IN ('2024', '2023')
-		    and s.ASSOCIATIONCODE = '120'
-		    GROUP BY s.ASSOCIATIONCODE, s.TROOPNO
-		),
-		 PayCount AS (
-		    SELECT 
-		        s.ASSOCIATIONCODE, 
-		        s.TROOPNO, 
-		        COUNT(m.MEMBERNO) AS ScoutCount,
-		        SUM(CASE WHEN left(s.STARTDAY, 4) = '2023' THEN 1 ELSE 0 END) AS PScoutCount
-		    FROM scout s
-		    LEFT JOIN member m ON m.MEMBERNO = s.MEMBERNO
-		    WHERE 
-		    left(s.STARTDAY, 4) IN ('2024')
-		    and s.ASSOCIATIONCODE = '120'
+		    left(s.STARTDAY, 4) IN (#{search_year}, #{pre_year})
+		    and s.ASSOCIATIONCODE = #{search_associationcode}
 		    GROUP BY s.ASSOCIATIONCODE, s.TROOPNO
 		)
 		select 
@@ -572,18 +559,17 @@
 			(select TROOPCLSNAME from troopclscode tc where tc.TROOPCLSCODE1 = t.TROOPCLSCODE1 and tc.TROOPCLSCODE2 = t.TROOPCLSCODE2) as TROOPCLSNAME,
 			'일반' as DETAIL,
 			t.LASTREGYEAR
-            , COALESCE(lc.PLeaderCount, 0) AS pre_leader
-			, COALESCE(sc.PScoutCount, 0) AS pre_scout
-			, COALESCE(lc.LeaderCount, 0) AS this_leader
-            , COALESCE(sc.ScoutCount, 0) AS this_scout
-			
-            , COALESCE(lc.LeaderPayCount, 0) AS pay_leader
-            , COALESCE(sc.ScoutPayCount, 0) AS pay_scout
+            , COALESCE(lc.PLeaderCount, 0) AS preleader
+			, COALESCE(sc2.PScoutCount, 0) AS prescout
+			, COALESCE(lc.LeaderCount, 0) AS thisleader
+            , COALESCE(sc2.ScoutCount, 0) AS thisscout
+            , COALESCE(lc.LeaderPayCount, 0) AS payleader
+            , COALESCE(sc2.ScoutPayCount, 0) AS payscout
 		from troop t
 		left outer join associationcode a on t.ASSOCIATIONCODE = a.ASSOCIATIONCODE
 		left outer join scoutclscode sc on sc.SCOUTCLSCODE = t.SCOUTCLSCODE
         LEFT JOIN LeaderCount lc ON lc.ASSOCIATIONCODE = t.ASSOCIATIONCODE AND lc.TROOPNO = t.TROOPNO
-        LEFT JOIN ScoutCount sc ON sc.ASSOCIATIONCODE = t.ASSOCIATIONCODE AND sc.TROOPNO = t.TROOPNO
+        LEFT JOIN ScoutCount sc2 ON sc2.ASSOCIATIONCODE = t.ASSOCIATIONCODE AND sc2.TROOPNO = t.TROOPNO
 		where 1=1
 		<if test="search_associationcode != null and search_associationcode != ''">
         	and t.ASSOCIATIONCODE = #{search_associationcode} 
@@ -616,5 +602,90 @@
         order by cast(t.PARENT_TROOPNO as unsigned), length(t.DISPTROOPNO), cast(t.DISPTROOPNO as unsigned)
 		
 	</select>
+	
+	
+	<select id="fn_get_units_info" resultType="pictVO">
+		WITH LeaderInfo as(
+			select group_concat(KNAME, ',', m.MOBILE, ',', m.EMAIL) as LEADERINFOTEXT, TROOPNO
+			from member m
+			left outer join leader l on l.MEMBERNO = m.MEMBERNO
+			where l.TROOPNO = #{TROOPNO} and left(STARTDAY, '4') = #{search_year}
+			group by l.LEADERPOSITIONCODE1, KNAME, l.LEADERPOSITIONCODE2, m.MOBILE, m.EMAIL 
+			order by l.LEADERPOSITIONCODE1 desc, l.LEADERPOSITIONCODE2 asc
+			limit 1 offset 0
+		) ,
+		LeaderCount AS (
+			select
+		    TROOPNO, 
+			count(idx),
+			SUM(CASE WHEN l.CONFIRMY = 'Y' and left(l.STARTDAY, 4) = #{search_year} THEN 1 ELSE 0 END) as leaderconfirm,
+		    SUM(CASE WHEN (l.CONFIRMY = 'N' or l.CONFIRMY ='' or l.CONFIRMY is null) and left(l.STARTDAY, 4) = #{search_year} THEN 1 ELSE 0 END) as leadernoconfirm,
+		    SUM(l.SCOUTMAGACNT) as leadermagazinecnt,
+		    SUM(l.SCOUTMAGAFEE) as leadermagazinefee
+			from leader l
+			where l.TROOPNO = #{TROOPNO} and left(l.STARTDAY, '4') = #{search_year}
+		),
+		ScoutCount as (
+		select
+		    TROOPNO, 
+			count(idx),
+			SUM(CASE WHEN s.CONFIRMY = 'Y' and left(s.STARTDAY, 4) = #{search_year} THEN 1 ELSE 0 END) as scoutconfirm,
+		    SUM(CASE WHEN (s.CONFIRMY = 'N' or s.CONFIRMY ='' or s.CONFIRMY is null) and left(s.STARTDAY, 4) = #{search_year} THEN 1 ELSE 0 END) as scoutnoconfirm,
+		    SUM(s.SCOUTMAGACNT) as scoutmagazinecnt,
+		    SUM(s.SCOUTMAGAFEE) as scoutmagazinefee
+			from scout s
+			where s.TROOPNO = #{TROOPNO} and left(s.STARTDAY, '4') = #{search_year}
+		)
+		
+		select 
+		t.TROOPNO, t.DISPTROOPNO, t.TROOPNAME, t.TROOPCLSCODE1, tc.TROOPCLSNAME, sc.SCOUTCLSNAME, t.POSTCODE,
+		t.ADDR, li.LEADERINFOTEXT as LEADERINFOTEXT,
+		COALESCE(lc.leaderconfirm, 0) leaderconfirm, 
+		COALESCE(lc.leadernoconfirm, 0) leadernoconfirm, 
+		COALESCE(sc2.scoutconfirm, 0) scoutconfirm, 
+		COALESCE(sc2.scoutnoconfirm, 0) scoutnoconfirm,
+		
+		COALESCE(lc.leadermagazinecnt, 0) leadermagazinecnt,
+		COALESCE(lc.leadermagazinefee, 0) leadermagazinefee,
+		COALESCE(sc2.scoutmagazinecnt, 0) scoutmagazinecnt,
+		COALESCE(sc2.scoutmagazinefee, 0) scoutmagazinefee
+		
+		from troop t
+		left outer join troopclscode tc on t.TROOPCLSCODE1 = tc.TROOPCLSCODE1 and t.TROOPCLSCODE2 = tc.TROOPCLSCODE2
+		left outer join scoutclscode sc on t.SCOUTCLSCODE = sc.SCOUTCLSCODE
+		LEFT JOIN LeaderInfo li ON li.TROOPNO = t.TROOPNO
+		LEFT JOIN LeaderCount lc ON lc.TROOPNO = t.TROOPNO 
+		LEFT JOIN ScoutCount sc2 ON sc2.TROOPNO = t.TROOPNO
+		
+		where t.TROOPNO = #{TROOPNO}
+	</select>
+	
+	<select id="fn_get_units_leader" resultType="pictVO">
+		select
+		l.MEMBERNO, m.KNAME, lp.LEADERPOSITIONNAME, '' as TROOPCODE, l.FEEEXCLUDECODE, l.SCOUTMAGACNT, m.MOBILE, m.EMAIL, 
+		(select count(MEMBERNO) from leader sl where sl.TROOPNO = #{TROOPNO} and sl.MEMBERNO = l.MEMBERNO) as LEADERCNT,
+		'' as TRAINING, '' as GIFT, m.LIFEMEMBERY, l.CONFIRMY, l.ADMINY
+		from leader l
+		left outer join leaderpositioncode lp on l.LEADERPOSITIONCODE1 = lp.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2
+		left join member m on m.MEMBERNO = l.MEMBERNO
+		
+		where 1=1
+		and l.TROOPNO = #{TROOPNO}
+		and left(l.STARTDAY, '4') = #{search_year}
+	</select>
+	
+	<select id="fn_get_units_scout" resultType="pictVO">
+		select
+		s.MEMBERNO, m.KNAME, sc.SCOUTCLSNAME, '' as SCOUTCODE, s.FEEEXCLUDECODE, s.SCOUTMAGACNT, s.SCOUTSCHOOLYEAR, m.MOBILE, m.EMAIL, 
+		(select count(MEMBERNO) from scout sl where sl.TROOPNO = #{TROOPNO} and sl.MEMBERNO = s.MEMBERNO) as SCOUTCNT,
+		'' as TRAINING, '' as GIFT, m.LIFEMEMBERY, s.CONFIRMY, '-' as LEVELAPPLY, '' as LEVELINFO
+		from scout s
+		left outer join scoutclscode sc on s.SCOUTCLSCODE = sc.SCOUTCLSCODE
+		left outer join member m on m.MEMBERNO = s.MEMBERNO
+		where 1=1
+		and s.TROOPNO = #{TROOPNO}
+		and left(s.STARTDAY, '4') = #{search_year}
+	</select>	
+	
 
 </mapper>

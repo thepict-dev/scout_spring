@@ -141,6 +141,12 @@ public interface PictMapper {
 
 	List<PictVO> units_list(PictVO pictVO) throws Exception;
 
+	PictVO fn_get_units_info(PictVO pictVO) throws Exception;
+
+	List<PictVO> fn_get_units_leader(PictVO pictVO) throws Exception;
+
+	List<PictVO> fn_get_units_scout(PictVO pictVO) throws Exception;
+
  
 	
 

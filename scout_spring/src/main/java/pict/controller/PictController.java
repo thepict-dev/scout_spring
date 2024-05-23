@@ -162,12 +162,12 @@ public class PictController {
 	public String ko_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		
-		//String loginNo = request.getSession().getAttribute("id").toString();
-		//System.out.println("로그인한 사람!!! " +loginNo);
+		String loginNo = request.getSession().getAttribute("id").toString();
+		System.out.println("로그인한 사람!!! " +loginNo);
 		
 		
-		//String flag = pictService.login_user_info(loginNo);
-		//model.addAttribute("flag", flag);
+		String flag = pictService.login_user_info(loginNo);
+		model.addAttribute("flag", flag);
 		
 		
 		List<PictVO> association_list = pictService.association_list(pictVO);
@@ -217,22 +217,30 @@ public class PictController {
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		
 		List<PictVO> association_list = pictService.association_list(pictVO);
-		if(pictVO == null) {
+		if(request.getQueryString() == null) {
 			pictVO.setASSOCIATIONCODE("200");
+			pictVO.setSearch_year("2024");	//재영 이거 시스템 날짜로 바꿔야해
 		}
 		else {
-			pictVO.setASSOCIATIONCODE(pictVO.getSearch_associationcode());
+			if(pictVO == null) {
+				pictVO.setASSOCIATIONCODE("200");
+			}
+			else {
+				pictVO.setASSOCIATIONCODE(pictVO.getSearch_associationcode());
+				int year = Integer.parseInt(pictVO.getSearch_year());
+				pictVO.setPre_year((year - 1) + "");
+				List<PictVO> units_list = pictService.units_list(pictVO);
+
+				model.addAttribute("units_list", units_list);
+				model.addAttribute("units_cnt", units_list.size());
+			}
 			
-			List<PictVO> units_list = pictService.units_list(pictVO);
-			System.out.println("사이즈 ::::::::::::::::"+units_list.size());
-			model.addAttribute("units_list", units_list);
+			model.addAttribute("pictVO", pictVO);
 		}
-		
 		List<PictVO> unity_list = pictService.unity_list(pictVO);
 		model.addAttribute("association_list", association_list);
 		model.addAttribute("unity_list", unity_list);
 		
-		model.addAttribute("pictVO", pictVO);
 		return "pict/front/units";
 	}
 	
@@ -241,14 +249,22 @@ public class PictController {
 	@ResponseBody
 	public HashMap<String, Object> fn_get_units_info(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
 		String troopno = param.get("troopno").toString();
-		
+		String year = param.get("year").toString();
+		pictVO.setSearch_year(year);
 		pictVO.setTROOPNO(troopno);
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		List<PictVO> relation_list = pictService.get_relation_person_search(pictVO);
-		
-		if(relation_list.size() > 0) {
-			map.put("list", relation_list);
+		pictVO = pictService.fn_get_units_info(pictVO);
+		if(pictVO != null) {
+			map.put("rst", pictVO);
+			
+			pictVO.setSearch_year(year);
+			List<PictVO> leader_list = pictService.fn_get_units_leader(pictVO);
+			
+			map.put("leader_list", leader_list);
+			List<PictVO> scout_list = pictService.fn_get_units_scout(pictVO);
+			
+			map.put("scout_list", scout_list);
 			return map;
 		}
 		else {

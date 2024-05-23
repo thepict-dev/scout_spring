@@ -55,7 +55,7 @@ dependencies {
 
 	//로그레벨
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	
+	//implementation 'ch.qos.logback:logback-classic:1.2.3'
 	
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'

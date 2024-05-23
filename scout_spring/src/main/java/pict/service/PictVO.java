@@ -193,50 +193,179 @@ public class PictVO extends PictDefaultVO {
 	private String search_type2;
 	private String search_text2;
 	private String search_parenttroopno;
-	private String pre_leader;
-	private String pre_scout;
-	private String this_leader;
-	private String this_scout;
-	private String pay_leader;
-	private String pay_scout;
 	private String search_year;
+	private String pre_year;
+	private int preleader;
+	private int prescout;
+	private int thisleader;
+	private int thisscout;
+	private int payleader;
+	private int payscout;
+	private int leaderconfirm; 
+	private int leadernoconfirm; 
+	private int scoutconfirm;
+	private int scoutnoconfirm;
+	private int leadermagazinecnt;
+	private int leadermagazinefee;
+	private int scoutmagazinecnt;
+	private int scoutmagazinefee;
+	private String LEADERINFOTEXT;
+	private String LEADERCNT;
+	private String TROOPCODE;
+	private String TRAINING;
+	private String GIFT;
+	private String SCOUTCODE;
+	private String LEVELAPPLY;
+	private String LEVELINFO;
+	private String SCOUTCNT;
 	
 	
-	public String getPre_leader() {
-		return pre_leader;
+	
+	public String getSCOUTCNT() {
+		return SCOUTCNT;
 	}
-	public void setPre_leader(String pre_leader) {
-		this.pre_leader = pre_leader;
+	public void setSCOUTCNT(String sCOUTCNT) {
+		SCOUTCNT = sCOUTCNT;
 	}
-	public String getPre_scout() {
-		return pre_scout;
+	public String getSCOUTCODE() {
+		return SCOUTCODE;
 	}
-	public void setPre_scout(String pre_scout) {
-		this.pre_scout = pre_scout;
+	public void setSCOUTCODE(String sCOUTCODE) {
+		SCOUTCODE = sCOUTCODE;
 	}
-	public String getThis_leader() {
-		return this_leader;
+	public String getLEVELAPPLY() {
+		return LEVELAPPLY;
 	}
-	public void setThis_leader(String this_leader) {
-		this.this_leader = this_leader;
+	public void setLEVELAPPLY(String lEVELAPPLY) {
+		LEVELAPPLY = lEVELAPPLY;
 	}
-	public String getThis_scout() {
-		return this_scout;
+	public String getLEVELINFO() {
+		return LEVELINFO;
 	}
-	public void setThis_scout(String this_scout) {
-		this.this_scout = this_scout;
+	public void setLEVELINFO(String lEVELINFO) {
+		LEVELINFO = lEVELINFO;
 	}
-	public String getPay_leader() {
-		return pay_leader;
+	public String getTRAINING() {
+		return TRAINING;
 	}
-	public void setPay_leader(String pay_leader) {
-		this.pay_leader = pay_leader;
+	public void setTRAINING(String tRAINING) {
+		TRAINING = tRAINING;
 	}
-	public String getPay_scout() {
-		return pay_scout;
+	public String getGIFT() {
+		return GIFT;
 	}
-	public void setPay_scout(String pay_scout) {
-		this.pay_scout = pay_scout;
+	public void setGIFT(String gIFT) {
+		GIFT = gIFT;
+	}
+	public String getTROOPCODE() {
+		return TROOPCODE;
+	}
+	public void setTROOPCODE(String tROOPCODE) {
+		TROOPCODE = tROOPCODE;
+	}
+	public String getLEADERCNT() {
+		return LEADERCNT;
+	}
+	public void setLEADERCNT(String lEADERCNT) {
+		LEADERCNT = lEADERCNT;
+	}
+	public String getLEADERINFOTEXT() {
+		return LEADERINFOTEXT;
+	}
+	public void setLEADERINFOTEXT(String lEADERINFOTEXT) {
+		LEADERINFOTEXT = lEADERINFOTEXT;
+	}
+	public int getLeaderconfirm() {
+		return leaderconfirm;
+	}
+	public void setLeaderconfirm(int leaderconfirm) {
+		this.leaderconfirm = leaderconfirm;
+	}
+	public int getLeadernoconfirm() {
+		return leadernoconfirm;
+	}
+	public void setLeadernoconfirm(int leadernoconfirm) {
+		this.leadernoconfirm = leadernoconfirm;
+	}
+	public int getScoutconfirm() {
+		return scoutconfirm;
+	}
+	public void setScoutconfirm(int scoutconfirm) {
+		this.scoutconfirm = scoutconfirm;
+	}
+
+
+	public int getScoutnoconfirm() {
+		return scoutnoconfirm;
+	}
+	public void setScoutnoconfirm(int scoutnoconfirm) {
+		this.scoutnoconfirm = scoutnoconfirm;
+	}
+	public int getLeadermagazinecnt() {
+		return leadermagazinecnt;
+	}
+	public void setLeadermagazinecnt(int leadermagazinecnt) {
+		this.leadermagazinecnt = leadermagazinecnt;
+	}
+	public int getLeadermagazinefee() {
+		return leadermagazinefee;
+	}
+	public void setLeadermagazinefee(int leadermagazinefee) {
+		this.leadermagazinefee = leadermagazinefee;
+	}
+	public int getScoutmagazinecnt() {
+		return scoutmagazinecnt;
+	}
+	public void setScoutmagazinecnt(int scoutmagazinecnt) {
+		this.scoutmagazinecnt = scoutmagazinecnt;
+	}
+	public int getScoutmagazinefee() {
+		return scoutmagazinefee;
+	}
+	public void setScoutmagazinefee(int scoutmagazinefee) {
+		this.scoutmagazinefee = scoutmagazinefee;
+	}
+	public int getPreleader() {
+		return preleader;
+	}
+	public void setPreleader(int preleader) {
+		this.preleader = preleader;
+	}
+	public int getPrescout() {
+		return prescout;
+	}
+	public void setPrescout(int prescout) {
+		this.prescout = prescout;
+	}
+	public int getThisleader() {
+		return thisleader;
+	}
+	public void setThisleader(int thisleader) {
+		this.thisleader = thisleader;
+	}
+	public int getThisscout() {
+		return thisscout;
+	}
+	public void setThisscout(int thisscout) {
+		this.thisscout = thisscout;
+	}
+	public int getPayleader() {
+		return payleader;
+	}
+	public void setPayleader(int payleader) {
+		this.payleader = payleader;
+	}
+	public int getPayscout() {
+		return payscout;
+	}
+	public void setPayscout(int payscout) {
+		this.payscout = payscout;
+	}
+	public String getPre_year() {
+		return pre_year;
+	}
+	public void setPre_year(String pre_year) {
+		this.pre_year = pre_year;
 	}
 	public String getSearch_year() {
 		return search_year;

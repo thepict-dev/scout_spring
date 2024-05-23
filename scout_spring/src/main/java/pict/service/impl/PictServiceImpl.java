@@ -377,6 +377,24 @@ public class PictServiceImpl implements PictService {
 		return pictMapper.units_list(pictVO);
 	}
 
+	@Override
+	public PictVO fn_get_units_info(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.fn_get_units_info(pictVO);
+	}
+
+	@Override
+	public List<PictVO> fn_get_units_leader(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.fn_get_units_leader(pictVO);
+	}
+
+	@Override
+	public List<PictVO> fn_get_units_scout(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.fn_get_units_scout(pictVO);
+	}
+
 
 	
 	

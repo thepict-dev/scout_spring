@@ -137,5 +137,11 @@ public interface PictService {
 
 	public List<PictVO> units_list(PictVO pictVO) throws Exception;
 
+	public PictVO fn_get_units_info(PictVO pictVO) throws Exception;
+
+	public List<PictVO> fn_get_units_leader(PictVO pictVO) throws Exception;
+
+	public List<PictVO> fn_get_units_scout(PictVO pictVO) throws Exception;
+
 
 }

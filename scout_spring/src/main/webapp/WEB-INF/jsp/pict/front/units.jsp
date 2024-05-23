@@ -20,7 +20,7 @@
                     <p class="inputCaption">연도</p>
                     <div class="inputsAlign">
                         <input type="text" name="search_year" id="search_year" value="${pictVO.search_year}" placeholder="내용을 입력하세요…" class="smThinInput">
-                        <a href="#lnk" class="smButton bigWhiteBtn">초기화</a>
+                        <a href="#lnk" class="smButton bigWhiteBtn" onclick="fn_year_reset()">초기화</a>
                     </div>
                 </div>
                 <div class="searchContainer">
@@ -114,7 +114,6 @@
                                 <col width="5.2%" />
                                 <col width="5.2%" />
                                 <col width="5.2%" />
-                                <col width="5.2%" />
                             </colgroup>
                             <thead>
                                 <tr>
@@ -125,25 +124,24 @@
 	                                <th rowspan="2">단위대구분</th>
 	                                <th rowspan="2">상세</th>
 	                                <th rowspan="2">최종대활동년도</th>
-	                                <th colspan="2" style="border-bottom: 0">2023년도 승인자수</th>
-	                                <th colspan="2" style="border-bottom: 0">2024년도 승인자수</th>
+	                                <th colspan="2" style="border-bottom: 0">${pictVO.search_year -1 }년도 승인자수</th>
+	                                <th colspan="2" style="border-bottom: 0">${pictVO.search_year}년도 승인자수</th>
 	                                <th colspan="2" style="border-bottom: 0">당해년도 납부자수</th>
 	                                <th colspan="2" style="border-bottom: 0">지도자등록유형(승인)</th>
 	                                <th colspan="3" style="border-bottom: 0">대원등록유형(승인)</th>
-	                                <th rowspan="2">지구연합회</th>
                                 </tr>
                                 <tr>
-                                	<th style="position: unset; z-index: 2;">남자대원수</th>
-                                	<th style="position: unset; z-index: 2;">여자대원수</th>
-                                	<th style="position: unset; z-index: 2;">남자대원수</th>
-                                	<th style="position: unset; z-index: 2;">여자대원수</th>
-                                	<th style="position: unset; z-index: 2;">남자대원수</th>
-                                	<th style="position: unset; z-index: 2;">여자대원수</th>
-                                	<th style="position: unset; z-index: 2;">남자대원수</th>
-                                	<th style="position: unset; z-index: 2;">여자대원수</th>
-                                	<th style="position: unset; z-index: 2;">남자대원수</th>
-                                	<th style="position: unset; z-index: 2;">여자대원수</th>
-                                	<th style="position: unset; z-index: 2;">여자대원수</th>
+                                	<th style="position: unset; z-index: 2;">지도자</th>
+                                	<th style="position: unset; z-index: 2;">대원</th>
+                                	<th style="position: unset; z-index: 2;">지도자</th>
+                                	<th style="position: unset; z-index: 2;">대원</th>
+                                	<th style="position: unset; z-index: 2;">지도자</th>
+                                	<th style="position: unset; z-index: 2;">대원</th>
+                                	<th style="position: unset; z-index: 2;">계속</th>
+                                	<th style="position: unset; z-index: 2;">신규</th>
+                                	<th style="position: unset; z-index: 2;">신규</th>
+                                	<th style="position: unset; z-index: 2;">2년연속</th>
+                                	<th style="position: unset; z-index: 2;">3년연속</th>
                                 </tr>
                             </thead>
                             <tbody id="unit_list">
@@ -155,13 +153,29 @@
 										<td>${units_list.SCOUTCLSNAME}</td>
 										<td>${units_list.TROOPCLSNAME}</td>
 										<td>${units_list.DETAIL}</td>
+										<td>${units_list.LASTREGYEAR}</td>
+										
+										<td>${units_list.preleader}</td>
+										<td>${units_list.prescout}</td>
+										<td>${units_list.thisleader}</td>
+										<td>${units_list.thisscout}</td>
+										<td>${units_list.payleader}</td>
+										<td>${units_list.payscout}</td>
+										
+										<td>0</td>
+										<td>0</td>
+										<td>0</td>
+										<td>0</td>
+										<td>0</td>
+										
+										
 									</tr>
 								</c:forEach>
 							</tbody>
                         </table>
                     </div>
                     <div class="tableButtons">
-                        <p>0<span>rows</span></p>
+                        <p>${units_cnt}<span>rows</span></p>
                         <div class="buttons">
                             <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
                         </div>
@@ -177,19 +191,19 @@
                             <div class="inputsContainer">
                                 <div class="inputBox">
                                     <p class="inputCaption">대번호</p>
-                                    <span class="bindingText bindingSm"></span>
+                                    <span class="bindingText bindingSm" id="span_disptroopno"></span>
                                 </div>
                                 <div class="inputBox">
                                     <p class="inputCaption">단위대명</p>
-                                    <span class="bindingText"></span>
+                                    <span class="bindingText" id="span_troopname"></span>
                                 </div>
                                 <div class="inputBox">
                                     <p class="inputCaption">단위대 구분</p>
-                                    <span class="bindingText"></span>
+                                    <span class="bindingText" id="span_troop"></span>
                                 </div>
                                 <div class="inputBox">
                                     <p class="inputCaption">스카우트 구분</p>
-                                    <span class="bindingText"></span>
+                                    <span class="bindingText" id="span_scoutclsname"></span>
                                 </div>
                             </div>
                             <div class="inputsContainer">
@@ -197,38 +211,38 @@
                                     <p class="inputCaption">주소</p>
                                     <div class="inputsAlign">
                                         <div class="zip">
-                                    		<span class="bindingText" style="width: 73px;"></span>
+                                    		<span class="bindingText" style="width: 73px;" id="span_postcode"></span>
                                         </div>
-                                   		<span class="bindingText" style="width: 443px;"></span>
+                                   		<span class="bindingText" style="width: 443px;" id="span_addr"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="inputsContainer">
                                 <div class="inputBox">
                                     <p class="inputCaption">대표관리지도자</p>
-                                    <span class="bindingText"></span>
+                                    <span class="bindingText" id="span_leaderinfo" style="width : 500px"></span>
                                 </div>
                             </div>
                             <div class="inputsContainer">
                                 <div class="inputBox">
                                     <p class="inputCaption">지도자수</p>
                                     <div class="inputsAlign">
-                                        <span class="bindingText"></span>
-                                        <span class="bindingText"></span>
+                                        <span class="bindingText" id="span_leadercnt"></span>
+                                        <span class="bindingText" id="span_leadercnt2"></span>
                                     </div>
                                 </div>
                                 <div class="inputBox">
                                     <p class="inputCaption">대원수</p>
                                     <div class="inputsAlign">
-                                        <span class="bindingText"></span>
-                                        <span class="bindingText"></span>
+                                        <span class="bindingText" id="span_scoutcnt"></span>
+                                        <span class="bindingText" id="span_scoutcnt2"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="inputsContainer">
                                 <div class="inputBox">
                                     <p class="inputCaption">월간지</p>
-                                    <span class="bindingText"></span>
+                                    <span class="bindingText" id="span_scoutmaga"></span>
                                 </div>
                             </div>
                         </div>
@@ -271,7 +285,6 @@
                                         </tr>
                                     </thead>
                                     <tbody id="unit_leader_list">
-                                    	
                                     </tbody>
                                 </table>
                             </div>
@@ -331,16 +344,24 @@
 		$(document).ready(function() {
 		    fn_troopclscode_search()
 		});
-		
+		function fn_year_reset(){
+			$('#search_year').val("2024")
+		}
 		function fn_search(){
+			
 			$("#search_fm_units").attr("action", "/front/units");
 			$("#search_fm_units").submit();
 		}
 		
 		function fn_get_units_info(troopno){
+			$('#initial-loading').css('display', 'flex')
+			
 			var param = {
-					troopno : troopno,
+				troopno : troopno,
+				year : $('#search_year').val()
 			}
+			$('#unit_leader_list').children().remove();
+			$('#unit_scout_list').children().remove();
 			$.ajax({
 				url : "/fn_get_units_info"
 				, type : "POST"
@@ -349,15 +370,107 @@
 				, dataType : "json"
 				, async : true
 				, success : function(data, status, xhr) {
-					var html ='<option value="">-----</option>';
-					if(data){
+					console.log(data)
+					if(data.rst){
+						$('#span_disptroopno').text(data.rst.disptroopno)
+						$('#span_troopname').text(data.rst.troopname)
+						var troopclsname = ""
+						if(data.rst.troopclscode1 == '01') troopclsname = '학교대'
+						if(data.rst.troopclscode1 == '02') troopclsname = '지역대'
+						if(data.rst.troopclscode1 == '03') troopclsname = '동우대'
+						if(data.rst.troopclscode1 == '04') troopclsname = '특수대'
+						$('#span_troop').text(troopclsname + " > " + data.rst.troopclsname)
+						$('#span_scoutclsname').text(data.rst.scoutclsname)
+						$('#span_postcode').text(data.rst.postcode)
+						$('#span_addr').text(data.rst.addr)
 						
+						$('#span_leaderinfo').text(data.rst.leaderinfotext)	//얘 왜안댈까
+						
+						
+						$('#span_leadercnt').text(data.rst.leaderconfirm + ", " + data.rst.leadernoconfirm)
+						$('#span_scoutcnt').text(data.rst.scoutconfirm + ", " + data.rst.scoutnoconfirm)
+						
+						$('#span_scoutmaga').text(data.rst.leadermagazinecnt + data.rst.scoutmagazinecnt + ", " + data.rst.leadermagazinefee + data.rst.scoutmagazinefee)
+						
+					}
+					if(data.leader_list.length > 0){
+						console.log("리더 있어")
+						var arr = data.leader_list;
+						var leader_html = ""
+						for(var i=0; i<arr.length; i++){
+							var excludename = ""
+							if(arr[i].feeexcludecode == '01') excludename = "연맹지원"
+							if(arr[i].feeexcludecode == '02') excludename = "신체장애"
+							if(arr[i].feeexcludecode == '03') excludename = "계속등록"
+							if(arr[i].feeexcludecode == '04') excludename = "조직변경"
+							if(arr[i].feeexcludecode == '05') excludename = "평생회원"
+							if(arr[i].feeexcludecode == '06') excludename = "육성단체대표"
+							if(arr[i].feeexcludecode == '07') excludename = "중복가입"
+							if(arr[i].feeexcludecode == '08') excludename = "다문화"
+							if(arr[i].feeexcludecode == '99') excludename = "기타"
+							
+							
+							leader_html += '<tr>'+
+								'<td>' + arr[i].memberno + '</td>' +
+								'<td>' + arr[i].kname + '</td>'+
+								'<td>' + arr[i].leaderpositionname + '</td>'+
+								'<td>' + arr[i].troopcode + '</td>'+
+								'<td>' + excludename + '</td>'+
+								'<td>' + arr[i].scoutmagacnt + '</td>'+
+								'<td>' + arr[i].mobile + '</td>'+
+								'<td>' + arr[i].email + '</td>'+
+								'<td>' + arr[i].leadercnt + '</td>'+
+								'<td>' + arr[i].training + '</td>'+
+								'<td>' + arr[i].gift + '</td>'+
+								'<td>' + arr[i].adminy + '</td>'+
+								'</tr>';
+						}
+						$('#unit_leader_list').append(leader_html)
 						$('.contentsContainer select').niceSelect('update')
 					}
+					if(data.scout_list.length > 0){
+						console.log("대원 있어")
+						var arr = data.scout_list
+						var scout_html = ""
+						
+						for(var i=0; i<arr.length; i++){
+							var excludename = ""
+							if(arr[i].feeexcludecode == '01') excludename = "연맹지원"
+							if(arr[i].feeexcludecode == '02') excludename = "신체장애"
+							if(arr[i].feeexcludecode == '03') excludename = "계속등록"
+							if(arr[i].feeexcludecode == '04') excludename = "조직변경"
+							if(arr[i].feeexcludecode == '05') excludename = "평생회원"
+							if(arr[i].feeexcludecode == '06') excludename = "육성단체대표"
+							if(arr[i].feeexcludecode == '07') excludename = "중복가입"
+							if(arr[i].feeexcludecode == '08') excludename = "다문화"
+							if(arr[i].feeexcludecode == '99') excludename = "기타"
+							
+							scout_html += '<tr>'+
+							'<td>' + arr[i].memberno + '</td>' +
+							'<td>' + arr[i].kname + '</td>'+
+							'<td>' + arr[i].scoutclsname + '</td>'+
+							'<td>' + arr[i].scoutcode + '</td>'+
+							'<td>' + excludename + '</td>'+
+							'<td>' + arr[i].scoutmagacnt + '</td>'+
+							'<td>' + arr[i].scoutschoolyear + '</td>'+
+							'<td>' + arr[i].mobile + '</td>'+
+							'<td>' + arr[i].email + '</td>'+
+							'<td>' + arr[i].scoutcnt + '</td>'+
+							'<td>' + arr[i].levelapply + '</td>'+
+							'<td>' + arr[i].levelinfo + '</td>'+
+							'</tr>';
+						}
+						
+						$('#unit_scout_list').append(scout_html)
+						$('.contentsContainer select').niceSelect('update')
+					}
+					$('#initial-loading').css('display', 'none')
 				}
 				, error : function(xhr, status, error) {
 					console.log(xhr)
 					console.log("에러")
+					$('#initial-loading').css('display', 'none')
+					$('#error').css('display', 'flex')
 				}
 			});
 		}
