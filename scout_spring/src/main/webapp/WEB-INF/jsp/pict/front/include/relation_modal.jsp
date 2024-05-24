@@ -114,11 +114,6 @@
                        <p>0<span>rows</span></p>
                    </div>
                </div>	
-               <div class="tableButtons" style="justify-content: flex-end; padding: 16px 24px 60px 0;">
-                   <div class="buttons">
-                       <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">창닫기</a>
-                   </div>
-               </div>
            </form>
        </div>
    </div>
