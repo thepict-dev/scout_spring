@@ -497,9 +497,10 @@
 			scoutmagacnt : $('#SCOUTMAGACNT_SCOUT').val(),
 			scoutmagafee : $('#SCOUTMAGAFEE_SCOUT').val(),
 			scout_idx : $('#scout_idx').val(),
-			savetype : "update"
+			savetype : "update",
+			kname : $('#KNAME').val()
 		}
-		debugger
+		
 		var text ="선택한 연공을 수정하시겠습니까?";
 		if($('#scout_idx').val() == '' || $('#scout_idx').val() == undefined || $('#scout_idx').val() == null){
 			text ="신규 연공을 등록하시겠습니까?";
@@ -507,6 +508,7 @@
 			param.scout_idx = "0"
 			
 			if(confirm (text)){
+				$('#scout_list').children().remove();
 				$.ajax({
 					url : "/scout_save"
 					, type : "POST"
@@ -516,6 +518,44 @@
 					, success : function(data, status, xhr) {
 						console.log(data)
 						alert("정상적으로 저장되었습니다.")
+						var html = ""
+						var arr = data.scout_list
+						
+						$('#scout_date').text(data.info.enterdate)
+						$('#scout_whole_incnt').text(arr.length)
+						$('#scout_incnt').text(data.info.scoutincnt)
+						$('#year_cnt_scout').text(arr.length + " rows")
+						for(var i=0; i<arr.length; i++){
+							html += '<tr id="scout_list_row_'+arr[i].idx+'" onclick="fn_scout_info('+arr[i].idx+')">'+
+								'<td>' + Number(i+1) + '</td>' +
+								'<td>' + arr[i].year + '</td>'+
+								'<td>' + arr[i].associationname + '</td>'+
+								'<td>' + arr[i].unity + '</td>'+
+								'<td>' + arr[i].troopname + '</td>'+
+								'<td>' + arr[i].orgname + '</td>'+
+								//'<td>' + arr[i].orgclsname + '</td>'+
+								'<td></td>'+
+								'<td>' + arr[i].scoutschoolyear + '</td>'+
+								'<td>' + arr[i].scoutschoolban + '</td>'+
+								'<td>' + arr[i].scoutmagacnt + '</td>'+
+								'<td>Y</td>'+
+								'<td>' + arr[i].confirmy + '</td>'+
+								'<td>' + arr[i].payy + '</td>'+
+								'<td>' + arr[i].enterdate.substring(0, 11) + '</td>'+
+								'<td></td>'+
+								'<td></td>'+
+								'<td>' + arr[i].scoutpositionname + '</td>'+
+								'<td>' + arr[i].scoutclsname + '</td>'+
+								'<td>' + arr[i].scoutban + '</td>'+
+								'<td>' + arr[i].entryfee + '</td>'+
+								'<td>' + Number(arr[i].scoutmagacnt) * 10000 + '</td>'+
+								'<td></td>'+
+								'<td>' + arr[i].year + '-01-01 ~ ' + arr[i].year + '-12-31' + '</td>'+
+								'</tr>';
+							
+						}
+						$('#scout_list').append(html)
+						
 						$('#joinMemPopup').removeClass('active');
 					}
 					, error : function(xhr, status, error) {
@@ -527,6 +567,7 @@
 		}
 		else{
 			if(confirm (text)){
+				$('#scout_list').children().remove();
 				$.ajax({
 					url : "/scout_update"
 					, type : "POST"
@@ -536,7 +577,51 @@
 					, success : function(data, status, xhr) {
 						console.log(data)
 						alert("정상적으로 저장되었습니다.")
+						var html = ""
+						var arr = data.scout_list
+						
+						$('#scout_date').text(data.info.enterdate)
+						$('#scout_whole_incnt').text(arr.length)
+						$('#scout_incnt').text(data.info.scoutincnt)
+						$('#year_cnt_scout').text(arr.length + " rows")
+						for(var i=0; i<arr.length; i++){
+							html += '<tr id="scout_list_row_'+arr[i].idx+'" onclick="fn_scout_info('+arr[i].idx+')">'+
+								'<td>' + Number(i+1) + '</td>' +
+								'<td>' + arr[i].year + '</td>'+
+								'<td>' + arr[i].associationname + '</td>'+
+								'<td>' + arr[i].unity + '</td>'+
+								'<td>' + arr[i].troopname + '</td>'+
+								'<td>' + arr[i].orgname + '</td>'+
+								//'<td>' + arr[i].orgclsname + '</td>'+
+								'<td></td>'+
+								'<td>' + arr[i].scoutschoolyear + '</td>'+
+								'<td>' + arr[i].scoutschoolban + '</td>'+
+								'<td>' + arr[i].scoutmagacnt + '</td>'+
+								'<td>Y</td>'+
+								'<td>' + arr[i].confirmy + '</td>'+
+								'<td>' + arr[i].payy + '</td>'+
+								'<td>' + arr[i].enterdate.substring(0, 11) + '</td>'+
+								'<td></td>'+
+								'<td></td>'+
+								'<td>' + arr[i].scoutpositionname + '</td>'+
+								'<td>' + arr[i].scoutclsname + '</td>'+
+								'<td>' + arr[i].scoutban + '</td>'+
+								'<td>' + arr[i].entryfee + '</td>'+
+								'<td>' + Number(arr[i].scoutmagacnt) * 10000 + '</td>'+
+								'<td></td>'+
+								'<td>' + arr[i].year + '-01-01 ~ ' + arr[i].year + '-12-31' + '</td>'+
+								'</tr>';
+							
+						}
+						$('#scout_list').append(html)
 						$('#joinMemPopup').removeClass('active');
+						$("select[name=YEAR_SCOUT]").attr("disabled", false);
+					    $("select[name=CONFIRMY_SCOUT]").attr("disabled", false);
+					    $("select[name=associationcode_scout]").attr("disabled", false);
+					    $("select[name=unitycode_scout]").attr("disabled", false);
+					    $("select[name=troop_scout]").attr("disabled", false);
+					    
+					    $('#joinMemPopup select').niceSelect('update')
 					}
 					, error : function(xhr, status, error) {
 						console.log(xhr)

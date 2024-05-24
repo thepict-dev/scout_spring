@@ -520,7 +520,8 @@
 			leadermagacnt : $('#LEADERMAGACNT').val(),
 			ledermagafee : $('#LEADERMAGAFEE').val(),
 			leader_idx : $('#leader_idx').val(),
-			savetype : "update"
+			savetype : "update",
+			kname : $('#KNAME').val()
 		}
 		
 		var text ="선택한 연공을 수정하시겠습니까?";
@@ -530,6 +531,7 @@
 			param.leader_idx = "0"
 			
 			if(confirm (text)){
+				$('#leader_list').children().remove();
 				$.ajax({
 					url : "/leader_save"
 					, type : "POST"
@@ -539,6 +541,45 @@
 					, success : function(data, status, xhr) {
 						console.log(data)
 						alert("정상적으로 저장되었습니다.")
+						
+						var arr = data.list;
+						var html = ""
+
+						$('#leader_date').text(data.info.enterdate)
+						$('#leader_whole_incnt').text(arr.length)
+						$('#leader_incnt').text(data.info.leaderincnt)
+						
+						
+						$('#year_cnt_leader').text(arr.length + " rows")
+						for(var i=0; i<arr.length; i++){
+							html += '<tr id="leader_list_row_'+arr[i].idx+'" onclick="fn_leader_info('+arr[i].idx+')">'+
+								'<td>' + Number(i+1) + '</td>' +
+								'<td>' + arr[i].adminy + '</td>'+
+								'<td>' + arr[i].year + '</td>'+
+								'<td>' + arr[i].associationname + '</td>'+
+								'<td>' + arr[i].unity + '</td>'+
+								'<td>' + arr[i].troopname + '</td>'+
+								'<td>' + arr[i].leaderposition + '</td>'+
+								'<td>' + arr[i].leaderpositionname + '</td>'+
+								'<td>' + arr[i].orgname  + '</td>'+
+								'<td>' + arr[i].scoutmagacnt  + '</td>'+
+								'<td>Y</td>'+
+								'<td>' + arr[i].confirmy + '</td>'+
+								'<td>' + arr[i].payy + '</td>'+
+								'<td>' + arr[i].enterdate.substring(0,11) + '</td>'+
+								'<td></td>'+
+								'<td></td>'+
+								'<td>' + arr[i].leaderorgpositionname + '</td>'+
+								'<td>' + arr[i].entryfee + '</td>'+
+								'<td>' + Number(arr[i].scoutmagacnt) * 10000  + '</td>'+
+								'<td>X</td>'+
+								'<td>X</td>'+
+								'<td>' + arr[i].year + '-01-01 ~ ' + arr[i].year + '-12-31' + '</td>'+
+								'</tr>';
+						}
+						$('#leader_list').append(html)
+						
+						
 						$('#joinPopup').removeClass('active');
 						
 					}
@@ -551,6 +592,7 @@
 		}
 		else{
 			if(confirm (text)){
+				$('#leader_list').children().remove();
 				$.ajax({
 					url : "/leader_update"
 					, type : "POST"
@@ -560,7 +602,53 @@
 					, success : function(data, status, xhr) {
 						console.log(data)
 						alert("정상적으로 저장되었습니다.")
+						
+						var arr = data.list;
+						var html = ""
+
+						$('#leader_date').text(data.info.enterdate)
+						$('#leader_whole_incnt').text(arr.length)
+						$('#leader_incnt').text(data.info.leaderincnt)
+						
+						
+						$('#year_cnt_leader').text(arr.length + " rows")
+						for(var i=0; i<arr.length; i++){
+							html += '<tr id="leader_list_row_'+arr[i].idx+'" onclick="fn_leader_info('+arr[i].idx+')">'+
+								'<td>' + Number(i+1) + '</td>' +
+								'<td>' + arr[i].adminy + '</td>'+
+								'<td>' + arr[i].year + '</td>'+
+								'<td>' + arr[i].associationname + '</td>'+
+								'<td>' + arr[i].unity + '</td>'+
+								'<td>' + arr[i].troopname + '</td>'+
+								'<td>' + arr[i].leaderposition + '</td>'+
+								'<td>' + arr[i].leaderpositionname + '</td>'+
+								'<td>' + arr[i].orgname  + '</td>'+
+								'<td>' + arr[i].scoutmagacnt  + '</td>'+
+								'<td>Y</td>'+
+								'<td>' + arr[i].confirmy + '</td>'+
+								'<td>' + arr[i].payy + '</td>'+
+								'<td>' + arr[i].enterdate.substring(0,11) + '</td>'+
+								'<td></td>'+
+								'<td></td>'+
+								'<td>' + arr[i].leaderorgpositionname + '</td>'+
+								'<td>' + arr[i].entryfee + '</td>'+
+								'<td>' + Number(arr[i].scoutmagacnt) * 10000  + '</td>'+
+								'<td>X</td>'+
+								'<td>X</td>'+
+								'<td>' + arr[i].year + '-01-01 ~ ' + arr[i].year + '-12-31' + '</td>'+
+								'</tr>';
+						}
+						$('#leader_list').append(html)
 						$('#joinPopup').removeClass('active');
+						
+						
+						$("select[name=YEAR]").attr("disabled", false);
+					    $("select[name=CONFIRMY]").attr("disabled", false);
+					    $("select[name=associationcode_leader]").attr("disabled", false);
+					    $("select[name=unitycode_leader]").attr("disabled", false);
+					    $("select[name=troop_leader]").attr("disabled", false);
+					    
+						$('#joinPopup select').niceSelect('update')
 						
 					}
 					, error : function(xhr, status, error) {

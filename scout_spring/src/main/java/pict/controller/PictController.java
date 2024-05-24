@@ -471,7 +471,8 @@ public class PictController {
 	//관계
 	@RequestMapping("/relation_insert")
 	@ResponseBody
-	public String relation_insert(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+	public HashMap<String, Object> relation_insert(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		try {
 			String frommemberno = param.get("frommemberno").toString();
 			String tomemberno = param.get("tomemberno").toString();
@@ -483,10 +484,14 @@ public class PictController {
 			
 			pictService.relation_insert(pictVO);
 			
-			return "Y";
+			pictVO.setMEMBERNO(frommemberno);
+			List<PictVO> relation_list = pictService.get_relation_info(pictVO);
+			map.put("relation_list", relation_list);
+			
+			return map;
 		}
 		catch(Exception e) {
-			return "N";
+			return map;
 		}
 	}
 	@RequestMapping("/relation_delete")
@@ -514,7 +519,8 @@ public class PictController {
 	//지도자연공기입
 	@RequestMapping("/leader_save")
 	@ResponseBody
-	public String leader_save(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+	public HashMap<String, Object> leader_save(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		try {
 			String memberno = param.get("memberno").toString();
 			String startday = param.get("startday").toString();
@@ -563,43 +569,36 @@ public class PictController {
 			pictVO.setLEADERMAGAFEE(ledermagafee);
 
 			
-			System.out.println(memberno);
-			System.out.println(startday);
-			System.out.println(endday);
-			System.out.println(confirmy);
-			System.out.println(associationcode);
-			System.out.println(parenttroopno);
-			System.out.println(troopno);
-			System.out.println(leaderorgno);
-			System.out.println(leaderorgpositioncode);
-			System.out.println(leaderpositioncode1);
-			System.out.println(leaderpositioncode2);
-			System.out.println(adminy);
-			System.out.println(feeexcludcode);
-			System.out.println(bankday);
-			System.out.println(payy);
-			System.out.println(entryfee);
-			System.out.println(insurancefee);
-			System.out.println(scoutmagacnt);
-			System.out.println(scoutmagafee);
-			System.out.println(leadermagacnt);
-			System.out.println(ledermagafee);
-			
-			
 			pictService.leader_save(pictVO);
 			
-			return "Y";
+			String kname = param.get("kname").toString();
+			
+			pictVO.setKNAME(kname);
+			pictVO.setMEMBERNO(memberno);
+			 
+			pictVO = pictService.get_per_info(pictVO);
+			map.put("info", pictVO);
+			List<PictVO> leader_list = pictService.leader_list(pictVO);
+			if(leader_list.size() > 0) {
+				map.put("list", leader_list);
+				return map;
+			}
+			else {
+				return map;
+			}
+			
 		}
 		catch(Exception e) {
 			System.out.println(e);
-			return "N";
+			return map;
 		}
 	}
 	
 	//지도자연공기입
 	@RequestMapping("/leader_update")
 	@ResponseBody
-	public String leader_update(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+	public HashMap<String, Object> leader_update(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		try {
 			String leader_idx = param.get("leader_idx").toString();
 			String memberno = param.get("memberno").toString();
@@ -637,38 +636,30 @@ public class PictController {
 			pictVO.setLEADERMAGACNT(leadermagacnt);
 			pictVO.setLEADERMAGAFEE(ledermagafee);
 			
-			/*
-			System.out.println(memberno);
-			System.out.println(startday);
-			System.out.println(endday);
-			System.out.println(confirmy);
-			System.out.println(associationcode);
-			System.out.println(parenttroopno);
-			System.out.println(troopno);
-			System.out.println(leaderorgno);
-			System.out.println(leaderorgpositioncode);
-			System.out.println(leaderpositioncode1);
-			System.out.println(leaderpositioncode2);
-			System.out.println(adminy);
-			System.out.println(feeexcludcode);
-			System.out.println(bankday);
-			System.out.println(payy);
-			System.out.println(entryfee);
-			System.out.println(insurancefee);
-			System.out.println(scoutmagacnt);
-			System.out.println(scoutmagafee);
-			System.out.println(leadermagacnt);
-			System.out.println(ledermagafee);
-			*/
 			
 			System.out.println("업데이트를 타야해");
 			pictService.leader_update(pictVO);
 			
-			return "Y";
+			String kname = param.get("kname").toString();
+			
+			pictVO.setKNAME(kname);
+			pictVO.setMEMBERNO(memberno);
+			 
+			pictVO = pictService.get_per_info(pictVO);
+			map.put("info", pictVO);
+			List<PictVO> leader_list = pictService.leader_list(pictVO);
+			if(leader_list.size() > 0) {
+				map.put("list", leader_list);
+				return map;
+			}
+			else {
+				return map;
+			}
+			
 		}
 		catch(Exception e) {
 			System.out.println(e);
-			return "N";
+			return map;
 		}
 	}
 	
@@ -735,7 +726,8 @@ public class PictController {
 	//대원연공기입
 	@RequestMapping("/scout_save")
 	@ResponseBody
-	public String scout_save(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+	public HashMap<String, Object> scout_save(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		try {
 			String memberno = param.get("memberno").toString();
 			String startday = param.get("startday").toString();
@@ -787,19 +779,34 @@ public class PictController {
 			pictVO.setSCOUTMAGAFEE(scoutmagafee);
 
 			pictService.scout_save(pictVO);
+			String kname = param.get("kname").toString();
 			
-			return "Y";
+			pictVO.setKNAME(kname);
+			pictVO.setMEMBERNO(memberno);
+			 
+			pictVO = pictService.get_per_info(pictVO);
+			map.put("info", pictVO);
+			List<PictVO> scout_list = pictService.scout_list(pictVO);
+			if(scout_list.size() > 0) {
+				map.put("scout_list", scout_list);
+				return map;
+			}
+			else {
+				return map;
+			}
+			
 		}
 		catch(Exception e) {
 			System.out.println(e);
-			return "N";
+			return map;
 		}
 	}
 	
 	//대원 연공기입
 	@RequestMapping("/scout_update")
 	@ResponseBody
-	public String scout_update(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+	public HashMap<String, Object> scout_update(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		try {
 			String scout_idx = param.get("scout_idx").toString();
 			String memberno = param.get("memberno").toString();
@@ -856,11 +863,26 @@ public class PictController {
 			System.out.println("업데이트를 타야해");
 			pictService.scout_update(pictVO);
 			
-			return "Y";
+			String kname = param.get("kname").toString();
+			
+			pictVO.setKNAME(kname);
+			pictVO.setMEMBERNO(memberno);
+			 
+			pictVO = pictService.get_per_info(pictVO);
+			map.put("info", pictVO);
+			List<PictVO> scout_list = pictService.scout_list(pictVO);
+			if(scout_list.size() > 0) {
+				map.put("scout_list", scout_list);
+				return map;
+			}
+			else {
+				return map;
+			}
+			
 		}
 		catch(Exception e) {
 			System.out.println(e);
-			return "N";
+			return map;
 		}
 	}
 	@RequestMapping("/scout_del")

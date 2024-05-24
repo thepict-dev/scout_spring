@@ -208,6 +208,14 @@ $("#joinPopup button").click(function(){
 	$('#LEADERMAGACNT').val("");
 	$('#LEADERMAGAFEE').val("");
 	$('#total_amount').val("");
+	
+	$("select[name=YEAR]").attr("disabled", false);
+    $("select[name=CONFIRMY]").attr("disabled", false);
+    $("select[name=associationcode_leader]").attr("disabled", false);
+    $("select[name=unitycode_leader]").attr("disabled", false);
+    $("select[name=troop_leader]").attr("disabled", false);
+	
+	
 	$('#joinPopup select').niceSelect('update')
     $("#joinPopup").removeClass("active");
 });
@@ -249,6 +257,7 @@ $(document).on("click", ".scoutJoinBtn", function (e){
 });
 // 팝업닫기
 $("#joinMemPopup button").click(function(){
+	console.log("닫기타야대는데")
 	$('#scout_idx').val("");
 	$('#YEAR_SCOUT').val("");
 	$('#CONFIRMY_SCOUT').val("");
@@ -275,6 +284,15 @@ $("#joinMemPopup button").click(function(){
 	$('#SCOUTMAGAFEE_SCOUT').val("");
 	
 	$('#total_amount_scout').val("");
+	
+	
+	$("select[name=YEAR_SCOUT]").attr("disabled", false);
+    $("select[name=CONFIRMY_SCOUT]").attr("disabled", false);
+    $("select[name=associationcode_scout]").attr("disabled", false);
+    $("select[name=unitycode_scout]").attr("disabled", false);
+    $("select[name=troop_scout]").attr("disabled", false);
+	
+	
 	$('#joinMemPopup select').niceSelect('update')
     $("#joinMemPopup").removeClass("active");
 });

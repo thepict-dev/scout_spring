@@ -671,9 +671,10 @@
 		        alert("삭제할 연공 데이터를 선택해주세요");
 		        return false; // 모달을 열지 않음
 		    }
-			$('#leader_list').children().remove();
+			
 			var text ="해당 연공 데이터를 삭제하시겠습니까?";
 			if(confirm (text)){
+				$('#leader_list').children().remove();
 				var param = {
 					idx : $('#leader_idx').val(),
 					memberno : $('#MEMBERNO').val(),
@@ -794,8 +795,6 @@
 							
 						}
 						$('#scout_list').append(html)
-						
-						debugger
 						
 					},
 					error : function(err){
