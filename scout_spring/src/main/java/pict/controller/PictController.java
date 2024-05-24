@@ -102,15 +102,13 @@ public class PictController {
 		// 처음 드러와서 세션에 정보있으면 메인으로 보내줘야함
 		String inpuId = pictVO.getMEMBERNO();
 		String inputPw = pictVO.getPassword();
-		System.out.println("입력 아이디 : " + inpuId);
-		System.out.println("입력 비번 : " + inputPw);
+		
 		pictVO = adminService.get_user_info(pictVO);
 
 		if (pictVO != null && pictVO.getMEMBERNO() != null && !pictVO.getMEMBERNO().equals("")) {
 			String user_id = pictVO.getMEMBERNO();
 			String enpassword = encryptPassword(inputPw); // 입력비밀번호
-			System.out.println(user_id + " @@@@@@@@@@@@@@@@@@");
-			System.out.println(enpassword + " #################");
+			
 			if (enpassword.equals(pictVO.getPassword())) {
 				request.getSession().setAttribute("id", pictVO.getMEMBERNO());
 				request.getSession().setAttribute("name", pictVO.getKNAME());
@@ -163,7 +161,7 @@ public class PictController {
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		
 		String loginNo = request.getSession().getAttribute("id").toString();
-		System.out.println("로그인한 사람!!! " +loginNo);
+		
 		
 		
 		String flag = pictService.login_user_info(loginNo);
@@ -637,7 +635,7 @@ public class PictController {
 			pictVO.setLEADERMAGAFEE(ledermagafee);
 			
 			
-			System.out.println("업데이트를 타야해");
+			
 			pictService.leader_update(pictVO);
 			
 			String kname = param.get("kname").toString();
@@ -860,7 +858,7 @@ public class PictController {
 			pictVO.setSCOUTMAGAFEE(scoutmagafee);
 			
 
-			System.out.println("업데이트를 타야해");
+			
 			pictService.scout_update(pictVO);
 			
 			String kname = param.get("kname").toString();
@@ -1052,7 +1050,7 @@ public class PictController {
 			pictVO.setPassword(enpassword);
 			pictVO.setMEMBERNO(memberno);
 			
-			System.out.println(enpassword);
+			
 			adminService.user_reset(pictVO);
 			
 
@@ -1075,7 +1073,7 @@ public class PictController {
 			pictVO.setPassword(enpassword);
 			pictVO.setMEMBERNO(memberno);
 			
-			System.out.println(enpassword);
+			
 			adminService.admin_password(pictVO);
 			
 
@@ -1100,13 +1098,7 @@ public class PictController {
             long size = multi.getSize();
             String saveFileName = genSaveFileName(extName);
             
-            System.out.println("uploadpath : " + uploadpath );
-            System.out.println("originFilename : " + originFilename);
-            System.out.println("extensionName : " + extName);
-            System.out.println("size : " + size);
-            System.out.println("saveFileName : " + saveFileName);
-			
-			String memberno = param.get("memberno").toString();
+            String memberno = param.get("memberno").toString();
 			
             if(!multi.isEmpty()){
                 File file = new File(uploadpath, multi.getOriginalFilename());
@@ -1441,7 +1433,7 @@ public class PictController {
 			}
 			//대원의경우
 			else{
-				System.out.println("대원");
+				
 				List<PictVO> scout_list = pictService.scout_list(pictVO);
 				
 				map.put("info", pictVO);
