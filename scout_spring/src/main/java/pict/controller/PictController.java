@@ -865,22 +865,38 @@ public class PictController {
 	}
 	@RequestMapping("/scout_del")
 	@ResponseBody
-	public String scout_del(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, 
-			@RequestBody Map<String, Object> param) throws Exception {	
+	public HashMap<String, Object> scout_del(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, 
+			@RequestBody Map<String, Object> param) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		try {
 			String idx = param.get("idx").toString();
 			String memberno = param.get("memberno").toString();
+			String kname = param.get("kname").toString();
 			
 			pictVO.setIdx(Integer.parseInt(idx));
 			pictVO.setMEMBERNO(memberno);
 			
-			System.out.println(pictVO.getIdx());
 			pictService.scout_del(pictVO);
+			
+			pictVO.setMEMBERNO(memberno);
+			pictVO.setKNAME(kname);
+			 
+			pictVO = pictService.get_per_info(pictVO);
+			map.put("info", pictVO);
+			
+			List<PictVO> scout_list = pictService.scout_list(pictVO);
+			
 
-			return "Y";
+			if(scout_list.size() > 0) {
+				map.put("list", scout_list);
+				return map;
+			}
+			else {
+				return map;
+			}
 		}
 		catch(Exception e) {
-			return "N";
+			return map;
 		}
 	}
 	
@@ -1263,22 +1279,38 @@ public class PictController {
 	//지도자연공 삭제
 	@RequestMapping("/leader_del")
 	@ResponseBody
-	public String leader_del(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, 
-			@RequestBody Map<String, Object> param) throws Exception {	
+	public HashMap<String, Object> leader_del(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, 
+			@RequestBody Map<String, Object> param) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		try {
 			String idx = param.get("idx").toString();
 			String memberno = param.get("memberno").toString();
+			String kname = param.get("kname").toString();
 			
 			pictVO.setIdx(Integer.parseInt(idx));
 			pictVO.setMEMBERNO(memberno);
 			
-			System.out.println(pictVO.getIdx());
 			pictService.leader_del(pictVO);
+			
+			pictVO.setKNAME(kname);
+			pictVO.setMEMBERNO(memberno);
+			 
+			pictVO = pictService.get_per_info(pictVO);
+			map.put("info", pictVO);
+			
+			List<PictVO> leader_list = pictService.leader_list(pictVO);
+			
 
-			return "Y";
+			if(leader_list.size() > 0) {
+				map.put("list", leader_list);
+				return map;
+			}
+			else {
+				return map;
+			}
 		}
 		catch(Exception e) {
-			return "N";
+			return map;
 		}
 	}
 	//지도자 연공 수정창

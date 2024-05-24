@@ -670,11 +670,13 @@
 		        alert("삭제할 연공 데이터를 선택해주세요");
 		        return false; // 모달을 열지 않음
 		    }
+			$('#leader_list').children().remove();
 			var text ="해당 연공 데이터를 삭제하시겠습니까?";
 			if(confirm (text)){
 				var param = {
 					idx : $('#leader_idx').val(),
-					memberno : $('#MEMBERNO').val()
+					memberno : $('#MEMBERNO').val(),
+					kname : $('#KNAME').val()
 				}
 				
 				$.ajax({
@@ -684,9 +686,44 @@
 					, contentType : "application/json"
 					, async : true
 					, success : function(data, status, xhr) {
-				
 						alert("삭제되었습니다.");
-						$('#leader_list_row_' + $('#leader_idx').val()).remove();
+						
+						var arr = data.list;
+						var html = ""
+
+						$('#leader_date').text(data.info.enterdate)
+						$('#leader_whole_incnt').text(arr.length)
+						$('#leader_incnt').text(data.info.leaderincnt)
+						
+						
+						$('#year_cnt_leader').text(arr.length + " rows")
+						for(var i=0; i<arr.length; i++){
+							html += '<tr id="leader_list_row_'+arr[i].idx+'" onclick="fn_leader_info('+arr[i].idx+')">'+
+								'<td>' + Number(i+1) + '</td>' +
+								'<td>' + arr[i].adminy + '</td>'+
+								'<td>' + arr[i].year + '</td>'+
+								'<td>' + arr[i].associationname + '</td>'+
+								'<td>' + arr[i].unity + '</td>'+
+								'<td>' + arr[i].troopname + '</td>'+
+								'<td>' + arr[i].leaderposition + '</td>'+
+								'<td>' + arr[i].leaderpositionname + '</td>'+
+								'<td>' + arr[i].orgname  + '</td>'+
+								'<td>' + arr[i].scoutmagacnt  + '</td>'+
+								'<td>Y</td>'+
+								'<td>' + arr[i].confirmy + '</td>'+
+								'<td>' + arr[i].payy + '</td>'+
+								'<td>' + arr[i].enterdate.substring(0,11) + '</td>'+
+								'<td></td>'+
+								'<td></td>'+
+								'<td>' + arr[i].leaderorgpositionname + '</td>'+
+								'<td>' + arr[i].entryfee + '</td>'+
+								'<td>' + Number(arr[i].scoutmagacnt) * 10000  + '</td>'+
+								'<td>X</td>'+
+								'<td>X</td>'+
+								'<td>' + arr[i].year + '-01-01 ~ ' + arr[i].year + '-12-31' + '</td>'+
+								'</tr>';
+						}
+						$('#leader_list').append(html)
 					},
 					error : function(err){
 						console.log(err)
@@ -697,16 +734,18 @@
 		}
 		function scout_del(){
 			var idx = $('#scout_idx').val();
-			
 			if (idx == undefined || idx == null || idx == '' || idx == 0) {
 		        alert("삭제할 연공 데이터를 선택해주세요");
 		        return false; // 모달을 열지 않음
 		    }
+			
+			$('#scout_list').children().remove();
 			var text ="해당 연공 데이터를 삭제하시겠습니까?";
 			if(confirm (text)){
 				var param = {
 					idx : $('#scout_idx').val(),
-					memberno : $('#MEMBERNO').val()
+					memberno : $('#MEMBERNO').val(),
+					kname : $('#KNAME').val()
 				}
 				
 				$.ajax({
@@ -716,9 +755,47 @@
 					, contentType : "application/json"
 					, async : true
 					, success : function(data, status, xhr) {
-				
 						alert("삭제되었습니다.");
-						$('#scout_list_row_' + $('#scout_idx').val()).remove();
+						
+						var html =""
+						var arr = data.list
+						$('#scout_date').text(data.info.enterdate)
+						$('#scout_whole_incnt').text(arr.length)
+						$('#scout_incnt').text(data.info.scoutincnt)
+						$('#year_cnt_scout').text(arr.length + " rows")
+						for(var i=0; i<arr.length; i++){
+							html += '<tr id="scout_list_row_'+arr[i].idx+'" onclick="fn_scout_info('+arr[i].idx+')">'+
+								'<td>' + Number(i+1) + '</td>' +
+								'<td>' + arr[i].year + '</td>'+
+								'<td>' + arr[i].associationname + '</td>'+
+								'<td>' + arr[i].unity + '</td>'+
+								'<td>' + arr[i].troopname + '</td>'+
+								'<td>' + arr[i].orgname + '</td>'+
+								//'<td>' + arr[i].orgclsname + '</td>'+
+								'<td></td>'+
+								'<td>' + arr[i].scoutschoolyear + '</td>'+
+								'<td>' + arr[i].scoutschoolban + '</td>'+
+								'<td>' + arr[i].scoutmagacnt + '</td>'+
+								'<td>Y</td>'+
+								'<td>' + arr[i].confirmy + '</td>'+
+								'<td>' + arr[i].payy + '</td>'+
+								'<td>' + arr[i].enterdate.substring(0, 11) + '</td>'+
+								'<td></td>'+
+								'<td></td>'+
+								'<td>' + arr[i].scoutpositionname + '</td>'+
+								'<td>' + arr[i].scoutclsname + '</td>'+
+								'<td>' + arr[i].scoutban + '</td>'+
+								'<td>' + arr[i].entryfee + '</td>'+
+								'<td>' + Number(arr[i].scoutmagacnt) * 10000 + '</td>'+
+								'<td></td>'+
+								'<td>' + arr[i].year + '-01-01 ~ ' + arr[i].year + '-12-31' + '</td>'+
+								'</tr>';
+							
+						}
+						$('#scout_list').append(html)
+						
+						debugger
+						
 					},
 					error : function(err){
 						console.log(err)
