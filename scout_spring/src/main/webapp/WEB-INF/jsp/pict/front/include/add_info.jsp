@@ -24,17 +24,17 @@
 		            <div class="inputsContainer">
 		                <div class="inputBox">
 		                    <p class="inputCaption">보호자성명</p>
-		                    <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+		                    <input type="text" name="parent_name" id="parent_name" placeholder="내용을 입력하세요…" class="lgThinInput">
 		                </div>
 		                <div class="inputBox">
 		                    <p class="inputCaption">보호자 휴대전화</p>
-		                    <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+		                    <input type="text" name="parent_mobile" id="parent_mobile" placeholder="내용을 입력하세요…" class="lgThinInput">
 		                </div>
 		            </div>
 		            <div class="inputsContainer mt20">
 		                <div class="inputBox">
 		                    <p class="inputCaption">최종학력</p>
-		                    <select name="" id="" class="lgThinSelect">
+		                    <select name="grade" id="grade" class="lgThinSelect">
 		                        <option value="1">대원</option>
 		                        <option value="2">지도자</option>
 		                        <option value="3">평생회원</option>
@@ -42,49 +42,49 @@
 		                </div>
 		                <div class="inputBox">
 		                    <p class="inputCaption">최종학교명</p>
-		                    <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+		                    <input type="text" name="school_name" id="school_name" placeholder="내용을 입력하세요…" class="lgThinInput">
 		                </div>
 		                <div class="inputBox">
 		                    <p class="inputCaption">전공/학과</p>
-		                    <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+		                    <input type="text" name="depart" id="depart" placeholder="내용을 입력하세요…" class="lgThinInput">
 		                </div>
 		            </div>
 		            <div class="inputsContainer mt20">
 		                <div class="inputBox">
 		                    <p class="inputCaption">직장명</p>
-		                    <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+		                    <input type="text" name="company" id="company" placeholder="내용을 입력하세요…" class="lgThinInput">
 		                </div>
 		                <div class="inputBox">
 		                    <p class="inputCaption">직장직책</p>
-		                    <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+		                    <input type="text" name="rank" id="rank" placeholder="내용을 입력하세요…" class="lgThinInput">
 		                </div>
 		                <div class="inputBox">
 		                    <p class="inputCaption">직장전화</p>
-		                    <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+		                    <input type="text" name="company_telno" id="company_telno" placeholder="내용을 입력하세요…" class="lgThinInput">
 		                </div>
 		                <div class="inputBox">
 		                    <p class="inputCaption">팩스번호</p>
-		                    <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+		                    <input type="text" name="company_faxno" id="company_faxno" placeholder="내용을 입력하세요…" class="lgThinInput">
 		                </div>
 		                <div class="inputBox">
 		                    <p class="inputCaption">직장주소</p>
 		                    <div class="zip">
-		                        <input type="text" name="HPOSTCODE" id="HPOSTCODE" readonly class="lgThinInput">
+		                        <input type="text" name="company_postcode" id="company_postcode" readonly class="lgThinInput">
 		                        <a href="#lnk" class="normalButton white">우편번호 검색</a>
 		                    </div>
-		                    <input type="text" name="get_post" id="get_post" readonly class="lgThinInput post">
+		                    <input type="text" name="company_addr" id="company_addr" readonly class="lgThinInput post">
 		                </div>
 		            </div>
 		            <div class="inputsContainer mt20 pb16">
 		                <div class="inputBox">
 		                    <p class="inputCaption">결혼여부</p>
 		                    <div class="marrige">
-		                        <select name="" id="" class="smThinSelect">
+		                        <select name="marry" id="marry" class="smThinSelect">
 		                            <option value="">선택하세요.</option>
 		                            <option value="1">기혼</option>
 		                            <option value="2">미혼</option>
 		                        </select>
-		                        <input type="date" name="" id="" class="lgThinInput">
+		                        <input type="date" name="marry_date" id="marry_date" class="lgThinInput">
 		                    </div>
 		                </div>
 		            </div>
@@ -104,7 +104,7 @@
 		            <div class="inputsContainer">
 		                <div class="inputBox">
 		                    <p class="inputCaption">혈액형</p>
-		                    <select name="" id="" class="smThinSelect">
+		                    <select name="blood" id="blood" class="smThinSelect">
 		                        <option value="">선택하세요.</option>
 		                        <option value="1">A</option>
 		                        <option value="2">B</option>
@@ -113,11 +113,11 @@
 		                </div>
 		                <div class="inputBox">
 		                    <p class="inputCaption">셔츠사이즈</p>
-		                    <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+		                    <input type="text" name="tsize" id="tsize" placeholder="내용을 입력하세요…" class="lgThinInput">
 		                </div>
 		                <div class="inputBox">
 		                    <p class="inputCaption">종교</p>
-		                    <select name="" id="" class="smThinSelect">
+		                    <select name="whdry" id="whdry" class="smThinSelect">
 		                        <option value="">선택하세요.</option>
 		                        <option value="1">불교</option>
 		                        <option value="2">천주교</option>
@@ -128,31 +128,31 @@
 		            <div class="inputsContainer mt20">
 		                <div class="inputBox">
 		                    <p class="inputCaption">여권번호</p>
-		                    <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+		                    <input type="text" name="passport" id="passport" placeholder="내용을 입력하세요…" class="lgThinInput">
 		                </div>
 		                <div class="inputBox">
 		                    <p class="inputCaption">유효기간</p>
-		                    <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+		                    <input type="text" name="passport_date" id="passport_date" placeholder="내용을 입력하세요…" class="lgThinInput">
 		                </div>
 		                <div class="inputBox">
 		                    <p class="inputCaption">외국어능력</p>
-		                    <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+		                    <input type="text" name="languase" id="languase" placeholder="내용을 입력하세요…" class="lgThinInput">
 		                </div>
 		            </div>
 		            <div class="inputsContainer mt20">
 		                <div class="inputBox">
 		                    <p class="inputCaption">개인병력</p>
-		                    <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+		                    <input type="text" name="desease" id="desease" placeholder="내용을 입력하세요…" class="lgThinInput">
 		                </div>
 		                <div class="inputBox">
 		                    <p class="inputCaption">알러지</p>
-		                    <input type="text" name="" id="" placeholder="내용을 입력하세요…" class="lgThinInput">
+		                    <input type="text" name="allergy" id="allergy" placeholder="내용을 입력하세요…" class="lgThinInput">
 		                </div>
 		            </div>
 		            <div class="inputsContainer mt20 pb16">
 		                <div class="inputBox">
 		                    <p class="inputCaption">비고</p>
-		                    <textarea name="" id="" cols="100"></textarea>
+		                    <textarea name="add_bigo" id="add_bigo" cols="100"></textarea>
 		                </div>
 		            </div>
 	            </div>
@@ -220,7 +220,7 @@
 	        <form action="" class="tableContainer relationContainer addTable max">
 		   		<div class="addTableBack">
 		            <div class="addSearch">
-		                <select name="" id="" class="smThinSelect">
+		                <select name="wlsqhzhem" id="wlsqhzhem" class="smThinSelect">
 		                    <option value="">진보</option>
 		                </select>
 		                <a href="" class="smButton"><img src="/front_img/search2.png" alt="">조회</a>
@@ -289,8 +289,8 @@
 	        <form action="" class="tableContainer relationContainer addTable">
 		   		<div class="addTableBack">
 		            <div class="addSearch">
-		                <input type="date" name="" id="" class="lgThinInput"> -
-		                <input type="date" name="" id="" class="lgThinInput"> 
+		                <input type="date" name="wlrcor1" id="wlrcor1" class="lgThinInput"> -
+		                <input type="date" name="wlrcor2" id="wlrcor2" class="lgThinInput"> 
 		                <a href="" class="smButton"><img src="/front_img/search2.png" alt="">조회</a>
 		            </div>
 		            <div class="tableWrapper">
@@ -351,7 +351,7 @@
 	        <form action="" class="tableContainer relationContainer addTable max">
 		   		<div class="addTableBack">
 		            <div class="addSearch">
-		                <select name="" id="" class="smThinSelect">
+		                <select name="gnsfus" id="gnsfus" class="smThinSelect">
 		                    <option value="">훈련과정</option>
 		                </select>
 		                <a href="" class="smButton"><img src="/front_img/search2.png" alt="">조회</a>
@@ -419,22 +419,22 @@
 		            <div class="addSearch">
 		                <div class="addScroll">
 		                    <div class="addSearchScroll">
-		                        <select name="" id="" class="smThinSelect">
+		                        <select name="wlsqh2" id="wlsqh2" class="smThinSelect">
 		                            <option value="">진보</option>
 		                        </select>
-		                        <input type="date" name="" id="" class="lgThinInput"> -
-		                        <input type="date" name="" id="" class="lgThinInput"> 
+		                        <input type="date" name="wlsqhdate" id="wlsqhdate" class="lgThinInput"> -
+		                        <input type="date" name="wlsqhdate2" id="wlsqhdate2" class="lgThinInput"> 
 		                        <input type="checkbox" name="wholeBongsa" id="wholeBongsa">
 		                        <label for="wholeBongsa">전체</label>
 		                    </div>
 		                    <div class="addSearchScroll">
-		                        <select name="" id="" class="smThinSelect">
+		                        <select name="wlsqhdate3" id="wlsqhdate3" class="smThinSelect">
 		                            <option value="">진보</option>
 		                        </select>
-		                        <select name="" id="" class="smThinSelect">
+		                        <select name="wlsqhdate4" id="wlsqhdate4" class="smThinSelect">
 		                            <option value="">진보</option>
 		                        </select>
-		                        <select name="" id="" class="smThinSelect">
+		                        <select name="wlsqhdate5" id="wlsqhdate5" class="smThinSelect">
 		                            <option value="">진보</option>
 		                        </select>
 		                    <a href="" class="smButton"><img src="/front_img/search2.png" alt="">조회</a>
@@ -460,7 +460,7 @@
 		                    <thead>
 		                        <tr>
 		                            <th>
-		                                <input type="checkbox" name="choice" id="checkAll">
+		                                <input type="checkbox" name="dmy_chk" id="checkAll">
 		                                <label for="checkAll"></label>
 		                            </th>
 		                            <th>No</th>
@@ -479,7 +479,7 @@
 		                    <tbody>
 		                        <tr>
 		                            <td>
-		                                <input type="checkbox" name="choice" id="choice">
+		                                <input type="checkbox" name="dmy_chk2" id="dmy_chk2">
 		                                <label for="choice"></label>
 		                            </td>
 		                            <td>1</td>
@@ -496,7 +496,7 @@
 		                        </tr>
 		                        <tr>
 		                            <td>
-		                                <input type="checkbox" name="choice" id="choice">
+		                                <input type="checkbox" name="dmy_chk3" id="dmy_chk3">
 		                                <label for="choice"></label>
 		                            </td>
 		                            <td>1</td>
@@ -534,19 +534,19 @@
 		            <div class="addSearch">
 		                <div class="addScroll">
 		                    <div class="addSearchScroll">
-		                        <input type="date" name="" id="" class="lgThinInput"> -
-		                        <input type="date" name="" id="" class="lgThinInput"> 
+		                        <input type="date" name="qhdtk11" id="qhdtk11" class="lgThinInput"> -
+		                        <input type="date" name="qhdtk22" id="qhdtk22" class="lgThinInput"> 
 		                        <input type="checkbox" name="wholePeriod" id="wholePeriod">
 		                        <label for="wholePeriod">전체</label>
 		                    </div>
 		                    <div class="addSearchScroll">
-		                        <select name="" id="" class="smThinSelect">
+		                        <select name="qhdtkwlsqh" id="qhdtkwlsqh" class="smThinSelect">
 		                            <option value="">진보</option>
 		                        </select>
-		                        <select name="" id="" class="smThinSelect">
+		                        <select name="qhdtkwlsqh2" id="qhdtkwlsqh2" class="smThinSelect">
 		                            <option value="">진보</option>
 		                        </select>
-		                        <select name="" id="" class="smThinSelect">
+		                        <select name="qhdtkwlsqh3" id="qhdtkwlsqh3" class="smThinSelect">
 		                            <option value="">진보</option>
 		                        </select>
 		                    <a href="" class="smButton"><img src="/front_img/search2.png" alt="">조회</a>
@@ -574,7 +574,7 @@
 		                    <thead>
 		                        <tr>
 		                            <th>
-		                                <input type="checkbox" name="" id="">
+		                                <input type="checkbox" name="chk33" id="chk33">
 		                                <label for=""></label>
 		                            </th>
 		                            <th>No</th>
@@ -595,7 +595,7 @@
 		                    <tbody>
 		                        <tr>
 		                            <td>
-		                                <input type="checkbox" name="" id="">
+		                                <input type="checkbox" name="chk44" id="chk44">
 		                                <label for=""></label>
 		                            </td>
 		                            <td>1</td>

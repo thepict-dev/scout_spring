@@ -44,6 +44,8 @@ public interface AdminMapper {
 	void update_user(AdminVO adminVO)throws Exception;
 
 	void user_delete(AdminVO adminVO) throws Exception;
+
+	void admin_password(PictVO pictVO) throws Exception;
 	
 
 }

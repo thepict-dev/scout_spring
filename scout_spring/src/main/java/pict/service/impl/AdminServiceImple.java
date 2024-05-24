@@ -86,6 +86,12 @@ public class AdminServiceImple implements AdminService {
 		// TODO Auto-generated method stub
 		return adminMapper.get_user_info(pictVO);
 	}
+
+	@Override
+	public void admin_password(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		adminMapper.admin_password(pictVO);
+	}
 	
 	
 	

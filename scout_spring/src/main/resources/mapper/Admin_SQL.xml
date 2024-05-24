@@ -20,6 +20,12 @@
 		  WHERE MEMBERNO=#{MEMBERNO}
 	</update>
 	
+	<update id="admin_password">
+		UPDATE member
+		SET password=#{password}, password_flag = "Y"
+		  WHERE MEMBERNO=#{MEMBERNO}
+	</update>
+	
 	
 	<update id="update_user" parameterType="adminVO">
 		update user_info

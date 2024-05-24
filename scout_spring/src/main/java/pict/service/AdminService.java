@@ -42,5 +42,7 @@ public interface AdminService {
 	void user_delete(AdminVO adminVO) throws Exception;
 
 	PictVO get_user_info(PictVO pictVO) throws Exception;
+
+	void admin_password(PictVO pictVO) throws Exception;
 	
 }

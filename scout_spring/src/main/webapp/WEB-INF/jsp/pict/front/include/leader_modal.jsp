@@ -290,7 +290,7 @@
                 </div>
             </div>
             <div class="saveBox">
-                <input type="checkbox" name="save" id="save"><label for="save">입력한 정보를 최신 신상정보로 갱신</label>
+                <input type="checkbox" id="save_leader"><label for="save_leader">입력한 정보를 최신 신상정보로 갱신</label>
             </div>
             <div class="tableButtons" style="justify-content: flex-end; padding: 0 24px 60px 0;">
                 <div class="buttons">

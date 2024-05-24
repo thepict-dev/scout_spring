@@ -1062,6 +1062,29 @@ public class PictController {
 			return "N";
 		}
 	}
+	//관리자 비밀번호 변경
+	@RequestMapping("/admin_password")
+	@ResponseBody
+	public String admin_password(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, 
+			@RequestBody Map<String, Object> param) throws Exception {	
+		try {
+			String memberno = param.get("memberno").toString();
+			String password = param.get("password").toString();
+			
+			String enpassword = encryptPassword(password);
+			pictVO.setPassword(enpassword);
+			pictVO.setMEMBERNO(memberno);
+			
+			System.out.println(enpassword);
+			adminService.admin_password(pictVO);
+			
+
+			return "Y";
+		}
+		catch(Exception e) {
+			return "N";
+		}
+	}
 	
 	//프로필사진 업로드
 	@RequestMapping("/profile_img")

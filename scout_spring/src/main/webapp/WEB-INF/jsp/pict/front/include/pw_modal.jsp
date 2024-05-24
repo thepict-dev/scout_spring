@@ -4,6 +4,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn"	   uri="http://java.sun.com/jsp/jstl/functions"%>
 
+
+<%
+	pageContext.setAttribute("id", session.getAttribute("id"));
+%>
+
+
 <div id="pwPopup">
     <form action="" id="password" name="password" class="pwModalInner">
         <button type="button"><img src="/front_img/close2.png" alt=""></button>
@@ -29,7 +35,28 @@
 </div>
 
 <script>
-	
+	function password_cng(){
+		var param = {
+			memberno : '${id}',
+			password : $('#newpassword').val()	
+		}
+		$.ajax({
+			url : "/admin_password"
+			, type : "POST"
+			, data : JSON.stringify(param)
+			, contentType : "application/json"
+			, async : true
+			, success : function(data, status, xhr) {
+				alert("정상적으로 수정되었습니다.")
+				$('#pwPopup').removeClass('active')
+			},
+			error : function(err){
+				console.log("에러가 났어")
+				console.log(err)
+				$('#error').css('display', 'flex')
+			}
+		})
+	}
 	$('.pwInput').each(function() {
 	    const clearImg = $(this).find('.clear img');
 	    if ($(this).hasClass('wrong')) {
@@ -86,7 +113,6 @@
 	    $(this).siblings('.pwInput input').val('');
 	})
 	
-	function password_cng(){
-		console.log("ajax");
-	}
+	
+	
 </script>
