@@ -623,9 +623,10 @@
 	<script>
 		$(document).ready(function() {
 		    var flag = '${flag}';
-	    	
-    		
-    		console.log(flag)
+	    	console.log(flag)
+    		if(flag != 'Y'){
+    			$('#pwPopup').addClass("active");
+    		}
 		});
 		function admin_reset(){
 			var memberno = $('#MEMBERNO').val();
