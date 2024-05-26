@@ -143,7 +143,7 @@
 					var html =""
 					for(var i=0; i<arr.length; i++){
 						html +=
-						'<option value='+ arr[i].relationcode+' >' + arr[i].relationname1 + arr[i].relationname2 + '</option>'
+						'<option value='+ arr[i].relationcode+' >' + arr[i].relationname1 + " " + arr[i].relationname2 + " 관계 등록" + '</option>'
 		
 					}
 					$('#relationclslist').append(html)
