@@ -10,7 +10,10 @@
 	<script src="/js/script.js" defer></script>
 <body>
 	<%@ include file="./include/lnb.jsp" %>
-	<%@ include file="./include/header.jsp" %>
+	<c:import url="./include/header.jsp">
+		<c:param name="pageParent" value="스카우트 통합 관리"/>
+    	<c:param name="pageTitle" value="조직통합창"/>
+    </c:import>
         <div class="contentsContainer">
         <form action="" class="organSearchForm" onsubmit="return false;">
             <h2 class="subTitles">조회 조건</h2>
@@ -686,6 +689,9 @@
 				troopno : troopno
 			}
 			
+			$('#org_leader_list').children().remove();
+			$('#org_scout_list').children().remove();
+			
 			$.ajax({
 				url : "/organ_info"
 				, type : "POST"
@@ -725,8 +731,7 @@
 						$('#LEADERCNT').text("");
 						$('#LEADERMCNT').text("");
 						$('#LEADERWCNT').text("");
-						
-						
+					
 						
 						
 						$('#ASSOCIATIONCODE').val(data.rst.associationcode);
@@ -765,6 +770,43 @@
 						$('#LEADERCNT').text(Number(data.rst.leadermcnt) + Number(data.rst.leaderwcnt));
 						$('#LEADERMCNT').text(data.rst.leadermcnt);
 						$('#LEADERWCNT').text(data.rst.leaderwcnt);
+						
+						
+						var leader_html = ""
+						var scout_html = ""
+						
+						var leader_arr= data.leader_list
+						var scout_arr= data.scout_list
+						
+						for(var i=0; i<leader_arr.length; i++){
+							leader_html += '<tr>'+
+							'<td>' + Number(i+1) + '</td>' +
+							'<td>' + leader_arr[i].memberno + '</td>'+
+							'<td>' + leader_arr[i].leaderpositionname + '</td>'+
+							'<td>' + leader_arr[i].kname + '</td>'+
+							'<td></td>'+	//단위대직책은 뭐지
+							'<td>' + leader_arr[i].htelno + '</td>'+
+							'<td>' + leader_arr[i].office + '</td>'+
+							'<td>' + leader_arr[i].email + '</td>'+
+							'<td>' + leader_arr[i].mobile + '</td>'+
+							'</tr>'
+						}
+						
+						for(var i=0; i<scout_arr.length; i++){
+							scout_html += '<tr>'+
+							'<td>' + Number(i+1) + '</td>' +
+							'<td>' + scout_arr[i].memberno + '</td>'+
+							'<td>' + scout_arr[i].scoutpositionname + '</td>'+
+							'<td>' + scout_arr[i].kname + '</td>'+
+							'<td>' + scout_arr[i].htelno + '</td>'+
+							'<td>' + scout_arr[i].office + '</td>'+
+							'<td>' + scout_arr[i].email + '</td>'+
+							'<td>' + scout_arr[i].mobile + '</td>'+
+							'</tr>'
+						}
+						
+						$('#org_leader_list').append(leader_html)
+						$('#org_scout_list').append(scout_html)
 
 						$('.contentsContainer select').niceSelect('update')
 					}

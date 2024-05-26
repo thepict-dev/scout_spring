@@ -160,6 +160,11 @@ public class PictController {
 	public String ko_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/pict_login";
+		}
+		
 		String loginNo = request.getSession().getAttribute("id").toString();
 		
 		
@@ -199,6 +204,10 @@ public class PictController {
 	@RequestMapping("/front/organization")
 	public String organization(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/pict_login";
+		}
 		
 		List<PictVO> association_list = pictService.association_list(pictVO);
 		pictVO.setASSOCIATIONCODE("200");
@@ -213,6 +222,11 @@ public class PictController {
 	@RequestMapping("/front/units")
 	public String units(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/pict_login";
+		}
+		
 		
 		List<PictVO> association_list = pictService.association_list(pictVO);
 		if(request.getQueryString() == null) {
@@ -275,6 +289,10 @@ public class PictController {
 	@RequestMapping("/front/signup_org")
 	public String signup_org(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/pict_login";
+		}
 		
 		List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
 		List<PictVO> scoutcls_list = pictService.scoutcls_list(pictVO);
@@ -353,6 +371,11 @@ public class PictController {
 	@RequestMapping("/front/signup")
 	public String signup(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
+		
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/pict_login";
+		}
 		
 		List<?> job_list= pictService.job_list(pictVO);
 		
@@ -1304,6 +1327,12 @@ public class PictController {
 		pictVO = pictService.organ_info(pictVO);
 		if(pictVO != null) {
 			map.put("rst", pictVO);
+			pictVO.setSearch_year("2024");	//재영 여기 연도
+			List<PictVO> leader_list = pictService.organ_leader_list(pictVO);
+			List<PictVO> scout_list = pictService.organ_scout_list(pictVO);
+			map.put("leader_list", leader_list);
+			map.put("scout_list", scout_list);
+			
 			return map;
 		}
 		else {
@@ -1500,7 +1529,7 @@ public class PictController {
         return fileName;
     }
 	
-	public static String encryptPassword(String password) throws Exception {
+ 	public static String encryptPassword(String password) throws Exception {
 		MessageDigest md = MessageDigest.getInstance("SHA-256");
 		md.update(password.getBytes());
 		return bytesToHex(md.digest());

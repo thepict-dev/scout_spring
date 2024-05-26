@@ -688,5 +688,32 @@
 		and left(s.STARTDAY, '4') = #{search_year}
 	</select>	
 	
+	
+	<!-- 조직통합창에서 관리 / 연소지도자 -->
+	<select id="organ_leader_list" resultType="pictVO">
+		select 
+		l.MEMBERNO, lp.LEADERPOSITIONNAME, m.KNAME, ifnull(m.HTELNO, '') as HTELNO, '' as OFFICE, ifnull(m.EMAIL, '') as EMAIL, m.MOBILE, l.LEADERPOSITIONCODE1, l.LEADERPOSITIONCODE2
+		from leader l 
+		left outer join member m on m.MEMBERNO = l.MEMBERNO
+		left outer join leaderpositioncode lp on l.LEADERPOSITIONCODE1 = lp.LEADERPOSITIONCODE1 and l.LEADERPOSITIONCODE2 = lp.LEADERPOSITIONCODE2
+		where 1=1
+		and left(l.STARTDAY, '4') = #{search_year}
+		and l.TROOPNO = #{TROOPNO}
+		and l.ADMINY = 'Y'
+	</select>
+	
+	<select id="organ_scout_list" resultType="pictVO">
+		select 
+		s.MEMBERNO, sp.SCOUTPOSITIONCODE, sp.SCOUTPOSITIONNAME, m.KNAME, m.HTELNO, '' as OFFICE, m.EMAIL, m.MOBILE
+		from scout s
+		left outer join member m on m.MEMBERNO = s.MEMBERNO
+		left outer join scoutpositioncode sp on sp.SCOUTPOSITIONCODE = s.SCOUTPOSITIONCODE
+		where 1=1
+		and left(s.STARTDAY, '4') = #{search_year}
+		and s.TROOPNO = #{TROOPNO}
+		and s.SCOUTPOSITIONCODE is not null
+		and s.SCOUTPOSITIONCODE != ''
+	</select>
+	
 
 </mapper>

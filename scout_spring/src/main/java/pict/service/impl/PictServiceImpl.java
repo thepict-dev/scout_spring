@@ -395,6 +395,18 @@ public class PictServiceImpl implements PictService {
 		return pictMapper.fn_get_units_scout(pictVO);
 	}
 
+	@Override
+	public List<PictVO> organ_leader_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.organ_leader_list (pictVO);
+	}
+
+	@Override
+	public List<PictVO> organ_scout_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.organ_scout_list(pictVO);
+	}
+
 
 	
 	

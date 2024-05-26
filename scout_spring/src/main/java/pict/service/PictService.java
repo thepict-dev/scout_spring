@@ -143,5 +143,9 @@ public interface PictService {
 
 	public List<PictVO> fn_get_units_scout(PictVO pictVO) throws Exception;
 
+	public List<PictVO> organ_leader_list(PictVO pictVO) throws Exception;
+
+	public List<PictVO> organ_scout_list(PictVO pictVO) throws Exception;
+
 
 }

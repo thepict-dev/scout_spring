@@ -147,6 +147,10 @@ public interface PictMapper {
 
 	List<PictVO> fn_get_units_scout(PictVO pictVO) throws Exception;
 
+	List<PictVO> organ_leader_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> organ_scout_list(PictVO pictVO) throws Exception;
+
  
 	
 

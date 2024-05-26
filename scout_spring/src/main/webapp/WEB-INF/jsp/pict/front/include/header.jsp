@@ -16,8 +16,8 @@
     <h1><a href="/"></a></h1>
     <div class="headerInner">
         <ul class="crumb">
-            <li>스카우트 통합 관리</li>
-            <li>회원 통합창</li>
+            <li>${param.pageParent}</li>
+            <li>${param.pageTitle}</li>
         </ul>
         <div class="topNav">
             <div class="profile">

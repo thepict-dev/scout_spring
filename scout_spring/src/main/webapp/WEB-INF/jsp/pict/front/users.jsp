@@ -10,7 +10,10 @@
 	<script src="/js/script.js" defer></script>
 <body>
 	<%@ include file="./include/lnb.jsp" %>
-	<%@ include file="./include/header.jsp" %>
+	<c:import url="./include/header.jsp">
+		<c:param name="pageParent" value="스카우트 통합 관리"/>
+    	<c:param name="pageTitle" value="회원통합창"/>
+    </c:import>
     <div class="contentsContainer">
         <form action="" id="search_fm_memberno" name="search_fm_memberno" method="get" class="searchForm">
             <div class="searchContainer">

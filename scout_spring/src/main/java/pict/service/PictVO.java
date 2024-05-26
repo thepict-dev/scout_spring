@@ -218,9 +218,15 @@ public class PictVO extends PictDefaultVO {
 	private String LEVELAPPLY;
 	private String LEVELINFO;
 	private String SCOUTCNT;
+	private String OFFICE;
 	
 	
-	
+	public String getOFFICE() {
+		return OFFICE;
+	}
+	public void setOFFICE(String oFFICE) {
+		OFFICE = oFFICE;
+	}
 	public String getSCOUTCNT() {
 		return SCOUTCNT;
 	}

@@ -156,11 +156,22 @@
 			})
 		}
 		function fn_relation_person_search(){
+			var search_relation_memberno = $('#search_relation_memberno').val()
+			var search_relation_kname = $('#search_relation_kname').val()
+			if((search_relation_memberno == null || search_relation_memberno == undefined || search_relation_memberno == '') && (search_relation_kname == null || search_relation_kname == undefined || search_relation_kname == '')){
+				alert("관계검색을 위한 회원명 혹은 회원번호를 입력해주세요.")
+				return false
+			}
+			
 			$('#initial-loading').css('display', 'flex')
 			$('#search_relation_list').children().remove()
+			
+			
+			
+			
 			var param = {
-				memberno : $('#search_relation_memberno').val(),
-				kname : $('#search_relation_kname').val()
+				memberno : search_relation_memberno,
+				kname : search_relation_kname
 			}
 			$.ajax({
 				url : "/get_relation_person_search"
@@ -174,12 +185,14 @@
 					var html =""
 					if(arr.length > 0){
 						for(var i=0; i<arr.length; i++){
+							var sex = "남"
+							if(arr[i].sex == 'W' ) sex = '여'
 							html += '<tr onclick="fn_relation_memberno('+arr[i].memberno+')">'+
 							'<td>' + arr[i].memberno + '</td>'+
 							'<td>' + arr[i].kname + '</td>'+
 							'<td>' + arr[i].birthday + '</td>'+
-							'<td>' + arr[i].sex + '</td>'+
-							'<td>' + arr[i].enterdate + '</td>'+
+							'<td>' + sex + '</td>'+
+							'<td>' + arr[i].enterdate.substring(0, 11) + '</td>'+
 							'</tr>'
 						}
 					}

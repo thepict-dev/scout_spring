@@ -10,7 +10,10 @@
 	<script src="/js/script.js" defer></script>
 <body>
 	<%@ include file="./include/lnb.jsp" %>
-	<%@ include file="./include/header.jsp" %>
+	<c:import url="./include/header.jsp">
+		<c:param name="pageParent" value="스카우트 통합 관리"/>
+    	<c:param name="pageTitle" value="단위대통합창"/>
+    </c:import>
 
     <div class="contentsContainer">
         <form action="" id="search_fm_units" name="search_fm_units" method="get" class="organSearchForm">
