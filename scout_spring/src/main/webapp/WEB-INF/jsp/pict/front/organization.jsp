@@ -121,7 +121,7 @@
 	                                <th rowspan="2">스카우트구분</th>
 	                                <th rowspan="2">단위대구분</th>
 	                                <th rowspan="2">최종대활동년도</th>
-	                                <th colspan="4" style="border-bottom: 0;text-align: center;">최종활동년도</th>
+	                                <th colspan="4" style="text-align: center;">최종활동년도</th>
                                 </tr>
                                 <tr>
                                 	<th style="z-index: 2;">남자대원수</th>
@@ -507,47 +507,35 @@
 						            <div class="tableWrapper">
 						                <table>
 						                    <colgroup>
-						                        <col width="3%" />
 						                        <col width="5%" />
-						                        <col width="5%" />
-						                        <col width="5%" />
+						                        <col width="10%" />
+						                        <col width="10%" />
+						                        <col width="10%" />
 						                        <col width="12%" />
-						                        <col width="10%" />
-						                        <col width="10%" />
-						                        <col width="10%" />
-						                        <col width="10%" />
-						                        <col width="10%" />
-						                        <col width="10%" />
+						                        <col width="12%" />
+						                        <col width="11%" />
+						                        <col width="8%" />
+						                        <col width="12%" />
 						                        <col width="10%" />
 						                    </colgroup>
 						                    <thead>
 						                        <tr>
-						                            <th>
-						                                <input type="checkbox" name="choice" id="checkAll">
-						                                <label for="checkAll"></label>
-						                            </th>
 						                            <th>No</th>
-						                            <th>행사번호</th>
-						                            <th>수료여부</th>
-						                            <th>행사명</th>
-						                            <th>행사시작일</th>
-						                            <th>행사마침일</th>
-						                            <th>주관연맹</th>
-						                            <th>지구연합회</th>
-						                            <th>행사구분1</th>
-						                            <th>행사구분2</th>
-						                            <th>행사구분3</th>
+						                            <th>임원분류1</th>
+						                            <th>임원분류2</th>
+						                            <th>이름</th>
+						                            <th>임기시작일</th>
+						                            <th>임기마침일</th>
+						                            <th>법정생년월일</th>
+						                            <th>성별</th>
+						                            <th>비고</th>
+						                            <th>등록자</th>
 						                        </tr>
 						                    </thead>
-						                    <tbody>
+						                    <tbody id="admin_list">
 						                        <tr>
-						                            <td>
-						                                <input type="checkbox" name="choice" id="choice">
-						                                <label for="choice"></label>
-						                            </td>
 						                            <td>1</td>
 						                            <td>년도</td>
-						                            <td>연맹</td>
 						                            <td>연맹</td>
 						                            <td>연맹</td>
 						                            <td>연맹</td>
@@ -558,13 +546,8 @@
 						                            <td>연맹</td>
 						                        </tr>
 						                        <tr>
-						                            <td>
-						                                <input type="checkbox" name="choice" id="choice">
-						                                <label for="choice"></label>
-						                            </td>
 						                            <td>1</td>
 						                            <td>년도</td>
-						                            <td>연맹</td>
 						                            <td>연맹</td>
 						                            <td>연맹</td>
 						                            <td>연맹</td>
@@ -581,8 +564,8 @@
 					            <div class="tableButtons topBd" style="padding: 12px 16px;">
 					                <p>0<span>rows</span></p>
 					                <div class="buttons">
-					                    <a href="#lnk" class="smButton"><img src="/front_img/add.png" alt="">임원추가</a>
-					                    <a href="#lnk" class="smButton"><img src="/front_img/modify.png" alt="">임원수정</a>
+					                    <a href="#adminPopup" class="smButton orgBtn"><img src="/front_img/add.png" alt="">임원추가</a>
+					                    <a href="#adminPopup" class="smButton orgBtn"><img src="/front_img/modify.png" alt="">임원수정</a>
 					                    <a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">임원삭제</a>
 					                    <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
 					                </div>
@@ -637,6 +620,8 @@
     
      <!-- 학교검색 모달 -->
 	<%@ include file="./include/group_modal.jsp" %>
+	<!-- 임원관리 모달 -->
+	<%@ include file="./include/admin_modal.jsp" %>
 	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>

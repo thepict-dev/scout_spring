@@ -248,6 +248,10 @@
                                     <span class="bindingText" id="span_scoutmaga"></span>
                                 </div>
                             </div>
+		                    <div class="tableButtons rights" style="justify-content: flex-end;">
+                                <a href="#lnk" class="smButton"><img src="/front_img/doc.png" alt="">청소년단체등록확인서</a>
+                                <a href="#lnk" class="smButton"><img src="/front_img/doc.png" alt="">가맹등록신청서</a>
+		                    </div>
                         </div>
                         <div class="tableContainer orgContainer unitTable bottomBd">
                             <h2 class="subTitles">지도자</h2>

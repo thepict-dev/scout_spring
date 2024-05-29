@@ -592,6 +592,9 @@
     display: none;
     z-index: 100;
 }
+#adminPopup{
+    display: none;
+}
 #joinPopup.active{
     display: flex;
 }
@@ -602,6 +605,9 @@
     display: flex;
 }
 #groupPopup.active{
+    display: flex;
+}
+#adminPopup.active{
     display: flex;
 }
 #relationPopup .popupInner{
@@ -744,7 +750,7 @@
 	row-gap: 30px;
 }
 
-#leader_list tr, #scout_list tr, #searchResultList tr, #relation_list tr, #search_relation_list tr, #group_list tr, #org_list tr, #unit_list tr{
+#leader_list tr, #scout_list tr, #searchResultList tr, #relation_list tr, #search_relation_list tr, #group_list tr, #org_list tr, #unit_list tr, #admin_list tr{
 	cursor: pointer;
 }
 tbody tr.active td{

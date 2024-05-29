@@ -239,8 +239,8 @@ input[type=checkbox] + label {
     letter-spacing: -0.7px;
     background-repeat: no-repeat;
     background-image: url('/front_img/uncheck.png');
-    background-size: 10px;
-    background-position: 0 2px;
+    background-size: 13px;
+    background-position: 0 1px;
 }
 input[type=checkbox]:checked + label {
     background-image: url('/front_img/checked.png');
