@@ -12,7 +12,7 @@
 	<%@ include file="./include/lnb.jsp" %>
 	<c:import url="./include/header.jsp">
 		<c:param name="pageParent" value="스카우트 통합 관리"/>
-    	<c:param name="pageTitle" value="조직통합창"/>
+    	<c:param name="pageTitle" value="조직 통합 관리"/>
     </c:import>
         <div class="contentsContainer">
         <form action="" class="organSearchForm" onsubmit="return false;">

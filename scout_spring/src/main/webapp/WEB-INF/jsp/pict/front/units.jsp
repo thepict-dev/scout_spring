@@ -12,7 +12,7 @@
 	<%@ include file="./include/lnb.jsp" %>
 	<c:import url="./include/header.jsp">
 		<c:param name="pageParent" value="스카우트 통합 관리"/>
-    	<c:param name="pageTitle" value="단위대통합창"/>
+    	<c:param name="pageTitle" value="단위대 통합 관리"/>
     </c:import>
 
     <div class="contentsContainer">
@@ -95,8 +95,8 @@
                         <table>
                             <colgroup>
                                 <col width="5.2%" />
-                                <col width="3.2%" />
-                                <col width="7.2%" />
+                                <col width="3.5%" />
+                                <col width="6.9%" />
                                 <col width="5.2%" />
                                 <col width="5.2%" />
                                 <col width="4.5%" />
@@ -129,17 +129,17 @@
 	                                <th colspan="3" style="border-bottom: 0">대원등록유형(승인)</th>
                                 </tr>
                                 <tr>
-                                	<th style="position: unset; z-index: 2;">지도자</th>
-                                	<th style="position: unset; z-index: 2;">대원</th>
-                                	<th style="position: unset; z-index: 2;">지도자</th>
-                                	<th style="position: unset; z-index: 2;">대원</th>
-                                	<th style="position: unset; z-index: 2;">지도자</th>
-                                	<th style="position: unset; z-index: 2;">대원</th>
-                                	<th style="position: unset; z-index: 2;">계속</th>
-                                	<th style="position: unset; z-index: 2;">신규</th>
-                                	<th style="position: unset; z-index: 2;">신규</th>
-                                	<th style="position: unset; z-index: 2;">2년연속</th>
-                                	<th style="position: unset; z-index: 2;">3년연속</th>
+                                	<th style="z-index: 2; top: 30px;">지도자</th>
+                                	<th style="z-index: 2; top: 30px;">대원</th>
+                                	<th style="z-index: 2; top: 30px;">지도자</th>
+                                	<th style="z-index: 2; top: 30px;">대원</th>
+                                	<th style="z-index: 2; top: 30px;">지도자</th>
+                                	<th style="z-index: 2; top: 30px;">대원</th>
+                                	<th style="z-index: 2; top: 30px;">계속</th>
+                                	<th style="z-index: 2; top: 30px;">신규</th>
+                                	<th style="z-index: 2; top: 30px;">신규</th>
+                                	<th style="z-index: 2; top: 30px;">2년연속</th>
+                                	<th style="z-index: 2; top: 30px;">3년연속</th>
                                 </tr>
                             </thead>
                             <tbody id="unit_list">
