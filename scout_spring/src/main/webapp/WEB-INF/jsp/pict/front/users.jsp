@@ -302,7 +302,7 @@
                         <div class="inputsContainer inputsPd_">
                             <div class="inputBox">
                                 <p class="inputCaption">비고</p>
-                                <textarea name="BIGO" id="BIGO" cols="100"></textarea>
+                                <textarea name="PERSONBIGO" id="PERSONBIGO" cols="100"></textarea>
                             </div>
                         </div>
                         <div class="tableButtons inputsPd bottomBd" style="justify-content: flex-end;">
@@ -881,6 +881,7 @@
 				SCOUTSCHOOLYEAR : $('#SCOUTSCHOOLYEAR').val(),
 				SCOUTSCHOOLBAN : $('#SCOUTSCHOOLBAN').val(),
 				TROOPRANK : $('#TROOPRANK').val(),
+				BIGO : $('#PERSONBIGO').val()
 			}
 			
 			var text ="회원정보를 수정하시겠습니까?";
@@ -994,6 +995,7 @@
 					$("#HADDR").val(data.info.haddr)
 					$("#JOBCODE").val(data.info.jobcode).prop("selected", true);
 					
+					$("#PERSONBIGO").val(data.info.bigo)
 					
 					$('#LEADERSCORE').val(data.info.leaderscore)
 					$('#SCOUTSCHOOLYEAR').val(data.info.scoutschoolyear)

@@ -409,6 +409,7 @@ public class PictController {
 			String LEADERSCORE = param.get("LEADERSCORE").toString();
 			String SCOUTSCHOOLYEAR = param.get("SCOUTSCHOOLYEAR").toString();
 			String SCOUTSCHOOLBAN = param.get("SCOUTSCHOOLBAN").toString();
+			String BIGO = param.get("BIGO").toString();
 			
 			String TROOPRANK = param.get("TROOPRANK").toString();
 			if(TROOPRANK.equals("0")) {
@@ -438,8 +439,7 @@ public class PictController {
 			pictVO.setLEADERSCORE(LEADERSCORE);
 			pictVO.setSCOUTSCHOOLYEAR(SCOUTSCHOOLYEAR);
 			pictVO.setSCOUTSCHOOLBAN(SCOUTSCHOOLBAN);
-			
-			
+			pictVO.setBIGO(BIGO);		
 			pictService.person_save(pictVO);
 			
 			return "Y";
