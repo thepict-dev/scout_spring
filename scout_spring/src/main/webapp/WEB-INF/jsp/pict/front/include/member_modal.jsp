@@ -482,8 +482,8 @@
 			troopno : $('#troop_scout').val(),
 			
 			scoutorgno : $('#scout_orgno').val(),
-			scoutschoolyear : $('#SCOUTSCHOOLYEAR').val(),
-			scoutschoolban :$('#SCOUTSCHOOLBAN').val(),
+			scoutschoolyear : $('#SCOUTSCHOOLYEAR_SCOUT').val(),
+			scoutschoolban :$('#SCOUTSCHOOLBAN_SCOUT').val(),
 			
 			scoutclscode :$('#SCOUTCLSCODE').val(),
 			scoutpositioncode :$('#SCOUTPOSITIONCODE').val(),

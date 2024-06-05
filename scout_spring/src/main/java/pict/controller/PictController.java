@@ -621,6 +621,13 @@ public class PictController {
 	public HashMap<String, Object> leader_update(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		try {
+			String startday = param.get("startday").toString();
+			String endday = param.get("endday").toString();
+			String confirmy = param.get("confirmy").toString();
+			String associationcode = param.get("associationcode").toString();
+			String parenttroopno = param.get("parenttroopno").toString();
+			String troopno = param.get("troopno").toString();
+			
 			String leader_idx = param.get("leader_idx").toString();
 			String memberno = param.get("memberno").toString();
 			String leaderorgno = param.get("leaderorgno").toString();
@@ -638,6 +645,13 @@ public class PictController {
 			String scoutmagafee = param.get("scoutmagafee").toString();
 			String leadermagacnt = param.get("leadermagacnt").toString();
 			String ledermagafee = param.get("ledermagafee").toString();
+			
+			pictVO.setSTARTDAY(startday);
+			pictVO.setENDDAY(endday);
+			pictVO.setCONFIRMY(confirmy);
+			pictVO.setASSOCIATIONCODE(associationcode);
+			pictVO.setPARENTTROOPNO(parenttroopno);
+			pictVO.setTROOPNO(troopno);
 			
 			pictVO.setIdx(Integer.parseInt(leader_idx));
 			pictVO.setMEMBERNO(memberno);
