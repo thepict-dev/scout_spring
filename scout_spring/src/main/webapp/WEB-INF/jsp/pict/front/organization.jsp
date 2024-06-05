@@ -668,7 +668,7 @@
 			
 		}
 		function fn_organ_info(troopno){
-			
+			$('#initial-loading').css('display', 'flex')
 			$('#idx').val(troopno)
 			var param = {
 				troopno : troopno
@@ -795,10 +795,13 @@
 
 						$('.contentsContainer select').niceSelect('update')
 					}
+					$('#initial-loading').css('display', 'none')
 				}
 				, error : function(xhr, status, error) {
 					console.log(xhr)
 					console.log("에러")
+					$('#initial-loading').css('display', 'none')
+					$('#error').css('display', 'flex')
 				}
 			});
 		}
@@ -861,6 +864,7 @@
 			});
 		}
 		function organ_search(){
+			$('#initial-loading').css('display', 'flex')
 			$('#organ_cnt').text("0 rows")
 			$('#org_list').children().remove();
 			
@@ -906,10 +910,13 @@
 						$('#org_list').append(html)
 						$('.contentsContainer select').niceSelect('update')
 					}
+					$('#initial-loading').css('display', 'none')
 				}
 				, error : function(xhr, status, error) {
 					console.log(xhr)
 					console.log("에러")
+					$('#initial-loading').css('display', 'none')
+					$('#error').css('display', 'flex')
 				}
 			});
 		}
