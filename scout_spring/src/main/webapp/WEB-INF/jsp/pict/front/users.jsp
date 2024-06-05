@@ -299,18 +299,23 @@
                             	</div>
                             </div>
                         </div>
+                        <div class="inputsContainer inputsPd_">
+                            <div class="inputBox">
+                                <p class="inputCaption">비고</p>
+                                <textarea name="BIGO" id="BIGO" cols="100"></textarea>
+                            </div>
+                        </div>
                         <div class="tableButtons inputsPd bottomBd" style="justify-content: flex-end;">
                             <div class="buttons">
                             	<a href="#lnk" class="smButton" onclick="admin_reset()"><img src="/front_img/reset.png" alt="">관리자비밀번호초기화</a>
                                 <a href="#lnk" class="smButton"><img src="/front_img/sms.png" alt="">SMS</a>
                                 <a href="#lnk" class="smButton"><img src="/front_img/email.png" alt="">이메일</a>
                                 <a href="#lnk" class="smButton" onclick="person_save()"><img src="/front_img/download.png" alt="">저장</a>
-                                <a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">화면 초기화</a>
                             </div>
                         </div>
                         <div class="inputsContainer inputsPd bottomBd">
                             <div class="inputBox">
-                                <p class="inputCaption">지도자단체</p>
+                                <p class="inputCaption">소속/단체</p>
                                 <input type="text" name="main_leader_org" id="main_leader_org" readonly class="lgThinInput">
                             </div>
                             <div class="inputBox">

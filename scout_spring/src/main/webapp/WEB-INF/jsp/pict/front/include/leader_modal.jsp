@@ -373,12 +373,11 @@
 					$('#BIGO').val(data.rst.bigo)
 					calculate_leader()
 					//상단 항목 리드온리
-					
-				    $("select[name=YEAR]").attr("disabled", true);
-				    $("select[name=CONFIRMY]").attr("disabled", true);
-				    $("select[name=associationcode_leader]").attr("disabled", true);
-				    $("select[name=unitycode_leader]").attr("disabled", true);
-				    $("select[name=troop_leader]").attr("disabled", true);
+				    //$("select[name=YEAR]").attr("disabled", true);
+				    //$("select[name=CONFIRMY]").attr("disabled", true);
+				    //$("select[name=associationcode_leader]").attr("disabled", true);
+				    //$("select[name=unitycode_leader]").attr("disabled", true);
+				    //$("select[name=troop_leader]").attr("disabled", true);
 				    
 					$('#joinPopup select').niceSelect('update')
 				}
@@ -641,12 +640,12 @@
 						$('#leader_list').append(html)
 						$('#joinPopup').removeClass('active');
 						
-						
-						$("select[name=YEAR]").attr("disabled", false);
-					    $("select[name=CONFIRMY]").attr("disabled", false);
-					    $("select[name=associationcode_leader]").attr("disabled", false);
-					    $("select[name=unitycode_leader]").attr("disabled", false);
-					    $("select[name=troop_leader]").attr("disabled", false);
+						//리드온리 해제
+						//$("select[name=YEAR]").attr("disabled", false);
+					    //$("select[name=CONFIRMY]").attr("disabled", false);
+					    //$("select[name=associationcode_leader]").attr("disabled", false);
+					    //$("select[name=unitycode_leader]").attr("disabled", false);
+					    //$("select[name=troop_leader]").attr("disabled", false);
 					    
 						$('#joinPopup select').niceSelect('update')
 						

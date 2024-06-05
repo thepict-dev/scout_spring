@@ -59,11 +59,6 @@
                         <select name="search_troopcls2" id="search_troopcls2" class="lgThinSelect">
                             <option value="">-----</option>
                         </select>
-                        <select name="search_type" id="search_type" class="smThinSelect">
-                            <option value="name" <c:if test="${pictVO.search_type eq 'name'}">selected</c:if>>성명</option>
-                            <option value="memberno" <c:if test="${pictVO.search_type eq 'memberno'}">selected</c:if>>회원번호</option>
-                        </select>
-                        <input type="text" name="search_text" id="" class="smThinInput" placeholder="내용을 입력해주세요..." value="${pictVO.search_text}">
                     </div>
                 </div>
                 <div class="searchContainer">
@@ -100,8 +95,8 @@
                         <table>
                             <colgroup>
                                 <col width="5.2%" />
-                                <col width="5.2%" />
-                                <col width="5.2%" />
+                                <col width="3.2%" />
+                                <col width="7.2%" />
                                 <col width="5.2%" />
                                 <col width="5.2%" />
                                 <col width="4.5%" />
@@ -255,7 +250,7 @@
                         </div>
                         <div class="tableContainer orgContainer unitTable bottomBd">
                             <h2 class="subTitles">지도자</h2>
-                            <div class="tableWrapper">
+                            <div class="tableWrapper" style="height: 250px;">
                                 <table>
                                     <colgroup>
                                         <col width="5%" />
@@ -298,7 +293,7 @@
                         </div>
                         <div class="tableContainer orgContainer unitTable">
                             <h2 class="subTitles">대원</h2>
-                            <div class="tableWrapper">
+                            <div class="tableWrapper" style="height: 250px;">
                                 <table>
                                     <colgroup>
                                         <col width="5.2%" />
