@@ -151,6 +151,9 @@
     -webkit-transition: all 0.2s;
     transition: all 0.2s; 
   }
+  .tableSelect .option{
+  	min-height: 30px;
+  }
     .nice-select .option:hover {
       background-color: var(--grey-50);
     }

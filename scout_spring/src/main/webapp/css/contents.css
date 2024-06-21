@@ -595,6 +595,12 @@
 #adminPopup{
     display: none;
 }
+#regiSearchPopup{
+    display: none;
+}
+#regiConfirmPopup{
+    display: none;
+}
 #joinPopup.active{
     display: flex;
 }
@@ -610,6 +616,13 @@
 #adminPopup.active{
     display: flex;
 }
+#regiSearchPopup.active{
+    display: flex;
+}
+#regiConfirmPopup.active{
+    display: flex;
+}
+
 #relationPopup .popupInner{
     position: relative;
     width: 80%;
@@ -840,4 +853,31 @@ tbody tr.active td{
     display: flex;
     column-gap: 10px;
     padding: 0 24px;
+}
+.regiConTop{
+    padding: 30px 24px 0 24px;
+}
+.regiConTop p{
+    color: var(--text-color);
+    font-family: SUIT;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: -1.2px;
+}
+.regiConBottom{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0 24px;
+}
+.regiConBottom p{
+    color: var(--text-color);
+    font-family: SUIT;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: -1.2px;
 }

@@ -338,7 +338,6 @@ $("#adminPopup button").click(function(){
     $("#adminPopup").removeClass("active");
 });
 
-
 document.addEventListener('DOMContentLoaded', function() {
     // leader_list와 scout_list 테이블에 이벤트 위임 설정
     document.addEventListener('click', function(event) {
