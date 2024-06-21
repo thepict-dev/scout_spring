@@ -22,6 +22,15 @@
                     <li><a href="/front/units">단위대 통합 관리</a></li>
                     <li><a href="/front/signup_org">신규 조직 등록</a></li>
                     <li><a href="/front/signup">신규 회원 등록</a></li>
+                    <li><a href="/front/formerleader_list">전종리스트</a></li>
+                </ul>
+            </li>
+            <li>
+                <img src="/front_img/lnb2.png" alt="">
+                <a href="#lnk">회원등록</a>
+                <ul class="subNav">
+                    <li><a href="/front/scout_whole_register">대등록</a></li>
+                    <li><a href="/front/scout_whole_confirm">대승인</a></li>
                 </ul>
             </li>
             <li>
@@ -38,7 +47,10 @@
             </li>
             <li>
                 <img src="/front_img/lnb5.png" alt="">
-                <a href="#lnk">커뮤니티</a>
+                <a href="#lnk">기본설정관리</a>
+                <ul class="subNav">
+                	<li><a href="/front/association_price">연맹별납부액관리</a></li>
+               	</ul>
             </li>
         </ul>
     </nav>

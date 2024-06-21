@@ -256,7 +256,7 @@ input.circleCheck[type=checkbox]:checked + label {
 }
 .lableOnly{
     width: 12px;
-    height: 13px;
+    height: 14px;
 }
 
 /* textarea */

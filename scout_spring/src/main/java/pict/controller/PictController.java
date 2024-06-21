@@ -1492,6 +1492,52 @@ public class PictController {
 		
 	}
 	
+	
+	//대원일괄등록
+	@RequestMapping("/front/scout_whole_register")
+	public String scout_whole_register(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		//여기서 로그인한 지도자의 연맹, 단위대 골라줘야함 혹여나 로그인한 사람이 전종이면 셀렉트 해줄 필요 없고
+
+		
+		List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
+		List<PictVO> scoutcls_list = pictService.scoutcls_list(pictVO);
+		
+		model.addAttribute("trooplevel_list", trooplevel_list);
+		model.addAttribute("scoutcls_list", scoutcls_list);
+		
+		
+		List<PictVO> association_list = pictService.association_list(pictVO);
+		pictVO.setASSOCIATIONCODE("200");
+		List<PictVO> unity_list = pictService.unity_list(pictVO);
+		model.addAttribute("association_list", association_list);
+		model.addAttribute("unity_list", unity_list);
+		
+		model.addAttribute("pictVO", pictVO);
+		return "pict/front/register_scout";
+	}
+	//대원일괄등록
+	@RequestMapping("/front/scout_whole_confirm")
+	public String scout_whole_confirm(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		//여기서 로그인한 지도자의 연맹, 단위대 골라줘야함 혹여나 로그인한 사람이 전종이면 셀렉트 해줄 필요 없고
+
+		
+		List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
+		List<PictVO> scoutcls_list = pictService.scoutcls_list(pictVO);
+		
+		model.addAttribute("trooplevel_list", trooplevel_list);
+		model.addAttribute("scoutcls_list", scoutcls_list);
+		
+		
+		List<PictVO> association_list = pictService.association_list(pictVO);
+		pictVO.setASSOCIATIONCODE("200");
+		List<PictVO> unity_list = pictService.unity_list(pictVO);
+		model.addAttribute("association_list", association_list);
+		model.addAttribute("unity_list", unity_list);
+		
+		model.addAttribute("pictVO", pictVO);
+		return "pict/front/register_confirm";
+	}
+	
 	// 공통메소드
 	public String fileUpload(MultipartHttpServletRequest request, MultipartFile uploadFile, String target) {
 		String path = "";

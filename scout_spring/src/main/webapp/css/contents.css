@@ -808,3 +808,32 @@ tbody tr.active td{
 .organForm{
     /* padding: 16px 24px; */
 }
+
+/* 대원일괄등록 */
+.registrationWrap{
+    display: flex;
+    align-items: center;
+    /* column-gap: 10px; */
+}
+.registrationWrap .buttonWrapper{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+.registrationWrap .buttonWrapper a{
+    display: block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--grey-100);
+}
+.registrationWrap .buttonWrapper a img{
+    width: 20px;
+}
+.registrationWrap .buttonWrapper a:hover{
+    background: var(--grey-50);
+}
+.regiSearch{
+    display: flex;
+    column-gap: 10px;
+    padding: 0 24px;
+}
