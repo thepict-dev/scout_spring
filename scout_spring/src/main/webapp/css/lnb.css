@@ -31,8 +31,17 @@ nav::-webkit-scrollbar{
     font-size: 14px;
     color: #fff;
 }
-.nav > li img{
-    width: 36px;
+.nav > li > span{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 36px;
+}
+.nav > li > span > img{
+	width: 100%;
+}
+.nav > li:last-of-type > span > img{
+	width: 21px;
 }
 .nav > li > a{
     display: none;

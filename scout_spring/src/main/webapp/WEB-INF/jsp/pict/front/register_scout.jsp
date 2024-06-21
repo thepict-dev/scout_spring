@@ -64,98 +64,183 @@
                             </div>
                         </div>
                         <div class="registrationWrap">
-                            <div class="tableContainer">
-                                <h2 class="subTitles">작년도</h2>
-                                <div class="tableWrapper">
-                                    <table style="min-width: unset;">
-                                        <colgroup>
-                                            <col width="8%" />
-                                            <col width="20%" />
-                                            <col width="20%" />
-                                            <col width="20%" />
-                                            <col width="20%" />
-                                            <col width="12%" />
-                                        </colgroup>
-                                        <thead>
-                                            <tr>
-                                                <th style="white-space: nowrap;">선택</th>
-                                                <th style="position: unset;">연맹</th>
-                                                <th>지구</th>
-                                                <th>단위대</th>
-                                                <th>이름</th>
-                                                <th>회원</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style="position: unset;">
-                                                    <input type="checkbox" id="selection"><label for="selection" class="lableOnly"></label>
-                                                </td>
-                                                <td style="position: unset;">Cell02</td>
-                                                <td>Cell03</td>
-                                                <td>Cell04</td>
-                                                <td>Cell05</td>
-                                                <td>Cell06</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="tableButtons" style="justify-content: flex-end;">
-                                    <div class="buttons">
-                                        <a href="#lnk" onclick="fn_submit()" class="smButton"><img src="/front_img/download.png" alt="">엑셀 내려받기</a>
-                                    </div>
-                                </div>
+                        	<div class="doubleTable">
+	                            <div class="tableContainer">
+	                                <h2 class="subTitles">작년도</h2>
+	                                <div class="tableWrapper" style="height: 300px;">
+	                                    <table style="min-width: unset;">
+	                                        <colgroup>
+	                                            <col width="8%" />
+	                                            <col width="20%" />
+	                                            <col width="20%" />
+	                                            <col width="20%" />
+	                                            <col width="20%" />
+	                                            <col width="12%" />
+	                                        </colgroup>
+	                                        <thead>
+	                                            <tr>
+	                                                <th style="white-space: nowrap;">선택</th>
+	                                                <th style="position: unset;">연맹</th>
+	                                                <th>지구</th>
+	                                                <th>단위대</th>
+	                                                <th>이름</th>
+	                                                <th>회원</th>
+	                                            </tr>
+	                                        </thead>
+	                                        <tbody>
+	                                            <tr>
+	                                                <td style="position: unset;">
+	                                                    <input type="checkbox" id="selection"><label for="selection" class="lableOnly"></label>
+	                                                </td>
+	                                                <td style="position: unset;">Cell02</td>
+	                                                <td>Cell03</td>
+	                                                <td>Cell04</td>
+	                                                <td>Cell05</td>
+	                                                <td>Cell06</td>
+	                                            </tr>
+	                                        </tbody>
+	                                    </table>
+	                                </div>
+	                                <div class="tableButtons" style="justify-content: flex-end;">
+	                                    <div class="buttons">
+	                                        <a href="#lnk" onclick="fn_submit()" class="smButton"><img src="/front_img/download.png" alt="">엑셀 내려받기</a>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="tableContainer">
+	                                <div class="tableWrapper" style="height: 300px;">
+	                                    <table style="min-width: unset;">
+	                                        <colgroup>
+	                                            <col width="8%" />
+	                                            <col width="20%" />
+	                                            <col width="20%" />
+	                                            <col width="20%" />
+	                                            <col width="20%" />
+	                                            <col width="12%" />
+	                                        </colgroup>
+	                                        <thead>
+	                                            <tr>
+	                                                <th style="white-space: nowrap;">선택</th>
+	                                                <th style="position: unset;">연맹</th>
+	                                                <th>지구</th>
+	                                                <th>단위대</th>
+	                                                <th>이름</th>
+	                                                <th>회원</th>
+	                                            </tr>
+	                                        </thead>
+	                                        <tbody>
+	                                            <tr>
+	                                                <td style="position: unset;">
+	                                                    <input type="checkbox" id="selection"><label for="selection" class="lableOnly"></label>
+	                                                </td>
+	                                                <td style="position: unset;">Cell02</td>
+	                                                <td>Cell03</td>
+	                                                <td>Cell04</td>
+	                                                <td>Cell05</td>
+	                                                <td>Cell06</td>
+	                                            </tr>
+	                                        </tbody>
+	                                    </table>
+	                                </div>
+	                                <div class="tableButtons" style="justify-content: flex-end;">
+	                                    <div class="buttons">
+	                                        <a href="#lnk" onclick="fn_submit()" class="smButton"><img src="/front_img/download.png" alt="">엑셀 내려받기</a>
+	                                    </div>
+	                                </div>
+	                            </div>
                             </div>
                             <div class="buttonWrapper">
                                 <a href="#lnk"><img src="/front_img/right-arr.png" alt=""></a>
                                 <a href="#lnk"><img src="/front_img/left-arr.png" alt=""></a>
                             </div>
-                            <div class="tableContainer">
-                                <h2 class="subTitles">당해년도</h2>
-                                <div class="tableWrapper">
-                                    <table style="min-width: unset;">
-                                        <colgroup>
-                                            <col width="8%" />
-                                            <col width="20%" />
-                                            <col width="20%" />
-                                            <col width="20%" />
-                                            <col width="20%" />
-                                            <col width="12%" />
-                                        </colgroup>
-                                        <thead>
-                                            <tr>
-                                                <th style="white-space: nowrap;">선택</th>
-                                                <th style="position: unset;">연맹</th>
-                                                <th>지구</th>
-                                                <th>단위대</th>
-                                                <th>이름</th>
-                                                <th>회원</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style="position: unset;">
-                                                    <input type="checkbox" id="selection"><label for="selection" class="lableOnly"></label>
-                                                </td>
-                                                <td style="position: unset;">Cell02</td>
-                                                <td>Cell03</td>
-                                                <td>Cell04</td>
-                                                <td>Cell05</td>
-                                                <td>Cell06</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="tableButtons" style="justify-content: flex-end;">
-                                    <div class="buttons">
-                                        <a href="#lnk" onclick="fn_submit()" class="smButton"><img src="/front_img/download.png" alt="">엑셀 업로드</a>
-                                    </div>
-                                </div>
+                            <div class="doubleTable">
+	                            <div class="tableContainer">
+	                                <h2 class="subTitles">당해년도</h2>
+	                                <div class="tableWrapper" style="height: 300px;">
+	                                    <table style="min-width: unset;">
+	                                        <colgroup>
+	                                            <col width="8%" />
+	                                            <col width="20%" />
+	                                            <col width="20%" />
+	                                            <col width="20%" />
+	                                            <col width="20%" />
+	                                            <col width="12%" />
+	                                        </colgroup>
+	                                        <thead>
+	                                            <tr>
+	                                                <th style="white-space: nowrap;">선택</th>
+	                                                <th style="position: unset;">연맹</th>
+	                                                <th>지구</th>
+	                                                <th>단위대</th>
+	                                                <th>이름</th>
+	                                                <th>회원</th>
+	                                            </tr>
+	                                        </thead>
+	                                        <tbody>
+	                                            <tr>
+	                                                <td style="position: unset;">
+	                                                    <input type="checkbox" id="selection"><label for="selection" class="lableOnly"></label>
+	                                                </td>
+	                                                <td style="position: unset;">Cell02</td>
+	                                                <td>Cell03</td>
+	                                                <td>Cell04</td>
+	                                                <td>Cell05</td>
+	                                                <td>Cell06</td>
+	                                            </tr>
+	                                        </tbody>
+	                                    </table>
+	                                </div>
+	                                <div class="tableButtons" style="justify-content: flex-end;">
+	                                    <div class="buttons">
+	                                        <a href="#lnk" onclick="fn_submit()" class="smButton"><img src="/front_img/download.png" alt="">엑셀 업로드</a>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="tableContainer">
+	                                <div class="tableWrapper" style="height: 300px;">
+	                                    <table style="min-width: unset;">
+	                                        <colgroup>
+	                                            <col width="8%" />
+	                                            <col width="20%" />
+	                                            <col width="20%" />
+	                                            <col width="20%" />
+	                                            <col width="20%" />
+	                                            <col width="12%" />
+	                                        </colgroup>
+	                                        <thead>
+	                                            <tr>
+	                                                <th style="white-space: nowrap;">선택</th>
+	                                                <th style="position: unset;">연맹</th>
+	                                                <th>지구</th>
+	                                                <th>단위대</th>
+	                                                <th>이름</th>
+	                                                <th>회원</th>
+	                                            </tr>
+	                                        </thead>
+	                                        <tbody>
+	                                            <tr>
+	                                                <td style="position: unset;">
+	                                                    <input type="checkbox" id="selection"><label for="selection" class="lableOnly"></label>
+	                                                </td>
+	                                                <td style="position: unset;">Cell02</td>
+	                                                <td>Cell03</td>
+	                                                <td>Cell04</td>
+	                                                <td>Cell05</td>
+	                                                <td>Cell06</td>
+	                                            </tr>
+	                                        </tbody>
+	                                    </table>
+	                                </div>
+	                                <div class="tableButtons" style="justify-content: flex-end;">
+	                                    <div class="buttons">
+	                                        <a href="#lnk" onclick="fn_submit()" class="smButton"><img src="/front_img/download.png" alt="">엑셀 업로드</a>
+	                                    </div>
+	                                </div>
+	                            </div>
                             </div>
                         </div>
                         <div class="tableButtons inputsPd topBd" style="justify-content: flex-end;">
                             <div class="btnContainer organ">
-                                <a href="#lnk" class="normalButton white">초기화</a>
                                 <a href="#lnk" class="normalButton purple">등록</a>
                             </div>
                         </div>

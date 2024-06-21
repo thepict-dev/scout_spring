@@ -813,7 +813,11 @@ tbody tr.active td{
 .registrationWrap{
     display: flex;
     align-items: center;
+    width: 100%;
     /* column-gap: 10px; */
+}
+.doubleTable{
+    width: calc(100% - 21px);
 }
 .registrationWrap .buttonWrapper{
     display: flex;
