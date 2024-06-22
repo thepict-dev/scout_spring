@@ -147,5 +147,11 @@ public interface PictService {
 
 	public List<PictVO> organ_scout_list(PictVO pictVO) throws Exception;
 
+	public List<PictVO> troop_search(PictVO pictVO) throws Exception;
+
+	public List<PictVO> prev_leader_list(PictVO pictVO) throws Exception;
+
+	public List<PictVO> prev_scout_list(PictVO pictVO) throws Exception;
+
 
 }

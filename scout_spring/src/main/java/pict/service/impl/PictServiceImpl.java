@@ -407,6 +407,24 @@ public class PictServiceImpl implements PictService {
 		return pictMapper.organ_scout_list(pictVO);
 	}
 
+	@Override
+	public List<PictVO> troop_search(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.troop_search(pictVO);
+	}
+
+	@Override
+	public List<PictVO> prev_leader_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.prev_leader_list(pictVO);
+	}
+
+	@Override
+	public List<PictVO> prev_scout_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.prev_scout_list(pictVO);
+	}
+
 
 	
 	

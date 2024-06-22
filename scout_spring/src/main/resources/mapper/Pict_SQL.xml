@@ -779,5 +779,44 @@
 		and s.SCOUTPOSITIONCODE != ''
 	</select>
 	
+	
+	<!-- 대등록에서 단위대조회 -->
+	<select id="troop_search" resultType="pictVO">
+		select t.TROOPNO, a.ASSOCIATIONNAME, (select TROOPNAME from troop t1 where t1.TROOPNO = t.PARENT_TROOPNO limit 1) as PARENTTROOPNAME, t.DISPTROOPNO, t.TROOPNAME
+		from troop t
+		left outer join associationcode a on t.ASSOCIATIONCODE = a.ASSOCIATIONCODE
+		where 1=1
+		<if test="ASSOCIATIONCODE != null and ASSOCIATIONCODE != ''">
+			and a.ASSOCIATIONCODE = #{ASSOCIATIONCODE}
+		</if>
+		<if test="PARENTTROOPNO != null and PARENTTROOPNO != ''">
+			and t.PARENT_TROOPNO = #{PARENTTROOPNO}
+			</if>
+		<if test="TROOPCLSCODE1 != null and TROOPCLSCODE1 != ''">
+			and t.TROOPCLSCODE1 = #{TROOPCLSCODE1}
+		</if>
+		<if test="TROOPCLSCODE2 != null and TROOPCLSCODE2 != ''">
+			and t.TROOPCLSCODE2 = #{TROOPCLSCODE2}
+		</if>
+		<if test="TROOPNAME != null and TROOPNAME != ''">
+			and t.TROOPNAME LIKE CONCAT('%', #{TROOPNAME}, '%')
+		</if>
+		
+	</select>
+	
+	<select id="prev_leader_list" resultType="pictVO">
+		select l.ADMINY, m.KNAME, m.LIFEMEMBERY, LEADERPOSITIONCODE1, LEADERPOSITIONCODE2, l.SCOUTMAGACNT
+		from leader l
+		left outer join member m on l.MEMBERNO = m.MEMBERNO 
+		where l.TROOPNO = #{TROOPNO} and left(l.STARTDAY, 4) = #{search_year} and l.CONFIRMY ='Y'
+	</select>
+	
+	<select id="prev_scout_list" resultType="pictVO">
+		select m.KNAME, m.LIFEMEMBERY, s.SCOUTCLSCODE, s.SCOUTPOSITIONCODE, s.SCOUTMAGACNT
+		from scout s
+		left outer join member m on s.MEMBERNO = m.MEMBERNO 
+		where s.TROOPNO = #{TROOPNO} and left(STARTDAY, 4) = #{search_year} and CONFIRMY ='Y'
+	</select>
+	
 
 </mapper>

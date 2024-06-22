@@ -151,6 +151,12 @@ public interface PictMapper {
 
 	List<PictVO> organ_scout_list(PictVO pictVO) throws Exception;
 
+	List<PictVO> troop_search(PictVO pictVO) throws Exception;
+
+	List<PictVO> prev_leader_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> prev_scout_list(PictVO pictVO) throws Exception;
+
  
 	
 

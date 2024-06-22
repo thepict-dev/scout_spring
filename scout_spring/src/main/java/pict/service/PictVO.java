@@ -219,8 +219,16 @@ public class PictVO extends PictDefaultVO {
 	private String LEVELINFO;
 	private String SCOUTCNT;
 	private String OFFICE;
+	private String LIFEMEMBERY;
 	
 	
+	
+	public String getLIFEMEMBERY() {
+		return LIFEMEMBERY;
+	}
+	public void setLIFEMEMBERY(String lIFEMEMBERY) {
+		LIFEMEMBERY = lIFEMEMBERY;
+	}
 	public String getOFFICE() {
 		return OFFICE;
 	}

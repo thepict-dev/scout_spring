@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -227,11 +228,14 @@ public class PictController {
 			return "redirect:/pict_login";
 		}
 		
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String current_year = dateFormat.format(today);
 		
 		List<PictVO> association_list = pictService.association_list(pictVO);
 		if(request.getQueryString() == null) {
 			pictVO.setASSOCIATIONCODE("200");
-			pictVO.setSearch_year("2024");	//재영 이거 시스템 날짜로 바꿔야해
+			pictVO.setSearch_year(current_year);	//재영 이거 시스템 날짜로 바꿔야해
 		}
 		else {
 			if(pictVO == null) {
@@ -1333,6 +1337,10 @@ public class PictController {
 	@RequestMapping("/organ_info")
 	@ResponseBody
 	public HashMap<String, Object> organ_info(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String current_year = dateFormat.format(today);
+		
 		String troopno = param.get("troopno").toString();
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -1341,7 +1349,7 @@ public class PictController {
 		pictVO = pictService.organ_info(pictVO);
 		if(pictVO != null) {
 			map.put("rst", pictVO);
-			pictVO.setSearch_year("2024");	//재영 여기 연도
+			pictVO.setSearch_year(current_year);	//재영 여기 연도
 			List<PictVO> leader_list = pictService.organ_leader_list(pictVO);
 			List<PictVO> scout_list = pictService.organ_scout_list(pictVO);
 			map.put("leader_list", leader_list);
@@ -1515,7 +1523,63 @@ public class PictController {
 		model.addAttribute("pictVO", pictVO);
 		return "pict/front/register_scout";
 	}
-	//대원일괄등록
+	//대등록에서 단위대 검색 모달
+	@RequestMapping("/troop_search")
+	@ResponseBody
+	public HashMap<String, Object> troop_search(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String associationcode = param.get("associationcode").toString();
+		String parenttroopno = param.get("parenttroopno").toString();
+		String troopclscode1 = param.get("troopclscode1").toString();
+		String troopclscode2 = param.get("troopclscode2").toString();
+		String troopname = param.get("troopname").toString();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		pictVO.setASSOCIATIONCODE(associationcode);
+		pictVO.setPARENTTROOPNO(parenttroopno);
+		pictVO.setTROOPCLSCODE1(troopclscode1);
+		pictVO.setTROOPCLSCODE2(troopclscode2);
+		pictVO.setTROOPNAME(troopname);
+		
+		
+		List<PictVO> troop_list = pictService.troop_search(pictVO);
+		if(troop_list.size() > 0) {
+			map.put("list", troop_list);
+			return map;
+		}
+		else {
+			return map;
+		}
+	}
+	
+	//대등록에서 단위대 대원/리스트 작년꺼 가져와
+	@RequestMapping("/prev_troop_info")
+	@ResponseBody
+	public HashMap<String, Object> prev_troop_info(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String current_year = dateFormat.format(today);
+		int prev_year = Integer.parseInt(current_year) - 1;
+		pictVO.setSearch_year(prev_year+"");
+		
+		String troopno = param.get("troopno").toString();
+		HashMap<String, Object> map = new HashMap<String, Object>();		
+		pictVO.setTROOPNO(troopno);
+		
+		List<PictVO> prev_leader_list = pictService.prev_leader_list(pictVO);
+		if(prev_leader_list.size() > 0) {
+			map.put("leader_list", prev_leader_list);
+		}
+		
+		List<PictVO> prev_scout_list = pictService.prev_scout_list(pictVO);
+		if(prev_scout_list.size() > 0) {
+			map.put("scout_list", prev_scout_list);
+			
+		}
+		
+		return map;
+	}
+	
+	//대원일괄승인
 	@RequestMapping("/front/scout_whole_confirm")
 	public String scout_whole_confirm(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		//여기서 로그인한 지도자의 연맹, 단위대 골라줘야함 혹여나 로그인한 사람이 전종이면 셀렉트 해줄 필요 없고
