@@ -155,5 +155,14 @@ public interface PictService {
 
 	public List<?> former_list(PictVO pictVO) throws Exception;
 
+	public void former_save(PictVO pictVO) throws Exception;
+
+	public PictVO price_list(PictVO pictVO) throws Exception;
+
+	public void price_insert(PictVO pictVO) throws Exception;
+
+	public void price_update(PictVO pictVO) throws Exception;
+
+
 
 }

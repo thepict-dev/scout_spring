@@ -3,7 +3,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <form name="messageForm" id="messageForm" method="post" action="${retUrl}">
-
+	<input type="hidden" name="search_year" id="search_year" value="${search_year}"/>
+	<input type="hidden" name="ASSOCIATIONCODE" id="ASSOCIATIONCODE" value="${associationcode}"/>
 </form>
 
 <script type="text/javascript">

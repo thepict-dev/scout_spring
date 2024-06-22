@@ -335,8 +335,68 @@ public class PictController {
 		model.addAttribute("former_list", former_list);
 		model.addAttribute("pictVO", pictVO);
 		
+		List<PictVO> association_list = pictService.association_list(pictVO);
+		model.addAttribute("association_list", association_list);
+		
 		return "pict/front/former_list";
 	}
+	//전종클릭시 정보 리턴
+	@RequestMapping("/former_info")
+	@ResponseBody
+	public HashMap<String, Object> former_info(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String memberno = param.get("memberno").toString();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		pictVO.setMEMBERNO(memberno);
+		
+		List<?> former_list = pictService.former_list(pictVO);
+		if(former_list.size() > 0) {
+			map.put("list", former_list);
+			return map;
+		}
+		else {
+			return map;
+		}
+	}
+	//전종 저장
+	@RequestMapping("/former_save")
+	@ResponseBody
+	public String former_save(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		try {
+			String memberno = param.get("memberno").toString();
+			String kname = param.get("kname").toString();
+			String association = param.get("association").toString();
+			String sosock = param.get("sosock").toString();
+			String depart = param.get("depart").toString();
+			String ranked = param.get("ranked").toString();
+			String birthday = param.get("birthday").toString();
+			String mobile = param.get("mobile").toString();
+			String email = param.get("email").toString();
+			
+	
+			
+			pictVO.setMEMBERNO(memberno);
+			pictVO.setKNAME(kname);
+			pictVO.setAssociation(association);
+			pictVO.setSosock(sosock);
+			pictVO.setDepart(depart);
+			pictVO.setRanked(ranked);
+			pictVO.setBIRTHDAY(birthday);
+			pictVO.setMOBILE(mobile);
+			pictVO.setEMAIL(email);
+			
+			pictService.former_save(pictVO);
+			
+			return "Y";
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			return "N";
+		}
+	}
+	
+	
+	
 	//조직 수정 저장
 	@RequestMapping("/organ_update")
 	@ResponseBody
@@ -1611,10 +1671,50 @@ public class PictController {
 	}
 	
 	//연맹별납부액
+	@SuppressWarnings("null")
 	@RequestMapping("/front/association_price")
 	public String association_price(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		List<PictVO> association_list = pictService.association_list(pictVO);
+		model.addAttribute("association_list", association_list);
+		
+		System.out.println(pictVO.getSearch_year() + "연도@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		System.out.println(pictVO.getASSOCIATIONCODE() + "연맹@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		PictVO vo = new PictVO();
+		vo = pictService.price_list(pictVO);
+		if(vo == null) {
+			model.addAttribute("type", "insert");	
+		}
+		else {
+			model.addAttribute("type", "update");	
+		}
+		model.addAttribute("vo", vo);
+		model.addAttribute("pictVO", pictVO);
 		
 		return "pict/front/association_price";
+	}
+	//연맹별납부액 저장
+	@RequestMapping("/front/association_price_save")
+	public String association_price_save(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		String associationcode = pictVO.getASSOCIATIONCODE();
+		String search_year = pictVO.getSearch_year();
+		
+		System.out.println(associationcode + "  @@@@@@@@@@@@@@@  " + search_year);
+		if(pictVO.getType().equals("insert")) {
+			System.out.println("인서트");
+			pictService.price_insert(pictVO);
+		}
+		else {
+			System.out.println("업데이트");
+			pictService.price_update(pictVO);
+		}
+		
+		model.addAttribute("search_year", search_year);
+		model.addAttribute("associationcode", associationcode);
+		model.addAttribute("message", "정상적으로 저장되었습니다.");
+		model.addAttribute("retType", ":submit");
+		
+		model.addAttribute("retUrl", "/front/association_price");
+		return "pict/main/message";
 	}
 	
 	

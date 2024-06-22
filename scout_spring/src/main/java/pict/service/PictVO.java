@@ -223,10 +223,229 @@ public class PictVO extends PictDefaultVO {
 	
 	private String sosock;
 	private String depart;
-	private String rank;
+	private String ranked;
 	private String association;
+	private String type;
+	private String clscode; 
+	private String price;
+	private String cls01;
+	private String cls02;
+	private String cls03;
+	private String cls04;
+	private String cls05;
+	private String cls06;
+	private String cls99;
+	private String cls01new;
+	private String cls02new;
+	private String cls03new;
+	private String cls04new;
+	private String cls05new;
+	private String cls06new;
+	private String cls99new;
+	private String cls01bigo;
+	private String cls02bigo;
+	private String cls03bigo;
+	private String cls04bigo;
+	private String cls05bigo;
+	private String cls06bigo;
+	private String cls99bigo;
+	private String cls01newbigo;
+	private String cls02newbigo;
+	private String cls03newbigo;
+	private String cls04newbigo;
+	private String cls05newbigo;
+	private String cls06newbigo;
+	private String cls99newbigo;
 	
 	
+
+	public String getCls01new() {
+		return cls01new;
+	}
+	public void setCls01new(String cls01new) {
+		this.cls01new = cls01new;
+	}
+	public String getCls02new() {
+		return cls02new;
+	}
+	public void setCls02new(String cls02new) {
+		this.cls02new = cls02new;
+	}
+	public String getCls03new() {
+		return cls03new;
+	}
+	public void setCls03new(String cls03new) {
+		this.cls03new = cls03new;
+	}
+	public String getCls04new() {
+		return cls04new;
+	}
+	public void setCls04new(String cls04new) {
+		this.cls04new = cls04new;
+	}
+	public String getCls05new() {
+		return cls05new;
+	}
+	public void setCls05new(String cls05new) {
+		this.cls05new = cls05new;
+	}
+	public String getCls06new() {
+		return cls06new;
+	}
+	public void setCls06new(String cls06new) {
+		this.cls06new = cls06new;
+	}
+	public String getCls99new() {
+		return cls99new;
+	}
+	public void setCls99new(String cls99new) {
+		this.cls99new = cls99new;
+	}
+	public String getCls01bigo() {
+		return cls01bigo;
+	}
+	public void setCls01bigo(String cls01bigo) {
+		this.cls01bigo = cls01bigo;
+	}
+	public String getCls02bigo() {
+		return cls02bigo;
+	}
+	public void setCls02bigo(String cls02bigo) {
+		this.cls02bigo = cls02bigo;
+	}
+	public String getCls03bigo() {
+		return cls03bigo;
+	}
+	public void setCls03bigo(String cls03bigo) {
+		this.cls03bigo = cls03bigo;
+	}
+	public String getCls04bigo() {
+		return cls04bigo;
+	}
+	public void setCls04bigo(String cls04bigo) {
+		this.cls04bigo = cls04bigo;
+	}
+	public String getCls05bigo() {
+		return cls05bigo;
+	}
+	public void setCls05bigo(String cls05bigo) {
+		this.cls05bigo = cls05bigo;
+	}
+	public String getCls06bigo() {
+		return cls06bigo;
+	}
+	public void setCls06bigo(String cls06bigo) {
+		this.cls06bigo = cls06bigo;
+	}
+	public String getCls99bigo() {
+		return cls99bigo;
+	}
+	public void setCls99bigo(String cls99bigo) {
+		this.cls99bigo = cls99bigo;
+	}
+	public String getCls01newbigo() {
+		return cls01newbigo;
+	}
+	public void setCls01newbigo(String cls01newbigo) {
+		this.cls01newbigo = cls01newbigo;
+	}
+	public String getCls02newbigo() {
+		return cls02newbigo;
+	}
+	public void setCls02newbigo(String cls02newbigo) {
+		this.cls02newbigo = cls02newbigo;
+	}
+	public String getCls03newbigo() {
+		return cls03newbigo;
+	}
+	public void setCls03newbigo(String cls03newbigo) {
+		this.cls03newbigo = cls03newbigo;
+	}
+	public String getCls04newbigo() {
+		return cls04newbigo;
+	}
+	public void setCls04newbigo(String cls04newbigo) {
+		this.cls04newbigo = cls04newbigo;
+	}
+	public String getCls05newbigo() {
+		return cls05newbigo;
+	}
+	public void setCls05newbigo(String cls05newbigo) {
+		this.cls05newbigo = cls05newbigo;
+	}
+	public String getCls06newbigo() {
+		return cls06newbigo;
+	}
+	public void setCls06newbigo(String cls06newbigo) {
+		this.cls06newbigo = cls06newbigo;
+	}
+	public String getCls99newbigo() {
+		return cls99newbigo;
+	}
+	public void setCls99newbigo(String cls99newbigo) {
+		this.cls99newbigo = cls99newbigo;
+	}
+	public String getCls01() {
+		return cls01;
+	}
+	public void setCls01(String cls01) {
+		this.cls01 = cls01;
+	}
+	public String getCls02() {
+		return cls02;
+	}
+	public void setCls02(String cls02) {
+		this.cls02 = cls02;
+	}
+	public String getCls03() {
+		return cls03;
+	}
+	public void setCls03(String cls03) {
+		this.cls03 = cls03;
+	}
+	public String getCls04() {
+		return cls04;
+	}
+	public void setCls04(String cls04) {
+		this.cls04 = cls04;
+	}
+	public String getCls05() {
+		return cls05;
+	}
+	public void setCls05(String cls05) {
+		this.cls05 = cls05;
+	}
+	public String getCls06() {
+		return cls06;
+	}
+	public void setCls06(String cls06) {
+		this.cls06 = cls06;
+	}
+	public String getCls99() {
+		return cls99;
+	}
+	public void setCls99(String cls99) {
+		this.cls99 = cls99;
+	}
+	
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	public String getClscode() {
+		return clscode;
+	}
+	public void setClscode(String clscode) {
+		this.clscode = clscode;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String getSosock() {
 		return sosock;
 	}
@@ -239,11 +458,11 @@ public class PictVO extends PictDefaultVO {
 	public void setDepart(String depart) {
 		this.depart = depart;
 	}
-	public String getRank() {
-		return rank;
+	public String getRanked() {
+		return ranked;
 	}
-	public void setRank(String rank) {
-		this.rank = rank;
+	public void setRanked(String ranked) {
+		this.ranked = ranked;
 	}
 	public String getAssociation() {
 		return association;

@@ -431,6 +431,30 @@ public class PictServiceImpl implements PictService {
 		return pictMapper.former_list(pictVO);
 	}
 
+	@Override
+	public void former_save(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.former_save(pictVO);
+	}
+
+	@Override
+	public PictVO price_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.price_list(pictVO);
+	}
+
+	@Override
+	public void price_insert(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.price_insert(pictVO);
+	}
+
+	@Override
+	public void price_update(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.price_update(pictVO);
+	}
+
 
 	
 	

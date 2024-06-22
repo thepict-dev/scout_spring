@@ -159,6 +159,14 @@ public interface PictMapper {
 
 	List<?> former_list(PictVO pictVO) throws Exception;
 
+	void former_save(PictVO pictVO) throws Exception;
+
+	PictVO price_list(PictVO pictVO) throws Exception;
+
+	void price_insert(PictVO pictVO) throws Exception;
+
+	void price_update(PictVO pictVO) throws Exception;
+
  
 	
 

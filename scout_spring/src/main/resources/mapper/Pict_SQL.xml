@@ -821,7 +821,7 @@
 	</select>
 	
 	<select id="former_list" resultType="pictVO">
-		select m.MEMBERNO, m.KNAME, a.ASSOCIATIONNAME, m.association, m.sosock, m.depart, m.rank, m.BIRTHDAY, m.MOBILE, m.EMAIL, m.EMPLOYEEY, m.PICIMG
+		select m.MEMBERNO, m.KNAME, a.ASSOCIATIONNAME, m.association, m.sosock, m.depart, m.ranked, m.BIRTHDAY, m.MOBILE, m.EMAIL, m.EMPLOYEEY, m.PICIMG
 		from member m
 		left outer join associationcode a on a.ASSOCIATIONCODE = m.association
 		where 1=1
@@ -834,5 +834,67 @@
 		order by m.EMPLOYEEY desc
 	</select>
 	
-
+	
+	<update id="former_save" parameterType="pictVO">
+		update member set
+		KNAME= #{KNAME},
+		association= #{association}, 
+		sosock= #{sosock}, 
+		depart= #{depart}, 
+		ranked= #{ranked}, 
+		BIRTHDAY= #{BIRTHDAY},
+		MOBILE= #{MOBILE},
+		EMAIL= #{EMAIL} 
+		where MEMBERNO = #{MEMBERNO}
+	</update>
+	
+	<select id="price_list" resultType="pictVO">
+		select p.* , a.ASSOCIATIONNAME
+		from association_price p
+		left outer join associationcode a on p.ASSOCIATIONCODE = a.ASSOCIATIONCODE
+		where p.ASSOCIATIONCODE = #{ASSOCIATIONCODE}
+		and p.YEAR = #{search_year}
+		
+	</select>
+	
+	
+	<update id="price_update" parameterType="pictVO">
+		update association_price
+		set 
+		cls01 = #{cls01},
+		cls02 = #{cls02},
+		cls03 = #{cls03},
+		cls04 = #{cls04},
+		cls05 = #{cls05},
+		cls06 = #{cls06},
+		cls99 = #{cls99},
+		cls01new = #{cls01new},
+		cls02new = #{cls02new},
+		cls03new = #{cls03new},
+		cls04new = #{cls04new},
+		cls05new = #{cls05new},
+		cls06new = #{cls06new},
+		cls99new = #{cls99new},
+		cls01bigo = #{cls01bigo},
+		cls02bigo = #{cls02bigo},
+		cls03bigo = #{cls03bigo},
+		cls04bigo = #{cls04bigo},
+		cls05bigo = #{cls05bigo},
+		cls06bigo = #{cls06bigo},
+		cls99bigo = #{cls99bigo},
+		cls01newbigo = #{cls01newbigo},
+		cls02newbigo = #{cls02newbigo},
+		cls03newbigo = #{cls03newbigo},
+		cls04newbigo = #{cls04newbigo},
+		cls05newbigo = #{cls05newbigo},
+		cls06newbigo = #{cls06newbigo},
+		cls99newbigo = #{cls99newbigo}
+		where ASSOCIATIONCODE = #{ASSOCIATIONCODE} and YEAR = #{search_year}
+	</update>
+	
+	<insert id="price_insert" parameterType="pictVO">
+		INSERT INTO association_price(ASSOCIATIONCODE, YEAR, cls01,cls02,cls03,cls04,cls05,cls06,cls99,cls01new,cls02new,cls03new,cls04new,cls05new,cls06new,cls99new,cls01bigo,cls02bigo,cls03bigo,cls04bigo,cls05bigo,cls06bigo,cls99bigo,cls01newbigo,cls02newbigo,cls03newbigo,cls04newbigo,cls05newbigo,cls06newbigo,cls99newbigo) 
+		VALUES (#{ASSOCIATIONCODE}, #{search_year}, #{cls01},#{cls02},#{cls03},#{cls04},#{cls05},#{cls06},#{cls99},#{cls01new},#{cls02new},#{cls03new},#{cls04new},#{cls05new},#{cls06new},#{cls99new},#{cls01bigo},#{cls02bigo},#{cls03bigo},#{cls04bigo},#{cls05bigo},#{cls06bigo},#{cls99bigo},#{cls01newbigo},#{cls02newbigo},#{cls03newbigo},#{cls04newbigo},#{cls05newbigo},#{cls06newbigo},#{cls99newbigo} );
+		
+	</insert>
 </mapper>
