@@ -22,7 +22,7 @@
                     <li><a href="/front/units">단위대 통합 관리</a></li>
                     <li><a href="/front/signup_org">신규 조직 등록</a></li>
                     <li><a href="/front/signup">신규 회원 등록</a></li>
-                    <li><a href="/front/formerleader_list">전종리스트</a></li>
+                    <li><a href="/front/former_list">전종리스트</a></li>
                 </ul>
             </li>
             <li>

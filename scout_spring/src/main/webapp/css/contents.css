@@ -21,6 +21,14 @@
     height: calc(100% - 101px);
 
 }
+.formContainer.scroller{
+	height: 100%;
+	border-top: 1px solid var(--grey-100);
+    overflow-y: scroll;
+}
+.formContainer.scroller::-webkit-scrollbar{
+    display: none;
+}
 .left{
     width: 620px;
     /* width: 33.3%; */
@@ -287,6 +295,9 @@
     min-width: 176px;
     height: 220px;
     transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    border-radius: 4px;
+    border: 1px solid var(--grey-50);
+	overflow: hidden;
 }
 .mainProfile:hover{
 	opacity: 0.7;
@@ -298,9 +309,12 @@
 	display: block;
 	width: 100%;
 	height: 100%;
-    border-radius: 4px;
-    border: 1px solid var(--grey-50);
 	overflow: hidden;
+}
+.mainProfile > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .mainProfile label img{
     width: 100%;
@@ -784,6 +798,7 @@ tbody tr.active td{
 }
 .mainProfile.sign img{
 	width: 55px;
+	height: 55px;
 }
 .mainProfile.sign p{
 	font-size: 12px;
