@@ -328,7 +328,12 @@ public class PictController {
 		model.addAttribute("retUrl", "/front/signup_org");
 		return "pict/main/message";	
 	}
-	
+	//전종리스트
+	@RequestMapping("/front/former_list")
+	public String former_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/front/former_list";
+	}
 	//조직 수정 저장
 	@RequestMapping("/organ_update")
 	@ResponseBody
@@ -1665,5 +1670,11 @@ public class PictController {
 		}
 		return sb.toString();
 	}
-
+	
+	//연맹별납부액
+	@RequestMapping("/front/association_price")
+	public String association_price(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/front/association_price";
+	}
 }
