@@ -123,35 +123,8 @@
 	                                                <th>연맹지구독여부</th>
 	                                            </tr>
 	                                        </thead>
-	                                        <tbody>
-	                                            <tr>
-	                                                <td style="position: unset; vertical-align: middle;">
-	                                                    <input type="checkbox" id="selection_scout"><label for="selection_scout" class="lableOnly"></label>
-	                                                </td>
-	                                                <td style="left:unset; vertical-align: middle;">홍길동</td>
-	                                                <td>
-							                            <select name="" id="" class="tableSelect" style="width: 100%; height: 100%;">
-							                                <option value="Y">Y</option>
-							                                <option value="N">N</option>
-							                            </select>
-						                            </td>
-	                                                <td style="left:unset; vertical-align: middle;">평생회원</td>
-	                                                <td>
-							                            <select name="SCOUTCLSCODE" id="SCOUTCLSCODE" class="tableSelect" style="width: 100%; height: 100%;">
-							                                <option value="">-----</option>
-						                                	<option value="01">비버</option>
-						                                	<option value="02">컵</option>
-						                                	<option value="03">스카우트</option>
-						                                	<option value="04">벤처</option>
-						                                	<option value="05">로버</option>
-						                                	<option value="06">기타</option>
-						                                	<option value="99">복합</option>
-							                            </select>
-	                                                </td>
-	                                                <td style="vertical-align: middle;">
-	                                                	<input type="checkbox" id=""><label for="" class="lableOnly"></label>
-	                                                </td>
-	                                            </tr>
+	                                        <tbody id="search_prev_scout_list">
+	                                            
 	                                        </tbody>
 	                                    </table>
 	                                </div>
@@ -163,8 +136,8 @@
 	                            </div>
                             </div>
                             <div class="buttonWrapper">
-                                <a href="#lnk"><img src="/front_img/right-arr.png" alt=""></a>
-                                <a href="#lnk"><img src="/front_img/left-arr.png" alt=""></a>
+                                <a href="#lnk"><img src="/front_img/right-arr.png" alt="" onclick="list_act()"></a>
+                                <a href="#lnk"><img src="/front_img/left-arr.png" alt="" onclick="list_react()"></a>
                             </div>
                             <!-- 우측 -->
                             <div class="doubleTable">
@@ -192,18 +165,8 @@
 	                                                <th>연맹지구독여부</th>
 	                                            </tr>
 	                                        </thead>
-	                                        <tbody>
-	                                            <tr>
-	                                                <td style="position: unset;">
-	                                                    <input type="checkbox" id="selection"><label for="selection" class="lableOnly"></label>
-	                                                </td>
-	                                                <td style="position: unset;">Cell01</td>
-	                                                <td>Cell02</td>
-	                                                <td>Cell03</td>
-	                                                <td>Cell04</td>
-	                                                <td>Cell05</td>
-	                                                <td>Cell06</td>
-	                                            </tr>
+	                                        <tbody id="leader_target_list">
+	                                            
 	                                        </tbody>
 	                                    </table>
 	                                </div>
@@ -234,17 +197,8 @@
 	                                                <th>연맹지구독여부</th>
 	                                            </tr>
 	                                        </thead>
-	                                        <tbody>
-	                                            <tr>
-	                                                <td style="position: unset;">
-	                                                    <input type="checkbox" id="selection"><label for="selection" class="lableOnly"></label>
-	                                                </td>
-	                                                <td style="position: unset;">Cell02</td>
-	                                                <td>Cell03</td>
-	                                                <td>Cell04</td>
-	                                                <td>Cell05</td>
-	                                                <td>Cell06</td>
-	                                            </tr>
+	                                        <tbody id="scout_target_list">
+	                                            
 	                                        </tbody>
 	                                    </table>
 	                                </div>
@@ -258,7 +212,7 @@
                         </div>
                         <div class="tableButtons inputsPd topBd" style="justify-content: flex-end;">
                             <div class="btnContainer organ">
-                                <a href="#regiConfirmPopup" class="normalButton purple regiButton">등록</a>
+                                <a href="#regiConfirmPopup" class="normalButton purple regiButton" onclick="reflect()">등록</a>
                             </div>
                         </div>
                     </form>
@@ -313,38 +267,38 @@
         <div class="modalInner lg">
             <button type="button"><img src="/front_img/close.png" alt=""></button>
             <div class="modalTit">
-                <p>대원 리스트 확인</p>
+                <p>대등록 리스트 확인</p>
             </div>
             <form action="">
                 <div class="regiConTop">
-                    <p>소속연맹 / 지구 / 단위대</p>
+                    <p id="final_sosok"></p>
                 </div>
                 <div class="tableContainer">
-                    <h2 class="subTitles">대원 리스트</h2>
+                    <h2 class="subTitles">대등록 리스트</h2>
                     <div class="tableWrapper" style="height: 500px;">
                         <table style="min-width: unset;">
                             <colgroup>
-                                <col width="16%" />
-                                <col width="21%" />
-                                <col width="21%" />
-                                <col width="21%" />
-                                <col width="21%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="10%" />
                             </colgroup>
-                            <tbody>
-                                <tr>
-                                    <td style="position: unset;">지도자</td>
-                                    <td>평생회원</td>
-                                    <td>20,000</td>
-                                    <td>한지현</td>
-                                    <td>연맹지구독여부</td>
-                                </tr>
-                                <tr>
-                                    <td style="position: unset;">대원</td>
-                                    <td>평생회원</td>
-                                    <td>20,000</td>
-                                    <td>한지현</td>
-                                    <td>연맹지구독여부</td>
-                                </tr>
+                            <thead>
+                            	<tr>
+                            		<th>지도자/대원</th>
+                            		<th>평생회원</th>
+                            		<th>직책/스카우트</th>
+                            		<th>직책</th>
+                            		<th>등록비</th>
+                            		<th>이름</th>
+                            		<th>연맹지구독</th>
+                            	</tr>
+                            </thead>
+                            <tbody id="final_list">
+                                
                             </tbody>
                         </table>
                     </div>
@@ -360,7 +314,8 @@
             </form>
         </div>
     </div>
-	<input type="hidden" id="check_troopno" name="check_troopno" value="check_troopno">
+	<textarea id="hiddenTextarea" style="display:none;"></textarea>
+	<input type="hidden" id="troop_name" >
 	</body>
 	<script>
 
@@ -486,8 +441,11 @@
 				, async : true
 				, success : function(data, status, xhr) {
 					if(data){
+						
+						//지도자 테이블
 						var leader_html = ""
 						for(var i=0; i<data.leader_list.length; i++){
+							$('#troop_name').val(data.leader_list[i].troopname)
 							var adminy = ''
 							var adminn = ''
 							if(data.leader_list[i].adminy == 'Y') adminy = 'selected'
@@ -543,24 +501,24 @@
 							
 							leader_html +='<tr>'+
 							'<td style="position: unset; vertical-align: middle;">' +
-                        	'<input type="checkbox" id="selection_leader"><label for="selection_leader" class="lableOnly"></label></td>'+
+                        	'<input type="checkbox" name="leader_check" id="selection_leader_'+data.leader_list[i].memberno+'" data-id="'+data.leader_list[i].memberno+'")"><label for="selection_leader_'+data.leader_list[i].memberno+'" class="lableOnly"></label></td>'+
                         	'<td style="position: unset; vertical-align: middle;">'+    
-                            '<select name="ADMINY" id="ADMINY" class="tableSelect" style="width: 100%; height: 100%;">'+
-                            '<option value="Y" '+ adminy  +'>Y</option>'+
+                            '<select name="leader_adminy" id="leader_adminy_'+data.leader_list[i].memberno+'" class="tableSelect" style="width: 100%; height: 100%;">'+
+                            '<option value="Y" '+ adminy +'>Y</option>'+
                             '<option value="N" '+ adminn +'>N</option>'+
                             '</select>'+
                         	'</td>'+
-                        	'<td style="vertical-align: middle;">'+data.leader_list[i].kname+'</td>'+
-                        	'<td style="left:unset; vertical-align: middle;">'+life+'</td>'+
+                        	'<td style="vertical-align: middle;" id="leader_name_'+data.leader_list[i].memberno+'">'+data.leader_list[i].kname+'</td>'+
+                        	'<td style="left:unset; vertical-align: middle;" id="leader_life_'+data.leader_list[i].memberno+'">'+life+'</td>'+
                         	'<td>'+
-                            '<select name="" id="" class="tableSelect" style="width: 100%; height: 100%;">'+
+                            '<select name="" id="leaderpositioncode1_'+data.leader_list[i].memberno+'" class="tableSelect" style="width: 100%; height: 100%;">'+
                             '<option value="01" '+leaderpositioncode1_1+'>협조</option>'+
                             '<option value="02" '+leaderpositioncode1_2+'>훈육</option>'+
                             '<option value="03" '+leaderpositioncode1_3+'>전종</option>'+
                             '</select>'+
                         	'</td>'+
                         	'<td>'+
-                            '<select name="" id="" class="tableSelect" style="width: 100%; height: 100%;">'+
+                            '<select name="" id="leaderpositioncode2_'+data.leader_list[i].memberno+'" class="tableSelect" style="width: 100%; height: 100%;">'+
                             '<option value="01" '+leaderpositioncode2_1+'>육성단체대표</option>'+
                             '<option value="02" '+leaderpositioncode2_1+'>육성단체부대표</option>'+
                             '<option value="09" '+leaderpositioncode2_9+'>단위원장</option>'+
@@ -582,12 +540,103 @@
                             '</select>'+
                         	'</td>'+
                         	'<td style="vertical-align: middle;">'+
-                        	'<input type="checkbox" id="" '+scoutmagacnt+'><label for="" class="lableOnly"></label>'+
+                        	'<input type="checkbox" id="leader_magacnt_'+data.leader_list[i].memberno+'" '+scoutmagacnt+' value="Y"><label for="leader_magacnt_'+data.leader_list[i].memberno+'" class="lableOnly"></label>'+
                         	'</td>'+
                     		'</tr>'
 						}
-						
 						$('#search_prev_leader_list').append(leader_html)
+						
+						//대원 테이블
+						var scout_html = ""
+						for(var i=0; i<data.scout_list.length; i++){
+							$('#troop_name').val(data.scout_list[i].troopname)
+							var life_scout =''
+							if(data.scout_list[i].lifemembery == 'Y') life_scout ='평생회원'
+							
+							var scoutclscode1 = '';
+							var scoutclscode2 = '';
+							var scoutclscode3 = '';
+							var scoutclscode4 = '';
+							var scoutclscode5 = '';
+							var scoutclscode6 = '';
+							var scoutclscode7 = '';
+							if(data.scout_list[i].scoutclscode == '01') scoutclscode1 ='selected'
+							if(data.scout_list[i].scoutclscode == '02') scoutclscode2 ='selected'
+							if(data.scout_list[i].scoutclscode == '03') scoutclscode3 ='selected'
+							if(data.scout_list[i].scoutclscode == '04') scoutclscode4 ='selected'
+							if(data.scout_list[i].scoutclscode == '05') scoutclscode5 ='selected'
+							if(data.scout_list[i].scoutclscode == '06') scoutclscode6 ='selected'
+							if(data.scout_list[i].scoutclscode == '99') scoutclscode7 ='selected'
+							
+							var scoutpositioncode2_23 = '';
+							var scoutpositioncode2_21 = '';
+							var scoutpositioncode2_22 = '';
+							var scoutpositioncode2_31 = '';
+							var scoutpositioncode2_32 = '';
+							var scoutpositioncode2_33 = '';
+							var scoutpositioncode2_34 = '';
+							var scoutpositioncode2_41 = '';
+							var scoutpositioncode2_42 = '';
+							var scoutpositioncode2_43 = '';
+							var scoutpositioncode2_44 = '';
+							
+							if(data.scout_list[i].scoutpositioncode == '23') scoutpositioncode2_23 ='selected'
+							if(data.scout_list[i].scoutpositioncode == '21') scoutpositioncode2_21 ='selected'
+							if(data.scout_list[i].scoutpositioncode == '22') scoutpositioncode2_22 ='selected'
+							if(data.scout_list[i].scoutpositioncode == '31') scoutpositioncode2_31 ='selected'
+							if(data.scout_list[i].scoutpositioncode == '32') scoutpositioncode2_32 ='selected'
+							if(data.scout_list[i].scoutpositioncode == '33') scoutpositioncode2_33 ='selected'
+							if(data.scout_list[i].scoutpositioncode == '34') scoutpositioncode2_34 ='selected'
+							if(data.scout_list[i].scoutpositioncode == '41') scoutpositioncode2_41 ='selected'
+							if(data.scout_list[i].scoutpositioncode == '42') scoutpositioncode2_42 ='selected'
+							if(data.scout_list[i].scoutpositioncode == '43') scoutpositioncode2_43 ='selected'
+							if(data.scout_list[i].scoutpositioncode == '44') scoutpositioncode2_44 ='selected'
+							
+							var scoutmagacnt_scout = ''
+								if(data.scout_list[i].scoutmagacnt != '0') scoutmagacnt_scout ='checked';
+							
+							scout_html +='<tr>'+
+                            '<td style="position: unset; vertical-align: middle;">'+
+                            '<input type="checkbox" name="scout_check" id="selection_scout_'+data.scout_list[i].memberno+'" data-id="'+data.scout_list[i].memberno+'"><label for="selection_scout_'+data.scout_list[i].memberno+'" class="lableOnly"></label>'+
+                            '</td>'+
+                            '<td style="left:unset; vertical-align: middle;" id="scout_name_'+data.scout_list[i].memberno+'">'+data.scout_list[i].kname+'</td>'+
+                            '<td style="left:unset; vertical-align: middle;" id="scout_life_'+data.scout_list[i].memberno+'">'+life_scout+'</td>'+
+                            '<td>'+
+							'<select name="scoutclscode" id="scoutclscode_'+data.scout_list[i].memberno+'" class="tableSelect" style="width: 100%; height: 100%;">'+
+							'<option value="">-----</option>'+
+							'<option value="01" '+scoutclscode1+'>비버</option>'+
+							'<option value="02" '+scoutclscode2+'>컵</option>'+
+							'<option value="03" '+scoutclscode3+'>스카우트</option>'+
+							'<option value="04" '+scoutclscode4+'>벤처</option>'+
+							'<option value="05" '+scoutclscode5+'>로버</option>'+
+							'<option value="06" '+scoutclscode6+'>기타</option>'+
+							'<option value="99" '+scoutclscode7+'>복합</option>'+
+							'</select>'+
+							'</td>'+
+							'<td>'+
+							'<select name="scoutpositioncode" id="scoutpositioncode_'+data.scout_list[i].memberno+'" class="tableSelect" style="width: 100%; height: 100%;">'+
+							'<option value="">-----</option>'+
+							'<option value="23" '+scoutpositioncode2_23+'>단/대보장</option>'+
+							'<option value="21" '+scoutpositioncode2_21+'>보장</option>'+
+							'<option value="22" '+scoutpositioncode2_22+'>부보장</option>'+
+							'<option value="31" '+scoutpositioncode2_31+'>도반장</option>'+
+							'<option value="32" '+scoutpositioncode2_32+'>부도반장</option>'+
+							'<option value="33" '+scoutpositioncode2_33+'>반장</option>'+
+							'<option value="34" '+scoutpositioncode2_34+'>부반장</option>'+
+							'<option value="41" '+scoutpositioncode2_41+'>영조장</option>'+
+							'<option value="42" '+scoutpositioncode2_42+'>부영조장</option>'+
+							'<option value="43" '+scoutpositioncode2_43+'>조장</option>'+
+							'<option value="44" '+scoutpositioncode2_44+'>부조장</option>'+
+							'</select>'+
+							'</td>'+
+							'<td style="vertical-align: middle;">'+
+							'<input type="checkbox" id="scout_magacnt_'+data.scout_list[i].memberno+'" '+scoutmagacnt_scout+' value="Y"><label for="scout_magacnt_'+data.scout_list[i].memberno+'" class="lableOnly"></label>'+
+							'</td>'+
+                        	'</tr>'
+						}
+						
+						$('#search_prev_scout_list').append(scout_html)
+						
 						$('.contentsContainer select').niceSelect('update')
 						$("#regiSearchPopup").removeClass("active");
 					}
@@ -598,7 +647,159 @@
 				}
 			});
 		}
-
+		function list_react(){
+			var data = JSON.parse($('#hiddenTextarea').val());
+			$("input[name='leader_remove_chk']:checked").each(function (e){
+				var chk_id =  $(this).data("id");
+				$('#cur_leader_'+chk_id).remove()
+				data = data.filter(function (item){
+					return item.memberno !== chk_id
+				})
+				$('#hiddenTextarea').val(JSON.stringify(data))
+			})
+			$("input[name='scout_remove_chk']:checked").each(function (e){
+				var chk_id =  $(this).data("id");
+				$('#cur_scout_'+chk_id).remove()
+				data = data.filter(function (item){
+					return item.memberno !== chk_id
+				})
+				$('#hiddenTextarea').val(JSON.stringify(data))
+			})
+		}
+		
+		function list_act(){
+			$('#leader_target_list').children().remove();
+			$('#scout_target_list').children().remove();
+			var check_list = [];
+			$("input[name='leader_check']:checked").each(function (e){
+				var memberno = $(this).data("id");
+				var leader_adminy = $('#leader_adminy_'+memberno).val()
+				var leader_name = $('#leader_name_'+memberno).text()
+				var leader_life = $('#leader_life_'+memberno).text()
+				var leaderpositioncode1 = $('#leaderpositioncode1_'+memberno).val()
+				var leaderpositioncode2 = $('#leaderpositioncode2_'+memberno).val()
+				var leaderpositioncodename1 = $('#leaderpositioncode1_'+memberno + ' option:checked').text()
+				var leaderpositioncodename2 = $('#leaderpositioncode2_'+memberno + ' option:checked').text()
+				var leader_magacnt = $('#leader_magacnt_'+memberno).is(':checked') ? 'Y' : "N"
+				
+				
+				var json ={}
+				json.memberno = memberno
+				json.leader_adminy = leader_adminy
+				json.leader_name = leader_name
+				json.leader_life = leader_life
+				json.leaderpositioncode1 = leaderpositioncode1
+				json.leaderpositioncode2 = leaderpositioncode2
+				json.leaderpositioncodename1 = leaderpositioncodename1
+				json.leaderpositioncodename2 = leaderpositioncodename2
+				json.leader_magacnt = leader_magacnt
+				json.type = "leader"
+				check_list.push(json);
+			});
+			debugger
+			$("input[name='scout_check']:checked").each(function (e){
+				var memberno = $(this).data("id");
+				var scout_name = $('#scout_name_'+memberno).text()
+				var scout_life = $('#scout_life_'+memberno).text()
+				var scoutclscode = $('#scoutclscode_'+memberno).val()
+				var scoutpositioncode = $('#scoutpositioncode_'+memberno).val()
+				var scoutclscodename = $('#scoutclscode_'+memberno + ' option:checked').text()
+				var scoutpositioncodename = $('#scoutpositioncode_'+memberno + ' option:checked').text()
+				var scout_magacnt = $('#scout_magacnt_'+memberno).is(':checked') ? 'Y' : "N"
+				
+				
+				var json ={}
+				json.memberno = memberno
+				json.scout_name = scout_name
+				json.scout_life = scout_life
+				json.scoutclscode = scoutclscode
+				json.scoutpositioncode = scoutpositioncode
+				json.scoutclscodename = scoutclscodename
+				json.scoutpositioncodename = scoutpositioncodename
+				json.scout_magacnt = scout_magacnt
+				json.type = "scout"
+				check_list.push(json);
+			});
+			
+			var leader_html = ""
+			var scout_html = ""
+			for(var i=0; i<check_list.length; i++){
+				if(check_list[i].type == 'leader'){
+					leader_html +=
+						'<tr id="cur_leader_'+check_list[i].memberno+'">'+
+                    	'<td style="position: unset;">'+
+                        '<input type="checkbox" name="leader_remove_chk" id="selection_act_leader_'+check_list[i].memberno+'" data-id="'+check_list[i].memberno+'"><label for="selection_act_leader_'+check_list[i].memberno+'" class="lableOnly"></label>'+
+                    	'</td>'+
+                    	'<td style="position: unset;">'+check_list[i].leader_adminy+'</td>'+
+                    	'<td>'+check_list[i].leader_name+'</td>'+
+                    	'<td>'+check_list[i].leader_life+'</td>'+
+                    	'<td>'+check_list[i].leaderpositioncodename1+'</td>'+
+                    	'<td>'+check_list[i].leaderpositioncodename2+'</td>'+
+                    	'<td>'+check_list[i].leader_magacnt+'</td>'+
+                		'</tr>'
+				}
+				else{
+					scout_html +=
+						'<tr id="cur_scout_'+check_list[i].memberno+'">'+
+                    	'<td style="position: unset;">'+
+                        '<input type="checkbox" name="scout_remove_chk" id="selection_act_scout_'+check_list[i].memberno+'" data-id="'+check_list[i].memberno+'"><label for="selection_act_scout_'+check_list[i].memberno+'" class="lableOnly"></label>'+
+                    	'</td>'+
+                    	'<td style="position: unset;">'+check_list[i].scout_name+'</td>'+
+                    	'<td>'+check_list[i].scout_life+'</td>'+
+                    	'<td>'+check_list[i].scoutclscodename+'</td>'+
+                    	'<td>'+check_list[i].scoutpositioncodename+'</td>'+
+                    	'<td>'+check_list[i].scout_magacnt+'</td>'+
+                		'</tr>'
+				}
+			}
+			$('#leader_target_list').append(leader_html)
+			$('#scout_target_list').append(scout_html)
+			$('#hiddenTextarea').val(JSON.stringify(check_list))
+			$('.contentsContainer select').niceSelect('update')
+		}
+		
+		function reflect(){
+			var association_name = $('#ASSOCIATIONCODE option:checked').text()
+			var unity_name = $('#PARENTTROOPNO option:checked').text()
+			var troop_name = $('#troop_name').val()
+			
+			$('#final_sosok').text(association_name + " 연맹 / " + unity_name + " 지구연합회 / " + troop_name)
+			
+			$('#final_list').children().remove();
+			var data = JSON.parse($('#hiddenTextarea').val());
+			var html = ""
+			for(var i=0; i<data.length; i++){
+				var leader_life = "Y"
+				if(data[i].leader_life == '') leader_life = 'N' 
+				var scout_life = "N"
+				if(data[i].scout_life == '') scout_life = 'N'
+				if(data[i].type == 'leader'){
+					html += '<tr>'+
+			            '<td style="position: unset;">지도자</td>'+
+			            '<td>'+leader_life+'</td>'+
+			            '<td>'+data[i].leaderpositioncodename1+'</td>'+
+			            '<td>'+data[i].leaderpositioncodename2+'</td>'+
+			            '<td>20,000</td>'+
+			            '<td>'+data[i].leader_name+'</td>'+
+			            '<td>'+data[i].leader_magacnt+'</td>'+
+			        	'</tr>'
+				}
+				else{
+					html += '<tr>'+
+		            '<td style="position: unset;">대원</td>'+
+		            '<td>'+scout_life+'</td>'+
+		            '<td>'+data[i].scoutclscodename+'</td>'+
+		            '<td>'+data[i].scoutpositioncodename+'</td>'+
+		            '<td>20,000</td>'+
+		            '<td>'+data[i].scout_name+'</td>'+
+		            '<td>'+data[i].scout_magacnt+'</td>'+
+		        	'</tr>'
+				}
+			}
+			$('#final_list').append(html)
+	        
+			
+		}
 		//대등록 리스트 찾기
 		// 팝업 열기
 		$(document).on("click", ".regiSearch", function (e){

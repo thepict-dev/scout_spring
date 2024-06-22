@@ -157,6 +157,8 @@ public interface PictMapper {
 
 	List<PictVO> prev_scout_list(PictVO pictVO) throws Exception;
 
+	List<?> former_list(PictVO pictVO) throws Exception;
+
  
 	
 

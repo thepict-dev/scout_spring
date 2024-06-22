@@ -331,6 +331,9 @@ public class PictController {
 	//전종리스트
 	@RequestMapping("/front/former_list")
 	public String former_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		List<?> former_list= pictService.former_list(pictVO);
+		model.addAttribute("former_list", former_list);
+		model.addAttribute("pictVO", pictVO);
 		
 		return "pict/front/former_list";
 	}
@@ -1607,6 +1610,14 @@ public class PictController {
 		return "pict/front/register_confirm";
 	}
 	
+	//연맹별납부액
+	@RequestMapping("/front/association_price")
+	public String association_price(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/front/association_price";
+	}
+	
+	
 	// 공통메소드
 	public String fileUpload(MultipartHttpServletRequest request, MultipartFile uploadFile, String target) {
 		String path = "";
@@ -1671,10 +1682,5 @@ public class PictController {
 		return sb.toString();
 	}
 	
-	//연맹별납부액
-	@RequestMapping("/front/association_price")
-	public String association_price(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		
-		return "pict/front/association_price";
-	}
+	
 }

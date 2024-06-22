@@ -153,5 +153,7 @@ public interface PictService {
 
 	public List<PictVO> prev_scout_list(PictVO pictVO) throws Exception;
 
+	public List<?> former_list(PictVO pictVO) throws Exception;
+
 
 }

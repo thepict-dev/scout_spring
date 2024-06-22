@@ -805,17 +805,33 @@
 	</select>
 	
 	<select id="prev_leader_list" resultType="pictVO">
-		select l.ADMINY, m.KNAME, m.LIFEMEMBERY, LEADERPOSITIONCODE1, LEADERPOSITIONCODE2, l.SCOUTMAGACNT
+		select l.ADMINY, m.KNAME, m.LIFEMEMBERY, LEADERPOSITIONCODE1, LEADERPOSITIONCODE2, l.SCOUTMAGACNT, m.MEMBERNO, t.TROOPNAME
 		from leader l
-		left outer join member m on l.MEMBERNO = m.MEMBERNO 
+		left outer join member m on l.MEMBERNO = m.MEMBERNO
+		left outer join troop t on t.TROOPNO = l.TROOPNO 
 		where l.TROOPNO = #{TROOPNO} and left(l.STARTDAY, 4) = #{search_year} and l.CONFIRMY ='Y'
 	</select>
 	
 	<select id="prev_scout_list" resultType="pictVO">
-		select m.KNAME, m.LIFEMEMBERY, s.SCOUTCLSCODE, s.SCOUTPOSITIONCODE, s.SCOUTMAGACNT
+		select m.KNAME, m.LIFEMEMBERY, s.SCOUTCLSCODE, s.SCOUTPOSITIONCODE, s.SCOUTMAGACNT, m.MEMBERNO, t.TROOPNAME
 		from scout s
-		left outer join member m on s.MEMBERNO = m.MEMBERNO 
+		left outer join member m on s.MEMBERNO = m.MEMBERNO
+		left outer join troop t on t.TROOPNO = s.TROOPNO
 		where s.TROOPNO = #{TROOPNO} and left(STARTDAY, 4) = #{search_year} and CONFIRMY ='Y'
+	</select>
+	
+	<select id="former_list" resultType="pictVO">
+		select m.MEMBERNO, m.KNAME, a.ASSOCIATIONNAME, m.association, m.sosock, m.depart, m.rank, m.BIRTHDAY, m.MOBILE, m.EMAIL, m.EMPLOYEEY, m.PICIMG
+		from member m
+		left outer join associationcode a on a.ASSOCIATIONCODE = m.association
+		where 1=1
+		and (m.EMPLOYEEY = 'Y' or m.EMPLOYEEY = 'X')
+		
+		<if test="MEMBERNO != null and MEMBERNO != ''">
+			and m.MEMBERNO = #{MEMBERNO}
+		</if>
+		
+		order by m.EMPLOYEEY desc
 	</select>
 	
 

@@ -221,8 +221,36 @@ public class PictVO extends PictDefaultVO {
 	private String OFFICE;
 	private String LIFEMEMBERY;
 	
+	private String sosock;
+	private String depart;
+	private String rank;
+	private String association;
 	
 	
+	public String getSosock() {
+		return sosock;
+	}
+	public void setSosock(String sosock) {
+		this.sosock = sosock;
+	}
+	public String getDepart() {
+		return depart;
+	}
+	public void setDepart(String depart) {
+		this.depart = depart;
+	}
+	public String getRank() {
+		return rank;
+	}
+	public void setRank(String rank) {
+		this.rank = rank;
+	}
+	public String getAssociation() {
+		return association;
+	}
+	public void setAssociation(String association) {
+		this.association = association;
+	}
 	public String getLIFEMEMBERY() {
 		return LIFEMEMBERY;
 	}

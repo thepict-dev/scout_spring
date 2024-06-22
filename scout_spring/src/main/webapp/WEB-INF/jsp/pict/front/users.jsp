@@ -226,6 +226,7 @@
                                         <select name="EMPLOYEEY" id="EMPLOYEEY" class="smThinSelect">
                                             <option value="N">-</option>
                                             <option value="Y">전종</option>
+                                            <option value="X">탈퇴</option>
                                         </select>
                                     </div>
                                     <!-- 
@@ -837,7 +838,7 @@
 					data : formData,
 					type : 'POST',
 					success : function(result){
-						alert("Uploaded");
+						alert("이미지가 정상적으로 저장되었습니다.");
 						
 					},
 					error : function(err){

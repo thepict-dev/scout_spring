@@ -425,6 +425,12 @@ public class PictServiceImpl implements PictService {
 		return pictMapper.prev_scout_list(pictVO);
 	}
 
+	@Override
+	public List<?> former_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.former_list(pictVO);
+	}
+
 
 	
 	

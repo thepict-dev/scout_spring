@@ -90,8 +90,6 @@
                         </div>
                         <div class="tableButtons inputsPd bottomBd" style="justify-content: flex-end;">
                             <div class="buttons">
-                                <a href="#lnk" class="smButton"><img src="/front_img/search2.png" alt="">조회</a>
-                            	<a href="#lnk" class="smButton"><img src="/front_img/reset.png" alt="">화면초기화</a>
                                 <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">저장</a>
                             </div>
                         </div>
@@ -126,18 +124,20 @@
                                            </tr>
                                        </thead>
                 					<tbody>
-                                           <tr>
-                                               <td>12345</td>
-                                               <td style="left: 84px;">1</td>
-                                               <td>2</td>
-                                               <td>3</td>
-                                               <td>4</td>
-                                               <td>5</td>
-                                               <td>6</td>
-                                               <td>7</td>
-                                               <td>8</td>
-                                               <td>9</td>
+										<c:forEach var="former_list" items="${former_list}" varStatus="status">
+											<tr>
+												<td>${status.count}</td>
+												<td style="left: 84px;">${former_list.MEMBERNO}</td>
+												<td>${former_list.KNAME}</td>
+												<td>${former_list.ASSOCIATIONNAME}</td>
+												<td>${former_list.sosock}</td>
+												<td>${former_list.depart}</td>
+												<td>${former_list.rank}</td>
+												<td>${former_list.BIRTHDAY}</td>
+												<td>${former_list.MOBILE}</td>
+												<td>${former_list.EMAIL}</td>
                                            </tr>
+										</c:forEach>
                 					</tbody>
                                    </table>
                                </div>
@@ -214,18 +214,6 @@
 			}
 		}
 		
-		window.onload = function(){
-		    document.getElementById("searchZip").addEventListener("click", function(){ //주소입력칸을 클릭하면
-		        //카카오 지도 발생
-		        new daum.Postcode({
-		            oncomplete: function(data) { //선택시 입력값 세팅
-		                document.getElementById("HPOSTCODE").value = data.zonecode;
-		                document.getElementById("HADDR").value = data.address; // 주소 넣기
-		                document.getElementById("HADDR").focus();
-		            }
-		        }).open();
-		    });
-		}
 	
 	</script>
 </html>
