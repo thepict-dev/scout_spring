@@ -256,7 +256,7 @@ public class PictVO extends PictDefaultVO {
 	private String cls05newbigo;
 	private String cls06newbigo;
 	private String cls99newbigo;
-	
+
 	
 
 	public String getCls01new() {

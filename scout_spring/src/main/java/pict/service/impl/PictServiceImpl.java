@@ -455,6 +455,36 @@ public class PictServiceImpl implements PictService {
 		pictMapper.price_update(pictVO);
 	}
 
+	@Override
+	public PictVO association_price(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.association_price(pictVO);
+	}
+
+	@Override
+	public void leader_whole_register(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.leader_whole_register(pictVO);
+	}
+
+	@Override
+	public void scout_whole_register(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.scout_whole_register(pictVO);
+	}
+
+	@Override
+	public void leader_whole_confirm(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.leader_whole_confirm(pictVO);
+	}
+
+	@Override
+	public void scout_whole_confirm(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.scout_whole_confirm(pictVO);
+	}
+
 
 	
 	

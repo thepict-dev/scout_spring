@@ -163,6 +163,16 @@ public interface PictService {
 
 	public void price_update(PictVO pictVO) throws Exception;
 
+	public PictVO association_price(PictVO pictVO) throws Exception;
+
+	public void leader_whole_register(PictVO pictVO) throws Exception;
+
+	public void scout_whole_register(PictVO pictVO) throws Exception;
+
+	public void leader_whole_confirm(PictVO pictVO) throws Exception;
+
+	public void scout_whole_confirm(PictVO pictVO) throws Exception;
+
 
 
 }

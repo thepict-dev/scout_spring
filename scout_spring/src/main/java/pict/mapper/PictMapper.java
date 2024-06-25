@@ -167,6 +167,16 @@ public interface PictMapper {
 
 	void price_update(PictVO pictVO) throws Exception;
 
+	PictVO association_price(PictVO pictVO) throws Exception;
+
+	void leader_whole_register(PictVO pictVO) throws Exception;
+
+	void scout_whole_register(PictVO pictVO) throws Exception;
+
+	void leader_whole_confirm(PictVO pictVO) throws Exception;
+
+	void scout_whole_confirm(PictVO pictVO) throws Exception;
+
  
 	
 

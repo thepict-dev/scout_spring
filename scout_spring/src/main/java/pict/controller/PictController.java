@@ -1632,7 +1632,7 @@ public class PictController {
 		String troopno = param.get("troopno").toString();
 		HashMap<String, Object> map = new HashMap<String, Object>();		
 		pictVO.setTROOPNO(troopno);
-		
+		pictVO.setCONFIRMY("Y");
 		List<PictVO> prev_leader_list = pictService.prev_leader_list(pictVO);
 		if(prev_leader_list.size() > 0) {
 			map.put("leader_list", prev_leader_list);
@@ -1643,6 +1643,121 @@ public class PictController {
 			map.put("scout_list", prev_scout_list);
 			
 		}
+		return map;
+	}
+	//대등록에서 연맹별 등록비
+	@RequestMapping("/association_price")
+	@ResponseBody
+	public HashMap<String, Object> association_price(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String current_year = dateFormat.format(today);
+		
+		String associationcode = param.get("associationcode").toString();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		pictVO.setASSOCIATIONCODE(associationcode);
+		pictVO.setSearch_year(current_year);
+
+
+		map.put("current_year", current_year);
+		pictVO = pictService.association_price(pictVO);
+		if(pictVO != null) {
+			map.put("rst", pictVO);
+		}
+		return map;
+	}
+	//대등록에서 일괄등록
+	@RequestMapping("/whole_register_input")
+	@ResponseBody
+	public HashMap<String, Object> whole_register_input(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody List<Map<String, Object>> data) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		try {
+			Date today = new Date();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+			String current_year = dateFormat.format(today);
+			
+			
+			for (Map<String, Object> item : data) {
+				//공통으로 쓸 부분
+				String memberno = item.get("MEMBERNO").toString();
+				String troopno = item.get("TROOPNO").toString();
+				String startday = current_year + "-01-01";
+				String endday = current_year + "-12-31";
+				String associationcode = item.get("ASSOCIATIONCODE").toString();
+				String parrenttroopno = item.get("PARRENTTROOPNO").toString();
+				String payy = "N";
+				String confirmy = "N";
+				String scoutmagacnt = item.get("SCOUTMAGACNT").toString().equals("Y") ? "1" : "0";
+				String scoutmagafee = item.get("maga_price").toString();
+				String entryfee = item.get("price").toString();
+				
+				System.out.println(memberno);
+				System.out.println(troopno);
+				System.out.println(startday);
+				System.out.println(endday);
+				System.out.println(associationcode);
+				System.out.println(parrenttroopno);
+				System.out.println(payy);
+				System.out.println(confirmy);
+				System.out.println(scoutmagacnt);
+				System.out.println(scoutmagafee);
+				System.out.println(entryfee);
+				
+				pictVO.setMEMBERNO(memberno);
+				pictVO.setTROOPNO(troopno);
+				pictVO.setSTARTDAY(startday);
+				pictVO.setENDDAY(endday);
+				pictVO.setASSOCIATIONCODE(associationcode);
+				pictVO.setPARENTTROOPNO(parrenttroopno);
+				pictVO.setPAYY(payy);
+				pictVO.setCONFIRMY(confirmy);
+				pictVO.setSCOUTMAGACNT(scoutmagacnt);
+				pictVO.setSCOUTMAGAFEE(scoutmagafee);
+				pictVO.setENTRYFEE(entryfee);
+				
+				
+				//지도자연공
+				if(item.get("type").equals("leader")) {
+					String leaderpositioncode1 = item.get("LEADERPOSITIONCODE1").toString();
+					String leaderpositioncode2 = item.get("LEADERPOSITIONCODE2").toString();
+					String adminy = item.get("ADMINY").toString();
+
+					pictVO.setLEADERPOSITIONCODE1(leaderpositioncode1);
+					pictVO.setLEADERPOSITIONCODE2(leaderpositioncode2);
+					pictVO.setADMINY(adminy);
+					
+					
+					System.out.println("지도자");
+					System.out.println(leaderpositioncode1);
+					System.out.println(leaderpositioncode2);
+					System.out.println(adminy);
+					pictService.leader_whole_register(pictVO);
+				}
+				//대원연공
+				else {
+					String scoutclscode = item.get("SCOUTCLSCODE").toString();
+					String scoutpositioncode = item.get("SCOUTPOSITIONCODE").toString();
+					System.out.println("대원");
+					System.out.println(scoutclscode);
+					System.out.println(scoutpositioncode);
+					
+					pictVO.setSCOUTCLSCODE(scoutclscode);
+					pictVO.setSCOUTPOSITIONCODE(scoutpositioncode);
+					
+					pictService.scout_whole_register(pictVO);
+
+				}
+			}
+			map.put("result", "Y");
+			
+		}
+		catch (Exception e) {
+			System.out.println(e);
+			map.put("result", "N");
+		}
+		
+
 		
 		return map;
 	}
@@ -1668,6 +1783,53 @@ public class PictController {
 		
 		model.addAttribute("pictVO", pictVO);
 		return "pict/front/register_confirm";
+	}
+	//대승인에서 단위대 대원/리스트 당해년도꺼 가져와
+	@RequestMapping("/current_troop_info")
+	@ResponseBody
+	public HashMap<String, Object> current_troop_info(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String current_year = dateFormat.format(today);
+		pictVO.setSearch_year(current_year+"");
+		
+		String troopno = param.get("troopno").toString();
+		HashMap<String, Object> map = new HashMap<String, Object>();		
+		pictVO.setTROOPNO(troopno);
+		pictVO.setCONFIRMY("N");
+		List<PictVO> prev_leader_list = pictService.prev_leader_list(pictVO);
+		if(prev_leader_list.size() > 0) {
+			map.put("leader_list", prev_leader_list);
+		}
+		
+		List<PictVO> prev_scout_list = pictService.prev_scout_list(pictVO);
+		if(prev_scout_list.size() > 0) {
+			map.put("scout_list", prev_scout_list);
+			
+		}
+		return map;
+	}
+	//대등록에서 일괄승인
+	@RequestMapping("/whole_register_confirm")
+	@ResponseBody
+	public HashMap<String, Object> whole_register_confirm(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody List<Map<String, Object>> data) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		try {
+			for (Map<String, Object> item : data) {
+				String idx = item.get("idx").toString();
+				pictVO.setIdx(Integer.parseInt(idx));
+				
+				if(item.get("type").equals("leader")) pictService.leader_whole_confirm(pictVO);
+				else pictService.scout_whole_confirm(pictVO);
+			}
+			map.put("result", "Y");
+			
+		}
+		catch (Exception e) {
+			System.out.println(e);
+			map.put("result", "N");
+		}
+		return map;
 	}
 	
 	//연맹별납부액

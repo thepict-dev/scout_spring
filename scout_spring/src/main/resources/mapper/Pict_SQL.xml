@@ -805,19 +805,29 @@
 	</select>
 	
 	<select id="prev_leader_list" resultType="pictVO">
-		select l.ADMINY, m.KNAME, m.LIFEMEMBERY, LEADERPOSITIONCODE1, LEADERPOSITIONCODE2, l.SCOUTMAGACNT, m.MEMBERNO, t.TROOPNAME
+		select l.idx, l.ADMINY, m.KNAME, m.LIFEMEMBERY, LEADERPOSITIONCODE1, LEADERPOSITIONCODE2, l.SCOUTMAGACNT, m.MEMBERNO, t.TROOPNAME, t.PARENT_TROOPNO as PARENTTROOPNO,
+		ifnull(ap.cls99, 0) as cls99, ifnull(ap.cls99new, 0) as cls99new,
+		(case when l.LEADERPOSITIONCODE1 = '01' then '협조' when l.LEADERPOSITIONCODE1 = '02' then '훈육' else '전종' end) as LEADERPOSITION,
+		(select LEADERPOSITIONNAME from leaderpositioncode lp where lp.LEADERPOSITIONCODE1 = l.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2) as LEADERPOSITIONNAME
 		from leader l
 		left outer join member m on l.MEMBERNO = m.MEMBERNO
 		left outer join troop t on t.TROOPNO = l.TROOPNO 
-		where l.TROOPNO = #{TROOPNO} and left(l.STARTDAY, 4) = #{search_year} and l.CONFIRMY ='Y'
+		left outer join association_price ap on ap.ASSOCIATIONCODE = l.ASSOCIATIONCODE and ap.YEAR = #{search_year}
+		where l.TROOPNO = #{TROOPNO} and left(l.STARTDAY, 4) = #{search_year} and l.CONFIRMY = #{CONFIRMY}
 	</select>
 	
 	<select id="prev_scout_list" resultType="pictVO">
-		select m.KNAME, m.LIFEMEMBERY, s.SCOUTCLSCODE, s.SCOUTPOSITIONCODE, s.SCOUTMAGACNT, m.MEMBERNO, t.TROOPNAME
+		select s.idx, m.KNAME, m.LIFEMEMBERY, s.SCOUTCLSCODE, s.SCOUTPOSITIONCODE, s.SCOUTMAGACNT, m.MEMBERNO, t.TROOPNAME, t.PARENT_TROOPNO as PARENTTROOPNO,
+		ifnull(ap.cls01, 0) as cls01, ifnull(ap.cls02, 0) as cls02, ifnull(ap.cls03, 0) as cls03, ifnull(ap.cls04, 0) as cls04, ifnull(ap.cls05, 0) as cls05, ifnull(ap.cls06, 0) as cls06,  
+		ifnull(ap.cls01new, 0) as cls01new, ifnull(ap.cls02new, 0) as cls02new, ifnull(ap.cls03new, 0) as cls03new, ifnull(ap.cls04new, 0) as cls04new, ifnull(ap.cls05new, 0) as cls05new, ifnull(ap.cls06new, 0) as cls06new,
+		sp.SCOUTPOSITIONNAME, sc.SCOUTCLSNAME
 		from scout s
 		left outer join member m on s.MEMBERNO = m.MEMBERNO
 		left outer join troop t on t.TROOPNO = s.TROOPNO
-		where s.TROOPNO = #{TROOPNO} and left(STARTDAY, 4) = #{search_year} and CONFIRMY ='Y'
+		left outer join association_price ap on ap.ASSOCIATIONCODE = s.ASSOCIATIONCODE and ap.YEAR = #{search_year}
+		left outer join scoutpositioncode sp on sp.SCOUTPOSITIONCODE = s.SCOUTPOSITIONCODE
+		left outer join scoutclscode sc on sc.SCOUTCLSCODE = s.SCOUTCLSCODE
+		where s.TROOPNO = #{TROOPNO} and left(STARTDAY, 4) = #{search_year} and CONFIRMY =#{CONFIRMY}
 	</select>
 	
 	<select id="former_list" resultType="pictVO">
@@ -895,6 +905,43 @@
 	<insert id="price_insert" parameterType="pictVO">
 		INSERT INTO association_price(ASSOCIATIONCODE, YEAR, cls01,cls02,cls03,cls04,cls05,cls06,cls99,cls01new,cls02new,cls03new,cls04new,cls05new,cls06new,cls99new,cls01bigo,cls02bigo,cls03bigo,cls04bigo,cls05bigo,cls06bigo,cls99bigo,cls01newbigo,cls02newbigo,cls03newbigo,cls04newbigo,cls05newbigo,cls06newbigo,cls99newbigo) 
 		VALUES (#{ASSOCIATIONCODE}, #{search_year}, #{cls01},#{cls02},#{cls03},#{cls04},#{cls05},#{cls06},#{cls99},#{cls01new},#{cls02new},#{cls03new},#{cls04new},#{cls05new},#{cls06new},#{cls99new},#{cls01bigo},#{cls02bigo},#{cls03bigo},#{cls04bigo},#{cls05bigo},#{cls06bigo},#{cls99bigo},#{cls01newbigo},#{cls02newbigo},#{cls03newbigo},#{cls04newbigo},#{cls05newbigo},#{cls06newbigo},#{cls99newbigo} );
-		
 	</insert>
+	
+	<select id="association_price" resultType="pictVO">
+		select * from association_price where ASSOCIATIONCODE = #{ASSOCIATIONCODE} and YEAR = #{search_year}
+	</select>
+	
+	<insert id="leader_whole_register" parameterType="pictVO">
+		INSERT INTO leader(MEMBERNO, TROOPNO, STARTDAY, ENDDAY, ASSOCIATIONCODE, PARENT_TROOPNO, PAYY, CONFIRMY, SCOUTMAGACNT, SCOUTMAGAFEE, ENTRYFEE, LEADERPOSITIONCODE1, LEADERPOSITIONCODE2, ADMINY, ENTERDATE, ENTERPGM) 
+		VALUES (#{MEMBERNO},#{TROOPNO},#{STARTDAY},#{ENDDAY},#{ASSOCIATIONCODE},#{PARENTTROOPNO},#{PAYY},#{CONFIRMY},#{SCOUTMAGACNT},#{SCOUTMAGAFEE},#{ENTRYFEE},#{LEADERPOSITIONCODE1},#{LEADERPOSITIONCODE2},#{ADMINY},now(), "일괄등록")
+	</insert>
+	
+	<insert id="scout_whole_register" parameterType="pictVO">
+		INSERT INTO scout(MEMBERNO, TROOPNO, STARTDAY, ENDDAY, ASSOCIATIONCODE, PARENT_TROOPNO, PAYY, CONFIRMY, SCOUTMAGACNT, SCOUTMAGAFEE, ENTRYFEE, SCOUTCLSCODE, SCOUTPOSITIONCODE, ENTERDATE, ENTERPGM) 
+		VALUES (#{MEMBERNO},#{TROOPNO},#{STARTDAY},#{ENDDAY},#{ASSOCIATIONCODE},#{PARENTTROOPNO},#{PAYY},#{CONFIRMY},#{SCOUTMAGACNT},#{SCOUTMAGAFEE},#{ENTRYFEE},#{SCOUTCLSCODE},#{SCOUTPOSITIONCODE},now(), "일괄등록")
+	</insert>
+	
+	<update id="leader_whole_confirm" parameterType="pictVO">
+		update leader
+			set 
+			CONFIRMY = 'Y',
+			PAYY = "Y",
+			UPDATEPGM = "일괄승인",
+			UPDATEDATE = now()
+		where idx = #{idx}
+		
+	</update>
+	
+	<update id="scout_whole_confirm" parameterType="pictVO">
+		update scout
+			set 
+			CONFIRMY = 'Y',
+			PAYY = "Y",
+			UPDATEPGM = "일괄승인",
+			UPDATEDATE = now()
+		where idx = #{idx}
+	</update>
+	
+	
+	
 </mapper>
