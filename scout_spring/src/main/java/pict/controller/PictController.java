@@ -49,9 +49,6 @@ public class PictController {
 	@Autowired
 	AdminService adminService;
 
-
-	
-	
 	@RequestMapping("/pict_main")
 	public String pict_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
