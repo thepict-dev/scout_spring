@@ -1,0 +1,46 @@
+@import url('https://webfontworld.github.io/sunn/SUIT.css');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    position: relative;
+    height: 100vh;
+    font-family: 'SUIT';
+    /* overflow: hidden; */
+}
+:root {
+    --fn-suit: 'SUIT';
+    --purple-50: #eeecf4;
+    --purple-100: #cbc3de;
+    --purple-200: #b2a6ce;
+    --purple-300: #8f7db7;
+    --purple-400: #7964a9;
+    --purple-500: #583d94;
+    --purple-600: #503887;
+    --purple-700: #3e2b69;
+    --purple-800: #302251;
+    --purple-900: #251a3e;
+    --grey-50: #f3f5f6;
+    --grey-100: #dbdee2;
+    --grey-200: #cacfd4;
+    --grey-300: #b1b9c1;
+    --grey-400: #a2abb5;
+    --grey-500: #8b96a2;
+    --grey-600: #7e8993;
+    --grey-700: #636b73;
+    --grey-800: #4c5359;
+    --grey-900: #3a3f44;
+    --text-color: #242A30;
+}
+
+.blind {
+    width: 0;
+    height: 0;
+    text-indent: -9999px;
+    padding: 0;
+    margin: 0;
+    visibility: hidden;
+}

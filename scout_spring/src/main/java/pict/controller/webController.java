@@ -54,15 +54,87 @@ public class webController {
 	@RequestMapping("/main")
 	public String pict_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
 		
-		return "pict/web/test2";
+		return "pict/web/main";
 	}
 	
-	//대원일괄등록
-	@RequestMapping("/sub1")
-	public String scout_whole_register(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+	//행사
+	//잼버리
+	@RequestMapping("jamboree")
+	public String jamboree(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		
-		return "pict/web/test2";
+		return "pict/web/jamboree";
 	}
+	//youthhero
+	@RequestMapping("youthhero")
+	public String youthhero(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/youthhero";
+	}
+	//장학사업
+	@RequestMapping("scholarship")
+	public String scholarship(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/scholarship";
+	}
+	
+	//뉴스
+	//공지사항
+	@RequestMapping("notice")
+	public String notice(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/notice";
+	}
+	//공지사항 뷰
+	@RequestMapping("notice_view")
+	public String notice_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/notice_view";
+	}
+	//뉴스
+	@RequestMapping("news")
+	public String news(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/news";
+	}
+	//공지사항 뷰
+	@RequestMapping("news_view")
+	public String news_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/news_view";
+	}
+
+	//한국스카우트연맹
+	//소개
+	@RequestMapping("intro")
+	public String intro(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/intro";
+	}
+	//인사말
+	@RequestMapping("greeting")
+	public String greeting(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/greeting";
+	}
+	//비전
+	@RequestMapping("vision")
+	public String vision(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/vision";
+	}
+	//조직
+	@RequestMapping("organization")
+	public String organization(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/organization";
+	}
+	//규정,휘장
+	@RequestMapping("rules")
+	public String rules(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/rules";
+	}
+
 
 	
 	// 공통메소드

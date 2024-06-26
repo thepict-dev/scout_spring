@@ -1,0 +1,160 @@
+header{
+	width: 100%;
+}
+.headerTop{
+	width: 100%;
+	height: 32px;
+	background-color: var(--purple-500);
+}
+.headerTopInner{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	max-width: 1640px;
+	height: 100%;
+	padding: 0 20px;
+	margin: 0 auto;
+	color: #fff;
+}
+.headerTopInner > p{
+	color: #FFF;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 100%; /* 14px */
+	letter-spacing: -0.7px;
+}
+.headerTopLinks{
+	display: flex;
+	align-items: center;
+	column-gap: 8px;
+	height: 100%;
+}
+.headerTopLinks a{
+	display: flex;
+	align-items: center;
+	padding: 0 8px;
+	height: 100%;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 100%; /* 14px */
+	letter-spacing: -0.7px;
+}
+
+.gnbWrapper{
+	width: 100%;
+	height: 108px;
+	background-color: #FFF;
+	border-bottom: 1px solid var(--grey-100);
+}
+.gnbInner{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	max-width: 1640px;
+	height: 100%;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+.gnbLeft{
+	display: flex;
+	align-items: center;
+	column-gap: 38px;
+	height: 100%;
+}
+.gnbLeft h1{
+	max-width: 168px;
+}
+.gnbLeft h1 a{
+	display: block;
+	width: 100%;
+}
+.gnbLeft h1 a img{
+	width: 100%;
+}
+.gnb{
+	display: flex;
+	column-gap: 12px;
+}
+.gnb > li{
+	position: relative;
+}
+.gnb > li > a{
+	position: relative;
+	display: block;
+	padding: 12px 16px;
+	color: var(--grey-700);
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 100%; /* 20px */
+	letter-spacing: -1px;
+}
+.gnb > li > a::after{
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 0;
+	width: 0;
+	height: 5px;
+	background-color: var(--purple-500);
+	transition: all 0.3s;
+}
+.gnb > li > a:hover::after{
+	width: 80%;
+	/* transition: width 0.1s 0.1s; */
+}
+.gnb > li.active > a{
+	color: var(--purple-500);
+	font-weight: 700;
+}
+
+.gnbRight{
+	display: flex;
+	align-items: center;
+	column-gap: 12px;
+	padding: 12px 16px;
+}
+.gnbRight a{
+	display: block;
+	padding: 8px 12px;
+	color: var(--grey-500);
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 100%; /* 16px */
+	letter-spacing: -0.8px;
+}
+.gnbRight button{
+	padding-top: 5px;
+	cursor: pointer;
+}
+
+.gnbSub{
+	position: absolute;
+	top: 80px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 10;
+	display: none;
+	flex-direction: column;
+	row-gap: 8px;
+	width: 177px;
+	border-radius: 16px;
+	background: #FFF;
+	box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.12);
+	overflow: hidden;
+}
+.gnbSub li a{
+	display: block;
+	padding: 16px 0;
+	color: var(--text-color);
+	text-align: center;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 100%; /* 18px */
+	letter-spacing: -0.9px;
+}
+.gnbSub li a:hover{
+	text-decoration: underline;
+}
