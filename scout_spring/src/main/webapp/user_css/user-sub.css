@@ -644,6 +644,7 @@
 	border-radius: 20px;
 	border: 1px solid var(--grey-100);
 	color: var(--text-color);
+	font-family: var(--fn-suit);
 	background: #fff;
 }
 .rulesButton p{
