@@ -148,7 +148,7 @@ public class PictController {
 	}
 
 	
-	@RequestMapping("/")
+	@RequestMapping("/admin")
 	public String main(@ModelAttribute("pictVO") AdminVO adminVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		return "redirect:/pict_login";
@@ -1876,6 +1876,17 @@ public class PictController {
 		return "pict/main/message";
 	}
 	
+	
+	//홈페이지관리
+	//연맹별납부액 저장
+	@RequestMapping("/front/board_list")
+	public String board_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		List<PictVO> association_list = pictService.association_list(pictVO);
+		model.addAttribute("association_list", association_list);
+		
+		
+		return "pict/front/board_list";
+	}
 	
 	// 공통메소드
 	public String fileUpload(MultipartHttpServletRequest request, MultipartFile uploadFile, String target) {

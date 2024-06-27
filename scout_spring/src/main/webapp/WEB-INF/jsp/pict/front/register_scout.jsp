@@ -82,7 +82,7 @@
 	                                        </colgroup>
 	                                        <thead>
 	                                            <tr>
-	                                                <th style="white-space: nowrap;">선택</th>
+	                                                <th style="white-space: nowrap;"><input type="checkbox" class="check" title="전체선택" id="leader_all_check" onchange="allCheck_left_leader(this);" data-check="left_leader_list"><label for="leader_all_check" class="lableOnly"></label></th>
 	                                                <th style="left: unset;">관리지도자여부</th>
 	                                                <th>이름</th>
 	                                                <th>평생회원여부</th>
@@ -115,7 +115,7 @@
 	                                        </colgroup>
 	                                        <thead>
 	                                            <tr>
-	                                                <th style="white-space: nowrap;">선택</th>
+	                                                <th style="white-space: nowrap;"><input type="checkbox" class="check" title="전체선택" id="scout_all_check" onchange="allCheck_left_scout(this);" data-check="left_scout_list"><label for="scout_all_check" class="lableOnly"></label></th>
 	                                                <th style="left: unset;">이름</th>
 	                                                <th>평생회원</th>
 	                                                <th>스카우트구분</th>
@@ -327,7 +327,28 @@
 	
 	</body>
 	<script>
-
+		//지도자 좌측
+		function allCheck_left_leader(target) {
+			var $id = $(target).data('check');
+		
+			var $check = $('.js-check_left_leader[data-check="'+$id+'"]');
+		
+			if($(target).prop('checked'))
+				$check.prop('checked', true);
+			else
+				$check.prop('checked', false);
+		}
+		//대원좌측
+		function allCheck_left_scout(target) {
+			var $id = $(target).data('check');
+			
+			var $check = $('.js-check_left_scout[data-check="'+$id+'"]');
+		
+			if($(target).prop('checked'))
+				$check.prop('checked', true);
+			else
+				$check.prop('checked', false);
+		}
 		
 		function fn_get_unitylist_org(){
 			var param = {
@@ -521,7 +542,7 @@
 							
 							leader_html +='<tr>'+
 							'<td style="position: unset; vertical-align: middle;">' +
-                        	'<input type="checkbox" name="leader_check" id="selection_leader_'+data.leader_list[i].memberno+'" data-id="'+data.leader_list[i].memberno+'")"><label for="selection_leader_'+data.leader_list[i].memberno+'" class="lableOnly"></label></td>'+
+                        	'<input type="checkbox" data-check="left_leader_list" class="check js-check_left_leader" name="leader_check" id="selection_leader_'+data.leader_list[i].memberno+'" data-id="'+data.leader_list[i].memberno+'")"><label for="selection_leader_'+data.leader_list[i].memberno+'" class="lableOnly"></label></td>'+
                         	'<td style="position: unset; vertical-align: middle;">'+    
                             '<select name="leader_adminy" id="leader_adminy_'+data.leader_list[i].memberno+'" class="tableSelect" style="width: 100%; height: 100%;">'+
                             '<option value="Y" '+ adminy +'>Y</option>'+
@@ -635,7 +656,7 @@
 							
 							scout_html +='<tr>'+
                             '<td style="position: unset; vertical-align: middle;">'+
-                            '<input type="checkbox" name="scout_check" id="selection_scout_'+data.scout_list[i].memberno+'" data-id="'+data.scout_list[i].memberno+'"><label for="selection_scout_'+data.scout_list[i].memberno+'" class="lableOnly"></label>'+
+                            '<input type="checkbox" data-check="left_scout_list" class="check js-check_left_scout" name="scout_check" id="selection_scout_'+data.scout_list[i].memberno+'" data-id="'+data.scout_list[i].memberno+'"><label for="selection_scout_'+data.scout_list[i].memberno+'" class="lableOnly"></label>'+
                             '</td>'+
                             '<td style="left:unset; vertical-align: middle;" id="scout_name_'+data.scout_list[i].memberno+'">'+data.scout_list[i].kname+'</td>'+
                             '<td style="left:unset; vertical-align: middle;" id="scout_life_'+data.scout_list[i].memberno+'">'+life_scout+'</td>'+

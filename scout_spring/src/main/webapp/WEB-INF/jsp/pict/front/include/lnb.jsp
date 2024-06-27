@@ -44,6 +44,9 @@
             <li>
             	<span><img src="/front_img/lnb4.png" alt=""></span>
                 <a href="#lnk">홈페이지 관리</a>
+                <ul class="subNav">
+                	<li><a href="/front/board_list">게시물관리</a></li>
+               	</ul>
             </li>
             <li>
                 <span><img src="/front_img/setting.png" alt=""></span>

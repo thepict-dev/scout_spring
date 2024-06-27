@@ -80,7 +80,7 @@
 	                                        </colgroup>
 	                                        <thead>
 	                                            <tr>
-	                                                <th style="white-space: nowrap;">선택</th>
+	                                                <th style="white-space: nowrap;"><input type="checkbox" class="check" title="전체선택" id="leader_all_check" onchange="allCheck_left_leader(this);" data-check="left_leader_list"><label for="leader_all_check" class="lableOnly"></label></th>
 	                                                <th style="left: unset;">관리지도자여부</th>
 	                                                <th>이름</th>
 	                                                <th>평생회원여부</th>
@@ -108,7 +108,7 @@
 	                                        </colgroup>
 	                                        <thead>
 	                                            <tr>
-	                                                <th style="white-space: nowrap;">선택</th>
+	                                                <th style="white-space: nowrap;"><input type="checkbox" class="check" title="전체선택" id="scout_all_check" onchange="allCheck_left_scout(this);" data-check="left_scout_list"><label for="scout_all_check" class="lableOnly"></label></th>
 	                                                <th style="left: unset;">이름</th>
 	                                                <th>평생회원여부</th>
 	                                                <th>스카우트구분</th>
@@ -178,6 +178,30 @@
     </div>
 	</body>
 	<script>
+	
+		//지도자 좌측
+		function allCheck_left_leader(target) {
+			var $id = $(target).data('check');
+		
+			var $check = $('.js-check_left_leader[data-check="'+$id+'"]');
+		
+			if($(target).prop('checked'))
+				$check.prop('checked', true);
+			else
+				$check.prop('checked', false);
+		}
+		//대원좌측
+		function allCheck_left_scout(target) {
+			var $id = $(target).data('check');
+			
+			var $check = $('.js-check_left_scout[data-check="'+$id+'"]');
+		
+			if($(target).prop('checked'))
+				$check.prop('checked', true);
+			else
+				$check.prop('checked', false);
+		}
+		
 		function fn_submit(){
 			var check_list = []
 			$("input[name='leader_check']:checked").each(function (e){
@@ -246,7 +270,7 @@
 							leader_html +=
 								'<tr id="cur_leader_'+leader_list[i].memberno+'">'+
 		                    	'<td style="position: unset;">'+
-		                        '<input type="checkbox" name="leader_check" id="selection_act_leader_'+leader_list[i].idx+'" data-id="'+leader_list[i].idx+'"><label for="selection_act_leader_'+leader_list[i].idx+'" class="lableOnly"></label>'+
+		                        '<input type="checkbox" data-check="left_leader_list" class="check js-check_left_leader" name="leader_check" id="selection_act_leader_'+leader_list[i].idx+'" data-id="'+leader_list[i].idx+'"><label for="selection_act_leader_'+leader_list[i].idx+'" class="lableOnly"></label>'+
 		                    	'</td>'+
 		                    	'<td style="position: unset;">'+leader_list[i].adminy+'</td>'+
 		                    	'<td>'+leader_list[i].kname+'</td>'+
@@ -265,7 +289,7 @@
 							scout_html +=
 								'<tr id="cur_scout_'+scout_list[i].memberno+'">'+
 		                    	'<td style="position: unset;">'+
-		                        '<input type="checkbox" name="scout_check" id="selection_act_scout_'+scout_list[i].idx+'" data-id="'+scout_list[i].idx+'"><label for="selection_act_scout_'+scout_list[i].idx+'" class="lableOnly"></label>'+
+		                        '<input type="checkbox" data-check="left_scout_list" class="check js-check_left_scout" name="scout_check" id="selection_act_scout_'+scout_list[i].idx+'" data-id="'+scout_list[i].idx+'"><label for="selection_act_scout_'+scout_list[i].idx+'" class="lableOnly"></label>'+
 		                    	'</td>'+
 		                    	'<td style="position: unset;">'+scout_list[i].kname+'</td>'+
 		                    	'<td>'+scout_list[i].lifemembery+'</td>'+
