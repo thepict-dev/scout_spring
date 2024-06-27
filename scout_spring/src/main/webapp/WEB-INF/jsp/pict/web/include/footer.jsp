@@ -36,7 +36,7 @@
         <div class="footerBot">
             <a href="https://blog.naver.com/koreascouts" title="새창이동" target="_blank">사이트 이용 약관</a>
             <a href="https://www.scout.or.kr/Footer.do?action=person&homemenu_code=090200" title="새창이동" target="_blank">개인정보 처리 방침</a>
-            <a href="https://www.scout.or.kr/Footer.do?action=scoutPartner&homemenu_code=051000" title="새창이동" target="_blank">스카우트 파트너</a>
+            <a href="/family" title="새창이동" target="_blank">스카우트 파트너</a>
             <a href="https://www.scout.or.kr/Footer.do?action=viewerDownload&homemenu_code=090400" title="새창이동" target="_blank">뷰어 다운로드</a>
         </div>
     </div>

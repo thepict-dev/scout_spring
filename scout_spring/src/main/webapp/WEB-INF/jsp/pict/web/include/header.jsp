@@ -26,44 +26,44 @@
     <div class="gnbWrapper">
         <div class="gnbInner">
             <div class="gnbLeft">
-                <h1><a href="/web/main"><img src="/user_img/logo.svg" alt="로고"></a></h1>
+                <h1><a href="/"><img src="/user_img/logo.svg" alt="로고"></a></h1>
                 <ul class="gnb">
-                    <li class="active"><a href="/web/main">홈</a></li> 
+                    <li class="active"><a href="/main">홈</a></li> 
                     <li>
                         <a href="#lnk">커뮤니티</a>
                     </li>
                     <li>
-                        <a href="/web/jamboree">행사</a>
+                        <a href="/jamboree">행사</a>
                         <ul class="gnbSub">
-                            <li><a href="/web/jamboree">잼버리</a></li>
-                            <li><a href="/web/youthhero">YOUTH HERO</a></li>
-                            <li><a href="/web/scholarship">스카우트 장학사업</a></li>
+                            <li><a href="/jamboree">잼버리</a></li>
+                            <li><a href="/youthhero">YOUTH HERO</a></li>
+                            <li><a href="/scholarship">스카우트 장학사업</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="/web/">자료실</a>
+                        <a href="/">자료실</a>
                     </li>
                     <li>
-                        <a href="/web/notice">뉴스</a>
+                        <a href="/notice">뉴스</a>
                         <ul class="gnbSub">
-                            <li><a href="/web/notice">공지사항</a></li>
-                            <li><a href="/web/news">언론에 비친 SCOUT</a></li>
+                            <li><a href="/notice">공지사항</a></li>
+                            <li><a href="/news">언론에 비친 SCOUT</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="/web/intro">한국스카우트연맹</a>
+                        <a href="/intro">한국스카우트연맹</a>
                         <ul class="gnbSub">
-                            <li><a href="/web/intro">소개</a></li>
-                            <li><a href="/web/greeting">인사말</a></li>
-                            <li><a href="/web/vision">비전</a></li>
-                            <li><a href="/web/">연혁,사업</a></li>
-                            <li><a href="/web/organization">조직</a></li>
-                            <li><a href="/web/rules">규정,휘장</a></li>
-                            <li><a href="/web/">시설안내,예약</a></li>
-                            <li><a href="/web/">찾아오시는길</a></li>
-                            <li><a href="/web/">수품대리점</a></li>
-                            <li><a href="/web/">함께하는 기관 및 기업</a></li>
-                            <li><a href="/web/">정보공개</a></li>
+                            <li><a href="/intro">소개</a></li>
+                            <li><a href="/greeting">인사말</a></li>
+                            <li><a href="/vision">비전</a></li>
+                            <li><a href="/history">연혁,사업</a></li>
+                            <li><a href="/organization">조직</a></li>
+                            <li><a href="/rules">규정,휘장</a></li>
+                            <li><a href="/facility">시설안내,예약</a></li>
+                            <li><a href="/location">찾아오시는길</a></li>
+                            <li><a href="/store">수품대리점</a></li>
+                            <li><a href="/family">함께하는 기관 및 기업</a></li>
+                            <li><a href="/information">정보공개</a></li>
                         </ul>
                     </li>
                 </ul>

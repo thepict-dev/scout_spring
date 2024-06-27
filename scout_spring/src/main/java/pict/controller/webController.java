@@ -121,6 +121,12 @@ public class webController {
 		
 		return "pict/web/vision";
 	}
+	//연혁,사업
+	@RequestMapping("history")
+	public String history(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/history";
+	}
 	//조직
 	@RequestMapping("organization")
 	public String organization(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
@@ -132,6 +138,42 @@ public class webController {
 	public String rules(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		
 		return "pict/web/rules";
+	}
+	//시설안내,예약
+	@RequestMapping("facility")
+	public String facility(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/facility";
+	}
+	//찾아오시는 길
+	@RequestMapping("location")
+	public String location(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/location";
+	}
+	//수품대리점
+	@RequestMapping("store")
+	public String store(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/store";
+	}
+	//함께하는 기관,기업
+	@RequestMapping("family")
+	public String family(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/family";
+	}
+	//정보공개
+	@RequestMapping("information")
+	public String information(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/information";
+	}
+	//정보공개 뷰
+	@RequestMapping("information_view")
+	public String information_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/information_view";
 	}
 
 

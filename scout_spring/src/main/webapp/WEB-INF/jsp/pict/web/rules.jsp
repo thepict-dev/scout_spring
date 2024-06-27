@@ -24,8 +24,153 @@
             <!-- 스카우트 구성 -->
             <div class="tabInner ruleContents active">
                 <div class="ruleContainer">
-                    <a href="#lnk" download>
-                        <p>[기본법]스카우트활동 육성에 관한 법률</p>
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[기본법] 스카우트활동 육성에 관한 법률</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 청소년활동 안전지도사 자격관리 및 운영규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 평생회원 운영관리 규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 회계규정 시행세칙</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 인장관리규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 위임전결 규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] Youth Hero상(자랑스런 청소년대상) 운영규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 가맹동특규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 지역협의회 규약</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 원로스카우트 규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 임원선거 규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 징계규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 제복장구 규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 국제활동에 관한 규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 스카우트 종교장 규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 스카우트 장학기금 운영 규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 도서실 관리규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 보존 기념물품 관리 규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 기관관리 규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 회계규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 지도자훈련운영규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 야영장 운영관리 규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 간행물 발간 운영규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[정관] 정관세칙</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[헌장] 헌장</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 지도자규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 전보관리 규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 포상규정</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[정관] 정관</p>
+                        <span></span>
+                    </a>
+                    
+                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                        <p>[규정] 문서 규정</p>
                         <span></span>
                     </a>
                 </div>

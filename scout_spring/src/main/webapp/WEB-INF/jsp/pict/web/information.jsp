@@ -12,14 +12,21 @@
 	<%@ include file="./include/header.jsp" %>
     <div class="subWrapper">
         <div class="noticeTop">
-            <h2>언론에 비친 SCOUT</h2>
+            <h2>정보 공개</h2>
         </div>
         <div class="subContents">
             <div class="noticeWrapper">
                 <ul class="notice">
                     <li>
-                        <a href="#lnk" title="새창이동" target="_blank"><p>01</p>공지사항 내용이 이곳에 들어갑니다</a>
+                        <a href="#lnk"><span>중요</span>공지사항 내용이 이곳에 들어갑니다</a>
                         <p>2024-01-16</p>
+                    </li>
+                    <li>
+                        <a href="#lnk"><p>01</p>공지사항 내용이 이곳에 들어갑니다</a>
+                        <p>
+                            <span><img src="/user_img/file.png" alt="첨부파일"></span>
+                            2024-01-16
+                        </p>
                     </li>
                 </ul>
             </div>
