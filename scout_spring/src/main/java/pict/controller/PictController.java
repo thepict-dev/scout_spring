@@ -323,7 +323,7 @@ public class PictController {
 		
 		model.addAttribute("message", "정상적으로 저장되었습니다.");
 		model.addAttribute("retType", ":location");
-		model.addAttribute("retUrl", "/front/signup_org");
+		model.addAttribute("retUrl", "/admin/front/signup_org");
 		return "pict/main/message";	
 	}
 	//전종리스트
@@ -370,7 +370,7 @@ public class PictController {
 			String birthday = param.get("birthday").toString();
 			String mobile = param.get("mobile").toString();
 			String email = param.get("email").toString();
-			
+			String employeey = param.get("employeey").toString();
 	
 			
 			pictVO.setMEMBERNO(memberno);
@@ -382,7 +382,7 @@ public class PictController {
 			pictVO.setBIRTHDAY(birthday);
 			pictVO.setMOBILE(mobile);
 			pictVO.setEMAIL(email);
-			
+			pictVO.setEMPLOYEEY(employeey);
 			pictService.former_save(pictVO);
 			
 			return "Y";
@@ -1338,7 +1338,7 @@ public class PictController {
 		
 		model.addAttribute("message", "정상적으로 저장되었습니다.");
 		model.addAttribute("retType", ":location");
-		model.addAttribute("retUrl", "/front/signup");
+		model.addAttribute("retUrl", "/admin/front/signup");
 		return "pict/main/message";	
 		//return "pict/front/ko/management";
 	}
@@ -1878,7 +1878,7 @@ public class PictController {
 		model.addAttribute("message", "정상적으로 저장되었습니다.");
 		model.addAttribute("retType", ":submit");
 		
-		model.addAttribute("retUrl", "/front/association_price");
+		model.addAttribute("retUrl", "/admin/front/association_price");
 		return "pict/main/message";
 	}
 	

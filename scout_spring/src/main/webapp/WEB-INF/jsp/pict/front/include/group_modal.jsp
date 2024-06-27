@@ -169,7 +169,7 @@
 			}
 			
 			$.ajax({
-				url : "/main_scout_org_save"
+				url : "/admin/main_scout_org_save"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -196,7 +196,7 @@
 			}
 			
 			$.ajax({
-				url : "/main_leader_org_save"
+				url : "/admin/main_leader_org_save"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -320,7 +320,7 @@
 		}
 		
 		$.ajax({
-			url : "/fn_get_orgclscode"
+			url : "/admin/fn_get_orgclscode"
 			, type : "POST"
 			, data : JSON.stringify(param)
 			, contentType : "application/json"
@@ -360,7 +360,7 @@
 		}
 		
 		$.ajax({
-			url : "/fn_get_parentorgno"
+			url : "/admin/fn_get_parentorgno"
 			, type : "POST"
 			, data : JSON.stringify(param)
 			, contentType : "application/json"
@@ -396,7 +396,7 @@
 		}
 	
 		$.ajax({
-			url : "/search_org"
+			url : "/admin/search_org"
 			, type : "POST"
 			, data : JSON.stringify(param)
 			, contentType : "application/json"

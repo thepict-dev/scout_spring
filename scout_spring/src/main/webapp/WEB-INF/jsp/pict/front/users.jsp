@@ -649,7 +649,7 @@
 					memberno : $('#MEMBERNO').val()
 				}
 				$.ajax({
-					url : "/admin_reset"
+					url : "/admin/admin_reset"
 					, type : "POST"
 					, data : JSON.stringify(param)
 					, contentType : "application/json"
@@ -691,7 +691,7 @@
 				}
 				
 				$.ajax({
-					url : "/leader_del"
+					url : "/admin/leader_del"
 					, type : "POST"
 					, data : JSON.stringify(param)
 					, contentType : "application/json"
@@ -760,7 +760,7 @@
 				}
 				
 				$.ajax({
-					url : "/scout_del"
+					url : "/admin/scout_del"
 					, type : "POST"
 					, data : JSON.stringify(param)
 					, contentType : "application/json"
@@ -832,7 +832,7 @@
 				formData.append("request", new Blob([JSON.stringify(requestData)], {type: "application/json"}));
 				
 				$.ajax({
-					url: '/profile_img',
+					url: '/admin/profile_img',
 					processData : false,
 					contentType : false,
 					data : formData,
@@ -890,7 +890,7 @@
 				$('#initial-loading').css('display', 'flex')
 				
 				$.ajax({
-					url : "/person_save"
+					url : "/admin/person_save"
 					, type : "POST"
 					, data : JSON.stringify(param)
 					, contentType : "application/json"
@@ -925,15 +925,13 @@
 			
 		}
 		function search_list_memberno(){
-			$('#initial-loading').css('display', 'flex')
-			$("#search_fm_memberno").attr("action", "/front/users");
+			$("#search_fm_memberno").attr("action", "/admin/front/users");
 			$("#search_fm_memberno").submit();
-			$('#initial-loading').css('display', 'none')
 
 		}
 		function search_list(){
 			$('#initial-loading').css('display', 'flex')
-			$("#search_fm").attr("action", "/front/users");
+			$("#search_fm").attr("action", "/admin/front/users");
 			$("#search_fm").submit();
 			$('#initial-loading').css('display', 'none')
 		}
@@ -948,7 +946,7 @@
 
 			
 			$.ajax({
-				url : "/get_per_info"
+				url : "/admin/get_per_info"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"

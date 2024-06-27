@@ -333,7 +333,7 @@
 				memberno : $('#MEMBERNO').val(),
 			}
 			$.ajax({
-				url : "/get_leader_mod"
+				url : "/admin/get_leader_mod"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -393,7 +393,7 @@
 				associationcode : $('#associationcode_leader').val(),
 		}
 		$.ajax({
-			url : "/get_unity_list"
+			url : "/admin/get_unity_list"
 			, type : "POST"
 			, data : JSON.stringify(param)
 			, contentType : "application/json"
@@ -423,7 +423,7 @@
 				parenttroopno : $('#unitycode_leader').val()
 		}
 		$.ajax({
-			url : "/get_troop_list_leader"
+			url : "/admin/get_troop_list_leader"
 			, type : "POST"
 			, data : JSON.stringify(param)
 			, contentType : "application/json"
@@ -463,7 +463,7 @@
 		}
 		
 		$.ajax({
-			url : "/fn_get_leaderposition"
+			url : "/admin/fn_get_leaderposition"
 			, type : "POST"
 			, data : JSON.stringify(param)
 			, contentType : "application/json"
@@ -532,7 +532,7 @@
 			if(confirm (text)){
 				$('#leader_list').children().remove();
 				$.ajax({
-					url : "/leader_save"
+					url : "/admin/leader_save"
 					, type : "POST"
 					, data : JSON.stringify(param)
 					, contentType : "application/json"
@@ -593,7 +593,7 @@
 			if(confirm (text)){
 				$('#leader_list').children().remove();
 				$.ajax({
-					url : "/leader_update"
+					url : "/admin/leader_update"
 					, type : "POST"
 					, data : JSON.stringify(param)
 					, contentType : "application/json"

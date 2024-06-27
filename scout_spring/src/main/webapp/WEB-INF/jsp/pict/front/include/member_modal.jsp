@@ -309,7 +309,7 @@
 				memberno : $('#MEMBERNO').val(),
 			}
 			$.ajax({
-				url : "/get_scout_mod"
+				url : "/admin/get_scout_mod"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -372,7 +372,7 @@
 				associationcode : $('#associationcode_scout').val(),
 		}
 		$.ajax({
-			url : "/get_unity_list"
+			url : "/admin/get_unity_list"
 			, type : "POST"
 			, data : JSON.stringify(param)
 			, contentType : "application/json"
@@ -402,7 +402,7 @@
 			parenttroopno : $('#unitycode_scout').val()
 		}
 		$.ajax({
-			url : "/get_troop_list_leader"
+			url : "/admin/get_troop_list_leader"
 			, type : "POST"
 			, data : JSON.stringify(param)
 			, contentType : "application/json"
@@ -442,7 +442,7 @@
 		}
 		
 		$.ajax({
-			url : "/fn_get_scoutpositioncode"
+			url : "/admin/fn_get_scoutpositioncode"
 			, type : "POST"
 			, data : JSON.stringify(param)
 			, contentType : "application/json"
@@ -510,7 +510,7 @@
 			if(confirm (text)){
 				$('#scout_list').children().remove();
 				$.ajax({
-					url : "/scout_save"
+					url : "/admin/scout_save"
 					, type : "POST"
 					, data : JSON.stringify(param)
 					, contentType : "application/json"
@@ -569,7 +569,7 @@
 			if(confirm (text)){
 				$('#scout_list').children().remove();
 				$.ajax({
-					url : "/scout_update"
+					url : "/admin/scout_update"
 					, type : "POST"
 					, data : JSON.stringify(param)
 					, contentType : "application/json"

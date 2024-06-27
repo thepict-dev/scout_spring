@@ -182,12 +182,12 @@
 	</body>
 	<script>
 		function search_price(){
-			$("#register").attr("action", "/front/association_price");
+			$("#register").attr("action", "/admin/front/association_price");
 			$("#register").submit();		
 		}
 		
 		function fn_submit(){
-			$("#register").attr("action", "/front/association_price_save");
+			$("#register").attr("action", "/admin/front/association_price_save");
 			$("#register").submit();	
 		}
 		

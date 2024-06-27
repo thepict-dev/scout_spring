@@ -220,28 +220,28 @@
 				check_list.push(json);
 			});
 			
-
-			$.ajax({
-				url : "/whole_register_confirm"
-				, type : "POST"
-				, data : JSON.stringify(check_list)
-				, contentType : "application/json"
-				, dataType : "json"
-				, async : true
-				, success : function(data, status, xhr) {
-					if(data){
-						if(data.result == 'Y'){
-							alert("정상적으로 연공이 승인되었습니다.")
+			if(confirm("선택한 회원들의 연공을 승인처리하시겠습니까?")){
+				$.ajax({
+					url : "/admin/whole_register_confirm"
+					, type : "POST"
+					, data : JSON.stringify(check_list)
+					, contentType : "application/json"
+					, dataType : "json"
+					, async : true
+					, success : function(data, status, xhr) {
+						if(data){
+							if(data.result == 'Y'){
+								alert("정상적으로 연공이 승인되었습니다.")
+							}
 						}
 					}
-				}
-				, error : function(xhr, status, error) {
-					console.log(xhr)
-					console.log("에러")
-					alert("오류가 발생하였습니다.")
-				}
-			});
-			
+					, error : function(xhr, status, error) {
+						console.log(xhr)
+						console.log("에러")
+						alert("오류가 발생하였습니다.")
+					}
+				});
+			}
 			
 		}
 		function choose_troop(){
@@ -252,7 +252,7 @@
 			}
 
 			$.ajax({
-				url : "/current_troop_info"
+				url : "/admin/current_troop_info"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -322,7 +322,7 @@
 					associationcode : $('#ASSOCIATIONCODE').val(),
 			}
 			$.ajax({
-				url : "/get_unity_list"
+				url : "/admin/get_unity_list"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -357,7 +357,7 @@
 			$('#search_troop_list').children().remove();
 			$('.contentsContainer select').niceSelect('update')
 			$.ajax({
-				url : "/troop_search"
+				url : "/admin/troop_search"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -394,7 +394,7 @@
 				troopclscode1 : $('#TROOPCLSCODE1').val(),
 			}
 			$.ajax({
-				url : "/troopclscode1_search"
+				url : "/admin/troopclscode1_search"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"

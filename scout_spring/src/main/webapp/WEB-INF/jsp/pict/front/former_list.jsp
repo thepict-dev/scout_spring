@@ -94,6 +94,14 @@
                                             <option value="16">인턴</option>
                                         </select>
                                     </div>
+                                    <div class="inputBox">
+                                    	<p class="inputCaption">전종</p>
+	                                    <select name="EMPLOYEEY" id="EMPLOYEEY" class="smThinSelect">
+	                                        <option value="N">-</option>
+	                                        <option value="Y">전종</option>
+	                                        <option value="X">탈퇴</option>
+	                                    </select>
+                                    </div>
                                 </div>
                                 <div class="inputsContainer">
                                     <div class="inputBox">
@@ -209,7 +217,7 @@
 				memberno : memberno,
 			}
 			$.ajax({
-				url : "/former_info"
+				url : "/admin/former_info"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -230,7 +238,7 @@
 						$('#sosock').val(data.list[0].sosock)
 						$('#depart').val(data.list[0].depart)
 						$('#ranked').val(data.list[0].ranked)
-						
+						$('#EMPLOYEEY').val(data.list[0].employeey)
 						$('#BIRTHDAY').val(data.list[0].birthday)
 						$('#MOBILE').val(data.list[0].mobile)
 						$('#EMAIL').val(data.list[0].email)
@@ -257,10 +265,12 @@
 				birthday : $('#BIRTHDAY').val(),
 				mobile : $('#MOBILE').val(),
 				email : $('#EMAIL').val(),
+				employeey : $('#EMPLOYEEY').val(),
+				
 			}
 			
 			$.ajax({
-				url : "/former_save"
+				url : "/admin/former_save"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -301,7 +311,7 @@
 				formData.append("request", new Blob([JSON.stringify(requestData)], {type: "application/json"}));
 				
 				$.ajax({
-					url: '/profile_img',
+					url: '/admin/profile_img',
 					processData : false,
 					contentType : false,
 					data : formData,

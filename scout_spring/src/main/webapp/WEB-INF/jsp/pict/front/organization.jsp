@@ -652,7 +652,7 @@
 				}
 				console.log(param)
 				$.ajax({
-					url : "/organ_update"
+					url : "/admin/organ_update"
 					, type : "POST"
 					, data : JSON.stringify(param)
 					, contentType : "application/json"
@@ -678,7 +678,7 @@
 			$('#org_scout_list').children().remove();
 			
 			$.ajax({
-				url : "/organ_info"
+				url : "/admin/organ_info"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -810,7 +810,7 @@
 					associationcode : $('#ASSOCIATIONCODE').val(),
 			}
 			$.ajax({
-				url : "/get_unity_list"
+				url : "/admin/get_unity_list"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -839,7 +839,7 @@
 				troopclscode1 : $('#TROOPCLSCODE1').val(),
 			}
 			$.ajax({
-				url : "/troopclscode1_search"
+				url : "/admin/troopclscode1_search"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -881,7 +881,7 @@
 			}
 			
 			$.ajax({
-				url : "/organ_search"
+				url : "/admin/organ_search"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -927,7 +927,7 @@
 				troopclscode1 : $('#troopclscode1_search').val(),
 			}
 			$.ajax({
-				url : "/troopclscode1_search"
+				url : "/admin/troopclscode1_search"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -956,7 +956,7 @@
 					associationcode : $('#associationcode_search').val(),
 			}
 			$.ajax({
-				url : "/get_unity_list"
+				url : "/admin/get_unity_list"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -992,7 +992,7 @@
 			
 			
 			$.ajax({
-				url : "/fn_get_parentorgno"
+				url : "/admin/fn_get_parentorgno"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"

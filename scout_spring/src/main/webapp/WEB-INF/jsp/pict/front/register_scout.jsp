@@ -355,7 +355,7 @@
 					associationcode : $('#ASSOCIATIONCODE').val(),
 			}
 			$.ajax({
-				url : "/get_unity_list"
+				url : "/admin/get_unity_list"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -390,7 +390,7 @@
 			$('#search_troop_list').children().remove();
 			$('.contentsContainer select').niceSelect('update')
 			$.ajax({
-				url : "/troop_search"
+				url : "/admin/troop_search"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -427,7 +427,7 @@
 				troopclscode1 : $('#TROOPCLSCODE1').val(),
 			}
 			$.ajax({
-				url : "/troopclscode1_search"
+				url : "/admin/troopclscode1_search"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -467,7 +467,7 @@
 				associationcode : $('#ASSOCIATIONCODE').val(),
 			}
 			$.ajax({
-				url : "/prev_troop_info"
+				url : "/admin/prev_troop_info"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -706,7 +706,7 @@
 				}
 			});
 			$.ajax({
-				url : "/association_price"
+				url : "/admin/association_price"
 				, type : "POST"
 				, data : JSON.stringify(param2)
 				, contentType : "application/json"
@@ -959,7 +959,7 @@
 				var data = JSON.parse($('#hiddenTextarea').val());	
 				debugger
 				$.ajax({
-					url : "/whole_register_input"
+					url : "/admin/whole_register_input"
 					, type : "POST"
 					, data : JSON.stringify(data)
 					, dataType : 'json'

@@ -351,7 +351,7 @@
 		}
 		function fn_search(){
 			
-			$("#search_fm_units").attr("action", "/front/units");
+			$("#search_fm_units").attr("action", "/admin/front/units");
 			$("#search_fm_units").submit();
 		}
 		
@@ -365,7 +365,7 @@
 			$('#unit_leader_list').children().remove();
 			$('#unit_scout_list').children().remove();
 			$.ajax({
-				url : "/fn_get_units_info"
+				url : "/admin/fn_get_units_info"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -482,7 +482,7 @@
 					associationcode : $('#search_associationcode').val(),
 			}
 			$.ajax({
-				url : "/get_unity_list"
+				url : "/admin/get_unity_list"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -511,7 +511,7 @@
 				troopclscode1 : $('#search_troopcls').val(),
 			}
 			$.ajax({
-				url : "/troopclscode1_search"
+				url : "/admin/troopclscode1_search"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"

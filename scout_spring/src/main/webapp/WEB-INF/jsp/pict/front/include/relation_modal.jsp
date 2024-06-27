@@ -132,7 +132,7 @@
 			$('#initial-loading').css('display', 'flex')
 			var param = {}
 			$.ajax({
-				url : "/get_relation_clscode"
+				url : "/admin/get_relation_clscode"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -174,7 +174,7 @@
 				kname : search_relation_kname
 			}
 			$.ajax({
-				url : "/get_relation_person_search"
+				url : "/admin/get_relation_person_search"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -219,7 +219,7 @@
 				tomemberno : tomemberno
 			}
 			$.ajax({
-				url : "/relation_insert"
+				url : "/admin/relation_insert"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -281,7 +281,7 @@
 					memberno : $('#MEMBERNO').val()
 				}
 				$.ajax({
-					url : "/relation_delete"
+					url : "/admin/relation_delete"
 					, type : "POST"
 					, data : JSON.stringify(param)
 					, contentType : "application/json"

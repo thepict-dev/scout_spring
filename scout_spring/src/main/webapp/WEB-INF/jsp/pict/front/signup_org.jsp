@@ -159,7 +159,7 @@
 					associationcode : $('#ASSOCIATIONCODE').val(),
 			}
 			$.ajax({
-				url : "/get_unity_list"
+				url : "/admin/get_unity_list"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -188,7 +188,7 @@
 				troopclscode1 : $('#TROOPCLSCODE1').val(),
 			}
 			$.ajax({
-				url : "/troopclscode1_search"
+				url : "/admin/troopclscode1_search"
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
@@ -217,7 +217,7 @@
 
 
 			if (confirm(text)) {
-				$("#register_org").attr("action", "/new_org");
+				$("#register_org").attr("action", "/admin/new_org");
 				$("#register_org").submit();
 			}
 		}

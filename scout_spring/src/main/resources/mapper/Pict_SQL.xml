@@ -854,7 +854,8 @@
 		ranked= #{ranked}, 
 		BIRTHDAY= #{BIRTHDAY},
 		MOBILE= #{MOBILE},
-		EMAIL= #{EMAIL} 
+		EMAIL= #{EMAIL},
+		EMPLOYEEY = #{EMPLOYEEY}
 		where MEMBERNO = #{MEMBERNO}
 	</update>
 	

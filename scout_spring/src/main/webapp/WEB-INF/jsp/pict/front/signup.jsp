@@ -198,7 +198,7 @@
 			}
 			
 			if (confirm(text)) {
-				$("#register").attr("action", "/new_person");
+				$("#register").attr("action", "/admin/new_person");
 				$("#register").submit();
 			}
 		}
