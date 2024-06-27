@@ -39,7 +39,7 @@
 				//$("#adminPw").val(rsa.encrypt($("#pw").val()));
 				$("#password").val($("#password2").val());
 			}
-			document.loginForm.action = "/login";
+			document.loginForm.action = "/admin/login";
 			document.loginForm.submit();
 			
 		}

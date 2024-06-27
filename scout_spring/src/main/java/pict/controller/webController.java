@@ -41,7 +41,6 @@ import pict.service.PictService;
 import pict.service.PictVO;
 
 @Controller
-@RequestMapping("/web")
 public class webController {
 
 	@Autowired
@@ -51,7 +50,7 @@ public class webController {
 	AdminService adminService;
 
 	
-	@RequestMapping("/main")
+	@RequestMapping("/")
 	public String pict_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
 		
 		return "pict/web/main";

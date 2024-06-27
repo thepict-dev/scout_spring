@@ -17,20 +17,20 @@
             	<span><img src="/front_img/lnb1.png" alt=""></span>
                 <a href="#lnk">스카우트 통합 관리</a>
                 <ul class="subNav">
-                    <li><a href="/front/organization">조직 통합 관리</a></li>
-                    <li><a href="/front/users">회원 통합 관리</a></li>
-                    <li><a href="/front/units">단위대 통합 관리</a></li>
-                    <li><a href="/front/signup_org">신규 조직 등록</a></li>
-                    <li><a href="/front/signup">신규 회원 등록</a></li>
-                    <li><a href="/front/former_list">전종리스트</a></li>
+                    <li><a href="/admin/front/organization">조직 통합 관리</a></li>
+                    <li><a href="/admin/front/users">회원 통합 관리</a></li>
+                    <li><a href="/admin/front/units">단위대 통합 관리</a></li>
+                    <li><a href="/admin/front/signup_org">신규 조직 등록</a></li>
+                    <li><a href="/admin/front/signup">신규 회원 등록</a></li>
+                    <li><a href="/admin/front/former_list">전종리스트</a></li>
                 </ul>
             </li>
             <li>
             	<span><img src="/front_img/lnb5.png" alt=""></span>
                 <a href="#lnk">회원등록</a>
                 <ul class="subNav">
-                    <li><a href="/front/scout_whole_register">대등록</a></li>
-                    <li><a href="/front/scout_whole_confirm">대승인</a></li>
+                    <li><a href="/admin/front/scout_whole_register">대등록</a></li>
+                    <li><a href="/admin/front/scout_whole_confirm">대승인</a></li>
                 </ul>
             </li>
             <li>
@@ -45,14 +45,14 @@
             	<span><img src="/front_img/lnb4.png" alt=""></span>
                 <a href="#lnk">홈페이지 관리</a>
                 <ul class="subNav">
-                	<li><a href="/front/board_list">게시물관리</a></li>
+                	<li><a href="/admin/front/board_list">게시물관리</a></li>
                	</ul>
             </li>
             <li>
                 <span><img src="/front_img/setting.png" alt=""></span>
                 <a href="#lnk">기본설정관리</a>
                 <ul class="subNav">
-                	<li><a href="/front/association_price">연맹별납부액관리</a></li>
+                	<li><a href="/admin/front/association_price">연맹별납부액관리</a></li>
                	</ul>
             </li>
         </ul>

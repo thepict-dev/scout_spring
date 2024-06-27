@@ -41,6 +41,7 @@ import pict.service.PictService;
 import pict.service.PictVO;
 
 @Controller
+@RequestMapping("/admin")
 public class PictController {
 
 	@Autowired
@@ -54,7 +55,7 @@ public class PictController {
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		String sessions = (String) request.getSession().getAttribute("id");
 		if (sessions == null || sessions == "null") {
-			return "redirect:/pict_login";
+			return "redirect:/admin/pict_login";
 		} else {
 			String user_id = (String) request.getSession().getAttribute("id");
 			if (request.getSession().getAttribute("id") != null) {
@@ -63,7 +64,7 @@ public class PictController {
 				model.addAttribute("adminVO", pictVO);
 			}
 
-			return "redirect:/front/users";
+			return "redirect:/admin/front/users";
 
 		}
 	}
@@ -88,7 +89,7 @@ public class PictController {
 			return "pict/main/login";
 		} else {
 			// 나중에 여기 계정별로 리다이렉트 분기처리
-			return "redirect:/front/users";
+			return "redirect:/admin/front/users";
 
 		}
 
@@ -118,7 +119,7 @@ public class PictController {
 				pictVO.setMEMBERNO(user_id);
 				pictVO = adminService.get_user_info(pictVO);
 
-				return "redirect:/pict_main";
+				return "redirect:/admin/pict_main";
 
 			} else {
 				model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.1");
@@ -143,15 +144,15 @@ public class PictController {
 		request.getSession().setAttribute("leaderpositionname", null);
 		request.getSession().setAttribute("picimg", null);
 
-		return "redirect:/pict_login";
+		return "redirect:/admin/pict_login";
 
 	}
 
 	
-	@RequestMapping("/admin")
+	@RequestMapping("/main")
 	public String main(@ModelAttribute("pictVO") AdminVO adminVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
-		return "redirect:/pict_login";
+		return "redirect:/admin/pict_login";
 	}
 	//대원통합창
 	@RequestMapping("/front/users")
@@ -160,7 +161,7 @@ public class PictController {
 		
 		String sessions = (String) request.getSession().getAttribute("id");
 		if (sessions == null || sessions == "null") {
-			return "redirect:/pict_login";
+			return "redirect:/admin/pict_login";
 		}
 		
 		String loginNo = request.getSession().getAttribute("id").toString();
@@ -204,7 +205,7 @@ public class PictController {
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		String sessions = (String) request.getSession().getAttribute("id");
 		if (sessions == null || sessions == "null") {
-			return "redirect:/pict_login";
+			return "redirect:/admin/pict_login";
 		}
 		
 		List<PictVO> association_list = pictService.association_list(pictVO);
@@ -222,7 +223,7 @@ public class PictController {
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		String sessions = (String) request.getSession().getAttribute("id");
 		if (sessions == null || sessions == "null") {
-			return "redirect:/pict_login";
+			return "redirect:/admin/pict_login";
 		}
 		
 		Date today = new Date();
@@ -292,7 +293,7 @@ public class PictController {
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		String sessions = (String) request.getSession().getAttribute("id");
 		if (sessions == null || sessions == "null") {
-			return "redirect:/pict_login";
+			return "redirect:/admin/pict_login";
 		}
 		
 		List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
@@ -443,7 +444,7 @@ public class PictController {
 		
 		String sessions = (String) request.getSession().getAttribute("id");
 		if (sessions == null || sessions == "null") {
-			return "redirect:/pict_login";
+			return "redirect:/admin/pict_login";
 		}
 		
 		List<?> job_list= pictService.job_list(pictVO);
@@ -1833,6 +1834,11 @@ public class PictController {
 	@SuppressWarnings("null")
 	@RequestMapping("/front/association_price")
 	public String association_price(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
+		
 		List<PictVO> association_list = pictService.association_list(pictVO);
 		model.addAttribute("association_list", association_list);
 		

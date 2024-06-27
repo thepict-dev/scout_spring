@@ -42,7 +42,7 @@
 	
 	function fn_logout() {
 		if(confirm("로그아웃 하시겠습니까?")){
-			location.href="/logout"
+			location.href="/admin/logout"
 		}
 	}
 
