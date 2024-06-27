@@ -9,6 +9,9 @@
 	<%@ include file="./include/head.jsp" %>
 	<script src="/js/script.js" defer></script>
 <body>
+	<%
+		pageContext.setAttribute("sessionid", session.getAttribute("id"));
+	%>
 	<%@ include file="./include/lnb.jsp" %>
 	<c:import url="./include/header.jsp">
 		<c:param name="pageParent" value="스카우트 통합 관리"/>
@@ -632,10 +635,18 @@
 	<script>
 		$(document).ready(function() {
 		    var flag = '${flag}';
-	    	console.log(flag)
+	    	var login_memberno = ${sessionid}
+	    	login_memberno =login_memberno+""
+	    	//재영여기 사무국
+	    	if(login_memberno != '645849'){
+	    		$("select[name=EMPLOYEEY]").attr("disabled", true);
+	    		$('.contentsContainer select').niceSelect('update')
+	    		
+	    	}
     		if(flag != 'Y'){
     			$('#pwPopup').addClass("active");
     		}
+	    	
 		});
 		function admin_reset(){
 			var memberno = $('#MEMBERNO').val();

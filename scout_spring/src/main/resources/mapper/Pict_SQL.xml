@@ -60,7 +60,7 @@
 		ifnull((select orgname from org o where o.ORGNO = m.LEADERORGNO),'') LEADERORGNAME,
 		ifnull(m.LEADERORGPOSITIONCODE, '') LEADERORGPOSITIONCODE,
 		 m.BIRTHDAY, 
-		 (case when m.EMPLOYEEY = '' then 'N' when m.EMPLOYEEY is null then 'N' when m.EMPLOYEEY = 'N' then 'N' else 'Y' end) as EMPLOYEEY,
+		 (case when m.EMPLOYEEY = '' then 'N' when m.EMPLOYEEY is null then 'N' when m.EMPLOYEEY = 'N' then 'N' else m.EMPLOYEEY end) as EMPLOYEEY,
 		 m.KNAME, m.ENAME, m.SEX,
 		 m.MOBILE, m.EMAIL,m.HTELNO, m.BIGO,
 		 m.HPOSTCODE, m.HADDR, m.EMAILYN, m.SMSYN, m.JOBCODE, m.SCOUTSCHOOLYEAR, m.SCOUTSCHOOLBAN, m.LEADERSCORE, m.TROOPSCOUTY, m.TROOPLEADERY
