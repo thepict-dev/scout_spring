@@ -846,6 +846,9 @@
 	<%@ include file="./include/footer.jsp" %>
 	
     <script>  
+    	window.odometerOptions = {
+            format: ''  // 쉼표 형식을 제거하는 옵션
+        };
         $(document).ready(function () {
             $(document).on("scroll", onScroll);
 

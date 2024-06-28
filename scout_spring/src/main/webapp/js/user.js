@@ -6,6 +6,14 @@ $(".gnb > li").mouseleave(function(){
   $(this).children(".gnbSub").stop().slideUp(300);
 });
 
+// 사이트맵 모달
+$('.gnbRight button').click(function(){
+  $('.siteMap').show();
+});
+$('.siteMapTop button').click(function(){
+  $('.siteMap').hide();
+});
+
 //영상재생
 $('.videoTopInner button').on('click', function () {
   $('.videoWrapper video').trigger('play');
@@ -90,3 +98,4 @@ $('input[name="time"], input[name="setting"]').on("change click", function() {
 const phoneAutoHyphen = (target) => {
   target.value = target.value.replace(/[^0-9]/g, '').replace(/^(\d{0,4})(\d{0,4})$/g, "$1-$2").replace(/(\-{1,2})$/g, "");
 };
+
