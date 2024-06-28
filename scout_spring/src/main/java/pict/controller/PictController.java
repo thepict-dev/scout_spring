@@ -1884,7 +1884,7 @@ public class PictController {
 	
 	
 	//홈페이지관리
-	//연맹별납부액 저장
+	//게시글 리스트
 	@RequestMapping("/front/board_list")
 	public String board_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		List<PictVO> association_list = pictService.association_list(pictVO);
@@ -1892,6 +1892,15 @@ public class PictController {
 		
 		
 		return "pict/front/board_list";
+	}
+	//게시글 폼
+	@RequestMapping("/front/board_form")
+	public String board_form(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		List<PictVO> association_list = pictService.association_list(pictVO);
+		model.addAttribute("association_list", association_list);
+		
+		
+		return "pict/front/board_form";
 	}
 	
 	// 공통메소드
