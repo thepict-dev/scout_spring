@@ -43,6 +43,9 @@ public class PictVO extends PictDefaultVO {
 	
 	private String file1;
 	private String file2;
+	private String file3;
+	private String file4;
+	private String file5;
 	
 	private MultipartFile file1root;
 	private MultipartFile file2root;
@@ -258,11 +261,7 @@ public class PictVO extends PictDefaultVO {
 	private String cls99newbigo;
 
 	
-	private String FILE1;
-	private String FILE2;
-	private String FILE3;
-	private String FILE4;
-	private String FILE5;
+	
 	private String BRDCTSNO;
 	private String BRDNO;
 	private String SUBJECT;
@@ -280,6 +279,25 @@ public class PictVO extends PictDefaultVO {
 	private int endPage;
 	
 	
+	
+	public String getFile3() {
+		return file3;
+	}
+	public void setFile3(String file3) {
+		this.file3 = file3;
+	}
+	public String getFile4() {
+		return file4;
+	}
+	public void setFile4(String file4) {
+		this.file4 = file4;
+	}
+	public String getFile5() {
+		return file5;
+	}
+	public void setFile5(String file5) {
+		this.file5 = file5;
+	}
 	public int getPageNumber() {
 		return pageNumber;
 	}
@@ -339,36 +357,6 @@ public class PictVO extends PictDefaultVO {
 	}
 	public void setUSEAT(String uSEAT) {
 		USEAT = uSEAT;
-	}
-	public String getFILE1() {
-		return FILE1;
-	}
-	public void setFILE1(String fILE1) {
-		FILE1 = fILE1;
-	}
-	public String getFILE2() {
-		return FILE2;
-	}
-	public void setFILE2(String fILE2) {
-		FILE2 = fILE2;
-	}
-	public String getFILE3() {
-		return FILE3;
-	}
-	public void setFILE3(String fILE3) {
-		FILE3 = fILE3;
-	}
-	public String getFILE4() {
-		return FILE4;
-	}
-	public void setFILE4(String fILE4) {
-		FILE4 = fILE4;
-	}
-	public String getFILE5() {
-		return FILE5;
-	}
-	public void setFILE5(String fILE5) {
-		FILE5 = fILE5;
 	}
 	public String getBRDCTSNO() {
 		return BRDCTSNO;

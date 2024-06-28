@@ -231,8 +231,8 @@
 }
 .notice li a span{
 	display: block;
-	margin-right: 4px;
-	padding: 4px 5px;
+	margin-right: 20px;
+	padding: 5px 9px;
 	color: #fff;
 	font-size: 14px;
 	font-weight: 400;
@@ -242,7 +242,7 @@
 	background: var(--purple-500);
 }
 .notice li a p{
-	width: 34px;
+	width: 60px;
 	color: #888;
 	font-size: 18px;
 	font-weight: 500;

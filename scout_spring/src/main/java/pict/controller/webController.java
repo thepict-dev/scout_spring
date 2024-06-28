@@ -104,6 +104,7 @@ public class webController {
 	//공지사항 뷰
 	@RequestMapping("notice_view")
 	public String notice_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		pictService.board_view_cnt(pictVO);
 		pictVO = pictService.board_list_one(pictVO);
 		model.addAttribute("pictVO", pictVO);
 		return "pict/web/notice_view";
@@ -111,14 +112,149 @@ public class webController {
 	//뉴스
 	@RequestMapping("news")
 	public String news(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		int limitNumber = 20;
+		pictVO.setLimit(limitNumber);
+		
+		Integer pageNum = pictVO.getPageNumber();
+		
+		if(pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		pictVO.setBRDNO("227");
+		Integer totalCnt = pictService.board_list_cnt(pictVO);
+		
+		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
+		pictVO.setLastPage(lastPageValue);
+		
+		Integer s_page = pageNum - 4;
+		Integer e_page = pageNum + 5;
+		if (s_page <= 0) {
+			s_page = 1;
+			e_page = 10;
+		} 
+		if (e_page > lastPageValue){
+			e_page = lastPageValue;
+		}
+		
+		pictVO.setStartPage(s_page);
+		pictVO.setEndPage(e_page);
+		
+		
+		List<PictVO> board_list = pictService.board_list(pictVO);
+		model.addAttribute("board_list", board_list);
+		model.addAttribute("board_cnt", totalCnt);
 		
 		return "pict/web/news";
 	}
 	//공지사항 뷰
 	@RequestMapping("news_view")
 	public String news_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		
+		pictService.board_view_cnt(pictVO);
+		pictVO = pictService.board_list_one(pictVO);
+		model.addAttribute("pictVO", pictVO);
 		return "pict/web/news_view";
+	}
+	//통합자료실
+	@RequestMapping("integrated")
+	public String integrated(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		int limitNumber = 20;
+		pictVO.setLimit(limitNumber);
+		
+		Integer pageNum = pictVO.getPageNumber();
+		
+		if(pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		pictVO.setBRDNO("1587");
+		Integer totalCnt = pictService.board_list_cnt(pictVO);
+		
+		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
+		pictVO.setLastPage(lastPageValue);
+		
+		Integer s_page = pageNum - 4;
+		Integer e_page = pageNum + 5;
+		if (s_page <= 0) {
+			s_page = 1;
+			e_page = 10;
+		} 
+		if (e_page > lastPageValue){
+			e_page = lastPageValue;
+		}
+		
+		pictVO.setStartPage(s_page);
+		pictVO.setEndPage(e_page);
+		
+		
+		List<PictVO> board_list = pictService.board_list(pictVO);
+		model.addAttribute("board_list", board_list);
+		model.addAttribute("board_cnt", totalCnt);
+		
+		return "pict/web/integrated";
+	}
+	//통합자료실 뷰
+	@RequestMapping("integrated_view")
+	public String integrated_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		pictService.board_view_cnt(pictVO);
+		pictVO = pictService.board_list_one(pictVO);
+		model.addAttribute("pictVO", pictVO);
+		return "pict/web/integrated_view";
+	}
+	//프로그램자료실(대운영)
+	@RequestMapping("program")
+	public String program(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		int limitNumber = 20;
+		pictVO.setLimit(limitNumber);
+		
+		Integer pageNum = pictVO.getPageNumber();
+		
+		if(pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		pictVO.setBRDNO("290");
+		Integer totalCnt = pictService.board_list_cnt(pictVO);
+		
+		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
+		pictVO.setLastPage(lastPageValue);
+		
+		Integer s_page = pageNum - 4;
+		Integer e_page = pageNum + 5;
+		if (s_page <= 0) {
+			s_page = 1;
+			e_page = 10;
+		} 
+		if (e_page > lastPageValue){
+			e_page = lastPageValue;
+		}
+		
+		pictVO.setStartPage(s_page);
+		pictVO.setEndPage(e_page);
+		
+		
+		List<PictVO> board_list = pictService.board_list(pictVO);
+		model.addAttribute("board_list", board_list);
+		model.addAttribute("board_cnt", totalCnt);
+		
+		return "pict/web/program";
+	}
+	//통합자료실 뷰
+	@RequestMapping("program_view")
+	public String program_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		pictService.board_view_cnt(pictVO);
+		pictVO = pictService.board_list_one(pictVO);
+		model.addAttribute("pictVO", pictVO);
+		return "pict/web/program_view";
 	}
 
 	//한국스카우트연맹
@@ -185,13 +321,50 @@ public class webController {
 	//정보공개
 	@RequestMapping("information")
 	public String information(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		int limitNumber = 20;
+		pictVO.setLimit(limitNumber);
+		
+		Integer pageNum = pictVO.getPageNumber();
+		
+		if(pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		pictVO.setBRDNO("1827");
+		Integer totalCnt = pictService.board_list_cnt(pictVO);
+		
+		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
+		pictVO.setLastPage(lastPageValue);
+		
+		Integer s_page = pageNum - 4;
+		Integer e_page = pageNum + 5;
+		if (s_page <= 0) {
+			s_page = 1;
+			e_page = 10;
+		} 
+		if (e_page > lastPageValue){
+			e_page = lastPageValue;
+		}
+		
+		pictVO.setStartPage(s_page);
+		pictVO.setEndPage(e_page);
+		
+		
+		List<PictVO> board_list = pictService.board_list(pictVO);
+		model.addAttribute("board_list", board_list);
+		model.addAttribute("board_cnt", totalCnt);
 		
 		return "pict/web/information";
 	}
 	//정보공개 뷰
 	@RequestMapping("information_view")
 	public String information_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		
+		pictService.board_view_cnt(pictVO);
+		pictVO = pictService.board_list_one(pictVO);
+		model.addAttribute("pictVO", pictVO);
 		return "pict/web/information_view";
 	}
 

@@ -41,7 +41,11 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="/">자료실</a>
+                        <a href="/integrated">자료실</a>
+                        <ul class="gnbSub">
+	                        <li><a href="/integrated">통합자료실</a></li>
+	                        <li><a href="/program">프로그램자료실</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="/notice">뉴스</a>

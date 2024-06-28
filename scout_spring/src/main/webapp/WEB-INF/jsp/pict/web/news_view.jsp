@@ -13,23 +13,24 @@
     <div class="subWrapper">
         <div class="viewContainer">
             <div class="viewTop">
-                <p>제목이 이곳에 들어갑니다</p>
-                <span>2024-06-24</span>
+                <p>${pictVO.SUBJECT}</p>
+                <span>${fn:substring(pictVO.ENTERDATE,0,11)}</span>
             </div>
             <div class="viewBottom">
                 <div class="viewBottomInner">
-                    <p>asdfafsd</p>
-                    <img src="/user_img/test.jpg" alt="">
+                    <p>${pictVO.CONTENTS}</p>
+                    
                 </div>
             </div>
             <div class="addFile">
-                <a href="#lnk" download>
-                    <img src="/user_img/file.png" alt="">
-                    파일이름
-                </a>
+            	<c:if test="${pictVO.file1 ne '' && pictVO.file1 ne null && pictVO.file1 ne undefined}"><a href="http://scout.thepict.co.kr${pictVO.file1}" target="_blank" download><img src="/user_img/file.png" alt="">${fn:split(pictVO.file1,'/user1/upload_file/scout/')[1]}</a></c:if>
+            	<c:if test="${pictVO.file2 ne '' && pictVO.file2 ne null && pictVO.file2 ne undefined}"><a href="http://scout.thepict.co.kr${pictVO.file2}" target="_blank" download><img src="/user_img/file.png" alt="">${fn:split(pictVO.file2,'/user1/upload_file/scout/')[1]}</a></c:if>
+            	<c:if test="${pictVO.file3 ne '' && pictVO.file3 ne null && pictVO.file3 ne undefined}"><a href="http://scout.thepict.co.kr${pictVO.file3}" target="_blank" download><img src="/user_img/file.png" alt="">${fn:split(pictVO.file3,'/user1/upload_file/scout/')[1]}</a></c:if>
+            	<c:if test="${pictVO.file4 ne '' && pictVO.file4 ne null && pictVO.file4 ne undefined}"><a href="http://scout.thepict.co.kr${pictVO.file4}" target="_blank" download><img src="/user_img/file.png" alt="">${fn:split(pictVO.file4,'/user1/upload_file/scout/')[1]}</a></c:if>
+            	<c:if test="${pictVO.file5 ne '' && pictVO.file5 ne null && pictVO.file5 ne undefined}"><a href="http://scout.thepict.co.kr${pictVO.file5}" target="_blank" download><img src="/user_img/file.png" alt="">${fn:split(pictVO.file5,'/user1/upload_file/scout/')[1]}</a></c:if>
             </div>
             <div class="prevContainer">
-                <a href="#lnk">목록</a>
+                <a href="javascript:history.back()">목록</a>
             </div>
         </div>
     </div>

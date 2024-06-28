@@ -410,6 +410,12 @@ public class PictServiceImpl implements PictService {
 		return pictMapper.board_list_one(pictVO);
 	}
 
+	@Override
+	public void board_view_cnt(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.board_view_cnt(pictVO);
+	}
+
 
 	
 	

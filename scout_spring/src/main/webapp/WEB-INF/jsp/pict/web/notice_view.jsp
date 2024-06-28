@@ -23,11 +23,11 @@
                 </div>
             </div>
             <div class="addFile">
-            	<c:if test="${pictVO.FILE1 ne '' && pictVO.FILE1 ne null && pictVO.FILE1 ne undefined}"><a href="${pictVO.FILE1}" download><img src="/user_img/file.png" alt="">${pictVO.FILE1}</a></c:if>
-            	<c:if test="${pictVO.FILE2 ne '' && pictVO.FILE2 ne null && pictVO.FILE2 ne undefined}"><a href="${pictVO.FILE2}" download><img src="/user_img/file.png" alt="">${pictVO.FILE2}</a></c:if>
-            	<c:if test="${pictVO.FILE3 ne '' && pictVO.FILE3 ne null && pictVO.FILE3 ne undefined}"><a href="${pictVO.FILE3}" download><img src="/user_img/file.png" alt="">${pictVO.FILE3}</a></c:if>
-            	<c:if test="${pictVO.FILE4 ne '' && pictVO.FILE4 ne null && pictVO.FILE4 ne undefined}"><a href="${pictVO.FILE4}" download><img src="/user_img/file.png" alt="">${pictVO.FILE4}</a></c:if>
-            	<c:if test="${pictVO.FILE5 ne '' && pictVO.FILE5 ne null && pictVO.FILE5 ne undefined}"><a href="${pictVO.FILE5}" download><img src="/user_img/file.png" alt="">${pictVO.FILE5}</a></c:if>
+            	<c:if test="${pictVO.file1 ne '' && pictVO.file1 ne null && pictVO.file1 ne undefined}"><a href="http://scout.thepict.co.kr${pictVO.file1}" target="_blank" download><img src="/user_img/file.png" alt="">${fn:split(pictVO.file1,'/user1/upload_file/scout/')[1]}</a></c:if>
+            	<c:if test="${pictVO.file2 ne '' && pictVO.file2 ne null && pictVO.file2 ne undefined}"><a href="http://scout.thepict.co.kr${pictVO.file2}" target="_blank" download><img src="/user_img/file.png" alt="">${fn:split(pictVO.file2,'/user1/upload_file/scout/')[1]}</a></c:if>
+            	<c:if test="${pictVO.file3 ne '' && pictVO.file3 ne null && pictVO.file3 ne undefined}"><a href="http://scout.thepict.co.kr${pictVO.file3}" target="_blank" download><img src="/user_img/file.png" alt="">${fn:split(pictVO.file3,'/user1/upload_file/scout/')[1]}</a></c:if>
+            	<c:if test="${pictVO.file4 ne '' && pictVO.file4 ne null && pictVO.file4 ne undefined}"><a href="http://scout.thepict.co.kr${pictVO.file4}" target="_blank" download><img src="/user_img/file.png" alt="">${fn:split(pictVO.file4,'/user1/upload_file/scout/')[1]}</a></c:if>
+            	<c:if test="${pictVO.file5 ne '' && pictVO.file5 ne null && pictVO.file5 ne undefined}"><a href="http://scout.thepict.co.kr${pictVO.file5}" target="_blank" download><img src="/user_img/file.png" alt="">${fn:split(pictVO.file5,'/user1/upload_file/scout/')[1]}</a></c:if>
             </div>
             <div class="prevContainer">
                 <a href="javascript:history.back()">목록</a>

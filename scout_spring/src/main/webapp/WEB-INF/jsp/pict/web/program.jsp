@@ -12,14 +12,14 @@
 	<%@ include file="./include/header.jsp" %>
     <div class="subWrapper">
         <div class="noticeTop">
-            <h2>언론에 비친 SCOUT</h2>
+            <h2>통합자료실</h2>
         </div>
         <div class="subContents">
             <div class="noticeWrapper">
                 <ul class="notice">
                 	<c:forEach var="board_list" items="${board_list}" varStatus="status">
                 		<li>
-	                        <a href="/news_view?BRDCTSNO=${board_list.BRDCTSNO}">
+	                        <a href="/program_view?BRDCTSNO=${board_list.BRDCTSNO}">
 	                        	<c:if test="${pictVO.pageNumber eq 1}">
 	                        		<p>${board_cnt - status.index}</p>
                         		</c:if>
@@ -41,23 +41,23 @@
             </div>
             <div class="pagination">
             	<c:if test="${pictVO.pageNumber ne 1}">
-            		<a href="/news?pageNumber=1"><img src="/user_img/first.png" alt=""></a>
-            		<a href="/news?pageNumber=${pictVO.pageNumber - 1 < 1 ? 1 : pictVO.pageNumber - 1}"><img src="/user_img/prev.png" alt=""></a>
+            		<a href="/program?pageNumber=1"><img src="/user_img/first.png" alt=""></a>
+            		<a href="/program?pageNumber=${pictVO.pageNumber - 1 < 1 ? 1 : pictVO.pageNumber - 1}"><img src="/user_img/prev.png" alt=""></a>
             	</c:if>
             	
             	
             	<c:forEach var="i" begin="${pictVO.startPage}" end="${pictVO.endPage}">
 					<c:if test="${i eq pictVO.pageNumber}">
-						<a href="/news?pageNumber=${i}" class="active">${i}</a>
+						<a href="/program?pageNumber=${i}" class="active">${i}</a>
 					</c:if>
 					<c:if test="${i ne pictVO.pageNumber}">
-						<a href="/news?pageNumber=${i}" >${i}</a>
+						<a href="/program?pageNumber=${i}" >${i}</a>
 					</c:if>
 				</c:forEach>
                 
                 <c:if test="${pictVO.lastPage ne pictVO.pageNumber}">
-					<li><a href="/news?pageNumber=${pictVO.pageNumber + 1 > pictVO.lastPage ?  pictVO.lastPage : pictVO.pageNumber + 1}"><img src="/user_img/next.png" alt=""></a></li>
-					<li><a href="/news?pageNumber=${pictVO.lastPage}"><img src="/user_img/last.png" alt=""></a></li>
+					<li><a href="/program?pageNumber=${pictVO.pageNumber + 1 > pictVO.lastPage ?  pictVO.lastPage : pictVO.pageNumber + 1}"><img src="/user_img/next.png" alt=""></a></li>
+					<li><a href="/program?pageNumber=${pictVO.lastPage}"><img src="/user_img/last.png" alt=""></a></li>
 				</c:if>
             </div>
         </div>

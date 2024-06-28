@@ -150,6 +150,8 @@ public interface PictService {
 
 	public PictVO board_list_one(PictVO pictVO) throws Exception;
 
+	public void board_view_cnt(PictVO pictVO) throws Exception;
+
 
 
 }

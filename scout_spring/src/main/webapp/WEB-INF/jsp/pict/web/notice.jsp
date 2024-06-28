@@ -22,7 +22,7 @@
 			                    <li>
 			                        <a href="/notice_view?BRDCTSNO=${board_list.BRDCTSNO}"><span>공지</span>${board_list.SUBJECT}</a>
 			                        <p>
-			                        	<c:if test="${board_list.FILE1 ne '' && board_list.FILE1 ne null && board_list.FILE1 ne undefined}">
+			                        	<c:if test="${board_list.file1 ne '' && board_list.file1 ne null && board_list.file1 ne undefined}">
 			                            	<span><img src="/user_img/file.png" alt="첨부파일"></span>
 			                            </c:if>
 			                        	${fn:substring(board_list.ENTERDATE,0,11)}
@@ -41,7 +41,7 @@
 			                        	${board_list.SUBJECT}
 		                        	</a>
 			                        <p>
-			                        	<c:if test="${board_list.FILE1 ne '' && board_list.FILE1 ne null && board_list.FILE1 ne undefined}">
+			                        	<c:if test="${board_list.file1 ne '' && board_list.file1 ne null && board_list.file1 ne undefined}">
 			                            	<span><img src="/user_img/file.png" alt="첨부파일"></span>
 			                            </c:if>
 			                            ${fn:substring(board_list.ENTERDATE,0,11)}
