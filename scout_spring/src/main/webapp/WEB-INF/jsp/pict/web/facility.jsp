@@ -218,24 +218,24 @@
                             <div class="inputContainer">
                                 <div class="inputBox">
                                     <p>기관명</p>
-                                    <input type="text" name="organ" id="organ" placeholder="기관명을 입력하세요" class="large">
+                                    <input type="text" name="company" id="company" placeholder="기관명을 입력하세요" class="large">
                                 </div>
                                 <div class="inputBox">
                                     <p>담당부서</p>
-                                    <input type="text" name="department" id="department" placeholder="담당부서를 입력하세요" class="large">
+                                    <input type="text" name="depart" id="depart" placeholder="담당부서를 입력하세요" class="large">
                                 </div>
                             </div>
                             <div class="inputContainer">
                                 <div class="inputBox">
                                     <p>담당자</p>
-                                    <input type="text" name="pic" id="pic" placeholder="담당자를 입력하세요" class="small">
+                                    <input type="text" name="name" id="name" placeholder="담당자를 입력하세요" class="small">
                                 </div>
                                 <div class="inputBox">
                                     <p>전화번호</p>
                                     <div class="telInput">
-                                        <input type="text" name="phone1" id="phone1" value="010">
+                                        <input type="text" name="tel1" id="tel1" value="010">
                                         -
-                                        <input type="text" name="phone2" id="phone2" oninput="phoneAutoHyphen(this)" maxlength="9" class="large">
+                                        <input type="text" name="tel2" id="tel2" oninput="phoneAutoHyphen(this)" maxlength="9" class="large">
                                     </div>
                                 </div>
                             </div>
@@ -245,7 +245,7 @@
                             <div class="inputContainer">
                                 <div class="inputBox">
                                     <p>사용일시</p>
-                                    <input type="date" name="use_date" id="use_date" class="medium">
+                                    <input type="date" name="applydate" id="applydate" class="medium">
                                 </div>
                             </div>
                             <div class="inputContainer">
@@ -253,55 +253,55 @@
                                     <p>사용시간</p>
                                     <div class="checkRadioBox">
                                         <div class="checkRadio">
-                                            <input id="time1" type="checkbox" name="time" value="08:00">
+                                            <input id="time1" type="checkbox" name="time" value="1" data-id="08:00">
                                             <label for="time1">08:00</label>
                                         </div>
                                         <div class="checkRadio">
-                                            <input id="time2" type="checkbox" name="time" value="09:00">
+                                            <input id="time2" type="checkbox" name="time" value="2" data-id="09:00">
                                             <label for="time2">09:00</label>
                                         </div>
                                         <div class="checkRadio">
-                                            <input id="time3" type="checkbox" name="time" value="10:00">
+                                            <input id="time3" type="checkbox" name="time" value="3" data-id="10:00">
                                             <label for="time3">10:00</label>
                                         </div>
                                         <div class="checkRadio">
-                                            <input id="time4" type="checkbox" name="time" value="11:00">
+                                            <input id="time4" type="checkbox" name="time" value="4" data-id="11:00">
                                             <label for="time4">11:00</label>
                                         </div>
                                         <div class="checkRadio">
-                                            <input id="time5" type="checkbox" name="time" value="12:00">
+                                            <input id="time5" type="checkbox" name="time" value="5" data-id="12:00">
                                             <label for="time5">12:00</label>
                                         </div>
                                         <div class="checkRadio">
-                                            <input id="time6" type="checkbox" name="time" value="13:00">
+                                            <input id="time6" type="checkbox" name="time" value="6" data-id="13:00">
                                             <label for="time6">13:00</label>
                                         </div>
                                         <div class="checkRadio">
-                                            <input id="time7" type="checkbox" name="time" value="14:00">
+                                            <input id="time7" type="checkbox" name="time" value="7" data-id="14:00">
                                             <label for="time7">14:00</label>
                                         </div>
                                         <div class="checkRadio">
-                                            <input id="time8" type="checkbox" name="time" value="15:00">
+                                            <input id="time8" type="checkbox" name="time" value="8" data-id="15:00">
                                             <label for="time8">15:00</label>
                                         </div>
                                         <div class="checkRadio">
-                                            <input id="time9" type="checkbox" name="time" value="16:00">
+                                            <input id="time9" type="checkbox" name="time" value="9" data-id="16:00">
                                             <label for="time9">16:00</label>
                                         </div>
                                         <div class="checkRadio">
-                                            <input id="time10" type="checkbox" name="time" value="17:00">
+                                            <input id="time10" type="checkbox" name="time" value="10" data-id="17:00">
                                             <label for="time10">17:00</label>
                                         </div>
                                         <div class="checkRadio">
-                                            <input id="time12" type="checkbox" name="time" value="18:00">
+                                            <input id="time12" type="checkbox" name="time" value="11" data-id="18:00">
                                             <label for="time12">18:00</label>
                                         </div>
                                         <div class="checkRadio">
-                                            <input id="time13" type="checkbox" name="time" value="전일">
+                                            <input id="time13" type="checkbox" name="time" value="all" data-id="전일">
                                             <label for="time13">전일</label>
                                         </div>
                                         <div class="checkRadio">
-                                            <input id="time14" type="checkbox" name="time" value="야간">
+                                            <input id="time14" type="checkbox" name="time" value="night" data-id="야간">
                                             <label for="time14">야간</label>
                                         </div>
                                     </div>
@@ -310,7 +310,7 @@
                             <div class="inputContainer">
                                 <div class="inputBox">
                                     <p>사용인원</p>
-                                    <input type="text" name="people" id="people" placeholder="인원수를 입력하세요" class="medium" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <input type="text" name="person" id="person" placeholder="인원수를 입력하세요" class="medium" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                                 </div>
                                 <div class="inputBox">
                                     <p>부가 시설 이용</p>
@@ -335,7 +335,7 @@
                             <div class="inputContainer">
                                 <div class="inputBox" style="width: 100%;">
                                     <p>요청사항</p>
-                                    <textarea name="request" id="request" placeholder="요청사항을 입력하세요"></textarea>
+                                    <textarea name="BIGO" id="BIGO" placeholder="요청사항을 입력하세요"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -353,7 +353,7 @@
                             <li><p>부가시설</p><span class="res8">-</span></li>
                             <li><p>사용목적</p><span class="res9">-</span></li>
                         </ul>
-                        <a href="#lnk" class="rulesButton apply">
+                        <a href="#lnk" class="rulesButton apply" onclick="reservation()">
                             <p>예약하기</p>
                             <span></span>
                         </a>
@@ -363,5 +363,111 @@
         </div>
     </div>
 	<%@ include file="./include/footer.jsp" %>
+	<script>
+		function reservation(){
+			var company = $('#company').val();
+			var depart = $('#depart').val();
+			var name = $('#name').val();
+			var tel1 = $('#tel1').val();
+			var tel2 = $('#tel2').val();
+			var mobile = tel1+"-"+tel2  
+			var applydate = $('#applydate').val();
+			
+			var person = $('#person').val();
+			var etc1 = $('#setting1').val();
+			var etc2 = $('#setting2').val();
+			var purpose = $('#purpose').val();
+			var BIGO = $('#BIGO').val();
+
+			
+	    	
+			var time = ''
+			var arr = []
+			$('input[name=time]:checked').each(function(){
+				var chk = $(this).val();
+				arr.push(chk)
+			})
+			arr.forEach((num, index) => {
+				time += num;
+	            if (index < arr.length - 1) {
+	            	time += ',';
+	            }
+	        });
+			
+			if(company == '' || company == null || company == undefined){
+				alert("기관명을 입력해주세요.")
+				$('#company').focus();
+				return false;
+			}
+			if(depart == '' || depart == null || depart == undefined){
+				alert("담당부서를 입력해주세요.")
+				$('#alert').focus();
+				return false;
+			}
+			if(name == '' || name == null || name == undefined){
+				alert("이름을 입력해주세요.")
+				$('#name').focus();
+				return false;
+			}
+			if(mobile == '' || mobile == null || mobile == undefined){
+				alert("연락처 입력을 확인해주세요.")
+				$('#tel1').focus();
+				return false;
+			}
+			if(applydate == '' || applydate == null || applydate == undefined){
+				alert("사용일시를 입력해주세요.")
+				$('#applydate').focus();
+				return false;
+			}
+			if(person == '' || person == null || person == undefined){
+				alert("인원수를 입력해주세요.")
+				$('#person').focus();
+				return false;
+			}
+			if(purpose == '' || purpose == null || purpose == undefined){
+				alert("사용목적을 입력해주세요.")
+				$('#purpose').focus();
+				return false;
+			}
+			
+			if(confirm ("시설 예약을 신청하시겠습니까?")){
+				var param = {
+					company : company,
+					depart : depart,
+					name : name,
+					mobile : mobile,
+					applydate : applydate,
+					time : time,
+					person : person,
+					etc1 : etc1,
+					etc2 : etc2,
+					purpose : purpose,
+					bigo : BIGO
+				}
+				
+				$.ajax({
+					url : "facility_reservation"
+					, type : "POST"
+					, data : JSON.stringify(param)
+					, contentType : "application/json"
+					, async : true
+					, success : function(data, status, xhr) {
+						if(data.rst == 'Y'){
+							alert("정상적으로 신청되었습니다.")
+							location.href="/facility"
+						}
+						else{
+							alert("오류가 발생했습니다.\n관리자에게 문의해주세요.")
+						}
+					},
+					error : function(err){
+						console.log(err)
+						alert("오류가 발생했습니다.\n관리자에게 문의해주세요")
+					}
+					
+				});
+			}
+		}
+	</script>
 </body>
 </html>

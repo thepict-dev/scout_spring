@@ -158,6 +158,14 @@ public interface PictService {
 
 	public void board_insert(PictVO pictVO) throws Exception;
 
+	public void reservation_insert(PictVO pictVO) throws Exception;
+
+	public void file_delete(PictVO pictVO) throws Exception;
+
+	public Integer reservation_list_cnt(PictVO pictVO) throws Exception;
+
+	public List<PictVO> reservation_list(PictVO pictVO) throws Exception;
+
 
 
 }

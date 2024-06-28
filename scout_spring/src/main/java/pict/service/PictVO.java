@@ -283,9 +283,71 @@ public class PictVO extends PictDefaultVO {
 	private String register;
 	private String saveType;
 	private String fileidx;
+	private String company;
+	private String name;
+	private String applydate;
+	private String time;
+	private String person;
+	private String etc1;
+	private String etc2;
+	private String purpose;
+	private String status;
 	
 	
-	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getCompany() {
+		return company;
+	}
+	public void setCompany(String company) {
+		this.company = company;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getApplydate() {
+		return applydate;
+	}
+	public void setApplydate(String applydate) {
+		this.applydate = applydate;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public String getPerson() {
+		return person;
+	}
+	public void setPerson(String person) {
+		this.person = person;
+	}
+	public String getEtc1() {
+		return etc1;
+	}
+	public void setEtc1(String etc1) {
+		this.etc1 = etc1;
+	}
+	public String getEtc2() {
+		return etc2;
+	}
+	public void setEtc2(String etc2) {
+		this.etc2 = etc2;
+	}
+	public String getPurpose() {
+		return purpose;
+	}
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
+	}
 	public MultipartFile getFile3root() {
 		return file3root;
 	}

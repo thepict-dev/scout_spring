@@ -329,6 +329,10 @@ public class PictController {
 	//전종리스트
 	@RequestMapping("/front/former_list")
 	public String former_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
 		List<?> former_list= pictService.former_list(pictVO);
 		model.addAttribute("former_list", former_list);
 		model.addAttribute("pictVO", pictVO);
@@ -1571,7 +1575,10 @@ public class PictController {
 	@RequestMapping("/front/scout_whole_register")
 	public String scout_whole_register(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		//여기서 로그인한 지도자의 연맹, 단위대 골라줘야함 혹여나 로그인한 사람이 전종이면 셀렉트 해줄 필요 없고
-
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
 		
 		List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
 		List<PictVO> scoutcls_list = pictService.scoutcls_list(pictVO);
@@ -1764,7 +1771,10 @@ public class PictController {
 	@RequestMapping("/front/scout_whole_confirm")
 	public String scout_whole_confirm(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		//여기서 로그인한 지도자의 연맹, 단위대 골라줘야함 혹여나 로그인한 사람이 전종이면 셀렉트 해줄 필요 없고
-
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
 		
 		List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
 		List<PictVO> scoutcls_list = pictService.scoutcls_list(pictVO);
@@ -1842,8 +1852,6 @@ public class PictController {
 		List<PictVO> association_list = pictService.association_list(pictVO);
 		model.addAttribute("association_list", association_list);
 		
-		System.out.println(pictVO.getSearch_year() + "연도@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		System.out.println(pictVO.getASSOCIATIONCODE() + "연맹@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		PictVO vo = new PictVO();
 		vo = pictService.price_list(pictVO);
 		if(vo == null) {
@@ -1887,6 +1895,10 @@ public class PictController {
 	//게시글 리스트
 	@RequestMapping("/front/board_list")
 	public String board_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
 		int limitNumber = 20;
 		pictVO.setLimit(limitNumber);
 		
@@ -1929,7 +1941,10 @@ public class PictController {
 	//게시글 폼
 	@RequestMapping("/front/board_form")
 	public String board_form(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
 		if(pictVO != null && pictVO.getBRDCTSNO() != null) {
 			//수정
 			pictVO = pictService.board_list_one(pictVO);
@@ -1962,8 +1977,13 @@ public class PictController {
 			@RequestParam("file4root") MultipartFile attach_file4,
 			@RequestParam("file5root") MultipartFile attach_file5) throws Exception {
 		
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
 		String file_dir = "/user1/upload_file/scout/";
-		   
+		
+		
         if(attach_file1.getSize() != 0) {
 			String uploadPath = fileUpload(request, attach_file1, (String)request.getSession().getAttribute("id"), pictVO.getBRDNO());
 			String filepath = file_dir + pictVO.getBRDNO() + "/";
@@ -1998,10 +2018,11 @@ public class PictController {
 			pictService.board_update(pictVO);
 			model.addAttribute("message", "정상적으로 수정되었습니다.");
 			model.addAttribute("retType", ":location");
-			model.addAttribute("retUrl", "/admin/front/board_list");
+			model.addAttribute("retUrl", "/admin/front/board_list?BRDNO="+pictVO.getBRDNO());
 			return "pict/main/message";
 		}
 		else {
+			pictVO.setRegister(request.getSession().getAttribute("name").toString());
 			pictService.board_insert(pictVO);
 			model.addAttribute("message", "정상적으로 저장되었습니다.");
 			model.addAttribute("retType", ":location");
@@ -2014,13 +2035,62 @@ public class PictController {
 	}
 	@RequestMapping(value = "/front/file_delete")
 	public String file_delete(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
-		System.out.println("여기타");
-		//pictService.board_delete(pictVO);
+		System.out.println("여기타"+ pictVO.getFileidx());
+		
+		pictService.file_delete(pictVO);
 		
 		model.addAttribute("message", "정상적으로 삭제되었습니다.");
 		model.addAttribute("retType", ":location");
 		model.addAttribute("retUrl", "/admin/front/board_form?BRDCTSNO="+pictVO.getBRDCTSNO());
 		return "pict/main/message";
+	}
+	
+	
+	//게시글 리스트
+	@RequestMapping("/front/reservation_list")
+	public String reservation_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
+		int limitNumber = 20;
+		pictVO.setLimit(limitNumber);
+		
+		Integer pageNum = pictVO.getPageNumber();
+		
+		if(pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		
+		Integer totalCnt = pictService.reservation_list_cnt(pictVO);
+		
+		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
+		pictVO.setLastPage(lastPageValue);
+		
+		Integer s_page = pageNum - 4;
+		Integer e_page = pageNum + 5;
+		if (s_page <= 0) {
+			s_page = 1;
+			e_page = 10;
+		} 
+		if (e_page > lastPageValue){
+			e_page = lastPageValue;
+		}
+		
+		pictVO.setStartPage(s_page);
+		pictVO.setEndPage(e_page);
+		
+		
+		List<PictVO> board_list = pictService.reservation_list(pictVO);
+		model.addAttribute("board_list", board_list);
+		model.addAttribute("board_cnt", totalCnt);
+		
+		
+		return "pict/front/reservation_list";
 	}
 	// 공통메소드
 	public String fileUpload(MultipartHttpServletRequest request, MultipartFile uploadFile, String target, String brdno) {

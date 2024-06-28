@@ -41,12 +41,12 @@ $('.modalWrapper button').click(function(){
 
 // 예약신청 폼
 const inputs = [
-  { id: '#organ', res: '.res1' },
-  { id: '#department', res: '.res2' },
-  { id: '#pic', res: '.res3' },
-  { id: '#phone2', res: '.res4', prefix: '.phoneRes' },
-  { id: '#use_date', res: '.res5' },
-  { id: '#people', res: '.res7', filter: v => v.replace(/[^0-9]/g, '') },
+  { id: '#company', res: '.res1' },
+  { id: '#depart', res: '.res2' },
+  { id: '#name', res: '.res3' },
+  { id: '#tel2', res: '.res4', prefix: '.phoneRes' },
+  { id: '#applydate', res: '.res5' },
+  { id: '#person', res: '.res7', filter: v => v.replace(/[^0-9]/g, '') },
   { id: '#purpose', res: '.res9' }
 ];
 
@@ -69,7 +69,7 @@ const checkAllInputsFilled = () => {
 };
 
 inputs.forEach(input => {
-  $(input.id).on(input.id === '#use_date' ? "change" : "keyup", function() {
+  $(input.id).on(input.id === '#applydate' ? "change" : "keyup", function() {
       let currentVal = input.filter ? input.filter($(this).val()) : $(this).val();
       let pasteVal = $(input.res);
       pasteVal.text(currentVal).addClass('active');
@@ -79,7 +79,7 @@ inputs.forEach(input => {
 });
 
 $('input[name="time"], input[name="setting"]').on("change click", function() {
-  let str = $('input[name="time"]:checked').map((_, el) => $(el).val()).get().join(' ');
+  let str = $('input[name="time"]:checked').map((_, el) => $(el).data("id")).get().join(' ');
   $(".res6").text(str).addClass('active');
 
   let setting = $('input[name="setting"]:checked').val();

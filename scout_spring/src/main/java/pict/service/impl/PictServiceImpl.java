@@ -434,6 +434,30 @@ public class PictServiceImpl implements PictService {
 		pictMapper.board_insert(pictVO);
 	}
 
+	@Override
+	public void reservation_insert(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.reservation_insert(pictVO);
+	}
+
+	@Override
+	public void file_delete(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.file_delete(pictVO);
+	}
+
+	@Override
+	public Integer reservation_list_cnt(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.reservation_list_cnt(pictVO);
+	}
+
+	@Override
+	public List<PictVO> reservation_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.reservation_list(pictVO);
+	}
+
 
 	
 	

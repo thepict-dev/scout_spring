@@ -6,13 +6,17 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -305,6 +309,56 @@ public class webController {
 	public String facility(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 
 		return "pict/web/facility";
+	}
+
+	@RequestMapping("facility_reservation")
+	@ResponseBody
+	public HashMap<String, Object> facility_reservation(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		try {
+			
+			String company = param.get("company").toString();
+			String depart = param.get("depart").toString();
+			String name = param.get("name").toString();
+			String mobile = param.get("mobile").toString();
+			String applydate = param.get("applydate").toString();
+			String time = param.get("time").toString();
+			
+			String person = param.get("person").toString();
+			String etc1 = param.get("etc1").toString();
+			String etc2 = param.get("etc2").toString();
+			String purpose = param.get("purpose").toString();
+			String bigo = param.get("bigo").toString();
+			
+			
+			String arr[] = time.split(",");
+			for(int i=0; i<arr.length; i++) {
+				pictVO.setCompany(company);
+				pictVO.setDepart(depart);
+				pictVO.setName(name);
+				pictVO.setMOBILE(mobile);
+				pictVO.setApplydate(applydate);
+				pictVO.setTime(arr[i]);
+				pictVO.setPerson(person);
+				pictVO.setEtc1(etc1);
+				pictVO.setEtc2(etc2);
+				pictVO.setPurpose(purpose);
+				pictVO.setBIGO(bigo);
+				
+				pictService.reservation_insert(pictVO);
+			}
+			
+			//pictService.fn_get_units_info(pictVO);
+			map.put("rst", "Y");
+			
+			return map;
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			map.put("rst", "N");
+			return map;
+		}
+		
 	}
 	//찾아오시는 길
 	@RequestMapping("location")

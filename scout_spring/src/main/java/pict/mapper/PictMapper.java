@@ -159,6 +159,14 @@ public interface PictMapper {
 	void board_update(PictVO pictVO) throws Exception;
 	
 	void board_insert(PictVO pictVO) throws Exception;
+
+	void reservation_insert(PictVO pictVO) throws Exception;
+
+	void file_delete(PictVO pictVO) throws Exception;
+
+	Integer reservation_list_cnt(PictVO pictVO) throws Exception;
+
+	List<PictVO> reservation_list(PictVO pictVO) throws Exception;
  
 	
 

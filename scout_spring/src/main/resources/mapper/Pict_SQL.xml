@@ -1017,4 +1017,45 @@
 		VALUES (#{BRDNO}, #{SUBJECT},#{CONTENTS},#{file1},#{file2},#{file3},#{file4},#{file5},now(),'Y',#{NOTI},#{register})
 	</insert>
 	
+	<insert id="reservation_insert" parameterType="pictVO">
+		INSERT INTO reservation_table(company, depart, name, MOBILE, applydate, time, person, etc1, etc2, purpose, BIGO, ENTERDATE, status) 
+		VALUES (#{company}, #{depart},#{name},#{MOBILE},#{applydate},#{time},#{person},#{etc1},#{etc2},#{purpose},#{BIGO}, now(), "N")
+	</insert>
+	
+	<update id="file_delete" parameterType="pictVO">
+		update board_table
+		set 
+		BRDCTSNO = #{BRDCTSNO} 
+		<if test='fileidx != null and fileidx != "" and fileidx == "1" '>
+			, file1 = ''
+		</if>
+		<if test='fileidx != null and fileidx != "" and fileidx == "2" '>
+			, file2 = ''
+		</if>
+		<if test='fileidx != null and fileidx != "" and fileidx == "3" '>
+			, file3 = ''
+		</if>
+		<if test='fileidx != null and fileidx != "" and fileidx == "4" '>
+			, file4 = ''
+		</if>
+		<if test='fileidx != null and fileidx != "" and fileidx == "5" '>
+			, file5 = ''
+		</if>
+		
+		where BRDCTSNO = #{BRDCTSNO}
+	</update>
+	
+	<select id="reservation_list" resultType="pictVO">
+		select * from reservation_table 
+		where 1=1
+
+		order by ENTERDATE desc
+		LIMIT #{limit} OFFSET #{startNumber}
+	</select>
+	
+	<select id="reservation_list_cnt" resultType="int">
+		select count(*) from reservation_table 
+		order by ENTERDATE desc
+	</select>
+	
 </mapper>
