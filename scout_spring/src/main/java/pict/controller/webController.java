@@ -277,10 +277,16 @@ public class webController {
 		return "pict/web/vision";
 	}
 	//연혁,사업
-	@RequestMapping("history")
-	public String history(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+	@RequestMapping("history_local")
+	public String history_local(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		
-		return "pict/web/history";
+		return "pict/web/history_local";
+	}
+	//연혁,사업
+	@RequestMapping("history_inter")
+	public String history_inter(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/history_inter";
 	}
 	//조직
 	@RequestMapping("organization")

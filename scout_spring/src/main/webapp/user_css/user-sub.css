@@ -1261,3 +1261,118 @@ input[type="date"]::after{
 	font-size: 18px;
 	word-break: keep-all;
 }
+
+/* history */
+.tabInner.historyContents.active {
+	display: flex;
+	column-gap: 80px;
+}
+.historyContents .contentTitle {
+	position: sticky;
+	top: 38%;
+	display: flex;
+	flex-direction: column;
+    width: 386px;
+	height: fit-content;
+    color: var(--text-color);
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 134%;
+    letter-spacing: -2px;
+}
+.historyContents .contentTitle > p{
+	display: flex;
+}
+.historyContents .contentTitle .contentSubTitle{
+	color: var(--text-color);
+	font-size: 32px;
+	font-weight: 500;
+	line-height: 152%; /* 48.64px */
+	letter-spacing: -1.6px;
+}
+
+.historyListWrapper{
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	width: calc(100% - 486px);
+}
+
+.odometer{
+	font-family: var(--fn-suit) !important;
+}
+
+.historyLists{
+	display: flex;
+	flex-direction: column;
+	row-gap: 150px;
+	height: fit-content;
+}
+.histories{
+	display: flex;
+	flex-direction: column;
+	row-gap: 32px;
+}
+.histories li{
+	display: flex;
+	column-gap: 32px;
+}
+.historyLists li p{
+	width: 120px;
+	color: var(--p-Purple-NORMAL_purple-500, #583D94);
+	font-family: SUIT;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 100%; /* 20px */
+	letter-spacing: -1px;
+}
+.historyLists li span{
+	color: var(--text-color);
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 100%; /* 20px */
+	letter-spacing: -1px;
+}
+
+.historyNav{
+	position: sticky;
+    top: 38%;
+    right: 160px;
+    height: 100vh;
+	display: flex;
+	flex-direction: column;
+	row-gap: 12px;
+	padding: 12px;
+}
+.historyNav a{
+	display: flex;
+	align-items: center;
+	column-gap: 16px;
+	padding: 12px 8px 12px 0;
+}
+.historyNav span:first-of-type{
+	display: block;
+	width: 4px;
+	height: 4px;
+	background-color: var(--grey-100);
+	border-radius: 50%;
+}
+.historyNav span:last-of-type{
+	color: var(--grey-100);
+	font-family: SUIT;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 100%; /* 16px */
+	letter-spacing: -0.8px;
+}
+.historyNav a.active span:first-of-type{
+	background-color: var(--purple-500);
+}
+.historyNav a.active span:last-of-type{
+	color: var(--text-color);
+}
+
+
+

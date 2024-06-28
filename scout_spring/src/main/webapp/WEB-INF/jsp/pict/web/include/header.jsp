@@ -60,7 +60,7 @@
                             <li><a href="/intro">소개</a></li>
                             <li><a href="/greeting">인사말</a></li>
                             <li><a href="/vision">비전</a></li>
-                            <li><a href="/history">연혁,사업</a></li>
+                            <li><a href="/history_local">연혁,사업</a></li>
                             <li><a href="/organization">조직</a></li>
                             <li><a href="/rules">규정,휘장</a></li>
                             <li><a href="/facility">시설안내,예약</a></li>
