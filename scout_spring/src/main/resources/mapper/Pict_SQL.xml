@@ -1007,7 +1007,6 @@
 		<if test="file5 != null and file5 != ''">
 			file5=#{file5},
 		</if>
-		USEAT = #{USEAT},
 		NOTI =#{NOTI},
 		register = #{register}
 		where BRDCTSNO = #{BRDCTSNO}

@@ -49,7 +49,7 @@
 	                        </div>
                             <div class="inputBox" style="justify-content: center; margin-top: 5px;">
                                 <div class="recive">
-                                    <input type="checkbox" name="NOTI" id="NOTI" <c:if test="${pictVO.NOTI eq 'Y'}">checked</c:if> value="Y"><label for="NOTI">공지여부</label>
+                                    <input type="checkbox" name="NOTI" id="NOTI" <c:if test="${pictVO.NOTI eq 'Y'}">checked</c:if> value="Y"><label for="NOTI" style="font-weight:700">공지여부 (공지사항 카테고리 한정)</label>
                                 </div>
                             </div>
 	                    </div>
@@ -147,6 +147,10 @@
 				var file5 = '${pictVO.file5}'
 				var brdno = '${pictVO.BRDNO}'
 				if(file1 != '' && file1 != undefined && file1 != null) $('#file_name_1').text(file1.split("/user1/upload_file/scout/"+brdno+"/")[1])
+				if(file2 != '' && file2 != undefined && file2 != null) $('#file_name_2').text(file1.split("/user1/upload_file/scout/"+brdno+"/")[1])
+				if(file3 != '' && file3 != undefined && file3 != null) $('#file_name_3').text(file1.split("/user1/upload_file/scout/"+brdno+"/")[1])
+				if(file4 != '' && file4 != undefined && file4 != null) $('#file_name_4').text(file1.split("/user1/upload_file/scout/"+brdno+"/")[1])
+				if(file5 != '' && file5 != undefined && file5 != null) $('#file_name_5').text(file1.split("/user1/upload_file/scout/"+brdno+"/")[1])
 				
 			})
 			$(".jy_input").on('change', function(){
