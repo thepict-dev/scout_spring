@@ -638,7 +638,7 @@
 	    	var login_memberno = ${sessionid}
 	    	login_memberno =login_memberno+""
 	    	//재영여기 사무국
-	    	if(login_memberno != '645849'){
+	    	if(login_memberno != '505162' && login_memberno != '645849'){
 	    		$("select[name=EMPLOYEEY]").attr("disabled", true);
 	    		$('.contentsContainer select').niceSelect('update')
 	    		

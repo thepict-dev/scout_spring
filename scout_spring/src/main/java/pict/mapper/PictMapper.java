@@ -25,38 +25,6 @@ import pict.service.PictVO;
 @Mapper
 public interface PictMapper {
 	
-	List<?> test_service(PictVO pictVO) throws Exception;
-
-	List<?> board_list(PictVO pictVO) throws Exception;
-
-	PictVO board_list_one(PictVO pictVO) throws Exception;
-
-	void board_update(PictVO pictVO) throws Exception;
-
-	void board_insert(PictVO pictVO) throws Exception;
-
-	void board_delete(PictVO pictVO) throws Exception;
-
-	List<PictVO> news_list(PictVO pictVO) throws Exception;
-
-	PictVO news_list_one(PictVO pictVO)throws Exception;
-
-	void news_update(PictVO pictVO) throws Exception;
-
-	void news_insert(PictVO pictVO) throws Exception;
-
-	void news_delete(PictVO pictVO)throws Exception;
-
-	List<PictVO> video_list(PictVO pictVO) throws Exception;
-
-	PictVO video_list_one(PictVO pictVO) throws Exception;
-
-	void video_update(PictVO pictVO) throws Exception;
-
-	void video_insert(PictVO pictVO) throws Exception;
-
-	void video_delete(PictVO pictVO) throws Exception;
-
 	List<PictVO> scout_left_search_list(PictVO pictVO) throws Exception;
 
 	PictVO get_per_info(PictVO pictVO) throws Exception;
@@ -176,6 +144,13 @@ public interface PictMapper {
 	void leader_whole_confirm(PictVO pictVO) throws Exception;
 
 	void scout_whole_confirm(PictVO pictVO) throws Exception;
+
+	//홈페이지 시작
+	List<PictVO> board_list(PictVO pictVO) throws Exception;
+
+	Integer board_list_cnt(PictVO pictVO) throws Exception;
+
+	PictVO board_list_one(PictVO pictVO) throws Exception;
 
  
 	

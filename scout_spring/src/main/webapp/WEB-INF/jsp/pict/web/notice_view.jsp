@@ -13,23 +13,24 @@
     <div class="subWrapper">
         <div class="viewContainer">
             <div class="viewTop">
-                <p>제목이 이곳에 들어갑니다</p>
-                <span>2024-06-24</span>
+                <p>${pictVO.SUBJECT}</p>
+                <span>${fn:substring(pictVO.ENTERDATE,0,11)}</span>
             </div>
             <div class="viewBottom">
                 <div class="viewBottomInner">
-                    <p>asdfafsd</p>
-                    <img src="/user_img/test.jpg" alt="">
+                    <p>${pictVO.CONTENTS}</p>
+                    
                 </div>
             </div>
             <div class="addFile">
-                <a href="#lnk" download>
-                    <img src="/user_img/file.png" alt="">
-                    파일이름
-                </a>
+            	<c:if test="${pictVO.FILE1 ne '' && pictVO.FILE1 ne null && pictVO.FILE1 ne undefined}"><a href="${pictVO.FILE1}" download><img src="/user_img/file.png" alt="">${pictVO.FILE1}</a></c:if>
+            	<c:if test="${pictVO.FILE2 ne '' && pictVO.FILE2 ne null && pictVO.FILE2 ne undefined}"><a href="${pictVO.FILE2}" download><img src="/user_img/file.png" alt="">${pictVO.FILE2}</a></c:if>
+            	<c:if test="${pictVO.FILE3 ne '' && pictVO.FILE3 ne null && pictVO.FILE3 ne undefined}"><a href="${pictVO.FILE3}" download><img src="/user_img/file.png" alt="">${pictVO.FILE3}</a></c:if>
+            	<c:if test="${pictVO.FILE4 ne '' && pictVO.FILE4 ne null && pictVO.FILE4 ne undefined}"><a href="${pictVO.FILE4}" download><img src="/user_img/file.png" alt="">${pictVO.FILE4}</a></c:if>
+            	<c:if test="${pictVO.FILE5 ne '' && pictVO.FILE5 ne null && pictVO.FILE5 ne undefined}"><a href="${pictVO.FILE5}" download><img src="/user_img/file.png" alt="">${pictVO.FILE5}</a></c:if>
             </div>
             <div class="prevContainer">
-                <a href="#lnk">목록</a>
+                <a href="javascript:history.back()">목록</a>
             </div>
         </div>
     </div>

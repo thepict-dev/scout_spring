@@ -31,101 +31,6 @@ public class PictServiceImpl implements PictService {
 	@Autowired
     PictMapper pictMapper;
 
-    @Override
-	public List<?> test_service(PictVO pictVO) throws Exception {
-		return pictMapper.test_service(pictVO);
-	}
-
-	@Override
-	public List<?> board_list(PictVO pictVO) throws Exception {
-		// TODO Auto-generated method stub
-		return pictMapper.board_list(pictVO);
-	}
-
-	@Override
-	public PictVO board_list_one(PictVO pictVO) throws Exception {
-		// TODO Auto-generated method stub
-		return pictMapper.board_list_one(pictVO);
-	}
-
-	@Override
-	public void board_update(PictVO pictVO) throws Exception {
-		// TODO Auto-generated method stub
-		pictMapper.board_update(pictVO);
-	}
-
-	@Override
-	public void board_insert(PictVO pictVO) throws Exception {
-		// TODO Auto-generated method stub
-		pictMapper.board_insert(pictVO);
-	}
-
-	@Override
-	public void board_delete(PictVO pictVO) throws Exception {
-		// TODO Auto-generated method stub
-		pictMapper.board_delete(pictVO);
-	}
-
-	@Override
-	public List<PictVO> news_list(PictVO pictVO) throws Exception {
-		// TODO Auto-generated method stub
-		return pictMapper.news_list(pictVO);
-	}
-
-	@Override
-	public PictVO news_list_one(PictVO pictVO) throws Exception {
-		// TODO Auto-generated method stub
-		return pictMapper.news_list_one(pictVO);
-	}
-
-	@Override
-	public void news_update(PictVO pictVO) throws Exception {
-		// TODO Auto-generated method stub
-		pictMapper.news_update(pictVO);
-	}
-
-	@Override
-	public void news_insert(PictVO pictVO) throws Exception {
-		// TODO Auto-generated method stub
-		pictMapper.news_insert(pictVO);
-	}
-
-	@Override
-	public void news_delete(PictVO pictVO) throws Exception {
-		// TODO Auto-generated method stub
-		pictMapper.news_delete(pictVO);
-	}
-
-	@Override
-	public List<PictVO> video_list(PictVO pictVO) throws Exception {
-		// TODO Auto-generated method stub
-		return pictMapper.video_list(pictVO);
-	}
-
-	@Override
-	public PictVO video_list_one(PictVO pictVO) throws Exception {
-		// TODO Auto-generated method stub
-		return pictMapper.video_list_one(pictVO);
-	}
-
-	@Override
-	public void video_update(PictVO pictVO) throws Exception {
-		// TODO Auto-generated method stub
-		pictMapper.video_update(pictVO);
-	}
-
-	@Override
-	public void video_insert(PictVO pictVO) throws Exception {
-		// TODO Auto-generated method stub
-		pictMapper.video_insert(pictVO);
-	}
-
-	@Override
-	public void video_delete(PictVO pictVO) throws Exception {
-		// TODO Auto-generated method stub
-		pictMapper.video_delete(pictVO);
-	}
-
 	@Override
 	public List<PictVO> scout_left_search_list(PictVO pictVO) throws Exception {
 		// TODO Auto-generated method stub
@@ -483,6 +388,26 @@ public class PictServiceImpl implements PictService {
 	public void scout_whole_confirm(PictVO pictVO) throws Exception {
 		// TODO Auto-generated method stub
 		pictMapper.scout_whole_confirm(pictVO);
+	}
+
+	
+	//홈페이지 시작
+	@Override
+	public List<PictVO> board_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.board_list(pictVO);
+	}
+
+	@Override
+	public Integer board_list_cnt(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.board_list_cnt(pictVO);
+	}
+
+	@Override
+	public PictVO board_list_one(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.board_list_one(pictVO);
 	}
 
 

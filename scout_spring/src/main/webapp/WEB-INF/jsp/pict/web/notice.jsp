@@ -17,29 +17,61 @@
         <div class="subContents">
             <div class="noticeWrapper">
                 <ul class="notice">
-                    <li>
-                        <a href="#lnk"><span>중요</span>공지사항 내용이 이곳에 들어갑니다</a>
-                        <p>2024-01-16</p>
-                    </li>
-                    <li>
-                        <a href="#lnk"><p>01</p>공지사항 내용이 이곳에 들어갑니다</a>
-                        <p>
-                            <span><img src="/user_img/file.png" alt="첨부파일"></span>
-                            2024-01-16
-                        </p>
-                    </li>
+                	<c:forEach var="board_list" items="${board_list}" varStatus="status">
+	                		<c:if test="${board_list.NOTI eq 'Y'}">
+			                    <li>
+			                        <a href="/notice_view?BRDCTSNO=${board_list.BRDCTSNO}"><span>공지</span>${board_list.SUBJECT}</a>
+			                        <p>
+			                        	<c:if test="${board_list.FILE1 ne '' && board_list.FILE1 ne null && board_list.FILE1 ne undefined}">
+			                            	<span><img src="/user_img/file.png" alt="첨부파일"></span>
+			                            </c:if>
+			                        	${fn:substring(board_list.ENTERDATE,0,11)}
+		                        	</p>
+			                    </li>
+		                    </c:if>
+		                    <c:if test="${board_list.NOTI ne 'Y'}">
+		                		<li>
+			                        <a href="/notice_view?BRDCTSNO=${board_list.BRDCTSNO}">
+			                        	<c:if test="${pictVO.pageNumber eq 1}">
+			                        		<p>${board_cnt - status.index}</p>
+		                        		</c:if>
+		                        		<c:if test="${pictVO.pageNumber ne 1}">
+		                        			<p>${board_cnt - (status.index +  ((pictVO.pageNumber - 1) * 20))}</p>
+		                        		</c:if>
+			                        	${board_list.SUBJECT}
+		                        	</a>
+			                        <p>
+			                        	<c:if test="${board_list.FILE1 ne '' && board_list.FILE1 ne null && board_list.FILE1 ne undefined}">
+			                            	<span><img src="/user_img/file.png" alt="첨부파일"></span>
+			                            </c:if>
+			                            ${fn:substring(board_list.ENTERDATE,0,11)}
+			                        </p>
+			                    </li>    
+		                    </c:if>
+                    </c:forEach>
+                    
                 </ul>
             </div>
             <div class="pagination">
-                <a href="#lnk"><img src="/user_img/first.png" alt="처음으로"></a>
-                <a href="#lnk"><img src="/user_img/prev.png" alt="이전으로"></a>
-                <a href="#lnk" class="active">1</a>
-                <a href="#lnk">2</a>
-                <a href="#lnk">3</a>
-                <p>...</p>
-                <a href="#lnk">10</a>
-                <a href="#lnk"><img src="/user_img/next.png" alt="다음으로"></a>
-                <a href="#lnk"><img src="/user_img/last.png" alt="처음으로"></a>
+            	<c:if test="${pictVO.pageNumber ne 1}">
+            		<a href="/notice?pageNumber=1"><img src="/user_img/first.png" alt=""></a>
+            		<a href="/notice?pageNumber=${pictVO.pageNumber - 1 < 1 ? 1 : pictVO.pageNumber - 1}"><img src="/user_img/prev.png" alt=""></a>
+            	</c:if>
+            	
+            	
+            	<c:forEach var="i" begin="${pictVO.startPage}" end="${pictVO.endPage}">
+					<c:if test="${i eq pictVO.pageNumber}">
+						<a href="/notice?pageNumber=${i}" class="active">${i}</a>
+					</c:if>
+					<c:if test="${i ne pictVO.pageNumber}">
+						<a href="/notice?pageNumber=${i}" >${i}</a>
+					</c:if>
+				</c:forEach>
+                
+                <c:if test="${pictVO.lastPage ne pictVO.pageNumber}">
+					<li><a href="/notice?pageNumber=${pictVO.pageNumber + 1 > pictVO.lastPage ?  pictVO.lastPage : pictVO.pageNumber + 1}"><img src="/user_img/next.png" alt=""></a></li>
+					<li><a href="/notice?pageNumber=${pictVO.lastPage}"><img src="/user_img/last.png" alt=""></a></li>
+				</c:if>
             </div>
         </div>
     </div>

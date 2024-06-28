@@ -943,6 +943,28 @@
 		where idx = #{idx}
 	</update>
 	
+	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@홈페이지 시작@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+	<select id="board_list" resultType="pictVO">
+		select * from board_table 
+		where 1=1
+		and BRDNO = #{BRDNO}
+		and USEAT = 'Y'
+
+		order by NOTI desc, ENTERDATE desc
+		LIMIT #{limit} OFFSET #{startNumber}
+	</select>
 	
+	<select id="board_list_cnt" resultType="int">
+		select count(*) from board_table 
+			where 1=1
+			and BRDNO = #{BRDNO}
+			and USEAT = 'Y'
 	
+			order by NOTI desc, ENTERDATE desc
+	</select>
+	
+	<select id="board_list_one" resultType="pictVO">
+		select * from board_table 
+		where BRDCTSNO = #{BRDCTSNO}
+	</select>
 </mapper>

@@ -258,7 +258,148 @@ public class PictVO extends PictDefaultVO {
 	private String cls99newbigo;
 
 	
-
+	private String FILE1;
+	private String FILE2;
+	private String FILE3;
+	private String FILE4;
+	private String FILE5;
+	private String BRDCTSNO;
+	private String BRDNO;
+	private String SUBJECT;
+	private String CONTENTS;
+	private String VIEWCNT;
+	private String USEAT;
+	private String NOTI;
+	private int pageNumber;
+	private int startNumber;
+	private int limit;
+	private int totalPage;
+	private int offset;
+	private int lastPage;
+	private int startPage;
+	private int endPage;
+	
+	
+	public int getPageNumber() {
+		return pageNumber;
+	}
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+	public int getStartNumber() {
+		return startNumber;
+	}
+	public void setStartNumber(int startNumber) {
+		this.startNumber = startNumber;
+	}
+	public int getLimit() {
+		return limit;
+	}
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+	public int getTotalPage() {
+		return totalPage;
+	}
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
+	}
+	public int getOffset() {
+		return offset;
+	}
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+	public int getLastPage() {
+		return lastPage;
+	}
+	public void setLastPage(int lastPage) {
+		this.lastPage = lastPage;
+	}
+	public int getStartPage() {
+		return startPage;
+	}
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+	public int getEndPage() {
+		return endPage;
+	}
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+	public String getNOTI() {
+		return NOTI;
+	}
+	public void setNOTI(String nOTI) {
+		NOTI = nOTI;
+	}
+	public String getUSEAT() {
+		return USEAT;
+	}
+	public void setUSEAT(String uSEAT) {
+		USEAT = uSEAT;
+	}
+	public String getFILE1() {
+		return FILE1;
+	}
+	public void setFILE1(String fILE1) {
+		FILE1 = fILE1;
+	}
+	public String getFILE2() {
+		return FILE2;
+	}
+	public void setFILE2(String fILE2) {
+		FILE2 = fILE2;
+	}
+	public String getFILE3() {
+		return FILE3;
+	}
+	public void setFILE3(String fILE3) {
+		FILE3 = fILE3;
+	}
+	public String getFILE4() {
+		return FILE4;
+	}
+	public void setFILE4(String fILE4) {
+		FILE4 = fILE4;
+	}
+	public String getFILE5() {
+		return FILE5;
+	}
+	public void setFILE5(String fILE5) {
+		FILE5 = fILE5;
+	}
+	public String getBRDCTSNO() {
+		return BRDCTSNO;
+	}
+	public void setBRDCTSNO(String bRDCTSNO) {
+		BRDCTSNO = bRDCTSNO;
+	}
+	public String getBRDNO() {
+		return BRDNO;
+	}
+	public void setBRDNO(String bRDNO) {
+		BRDNO = bRDNO;
+	}
+	public String getSUBJECT() {
+		return SUBJECT;
+	}
+	public void setSUBJECT(String sUBJECT) {
+		SUBJECT = sUBJECT;
+	}
+	public String getCONTENTS() {
+		return CONTENTS;
+	}
+	public void setCONTENTS(String cONTENTS) {
+		CONTENTS = cONTENTS;
+	}
+	public String getVIEWCNT() {
+		return VIEWCNT;
+	}
+	public void setVIEWCNT(String vIEWCNT) {
+		VIEWCNT = vIEWCNT;
+	}
 	public String getCls01new() {
 		return cls01new;
 	}
