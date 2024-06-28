@@ -16,7 +16,7 @@
 	    	<c:param name="pageTitle" value="대원 일괄승인"/>
 	    </c:import>
     <div class="contentsContainer">
-        <div class="formContainer">
+        <div class="formContainer scroller">
             <div class="joinContainer">
                 <div class="fomrTabContent signContainer">
                     <form action="" id="register" name="register" method="post" enctype="multipart/form-data">

@@ -34,7 +34,7 @@
 	                        </div>
 	                    </div>
 	                </form>
-	                <ul class="listHead">
+	                <ul class="listHead reservation">
 	                    <li>순서</li>
 	                    <li>기관명</li>
 	                    <li>담당부서</li>
@@ -47,7 +47,7 @@
 	                    <li>신청일자</li>
 	                    <li>상태</li>
 	                </ul>
-	                <ul class="listBody">
+	                <ul class="listBody reservation">
 	                	<c:forEach var="board_list" items="${board_list}" varStatus="status">
 		                    <li>
 		                        <p>
@@ -103,6 +103,7 @@
 		<input type='hidden' name="idx" id="idx" value='' />
 		
 	</form>
+	<%@ include file="./include/booking_info_modal.jsp" %>
 	<script>
 		function fn_search(){
 			$("#search_fm").attr("action", "/admin/front/reservation_list");
@@ -115,5 +116,14 @@
 				$("#register").submit();
 			}
 		}
+
+		//모달
+		$('.listBody.reservation li').click(function(){
+		  $('#bookingModal').css('display', 'flex');
+		});
+		$('#bookingModal button').click(function(){
+		  $('#bookingModal').css('display', 'none');
+		});
+	</script>
 	</script>
 </html>

@@ -1092,6 +1092,11 @@ tbody tr.active td{
     height: 32px;
     border-radius: 4px;
     border: 1px solid var(--grey-100);
+    color: var(--text-color);
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 100%; /* 14px */
+	letter-spacing: -0.7px;
 }
 .fileList > label:hover{
     background-color: var(--grey-50);
@@ -1138,4 +1143,13 @@ tbody tr.active td{
     font-weight: 400;
     line-height: 140%; /* 19.6px */
     letter-spacing: -0.7px;
+}
+
+
+.listHead.reservation{
+    grid-template-columns: 3% 13% 10% 9% 10% 10% 10% 3% 13% 10% 9%;
+}
+.listBody.reservation li{
+    grid-template-columns: 3% 13% 10% 9% 10% 10% 10% 3% 13% 10% 9%;
+    cursor: pointer;
 }

@@ -598,6 +598,21 @@ textarea:focus{
 .clear img{
     width: 100%;
 }
+#bookingModal{
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99;
+ 	display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(177, 185, 193, 0.7);
+}
+#bookingModal.active{
+	display: flex;
+}
 
 select:disabled{
   color: var(--grey-500) !important; 

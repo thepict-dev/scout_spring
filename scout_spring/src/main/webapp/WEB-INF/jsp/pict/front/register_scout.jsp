@@ -16,7 +16,7 @@
     	<c:param name="pageTitle" value="대원 일괄등록"/>
     </c:import>
     <div class="contentsContainer">
-        <div class="formContainer">
+        <div class="formContainer scroller">
             <div class="joinContainer">
                 <div class="fomrTabContent signContainer">
                     <form action="" id="register" name="register" method="post" enctype="multipart/form-data">
@@ -327,6 +327,9 @@
 	
 	</body>
 	<script>
+	$(document).ready(function() {
+	    $('select').niceSelect();
+	});
 		//지도자 좌측
 		function allCheck_left_leader(target) {
 			var $id = $(target).data('check');
