@@ -427,6 +427,18 @@ public class webController {
 		model.addAttribute("pictVO", pictVO);
 		return "pict/web/information_view";
 	}
+	//이용약관
+	@RequestMapping("terms")
+	public String terms(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/terms";
+	}
+	//개인정보처리방침
+	@RequestMapping("personal_info")
+	public String personal_info(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/personal_info";
+	}
 
 
 	
