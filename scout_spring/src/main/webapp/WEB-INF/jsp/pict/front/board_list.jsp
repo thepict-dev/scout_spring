@@ -18,19 +18,22 @@
 		    <div class="contentsContainer">
 	        <div class="listContainer">
 	            <div class="listInner">
-	                <form action="" class="countList">
-	                    <p>총 <span>10</span>개</p>
+	                <form action="" id="search_fm" name="search_fm" method="get" class="countList">
+	                    <p>총 <span>${board_cnt}</span>개</p>
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
-	                            <select name="" id="" class="lgThinInput">
-	                                <option value="">공지사항</option>
-	                                <option value="">언론에 비친 SCOUT</option>
-	                                <option value="">정보 공개</option>
+	                            <select name="BRDNO" id="BRDNO" class="lgThinInput">
+	                            	<option value="">전체</option>
+	                                <option value="56" <c:if test="${pictVO.BRDNO eq '56'}">selected</c:if>>공지사항</option>
+	                                <option value="227" <c:if test="${pictVO.BRDNO eq '227'}">selected</c:if>>언론에 비친 SCOUT</option>
+	                                <option value="290" <c:if test="${pictVO.BRDNO eq '290'}">selected</c:if>>대운영자료실</option>
+	                                <option value="1587" <c:if test="${pictVO.BRDNO eq '1587'}">selected</c:if>>통합자료실</option>
+	                                <option value="1827" <c:if test="${pictVO.BRDNO eq '1827'}">selected</c:if>>정보공개</option>
 	                            </select>
 	                        </div>
 	                        <div class="inputBox listSearch">
-	                            <input type="text" name="" id="" placeholder="내용을 입력하세요…">
-	                            <a href="#lnk"><img src="/front_img/search2.png" alt=""></a>
+	                            <input type="text" name="search_text" id="search_text" placeholder="내용을 입력하세요…">
+	                            <a href="#lnk" onclick="fn_search()"><img src="/front_img/search2.png" alt=""></a>
 	                        </div>
 	                    </div>
 	                </form>
@@ -43,149 +46,76 @@
 	                    <li>삭제</li>
 	                </ul>
 	                <ul class="listBody">
-	                    <li>
-	                        <p>1</p>
-	                        <p>언론에 비친 SCOUT</p>
-	                        <a href="#lnk" class="title">제목목목목목목목목제목목목목목목목목ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</a>
-	                        <p>한지현</p>
-	                        <p>2024-06-28</p>
-	                        <p><a href="#lnk"><img src="/front_img/delete.png" alt="삭제"></a></p>
-	                    </li>
+	                	<c:forEach var="board_list" items="${board_list}" varStatus="status">
+		                    <li>
+		                        <p>
+		                        	<c:if test="${pictVO.pageNumber eq 1}">
+		                        		${board_cnt - status.index}
+	                        		</c:if>
+	                        		<c:if test="${pictVO.pageNumber ne 1}">
+	                        			${board_cnt - (status.index +  ((pictVO.pageNumber - 1) * 20))}
+	                        		</c:if>
+		                        </p>
+		                        <p>
+		                        	<c:if test="${board_list.BRDNO eq '56'}">공지사항</c:if>
+		                        	<c:if test="${board_list.BRDNO eq '227'}">언론에 비친 SCOUT</c:if>
+		                        	<c:if test="${board_list.BRDNO eq '290'}">대운영자료실</c:if>
+		                        	<c:if test="${board_list.BRDNO eq '1587'}">통합자료실</c:if>
+		                        	<c:if test="${board_list.BRDNO eq '1827'}">정보공개</c:if>
+		                        </p>
+		                        <a href="/admin/front/board_form?BRDCTSNO=${board_list.BRDCTSNO}" class="title">${board_list.SUBJECT}</a>
+		                        <p>
+		                        	<c:if test="${board_list.register eq '' || board_list.register eq null || board_list.register eq undefined}">관리자</c:if>	
+		                        	<c:if test="${board_list.register ne '' && board_list.register ne null && board_list.register ne undefined}">${board_list.register}</c:if>
+		                        </p>
+		                        <p>${fn:substring(board_list.ENTERDATE,0,11)}</p>
+		                        <p><a href="#lnk" onclick="board_delete('${board_list.BRDCTSNO}')"><img src="/front_img/delete.png" alt="삭제"></a></p>
+		                    </li>
+	                    </c:forEach>
 	                </ul>
 	                <div class="listButton">
 	                    <a href="/admin/front/board_form"><img src="/front_img/add.png" alt="등록버튼">등록</a>
 	                </div>
 	                <div class="pagination">
-	                    <a href="#lnk"><img src="/front_img/first.png" alt="처음으로"></a>
-	                    <a href="#lnk"><img src="/front_img/prev.png" alt="이전으로"></a>
-	                    <a href="#lnk" class="active">1</a>
-	                    <a href="#lnk">2</a>
-	                    <a href="#lnk">3</a>
-	                    <p>...</p>
-	                    <a href="#lnk">10</a>
-	                    <a href="#lnk"><img src="/front_img/next.png" alt="다음으로"></a>
-	                    <a href="#lnk"><img src="/front_img/last.png" alt="처음으로"></a>
-	                </div>
+		            	<c:if test="${pictVO.pageNumber ne 1}">
+		            		<a href="/admin/front/board_list?BRDNO=${pictVO.BRDNO}&pageNumber=1"><img src="/user_img/first.png" alt=""></a>
+		            		<a href="/admin/front/board_list?BRDNO=${pictVO.BRDNO}&pageNumber=${pictVO.pageNumber - 1 < 1 ? 1 : pictVO.pageNumber - 1}"><img src="/user_img/prev.png" alt=""></a>
+		            	</c:if>
+		            	
+		            	
+		            	<c:forEach var="i" begin="${pictVO.startPage}" end="${pictVO.endPage}">
+							<c:if test="${i eq pictVO.pageNumber}">
+								<a href="/admin/front/board_list?BRDNO=${pictVO.BRDNO}&pageNumber=${i}" class="active">${i}</a>
+							</c:if>
+							<c:if test="${i ne pictVO.pageNumber}">
+								<a href="/admin/front/board_list?BRDNO=${pictVO.BRDNO}&pageNumber=${i}" >${i}</a>
+							</c:if>
+						</c:forEach>
+		                
+		                <c:if test="${pictVO.lastPage ne pictVO.pageNumber}">
+							<li><a href="/admin/front/board_list?BRDNO=${pictVO.BRDNO}&pageNumber=${pictVO.pageNumber + 1 > pictVO.lastPage ?  pictVO.lastPage : pictVO.pageNumber + 1}"><img src="/user_img/next.png" alt=""></a></li>
+							<li><a href="/admin/front/board_list?BRDNO=${pictVO.BRDNO}&pageNumber=${pictVO.lastPage}"><img src="/user_img/last.png" alt=""></a></li>
+						</c:if>
+		            </div>
 	            </div>
 	        </div>
 	    </div>
 	</body>
+	<form action="" id="register" name="register" method="post" enctype="multipart/form-data">
+		<input type='hidden' name="BRDCTSNO" id="BRDCTSNO" value='' />
+		<input type='hidden' name="type" id="type" value='' />
+	</form>
 	<script>
-		function former_info(memberno){
-			var param = {
-				memberno : memberno,
-			}
-			$.ajax({
-				url : "/former_info"
-				, type : "POST"
-				, data : JSON.stringify(param)
-				, contentType : "application/json"
-				, dataType : "json"
-				, async : false
-				, success : function(data, status, xhr) {
-					var html ="";
-					console.log(data)
-					if(data.list){
-						var picimg = "http://scout.thepict.co.kr/front_img/profile.png"
-						if(data.list[0].picimg != '' && data.list[0].picimg != null && data.list[0].picimg != undefined)
-							picimg = data.list[0].picimg
-							
-						$('#profile_img').attr("src",picimg)
-						$('#MEMBERNO').val(data.list[0].memberno)
-						$('#KNAME').val(data.list[0].kname)
-						$('#association').val(data.list[0].association)
-						$('#sosock').val(data.list[0].sosock)
-						$('#depart').val(data.list[0].depart)
-						$('#ranked').val(data.list[0].ranked)
-						
-						$('#BIRTHDAY').val(data.list[0].birthday)
-						$('#MOBILE').val(data.list[0].mobile)
-						$('#EMAIL').val(data.list[0].email)
-						
-						
-						$('.contentsContainer select').niceSelect('update')
-					}
-				}
-				, error : function(xhr, status, error) {
-					console.log(xhr)
-					console.log("에러")
-				}
-			});
+		function fn_search(){
+			$("#search_fm").attr("action", "/admin/front/board_list");
+			$("#search_fm").submit();
 		}
-
-		function fn_submit(){
-			var param = {
-				memberno : $('#MEMBERNO').val(),
-				kname : $('#KNAME').val(),
-				association : $('#association').val(),
-				sosock : $('#sosock').val(),
-				depart : $('#depart').val(),
-				ranked : $('#ranked').val(),
-				birthday : $('#BIRTHDAY').val(),
-				mobile : $('#MOBILE').val(),
-				email : $('#EMAIL').val(),
+		function board_delete(BRDCTSNO) {
+			if (confirm("삭제 하시겠습니까?")) {
+				$('#BRDCTSNO').val(BRDCTSNO)
+				$("#register").attr("action", "/admin/front/board_delete");
+				$("#register").submit();
 			}
-			
-			$.ajax({
-				url : "/former_save"
-				, type : "POST"
-				, data : JSON.stringify(param)
-				, contentType : "application/json"
-				, async : false
-				, success : function(data, status, xhr) {
-					if(data == 'Y'){
-						alert("정상적으로 수정되었습니다.");
-						$('#name_'+$('#MEMBERNO').val()).text($('#KNAME').val())
-						$('#association'+$('#MEMBERNO').val()).text($('#association').val())
-						$('#sosock'+$('#MEMBERNO').val()).text($('#sosock option:checked').text())
-						$('#depart_'+$('#MEMBERNO').val()).text($('#depart option:checked').text())
-						$('#ranked_'+$('#MEMBERNO').val()).text($('#ranked option:checked').text())
-						$('#birthday_'+$('#MEMBERNO').val()).text($('#BIRTHDAY').val())
-						$('#mobile_'+$('#MEMBERNO').val()).text($('#MOBILE').val())
-						$('#email_'+$('#MEMBERNO').val()).text($('#EMAIL').val())
-					}
-				}
-				, error : function(xhr, status, error) {
-					console.log(xhr)
-					console.log("에러")
-				}
-			});
 		}
-		$("#attach_file").change(function(){
-			var memberno = $("#MEMBERNO").val()
-			if(memberno == '' || memberno == undefined || memberno == null){
-				alert("회원을 선택해주세요.")
-				return false;
-			}
-			else{
-				 var requestData = {
-			        memberno : $("#MEMBERNO").val(),
-			    }
-			 
-				var form = $('#attach_file')[0].files[0];
-				var formData = new FormData();
-				formData.append('img', form);
-				formData.append("request", new Blob([JSON.stringify(requestData)], {type: "application/json"}));
-				
-				$.ajax({
-					url: '/profile_img',
-					processData : false,
-					contentType : false,
-					data : formData,
-					type : 'POST',
-					success : function(result){
-						console.log(result)
-						alert("이미지가 정상적으로 저장되었습니다.");
-						
-					},
-					error : function(err){
-						console.log(err)
-					}
-					
-				});
-			}
-			
-		})
-		
 	</script>
 </html>

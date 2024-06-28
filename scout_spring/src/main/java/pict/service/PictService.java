@@ -152,6 +152,8 @@ public interface PictService {
 
 	public void board_view_cnt(PictVO pictVO) throws Exception;
 
+	public void board_delete(PictVO pictVO) throws Exception;
+
 
 
 }

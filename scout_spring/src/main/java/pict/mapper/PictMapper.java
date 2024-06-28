@@ -154,6 +154,8 @@ public interface PictMapper {
 
 	void board_view_cnt(PictVO pictVO) throws Exception;
 
+	void board_delete(PictVO pictVO) throws Exception;
+
  
 	
 

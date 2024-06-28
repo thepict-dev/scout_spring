@@ -277,9 +277,22 @@ public class PictVO extends PictDefaultVO {
 	private int lastPage;
 	private int startPage;
 	private int endPage;
+	private String register;
+	private String saveType;
 	
 	
-	
+	public String getSaveType() {
+		return saveType;
+	}
+	public void setSaveType(String saveType) {
+		this.saveType = saveType;
+	}
+	public String getRegister() {
+		return register;
+	}
+	public void setRegister(String register) {
+		this.register = register;
+	}
 	public String getFile3() {
 		return file3;
 	}

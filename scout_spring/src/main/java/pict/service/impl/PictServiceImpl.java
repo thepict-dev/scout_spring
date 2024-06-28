@@ -416,6 +416,12 @@ public class PictServiceImpl implements PictService {
 		pictMapper.board_view_cnt(pictVO);
 	}
 
+	@Override
+	public void board_delete(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.board_delete(pictVO);
+	}
+
 
 	
 	

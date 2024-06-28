@@ -1887,8 +1887,41 @@ public class PictController {
 	//게시글 리스트
 	@RequestMapping("/front/board_list")
 	public String board_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		List<PictVO> association_list = pictService.association_list(pictVO);
-		model.addAttribute("association_list", association_list);
+		int limitNumber = 20;
+		pictVO.setLimit(limitNumber);
+		
+		Integer pageNum = pictVO.getPageNumber();
+		
+		if(pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		
+		Integer totalCnt = pictService.board_list_cnt(pictVO);
+		
+		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
+		pictVO.setLastPage(lastPageValue);
+		
+		Integer s_page = pageNum - 4;
+		Integer e_page = pageNum + 5;
+		if (s_page <= 0) {
+			s_page = 1;
+			e_page = 10;
+		} 
+		if (e_page > lastPageValue){
+			e_page = lastPageValue;
+		}
+		
+		pictVO.setStartPage(s_page);
+		pictVO.setEndPage(e_page);
+		
+		
+		List<PictVO> board_list = pictService.board_list(pictVO);
+		model.addAttribute("board_list", board_list);
+		model.addAttribute("board_cnt", totalCnt);
 		
 		
 		return "pict/front/board_list";
@@ -1896,11 +1929,42 @@ public class PictController {
 	//게시글 폼
 	@RequestMapping("/front/board_form")
 	public String board_form(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		List<PictVO> association_list = pictService.association_list(pictVO);
-		model.addAttribute("association_list", association_list);
-		
-		
+
+		if(pictVO != null && pictVO.getBRDCTSNO() != null) {
+			//수정
+			pictVO = pictService.board_list_one(pictVO);
+			pictVO.setSaveType("update");
+			
+		}
+		else {
+			pictVO.setSaveType("insert");
+		}
+		model.addAttribute("pictVO", pictVO);
 		return "pict/front/board_form";
+	}
+	@RequestMapping(value = "/front/board_delete")
+	public String board_delete(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+		
+		pictService.board_delete(pictVO);
+		
+		model.addAttribute("message", "정상적으로 삭제되었습니다.");
+		model.addAttribute("retType", ":location");
+		model.addAttribute("retUrl", "/admin/front/board_list");
+		return "pict/main/message";
+		
+	}
+	
+	@RequestMapping(value = "/front/board_save")
+	public String board_save(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+		
+		//pictService.board_delete(pictVO);
+		
+		//model.addAttribute("message", "정상적으로 삭제되었습니다.");
+		//model.addAttribute("retType", ":location");
+		//model.addAttribute("retUrl", "/admin/front/board_list");
+		//return "pict/main/message";
+		return "11";
+		
 	}
 	
 	// 공통메소드

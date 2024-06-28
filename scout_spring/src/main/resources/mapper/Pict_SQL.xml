@@ -947,7 +947,9 @@
 	<select id="board_list" resultType="pictVO">
 		select * from board_table 
 		where 1=1
-		and BRDNO = #{BRDNO}
+		<if test="BRDNO != null and BRDNO != ''">
+			and BRDNO = #{BRDNO}
+		</if>
 		and USEAT = 'Y'
 
 		order by NOTI desc, ENTERDATE desc
@@ -957,7 +959,9 @@
 	<select id="board_list_cnt" resultType="int">
 		select count(*) from board_table 
 			where 1=1
-			and BRDNO = #{BRDNO}
+			<if test="BRDNO != null and BRDNO != ''">
+				and BRDNO = #{BRDNO}
+			</if>
 			and USEAT = 'Y'
 	
 			order by NOTI desc, ENTERDATE desc
@@ -974,5 +978,13 @@
 		VIEWCNT =  cast(VIEWCNT as unsigned) + 1
 		where BRDCTSNO = #{BRDCTSNO}
 	</update>
+	
+	<update id="board_delete" parameterType="pictVO">
+		update board_table
+		set 
+		USEAT = "N"
+		where BRDCTSNO = #{BRDCTSNO}
+	</update>
+	
 	
 </mapper>
