@@ -12,7 +12,7 @@
 	<%@ include file="./include/header.jsp" %>
     <div class="subWrapper">
         <div class="noticeTop">
-            <h2>통합자료실</h2>
+            <h2>프로그램자료실</h2>
         </div>
         <div class="subContents">
             <div class="noticeWrapper">
@@ -36,7 +36,6 @@
 	                        </p>
 	                    </li>    
                     </c:forEach>
-                    
                 </ul>
             </div>
             <div class="pagination">

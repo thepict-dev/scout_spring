@@ -71,9 +71,7 @@
 		                    </li>
 	                    </c:forEach>
 	                </ul>
-	                <div class="listButton">
-	                    <a href="/admin/front/board_form"><img src="/front_img/add.png" alt="등록버튼">등록</a>
-	                </div>
+	                
 	                <div class="pagination">
 		            	<c:if test="${pictVO.pageNumber ne 1}">
 		            		<a href="/admin/front/board_list?BRDNO=${pictVO.BRDNO}&pageNumber=1"><img src="/user_img/first.png" alt=""></a>

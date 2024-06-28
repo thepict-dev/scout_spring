@@ -28,7 +28,7 @@
             <div class="gnbLeft">
                 <h1><a href="/"><img src="/user_img/logo.svg" alt="로고"></a></h1>
                 <ul class="gnb">
-                    <li class="active"><a href="/main">홈</a></li> 
+                    <li class="active"><a href="/">홈</a></li> 
                     <li>
                         <a href="#lnk">커뮤니티</a>
                     </li>
