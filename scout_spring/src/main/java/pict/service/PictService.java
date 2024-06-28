@@ -154,6 +154,10 @@ public interface PictService {
 
 	public void board_delete(PictVO pictVO) throws Exception;
 
+	public void board_update(PictVO pictVO) throws Exception;
+
+	public void board_insert(PictVO pictVO) throws Exception;
+
 
 
 }

@@ -422,6 +422,18 @@ public class PictServiceImpl implements PictService {
 		pictMapper.board_delete(pictVO);
 	}
 
+	@Override
+	public void board_update(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.board_update(pictVO);
+	}
+
+	@Override
+	public void board_insert(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.board_insert(pictVO);
+	}
+
 
 	
 	

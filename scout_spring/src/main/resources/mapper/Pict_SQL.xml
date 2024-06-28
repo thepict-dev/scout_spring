@@ -986,5 +986,36 @@
 		where BRDCTSNO = #{BRDCTSNO}
 	</update>
 	
+	<update id="board_update" parameterType="pictVO">
+		update board_table
+		set 
+		BRDNO = #{BRDNO}, 
+		SUBJECT=#{SUBJECT}, 
+		CONTENTS=#{CONTENTS}, 
+		<if test="file1 != null and file1 != ''">
+			file1=#{file1},
+		</if>
+		<if test="file2 != null and file2 != ''">
+			file2=#{file2},
+		</if>
+		<if test="file3 != null and file3 != ''">
+			file3=#{file3},
+		</if>
+		<if test="file4 != null and file4 != ''">
+			file4=#{file4},
+		</if>
+		<if test="file5 != null and file5 != ''">
+			file5=#{file5},
+		</if>
+		USEAT = #{USEAT},
+		NOTI =#{NOTI},
+		register = #{register}
+		where BRDCTSNO = #{BRDCTSNO}
+	</update>
+	
+	<insert id="board_insert" parameterType="pictVO">
+		INSERT INTO board_table(BRDNO, SUBJECT, CONTENTS, file1, file2, file3, file4, file5, ENTERDATE, USEAT, NOTI, register) 
+		VALUES (#{BRDNO}, #{SUBJECT},#{CONTENTS},#{file1},#{file2},#{file3},#{file4},#{file5},now(),'Y',#{NOTI},#{register})
+	</insert>
 	
 </mapper>

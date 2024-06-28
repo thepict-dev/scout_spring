@@ -1954,21 +1954,76 @@ public class PictController {
 		
 	}
 	
-	@RequestMapping(value = "/front/board_save")
-	public String board_save(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/front/board_save", method = RequestMethod.POST)
+	public String board_save(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, MultipartHttpServletRequest request,
+			@RequestParam("file1root") MultipartFile attach_file1,
+			@RequestParam("file2root") MultipartFile attach_file2,
+			@RequestParam("file3root") MultipartFile attach_file3,
+			@RequestParam("file4root") MultipartFile attach_file4,
+			@RequestParam("file5root") MultipartFile attach_file5) throws Exception {
 		
-		//pictService.board_delete(pictVO);
+		String file_dir = "/user1/upload_file/scout/";
+		   
+        if(attach_file1.getSize() != 0) {
+			String uploadPath = fileUpload(request, attach_file1, (String)request.getSession().getAttribute("id"), pictVO.getBRDCTSNO());
+			String filepath = file_dir + pictVO.getBRDNO() + "/";
+			String filename = uploadPath.split("#####")[1];
+			pictVO.setFile1(filepath+filename);
+		}
+        if(attach_file2.getSize() != 0) {
+			String uploadPath = fileUpload(request, attach_file2, (String)request.getSession().getAttribute("id"), pictVO.getBRDCTSNO());
+			String filepath = file_dir + pictVO.getBRDNO() + "/";
+			String filename = uploadPath.split("#####")[1];
+			pictVO.setFile2(filepath+filename);
+		}
+        if(attach_file3.getSize() != 0) {
+			String uploadPath = fileUpload(request, attach_file3, (String)request.getSession().getAttribute("id"), pictVO.getBRDCTSNO());
+			String filepath = file_dir + pictVO.getBRDNO() + "/";
+			String filename = uploadPath.split("#####")[1];
+			pictVO.setFile3(filepath+filename);
+		}
+        if(attach_file4.getSize() != 0) {
+			String uploadPath = fileUpload(request, attach_file4, (String)request.getSession().getAttribute("id"), pictVO.getBRDCTSNO());
+			String filepath = file_dir + pictVO.getBRDNO() + "/";
+			String filename = uploadPath.split("#####")[1];
+			pictVO.setFile4(filepath+filename);
+		}
+        if(attach_file5.getSize() != 0) {
+			String uploadPath = fileUpload(request, attach_file5, (String)request.getSession().getAttribute("id"), pictVO.getBRDCTSNO());
+			String filepath = file_dir + pictVO.getBRDNO() + "/";
+			String filename = uploadPath.split("#####")[1];
+			pictVO.setFile5(filepath+filename);
+		}
+        if(pictVO.getSaveType() != null && pictVO.getSaveType().equals("update")) {
+			pictService.board_update(pictVO);
+			model.addAttribute("message", "정상적으로 수정되었습니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/front/board_list");
+			return "pict/main/message";
+		}
+		else {
+			pictService.board_insert(pictVO);
+			model.addAttribute("message", "정상적으로 저장되었습니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/front/board_list");
+			return "pict/main/message";	
+		}
 		
-		//model.addAttribute("message", "정상적으로 삭제되었습니다.");
-		//model.addAttribute("retType", ":location");
-		//model.addAttribute("retUrl", "/admin/front/board_list");
-		//return "pict/main/message";
-		return "11";
+		
 		
 	}
-	
+	@RequestMapping(value = "/front/file_delete")
+	public String file_delete(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+		System.out.println("여기타");
+		//pictService.board_delete(pictVO);
+		
+		model.addAttribute("message", "정상적으로 삭제되었습니다.");
+		model.addAttribute("retType", ":location");
+		model.addAttribute("retUrl", "/admin/front/board_form?BRDCTSNO="+pictVO.getBRDCTSNO());
+		return "pict/main/message";
+	}
 	// 공통메소드
-	public String fileUpload(MultipartHttpServletRequest request, MultipartFile uploadFile, String target) {
+	public String fileUpload(MultipartHttpServletRequest request, MultipartFile uploadFile, String target, String brdno) {
 		String path = "";
 		String fileName = "";
 		OutputStream out = null;
@@ -1978,7 +2033,7 @@ public class PictController {
 			fileName = uploadFile.getOriginalFilename();
 			byte[] bytes = uploadFile.getBytes();
 
-			path = getSaveLocation(request, uploadFile);
+			path = getSaveLocation(request, uploadFile, brdno);
 
 			File file = new File(path);
 			if (fileName != null && !fileName.equals("")) {
@@ -1996,8 +2051,8 @@ public class PictController {
 		return path + "#####" + fileName;
 	}
 
-	private String getSaveLocation(MultipartHttpServletRequest request, MultipartFile uploadFile) {
-		String uploadPath = "/user1/upload_file/scout/";
+	private String getSaveLocation(MultipartHttpServletRequest request, MultipartFile uploadFile, String brdno) {
+		String uploadPath = "/user1/upload_file/scout/" + brdno + "/";
 		//String uploadPath = "D:\\user1\\upload_file\\default";
 		return uploadPath;
 	}

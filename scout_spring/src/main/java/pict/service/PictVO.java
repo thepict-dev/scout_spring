@@ -49,6 +49,9 @@ public class PictVO extends PictDefaultVO {
 	
 	private MultipartFile file1root;
 	private MultipartFile file2root;
+	private MultipartFile file3root;
+	private MultipartFile file4root;
+	private MultipartFile file5root;
 	
 	private String MEMBERNO;
 	private String KNAME;
@@ -279,8 +282,34 @@ public class PictVO extends PictDefaultVO {
 	private int endPage;
 	private String register;
 	private String saveType;
+	private String fileidx;
 	
 	
+	
+	public MultipartFile getFile3root() {
+		return file3root;
+	}
+	public void setFile3root(MultipartFile file3root) {
+		this.file3root = file3root;
+	}
+	public MultipartFile getFile4root() {
+		return file4root;
+	}
+	public void setFile4root(MultipartFile file4root) {
+		this.file4root = file4root;
+	}
+	public MultipartFile getFile5root() {
+		return file5root;
+	}
+	public void setFile5root(MultipartFile file5root) {
+		this.file5root = file5root;
+	}
+	public String getFileidx() {
+		return fileidx;
+	}
+	public void setFileidx(String fileidx) {
+		this.fileidx = fileidx;
+	}
 	public String getSaveType() {
 		return saveType;
 	}

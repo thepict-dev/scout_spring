@@ -156,6 +156,9 @@ public interface PictMapper {
 
 	void board_delete(PictVO pictVO) throws Exception;
 
+	void board_update(PictVO pictVO) throws Exception;
+	
+	void board_insert(PictVO pictVO) throws Exception;
  
 	
 

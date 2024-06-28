@@ -49,7 +49,7 @@
 	                        </div>
                             <div class="inputBox" style="justify-content: center; margin-top: 5px;">
                                 <div class="recive">
-                                    <input type="checkbox" name="NOTI" id="NOTI" <c:if test="${pictVO.NOTI eq 'Y'}">checked</c:if> ><label for="NOTI">공지여부</label>
+                                    <input type="checkbox" name="NOTI" id="NOTI" <c:if test="${pictVO.NOTI eq 'Y'}">checked</c:if> value="Y"><label for="NOTI">공지여부</label>
                                 </div>
                             </div>
 	                    </div>
@@ -69,14 +69,56 @@
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
 	                            <p class="inputCaption">첨부파일
-	                                <label for="input-file">파일추가</label>
-	                                <input type="file" id="input-file" name="input-file" multiple style="display: none;">
-	                                
-	                                <input type='file' name="file1" id="file1" style="display : none"/>
-	                                <input type='file' name="file2" id="file2" style="display : none"/>
-	                                <input type='file' name="file3" id="file3" style="display : none"/>
-	                                <input type='file' name="file4" id="file4" style="display : none"/>
-	                                <input type='file' name="file5" id="file5" style="display : none"/>
+	                            	<div class="fileList">
+	                            		<label for="file_1">
+		                                	<input type="file" id="file_1" name="file1root" class="jy_input">
+		                                	파일선택
+	                                	</label>
+		                                <div class="fileLabel">
+			                                <p id="file_name_1">파일명이 들어갑니다</p>
+				    						<img src="/front_img/close2.png" alt="파일삭제" class="deleteBtn" onclick="fn_file_delete('1')">
+	                                	</div>
+	                                </div>
+	                                <div class="fileList">
+	                            		<label for="file_2">
+		                                	<input type="file" id="file_2" name="file2root" class="jy_input">
+		                                	파일선택
+	                                	</label>
+		                                <div class="fileLabel">
+			                                <p id="file_name_2">파일명이 들어갑니다</p>
+				    						<img src="/front_img/close2.png" alt="파일삭제" class="deleteBtn" onclick="fn_file_delete('2')">
+	                                	</div>
+	                                </div>
+	                                <div class="fileList">
+	                            		<label for="file_3">
+		                                	<input type="file" id="file_3" name="file3root" class="jy_input">
+		                                	파일선택
+	                                	</label>
+		                                <div class="fileLabel">
+			                                <p id="file_name_3">파일명이 들어갑니다</p>
+				    						<img src="/front_img/close2.png" alt="파일삭제" class="deleteBtn" onclick="fn_file_delete('3')">
+	                                	</div>
+	                                </div>
+	                                <div class="fileList">
+	                            		<label for="file_4">
+		                                	<input type="file" id="file_4" name="file4root" class="jy_input">
+		                                	파일선택
+	                                	</label>
+		                                <div class="fileLabel">
+			                                <p id="file_name_4">파일명이 들어갑니다</p>
+				    						<img src="/front_img/close2.png" alt="파일삭제" class="deleteBtn" onclick="fn_file_delete('4')">
+	                                	</div>
+	                                </div>
+	                                <div class="fileList">
+	                            		<label for="file_5">
+		                                	<input type="file" id="file_5" name="file5root" class="jy_input">
+		                                	파일선택
+	                                	</label>
+		                                <div class="fileLabel">
+			                                <p id="file_name_5">파일명이 들어갑니다</p>
+				    						<img src="/front_img/close2.png" alt="파일삭제" class="deleteBtn" onclick="fn_file_delete('5')">
+	                                	</div>
+	                                </div>
 	                            </p>
 	                            <ul class="fileList"></ul>
 	                            <p class="fileCaption">첨부 파일은 각 10MB 이내의 파일을 최대 5개까지 가능하며, 아래의 확장자 파일만 가능합니다.<br>
@@ -89,70 +131,42 @@
 	                    </div>
 	                    
 	                    <input type='hidden' name="saveType" id="saveType" value='${pictVO.saveType}' /> 
-    					
-    					
+    					<input type='hidden' name="BRDCTSNO" id="BRDCTSNO" value='${pictVO.BRDCTSNO}' /> 
+    					<input type='hidden' name="fileidx" id="fileidx"/>
 	                </form>
 	            </div>
 	        </div>
     	</div>
     	
 		<script>
-			var files = [];
 			$(document).ready(function(){
-			    console.log("레디")
-			    const fileInput = document.getElementById('input-file');
-			    const fileList = document.querySelector('.fileList');
-			    const maxFiles = 5;
-			    const maxFileSize = 10 * 1024 * 1024; // 10MB in bytes
-			
-			    function init() {
-			        fileInput.addEventListener('change', handleFileSelect);
-			        fileList.addEventListener('click', handleDeleteClick);
-			    }
-			
-			    function handleFileSelect(event) {
-			        const newFiles = Array.from(event.target.files);
-			        newFiles.forEach((file,i) => {
-			            if (files.length >= maxFiles) {
-			                alert(`최대 ${maxFiles}개의 파일만 업로드할 수 있습니다.`);
-			                return;
-			            }
-			            if (file.size > maxFileSize) {
-			                alert(`${file.name}의 크기가 10MB를 초과합니다.`);
-			                return;
-			            }
-			            files.push(file);
-			            fileList.innerHTML += createFileListItem(file, i);
-			        });
-			
-			        //renderFileList();
-			        //fileInput.value = ''; // 입력 필드 초기화
-			    }
-			
-			    function handleDeleteClick(event) {
-			        if (event.target.classList.contains('deleteBtn')) {
-			            const index = parseInt(event.target.dataset.index);
-			            files.splice(index, 1);
-			            renderFileList();
-			        }
-			    }
-			
-			    function renderFileList() {
-			    	//얘 안쓴다 하고
-			        fileList.innerHTML = files.map((file, index) => createFileListItem(file, index)).join('');
-			    }
-			
-			    function createFileListItem(file, index) {
-			    	var html = ""
-			    	html += '<li>' + 
-			    	'<p>'+file.name+'</p>' +
-			    	'<img src="/front_img/close2.png" alt="파일삭제" class="deleteBtn" data-index="'+index+'">'+
-			    	'</li>'
-			    	
-			        return html;
-			    }
-			    init();
+				var file1 = '${pictVO.file1}'
+				var file2 = '${pictVO.file2}'
+				var file3 = '${pictVO.file3}'
+				var file4 = '${pictVO.file4}'
+				var file5 = '${pictVO.file5}'
+				var brdno = '${pictVO.BRDNO}'
+				if(file1 != '' && file1 != undefined && file1 != null) $('#file_name_1').text(file1.split("/user1/upload_file/scout/"+brdno+"/")[1])
+				
 			})
+			$(".jy_input").on('change', function(){
+				const fileInput = this;
+                const fileIndex = fileInput.id.split('_')[1];
+                
+                if (fileInput.files.length > 0) {
+                    const fileName = fileInput.files[0].name;
+					$("#file_name_"+fileIndex).text(fileName);	
+				}
+			})
+			
+			function fn_file_delete(fileidx){
+				if(confirm("해당 첨부파일을 삭제하시겠습니까?")){
+					$('#fileidx').val(fileidx)
+					$("#register").attr("action", "/admin/front/file_delete");
+					$("#register").submit();
+				}
+			}
+			
 			function fn_save(){
 				var BRDNO = $('#BRDNO').val()
 				var SUBJECT = $('#SUBJECT').val();
@@ -168,12 +182,6 @@
 					return false;
 				}
 				oEditors[0].exec("UPDATE_CONTENTS_FIELD", []);
-				
-				
-				if(files.length > 0){
-					$('#file1').val(files)
-						
-				}
 				
 				
 				if(confirm("게시글을 등록하시겠습니까?")){
