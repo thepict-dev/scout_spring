@@ -1965,31 +1965,31 @@ public class PictController {
 		String file_dir = "/user1/upload_file/scout/";
 		   
         if(attach_file1.getSize() != 0) {
-			String uploadPath = fileUpload(request, attach_file1, (String)request.getSession().getAttribute("id"), pictVO.getBRDCTSNO());
+			String uploadPath = fileUpload(request, attach_file1, (String)request.getSession().getAttribute("id"), pictVO.getBRDNO());
 			String filepath = file_dir + pictVO.getBRDNO() + "/";
 			String filename = uploadPath.split("#####")[1];
 			pictVO.setFile1(filepath+filename);
 		}
         if(attach_file2.getSize() != 0) {
-			String uploadPath = fileUpload(request, attach_file2, (String)request.getSession().getAttribute("id"), pictVO.getBRDCTSNO());
+			String uploadPath = fileUpload(request, attach_file2, (String)request.getSession().getAttribute("id"), pictVO.getBRDNO());
 			String filepath = file_dir + pictVO.getBRDNO() + "/";
 			String filename = uploadPath.split("#####")[1];
 			pictVO.setFile2(filepath+filename);
 		}
         if(attach_file3.getSize() != 0) {
-			String uploadPath = fileUpload(request, attach_file3, (String)request.getSession().getAttribute("id"), pictVO.getBRDCTSNO());
+			String uploadPath = fileUpload(request, attach_file3, (String)request.getSession().getAttribute("id"), pictVO.getBRDNO());
 			String filepath = file_dir + pictVO.getBRDNO() + "/";
 			String filename = uploadPath.split("#####")[1];
 			pictVO.setFile3(filepath+filename);
 		}
         if(attach_file4.getSize() != 0) {
-			String uploadPath = fileUpload(request, attach_file4, (String)request.getSession().getAttribute("id"), pictVO.getBRDCTSNO());
+			String uploadPath = fileUpload(request, attach_file4, (String)request.getSession().getAttribute("id"), pictVO.getBRDNO());
 			String filepath = file_dir + pictVO.getBRDNO() + "/";
 			String filename = uploadPath.split("#####")[1];
 			pictVO.setFile4(filepath+filename);
 		}
         if(attach_file5.getSize() != 0) {
-			String uploadPath = fileUpload(request, attach_file5, (String)request.getSession().getAttribute("id"), pictVO.getBRDCTSNO());
+			String uploadPath = fileUpload(request, attach_file5, (String)request.getSession().getAttribute("id"), pictVO.getBRDNO());
 			String filepath = file_dir + pictVO.getBRDNO() + "/";
 			String filename = uploadPath.split("#####")[1];
 			pictVO.setFile5(filepath+filename);
