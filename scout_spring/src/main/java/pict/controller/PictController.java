@@ -102,6 +102,11 @@ public class PictController {
 		String inpuId = pictVO.getMEMBERNO();
 		String inputPw = pictVO.getPassword();
 		
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String current_year = dateFormat.format(today);
+		
+		pictVO.setYEAR(current_year);
 		pictVO = adminService.get_user_info(pictVO);
 
 		if (pictVO != null && pictVO.getMEMBERNO() != null && !pictVO.getMEMBERNO().equals("")) {
@@ -109,28 +114,36 @@ public class PictController {
 			String enpassword = encryptPassword(inputPw); // 입력비밀번호
 			
 			if (enpassword.equals(pictVO.getPassword())) {
-				request.getSession().setAttribute("id", pictVO.getMEMBERNO());
-				request.getSession().setAttribute("name", pictVO.getKNAME());
-				request.getSession().setAttribute("associationname", pictVO.getASSOCIATIONNAME());
-				request.getSession().setAttribute("leaderpositionname", pictVO.getLEADERPOSITIONNAME());
-				request.getSession().setAttribute("picimg", pictVO.getPICIMG());
+				if(pictVO.getEMPLOYEEY().equals("X")) {
+					model.addAttribute("message", "탈퇴한 회원입니다.");
+					model.addAttribute("retType", ":location");
+					model.addAttribute("retUrl", "/admin/pict_login");
+					return "pict/main/message";
+				}
+				else {
+					request.getSession().setAttribute("id", pictVO.getMEMBERNO());
+					request.getSession().setAttribute("name", pictVO.getKNAME());
+					request.getSession().setAttribute("associationname", pictVO.getASSOCIATIONNAME());
+					request.getSession().setAttribute("leaderpositionname", pictVO.getLEADERPOSITIONNAME());
+					request.getSession().setAttribute("employeey", pictVO.getEMPLOYEEY());
+					request.getSession().setAttribute("adminy", pictVO.getADMINY());
+					request.getSession().setAttribute("picimg", pictVO.getPICIMG());
 
+					return "redirect:/admin/pict_main";
+				}
 				
-				pictVO.setMEMBERNO(user_id);
-				pictVO = adminService.get_user_info(pictVO);
-
-				return "redirect:/admin/pict_main";
+				
 
 			} else {
 				model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.1");
 				model.addAttribute("retType", ":location");
-				model.addAttribute("retUrl", "/pict_login");
+				model.addAttribute("retUrl", "/admin/pict_login");
 				return "pict/main/message";
 			}
 		} else {
 			model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.2");
 			model.addAttribute("retType", ":location");
-			model.addAttribute("retUrl", "/pict_login");
+			model.addAttribute("retUrl", "/admin/pict_login");
 			return "pict/main/message";
 		}
 	}
@@ -207,6 +220,8 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
+		String employeey = (String) request.getSession().getAttribute("employeey");
+		System.out.println("전종인가" + employeey);
 		
 		List<PictVO> association_list = pictService.association_list(pictVO);
 		pictVO.setASSOCIATIONCODE("200");
