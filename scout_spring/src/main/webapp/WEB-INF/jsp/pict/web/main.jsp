@@ -12,7 +12,7 @@
 	<%@ include file="./include/header.jsp" %>
     <div class="mainWrapper">
         <div class="mainSec1">
-            <div class="textsLinks">
+            <div class="textsLinks" data-aos="fade-up">
                 <div class="texts">
                     <span>꿈과 모험이 가득한 축제,</span>
                     <p>스카우트와 함께<br>꿈을 펼쳐라!</p>
@@ -31,28 +31,28 @@
                 </ul>
             </div>
             <div class="cards">
-                <a href="#lnk">
+                <a href="#lnk" data-aos="fade-up" data-aos-delay="200">
                     <img src="" alt="">
                     <div class="cardTop">
                         <p>비버<br>스카우트</p>
                         <span>4~6세까지의 유치원생</span>
                     </div>
                 </a>
-                <a href="#lnk">
+                <a href="#lnk" data-aos="fade-up" data-aos-delay="400">
                     <img src="" alt="">
                     <div class="cardTop">
                         <p>컵<br>스카우트</p>
                         <span>6~12세까지의 초등학생</span>
                     </div>
                 </a>
-                <a href="#lnk">
+                <a href="#lnk" data-aos="fade-up" data-aos-delay="600">
                     <img src="" alt="">
                     <div class="cardTop">
                         <p>스카우트/<br>벤처스카우트</p>
                         <span>12~18세의 중·고등학생</span>
                     </div>
                 </a>
-                <a href="#lnk">
+                <a href="#lnk" data-aos="fade-up" data-aos-delay="800">
                     <img src="" alt="">
                     <div class="cardTop">
                         <p>지도자/<br>평생회원</p>
@@ -61,12 +61,12 @@
                 </a>
             </div>
         </div>
-        <div class="mainSec2">
+        <div class="mainSec2" data-aos="fade-up" data-aos-delay="800">
             <a href="#lnk">
                 <img src="/user_img/main-banner.png" alt="메인배너">
             </a>
         </div>
-        <div class="mainSec3">
+        <div class="mainSec3" data-aos="fade-up" data-aos-delay="900">
             <div class="videoWrapper">
                 <video controls>
                     <source src="/user_img/홍보.mp4" type="video/mp4" />
@@ -82,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <div class="mainSec4">
+        <div class="mainSec4" data-aos="fade-up" data-aos-delay="200">
             <div class="mainSubTitle">
                 <h2>공지사항</h2>
                 <a href="#lnk"><img src="/user_img/arrow-outward.png" alt="링크이동"></a>
@@ -103,7 +103,7 @@
                 </ul>
             </div>
         </div>
-        <div class="mainSec4 sec5">
+        <div class="mainSec4 sec5" data-aos="fade-up" data-aos-delay="200">
             <div class="mainSubTitle">
                 <h2>언론에 비친 스카우트</h2>
                 <a href="#lnk"><img src="/user_img/arrow-outward.png" alt="링크이동"></a>
@@ -119,5 +119,8 @@
         </div>
     </div>
 	<%@ include file="./include/footer.jsp" %>
+	<script>
+		AOS.init();
+	</script>
 </body>
 </html>
