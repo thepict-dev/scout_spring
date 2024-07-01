@@ -13,7 +13,7 @@
     <div class="subWrapper">
         <div class="subTop">
             <h2>함께하는 기관, 기업</h2>
-            <p>많은 기관과 기업이<br>스카우트와 함께 하고 있습니다</p>
+            <p>많은 기관과 기업이<br>스카우트와 함께 하고 있습니다.</p>
         </div>
         <div class="subContents">
             <div class="flexContainer">

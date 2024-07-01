@@ -13,7 +13,7 @@
     <div class="subWrapper">
         <div class="subTop">
             <h2>소개</h2>
-            <p>우리나라 최대, 최고의 청소년 운동단체<br><span>SCOUT</span>입니다</p>
+            <p>우리나라 최대, 최고의 청소년 운동단체<br><span>SCOUT</span>입니다.</p>
         </div>
         <div class="subContents">
             <div class="flexContainer">

@@ -13,7 +13,7 @@
     <div class="subWrapper">
         <div class="subTop">
             <h2>시설안내, 예약</h2>
-            <p>야영 등 멋진 체험을 할 수 있는<br>스카우트의 시설입니다</p>
+            <p>야영 등 멋진 체험을 할 수 있는<br>스카우트의 시설입니다.</p>
         </div>
         <div class="subContents">
             <ul class="tabNav organNav rules">

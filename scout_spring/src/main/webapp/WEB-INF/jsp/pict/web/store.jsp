@@ -13,7 +13,7 @@
     <div class="subWrapper">
         <div class="subTop">
             <h2>수품대리점</h2>
-            <p>전국 각지 수품대리점에서<br>최고의 스카우트 물품을 만날 수 있습니다</p>
+            <p>전국 각지 수품대리점에서<br>최고의 스카우트 물품을 만날 수 있습니다.</p>
         </div>
         <div class="subContents">
             <div class="blockContainer">

@@ -12,7 +12,7 @@
 	<%@ include file="./include/header.jsp" %>
     <div class="subWrapper">
         <div class="subTop">
-            <h2>소개</h2>
+            <h2>인사말</h2>
             <p>존경하는 한국스카우트연맹 가족 여러분 안녕하십니까?<br>제17대 한국스카우트연맹 총재 이찬희 입니다.</p>
         </div>
         <div class="subContents">

@@ -13,7 +13,7 @@
     <div class="subWrapper">
         <div class="subTop">
             <h2>연혁,사업</h2>
-            <p>수카우트는 청소년과 함께<br>새로운 역사를 만들어갑니다.</p>
+            <p>스카우트는 청소년과 함께<br>새로운 역사를 만들어갑니다.</p>
         </div>
         <div class="subContents">
             <ul class="tabNav organNav rules">

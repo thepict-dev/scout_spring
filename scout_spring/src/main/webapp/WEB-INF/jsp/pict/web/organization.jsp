@@ -12,8 +12,8 @@
 	<%@ include file="./include/header.jsp" %>
     <div class="subWrapper">
         <div class="subTop">
-            <h2>비전</h2>
-            <p>스카우트 가족 모두가 즐겁고<br>행복한 스카우팅 전개!</p>
+            <h2>조직</h2>
+            <p>글로벌 청소년 리더를 위한<br>스카우트 조직을 소개합니다.</p>
         </div>
         <div class="subContents">
             <ul class="tabNav organNav">

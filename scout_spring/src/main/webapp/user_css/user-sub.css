@@ -86,6 +86,9 @@
 	line-height: 100%; /* 20px */
 	letter-spacing: -1px;
 }
+.contentDesc.schol > li > p{
+	width: 100%;
+}
 .jamDesc{
 	max-width: 780px;
 }

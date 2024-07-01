@@ -13,7 +13,7 @@
     <div class="subWrapper">
         <div class="subTop">
             <h2>찾아오시는 길</h2>
-            <p>스카우트는 여러분께<br>항상 열려있습니다</p>
+            <p>스카우트는 여러분께<br>항상 열려있습니다.</p>
         </div>
         <div class="subContents">
             <ul class="tabNav organNav rules">
