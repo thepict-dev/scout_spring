@@ -22,4 +22,12 @@
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <script src="/js/odometer.min.js"></script>
     <script src="/js/user.js" defer></script>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LC2B3BP4TL"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-LC2B3BP4TL');
+	</script>
 </head>

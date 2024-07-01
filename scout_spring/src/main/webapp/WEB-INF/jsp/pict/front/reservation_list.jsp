@@ -49,7 +49,7 @@
 	                </ul>
 	                <ul class="listBody reservation">
 	                	<c:forEach var="board_list" items="${board_list}" varStatus="status">
-		                    <li>
+		                    <li onclick="fn_list_ck('${board_list.purpose}', '${board_list.BIGO}')">
 		                        <p>
 		                        	<c:if test="${pictVO.pageNumber eq 1}">
 		                        		${board_cnt - status.index}
@@ -99,10 +99,33 @@
 	</body>
 	<form action="" id="register" name="register" method="post" enctype="multipart/form-data">
 		<input type='hidden' name="idx" id="idx" value='' />
-		
 	</form>
-	<%@ include file="./include/booking_info_modal.jsp" %>
+	<div id="bookingModal">
+	    <div class="pwModalInner">
+	        <button type="button"><img src="/front_img/close2.png" alt=""></button>
+	        <p></p>
+	        <div class="pwInputs">
+	            <div class="pwInput">
+	                <p class="pwTit">사용목적</p>
+					<span class="bindingText" id="modal_purpose" style="width:350px"></span>
+	            </div>
+	            <div class="pwInput" style="width: 100%;">
+	                <p class="pwTit">요청사항</p>
+					<span class="bindingText" style="width: 100%; height: 200px;" id="modal_bigo"></span>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+		
 	<script>
+		function fn_list_ck(purpose, bigo){
+			$('#modal_purpose').text('');
+			$('#modal_bigo').text('');
+			
+			$('#modal_purpose').text(purpose);
+			$('#modal_bigo').text(bigo);
+			$('#bookingModal').css('display', 'flex');
+		}
 		function fn_search(){
 			$("#search_fm").attr("action", "/admin/front/reservation_list");
 			$("#search_fm").submit();
@@ -116,9 +139,8 @@
 		}
 
 		//모달
-		$('.listBody.reservation li').click(function(){
-		  $('#bookingModal').css('display', 'flex');
-		});
+		
+		
 		$('#bookingModal button').click(function(){
 		  $('#bookingModal').css('display', 'none');
 		});

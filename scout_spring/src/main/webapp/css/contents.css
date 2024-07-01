@@ -783,7 +783,9 @@
 tbody tr.active td{
 	background-color: var(--grey-50);
 }
-
+#former_body tr.active td{
+	background-color: #cacfd4;
+}
 .mainProfile.sign{
 	display: flex;
 	flex-direction: column;
