@@ -39,7 +39,7 @@
                         <span></span>
                     </a>
                     
-                    <a href="#lnk" target="_blank" title="새창열기" class="rulesButton">
+                    <a href="http://scout.thepict.co.kr/user1/upload_file/scout/rule/24. 회계규정 시행세칙 [22. 4. 28.].pdf" target="_blank" title="새창열기" class="rulesButton">
                         <p>[규정] 회계규정 시행세칙</p>
                         <span></span>
                     </a>
