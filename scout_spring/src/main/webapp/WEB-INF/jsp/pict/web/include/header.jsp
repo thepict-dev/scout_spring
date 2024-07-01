@@ -73,8 +73,8 @@
                 </ul>
             </div>
             <div class="gnbRight">
-                <a href="#lnk">로그인</a>
-                <a href="#lnk">소통게시판</a>
+                <a href="#lnk" onclick="fn_login()">로그인</a>
+                <!-- <a href="#lnk">소통게시판</a> -->
                 <button type="button"><img src="/user_img/menu.png" alt="메뉴열기"></button>
             </div>
         </div>
@@ -149,3 +149,8 @@
 	    </div>
 	</div>
 </header>
+<script>
+	function fn_login(){
+		alert("현재 지원하지 않는 기능입니다.")
+	}
+</script>
