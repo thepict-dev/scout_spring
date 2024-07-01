@@ -1265,6 +1265,7 @@ public class PictController {
 		pictVO.setASSOCIATIONCODE(associationcode);
 		List<PictVO> unity_list = pictService.unity_list(pictVO);
 		
+		
 		if(unity_list.size() > 0) {
 			map.put("list", unity_list);
 			return map;

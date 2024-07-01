@@ -27,7 +27,7 @@
             </div>
             <div class="searchContainer">
                 <p class="inputCaption">회원번호</p>
-                <input type="text" class="lgInput" name="search_memberno_se" id="search_memberno_se" value="${pictVO.search_memberno_se}" onkeypress="if(event.keyCode == 13){search_list();}" placeholder="내용을 입력하세요…">
+                <input type="text" class="lgInput" name="search_memberno_se" id="search_memberno_se" value="${pictVO.search_memberno_se}" onkeypress="if(event.keyCode == 13){search_list(); return false;}" placeholder="내용을 입력하세요…">
             </div>
         </form>
         <div class="formContainer">
@@ -936,15 +936,23 @@
 			
 		}
 		function search_list_memberno(){
+			
 			$("#search_fm_memberno").attr("action", "/admin/front/users");
 			$("#search_fm_memberno").submit();
 
 		}
 		function search_list(){
-			$('#initial-loading').css('display', 'flex')
-			$("#search_fm").attr("action", "/admin/front/users");
-			$("#search_fm").submit();
-			$('#initial-loading').css('display', 'none')
+			var memberno = $('#search_memberno_se').val()
+			var kname = $('#search_kname').val()
+			if((memberno == '' || memberno == undefined || memberno == null) && (kname == '' || kname == undefined || kname == null)){
+				alert("회원번호나 이름은 조회조건의 필수값 입니다.")
+				return false;
+			}
+			else{
+				$("#search_fm").attr("action", "/admin/front/users");
+				$("#search_fm").submit();
+			}
+			
 		}
 		function fn_info(memberno, kname, scouty, leadery){
 			$('#initial-loading').css('display', 'flex')

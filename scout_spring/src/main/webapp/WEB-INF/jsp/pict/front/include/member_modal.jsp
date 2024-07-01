@@ -377,7 +377,7 @@
 			, data : JSON.stringify(param)
 			, contentType : "application/json"
 			, dataType : "json"
-			, async : false
+			, async : true
 			, success : function(data, status, xhr) {
 				var html ="";
 				if(data.list){
@@ -395,6 +395,40 @@
 				console.log("에러")
 			}
 		});
+		//최초등록일때만 최초금액 설정
+		if($('#scout_idx').val() == '' || $('#scout_idx').val() == undefined || $('#scout_idx').val() == null){
+			var param_price = {
+					associationcode : $('#associationcode_scout').val(),
+					year : $('#YEAR_SCOUT').val()
+			}
+			$.ajax({
+				url : "/admin/association_price"
+				, type : "POST"
+				, data : JSON.stringify(param_price)
+				, contentType : "application/json"
+				, dataType : "json"
+				, async : true
+				, success : function(data, status, xhr) {
+					var html ="";
+					if(data && data.rst){
+						var scoutclscode = $('#SCOUTCLSCODE').val()
+						if(scoutclscode == '01') $('#ENTRYFEE_SCOUT').val(data.rst.cls01new)
+						if(scoutclscode == '02') $('#ENTRYFEE_SCOUT').val(data.rst.cls02new)
+						if(scoutclscode == '03') $('#ENTRYFEE_SCOUT').val(data.rst.cls03new)
+						if(scoutclscode == '04') $('#ENTRYFEE_SCOUT').val(data.rst.cls04new)
+						if(scoutclscode == '05') $('#ENTRYFEE_SCOUT').val(data.rst.cls05new)
+						if(scoutclscode == '06') $('#ENTRYFEE_SCOUT').val(data.rst.cls06new)
+					}
+					else $('#ENTRYFEE_SCOUT').val(0)
+					
+					calculate_scout()	
+				}
+				, error : function(xhr, status, error) {
+					console.log(xhr)
+					console.log("에러")
+				}
+			});	
+		}
 	}
 	function fn_get_trooplist_scout(){
 		var param = {
@@ -447,7 +481,7 @@
 			, data : JSON.stringify(param)
 			, contentType : "application/json"
 			, dataType : "json"
-			, async : false
+			, async : true
 			, success : function(data, status, xhr) {
 				var html ='<option value="">-----</option>'
 				if(data.list){
@@ -465,6 +499,39 @@
 				console.log("에러")
 			}
 		});
+		//최초등록일때만 최초금액 설정
+		if($('#scout_idx').val() == '' || $('#scout_idx').val() == undefined || $('#scout_idx').val() == null){
+			var param_price = {
+					associationcode : $('#associationcode_scout').val(),
+					year : $('#YEAR_SCOUT').val()
+			}
+			$.ajax({
+				url : "/admin/association_price"
+				, type : "POST"
+				, data : JSON.stringify(param_price)
+				, contentType : "application/json"
+				, dataType : "json"
+				, async : true
+				, success : function(data, status, xhr) {
+					var html ="";
+					if(data && data.rst){
+						var scoutclscode = $('#SCOUTCLSCODE').val()
+						if(scoutclscode == '01') $('#ENTRYFEE_SCOUT').val(data.rst.cls01new)
+						if(scoutclscode == '02') $('#ENTRYFEE_SCOUT').val(data.rst.cls02new)
+						if(scoutclscode == '03') $('#ENTRYFEE_SCOUT').val(data.rst.cls03new)
+						if(scoutclscode == '04') $('#ENTRYFEE_SCOUT').val(data.rst.cls04new)
+						if(scoutclscode == '05') $('#ENTRYFEE_SCOUT').val(data.rst.cls05new)
+						if(scoutclscode == '06') $('#ENTRYFEE_SCOUT').val(data.rst.cls06new)
+					}
+					else $('#ENTRYFEE_SCOUT').val(0)
+					calculate_scout()	
+				}
+				, error : function(xhr, status, error) {
+					console.log(xhr)
+					console.log("에러")
+				}
+			});	
+		}
 	}
 	
 	function scout_save(){

@@ -69,7 +69,7 @@
         <div class="mainSec3">
             <div class="videoWrapper">
                 <video controls>
-                    <source src="/user_img/video1.mp4" type="video/mp4" />
+                    <source src="/user_img/홍보.mp4" type="video/mp4" />
                 </video>
                 <div class="videoTop">
                     <div class="videoTopInner">

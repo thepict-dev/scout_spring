@@ -416,6 +416,34 @@
 				console.log("에러")
 			}
 		});
+		
+		//최초등록일때만 최초금액 설정
+		if($('#leader_idx').val() == '' || $('#leader_idx').val() == undefined || $('#leader_idx').val() == null){
+			var param_price = {
+					associationcode : $('#associationcode_leader').val(),
+					year : $('#YEAR').val()
+			}
+			$.ajax({
+				url : "/admin/association_price"
+				, type : "POST"
+				, data : JSON.stringify(param_price)
+				, contentType : "application/json"
+				, dataType : "json"
+				, async : false
+				, success : function(data, status, xhr) {
+					var html ="";
+					if(data && data.rst) $('#ENTRYFEE').val(data.rst.cls99new)
+					else $('#ENTRYFEE').val(0)
+					calculate_leader()	
+				}
+				, error : function(xhr, status, error) {
+					console.log(xhr)
+					console.log("에러")
+				}
+			});	
+		}
+		
+		
 	}
 	function fn_get_trooplist(){
 		var param = {
@@ -468,7 +496,7 @@
 			, data : JSON.stringify(param)
 			, contentType : "application/json"
 			, dataType : "json"
-			, async : false
+			, async : true
 			, success : function(data, status, xhr) {
 				var html ='<option value="">-----</option>';
 				if(data.list){
@@ -486,6 +514,32 @@
 				console.log("에러")
 			}
 		});
+		
+		//최초등록일때만 최초금액 설정
+		if($('#leader_idx').val() == '' || $('#leader_idx').val() == undefined || $('#leader_idx').val() == null){
+			var param_price = {
+					associationcode : $('#associationcode_leader').val(),
+					year : $('#YEAR').val()
+			}
+			$.ajax({
+				url : "/admin/association_price"
+				, type : "POST"
+				, data : JSON.stringify(param_price)
+				, contentType : "application/json"
+				, dataType : "json"
+				, async : true
+				, success : function(data, status, xhr) {
+					var html ="";
+					if(data && data.rst) $('#ENTRYFEE').val(data.rst.cls99new)
+					else $('#ENTRYFEE').val(0)
+					calculate_leader()	
+				}
+				, error : function(xhr, status, error) {
+					console.log(xhr)
+					console.log("에러")
+				}
+			});	
+		}
 	}
 	
 	function leader_save(){
