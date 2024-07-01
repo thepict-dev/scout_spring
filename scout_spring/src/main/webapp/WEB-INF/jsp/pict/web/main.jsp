@@ -66,7 +66,7 @@
                 <img src="/user_img/main-banner.png" alt="메인배너">
             </a>
         </div>
-        <div class="mainSec3" data-aos="fade-up" data-aos-delay="900">
+        <div class="mainSec3" data-aos="fade-up" data-aos-delay="200">
             <div class="videoWrapper">
                 <video controls>
                     <source src="/user_img/홍보.mp4" type="video/mp4" />
