@@ -162,6 +162,18 @@ public class webController {
 		model.addAttribute("pictVO", pictVO);
 		return "pict/web/news_view";
 	}
+	//연맹별 공지사항
+	@RequestMapping("federation")
+	public String federation(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/federation";
+	}
+	//연맹별 공지사항 뷰
+	@RequestMapping("federation_view")
+	public String federation_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/federation_view";
+	}
 	//통합자료실
 	@RequestMapping("integrated")
 	public String integrated(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
