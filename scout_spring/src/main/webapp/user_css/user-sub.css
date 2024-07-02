@@ -416,6 +416,14 @@
 	line-height: 140%; /* 25.2px */
 	letter-spacing: -0.9px;
 }
+.viewBottomInner p{
+	width: 100%;
+}
+.viewBottomInner p img{
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+}
 .viewBottomInner span{
 	display: inline-block;
     max-width: 500px;
