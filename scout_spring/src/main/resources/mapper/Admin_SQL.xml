@@ -5,7 +5,7 @@
 	<select id="get_user_info" resultType="pictVO">
 		select m.MEMBERNO, m.KNAME, m.password, a.ASSOCIATIONNAME, m.PICIMG,
 		(select LEADERPOSITIONNAME from leaderpositioncode lp where lp.LEADERPOSITIONCODE1 = l.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2) as LEADERPOSITIONNAME,
-		EMPLOYEEY, , ifnull((select ADMINY from leader a where a.MEMBERNO = '645849' and left(a.STARTDAY, 4) = #{YEAR}), "N") as ADMINY
+		EMPLOYEEY, ifnull((select ADMINY from leader a where a.MEMBERNO = #{MEMBERNO} and left(a.STARTDAY, 4) = #{YEAR}), "N") as ADMINY
 		from member m
 		inner join leader l on m.MEMBERNO = l.MEMBERNO
 		left outer join associationcode a on a.ASSOCIATIONCODE = l.ASSOCIATIONCODE
