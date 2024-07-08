@@ -24,7 +24,7 @@
             <div class="tabInner historyContents active">
                 <h3 class="contentTitle">
                     <p><span class="odometer">2020</span><span>년대</span></p>
-                    <span class="contentSubTitle">세계 스카우트 중심으로<br>부상한 한국보이스카우트</span>
+                    <span class="contentSubTitle">세계 스카우트 중심으로<br>부상한 한국스카우트연맹</span>
                 </h3>
                 <div class="historyListWrapper">
                     <div class="historyLists">

@@ -12,13 +12,13 @@
 	<body>
 	<%@ include file="./include/lnb.jsp" %>
 	<c:import url="./include/header.jsp">
-		<c:param name="pageParent" value="스카우트 통합관리"/>
+		<c:param name="pageParent" value="회원등록"/>
     	<c:param name="pageTitle" value="대원 일괄등록"/>
     </c:import>
     <div class="contentsContainer">
         <div class="formContainer scroller">
             <div class="joinContainer">
-                <div class="fomrTabContent signContainer">
+                <div class="fomrTabContent signContainer" style="border-top: 0;">
                     <form action="" id="register" name="register" method="post" enctype="multipart/form-data">
                         <h2 class="subTitles" style="padding: 16px 24px;">조회</h2>
                         <div class="regiSearch">

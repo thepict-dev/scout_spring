@@ -11,6 +11,39 @@
 	pageContext.setAttribute("leaderpositionname", session.getAttribute("leaderpositionname"));
 	pageContext.setAttribute("picimg", session.getAttribute("picimg"));
 %>
+<%
+	String url = request.getRequestURL().toString();
+	pageContext.setAttribute("url", url);
+	
+%>
+
+
+
+<c:set var="jamboree" value="${fn:indexOf(url, 'jamboree')}"/>
+<c:set var="youthhero" value="${fn:indexOf(url, 'youthhero')}"/>
+<c:set var="scholarship" value="${fn:indexOf(url, 'scholarship')}"/>
+
+<c:set var="integrated" value="${fn:indexOf(url, 'integrated')}"/>
+<c:set var="program" value="${fn:indexOf(url, 'program')}"/>
+
+<c:set var="notice" value="${fn:indexOf(url, 'notice')}"/>
+<c:set var="news" value="${fn:indexOf(url, 'news')}"/>
+
+<c:set var="intro" value="${fn:indexOf(url, 'intro')}"/>
+<c:set var="greeting" value="${fn:indexOf(url, 'greeting')}"/>
+<c:set var="vision" value="${fn:indexOf(url, 'vision')}"/>
+<c:set var="history_local" value="${fn:indexOf(url, 'history_local')}"/>
+<c:set var="history_inter" value="${fn:indexOf(url, 'history_inter')}"/>
+<c:set var="organization" value="${fn:indexOf(url, 'organization')}"/>
+<c:set var="rules" value="${fn:indexOf(url, 'rules')}"/>
+<c:set var="facility" value="${fn:indexOf(url, 'facility')}"/>
+<c:set var="location" value="${fn:indexOf(url, 'location')}"/>
+<c:set var="store" value="${fn:indexOf(url, 'store')}"/>
+<c:set var="family" value="${fn:indexOf(url, 'family')}"/>
+<c:set var="information" value="${fn:indexOf(url, 'information')}"/>
+
+<c:set var="feder" value="${intro ne -1 || greeting ne -1 || vision ne -1 || history_local ne -1 || history_inter ne -1 || organization ne -1 || rules ne -1 || facility ne -1 || location ne -1 || store ne -1 || family ne -1 || information ne -1}" />
+<c:set var="main" value="${jamboree eq -1 && youthhero eq -1 && scholarship eq -1 && integrated eq -1 && program eq -1 && notice eq -1 && news eq -1 && not feder}"/>
 
 <header>
     <div class="headerTop">
@@ -28,11 +61,11 @@
             <div class="gnbLeft">
                 <h1><a href="/"><img src="/user_img/logo.svg" alt="로고"></a></h1>
                 <ul class="gnb">
-                    <li class="active"><a href="/">홈</a></li> 
+                    <li <c:if test="${main eq true}">class="active"</c:if>><a href="/">홈</a></li> 
                     <li>
                         <a href="#lnk">커뮤니티</a>
                     </li>
-                    <li>
+                    <li <c:if test="${jamboree ne -1 || youthhero ne -1 || scholarship ne -1}">class="active"</c:if>>
                         <a href="/jamboree">행사</a>
                         <ul class="gnbSub">
                             <li><a href="/jamboree">잼버리</a></li>
@@ -40,21 +73,21 @@
                             <li><a href="/scholarship">스카우트 장학사업</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li <c:if test="${integrated ne -1 || program ne -1}">class="active"</c:if>>
                         <a href="/integrated">자료실</a>
                         <ul class="gnbSub">
 	                        <li><a href="/integrated">통합자료실</a></li>
 	                        <li><a href="/program">프로그램자료실</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li <c:if test="${notice ne -1 || news ne -1}">class="active"</c:if>>
                         <a href="/notice">뉴스</a>
                         <ul class="gnbSub">
                             <li><a href="/notice">공지사항</a></li>
                             <li><a href="/news">언론에 비친 SCOUT</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li <c:if test="${feder eq true}">class="active"</c:if>>
                         <a href="/intro">한국스카우트연맹</a>
                         <ul class="gnbSub">
                             <li><a href="/intro">소개</a></li>
@@ -88,7 +121,7 @@
 	        <div class="siteMapBottom">
 	            <ul class="depth1">
 	                <li>
-	                    <a href="/" class="active">홈</a>
+	                    <a href="/">홈</a>
 	                    <ul class="depth2">
 	                        <li><a href=""></a></li>
 	                    </ul>
@@ -101,7 +134,7 @@
 	            </ul>
 	            <ul class="depth1">
 	                <li>
-	                    <a href="/jamboree">행사</a>
+	                    <a href="/jamboree" <c:if test="${jamboree ne -1 || youthhero ne -1 || scholarship ne -1}">class="active"</c:if>>행사</a>
 	                    <ul class="depth2">
 	                        <li><a href="/jamboree">잼버리</a></li>
 	                        <li><a href="/youthhero">YOUTH HERO</a></li>
@@ -111,7 +144,7 @@
 	            </ul>
 	            <ul class="depth1">
 	                <li>
-	                    <a href="/integrated">자료실</a>
+	                    <a href="/integrated" <c:if test="${integrated ne -1 || program ne -1}">class="active"</c:if>>자료실</a>
 	                    <ul class="depth2">
 	                        <li><a href="/integrated">통합자료실</a></li>
 	                        <li><a href="/program">프로그램자료실</a></li>
@@ -120,7 +153,7 @@
 	            </ul>
 	            <ul class="depth1">
 	                <li>
-	                    <a href="/notice">뉴스</a>
+	                    <a href="/notice" <c:if test="${notice ne -1 || news ne -1}">class="active"</c:if>>뉴스</a>
 	                    <ul class="depth2">
 	                        <li><a href="/notice">공지사항</a></li>
 	                        <li><a href="/news">언론에 비친 SCOUT</a></li>
@@ -129,7 +162,7 @@
 	            </ul>
 	            <ul class="depth1">
 	                <li>
-	                    <a href="/intro">한국스카우트연맹</a>
+	                    <a href="/intro" <c:if test="${feder eq true}">class="active"</c:if>>한국스카우트연맹</a>
 	                    <ul class="depth2">
 	                        <li><a href="/intro">소개</a></li>
 	                        <li><a href="/greeting">인사말</a></li>

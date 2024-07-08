@@ -61,6 +61,10 @@ nav::-webkit-scrollbar{
 .lnb:hover .nav > li > a{
     display: flex;
 }
+.nav > li.active{
+    background: var(--purple-500);
+	
+}
 
 .subNav{
     position: absolute;

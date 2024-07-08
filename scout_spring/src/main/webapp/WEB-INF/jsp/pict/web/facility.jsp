@@ -316,11 +316,11 @@
                                     <p>부가 시설 이용</p>
                                     <div class="checkRadioBox">
                                         <div class="checkRadio">
-                                            <input id="setting1" type="radio" name="setting" value="강의 세팅">
+                                            <input id="setting1" type="checkbox" name="setting" value="강의 세팅" data-id="강의 세팅">
                                             <label for="setting1">강의 세팅</label>
                                         </div>
                                         <div class="checkRadio">
-                                            <input id="setting2" type="radio" name="setting" value="회의실 세팅">
+                                            <input id="setting2" type="checkbox" name="setting" value="회의실 세팅" data-id="회의실 세팅">
                                             <label for="setting2">회의실 세팅</label>
                                         </div>
                                     </div>
