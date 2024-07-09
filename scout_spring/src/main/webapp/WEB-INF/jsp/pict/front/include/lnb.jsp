@@ -64,6 +64,7 @@
                 <a href="#lnk">홈페이지 관리</a>
                 <ul class="subNav">
                 	<li><a href="/admin/front/board_list">게시물관리</a></li>
+                	<li><a href="/admin/front/board_list_sub">연맹별 게시물관리</a></li>
                 	<li><a href="/admin/front/reservation_list">예약관리</a></li>
                	</ul>
             </li>

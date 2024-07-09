@@ -41,7 +41,7 @@
 			password : $('#newpassword').val()	
 		}
 		$.ajax({
-			url : "/admin_password"
+			url : "/admin/admin_password"
 			, type : "POST"
 			, data : JSON.stringify(param)
 			, contentType : "application/json"

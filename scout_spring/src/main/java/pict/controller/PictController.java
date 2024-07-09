@@ -2062,7 +2062,161 @@ public class PictController {
 	}
 	
 	
-	//게시글 리스트
+	//연맹별게시글 리스트
+	@RequestMapping("/front/board_list_sub")
+	public String board_list_sub(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
+		int limitNumber = 20;
+		pictVO.setLimit(limitNumber);
+		
+		Integer pageNum = pictVO.getPageNumber();
+		
+		if(pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		
+		pictVO.setType("sub");
+		Integer totalCnt = pictService.board_list_cnt(pictVO);
+		
+		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
+		pictVO.setLastPage(lastPageValue);
+		
+		Integer s_page = pageNum - 4;
+		Integer e_page = pageNum + 5;
+		if (s_page <= 0) {
+			s_page = 1;
+			e_page = 10;
+		} 
+		if (e_page > lastPageValue){
+			e_page = lastPageValue;
+		}
+		
+		pictVO.setStartPage(s_page);
+		pictVO.setEndPage(e_page);
+		
+		
+		List<PictVO> board_list = pictService.board_list(pictVO);
+		model.addAttribute("board_list", board_list);
+		model.addAttribute("board_cnt", totalCnt);
+		
+		
+		return "pict/front/board_list_sub";
+	}
+	//게시글 폼
+	@RequestMapping("/front/board_form_sub")
+	public String board_form_sub(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
+		if(pictVO != null && pictVO.getBRDCTSNO() != null) {
+			//수정
+			pictVO = pictService.board_list_one(pictVO);
+			pictVO.setSaveType("update");
+			
+		}
+		else {
+			pictVO.setSaveType("insert");
+		}
+		model.addAttribute("pictVO", pictVO);
+		return "pict/front/board_form_sub";
+	}
+	@RequestMapping(value = "/front/board_delete_sub")
+	public String board_delete_sub(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+		
+		pictService.board_delete(pictVO);
+		
+		model.addAttribute("message", "정상적으로 삭제되었습니다.");
+		model.addAttribute("retType", ":location");
+		model.addAttribute("retUrl", "/admin/front/board_list_sub");
+		return "pict/main/message";
+		
+	}
+	
+	@RequestMapping(value = "/front/board_save_sub", method = RequestMethod.POST)
+	public String board_save_sub(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, MultipartHttpServletRequest request,
+			@RequestParam("file1root") MultipartFile attach_file1,
+			@RequestParam("file2root") MultipartFile attach_file2,
+			@RequestParam("file3root") MultipartFile attach_file3,
+			@RequestParam("file4root") MultipartFile attach_file4,
+			@RequestParam("file5root") MultipartFile attach_file5) throws Exception {
+		
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
+		String file_dir = "/user1/upload_file/scout/";
+		
+		
+        if(attach_file1.getSize() != 0) {
+			String uploadPath = fileUpload(request, attach_file1, (String)request.getSession().getAttribute("id"), pictVO.getBRDNO());
+			String filepath = file_dir + pictVO.getBRDNO() + "/";
+			String filename = uploadPath.split("#####")[1];
+			pictVO.setFile1(filepath+filename);
+		}
+        if(attach_file2.getSize() != 0) {
+			String uploadPath = fileUpload(request, attach_file2, (String)request.getSession().getAttribute("id"), pictVO.getBRDNO());
+			String filepath = file_dir + pictVO.getBRDNO() + "/";
+			String filename = uploadPath.split("#####")[1];
+			pictVO.setFile2(filepath+filename);
+		}
+        if(attach_file3.getSize() != 0) {
+			String uploadPath = fileUpload(request, attach_file3, (String)request.getSession().getAttribute("id"), pictVO.getBRDNO());
+			String filepath = file_dir + pictVO.getBRDNO() + "/";
+			String filename = uploadPath.split("#####")[1];
+			pictVO.setFile3(filepath+filename);
+		}
+        if(attach_file4.getSize() != 0) {
+			String uploadPath = fileUpload(request, attach_file4, (String)request.getSession().getAttribute("id"), pictVO.getBRDNO());
+			String filepath = file_dir + pictVO.getBRDNO() + "/";
+			String filename = uploadPath.split("#####")[1];
+			pictVO.setFile4(filepath+filename);
+		}
+        if(attach_file5.getSize() != 0) {
+			String uploadPath = fileUpload(request, attach_file5, (String)request.getSession().getAttribute("id"), pictVO.getBRDNO());
+			String filepath = file_dir + pictVO.getBRDNO() + "/";
+			String filename = uploadPath.split("#####")[1];
+			pictVO.setFile5(filepath+filename);
+		}
+        if(pictVO.getSaveType() != null && pictVO.getSaveType().equals("update")) {
+			pictService.board_update(pictVO);
+			model.addAttribute("message", "정상적으로 수정되었습니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/front/board_list_sub?BRDNO="+pictVO.getBRDNO());
+			return "pict/main/message";
+		}
+		else {
+			pictVO.setRegister(request.getSession().getAttribute("name").toString());
+			pictService.board_insert(pictVO);
+			model.addAttribute("message", "정상적으로 저장되었습니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/front/board_list_sub");
+			return "pict/main/message";	
+		}
+		
+		
+		
+	}
+	@RequestMapping(value = "/front/file_delete_sub")
+	public String file_delete_sub(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+		System.out.println("여기타"+ pictVO.getFileidx());
+		
+		pictService.file_delete(pictVO);
+		
+		model.addAttribute("message", "정상적으로 삭제되었습니다.");
+		model.addAttribute("retType", ":location");
+		model.addAttribute("retUrl", "/admin/front/board_form_sub?BRDCTSNO="+pictVO.getBRDCTSNO());
+		return "pict/main/message";
+	}
+	
+	//예약 리스트
 	@RequestMapping("/front/reservation_list")
 	public String reservation_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		String sessions = (String) request.getSession().getAttribute("id");

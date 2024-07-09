@@ -951,7 +951,12 @@
 			and BRDNO = #{BRDNO}
 		</if>
 		and USEAT = 'Y'
-
+		<if test="type != null and type != ''">
+			and BRDNO !='56' and BRDNO != '227' and BRDNO != '290' and BRDNO !='1587' and BRDNO !='1827'  
+		</if>
+		<if test="type == null or type == ''">
+			and (BRDNO ='56' or BRDNO = '227' or BRDNO = '290' or BRDNO ='1587' or BRDNO ='1827')
+		</if>
 		order by NOTI desc, ENTERDATE desc
 		LIMIT #{limit} OFFSET #{startNumber}
 	</select>
@@ -963,7 +968,12 @@
 				and BRDNO = #{BRDNO}
 			</if>
 			and USEAT = 'Y'
-	
+			<if test="type != null and type != ''">
+				and BRDNO !='56' and BRDNO != '227' and BRDNO != '290' and BRDNO !='1587' and BRDNO !='1827'  
+			</if>
+			<if test="type == null or type == ''">
+				and (BRDNO ='56' or BRDNO = '227' or BRDNO = '290' or BRDNO ='1587' or BRDNO ='1827')
+			</if>
 			order by NOTI desc, ENTERDATE desc
 	</select>
 	
