@@ -40,6 +40,40 @@
 	word-break: keep-all;
 }
 
+@media all and (max-width : 1280px){
+	.subTop p{
+		font-size: 44px;
+	}
+	.subTop > span{
+		font-size: 16px;
+	}
+}
+@media all and (max-width : 1024px){
+	.subTop{
+		padding: 20px 0;
+	}
+	.subTop h2{
+		margin-bottom: 8px;
+		font-size: 16px;
+		letter-spacing: -0.8px;
+	}
+	.subTop p{
+		font-size: 28px;
+		font-weight: 500;
+		line-height: 150%; /* 85.76px */
+		letter-spacing: -1.4px;
+	}
+	.subTop p span{
+		color: var(--purple-500);
+		font-weight: 700;
+	}
+	.subTop > span{
+		margin-top: 12px;
+		letter-spacing: -0.8px;
+		word-break: keep-all;
+	}
+}
+
 .subContents{
 	display: flex;
 	flex-direction: column;
@@ -89,6 +123,56 @@
 .contentDesc.schol > li > p{
 	width: 100%;
 }
+
+@media all and (max-width : 1024px){
+	.subContents{
+		row-gap: 20px;
+	}
+	.flexContainer{
+		flex-direction: column;
+		column-gap: 155px;
+		padding: 20px 0;
+	}
+	.blockContainer{
+		padding: 20px 0;
+	}
+	.contentTitle{
+		width: 250px;
+		color: var(--text-color);
+		font-size: 40px;
+		font-weight: 700;
+		line-height: 134%; /* 53.6px */
+		letter-spacing: -2px;
+	}
+	.contentDesc{
+		width: calc(100% - 405px);
+	}
+	.contentDesc > li{
+		display: flex;
+		column-gap: 12px;
+		max-width: 1057px;
+		padding: 24px 0;
+		border-bottom: 1px solid var(--grey-100);
+	}
+	.contentDesc > li:first-of-type{
+		border-top: 1px solid var(--grey-100);
+	}
+	.contentDesc > li > p{
+		width: 135px;
+		white-space: nowrap;
+		color: var(--text-color);
+		font-family: SUIT;
+		font-size: 20px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 100%; /* 20px */
+		letter-spacing: -1px;
+	}
+	.contentDesc.schol > li > p{
+		width: 100%;
+	}
+}
+
 .jamDesc{
 	max-width: 780px;
 }
@@ -513,6 +597,13 @@
 	max-width: 925px;
 	/* width: calc(100% - 700px); */
 }
+.greetingTexts.feders{
+	display: flex;
+	flex-direction: column;
+	row-gap: 30px;
+	max-width: 1200px;
+	/* width: calc(100% - 700px); */
+}
 .greetingTexts p{
 	color: var(--text-color);
 	font-size: 24px;
@@ -538,6 +629,11 @@
 	display: block;
 	max-width: 560px;
 	min-width: 400px;
+}
+.greetingContainer span.feders{
+	display: block;
+	max-width: 400px;
+	min-width: unset;
 }
 .greetingContainer span img{
 	width: 100%;

@@ -19,17 +19,17 @@
 
 
 
-<c:set var="jamboree" value="${fn:indexOf(url, 'jamboree')}"/>
-<c:set var="youthhero" value="${fn:indexOf(url, 'youthhero')}"/>
-<c:set var="scholarship" value="${fn:indexOf(url, 'scholarship')}"/>
-
 <c:set var="integrated" value="${fn:indexOf(url, 'integrated')}"/>
 <c:set var="program" value="${fn:indexOf(url, 'program')}"/>
 
 <c:set var="notice" value="${fn:indexOf(url, 'notice')}"/>
 <c:set var="news" value="${fn:indexOf(url, 'news')}"/>
 
+<c:set var="youthhero" value="${fn:indexOf(url, 'youthhero')}"/>
+<c:set var="scholarship" value="${fn:indexOf(url, 'scholarship')}"/>
+
 <c:set var="intro" value="${fn:indexOf(url, 'intro')}"/>
+<c:set var="jamboree" value="${fn:indexOf(url, 'jamboree')}"/>
 <c:set var="greeting" value="${fn:indexOf(url, 'greeting')}"/>
 <c:set var="vision" value="${fn:indexOf(url, 'vision')}"/>
 <c:set var="history_local" value="${fn:indexOf(url, 'history_local')}"/>
@@ -42,7 +42,7 @@
 <c:set var="family" value="${fn:indexOf(url, 'family')}"/>
 <c:set var="information" value="${fn:indexOf(url, 'information')}"/>
 
-<c:set var="feder" value="${intro ne -1 || greeting ne -1 || vision ne -1 || history_local ne -1 || history_inter ne -1 || organization ne -1 || rules ne -1 || facility ne -1 || location ne -1 || store ne -1 || family ne -1 || information ne -1}" />
+<c:set var="feder" value="${intro ne -1 || jamboree ne -1 || greeting ne -1 || vision ne -1 || history_local ne -1 || history_inter ne -1 || organization ne -1 || rules ne -1 || facility ne -1 || location ne -1 || store ne -1 || family ne -1 || information ne -1}" />
 <c:set var="main" value="${jamboree eq -1 && youthhero eq -1 && scholarship eq -1 && integrated eq -1 && program eq -1 && notice eq -1 && news eq -1 && not feder}"/>
 
 <header>
@@ -62,16 +62,11 @@
                 <h1><a href="/"><img src="/user_img/logo.svg" alt="로고"></a></h1>
                 <ul class="gnb">
                     <li <c:if test="${main eq true}">class="active"</c:if>><a href="/">홈</a></li> 
-                    <li>
+                    <!-- <li>
                         <a href="#lnk">커뮤니티</a>
-                    </li>
-                    <li <c:if test="${jamboree ne -1 || youthhero ne -1 || scholarship ne -1}">class="active"</c:if>>
-                        <a href="/jamboree">행사</a>
-                        <ul class="gnbSub">
-                            <li><a href="/jamboree">잼버리</a></li>
-                            <li><a href="/youthhero">YOUTH HERO</a></li>
-                            <li><a href="/scholarship">스카우트 장학사업</a></li>
-                        </ul>
+                    </li> -->
+                    <li>
+                        <a href="#lnk">행사</a>
                     </li>
                     <li <c:if test="${integrated ne -1 || program ne -1}">class="active"</c:if>>
                         <a href="/integrated">자료실</a>
@@ -87,10 +82,18 @@
                             <li><a href="/news">언론에 비친 SCOUT</a></li>
                         </ul>
                     </li>
+                   	<li <c:if test="${youthhero ne -1 || scholarship ne -1}">class="active"</c:if>>
+                   		<a href="/youthhero">사회공헌사업</a>
+                        <ul class="gnbSub">
+                            <li><a href="/youthhero">YOUTH HERO</a></li>
+                            <li><a href="/scholarship">스카우트 장학사업</a></li>
+                        </ul>
+                   	</li>
                     <li <c:if test="${feder eq true}">class="active"</c:if>>
                         <a href="/intro">한국스카우트연맹</a>
                         <ul class="gnbSub">
                             <li><a href="/intro">소개</a></li>
+                            <li><a href="/jamboree">잼버리</a></li>
                             <li><a href="/greeting">인사말</a></li>
                             <li><a href="/vision">비전</a></li>
                             <li><a href="/history_local">연혁,사업</a></li>
@@ -129,17 +132,7 @@
 	            </ul>
 	            <ul class="depth1">
 	                <li>
-	                    <a href="#lnk">커뮤니티</a>
-	                </li>
-	            </ul>
-	            <ul class="depth1">
-	                <li>
-	                    <a href="/jamboree" <c:if test="${jamboree ne -1 || youthhero ne -1 || scholarship ne -1}">class="active"</c:if>>행사</a>
-	                    <ul class="depth2">
-	                        <li><a href="/jamboree">잼버리</a></li>
-	                        <li><a href="/youthhero">YOUTH HERO</a></li>
-	                        <li><a href="/scholarship">스카우트 장학사업</a></li>
-	                    </ul>
+	                    <a href="#lnk">행사</a>
 	                </li>
 	            </ul>
 	            <ul class="depth1">
@@ -162,9 +155,19 @@
 	            </ul>
 	            <ul class="depth1">
 	                <li>
+	                    <a href="/youthhero" <c:if test="${youthhero ne -1 || scholarship ne -1}">class="active"</c:if>>사회공헌사업</a>
+	                    <ul class="depth2">
+	                        <li><a href="/youthhero">YOUTH HERO</a></li>
+	                        <li><a href="/scholarship">스카우트 장학사업</a></li>
+	                    </ul>
+	                </li>
+	            </ul>
+	            <ul class="depth1">
+	                <li>
 	                    <a href="/intro" <c:if test="${feder eq true}">class="active"</c:if>>한국스카우트연맹</a>
 	                    <ul class="depth2">
 	                        <li><a href="/intro">소개</a></li>
+	                        <li><a href="/jamboree">잼버리</a></li>
 	                        <li><a href="/greeting">인사말</a></li>
 	                        <li><a href="/vision">비전</a></li>
 	                        <li><a href="/history_local">연혁,사업</a></li>

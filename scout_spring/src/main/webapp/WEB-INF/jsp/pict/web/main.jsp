@@ -18,6 +18,10 @@
                     <p>스카우트와 함께<br>꿈을 펼쳐라!</p>
                 </div>
                 <ul class="links">
+                    <li><a href="#lnk">스카우트와 함께</a></li>
+                    <li><a href="#lnk">공지사항</a></li>
+                    <li><a href="#lnk">지방연맹 소식방</a></li>
+                	<!-- 
                     <li><a href="#lnk">지역대검색</a></li>
                     <li><a href="#lnk">임원통합소개</a></li>
                     <li><a href="#lnk">지방 특수연맹</a></li>
@@ -28,6 +32,7 @@
                     <li><a href="#lnk">스카우트용어집</a></li>
                     <li><a href="#lnk">수품대리점안내</a></li>
                     <li><a href="#lnk">스카우트만의 혜택</a></li>
+                    -->
                 </ul>
             </div>
             <div class="cards">
@@ -82,6 +87,7 @@
                 </div>
             </div>
         </div>
+        <!-- 
         <div class="mainSec4" data-aos="fade-up" data-aos-delay="200">
             <div class="mainSubTitle">
                 <h2>공지사항</h2>
@@ -117,6 +123,7 @@
                 </ul>
             </div>
         </div>
+         -->
     </div>
 	<%@ include file="./include/footer.jsp" %>
 	<script>
