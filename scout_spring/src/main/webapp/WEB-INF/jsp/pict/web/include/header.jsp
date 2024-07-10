@@ -10,6 +10,8 @@
 	pageContext.setAttribute("associationname", session.getAttribute("associationname"));
 	pageContext.setAttribute("leaderpositionname", session.getAttribute("leaderpositionname"));
 	pageContext.setAttribute("picimg", session.getAttribute("picimg"));
+	pageContext.setAttribute("employeey", session.getAttribute("employeey"));
+	pageContext.setAttribute("adminy", session.getAttribute("adminy"));
 %>
 <%
 	String url = request.getRequestURL().toString();
@@ -50,8 +52,8 @@
         <div class="headerTopInner">
             <p>다양한 스카우트 정보는 이곳에서 확인하세요</p>
             <div class="headerTopLinks">
-                <a href="#lnk" target="_blank" title="새창이동">대등록 신청<img src="/user_img/right.png" alt=""></a>
-                <a href="#lnk" target="_blank" title="새창이동">대번호 검색<img src="/user_img/right.png" alt=""></a>
+                <a href="/admin/front/scout_whole_register" target="_blank" title="새창이동">대등록 신청<img src="/user_img/right.png" alt=""></a>
+                <!-- <a href="#lnk" target="_blank" title="새창이동">대번호 검색<img src="/user_img/right.png" alt=""></a> -->
                 <a href="#lnk" target="_blank" title="새창이동">지역가입 안내<img src="/user_img/right.png" alt=""></a>
             </div>
         </div>
@@ -109,7 +111,12 @@
                 </ul>
             </div>
             <div class="gnbRight">
-                <a href="#lnk" onclick="fn_login()">로그인</a>
+            	<c:if test="${name ne null && name ne undefined && name ne ''}">
+                	<a href="#lnk" onclick="fn_logout()">로그아웃</a>
+               	</c:if>
+               	<c:if test="${name eq null || name eq undefined || name eq ''}">
+                	<a href="#lnk" onclick="fn_login()">로그인</a>
+               	</c:if>
                 <!-- <a href="#lnk">소통게시판</a> -->
                 <button type="button"><img src="/user_img/menu.png" alt="메뉴열기"></button>
             </div>
@@ -188,5 +195,11 @@
 <script>
 	function fn_login(){
 		alert("현재 지원하지 않는 기능입니다.")
+	}
+	function fn_logout(){
+		if(confirm("로그아웃 하시겠습니까?")){
+			location.href="/logout"
+		}
+		
 	}
 </script>

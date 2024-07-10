@@ -63,8 +63,19 @@ public class PictController {
 				pictVO = adminService.get_user_info(pictVO);
 				model.addAttribute("adminVO", pictVO);
 			}
-
-			return "redirect:/admin/front/users";
+			String jeonjong = (String) request.getSession().getAttribute("employeey");
+			String adminy = (String) request.getSession().getAttribute("adminy");
+			if (jeonjong.equals("Y")) {
+				return "redirect:/admin/front/users";
+			}
+			else if(adminy.equals("Y")) {
+				return "redirect:/admin/front/scout_whole_register";
+			}
+			else {
+				return "redirect:/";
+			}
+			
+			
 
 		}
 	}
@@ -89,7 +100,19 @@ public class PictController {
 			return "pict/main/login";
 		} else {
 			// 나중에 여기 계정별로 리다이렉트 분기처리
-			return "redirect:/admin/front/users";
+			String jeonjong = (String) request.getSession().getAttribute("employeey");
+			String adminy = (String) request.getSession().getAttribute("adminy");
+			System.out.println(jeonjong);
+			System.out.println(adminy);
+			if (jeonjong.equals("Y")) {
+				return "redirect:/admin/front/users";
+			}
+			else if(adminy.equals("Y")) {
+				return "redirect:/admin/front/scout_whole_register";
+			}
+			else {
+				return "redirect:/";
+			}
 
 		}
 
@@ -114,7 +137,7 @@ public class PictController {
 			String enpassword = encryptPassword(inputPw); // 입력비밀번호
 			
 			if (enpassword.equals(pictVO.getPassword())) {
-				if(pictVO.getEMPLOYEEY().equals("X")) {
+				if(pictVO.getEMPLOYEEY().equals("X") && pictVO.getADMINY().equals("N")) {
 					model.addAttribute("message", "탈퇴한 회원입니다.");
 					model.addAttribute("retType", ":location");
 					model.addAttribute("retUrl", "/admin/pict_login");
@@ -155,6 +178,8 @@ public class PictController {
 		request.getSession().setAttribute("name", null);
 		request.getSession().setAttribute("associationname", null);
 		request.getSession().setAttribute("leaderpositionname", null);
+		request.getSession().setAttribute("employeey", null);
+		request.getSession().setAttribute("adminy", null);
 		request.getSession().setAttribute("picimg", null);
 
 		return "redirect:/admin/pict_login";
@@ -176,11 +201,17 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
+		String jeonjong = (String) request.getSession().getAttribute("employeey");
+		String adminy = (String) request.getSession().getAttribute("adminy");
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
 		
 		String loginNo = request.getSession().getAttribute("id").toString();
-		
-		
-		
 		String flag = pictService.login_user_info(loginNo);
 		model.addAttribute("flag", flag);
 		
@@ -220,8 +251,16 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		String employeey = (String) request.getSession().getAttribute("employeey");
-		System.out.println("전종인가" + employeey);
+		
+		String jeonjong = (String) request.getSession().getAttribute("employeey");
+		String adminy = (String) request.getSession().getAttribute("adminy");
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
 		
 		List<PictVO> association_list = pictService.association_list(pictVO);
 		pictVO.setASSOCIATIONCODE("200");
@@ -240,6 +279,16 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
+		String jeonjong = (String) request.getSession().getAttribute("employeey");
+		String adminy = (String) request.getSession().getAttribute("adminy");
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
+		
 		
 		Date today = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
@@ -310,6 +359,15 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
+		String jeonjong = (String) request.getSession().getAttribute("employeey");
+		String adminy = (String) request.getSession().getAttribute("adminy");
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
 		
 		List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
 		List<PictVO> scoutcls_list = pictService.scoutcls_list(pictVO);
@@ -348,6 +406,16 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
+		String jeonjong = (String) request.getSession().getAttribute("employeey");
+		String adminy = (String) request.getSession().getAttribute("adminy");
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
+		
 		List<?> former_list= pictService.former_list(pictVO);
 		model.addAttribute("former_list", former_list);
 		model.addAttribute("pictVO", pictVO);
@@ -464,6 +532,15 @@ public class PictController {
 		String sessions = (String) request.getSession().getAttribute("id");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
+		}
+		String jeonjong = (String) request.getSession().getAttribute("employeey");
+		String adminy = (String) request.getSession().getAttribute("adminy");
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
 		}
 		
 		List<?> job_list= pictService.job_list(pictVO);
@@ -1595,6 +1672,15 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
+		String jeonjong = (String) request.getSession().getAttribute("employeey");
+		String adminy = (String) request.getSession().getAttribute("adminy");
+		if ((jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) && (adminy == null || adminy == "null" || adminy.equals("N"))) {
+			model.addAttribute("message", "해당 메뉴는 관리지도자권한 이상만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
 		
 		List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
 		List<PictVO> scoutcls_list = pictService.scoutcls_list(pictVO);
@@ -1791,6 +1877,15 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
+		String jeonjong = (String) request.getSession().getAttribute("employeey");
+		String adminy = (String) request.getSession().getAttribute("adminy");
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
 		
 		List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
 		List<PictVO> scoutcls_list = pictService.scoutcls_list(pictVO);
@@ -1864,6 +1959,15 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
+		String jeonjong = (String) request.getSession().getAttribute("employeey");
+		String adminy = (String) request.getSession().getAttribute("adminy");
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
 		
 		List<PictVO> association_list = pictService.association_list(pictVO);
 		model.addAttribute("association_list", association_list);
@@ -1915,6 +2019,16 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
+		String jeonjong = (String) request.getSession().getAttribute("employeey");
+		String adminy = (String) request.getSession().getAttribute("adminy");
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
+		
 		int limitNumber = 20;
 		pictVO.setLimit(limitNumber);
 		
@@ -2069,6 +2183,15 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
+		String jeonjong = (String) request.getSession().getAttribute("employeey");
+		String adminy = (String) request.getSession().getAttribute("adminy");
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
 		int limitNumber = 20;
 		pictVO.setLimit(limitNumber);
 		
@@ -2222,6 +2345,15 @@ public class PictController {
 		String sessions = (String) request.getSession().getAttribute("id");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
+		}
+		String jeonjong = (String) request.getSession().getAttribute("employeey");
+		String adminy = (String) request.getSession().getAttribute("adminy");
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
 		}
 		int limitNumber = 20;
 		pictVO.setLimit(limitNumber);

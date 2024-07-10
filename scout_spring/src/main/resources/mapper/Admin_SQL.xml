@@ -8,7 +8,7 @@
 		EMPLOYEEY
 		, ifnull((select ADMINY from leader a where a.MEMBERNO = #{MEMBERNO} and left(a.STARTDAY, 4) = #{YEAR} order by ADMINY desc limit 1 offset 0), "N") as ADMINY
 		from member m
-		inner join leader l on m.MEMBERNO = l.MEMBERNO
+		left join leader l on m.MEMBERNO = l.MEMBERNO
 		left outer join associationcode a on a.ASSOCIATIONCODE = l.ASSOCIATIONCODE
 		where m.MEMBERNO = #{MEMBERNO}
 		

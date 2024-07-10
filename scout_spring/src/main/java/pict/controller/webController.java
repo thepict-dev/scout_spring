@@ -42,6 +42,20 @@ public class webController {
 		
 		return "pict/web/main";
 	}
+	@RequestMapping("/logout")
+	public String logout(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model)
+			throws Exception {
+		request.getSession().setAttribute("id", null);
+		request.getSession().setAttribute("name", null);
+		request.getSession().setAttribute("associationname", null);
+		request.getSession().setAttribute("leaderpositionname", null);
+		request.getSession().setAttribute("employeey", null);
+		request.getSession().setAttribute("adminy", null);
+		request.getSession().setAttribute("picimg", null);
+
+		return "redirect:/";
+
+	}
 	
 	//행사
 	//잼버리
