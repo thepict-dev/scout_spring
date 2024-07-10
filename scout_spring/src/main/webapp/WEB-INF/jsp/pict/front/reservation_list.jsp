@@ -78,7 +78,19 @@
 									</c:forEach>
 	                        	</p>
 		                        <p>${board_list.person}</p>
-		                        <p>${board_list.etc1} / ${board_list.etc2}</p>
+		                        <p>
+			                        <c:choose>
+									   <c:when test="${not empty board_list.etc1 and not empty board_list.etc2}">
+									       ${board_list.etc1}, ${board_list.etc2}
+									   </c:when>
+									   <c:when test="${not empty board_list.etc1}">
+									       ${board_list.etc1}
+									   </c:when>
+									   <c:when test="${not empty board_list.etc2}">
+									       ${board_list.etc2}
+									   </c:when>
+									</c:choose>
+	                        	</p>
 		                        <p>${fn:substring(board_list.ENTERDATE,0,11)}</p>
 		                        
 		                        <p>
