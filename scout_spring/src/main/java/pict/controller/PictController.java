@@ -2329,8 +2329,7 @@ public class PictController {
 	}
 	@RequestMapping(value = "/front/file_delete_sub")
 	public String file_delete_sub(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
-		System.out.println("여기타"+ pictVO.getFileidx());
-		
+	
 		pictService.file_delete(pictVO);
 		
 		model.addAttribute("message", "정상적으로 삭제되었습니다.");
@@ -2393,6 +2392,18 @@ public class PictController {
 		
 		
 		return "pict/front/reservation_list";
+	}
+	
+	//예약 상태값 변경
+	@RequestMapping(value = "/front/reservation_cng")
+	public String reservation_cng(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+	
+		pictService.reservation_cng(pictVO);
+		
+		model.addAttribute("message", "정상적으로 변경되었습니다.");
+		model.addAttribute("retType", ":location");
+		model.addAttribute("retUrl", "/admin/front/reservation_list");
+		return "pict/main/message";
 	}
 	// 공통메소드
 	public String fileUpload(MultipartHttpServletRequest request, MultipartFile uploadFile, String target, String brdno) {

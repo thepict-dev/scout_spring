@@ -106,6 +106,10 @@
 		<input type='hidden' name="type" id="type" value='' />
 	</form>
 	<script>
+		$("#BRDNO").change(function(){
+			$("#search_fm").attr("action", "/admin/front/board_list");
+			$("#search_fm").submit();
+		});
 		function fn_search(){
 			$("#search_fm").attr("action", "/admin/front/board_list");
 			$("#search_fm").submit();

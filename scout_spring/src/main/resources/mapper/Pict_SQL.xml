@@ -1058,14 +1058,38 @@
 	<select id="reservation_list" resultType="pictVO">
 		select * from reservation_table 
 		where 1=1
-
+		<if test="search_text != null and search_text != ''">
+			and (
+				company LIKE CONCAT('%', #{search_text}, '%') or
+				depart LIKE CONCAT('%', #{search_text}, '%') or
+				name LIKE CONCAT('%', #{search_text}, '%')
+			)
+		</if>
+		<if test="search_status != null and search_status != ''">
+			and status = #{search_status}
+		</if>
 		order by ENTERDATE desc
 		LIMIT #{limit} OFFSET #{startNumber}
 	</select>
 	
 	<select id="reservation_list_cnt" resultType="int">
 		select count(*) from reservation_table 
+		where 1=1
+		<if test="search_text != null and search_text != ''">
+			and (
+				company LIKE CONCAT('%', #{search_text}, '%') or
+				depart LIKE CONCAT('%', #{search_text}, '%') or
+				name LIKE CONCAT('%', #{search_text}, '%')
+			)
+		</if>
+		<if test="search_status != null and search_status != ''">
+			and status = #{search_status}
+		</if>
 		order by ENTERDATE desc
 	</select>
+	
+	<update id="reservation_cng" parameterType="pictVO">
+		update reservation_table set status = #{status} where idx = #{idx}
+	</update>
 	
 </mapper>

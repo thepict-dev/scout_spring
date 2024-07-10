@@ -200,6 +200,7 @@ public class PictVO extends PictDefaultVO {
 	private String search_text2;
 	private String search_parenttroopno;
 	private String search_year;
+	private String search_status;
 	private String pre_year;
 	private int preleader;
 	private int prescout;
@@ -294,6 +295,13 @@ public class PictVO extends PictDefaultVO {
 	private String status;
 	
 	
+	
+	public String getSearch_status() {
+		return search_status;
+	}
+	public void setSearch_status(String search_status) {
+		this.search_status = search_status;
+	}
 	public String getStatus() {
 		return status;
 	}

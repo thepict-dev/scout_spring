@@ -458,6 +458,12 @@ public class PictServiceImpl implements PictService {
 		return pictMapper.reservation_list(pictVO);
 	}
 
+	@Override
+	public void reservation_cng(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.reservation_cng(pictVO);
+	}
+
 
 	
 	

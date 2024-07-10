@@ -253,56 +253,20 @@
                                     <p>사용시간</p>
                                     <div class="checkRadioBox">
                                         <div class="checkRadio">
-                                            <input id="time1" type="checkbox" name="time" value="1" data-id="08:00">
-                                            <label for="time1">08:00</label>
+                                            <input id="morning" type="checkbox" name="time" value="1" data-id="오전">
+                                            <label for="morning">오전</label>
                                         </div>
                                         <div class="checkRadio">
-                                            <input id="time2" type="checkbox" name="time" value="2" data-id="09:00">
-                                            <label for="time2">09:00</label>
+                                            <input id="aftnoon" type="checkbox" name="time" value="2" data-id="오후">
+                                            <label for="aftnoon">오후</label>
                                         </div>
                                         <div class="checkRadio">
-                                            <input id="time3" type="checkbox" name="time" value="3" data-id="10:00">
-                                            <label for="time3">10:00</label>
+                                            <input id="night" type="checkbox" name="time" value="3" data-id="야간">
+                                            <label for="night">야간</label>
                                         </div>
                                         <div class="checkRadio">
-                                            <input id="time4" type="checkbox" name="time" value="4" data-id="11:00">
-                                            <label for="time4">11:00</label>
-                                        </div>
-                                        <div class="checkRadio">
-                                            <input id="time5" type="checkbox" name="time" value="5" data-id="12:00">
-                                            <label for="time5">12:00</label>
-                                        </div>
-                                        <div class="checkRadio">
-                                            <input id="time6" type="checkbox" name="time" value="6" data-id="13:00">
-                                            <label for="time6">13:00</label>
-                                        </div>
-                                        <div class="checkRadio">
-                                            <input id="time7" type="checkbox" name="time" value="7" data-id="14:00">
-                                            <label for="time7">14:00</label>
-                                        </div>
-                                        <div class="checkRadio">
-                                            <input id="time8" type="checkbox" name="time" value="8" data-id="15:00">
-                                            <label for="time8">15:00</label>
-                                        </div>
-                                        <div class="checkRadio">
-                                            <input id="time9" type="checkbox" name="time" value="9" data-id="16:00">
-                                            <label for="time9">16:00</label>
-                                        </div>
-                                        <div class="checkRadio">
-                                            <input id="time10" type="checkbox" name="time" value="10" data-id="17:00">
-                                            <label for="time10">17:00</label>
-                                        </div>
-                                        <div class="checkRadio">
-                                            <input id="time12" type="checkbox" name="time" value="11" data-id="18:00">
-                                            <label for="time12">18:00</label>
-                                        </div>
-                                        <div class="checkRadio">
-                                            <input id="time13" type="checkbox" name="time" value="all" data-id="전일">
-                                            <label for="time13">전일</label>
-                                        </div>
-                                        <div class="checkRadio">
-                                            <input id="time14" type="checkbox" name="time" value="night" data-id="야간">
-                                            <label for="time14">야간</label>
+                                            <input id="all" type="checkbox" name="time" value="" data-id="">
+                                            <label for="all">전일</label>
                                         </div>
                                     </div>
                                 </div>
@@ -385,7 +349,7 @@
 			var arr = []
 			$('input[name=time]:checked').each(function(){
 				var chk = $(this).val();
-				arr.push(chk)
+				if(chk != '') arr.push(chk)
 			})
 			arr.forEach((num, index) => {
 				time += num;

@@ -166,6 +166,8 @@ public interface PictService {
 
 	public List<PictVO> reservation_list(PictVO pictVO) throws Exception;
 
+	public void reservation_cng(PictVO pictVO) throws Exception;
+
 
 
 }

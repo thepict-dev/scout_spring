@@ -1149,9 +1149,17 @@ tbody tr.active td{
 
 
 .listHead.reservation{
-    grid-template-columns: 3% 13% 10% 9% 10% 10% 10% 3% 13% 10% 9%;
+    grid-template-columns: 5% 10% 10% 10% 10% 10% 10% 5% 10% 10% 10%;
 }
 .listBody.reservation li{
-    grid-template-columns: 3% 13% 10% 9% 10% 10% 10% 3% 13% 10% 9%;
+    grid-template-columns: 5% 10% 10% 10% 10% 10% 10% 5% 10% 10% 10%;
     cursor: pointer;
 }
+
+.listBody.reservation li p{
+	display:flex; 
+	align-items : center;
+	justify-content : center;
+}
+ 
+

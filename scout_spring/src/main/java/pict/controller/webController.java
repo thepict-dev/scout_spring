@@ -357,22 +357,22 @@ public class webController {
 			String bigo = param.get("bigo").toString();
 			
 			
-			String arr[] = time.split(",");
-			for(int i=0; i<arr.length; i++) {
-				pictVO.setCompany(company);
-				pictVO.setDepart(depart);
-				pictVO.setName(name);
-				pictVO.setMOBILE(mobile);
-				pictVO.setApplydate(applydate);
-				pictVO.setTime(arr[i]);
-				pictVO.setPerson(person);
-				pictVO.setEtc1(etc1);
-				pictVO.setEtc2(etc2);
-				pictVO.setPurpose(purpose);
-				pictVO.setBIGO(bigo);
-				
-				pictService.reservation_insert(pictVO);
-			}
+			
+			
+			pictVO.setCompany(company);
+			pictVO.setDepart(depart);
+			pictVO.setName(name);
+			pictVO.setMOBILE(mobile);
+			pictVO.setApplydate(applydate);
+			pictVO.setTime(time);
+			pictVO.setPerson(person);
+			pictVO.setEtc1(etc1);
+			pictVO.setEtc2(etc2);
+			pictVO.setPurpose(purpose);
+			pictVO.setBIGO(bigo);
+			
+			pictService.reservation_insert(pictVO);
+			
 			
 			//pictService.fn_get_units_info(pictVO);
 			map.put("rst", "Y");

@@ -87,8 +87,8 @@ inputs.forEach(input => {
 });
 
 $('input[name="time"], input[name="setting"]').on("change click", function() {
-  if ($(this).attr('id') === 'time13') { // 전일 옵션
-    $('input[name="time"]').not('#time13, #time14').prop('checked', $(this).prop('checked'));
+  if ($(this).attr('id') === 'all') { // 전일 옵션
+    $('input[name="time"]').not('#all').prop('checked', $(this).prop('checked'));
   }
   
   let str = $('input[name="time"]:checked').map((_, el) => $(el).data("id")).get().join(' ');
