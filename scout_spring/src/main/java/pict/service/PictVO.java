@@ -293,9 +293,22 @@ public class PictVO extends PictDefaultVO {
 	private String etc2;
 	private String purpose;
 	private String status;
+	private String age;
+	private String relation;
 	
 	
-	
+	public String getAge() {
+		return age;
+	}
+	public void setAge(String age) {
+		this.age = age;
+	}
+	public String getRelation() {
+		return relation;
+	}
+	public void setRelation(String relation) {
+		this.relation = relation;
+	}
 	public String getSearch_status() {
 		return search_status;
 	}

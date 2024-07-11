@@ -386,6 +386,44 @@ public class webController {
 		}
 		
 	}
+	
+	@RequestMapping("local_apply")
+	@ResponseBody
+	public HashMap<String, Object> local_apply(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		try {
+			
+			String name = param.get("name").toString();
+			String email = param.get("email").toString();
+			String mobile = param.get("mobile").toString();
+			String age = param.get("age").toString();
+			String relation = param.get("relation").toString();
+			String association = param.get("association").toString();
+			
+			pictVO.setName(name);
+			pictVO.setEMAIL(email);
+			pictVO.setMOBILE(mobile);
+			pictVO.setAge(age);
+			pictVO.setRelation(relation);
+			pictVO.setAssociation(association);
+			
+			
+			pictService.local_apply(pictVO);
+			
+			
+			//pictService.fn_get_units_info(pictVO);
+			map.put("rst", "Y");
+			
+			return map;
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			map.put("rst", "N");
+			return map;
+		}
+		
+	}
+	
 	//찾아오시는 길
 	@RequestMapping("location")
 	public String location(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {

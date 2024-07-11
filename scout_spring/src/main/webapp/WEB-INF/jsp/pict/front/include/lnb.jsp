@@ -66,6 +66,7 @@
                 	<li><a href="/admin/front/board_list">게시물관리</a></li>
                 	<li><a href="/admin/front/board_list_sub">연맹별 게시물관리</a></li>
                 	<li><a href="/admin/front/reservation_list">예약관리</a></li>
+                	<li><a href="/admin/front/local_list">지역가입 상담신청관리</a></li>
                	</ul>
             </li>
             <li <c:if test="${association_price ne -1}">class="active"</c:if>>

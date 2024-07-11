@@ -168,6 +168,14 @@ public interface PictService {
 
 	public void reservation_cng(PictVO pictVO) throws Exception;
 
+	public List<PictVO> local_list(PictVO pictVO) throws Exception;
+
+	public void local_apply(PictVO pictVO) throws Exception;
+
+	public Integer local_list_cnt(PictVO pictVO) throws Exception;
+
+	public void local_cng(PictVO pictVO) throws Exception;
+
 
 
 }

@@ -13,7 +13,7 @@
 		<%@ include file="./include/lnb.jsp" %>
 		<c:import url="./include/header.jsp">
 			<c:param name="pageParent" value="홈페이지 관리"/>
-	    	<c:param name="pageTitle" value="시설예약 관리"/>
+	    	<c:param name="pageTitle" value="지역가입안내 관리"/>
 	    </c:import>
 		    <div class="contentsContainer">
 	        <div class="listContainer">
@@ -25,9 +25,8 @@
 	                        <div class="inputBox">
 	                            <select name="search_status" id="search_status" class="lgThinInput">
 	                            	<option value="">전체</option>
-	                                <option value="Y" <c:if test="${pictVO.search_status eq 'Y'}">selected</c:if>>승인</option>
-	                                <option value="N" <c:if test="${pictVO.search_status eq 'N'}">selected</c:if>>신청</option>
-	                                <option value="C" <c:if test="${pictVO.search_status eq 'C'}">selected</c:if>>취소</option>
+	                                <option value="1" <c:if test="${pictVO.search_status eq '1'}">selected</c:if>>상담요청중</option>
+	                                <option value="2" <c:if test="${pictVO.search_status eq '2'}">selected</c:if>>상담완료</option>
 	                            </select>
 	                        </div>
 	                        <div class="inputBox listSearch">
@@ -36,21 +35,18 @@
 	                        </div>
 	                    </div>
 	                </form>
-	                <p style="margin-bottom:10px; font-size:14px">기관명을 클릭하시면 세부정보를 확인 할 수 있습니다.</p>
-	                <ul class="listHead reservation">
+	                <ul class="listHead local">
 	                    <li>순서</li>
-	                    <li>기관명</li>
-	                    <li>담당부서</li>
-	                    <li>담당자</li>
+	                    <li>이름</li>
+	                    <li>이메일</li>
 	                    <li>연락처</li>
-	                    <li>사용일시</li>
-	                    <li>사용시간</li>
-	                    <li>사용인원</li>
-	                    <li>부가시설</li>
+	                    <li>가입희망자 연령</li>
+	                    <li>가입희망자와 관계</li>
+	                    <li>상담희망 연맹</li>
 	                    <li>신청일자</li>
 	                    <li>상태변경</li>
 	                </ul>
-	                <ul class="listBody reservation">
+	                <ul class="listBody local">
 	                	<c:forEach var="board_list" items="${board_list}" varStatus="status">
 		                    <li>
 		                        <p>
@@ -61,43 +57,18 @@
 	                        			${board_cnt - (status.index +  ((pictVO.pageNumber - 1) * 20))}
 	                        		</c:if>
 		                        </p>
-		                        <p onclick="fn_list_ck('${board_list.purpose}', '${board_list.BIGO}')">${board_list.company}</p>
-		                        <p>${board_list.depart}</p>
 		                        <p>${board_list.name}</p>
+		                        <p>${board_list.EMAIL}</p>
 		                        <p>${board_list.MOBILE}</p>
-		                        <p>${board_list.applydate}</p>
-		                        <p>
-		                        	<c:set var="times" value="${fn:split(board_list.time, ',')}"/>
-		                        	<c:forEach var="time" items="${times}" varStatus="substatus">
-									    <c:choose>
-									        <c:when test="${time == '1'}">오전</c:when>
-									        <c:when test="${time == '2'}">오후</c:when>
-									        <c:when test="${time == '3'}">야간</c:when>
-									    </c:choose>
-									    <c:if test="${not substatus.last}">, </c:if>
-									</c:forEach>
-	                        	</p>
-		                        <p>${board_list.person}</p>
-		                        <p>
-			                        <c:choose>
-									   <c:when test="${not empty board_list.etc1 and not empty board_list.etc2}">
-									       ${board_list.etc1}, ${board_list.etc2}
-									   </c:when>
-									   <c:when test="${not empty board_list.etc1}">
-									       ${board_list.etc1}
-									   </c:when>
-									   <c:when test="${not empty board_list.etc2}">
-									       ${board_list.etc2}
-									   </c:when>
-									</c:choose>
-	                        	</p>
+		                        <p>${board_list.age}</p>
+		                        <p>${board_list.relation}</p>
+		                        <p>${board_list.ASSOCIATIONNAME}</p>
 		                        <p>${fn:substring(board_list.ENTERDATE,0,11)}</p>
 		                        
 		                        <p>
 			                    	<select name="status_select" class="tableSelect" data-id="${board_list.idx}">
-		                                <option value="Y" <c:if test="${board_list.status eq 'Y'}">selected</c:if>>승인</option>
-		                                <option value="N" <c:if test="${board_list.status eq 'N'}">selected</c:if>>신청</option>
-		                                <option value="C" <c:if test="${board_list.status eq 'C'}">selected</c:if>>취소</option>
+		                                <option value="1" <c:if test="${board_list.status eq '1'}">selected</c:if>>상담요청중</option>
+		                                <option value="2" <c:if test="${board_list.status eq '2'}">selected</c:if>>상담완료</option>
 		                            </select>
 			                    </p>
 		                    </li>
@@ -107,23 +78,23 @@
 	                
 	                <div class="pagination">
 		            	<c:if test="${pictVO.pageNumber ne 1}">
-		            		<a href="/admin/front/reservation_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=1"><img src="/user_img/first.png" alt=""></a>
-		            		<a href="/admin/front/reservation_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${pictVO.pageNumber - 1 < 1 ? 1 : pictVO.pageNumber - 1}"><img src="/user_img/prev.png" alt=""></a>
+		            		<a href="/admin/front/local_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=1"><img src="/user_img/first.png" alt=""></a>
+		            		<a href="/admin/front/local_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${pictVO.pageNumber - 1 < 1 ? 1 : pictVO.pageNumber - 1}"><img src="/user_img/prev.png" alt=""></a>
 		            	</c:if>
 		            	
 		            	
 		            	<c:forEach var="i" begin="${pictVO.startPage}" end="${pictVO.endPage}">
 							<c:if test="${i eq pictVO.pageNumber}">
-								<a href="/admin/front/reservation_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${i}" class="active">${i}</a>
+								<a href="/admin/front/local_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${i}" class="active">${i}</a>
 							</c:if>
 							<c:if test="${i ne pictVO.pageNumber}">
-								<a href="/admin/front/reservation_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${i}" >${i}</a>
+								<a href="/admin/front/local_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${i}" >${i}</a>
 							</c:if>
 						</c:forEach>
 		                
 		                <c:if test="${pictVO.lastPage ne pictVO.pageNumber}">
-							<li><a href="/admin/front/reservation_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${pictVO.pageNumber + 1 > pictVO.lastPage ?  pictVO.lastPage : pictVO.pageNumber + 1}"><img src="/user_img/next.png" alt=""></a></li>
-							<li><a href="/admin/front/reservation_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${pictVO.lastPage}"><img src="/user_img/last.png" alt=""></a></li>
+							<li><a href="/admin/front/local_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${pictVO.pageNumber + 1 > pictVO.lastPage ?  pictVO.lastPage : pictVO.pageNumber + 1}"><img src="/user_img/next.png" alt=""></a></li>
+							<li><a href="/admin/front/local_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${pictVO.lastPage}"><img src="/user_img/last.png" alt=""></a></li>
 						</c:if>
 		            </div>
 	            </div>
@@ -156,11 +127,11 @@
 		$('select[name="status_select"]').change(function () {
 			var idx = $(this).data("id");
 			var status = this.value
-			if(confirm("해당 예약정보의 상태값을 변경하시겠습니까?")){
+			if(confirm("해당 신청 상태값을 변경하시겠습니까?")){
 				
 				$('#idx').val(idx)
 				$('#status').val(status)
-				$("#register").attr("action", "/admin/front/reservation_cng");
+				$("#register").attr("action", "/admin/front/local_cng");
 				$("#register").submit();
 			}
 		});
@@ -173,12 +144,12 @@
 			$('#bookingModal').css('display', 'flex');
 		}
 		function fn_search(){
-			$("#search_fm").attr("action", "/admin/front/reservation_list");
+			$("#search_fm").attr("action", "/admin/front/local_list");
 			$("#search_fm").submit();
 		}
 		
 		$("#search_status").change(function(){
-			$("#search_fm").attr("action", "/admin/front/reservation_list");
+			$("#search_fm").attr("action", "/admin/front/local_list");
 			$("#search_fm").submit();
 		});
 		

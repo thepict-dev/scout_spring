@@ -1161,5 +1161,19 @@ tbody tr.active td{
 	align-items : center;
 	justify-content : center;
 }
+
+.listHead.local{
+    grid-template-columns: 10% 10% 15% 10% 10% 10% 10% 10% 15%;
+}
+.listBody.local li{
+    grid-template-columns: 10% 10% 15% 10% 10% 10% 10% 10% 15%;
+    cursor: pointer;
+}
+
+.listBody.local li p{
+	display:flex; 
+	align-items : center;
+	justify-content : center;
+}
  
 

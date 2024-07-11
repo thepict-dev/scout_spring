@@ -464,6 +464,30 @@ public class PictServiceImpl implements PictService {
 		pictMapper.reservation_cng(pictVO);
 	}
 
+	@Override
+	public List<PictVO> local_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.local_list(pictVO);
+	}
+
+	@Override
+	public void local_apply(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.local_apply(pictVO);
+	}
+
+	@Override
+	public Integer local_list_cnt(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.local_list_cnt(pictVO);
+	}
+
+	@Override
+	public void local_cng(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.local_cng(pictVO);
+	}
+
 
 	
 	

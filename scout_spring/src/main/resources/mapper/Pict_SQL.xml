@@ -1092,4 +1092,52 @@
 		update reservation_table set status = #{status} where idx = #{idx}
 	</update>
 	
+	
+	<insert id="local_apply" parameterType="pictVO">
+		INSERT INTO local_apply(name, EMAIL, MOBILE, age, relation, association, status, ENTERDATE) 
+		VALUES (#{name}, #{EMAIL},#{MOBILE},#{age},#{relation},#{association}, "1",now())
+	</insert>
+	
+	<select id="local_list" resultType="pictVO">
+		select l.idx, l.name, l.EMAIL, l.MOBILE, l.status, l.ENTERDATE,
+		(case when l.age = '1' then '비버스카우트' when l.age = '2' then '컵스카우트' when l.age = '3' then '스카우트' when l.age = '4' then '벤처스카우트' when l.age = '5' then '지도자' end) as age,
+		(case when l.relation = '1' then '본인' when l.relation = '2' then '부모' when l.relation = '3' then '스카우트 지도자'  end) as relation,
+		a.ASSOCIATIONNAME
+		from local_apply l
+		left outer join associationcode a on l.association = a.ASSOCIATIONCODE
+		where 1=1
+		
+		<if test="search_text != null and search_text != ''">
+			and (
+				l.name LIKE CONCAT('%', #{search_text}, '%') or
+				l.mobile LIKE CONCAT('%', #{search_text}, '%')
+			)
+		</if>
+		<if test="search_status != null and search_status != ''">
+			and status = #{search_status}
+		</if>
+		
+		order by ENTERDATE desc
+	</select>
+	
+	
+	<select id="local_list_cnt" resultType="int">
+		select count(*)
+		from local_apply l
+		where 1=1
+		<if test="search_text != null and search_text != ''">
+			and (
+				l.name LIKE CONCAT('%', #{search_text}, '%') or
+				l.mobile LIKE CONCAT('%', #{search_text}, '%')
+			)
+		</if>
+		<if test="search_status != null and search_status != ''">
+			and status = #{search_status}
+		</if>
+		
+	</select>
+	
+	<update id="local_cng" parameterType="pictVO">
+		update local_apply set status = #{status} where idx = #{idx}
+	</update>
 </mapper>

@@ -169,6 +169,14 @@ public interface PictMapper {
 	List<PictVO> reservation_list(PictVO pictVO) throws Exception;
 
 	void reservation_cng(PictVO pictVO) throws Exception;
+
+	List<PictVO> local_list(PictVO pictVO) throws Exception;
+
+	void local_apply(PictVO pictVO) throws Exception;
+
+	Integer local_list_cnt(PictVO pictVO) throws Exception;
+
+	void local_cng(PictVO pictVO) throws Exception;
  
 	
 
