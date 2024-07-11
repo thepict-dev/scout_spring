@@ -18,6 +18,7 @@
         <div class="subContents">
             <div class="flexContainer">
                 <h3 class="contentTitle">비전2023</h3>
+                <h3 class="contentTitle mbText">비전2023</h3>
                 <div class="contentDesc block">
                     <div class="textsWrapper">
                         <p>35만 명 이상의 청소년이 세계적인 리더로 성장하는 스카우팅</p>

@@ -54,7 +54,7 @@
             <div class="headerTopLinks">
                 <a href="/admin/front/scout_whole_register" target="_blank" title="새창이동">대등록 신청<img src="/user_img/right.png" alt=""></a>
                 <!-- <a href="#lnk" target="_blank" title="새창이동">대번호 검색<img src="/user_img/right.png" alt=""></a> -->
-                <a href="#lnk" target="_blank" title="새창이동">지역가입 안내<img src="/user_img/right.png" alt=""></a>
+                <a href="#lnk" class="localApply">지역가입 안내<img src="/user_img/right.png" alt=""></a>
             </div>
         </div>
     </div>
@@ -131,7 +131,7 @@
 	        <div class="siteMapBottom">
 	            <ul class="depth1">
 	                <li>
-	                    <a href="/">홈</a>
+	                    <a href="/" <c:if test="${main eq true}">class="active"</c:if>>홈</a>
 	                    <ul class="depth2">
 	                        <li><a href=""></a></li>
 	                    </ul>
@@ -171,7 +171,7 @@
 	            </ul>
 	            <ul class="depth1">
 	                <li>
-	                    <a href="/intro" <c:if test="${feder eq true}">class="active"</c:if>>한국스카우트연맹</a>
+	                    <a href="/intro" <c:if test="${feder eq true}">class="active"</c:if>><span class="pcText">한국스카우트연맹</span><span class="mbText">한국<br>스카우트<br>연맹</span></a>
 	                    <ul class="depth2">
 	                        <li><a href="/intro">소개</a></li>
 	                        <li><a href="/jamboree">잼버리</a></li>

@@ -22,20 +22,31 @@ $('.videoTopInner button').on('click', function () {
 
 //탭
 const tabItem = document.querySelectorAll('.tabNav li');
+const mbTabItem = document.querySelectorAll('.storeBtns li');
 const tabInner = document.querySelectorAll('.tabInner');
 
-tabItem.forEach((tab, idx)=> {
-    tab.addEventListener('click', function(){
-        tabInner.forEach((inner)=> {
-            inner.classList.remove('active');
-        });
+function activateTab(items, index) {
+    tabInner.forEach((inner) => {
+        inner.classList.remove('active');
+    });
 
-        tabItem.forEach((item)=> {
-            item.classList.remove('active');
-        });
+    items.forEach((item) => {
+        item.classList.remove('active');
+    });
 
-        tabItem[idx].classList.add('active');
-        tabInner[idx].classList.add('active');
+    items[index].classList.add('active');
+    tabInner[index].classList.add('active');
+}
+
+tabItem.forEach((tab, idx) => {
+    tab.addEventListener('click', function() {
+        activateTab(tabItem, idx);
+    });
+});
+
+mbTabItem.forEach((tab, idx) => {
+    tab.addEventListener('click', function() {
+        activateTab(mbTabItem, idx);
     });
 });
 
@@ -103,3 +114,10 @@ const phoneAutoHyphen = (target) => {
   target.value = target.value.replace(/[^0-9]/g, '').replace(/^(\d{0,4})(\d{0,4})$/g, "$1-$2").replace(/(\-{1,2})$/g, "");
 };
 
+// 지역가입 모달 열기
+$('.localApply').click(function(){
+  $('.localAppModal').show();
+});
+$('.localAppModal .modalWrapper button').click(function(){
+  $('.localAppModal').hide();
+});

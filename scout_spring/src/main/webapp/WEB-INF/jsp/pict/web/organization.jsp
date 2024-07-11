@@ -437,7 +437,7 @@
             </div>
             <!-- 중앙본부 -->
             <div class="tabInner">
-                <div class="organTableWrapper">
+                <div class="organTableWrapper center">
                     <table>
                         <colgroup>
                           <col width="10%" />

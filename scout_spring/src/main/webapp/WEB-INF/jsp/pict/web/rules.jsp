@@ -178,6 +178,7 @@
             <div class="tabInner ruleContents">
                 <div class="flexContainer">
                     <h3 class="contentTitle">스카우트 선서</h3>
+                    <h3 class="contentTitle mbText">스카우트 선서</h3>
                     <div class="contentDesc block">
                         <div class="textsWrapper rules">
                             <p>나는 나의 명예를 걸고 다음의 조목을 굳게 지키겠습니다.</p>
@@ -209,6 +210,7 @@
                 </div>
                 <div class="flexContainer">
                     <h3 class="contentTitle">컵 스카우트 규율</h3>
+                    <h3 class="contentTitle mbText">컵 스카우트 규율</h3>
                     <div class="contentDesc block">
                         <div class="textsWrapper rules">
                             <p style="margin-bottom: 0;">대원은 윗사람을 잘 따릅니다.</p>
@@ -223,6 +225,7 @@
                 </div>
                 <div class="flexContainer">
                     <h3 class="contentTitle">스카우트 규율</h3>
+                    <h3 class="contentTitle mbText">스카우트 규율</h3>
                     <div class="contentDesc block">
                         <div class="textsWrapper rules">
                             <p>스카우트는 믿음직하다</p>
@@ -299,15 +302,17 @@
                     </div>
                 </div>
             </div>
-            <div class="tabInner ruleContents">
+            <div class="tabInner ruleContents imgs">
                 <div class="flexContainer">
                     <h3 class="contentTitle">스카우트 휘장</h3>
+                    <h3 class="contentTitle mbText">스카우트 휘장</h3>
                     <div class="contentDesc rules">
                         <img src="/user_img/rule1.png" alt="휘장">
                     </div>
                 </div>
                 <div class="flexContainer">
                     <h3 class="contentTitle">스카우트 로고</h3>
+                    <h3 class="contentTitle mbText">스카우트 로고</h3>
                     <div class="contentDesc rules">
                         <img src="/user_img/rule2.png" alt="로고">
                     </div>

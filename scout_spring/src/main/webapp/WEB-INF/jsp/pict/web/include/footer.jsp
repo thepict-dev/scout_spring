@@ -40,3 +40,4 @@
         </div>
     </div>
 </footer>
+<%@ include file="./local_apply_modal.jsp" %>

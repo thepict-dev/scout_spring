@@ -18,6 +18,7 @@
         <div class="subContents">
             <div class="flexContainer">
                 <h3 class="contentTitle">SCOUT<br>since 1907</h3>
+                <h3 class="contentTitle mbText">SCOUT since 1907</h3>
                 <div class="contentDesc intro">
                     <div class="introContainer">
                         <span><img src="/user_img/intro.png" alt="포우엘경"></span>

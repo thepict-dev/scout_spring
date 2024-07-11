@@ -21,7 +21,7 @@
                 		<li>
 	                        <a href="/news_view?BRDCTSNO=${board_list.BRDCTSNO}">
 	                        	<c:if test="${pictVO.pageNumber eq 1}">
-	                        		<p>${board_cnt - status.index}</p>
+	                        		<p class="news">${board_cnt - status.index}</p>
                         		</c:if>
                         		<c:if test="${pictVO.pageNumber ne 1}">
                         			<p>${board_cnt - (status.index +  ((pictVO.pageNumber - 1) * 20))}</p>

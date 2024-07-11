@@ -25,6 +25,7 @@
                 <div class="flexContainer">
                     <div class="titleImg">
                         <h3 class="contentTitle">중앙훈련원</h3>
+                        <h3 class="contentTitle mbText">중앙훈련원</h3>
                         <span><img src="/user_img/facility1.png" alt="중앙훈련원"></span>
                         <a href="http://scoutcenter.scout.or.kr/SysApplicationController.do" target="_blank" title="새창이동">중앙훈련원 사이트 바로가기</a>
                     </div>
@@ -56,9 +57,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="flexContainer">
+                <div class="flexContainer gon">
                     <div class="titleImg">
                         <h3 class="contentTitle">곤지암 야영장</h3>
+                        <h3 class="contentTitle mbText">곤지암 야영장</h3>
                         <span><img src="/user_img/facility2.png" alt="곤지암 야영장"></span>
                         <a href="https://gongiamscout.itpage.kr/" class="gon" target="_blank" title="새창이동">곤지암 야영장 사이트 바로가기</a>
                     </div>
@@ -105,6 +107,7 @@
             <div class="tabInner ruleContents">
                 <div class="flexContainer">
                     <h3 class="contentTitle">사용 규정</h3>
+                    <h3 class="contentTitle mbText">사용 규정</h3>
                     <div class="contentDesc">
                         <div class="textsWrapper rules">
                             <p>장소 사용 허가 기본 원칙</p>
@@ -179,12 +182,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="flexContainer">
+                <div class="flexContainer gon">
                     <h3 class="contentTitle">시설사용료</h3>
+                    <h3 class="contentTitle mbText">시설사용료</h3>
                     <div class="contentDesc">
                         <div class="textsWrapper rules facility">
                             <p>옥상공원</p>
-                            <ul class="textsSub">
+                            <ul class="textsSub gon">
                                 <li><p>8시~12시</p><span>50,000원</span></li>
                                 <li><p>13시~19시</p><span>100,000원</span></li>
                                 <li><p>전일</p><span>130,000원(8시~19시)</span></li>

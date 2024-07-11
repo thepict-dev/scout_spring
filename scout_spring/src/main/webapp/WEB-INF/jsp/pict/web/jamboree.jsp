@@ -13,7 +13,8 @@
     <div class="subWrapper">
         <div class="subTop">
             <h2>잼버리 Jamboree</h2>
-            <p>북미 인디언의 '즐거운 놀이', '유쾌한 잔치'라는 뜻의<br><span>Jamboree</span>는 스카우트의 대표 행사입니다.</p>
+            <p class="pcText">북미 인디언의 '즐거운 놀이', '유쾌한 잔치'라는 뜻의<br><span>Jamboree</span>는 스카우트의 대표 행사입니다.</p>
+            <p class="mbText">북미 인디언의 '즐거운 놀이', '유쾌한 잔치'라는 뜻의<span>Jamboree</span>는 스카우트의 대표 행사입니다.</p>
             <span>Jamboree는 북미 인디언의 '즐거운 놀이', '유쾌한 잔치'라는 뜻을 지닌 시바아리(SHIVAREE)란 말이 전음화된 것으로, 스카우트의 창시자인 베이든 포우엘경이 1920년 런던의 올림피아 스타디움에서 열린 제1회 세계잼버리를 개최하면서 직접 이 대회에『Jamboree』라는 이름을 붙였습니다.</span>
         </div>
         <div class="subContents">

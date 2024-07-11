@@ -13,11 +13,13 @@
     <div class="subWrapper">
         <div class="subTop">
             <h2>수품대리점</h2>
-            <p>전국 각지 수품대리점에서<br>최고의 스카우트 물품을 만날 수 있습니다.</p>
+            <p class="pcText">전국 각지 수품대리점에서<br>최고의 스카우트 물품을 만날 수 있습니다.</p>
+            <p class="mbText">전국 각지 수품대리점에서 최고의 스카우트 물품을 만날 수 있습니다.</p>
         </div>
         <div class="subContents">
             <div class="blockContainer">
                 <h3 class="contentTitle">수품대리점 현황</h3>
+                <h3 class="contentTitle mbText">수품대리점 현황</h3>
                 <div class="flexTab store">
                     <ul class="tabNav jamTab store">
                         <li class="active"><span>서울북부</span></li>
@@ -39,6 +41,29 @@
                         <li><span>경남</span></li>
                         <li><span>제주</span></li>
                     </ul>
+                    <div class="contDropdown">
+                        <button class="btnDropdown" type="button">서울북부</button>
+                        <ul class="storeBtns">
+                            <li class="active"><span>서울북부</span></li>
+                            <li><span>서울남부</span></li>
+                            <li><span>부산</span></li>
+                            <li><span>대구</span></li>
+                            <li><span>인천</span></li>
+                            <li><span>광주</span></li>
+                            <li><span>대전</span></li>
+                            <li><span>울산</span></li>
+                            <li><span>경기북부</span></li>
+                            <li><span>경기남부</span></li>
+                            <li><span>강원</span></li>
+                            <li><span>충북</span></li>
+                            <li><span>충남</span></li>
+                            <li><span>전북</span></li>
+                            <li><span>전남</span></li>
+                            <li><span>경북</span></li>
+                            <li><span>경남</span></li>
+                            <li><span>제주</span></li>
+                        </ul>
+                    </div>
                     <div class="storeContentsWrapper">
                         <!-- 서울북부 -->
                         <div class="tabInner active">
@@ -259,5 +284,18 @@
         </div>
     </div>
 	<%@ include file="./include/footer.jsp" %>
+    <script>
+        const btn = document.querySelector('.btnDropdown');
+        const list = document.querySelector('.storeBtns');
+        btn.addEventListener('click', () => {
+        	btn.classList.toggle('on');
+        });
+        list.addEventListener('click', (event) => {
+            if (event.target.nodeName === 'SPAN') {
+                btn.innerText = event.target.innerText;
+                btn.classList.remove('on');
+            }
+        });
+    </script>
 </body>
 </html>
