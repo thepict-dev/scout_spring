@@ -26,7 +26,7 @@
                         		<c:if test="${pictVO.pageNumber ne 1}">
                         			<p>${board_cnt - (status.index +  ((pictVO.pageNumber - 1) * 20))}</p>
                         		</c:if>
-	                        	${board_list.SUBJECT}
+	                        	<span class="title">${board_list.SUBJECT}</span>
                         	</a>
 	                        <p>
 	                        	<c:if test="${board_list.file1 ne '' && board_list.file1 ne null && board_list.file1 ne undefined}">

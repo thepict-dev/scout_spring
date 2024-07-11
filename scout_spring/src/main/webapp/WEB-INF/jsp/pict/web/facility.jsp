@@ -307,6 +307,10 @@
                                 </div>
                             </div>
                         </div>
+	                    <a href="#lnk" class="rulesButton apply mbApply" onclick="reservation()">
+	                        <p>예약하기</p>
+	                        <span></span>
+	                    </a>
                     </div>
                     <div class="bookingInfo">
                         <h4 class="modalTitle">예약정보 확인</h4>

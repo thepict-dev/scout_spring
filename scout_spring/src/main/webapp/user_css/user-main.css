@@ -39,7 +39,7 @@
 	flex-wrap: wrap;
 	column-gap: 12px;
 	row-gap: 16px;
-	max-width: 385px;
+	max-width: 400px;
 }
 .textsLinks .links a{
 	display: block;
@@ -57,6 +57,55 @@
 	border: 1px solid var(--grey-100);
 	background: var(--purple-50);
 	color: var(--purple-500);
+}
+@media all and (max-width : 1580px){
+	.mainSec1 .texts span{
+		font-size: 32px;
+	}
+	.mainSec1 .texts p{
+		font-size: 52px;
+	}
+	.textsLinks .links{
+		max-width: 300px;
+	}
+	.textsLinks .links a{
+		font-size: 16px;
+	}	
+}
+@media all and (max-width : 1024px){
+	.mainSec1{
+		justify-content: flex-start;
+		flex-direction: column;
+		row-gap: 24px;
+		width: 100%;
+		padding: 20px 0 20px 0;
+	}
+	.mainSec1 .textsLinks{
+		row-gap: 24px;
+	}
+	.mainSec1 .texts{
+		row-gap: 8px;
+	}
+	.mainSec1 .texts span{
+		font-size: 22px;
+		line-height: 120%; /* 50.4px */
+		letter-spacing: -1.1px;
+	}
+	.mainSec1 .texts p{
+		font-size: 38px;
+		font-weight: 700;
+		letter-spacing: -1.9px;
+	}
+	.textsLinks .links{
+		column-gap: 6px;
+		row-gap: 16px;
+		max-width: unset;
+	}
+	.textsLinks .links a{
+		padding: 6px 8px;
+		font-size: 14px;
+		letter-spacing: -0.7px;
+	}
 }
 
 .cards{
@@ -76,6 +125,14 @@
 .cards a:nth-of-type(even){
 	align-self: flex-end;
 }
+.cards a img{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
 .cardTop{
 	position: absolute;
 	top: 0;
@@ -87,7 +144,7 @@
 	width: 100%;
 	height: 100%;
 	padding: 0 0 32px 32px;
-	background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0, 0, 0, 0.80) 100%);
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 27.07%, rgba(255, 255, 255, 0.80) 71.94%);
 
 }
 .cardTop p{
@@ -106,6 +163,70 @@
 	line-height: 130%; /* 20.8px */
 	letter-spacing: -0.8px;
 }
+@media all and (max-width : 1580px){
+	.cards{
+		width: calc(100% - 336.2px);
+	}
+	.cards a{
+		height: calc(100% - 158px);
+	}
+	.cardTop{
+		padding: 0 0 32px 20px;
+	}
+	.cardTop p{
+		font-size: 26px;
+	}
+	.cardTop span{
+		font-size: 16px;
+	}
+}
+@media all and (max-width : 1240px){
+	.cards{
+		width: calc(100% - 336.2px);
+	}
+	.cards a{
+		height: calc(100% - 208px);
+	}
+	.cardTop{
+		padding: 0 0 32px 12px;
+	}
+	.cardTop p{
+		font-size: 20px;
+	}
+	.cardTop span{
+		font-size: 14px;
+	}
+}
+@media all and (max-width : 1024px){
+	.cards{
+		display: grid;
+		grid-template-columns: repeat(2, 48%);
+		width: 100%;
+		height: fit-content;
+		gap: 20px;
+	}
+	.cards a{
+		width: 100%;
+		height: 282px;
+	}
+	.cards a:nth-of-type(even){
+		align-self: unset;
+	}
+	.cardTop{
+		row-gap: 5px;
+		width: 100%;
+		height: 100%;
+		padding: 0 0 20px 20px;
+	}
+	.cardTop p{
+		font-size: 24px;
+		letter-spacing: -1.2px;
+	}
+	.cardTop span{
+		font-size: 12px;
+		letter-spacing: -0.5px;
+	}
+}
 
 .mainSec2{
 	width: 100%;
@@ -118,10 +239,15 @@
 .mainSec2 a img{
 	width: 100%;
 }
+@media all and (max-width : 1024px){
+	.mainSec2{
+		width: 100%;
+		padding: 4px 0 24px 0;
+	}
+}
 
 .mainSec3{
 	width: 100%;
-	padding-bottom: 40px;
 }
 .videoWrapper{
 	position: relative;
@@ -174,6 +300,40 @@
 	font-size: 24px;
 	font-weight: 400;
 	line-height: 100%; /* 24px */
+}
+@media all and (max-width : 1024px){
+	.videoWrapper{
+		border-radius: 4px;
+	}
+	.videoWrapper video{
+		position: absolute; 
+		top: 0; 
+		left: 0; 
+		width: 100%; 
+		height: 100%;
+	}
+	.videoTop{
+		padding: 13px;
+	}
+	.videoTopInner{
+		column-gap: 8px;
+	}
+	.videoTopInner button img{
+		width: 25px;
+	}
+	.videoTexts{
+		display: flex;
+		flex-direction: column;
+		row-gap: 3px;
+	}
+	.videoTexts p{
+		font-size: 13px;
+		letter-spacing: -0.6px;
+	}
+	.videoTexts span{
+		font-size: 10px;
+		font-weight: 400;
+	}
 }
 
 .mainSec4{
@@ -230,7 +390,15 @@
 	line-height: 100%; /* 20px */
 	letter-spacing: -1px;
 }
-.notice li a span{
+.notice li a span.title{
+	display: block;
+	width: calc(100% - 31px);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	word-break: break-all;
+}
+.notice li a span.noti{
 	display: block;
 	min-width: 33px;
 	margin-right: 4px;

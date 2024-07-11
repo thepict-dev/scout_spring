@@ -368,12 +368,7 @@ header{
 		line-height: 140%;
 	}
 	.depth1 > li > a.active{
-		border-radius: 50px;
-	}
-	.depth1 > li > a.active span{
-		background-color: #fff;
 		border-radius: 35px;
-		color: var(--purple-500);
 	}
 	.depth2{
 		align-items: flex-start;

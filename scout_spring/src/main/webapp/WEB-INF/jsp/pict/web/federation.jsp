@@ -35,11 +35,11 @@
                 </div>
                 <ul class="notice">
                     <li>
-                        <a href="#lnk"><span>중요</span>공지사항 내용이 이곳에 들어갑니다</a>
+                        <a href="#lnk"><span class="noti">중요</span><span class="title">공지사항 내용이 이곳에 들어갑니다</span></a>
                         <p>2024-01-16</p>
                     </li>
                     <li>
-                        <a href="#lnk"><p>01</p>공지사항 내용이 이곳에 들어갑니다</a>
+                        <a href="#lnk"><p>01</p><span class="title">공지사항 내용이 이곳에 들어갑니다</span></a>
                         <p>
                             <span><img src="/user_img/file.png" alt="첨부파일"></span>
                             2024-01-16

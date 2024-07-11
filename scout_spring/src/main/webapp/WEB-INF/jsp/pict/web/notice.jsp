@@ -20,12 +20,12 @@
                 	<c:forEach var="board_list" items="${board_list}" varStatus="status">
 	                		<c:if test="${board_list.NOTI eq 'Y'}">
 			                    <li>
-			                        <a href="/notice_view?BRDCTSNO=${board_list.BRDCTSNO}"><span>공지</span>${board_list.SUBJECT}</a>
+			                        <a href="/notice_view?BRDCTSNO=${board_list.BRDCTSNO}"><span class="noti">공지</span><span class="title">${board_list.SUBJECT}</span></a>
 			                        <p>
 			                        	<c:if test="${board_list.file1 ne '' && board_list.file1 ne null && board_list.file1 ne undefined}">
 			                            	<span><img src="/user_img/file.png" alt="첨부파일"></span>
 			                            </c:if>
-			                        	${fn:substring(board_list.ENTERDATE,0,11)}
+			                        	<span>${fn:substring(board_list.ENTERDATE,0,11)}</span>
 		                        	</p>
 			                    </li>
 		                    </c:if>
@@ -38,7 +38,7 @@
 		                        		<c:if test="${pictVO.pageNumber ne 1}">
 		                        			<p>${board_cnt - (status.index +  ((pictVO.pageNumber - 1) * 20))}</p>
 		                        		</c:if>
-			                        	${board_list.SUBJECT}
+			                        	<span class="title">${board_list.SUBJECT}</span>
 		                        	</a>
 			                        <p>
 			                        	<c:if test="${board_list.file1 ne '' && board_list.file1 ne null && board_list.file1 ne undefined}">

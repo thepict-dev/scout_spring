@@ -37,28 +37,28 @@
             </div>
             <div class="cards">
                 <a href="#lnk" data-aos="fade-up" data-aos-delay="200">
-                    <img src="" alt="">
+                    <img src="/user_img/test.jpg" alt="">
                     <div class="cardTop">
                         <p>비버<br>스카우트</p>
                         <span>4~6세까지의 유치원생</span>
                     </div>
                 </a>
                 <a href="#lnk" data-aos="fade-up" data-aos-delay="400">
-                    <img src="" alt="">
+                    <img src="/user_img/test.jpg" alt="">
                     <div class="cardTop">
                         <p>컵<br>스카우트</p>
                         <span>6~12세까지의 초등학생</span>
                     </div>
                 </a>
                 <a href="#lnk" data-aos="fade-up" data-aos-delay="600">
-                    <img src="" alt="">
+                    <img src="/user_img/test.jpg" alt="">
                     <div class="cardTop">
                         <p>스카우트/<br>벤처스카우트</p>
                         <span>12~18세의 중·고등학생</span>
                     </div>
                 </a>
                 <a href="#lnk" data-aos="fade-up" data-aos-delay="800">
-                    <img src="" alt="">
+                    <img src="/user_img/test.jpg" alt="">
                     <div class="cardTop">
                         <p>지도자/<br>평생회원</p>
                         <span>성인 지도자 훈련 이수자</span>
