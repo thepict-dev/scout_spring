@@ -424,11 +424,17 @@ public class webController {
 		
 	}
 	
-	//찾아오시는 길
-	@RequestMapping("location")
-	public String location(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+	//찾아오시는 길(중앙연맹)
+	@RequestMapping("location_center")
+	public String location_center(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		
-		return "pict/web/location";
+		return "pict/web/location_center";
+	}
+	//찾아오시는 길(지방)
+	@RequestMapping("location_local")
+	public String location_local(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/location_local";
 	}
 	//수품대리점
 	@RequestMapping("store")

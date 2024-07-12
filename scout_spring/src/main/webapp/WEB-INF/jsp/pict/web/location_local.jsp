@@ -17,26 +17,10 @@
         </div>
         <div class="subContents">
             <ul class="tabNav organNav rules">
-                <li class="active"><span>중앙본부</span></li>
-                <li><span>지방/특수연맹</span></li>
+                <li><a href="/location_center">중앙본부</a></li>
+                <li class="active"><a href="/location_local">지방/특수연맹</a></li>
             </ul>
-            <!-- 스카우트 구성 -->
             <div class="tabInner active">
-                <ul class="locationTexts">
-                    <li>
-                        <p><img src="/user_img/location.png" alt="주소">주소</p>
-                        <span>서울 영등포구 국회대로62길 14</span>
-                    </li>
-                    <li>
-                        <p><img src="/user_img/call.png" alt="전화번호">전화번호</p>
-                        <span>02-6335-2000</span>
-                    </li>
-                </ul>
-                <div class="kakaoMap">
-
-                </div>
-            </div>
-            <div class="tabInner">
                 <ul class="localLocations">
                     <li>
                         <div class="imgTexts">

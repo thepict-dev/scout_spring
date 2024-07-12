@@ -18,9 +18,12 @@
                     <p>스카우트와 함께<br>꿈을 펼쳐라!</p>
                 </div>
                 <ul class="links">
-                    <li><a href="#lnk">스카우트와 함께</a></li>
                     <li><a href="#lnk">공지사항</a></li>
                     <li><a href="#lnk">지방연맹 소식방</a></li>
+                    <li><a href="#lnk">진급기장신청</a></li>
+                    <li><a href="#lnk">중앙훈련원</a></li>
+                    <li><a href="#lnk">곤지암야영장</a></li>
+                    <li><a href="#lnk">스카우트와함께</a></li>
                 	<!-- 
                     <li><a href="#lnk">지역대검색</a></li>
                     <li><a href="#lnk">임원통합소개</a></li>
@@ -37,28 +40,28 @@
             </div>
             <div class="cards">
                 <a href="#lnk" data-aos="fade-up" data-aos-delay="200">
-                    <img src="/user_img/test.jpg" alt="">
+                    <img src="/user_img/bieber.png" alt="">
                     <div class="cardTop">
                         <p>비버<br>스카우트</p>
                         <span>4~6세까지의 유치원생</span>
                     </div>
                 </a>
                 <a href="#lnk" data-aos="fade-up" data-aos-delay="400">
-                    <img src="/user_img/test.jpg" alt="">
+                    <img src="/user_img/cup.jpeg" alt="">
                     <div class="cardTop">
                         <p>컵<br>스카우트</p>
                         <span>6~12세까지의 초등학생</span>
                     </div>
                 </a>
                 <a href="#lnk" data-aos="fade-up" data-aos-delay="600">
-                    <img src="/user_img/test.jpg" alt="">
+                    <img src="/user_img/venture.jpeg" alt="">
                     <div class="cardTop">
                         <p>스카우트/<br>벤처스카우트</p>
                         <span>12~18세의 중·고등학생</span>
                     </div>
                 </a>
                 <a href="#lnk" data-aos="fade-up" data-aos-delay="800">
-                    <img src="/user_img/test.jpg" alt="">
+                    <img src="/user_img/leader.jpg" alt="">
                     <div class="cardTop">
                         <p>지도자/<br>평생회원</p>
                         <span>성인 지도자 훈련 이수자</span>
@@ -67,9 +70,25 @@
             </div>
         </div>
         <div class="mainSec2" data-aos="fade-up" data-aos-delay="800">
-            <a href="#lnk">
-                <img src="/user_img/main-banner.png" alt="메인배너">
-            </a>
+	        <div class="swiper">
+			  <div class="swiper-wrapper">
+			    <div class="swiper-slide">
+		            <a href="#lnk">
+		                <img src="/user_img/main-banner.png" alt="메인배너">
+		            </a>
+			    </div>
+			    <div class="swiper-slide">
+		            <a href="#lnk">
+		                <img src="/user_img/main-banner.png" alt="메인배너">
+		            </a>
+			    </div>
+			    <div class="swiper-slide">
+		            <a href="#lnk">
+		                <img src="/user_img/main-banner.png" alt="메인배너">
+		            </a>
+			    </div>
+			  </div>
+			</div>
         </div>
         <div class="mainSec3" data-aos="fade-up" data-aos-delay="200">
             <div class="videoWrapper">

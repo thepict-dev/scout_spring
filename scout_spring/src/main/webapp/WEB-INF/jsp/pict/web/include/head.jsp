@@ -12,6 +12,7 @@
     <meta property="og:image" content="/front_img/c-logo.png"/>
     <title>스카우트</title>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="/user_css/odometer-theme-default.css" />
     <link rel="stylesheet" href="/user_css/reset.css">
     <link rel="stylesheet" href="/user_css/user-common.css">
@@ -21,6 +22,7 @@
     <link rel="stylesheet" href="/user_css/user-sub.css">
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="/js/odometer.min.js"></script>
     <script src="/js/user.js" defer></script>
     

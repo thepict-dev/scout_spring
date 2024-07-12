@@ -20,6 +20,15 @@ $('.videoTopInner button').on('click', function () {
   $('.videoTop').fadeOut();
 });
 
+const swiper = new Swiper('.swiper', {
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false
+    },
+    loop: true,	// 무한 루프 적용
+    speed: 2000,
+});
+
 //탭
 const tabItem = document.querySelectorAll('.tabNav li');
 const mbTabItem = document.querySelectorAll('.storeBtns li');
