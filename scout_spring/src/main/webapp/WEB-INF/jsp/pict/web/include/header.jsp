@@ -44,8 +44,7 @@
 <c:set var="location" value="${fn:indexOf(url, 'location')}"/>
 <c:set var="store" value="${fn:indexOf(url, 'store')}"/>
 
-<c:set var="feder" value="${intro ne -1 || jamboree ne -1 || greeting ne -1 || vision ne -1 || history_local ne -1 || history_inter ne -1 || organization ne -1 || rules ne -1 || facility ne -1 || location_center ne -1 || store ne -1}" />
-<c:set var="main" value="${jamboree eq -1 && youthhero eq -1 && scholarship eq -1 && integrated eq -1 && program eq -1 && information ne -1 && notice eq -1 && news eq -1 && family ne -1 && not feder}"/>
+<c:set var="feder" value="${intro ne -1 || jamboree ne -1 || greeting ne -1 || vision ne -1 || history_local ne -1 || history_inter ne -1 || organization ne -1 || rules ne -1 || facility ne -1 || location ne -1 || store ne -1}" />
 
 <header>
     <div class="headerTop">
