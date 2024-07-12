@@ -84,7 +84,7 @@
 			    </div>
 			    <div class="swiper-slide">
 		            <a href="https://notice.naver.com/notices/form/14352?page=1&pageSize=10&newNoticeHour=168&t=d" target="_blank">
-		                <img src="/user_img/main-banner.png" alt="메인배너">
+		                <img src="/user_img/main-banner3.png" alt="메인배너">
 		            </a>
 			    </div>
 			  </div>
