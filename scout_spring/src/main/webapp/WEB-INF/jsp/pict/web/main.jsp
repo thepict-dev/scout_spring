@@ -18,11 +18,11 @@
                     <p>스카우트와 함께<br>꿈을 펼쳐라!</p>
                 </div>
                 <ul class="links">
-                    <li><a href="#lnk">공지사항</a></li>
-                    <li><a href="#lnk">지방연맹 소식방</a></li>
+                    <li><a href="/notice">공지사항</a></li>
+                    <li><a href="/location_local">지방연맹 소식방</a></li>
                     <li><a href="#lnk">진급기장신청</a></li>
-                    <li><a href="#lnk">중앙훈련원</a></li>
-                    <li><a href="#lnk">곤지암야영장</a></li>
+                    <li><a href="http://scoutcenter.scout.or.kr/SysApplicationController.do" target="_blank" title="새창이동">중앙훈련원</a></li>
+                    <li><a href="https://gongiamscout.itpage.kr/" target="_blank" title="새창이동">곤지암야영장</a></li>
                     <li><a href="#lnk">스카우트와함께</a></li>
                 	<!-- 
                     <li><a href="#lnk">지역대검색</a></li>
