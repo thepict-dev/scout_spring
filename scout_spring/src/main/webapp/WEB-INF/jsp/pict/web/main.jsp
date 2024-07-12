@@ -23,7 +23,7 @@
                     <li><a href="#lnk">진급기장신청</a></li>
                     <li><a href="http://scoutcenter.scout.or.kr/SysApplicationController.do" target="_blank" title="새창이동">중앙훈련원</a></li>
                     <li><a href="https://gongiamscout.itpage.kr/" target="_blank" title="새창이동">곤지암야영장</a></li>
-                    <li><a href="#lnk">스카우트와함께</a></li>
+                    <li><a href="/family">스카우트와함께</a></li>
                 	<!-- 
                     <li><a href="#lnk">지역대검색</a></li>
                     <li><a href="#lnk">임원통합소개</a></li>
@@ -78,12 +78,12 @@
 		            </a>
 			    </div>
 			    <div class="swiper-slide">
-		            <a href="#lnk">
-		                <img src="/user_img/main-banner.png" alt="메인배너">
+		            <a href="https://www.education.or.kr/studyjob/GroupCourse.asp?GroupSeq=751&QBCode=" target="_blank">
+		                <img src="/user_img/01_2.png" alt="메인배너">
 		            </a>
 			    </div>
 			    <div class="swiper-slide">
-		            <a href="#lnk">
+		            <a href="https://notice.naver.com/notices/form/14352?page=1&pageSize=10&newNoticeHour=168&t=d" target="_blank">
 		                <img src="/user_img/main-banner.png" alt="메인배너">
 		            </a>
 			    </div>
