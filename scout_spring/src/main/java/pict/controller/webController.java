@@ -240,6 +240,16 @@ public class webController {
 	//프로그램자료실(대운영)
 	@RequestMapping("program")
 	public String program(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		/*
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			model.addAttribute("message", "해당 메뉴는 로그인이 필요한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/");
+			return "pict/main/message";
+		}
+		*/
+
 		int limitNumber = 20;
 		pictVO.setLimit(limitNumber);
 		
