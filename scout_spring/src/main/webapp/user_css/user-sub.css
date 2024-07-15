@@ -256,6 +256,15 @@
 	justify-content: space-between;
 	max-width: 1465px;
 }
+.jamFlexTab.youth{
+	position: relative;
+}
+.tabInner.youth{
+	position: sticky;
+	top: 50px;
+	right: 0;
+	height: fit-content;
+}
 .jamTab{
 	display: flex;
 	flex-direction: column;
@@ -277,6 +286,14 @@
 	color: var(--grey-100);
 }
 .jamTab li span{
+	display: block;
+	padding: 12px 8px;
+	font-size: 32px;
+	font-weight: 700;
+	line-height: 100%; /* 32px */
+	letter-spacing: -1.6px;
+}
+.jamTab li a{
 	display: block;
 	padding: 12px 8px;
 	font-size: 32px;
@@ -363,6 +380,9 @@
 	.jamTab li span{
 		font-size: 26px;
 	}
+	.jamTab li a{
+		font-size: 26px;
+	}
 	.jamListTexts h4{
 		font-size: 20px;
 	}
@@ -394,7 +414,11 @@
 		font-size: 18px;
 		letter-spacing: -0.9px;
 	}
-	
+	.jamTab li a{
+		font-size: 18px;
+		letter-spacing: -0.9px;
+	}
+
 	.jamLists{
 		row-gap: 20px;
 	}
@@ -443,6 +467,7 @@
 	grid-template-columns: repeat(4, 23%);
 	column-gap: 20px;
 	row-gap: 24px;
+	width: 100%;
 }
 .contentDesc.youth li:first-of-type {
     border-top: 0;
@@ -496,6 +521,10 @@
 	.contentDesc.youth{
 		grid-template-columns: repeat(4, 23.2%);
 	}
+	.contentDesc.youth li{
+		/* max-height: 282px; */
+		height: 282px;
+	}
 	.contentDesc.youth li .texts{
 		padding: 17px 23px;
 	}
@@ -510,7 +539,7 @@
 	}
 	.contentDesc.youth li{
 		/* max-height: 282px; */
-		height: 282px;
+		height: 182px;
 	}
 	.contentDesc.youth li img{
 		width: 100%;
@@ -527,7 +556,7 @@
 		row-gap: 8px;
 		width: 100%;
 		height: 100%;
-		padding: 30px;
+		padding: 16px;
 		background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 27.07%, rgba(255, 255, 255, 0.80) 71.94%);
 	}
 
