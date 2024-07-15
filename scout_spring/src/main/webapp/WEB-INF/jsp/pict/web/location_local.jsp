@@ -45,7 +45,7 @@
                             <div class="localTexts">
                                 <h3>서울남부연맹</h3>
                                 <ul>
-                                    <li><p>주소</p><span>서울 영등포구 국회대로 62길 14(2층, 한국스카우트연맹회관)</span></li>
+                                    <li><p>주소</p><span>서울특별시 영등포구 국회대로62길 14, 한국스카우트연맹 10층</span></li>
                                     <li><p>Fax</p><span>02-785-3580</span></li>
                                 </ul>
                                 <ul>
@@ -58,7 +58,7 @@
                     </li>
                     <li>
                         <div class="imgTexts">
-                            <span><img src="/user_img/location3.gif" alt="연맹앰블럼"></span>
+                            <span><img src="/user_img/부산.webp" alt="연맹앰블럼"></span>
                             <div class="localTexts">
                                 <h3>부산연맹</h3>
                                 <ul>
@@ -397,11 +397,11 @@
                     
                     <li>
                         <div class="imgTexts">
-                            <span><img src="/user_img/location22.gif" alt="연맹앰블럼"></span>
+                            <span><img src="/user_img/location22.webp" alt="연맹앰블럼"></span>
                             <div class="localTexts">
                                 <h3>기독교연맹</h3>
                                 <ul>
-                                    <li><p>주소</p><span>인천광역시 남동구 남동대로837번길 31(간석동)</span></li>
+                                    <li><p>주소</p><span>경기도 수원시 권선구 효탑로16번길 8, 개선문교회</span></li>
                                     <li><p>Fax</p><span>032-423-0292</span></li>
                                 </ul>
                                 <ul>

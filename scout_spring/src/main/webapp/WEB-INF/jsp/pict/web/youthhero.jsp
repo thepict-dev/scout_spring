@@ -27,7 +27,7 @@
 	                <h3 class="contentTitle">역대 수상자</h3>
 	                <div class="flexTab jamFlexTab youth">
 	   
-	                    <ul class="tabNav jamTab youth">
+	                    <ul class="tabNav jamTab youth targetYouth">
 	                    	<c:forEach var="youth_group" items="${youth_group}" varStatus="status">
 	                        	<li class="<c:if test='${pictVO.YEAR eq youth_group.YEAR}'>active</c:if>"><a href="#${youth_group.YEAR}" onclick="fn_youth('${youth_group.YEAR}')">${youth_group.YEAR}년</a></li>
 	                        </c:forEach>
@@ -43,6 +43,12 @@
 	    </div>
 		<%@ include file="./include/footer.jsp" %>
 		<script>
+			$(document).ready(function(){
+				var firstLi = $('ul.targetYouth li:first');
+				firstLi.addClass("active")
+				fn_youth("2007")
+			});
+			
 			function fn_youth(year){
 				var param = {}
 				param.year = year;

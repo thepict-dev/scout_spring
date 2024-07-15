@@ -959,7 +959,7 @@ tbody tr.active td{
 }
 .listHead{
     display: grid;
-    grid-template-columns: 5% 15% 60% 5% 10% 5%;
+    grid-template-columns: 5% 15% 55% 5% 10% 5% 5%;
     text-align: center;
 }
 .listHead li{
@@ -974,7 +974,7 @@ tbody tr.active td{
 
 .listBody li{
     display: grid;
-    grid-template-columns: 5% 15% 60% 5% 10% 5%;
+    grid-template-columns: 5% 15% 55% 5% 10% 5% 5%;
     text-align: center;
     border-bottom: 1px solid var(--grey-100);
     background-color: #fff;

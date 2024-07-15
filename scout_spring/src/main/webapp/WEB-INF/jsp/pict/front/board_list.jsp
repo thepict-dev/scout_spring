@@ -43,6 +43,7 @@
 	                    <li>제목</li>
 	                    <li>작성자</li>
 	                    <li>등록일</li>
+	                    <li>숨김</li>
 	                    <li>삭제</li>
 	                </ul>
 	                <ul class="listBody">
@@ -69,7 +70,8 @@
 		                        	<c:if test="${board_list.register ne '' && board_list.register ne null && board_list.register ne undefined}">${board_list.register}</c:if>
 		                        </p>
 		                        <p>${fn:substring(board_list.ENTERDATE,0,11)}</p>
-		                        <p><a href="#lnk" onclick="board_delete('${board_list.BRDCTSNO}')"><img src="/front_img/delete.png" alt="삭제"></a></p>
+		                        <p><a href="#lnk" onclick="board_delete('${board_list.BRDCTSNO}', 'H')"><img src="/front_img/delete.png" alt="숨김"></a></p>
+		                        <p><a href="#lnk" onclick="board_delete('${board_list.BRDCTSNO}', 'N')"><img src="/front_img/delete.png" alt="삭제"></a></p>
 		                    </li>
 	                    </c:forEach>
 	                </ul>
@@ -103,6 +105,7 @@
 	</body>
 	<form action="" id="register" name="register" method="post" enctype="multipart/form-data">
 		<input type='hidden' name="BRDCTSNO" id="BRDCTSNO" value='' />
+		<input type='hidden' name="USEAT" id="USEAT" value='' />
 		<input type='hidden' name="type" id="type" value='' />
 	</form>
 	<script>
@@ -114,9 +117,10 @@
 			$("#search_fm").attr("action", "/admin/front/board_list");
 			$("#search_fm").submit();
 		}
-		function board_delete(BRDCTSNO) {
+		function board_delete(BRDCTSNO, flag) {
 			if (confirm("삭제 하시겠습니까?")) {
 				$('#BRDCTSNO').val(BRDCTSNO)
+				$('#USEAT').val(flag)
 				$("#register").attr("action", "/admin/front/board_delete");
 				$("#register").submit();
 			}

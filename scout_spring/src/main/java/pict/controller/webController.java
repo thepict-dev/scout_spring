@@ -102,7 +102,7 @@ public class webController {
 	public String notice(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		int limitNumber = 20;
 		pictVO.setLimit(limitNumber);
-		
+		pictVO.setMain("main");
 		Integer pageNum = pictVO.getPageNumber();
 		
 		if(pageNum == 0) {

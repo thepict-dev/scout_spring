@@ -950,7 +950,14 @@
 		<if test="BRDNO != null and BRDNO != ''">
 			and BRDNO = #{BRDNO}
 		</if>
-		and USEAT = 'Y'
+
+		<if test="main != null and main != ''">
+			and (USEAT = 'Y')
+		</if>
+		<if test="main == null or main == ''">
+			and (USEAT = 'Y' or USEAT = 'H')
+		</if>		
+
 		<if test="type != null and type != ''">
 			and BRDNO !='56' and BRDNO != '227' and BRDNO != '290' and BRDNO !='1587' and BRDNO !='1827'  
 		</if>
@@ -967,7 +974,15 @@
 			<if test="BRDNO != null and BRDNO != ''">
 				and BRDNO = #{BRDNO}
 			</if>
-			and USEAT = 'Y'
+			
+			<if test="main != null and main != ''">
+				and (USEAT = 'Y')
+			</if>
+			<if test="main == null or main == ''">
+				and (USEAT = 'Y' or USEAT = 'H')
+			</if>
+			
+			
 			<if test="type != null and type != ''">
 				and BRDNO !='56' and BRDNO != '227' and BRDNO != '290' and BRDNO !='1587' and BRDNO !='1827'  
 			</if>
@@ -992,7 +1007,7 @@
 	<update id="board_delete" parameterType="pictVO">
 		update board_table
 		set 
-		USEAT = "N"
+		USEAT = #{USEAT}
 		where BRDCTSNO = #{BRDCTSNO}
 	</update>
 	
