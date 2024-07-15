@@ -488,6 +488,18 @@ public class PictServiceImpl implements PictService {
 		pictMapper.local_cng(pictVO);
 	}
 
+	@Override
+	public List<PictVO> youth_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.youth_list(pictVO);
+	}
+
+	@Override
+	public List<PictVO> youth_group(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.youth_group(pictVO);
+	}
+
 
 	
 	

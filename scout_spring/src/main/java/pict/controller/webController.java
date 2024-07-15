@@ -67,9 +67,28 @@ public class webController {
 	//youthhero
 	@RequestMapping("youthhero")
 	public String youthhero(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		
+
+		List<PictVO> youth_group = pictService.youth_group(pictVO);
+		model.addAttribute("youth_group", youth_group);
+		model.addAttribute("pictVO", pictVO);
 		return "pict/web/youthhero";
 	}
+	
+
+	@RequestMapping("/get_youthhero")
+	@ResponseBody
+	public HashMap<String, Object> fn_get_units_info(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+		String year = param.get("year").toString();
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		pictVO.setYEAR(year);
+		List<PictVO> youth_list = pictService.youth_list(pictVO);
+
+		map.put("youth_list", youth_list);
+		return map;
+
+	}
+	
 	//장학사업
 	@RequestMapping("scholarship")
 	public String scholarship(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {

@@ -177,6 +177,10 @@ public interface PictMapper {
 	Integer local_list_cnt(PictVO pictVO) throws Exception;
 
 	void local_cng(PictVO pictVO) throws Exception;
+
+	List<PictVO> youth_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> youth_group(PictVO pictVO) throws Exception;
  
 	
 

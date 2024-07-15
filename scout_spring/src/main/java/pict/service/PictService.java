@@ -176,6 +176,10 @@ public interface PictService {
 
 	public void local_cng(PictVO pictVO) throws Exception;
 
+	public List<PictVO> youth_list(PictVO pictVO) throws Exception;
+
+	public List<PictVO> youth_group(PictVO pictVO) throws Exception;
+
 
 
 }

@@ -1140,4 +1140,20 @@
 	<update id="local_cng" parameterType="pictVO">
 		update local_apply set status = #{status} where idx = #{idx}
 	</update>
+	
+	<!-- 유스히어로~ -->
+	<select id="youth_list" resultType="pictVO">
+		select * from youth_table
+		where 1=1
+		<if test="YEAR != null and YEAR != ''">
+			and YEAR = #{YEAR}
+		</if>
+		order by YEAR asc
+	</select>
+	
+	<select id="youth_group" resultType="pictVO">
+		select YEAR from youth_table group by YEAR order by YEAR asc
+	</select>
+	
+	
 </mapper>
