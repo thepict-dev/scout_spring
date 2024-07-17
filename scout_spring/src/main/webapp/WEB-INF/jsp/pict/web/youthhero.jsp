@@ -58,7 +58,6 @@
 					, type : "POST"
 					, data : JSON.stringify(param)
 					, contentType : "application/json"
-					, async : true
 					, success : function(data, status, xhr) {
 						var list = data.youth_list
 						
@@ -70,6 +69,7 @@
 				                '<div class="texts">'+
 				                '<p>'+list[i].kname+'</p>'+
 				                '<span>'+list[i].year+'</span>'+
+				                '<span>부문</span>'+
 				                '</div>'+
 				            	'</li>'		
 							}
