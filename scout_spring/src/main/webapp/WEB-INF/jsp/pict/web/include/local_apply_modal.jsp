@@ -194,7 +194,7 @@
 				, type : "POST"
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
-				, async : true
+				
 				, success : function(data, status, xhr) {
 					if(data.rst == 'Y'){
 						alert("정상적으로 신청되었습니다.")

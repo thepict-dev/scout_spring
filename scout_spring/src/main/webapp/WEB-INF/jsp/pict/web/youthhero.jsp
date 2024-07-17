@@ -69,7 +69,7 @@
 				                '<div class="texts">'+
 				                '<p>'+list[i].kname+'</p>'+
 				                '<span>'+list[i].year+'</span>'+
-				                '<span>부문</span>'+
+				                '<span>'+list[i].type+'</span>'+
 				                '</div>'+
 				            	'</li>'		
 							}
