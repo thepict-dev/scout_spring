@@ -44,9 +44,11 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
 	//엑셀다운로드
-	implementation group: 'org.apache.poi', name: 'poi', version: '5.0.0'
-	implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.0.0'
-
+	implementation group: 'org.apache.poi', name: 'poi', version: '5.2.0'
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.2.0'
+    implementation group: 'org.apache.xmlgraphics', name: 'batik-ttf2svg', version: '1.13'
+    implementation group: 'org.apache.xmlgraphics', name: 'xmlgraphics-commons', version: '2.6'
+    
 	//War
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	
