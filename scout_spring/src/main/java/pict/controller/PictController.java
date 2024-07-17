@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -17,6 +18,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -234,7 +244,7 @@ public class PictController {
 			List<PictVO> scout_list = pictService.scout_left_search_list(pictVO);
 			
 			//회원번호로 정렬
-			scout_list.sort(Comparator.comparing(PictVO::getMEMBERNO));
+			//scout_list.sort(Comparator.comparing(PictVO::getMEMBERNO));
 			model.addAttribute("resultList", scout_list);
 			List<?> job_list= pictService.job_list(pictVO);
 			model.addAttribute("resultListCnt", scout_list.size());
@@ -273,6 +283,7 @@ public class PictController {
 		
 		return "pict/front/organization";
 	}
+	
 	//단위대 통합창
 	@RequestMapping("/front/units")
 	public String units(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
@@ -1479,7 +1490,7 @@ public class PictController {
 		String scoutclscode = param.get("scoutclscode").toString();
 		String search_type = param.get("search_type").toString();
 		String search_text = param.get("search_text").toString();
-		
+		String type = param.get("type").toString();
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
@@ -1492,7 +1503,7 @@ public class PictController {
 		pictVO.setSCOUTCLSCODE(scoutclscode);
 		pictVO.setSearch_type(search_type);
 		pictVO.setSearch_text(search_text);
-		
+		pictVO.setType(type);
 		
 		List<PictVO> troop_list = pictService.organ_search(pictVO);
 		if(troop_list.size() > 0) {
@@ -1502,6 +1513,180 @@ public class PictController {
 		else {
 			return map;
 		}
+	}
+	//조직엑셀다운로드
+	@RequestMapping(value = "/organ_excel")
+	public void reservation_excel(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		pictVO.setASSOCIATIONCODE(pictVO.getAssociationcode_search());
+		pictVO.setPARENTTROOPNO(pictVO.getUnitycode_search());
+		pictVO.setTROOPLEVELCODE(pictVO.getTrooplevelcode_search());
+		pictVO.setTROOPCLSCODE1(pictVO.getTroopclscode1_search());
+		pictVO.setTROOPCLSCODE2(pictVO.getTroopclscode2_search());
+		pictVO.setPARENTORGNO(pictVO.getParentorgno_search());
+		pictVO.setSCOUTCLSCODE(pictVO.getScoutclscode_search());
+
+		
+		List<PictVO> attendance_list = pictService.organ_search(pictVO);
+		HSSFWorkbook objWorkBook = new HSSFWorkbook();
+        HSSFSheet objSheet = null;
+        HSSFRow objRow = null;
+        HSSFCell objCell = null;       //셀 생성
+
+        //제목 폰트
+        HSSFFont font = objWorkBook.createFont();
+        HSSFFont font_title = objWorkBook.createFont();
+        font_title.setFontHeightInPoints((short)11);
+        font.setFontHeightInPoints((short)9);
+        font.setFontName("맑은고딕");
+		int rowIndex = 0;
+		
+		HSSFCellStyle styleHd_title = objWorkBook.createCellStyle(); // 제목 스타일
+		HSSFCellStyle styleHd = objWorkBook.createCellStyle();    //내용 스타일
+		
+		styleHd_title.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+		styleHd_title.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		
+		// 각항목 테두리
+		styleHd.setBorderRight(BorderStyle.THIN);
+		styleHd.setBorderLeft(BorderStyle.THIN);
+		styleHd.setBorderTop(BorderStyle.THIN);
+		styleHd.setBorderBottom(BorderStyle.THIN);
+		styleHd.setWrapText(true);//자동 줄바꿈
+
+		styleHd_title.setBorderRight(BorderStyle.THIN);
+		styleHd_title.setBorderLeft(BorderStyle.THIN);
+		styleHd_title.setBorderTop(BorderStyle.THIN);
+		styleHd_title.setBorderBottom(BorderStyle.THIN);
+					
+        objSheet = objWorkBook.createSheet("첫번째 시트");     //워크시트 생성
+		
+		
+		//헤더
+        objRow = objSheet.createRow(0);
+        objRow.setHeight ((short) 0x150);
+        
+        objCell = objRow.createCell(0);
+        objCell.setCellValue("지구연합회");
+        objCell.setCellStyle(styleHd_title);
+
+        objCell = objRow.createCell(1);
+        objCell.setCellValue("대번호");
+        objCell.setCellStyle(styleHd_title);
+		
+        objCell = objRow.createCell(2);
+        objCell.setCellValue("단위대명");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(3);
+        objCell.setCellValue("스카우트구분");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(4);
+        objCell.setCellValue("단위대구분");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(5);
+        objCell.setCellValue("우편번호");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(6);
+        objCell.setCellValue("주소");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(7);
+        objCell.setCellValue("전화번호");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(8);
+        objCell.setCellValue("팩스번호");
+        objCell.setCellStyle(styleHd_title);
+        
+        
+		//바디
+        int doublecnt = 0;
+		for(int i=0; i<attendance_list.size(); i++) {
+        	//순서
+			objRow = objSheet.createRow(i+1+doublecnt);
+	        objRow.setHeight ((short) 0x150);
+	        objSheet.autoSizeColumn(i);
+	        
+	        //지구연합회
+	        objCell = objRow.createCell(0);
+	        objCell.setCellValue(attendance_list.get(i).getPARENTTROOPNAME());
+	        objSheet.setColumnWidth(0, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //대번호
+	        objCell = objRow.createCell(1);
+	        objCell.setCellValue(attendance_list.get(i).getDISPTROOPNO());
+	        objSheet.setColumnWidth(1, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+
+	        //단위대명
+	        objCell = objRow.createCell(2);
+	        objCell.setCellValue(attendance_list.get(i).getTROOPNAME());
+	        objSheet.setColumnWidth(2, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //스카우트구분
+	        objCell = objRow.createCell(3);
+	        objCell.setCellValue(attendance_list.get(i).getSCOUTCLSNAME());
+	        objSheet.setColumnWidth(3, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+        	
+        	//단위대구분
+	        objCell = objRow.createCell(4);
+	        objCell.setCellValue(attendance_list.get(i).getTROOPCLSNAME());
+	        objSheet.setColumnWidth(4, (short)0x1200);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //우편번호
+	        objCell = objRow.createCell(5);
+	        objCell.setCellValue(attendance_list.get(i).getPOSTCODE());
+	        objSheet.setColumnWidth(5, (short)0x1200);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //주소
+	        objCell = objRow.createCell(6);
+	        objCell.setCellValue(attendance_list.get(i).getADDR());
+	        objSheet.setColumnWidth(6, (short)0x4500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //전화번호
+	        objCell = objRow.createCell(7);
+	        objCell.setCellValue(attendance_list.get(i).getTELNO());
+	        objSheet.setColumnWidth(7, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //팩스번호
+	        objCell = objRow.createCell(8);
+	        objCell.setCellValue(attendance_list.get(i).getFAXNO());
+	        objSheet.setColumnWidth(8, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	      
+        }
+	        
+	      
+	       
+		String filename = "조직통합관리_단위대목록";
+		String header = request.getHeader("User-Agent");
+		if(header.contains("Edge") || header.contains("MSIE")) {
+			filename = URLEncoder.encode(filename, "UTF-8").replaceAll("//+", "%20");
+		}
+		else if(header.contains("Chrome") || header.contains("Opera") || header.contains("Firefox")) {
+			filename = new String(filename.getBytes("UTF-8"), "ISO-8859-1");
+		}
+        
+        response.setHeader("Content-Disposition", "ATTachment; Filename=" +filename +".xls");
+
+        OutputStream fileOut  = response.getOutputStream();
+        objWorkBook.write(fileOut);
+        fileOut.close();
+
+        response.getOutputStream().flush();
+        response.getOutputStream().close();
 	}
 	
 	@RequestMapping("/organ_info")

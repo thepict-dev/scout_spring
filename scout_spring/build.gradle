@@ -43,6 +43,9 @@ dependencies {
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl' //스프링부트 3.0 이상
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
+	//엑셀다운로드
+	implementation group: 'org.apache.poi', name: 'poi', version: '5.0.0'
+	implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.0.0'
 
 	//War
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'

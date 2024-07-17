@@ -13,7 +13,7 @@
 		<%@ include file="./include/lnb.jsp" %>
 		<c:import url="./include/header.jsp">
 			<c:param name="pageParent" value="홈페이지 관리"/>
-	    	<c:param name="pageTitle" value="지역가입안내 관리"/>
+	    	<c:param name="pageTitle" value="지역대 상담관리"/>
 	    </c:import>
 		    <div class="contentsContainer">
 	        <div class="listContainer">

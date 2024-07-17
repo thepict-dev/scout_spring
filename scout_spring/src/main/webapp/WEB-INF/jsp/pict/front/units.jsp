@@ -82,6 +82,7 @@
                     </div>
                 </div>
             </div>
+            <input type="hidden" id="type" name="type">
             <div class="btnContainer organ">
                 <a href="#lnk" class="basicButton white"><img src="/front_img/reset.png" alt="">취소</a>
                 <a href="#lnk" class="basicButton purple" onclick="fn_search()"><img src="/front_img/search.png" alt="">조회</a>
@@ -90,7 +91,13 @@
         <div class="formContainer organ">
             <div class="left">
                 <div class="tableContainer">
-                    <h2 class="subTitles">단위대 목록</h2>
+                    <div class="tableTopButton">
+                    	<h2 class="subTitles">단위대 목록</h2>
+                    	<div class="topButtonWrapper">
+                    		<a href="#lnk" class="smButton" onclick="fn_order('number')">대번호순</a>
+                    		<a href="#lnk" class="smButton" onclick="fn_order('text')">가나다순</a>
+                    	</div>
+                    </div>
                     <div class="tableWrapper unitTableWrapper">
                         <table>
                             <colgroup>
@@ -349,8 +356,16 @@
 		function fn_year_reset(){
 			$('#search_year').val("2024")
 		}
-		function fn_search(){
-			
+
+		function fn_order(type){
+
+			$('#type').val(type);
+			$("#search_fm_units").attr("action", "/admin/front/units");
+			$("#search_fm_units").submit();
+
+		}
+		function fn_search(type){
+			$('#type').val('number');
 			$("#search_fm_units").attr("action", "/admin/front/units");
 			$("#search_fm_units").submit();
 		}
@@ -360,7 +375,7 @@
 			
 			var param = {
 				troopno : troopno,
-				year : $('#search_year').val()
+				year : $('#search_year').val(),
 			}
 			$('#unit_leader_list').children().remove();
 			$('#unit_scout_list').children().remove();
@@ -370,7 +385,6 @@
 				, data : JSON.stringify(param)
 				, contentType : "application/json"
 				, dataType : "json"
-				, async : true
 				, success : function(data, status, xhr) {
 					console.log(data)
 					if(data.rst){

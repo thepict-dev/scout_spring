@@ -51,6 +51,16 @@
 			and m.ENTERDATE between #{search_start} and #{search_end}
 		</if>
 		
+		<if test="type != null and type != '' and type == 'number'">
+        	order by cast(m.MEMBERNO as unsigned) asc
+        </if>
+        <if test="type != null and type != '' and type == 'birthday'">
+        	order by m.BIRTHDAY asc
+        </if>
+        <if test="type != null and type != '' and type == 'text'">
+        	order by m.KNAME asc
+        </if>
+		
 	</select>
 
 	<!-- 대원/리더 기본정보 조회 -->
@@ -454,7 +464,12 @@
         
         #and t.PARENT_TROOPNO = 9689 and t.ORGNO is not null and t.ORGNO != ''
         
-        order by cast(t.PARENT_TROOPNO as unsigned), length(t.DISPTROOPNO), cast(t.DISPTROOPNO as unsigned)
+        <if test="type != null and type != '' and type == 'number'">
+        	order by cast(t.PARENT_TROOPNO as unsigned), length(t.DISPTROOPNO), cast(t.DISPTROOPNO as unsigned)
+        </if>
+        <if test="type != null and type != '' and type == 'text'">
+        	order by t.TROOPNAME asc
+        </if>
 		
 	</select>
 	
@@ -663,9 +678,12 @@
 	        </if>
         </if>
         
-        
-        order by cast(t.PARENT_TROOPNO as unsigned), length(t.DISPTROOPNO), cast(t.DISPTROOPNO as unsigned)
-		
+        <if test="type != null and type != '' and type == 'number'">
+        	order by cast(t.PARENT_TROOPNO as unsigned), length(t.DISPTROOPNO), cast(t.DISPTROOPNO as unsigned)
+		</if>
+		<if test="type != null and type != '' and type == 'text'">
+        	order by t.TROOPNAME asc
+		</if>
 	</select>
 	
 	
@@ -841,7 +859,20 @@
 			and m.MEMBERNO = #{MEMBERNO}
 		</if>
 		
-		order by m.EMPLOYEEY desc
+		<if test="type == null or type == ''">
+			order by m.EMPLOYEEY desc, m.KNAME asc
+		</if>
+		
+		<if test="type != null and type != '' and type == 'text'">
+			order by m.EMPLOYEEY desc, m.KNAME asc
+		</if>
+		<if test="type != null and type != '' and type == 'birthday'">
+			order by m.EMPLOYEEY desc, m.BIRTHDAY asc
+		</if>
+		<if test="type != null and type != '' and type == 'number'">
+			order by m.EMPLOYEEY desc, cast(m.MEMBERNO as unsigned) asc
+		</if>
+		
 	</select>
 	
 	

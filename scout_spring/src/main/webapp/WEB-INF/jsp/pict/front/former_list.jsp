@@ -18,6 +18,9 @@
 	    <div class="contentsContainer">
 	        <div class="formContainer scroller">
 	            <div class="joinContainer">
+	            	<form action="" id="search_form" name="search_form" method="post" enctype="multipart/form-data">
+	            		<input type="hidden" id="type" name="type">
+	            	</form>
                     <form action="" id="register" name="register" method="post" enctype="multipart/form-data">
                         <h2 class="subTitles" style="padding: 16px 0 0 24px;">사용자 정보</h2>
                         <div class="basicInfo1 inputsPd">
@@ -125,7 +128,15 @@
                             </div>
                         </div>
                            <div class="tableContainer">
-                               <h2 class="subTitles">사용자 조회 내용</h2>
+                               <div class="tableTopButton">
+			                    	<h2 class="subTitles">사용자 조회 내용</h2>
+			                    	
+			                    	<div class="topButtonWrapper">
+			                    		<a href="#lnk" class="smButton" onclick="fn_order('number')">회원번호순</a>
+			                    		<a href="#lnk" class="smButton" onclick="fn_order('birthday')">생년월일순</a>
+			                    		<a href="#lnk" class="smButton" onclick="fn_order('text')">가나다순</a>
+			                    	</div>
+			                    </div>
                                <div class="tableWrapper">
                                    <table style="min-width: 1680px;">
                                        <colgroup>
@@ -212,6 +223,12 @@
         </div>
 	</body>
 	<script>
+		function fn_order(type){
+			$('#type').val(type);
+			$("#search_form").attr("action", "/admin/front/former_list");
+			$("#search_form").submit();
+
+		}
 		function former_info(memberno){
 			var param = {
 				memberno : memberno,
@@ -278,6 +295,8 @@
 				, success : function(data, status, xhr) {
 					if(data == 'Y'){
 						alert("정상적으로 수정되었습니다.");
+						location.reload(true);
+						/*
 						$('#name_'+$('#MEMBERNO').val()).text($('#KNAME').val())
 						$('#association'+$('#MEMBERNO').val()).text($('#association').val())
 						$('#sosock'+$('#MEMBERNO').val()).text($('#sosock option:checked').text())
@@ -286,6 +305,7 @@
 						$('#birthday_'+$('#MEMBERNO').val()).text($('#BIRTHDAY').val())
 						$('#mobile_'+$('#MEMBERNO').val()).text($('#MOBILE').val())
 						$('#email_'+$('#MEMBERNO').val()).text($('#EMAIL').val())
+						*/
 					}
 				}
 				, error : function(xhr, status, error) {

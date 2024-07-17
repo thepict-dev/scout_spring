@@ -93,10 +93,18 @@
                             <a href="#lnk" class="basicButton white" onclick="search_reset()"><img src="/front_img/reset.png" alt="">화면 초기화</a>
                             <a href="#lnk" class="basicButton purple" onclick="search_list()"><img src="/front_img/search.png" alt="">조회</a>
                         </div>
+                        <input type="hidden" id="type" name="type">
                     </form>
                 </div>
                 <div class="tableContainer">
-                    <h2 class="subTitles">조회 결과</h2>
+                    <div class="tableTopButton">
+                    	<h2 class="subTitles">조회 결과</h2>
+                    	<div class="topButtonWrapper">
+                    		<a href="#lnk" class="smButton" onclick="fn_order('number')">회원번호순</a>
+                    		<a href="#lnk" class="smButton" onclick="fn_order('birthday')">생년월일순</a>
+                    		<a href="#lnk" class="smButton" onclick="fn_order('text')">가나다순</a>
+                    	</div>
+                    </div>
                     <div class="tableWrapper">
                         <table>
                             <colgroup>
@@ -945,9 +953,18 @@
 				$("#search_fm_memberno").attr("action", "/admin/front/users");
 				$("#search_fm_memberno").submit();	
 			}
-			
-			
-
+		}
+		function fn_order(type){
+			var kname = $('#search_kname').val()
+			if((kname == '' || kname == undefined || kname == null)){
+				alert("이름은 필수값 입니다.")
+				return false;
+			}
+			else{
+				$('#type').val(type);
+				$("#search_fm").attr("action", "/admin/front/users");
+				$("#search_fm").submit();
+			}
 		}
 		function search_list(){
 			var kname = $('#search_kname').val()
@@ -956,10 +973,10 @@
 				return false;
 			}
 			else{
+				$('#type').val('number');
 				$("#search_fm").attr("action", "/admin/front/users");
 				$("#search_fm").submit();
 			}
-			
 		}
 		function fn_info(memberno, kname, scouty, leadery){
 			$('#initial-loading').css('display', 'flex')

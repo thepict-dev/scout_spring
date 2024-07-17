@@ -94,7 +94,7 @@
                                 <td>한국스카우트연맹 사무총장</td>
                             </tr>
                             <tr>
-                                <td rowspan="11" colspan="2">직선이사</td>
+                                <td rowspan="8" colspan="2">직선이사</td>
                                 <td>김영미</td>
                                 <td>한국여성변호사회 사무총장</td>
                             </tr>
@@ -125,18 +125,6 @@
                             <tr>
                                 <td>이주석</td>
                                 <td>가인치과원장</td>
-                            </tr>
-                            <tr>
-                                <td>공석</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>공석</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>공석</td>
-                                <td></td>
                             </tr>
                             <tr>
                                 <td rowspan="22">지방대표중앙이사</td>
@@ -345,13 +333,9 @@
                                 <td>굿네이버스 글로벌 파트너십센터 팀장</td>
                             </tr>
                             <tr>
-                                <td rowspan="3">부국제 커미셔너</td>
+                                <td rowspan="2">부국제 커미셔너</td>
                                 <td>이동욱</td>
                                 <td>뉴욕대학교 Stern 경영대학원 처장</td>
-                            </tr>
-                            <tr>
-                                <td>김도현</td>
-                                <td>한국연구재단 연구원</td>
                             </tr>
                             <tr>
                                 <td>임재연</td>
@@ -466,11 +450,11 @@
                                 <td style="padding-left: 30px;">-</td>
                             </tr>
                             <tr>
-                                <td rowspan="9">경영지원팀</td>
+                                <td rowspan="8">경영지원팀</td>
                                 <td>팀장</td>
                                 <td>임은선</td>
                                 <td>02-6335-2010</td>
-                                <td rowspan="9" style="padding-left: 30px;">
+                                <td rowspan="8" style="padding-left: 30px;">
                                     - 총회 및 이사회에 관한 업무<br>
                                     - 문서, 행정 및 보안, 인장관리에 관한 업무<br>
                                     - 인사 및 노무, 노사에 관한 업무<br>
@@ -518,11 +502,6 @@
                                 <td>사원</td>
                                 <td>하재헌</td>
                                 <td>02-6335-2005</td>
-                            </tr>
-                            <tr>
-                                <td>사원</td>
-                                <td>이윤희</td>
-                                <td>02-6335-2014</td>
                             </tr>
                             <tr>
                                 <td>주임</td>
@@ -646,8 +625,8 @@
                                 <td>02-752-1804</td>
                             </tr>
                             <tr>
-                                <td>사원</td>
-                                <td>김태욱</td>
+                                <td>인턴</td>
+                                <td>김재호</td>
                                 <td>02-752-1804</td>
                             </tr>
                             <tr>

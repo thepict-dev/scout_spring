@@ -15,7 +15,7 @@
     	<c:param name="pageTitle" value="조직 통합 관리"/>
     </c:import>
         <div class="contentsContainer">
-        <form action="" class="organSearchForm" onsubmit="return false;">
+        <form action="" class="organSearchForm" name="main_form" id="main_form">
             <h2 class="subTitles">조회 조건</h2>
             <div class="organSearch">
                 <div class="searchContainer">
@@ -86,19 +86,25 @@
                             <option value="number">대번호</option>
                             <option value="text">단위대명</option>
                         </select>
-                        <input type="text" name="search_text" id="search_text" class="lgThinInput" placeholder="내용을 입력해주세요..." onkeypress="if(event.keyCode == 13){organ_search();}">
+                        <input type="text" name="search_text" id="search_text" class="lgThinInput" placeholder="내용을 입력해주세요..." onkeypress="if(event.keyCode == 13){organ_search('number');}">
                     </div>
                 </div>
             </div>
             <div class="btnContainer organ">
                 <a href="#lnk" class="basicButton white"><img src="/front_img/reset.png" alt="">취소</a>
-                <a href="#lnk" class="basicButton purple" onclick="organ_search()"><img src="/front_img/search.png" alt="">조회</a>
+                <a href="#lnk" class="basicButton purple" onclick="organ_search('number')"><img src="/front_img/search.png" alt="">조회</a>
             </div>
         </form>
         <div class="formContainer organ">
             <div class="left">
                 <div class="tableContainer">
-                    <h2 class="subTitles">단위대 목록</h2>
+                	<div class="tableTopButton">
+                    	<h2 class="subTitles">단위대 목록</h2>
+                    	<div class="topButtonWrapper">
+                    		<a href="#lnk" class="smButton" onclick="fn_order('number')">대번호순</a>
+                    		<a href="#lnk" class="smButton" onclick="fn_order('text')">가나다순</a>
+                    	</div>
+                    </div>
                     <div class="tableWrapper orgTableWrapper">
                         <table>
                             <colgroup>
@@ -136,7 +142,7 @@
                     <div class="tableButtons">
                         <p id="organ_cnt">0 rows</p>
                         <div class="buttons">
-                            <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
+                            <a href="#lnk" class="smButton" onclick="organization_excel()"><img src="/front_img/download.png" alt="">엑셀저장</a>
                         </div>
                     </div>
                 </div>
@@ -667,6 +673,7 @@
 			}
 			
 		}
+		
 		function fn_organ_info(troopno){
 			$('#initial-loading').css('display', 'flex')
 			$('#idx').val(troopno)
@@ -834,6 +841,7 @@
 				}
 			});
 		}
+		
 		function fn_troopclscode(){
 			var param = {
 				troopclscode1 : $('#TROOPCLSCODE1').val(),
@@ -863,7 +871,19 @@
 				}
 			});
 		}
-		function organ_search(){
+		
+		function fn_order(type){
+			organ_search(type)	
+		}
+		function organization_excel(){
+			
+			if(confirm("해당 리스트를 엑셀파일로 다운로드 하시겠습니까?")){
+				$('#flag').val("refuse")
+				$("#main_form").attr("action", "/admin/organ_excel");
+				$("#main_form").submit();
+			}
+		}
+		function organ_search(type){
 			$('#initial-loading').css('display', 'flex')
 			$('#organ_cnt').text("0 rows")
 			$('#org_list').children().remove();
@@ -878,6 +898,7 @@
 				scoutclscode : $('#scoutclscode_search').val(),
 				search_type : $('#search_type').val(),
 				search_text : $('#search_text').val(),
+				type : type
 			}
 			
 			$.ajax({

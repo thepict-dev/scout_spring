@@ -298,7 +298,58 @@ public class PictVO extends PictDefaultVO {
 	private String main;
 	
 	
+	private String associationcode_search;
+	private String unitycode_search;
+	private String trooplevelcode_search;
+	private String troopclscode1_search;
+	private String troopclscode2_search;
+	private String parentorgno_search;
+	private String scoutclscode_search;
 	
+	
+	
+	public String getAssociationcode_search() {
+		return associationcode_search;
+	}
+	public void setAssociationcode_search(String associationcode_search) {
+		this.associationcode_search = associationcode_search;
+	}
+	public String getUnitycode_search() {
+		return unitycode_search;
+	}
+	public void setUnitycode_search(String unitycode_search) {
+		this.unitycode_search = unitycode_search;
+	}
+	public String getTrooplevelcode_search() {
+		return trooplevelcode_search;
+	}
+	public void setTrooplevelcode_search(String trooplevelcode_search) {
+		this.trooplevelcode_search = trooplevelcode_search;
+	}
+	public String getTroopclscode1_search() {
+		return troopclscode1_search;
+	}
+	public void setTroopclscode1_search(String troopclscode1_search) {
+		this.troopclscode1_search = troopclscode1_search;
+	}
+	public String getTroopclscode2_search() {
+		return troopclscode2_search;
+	}
+	public void setTroopclscode2_search(String troopclscode2_search) {
+		this.troopclscode2_search = troopclscode2_search;
+	}
+	public String getParentorgno_search() {
+		return parentorgno_search;
+	}
+	public void setParentorgno_search(String parentorgno_search) {
+		this.parentorgno_search = parentorgno_search;
+	}
+	public String getScoutclscode_search() {
+		return scoutclscode_search;
+	}
+	public void setScoutclscode_search(String scoutclscode_search) {
+		this.scoutclscode_search = scoutclscode_search;
+	}
 	public String getMain() {
 		return main;
 	}
