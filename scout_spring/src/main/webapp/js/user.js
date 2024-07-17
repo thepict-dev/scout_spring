@@ -130,3 +130,11 @@ $('.localApply').click(function(){
 $('.localAppModal .modalWrapper button').click(function(){
   $('.localAppModal').hide();
 });
+
+// 중앙훈련원 예약신청 모달 열기
+$('.trBookingBtn button').click(function(){
+  $('.trModal').show();
+});
+$('.trModal .modalWrapper button').click(function(){
+  $('.trModal').hide();
+});

@@ -32,6 +32,10 @@
 <c:set var="scholarship" value="${fn:indexOf(url, 'scholarship')}"/>
 <c:set var="family" value="${fn:indexOf(url, 'family')}"/>
 
+<c:set var="tr_intgree" value="${fn:indexOf(url, 'tr_intgree')}"/>
+<c:set var="tr_gil" value="${fn:indexOf(url, 'tr_gil')}"/>
+<c:set var="tr_board" value="${fn:indexOf(url, 'tr_borad')}"/>
+
 <c:set var="intro" value="${fn:indexOf(url, 'intro')}"/>
 <c:set var="jamboree" value="${fn:indexOf(url, 'jamboree')}"/>
 <c:set var="greeting" value="${fn:indexOf(url, 'greeting')}"/>
@@ -45,6 +49,7 @@
 <c:set var="store" value="${fn:indexOf(url, 'store')}"/>
 
 <c:set var="feder" value="${intro ne -1 || jamboree ne -1 || greeting ne -1 || vision ne -1 || history_local ne -1 || history_inter ne -1 || organization ne -1 || rules ne -1 || facility ne -1 || location ne -1 || store ne -1}" />
+
 
 <header>
     <div class="headerTop">
@@ -105,6 +110,14 @@
                             <li><a href="/facility">시설안내,예약</a></li>
                             <li><a href="/location_center">찾아오시는길</a></li>
                             <li><a href="/store">수품대리점</a></li>
+                        </ul>
+                    </li>
+                    <li <c:if test="${tr_intgree ne -1 || tr_gil ne -1 || tr_board ne -1}">class="active"</c:if>>
+                        <a href="/tr_intgree">중앙훈련원</a>
+                        <ul class="gnbSub">
+	                        <li><a href="/tr_intgree">소개</a></li>
+	                        <li><a href="/tr_gil">찾아오시는길</a></li>
+                            <li><a href="/tr_board">공지사항</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -184,6 +197,16 @@
 	                        <li><a href="/facility">시설안내,예약</a></li>
 	                        <li><a href="/location_center">찾아오시는 길</a></li>
 	                        <li><a href="/store">수품대리점</a></li>
+	                    </ul>
+	                </li>
+	            </ul>
+	            <ul class="depth1">
+	                <li>
+	                    <a href="/tr_intgree" <c:if test="${tr_intgree ne -1 || tr_gil ne -1 || tr_board ne -1}">class="active"</c:if>><span class="pcText">중앙훈련</span><span class="mbText">중앙<br>훈련원</span></a>
+	                    <ul class="depth2">
+	                        <li><a href="/tr_intgree">소개</a></li>
+	                        <li><a href="/tr_gil">찾아오시는길</a></li>
+                            <li><a href="/tr_board">공지사항</a></li>
 	                    </ul>
 	                </li>
 	            </ul>

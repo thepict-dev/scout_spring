@@ -538,6 +538,33 @@ public class webController {
 		
 		return "pict/web/personal_info";
 	}
+	
+	//중앙훈련원
+	//소개, 인사말
+	@RequestMapping("tr_intgree")
+	public String tr_intgree(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/tr_intgree";
+	}
+	//찾아오시는 길
+	@RequestMapping("tr_gil")
+	public String tr_gil(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/tr_gil";
+	}
+	//공지사항
+	@RequestMapping("tr_board")
+	public String tr_board(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/tr_board";
+	}
+	//공지사항 뷰
+	@RequestMapping("tr_borad_view")
+	public String tr_borad_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/tr_borad_view";
+	}
+
 
 
 	
