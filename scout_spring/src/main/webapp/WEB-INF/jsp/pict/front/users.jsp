@@ -174,8 +174,9 @@
                     </div>
                     <div class="tableButtons">
                         <p>${resultListCnt }<span>rows</span></p>
+                        
                         <div class="buttons">
-                            <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
+                            <a href="#lnk" class="smButton" onclick="users_excel()"><img src="/front_img/download.png" alt="">엑셀저장</a>
                         </div>
                     </div>
                 </div>
@@ -464,7 +465,7 @@
                                         <a href="#joinMemPopup" class="smButton scoutJoinBtn" onclick="scout_add()"><img src="/front_img/add.png" alt="">추가</a>
                                         <a href="#joinMemPopup" class="smButton scoutJoinMemBtn" onclick="scout_mod()"><img src="/front_img/modify.png" alt="">수정</a>
                                         <a href="#lnk" class="smButton" onclick="scout_del()"><img src="/front_img/reset.png" alt="">삭제</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
+                                        <!-- <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -530,7 +531,7 @@
                                         <a href="#joinPopup" class="smButton joinBtn" onclick="leader_add()"><img src="/front_img/add.png" alt="">추가</a>
                                         <a href="#joinPopup" class="smButton joinModeBtn" onclick="leader_mod()"><img src="/front_img/modify.png" alt="">수정</a>
                                         <a href="#lnk" class="smButton" onclick="leader_del()"><img src="/front_img/reset.png" alt="">삭제</a>
-                                        <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
+                                        <!-- <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -978,6 +979,15 @@
 				$("#search_fm").submit();
 			}
 		}
+		function users_excel(){
+			if(confirm("해당 리스트를 엑셀파일로 다운로드 하시겠습니까?")){
+				$('#flag').val("refuse")
+				$("#search_fm").attr("action", "/admin/users_excel");
+				$("#search_fm").submit();
+			}
+		}
+		
+		
 		function fn_info(memberno, kname, scouty, leadery){
 			$('#initial-loading').css('display', 'flex')
 			var param = {

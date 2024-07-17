@@ -331,7 +331,7 @@ public class PictServiceImpl implements PictService {
 	}
 
 	@Override
-	public List<?> former_list(PictVO pictVO) throws Exception {
+	public List<PictVO> former_list(PictVO pictVO) throws Exception {
 		// TODO Auto-generated method stub
 		return pictMapper.former_list(pictVO);
 	}
@@ -498,6 +498,12 @@ public class PictServiceImpl implements PictService {
 	public List<PictVO> youth_group(PictVO pictVO) throws Exception {
 		// TODO Auto-generated method stub
 		return pictMapper.youth_group(pictVO);
+	}
+
+	@Override
+	public List<PictVO> units_list_excel(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.units_list_excel(pictVO);
 	}
 
 

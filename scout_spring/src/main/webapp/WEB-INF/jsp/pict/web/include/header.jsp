@@ -112,6 +112,7 @@
                             <li><a href="/store">수품대리점</a></li>
                         </ul>
                     </li>
+                    <!-- 
                     <li <c:if test="${tr_intgree ne -1 || tr_gil ne -1 || tr_board ne -1}">class="active"</c:if>>
                         <a href="/tr_intgree">중앙훈련원</a>
                         <ul class="gnbSub">
@@ -120,6 +121,7 @@
                             <li><a href="/tr_board">공지사항</a></li>
                         </ul>
                     </li>
+                     -->
                 </ul>
             </div>
             <div class="gnbRight">
@@ -200,6 +202,7 @@
 	                    </ul>
 	                </li>
 	            </ul>
+	            <!-- 
 	            <ul class="depth1">
 	                <li>
 	                    <a href="/tr_intgree" <c:if test="${tr_intgree ne -1 || tr_gil ne -1 || tr_board ne -1}">class="active"</c:if>><span class="pcText">중앙훈련</span><span class="mbText">중앙<br>훈련원</span></a>
@@ -210,6 +213,7 @@
 	                    </ul>
 	                </li>
 	            </ul>
+	             -->
 	        </div>
 	    </div>
 	</div>

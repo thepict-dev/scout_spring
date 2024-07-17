@@ -135,6 +135,7 @@
 			                    		<a href="#lnk" class="smButton" onclick="fn_order('number')">회원번호순</a>
 			                    		<a href="#lnk" class="smButton" onclick="fn_order('birthday')">생년월일순</a>
 			                    		<a href="#lnk" class="smButton" onclick="fn_order('text')">가나다순</a>
+			                    		<a href="#lnk" class="smButton" onclick="former_excel()"><img src="/front_img/download.png" alt="">엑셀저장</a>
 			                    	</div>
 			                    </div>
                                <div class="tableWrapper">
@@ -229,6 +230,13 @@
 			$("#search_form").submit();
 
 		}
+		function former_excel(){
+			if(confirm("해당 리스트를 엑셀파일로 다운로드 하시겠습니까?")){
+				$("#search_form").attr("action", "/admin/former_excel");
+				$("#search_form").submit();
+			}
+		}
+		
 		function former_info(memberno){
 			var param = {
 				memberno : memberno,

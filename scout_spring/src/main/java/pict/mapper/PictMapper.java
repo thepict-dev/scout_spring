@@ -125,7 +125,7 @@ public interface PictMapper {
 
 	List<PictVO> prev_scout_list(PictVO pictVO) throws Exception;
 
-	List<?> former_list(PictVO pictVO) throws Exception;
+	List<PictVO> former_list(PictVO pictVO) throws Exception;
 
 	void former_save(PictVO pictVO) throws Exception;
 
@@ -181,6 +181,8 @@ public interface PictMapper {
 	List<PictVO> youth_list(PictVO pictVO) throws Exception;
 
 	List<PictVO> youth_group(PictVO pictVO) throws Exception;
+
+	List<PictVO> units_list_excel(PictVO pictVO) throws Exception;
  
 	
 

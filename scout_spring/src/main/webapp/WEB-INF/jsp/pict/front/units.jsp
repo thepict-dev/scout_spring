@@ -182,7 +182,7 @@
                     <div class="tableButtons">
                         <p>${units_cnt}<span>rows</span></p>
                         <div class="buttons">
-                            <a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">엑셀저장</a>
+                            <a href="#lnk" class="smButton" onclick="units_excel()"><img src="/front_img/download.png" alt="">엑셀저장</a>
                         </div>
                     </div>
                 </div>
@@ -364,6 +364,15 @@
 			$("#search_fm_units").submit();
 
 		}
+		
+		function units_excel(){
+			if(confirm("해당 리스트를 엑셀파일로 다운로드 하시겠습니까?")){
+				$("#search_fm_units").attr("action", "/admin/units_excel");
+				$("#search_fm_units").submit();
+			}
+			
+		}
+		
 		function fn_search(type){
 			$('#type').val('number');
 			$("#search_fm_units").attr("action", "/admin/front/units");

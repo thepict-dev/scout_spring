@@ -5,8 +5,9 @@
 
 	<select id="scout_left_search_list" resultType="pictVO">
 		select m.MEMBERNO, m.KNAME, m.BIRTHDAY, m.MEMCLSCODE, m.MEMGRADECODE, m.TROOPSCOUTY, m.TROOPLEADERY, m.LEADERINCNT, m.ENTERDATE, m.SCOUTINCNT, 
-		(case when li.idx is not null then 'Y' else 'N' end) as LIFE_YN,
-		(case when m.EMPLOYEEY = '' then 'N' when m.EMPLOYEEY is null then 'N' when m.EMPLOYEEY = 'N' then 'N' else 'Y' end) as EMPLOYEEY
+		(case when li.idx is not null then 'Y' else 'N' end) as LIFE,
+		(case when m.EMPLOYEEY = '' then 'N' when m.EMPLOYEEY is null then 'N' when m.EMPLOYEEY = 'N' then 'N' else 'Y' end) as EMPLOYEEY,
+		m.SEX, m.MOBILE, m.EMAIL, m.HPOSTCODE, m.HADDR
 		from member m
 		inner join memclscode mc on m.MEMCLSCODE = mc.MEMCLSCODE
 		left outer join lifetime li on li.MEMBERNO = m.MEMBERNO
@@ -685,6 +686,52 @@
         	order by t.TROOPNAME asc
 		</if>
 	</select>
+	
+	<select id="units_list_excel" resultType="pictVO">
+		select 
+			t.TROOPNO, t.DISPTROOPNO,
+		    ifnull((select TROOPNAME from troop t1 where t1.TROOPNO = t.PARENT_TROOPNO), '' ) as PARENTTROOPNAME, 
+		    t.PARENT_TROOPNO,
+		    t.DISPTROOPNO,
+			t.TROOPNAME,
+			sc.SCOUTCLSNAME,
+			(select TROOPCLSNAME from troopclscode tc where tc.TROOPCLSCODE1 = t.TROOPCLSCODE1 and tc.TROOPCLSCODE2 = t.TROOPCLSCODE2) as TROOPCLSNAME,
+			'일반' as DETAIL,
+			t.LASTREGYEAR
+		from troop t
+		left outer join associationcode a on t.ASSOCIATIONCODE = a.ASSOCIATIONCODE
+		left outer join scoutclscode sc on sc.SCOUTCLSCODE = t.SCOUTCLSCODE
+		
+		where 1=1
+		<if test="search_associationcode != null and search_associationcode != ''">
+        	and t.ASSOCIATIONCODE = #{search_associationcode} 
+        </if>
+        <if test="search_parenttroopno != null and search_parenttroopno != ''">
+        	and t.PARENT_TROOPNO = #{search_parenttroopno}
+        </if>
+        <if test="search_troopcls != null and search_troopcls != ''">
+        	and t.TROOPCLSCODE1 = #{search_troopcls}
+        </if>
+        <if test="search_troopcls2 != null and search_troopcls2 != ''">
+        	and t.TROOPCLSCODE2 = #{search_troopcls2}
+        </if>
+        <if test="search_level != null and search_level != ''">
+        	and t.SCOUTCLSCODE = #{search_level}
+        </if>
+
+        
+        <if test="type == null or type == ''">
+        	order by cast(t.PARENT_TROOPNO as unsigned), length(t.DISPTROOPNO), cast(t.DISPTROOPNO as unsigned)
+		</if>
+        
+        <if test="type != null and type != '' and type == 'number'">
+        	order by cast(t.PARENT_TROOPNO as unsigned), length(t.DISPTROOPNO), cast(t.DISPTROOPNO as unsigned)
+		</if>
+		<if test="type != null and type != '' and type == 'text'">
+        	order by t.TROOPNAME asc
+		</if>
+	</select>
+	
 	
 	
 	<select id="fn_get_units_info" resultType="pictVO">

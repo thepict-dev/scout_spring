@@ -255,6 +255,230 @@ public class PictController {
 		
 		return "pict/front/users";
 	}
+	@RequestMapping(value = "/users_excel")
+	public void users_excel(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		List<PictVO> attendance_list = pictService.scout_left_search_list(pictVO);
+
+		HSSFWorkbook objWorkBook = new HSSFWorkbook();
+        HSSFSheet objSheet = null;
+        HSSFRow objRow = null;
+        HSSFCell objCell = null;       //셀 생성
+
+        //제목 폰트
+        HSSFFont font = objWorkBook.createFont();
+        HSSFFont font_title = objWorkBook.createFont();
+        font_title.setFontHeightInPoints((short)11);
+        font.setFontHeightInPoints((short)9);
+        font.setFontName("맑은고딕");
+		int rowIndex = 0;
+		
+		HSSFCellStyle styleHd_title = objWorkBook.createCellStyle(); // 제목 스타일
+		HSSFCellStyle styleHd = objWorkBook.createCellStyle();    //내용 스타일
+		
+		styleHd_title.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+		styleHd_title.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		
+		// 각항목 테두리
+		styleHd.setBorderRight(BorderStyle.THIN);
+		styleHd.setBorderLeft(BorderStyle.THIN);
+		styleHd.setBorderTop(BorderStyle.THIN);
+		styleHd.setBorderBottom(BorderStyle.THIN);
+		styleHd.setWrapText(true);//자동 줄바꿈
+
+		styleHd_title.setBorderRight(BorderStyle.THIN);
+		styleHd_title.setBorderLeft(BorderStyle.THIN);
+		styleHd_title.setBorderTop(BorderStyle.THIN);
+		styleHd_title.setBorderBottom(BorderStyle.THIN);
+					
+        objSheet = objWorkBook.createSheet("첫번째 시트");     //워크시트 생성
+		
+		
+		//헤더
+        objRow = objSheet.createRow(0);
+        objRow.setHeight ((short) 0x150);
+        
+        objCell = objRow.createCell(0);
+        objCell.setCellValue("회원번호");
+        objCell.setCellStyle(styleHd_title);
+
+        objCell = objRow.createCell(1);
+        objCell.setCellValue("회원명");
+        objCell.setCellStyle(styleHd_title);
+		
+        objCell = objRow.createCell(2);
+        objCell.setCellValue("생년월일");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(3);
+        objCell.setCellValue("회원구분");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(4);
+        objCell.setCellValue("회원등급");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(5);
+        objCell.setCellValue("대원여부");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(6);
+        objCell.setCellValue("지도자여부");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(7);
+        objCell.setCellValue("평생회원여부");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(8);
+        objCell.setCellValue("전종여부");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(9);
+        objCell.setCellValue("성별");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(10);
+        objCell.setCellValue("연락처");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(11);
+        objCell.setCellValue("이메일");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(12);
+        objCell.setCellValue("우편번호");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(13);
+        objCell.setCellValue("집주소");
+        objCell.setCellStyle(styleHd_title);
+		//바디
+        int doublecnt = 0;
+		for(int i=0; i<attendance_list.size(); i++) {
+        	//순서
+			objRow = objSheet.createRow(i+1+doublecnt);
+	        objRow.setHeight ((short) 0x150);
+	        objSheet.autoSizeColumn(i);
+	        
+	        //회원번호
+	        objCell = objRow.createCell(0);
+	        objCell.setCellValue(attendance_list.get(i).getMEMBERNO());
+	        objSheet.setColumnWidth(0, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //회원명
+	        objCell = objRow.createCell(1);
+	        objCell.setCellValue(attendance_list.get(i).getKNAME());
+	        objSheet.setColumnWidth(1, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+
+	        //생년월일
+	        objCell = objRow.createCell(2);
+	        objCell.setCellValue(attendance_list.get(i).getBIRTHDAY());
+	        objSheet.setColumnWidth(2, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //회원구분
+	        String memclscode = "개인";
+	        if(attendance_list.get(i).getMEMCLSCODE().equals("2")) memclscode = "법인";
+    		if(attendance_list.get(i).getMEMCLSCODE().equals("3")) memclscode = "단체";
+    		
+	        objCell = objRow.createCell(3);
+	        objCell.setCellValue(memclscode);
+	        objSheet.setColumnWidth(3, (short)0x800);
+	        objCell.setCellStyle(styleHd);
+	        
+        	
+        	//회원등급
+	        String memgradecode = "대원/지도자";
+	        if(attendance_list.get(i).getMEMGRADECODE() != null) {
+		        if(attendance_list.get(i).getMEMGRADECODE().equals("1")) memclscode = "행사회원";
+	    		if(attendance_list.get(i).getMEMGRADECODE().equals("2")) memclscode = "후원회원";
+	        }
+	        objCell = objRow.createCell(4);
+	        objCell.setCellValue(memgradecode);
+	        objSheet.setColumnWidth(4, (short)0x1200);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //대원여부
+	        objCell = objRow.createCell(5);
+	        objCell.setCellValue(attendance_list.get(i).getTROOPSCOUTY());
+	        objSheet.setColumnWidth(5, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //지도자여부
+	        objCell = objRow.createCell(6);
+	        objCell.setCellValue(attendance_list.get(i).getTROOPLEADERY());
+	        objSheet.setColumnWidth(6, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //평생회원여부
+	        objCell = objRow.createCell(7);
+	        objCell.setCellValue(attendance_list.get(i).getLIFE());
+	        objSheet.setColumnWidth(7, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //전종여부
+	        objCell = objRow.createCell(8);
+	        objCell.setCellValue(attendance_list.get(i).getEMPLOYEEY());
+	        objSheet.setColumnWidth(8, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+
+	        //성별
+	        String sex = "남";
+	        if(attendance_list.get(i).getSEX().equals("W")) sex = "여";
+	        objCell = objRow.createCell(9);
+	        objCell.setCellValue(sex);
+	        objSheet.setColumnWidth(9, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //연락처
+	        objCell = objRow.createCell(10);
+	        objCell.setCellValue(attendance_list.get(i).getMOBILE());
+	        objSheet.setColumnWidth(10, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //이메일
+	        objCell = objRow.createCell(11);
+	        objCell.setCellValue(attendance_list.get(i).getEMAIL());
+	        objSheet.setColumnWidth(11, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //우편번호
+	        objCell = objRow.createCell(12);
+	        objCell.setCellValue(attendance_list.get(i).getHPOSTCODE());
+	        objSheet.setColumnWidth(12, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	      
+	        //집주소
+	        objCell = objRow.createCell(13);
+	        objCell.setCellValue(attendance_list.get(i).getHADDR());
+	        objSheet.setColumnWidth(13, (short)0x4500);
+	        objCell.setCellStyle(styleHd);
+	      
+        }
+	        
+	      
+	       
+		String filename = "회원통합관리_회원목록";
+		String header = request.getHeader("User-Agent");
+		if(header.contains("Edge") || header.contains("MSIE")) {
+			filename = URLEncoder.encode(filename, "UTF-8").replaceAll("//+", "%20");
+		}
+		else if(header.contains("Chrome") || header.contains("Opera") || header.contains("Firefox")) {
+			filename = new String(filename.getBytes("UTF-8"), "ISO-8859-1");
+		}
+        
+        response.setHeader("Content-Disposition", "ATTachment; Filename=" +filename +".xls");
+
+        OutputStream fileOut  = response.getOutputStream();
+        objWorkBook.write(fileOut);
+        fileOut.close();
+
+        response.getOutputStream().flush();
+        response.getOutputStream().close();
+	}
+	
 	//조직통합창
 	@RequestMapping("/front/organization")
 	public String organization(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
@@ -334,6 +558,147 @@ public class PictController {
 		model.addAttribute("unity_list", unity_list);
 		
 		return "pict/front/units";
+	}
+	@RequestMapping(value = "/units_excel")
+	public void units_excel(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String current_year = dateFormat.format(today);
+		
+
+		pictVO.setASSOCIATIONCODE(pictVO.getSearch_associationcode());
+		int year = Integer.parseInt(pictVO.getSearch_year());
+		pictVO.setPre_year((year - 1) + "");
+		List<PictVO> attendance_list = pictService.units_list_excel(pictVO);
+
+		HSSFWorkbook objWorkBook = new HSSFWorkbook();
+        HSSFSheet objSheet = null;
+        HSSFRow objRow = null;
+        HSSFCell objCell = null;       //셀 생성
+
+        //제목 폰트
+        HSSFFont font = objWorkBook.createFont();
+        HSSFFont font_title = objWorkBook.createFont();
+        font_title.setFontHeightInPoints((short)11);
+        font.setFontHeightInPoints((short)9);
+        font.setFontName("맑은고딕");
+		int rowIndex = 0;
+		
+		HSSFCellStyle styleHd_title = objWorkBook.createCellStyle(); // 제목 스타일
+		HSSFCellStyle styleHd = objWorkBook.createCellStyle();    //내용 스타일
+		
+		styleHd_title.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+		styleHd_title.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		
+		// 각항목 테두리
+		styleHd.setBorderRight(BorderStyle.THIN);
+		styleHd.setBorderLeft(BorderStyle.THIN);
+		styleHd.setBorderTop(BorderStyle.THIN);
+		styleHd.setBorderBottom(BorderStyle.THIN);
+		styleHd.setWrapText(true);//자동 줄바꿈
+
+		styleHd_title.setBorderRight(BorderStyle.THIN);
+		styleHd_title.setBorderLeft(BorderStyle.THIN);
+		styleHd_title.setBorderTop(BorderStyle.THIN);
+		styleHd_title.setBorderBottom(BorderStyle.THIN);
+					
+        objSheet = objWorkBook.createSheet("첫번째 시트");     //워크시트 생성
+		
+		
+		//헤더
+        objRow = objSheet.createRow(0);
+        objRow.setHeight ((short) 0x150);
+        
+        objCell = objRow.createCell(0);
+        objCell.setCellValue("지구연합회");
+        objCell.setCellStyle(styleHd_title);
+
+        objCell = objRow.createCell(1);
+        objCell.setCellValue("대번호");
+        objCell.setCellStyle(styleHd_title);
+		
+        objCell = objRow.createCell(2);
+        objCell.setCellValue("단위대명");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(3);
+        objCell.setCellValue("스카우트구분");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(4);
+        objCell.setCellValue("단위대구분");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(5);
+        objCell.setCellValue("상세");
+        objCell.setCellStyle(styleHd_title);
+        
+		//바디
+        int doublecnt = 0;
+		for(int i=0; i<attendance_list.size(); i++) {
+        	//순서
+			objRow = objSheet.createRow(i+1+doublecnt);
+	        objRow.setHeight ((short) 0x150);
+	        objSheet.autoSizeColumn(i);
+	        
+	        //지구연합회
+	        objCell = objRow.createCell(0);
+	        objCell.setCellValue(attendance_list.get(i).getPARENTTROOPNAME());
+	        objSheet.setColumnWidth(0, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //대번호
+	        objCell = objRow.createCell(1);
+	        objCell.setCellValue(attendance_list.get(i).getDISPTROOPNO());
+	        objSheet.setColumnWidth(1, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+
+	        //단위대명
+	        objCell = objRow.createCell(2);
+	        objCell.setCellValue(attendance_list.get(i).getTROOPNAME());
+	        objSheet.setColumnWidth(2, (short)0x2000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //스카우트구분
+	        objCell = objRow.createCell(3);
+	        objCell.setCellValue(attendance_list.get(i).getSCOUTCLSNAME());
+	        objSheet.setColumnWidth(3, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+        	
+        	//단위대구분
+	        objCell = objRow.createCell(4);
+	        objCell.setCellValue(attendance_list.get(i).getTROOPCLSNAME());
+	        objSheet.setColumnWidth(4, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //상세
+	        objCell = objRow.createCell(5);
+	        objCell.setCellValue(attendance_list.get(i).getDETAIL());
+	        objSheet.setColumnWidth(5, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+        }
+	        
+	      
+	       
+		String filename = "단위대통합관리_단위대목록";
+		String header = request.getHeader("User-Agent");
+		if(header.contains("Edge") || header.contains("MSIE")) {
+			filename = URLEncoder.encode(filename, "UTF-8").replaceAll("//+", "%20");
+		}
+		else if(header.contains("Chrome") || header.contains("Opera") || header.contains("Firefox")) {
+			filename = new String(filename.getBytes("UTF-8"), "ISO-8859-1");
+		}
+        
+        response.setHeader("Content-Disposition", "ATTachment; Filename=" +filename +".xls");
+
+        OutputStream fileOut  = response.getOutputStream();
+        objWorkBook.write(fileOut);
+        fileOut.close();
+
+        response.getOutputStream().flush();
+        response.getOutputStream().close();
 	}
 	
 	//단위대 통합창 단위대 선택했을때
@@ -432,7 +797,7 @@ public class PictController {
 			return "pict/main/message";
 		}
 		*/
-		List<?> former_list= pictService.former_list(pictVO);
+		List<PictVO> former_list= pictService.former_list(pictVO);
 		model.addAttribute("former_list", former_list);
 		model.addAttribute("pictVO", pictVO);
 		
@@ -440,6 +805,220 @@ public class PictController {
 		model.addAttribute("association_list", association_list);
 		
 		return "pict/front/former_list";
+	}
+	@RequestMapping(value = "/former_excel")
+	public void former_excel(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		
+		List<PictVO> attendance_list = pictService.former_list(pictVO);
+
+		HSSFWorkbook objWorkBook = new HSSFWorkbook();
+        HSSFSheet objSheet = null;
+        HSSFRow objRow = null;
+        HSSFCell objCell = null;       //셀 생성
+
+        //제목 폰트
+        HSSFFont font = objWorkBook.createFont();
+        HSSFFont font_title = objWorkBook.createFont();
+        font_title.setFontHeightInPoints((short)11);
+        font.setFontHeightInPoints((short)9);
+        font.setFontName("맑은고딕");
+		int rowIndex = 0;
+		
+		HSSFCellStyle styleHd_title = objWorkBook.createCellStyle(); // 제목 스타일
+		HSSFCellStyle styleHd = objWorkBook.createCellStyle();    //내용 스타일
+		
+		styleHd_title.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+		styleHd_title.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		
+		// 각항목 테두리
+		styleHd.setBorderRight(BorderStyle.THIN);
+		styleHd.setBorderLeft(BorderStyle.THIN);
+		styleHd.setBorderTop(BorderStyle.THIN);
+		styleHd.setBorderBottom(BorderStyle.THIN);
+		styleHd.setWrapText(true);//자동 줄바꿈
+
+		styleHd_title.setBorderRight(BorderStyle.THIN);
+		styleHd_title.setBorderLeft(BorderStyle.THIN);
+		styleHd_title.setBorderTop(BorderStyle.THIN);
+		styleHd_title.setBorderBottom(BorderStyle.THIN);
+					
+        objSheet = objWorkBook.createSheet("첫번째 시트");     //워크시트 생성
+		
+		
+		//헤더
+        objRow = objSheet.createRow(0);
+        objRow.setHeight ((short) 0x150);
+        
+        objCell = objRow.createCell(0);
+        objCell.setCellValue("회원번호");
+        objCell.setCellStyle(styleHd_title);
+
+        objCell = objRow.createCell(1);
+        objCell.setCellValue("이름");
+        objCell.setCellStyle(styleHd_title);
+		
+        objCell = objRow.createCell(2);
+        objCell.setCellValue("연맹");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(3);
+        objCell.setCellValue("소속부서1");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(4);
+        objCell.setCellValue("소속부서2");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(5);
+        objCell.setCellValue("직급");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(6);
+        objCell.setCellValue("생년월일");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(7);
+        objCell.setCellValue("휴대전화");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(8);
+        objCell.setCellValue("이메일");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(9);
+        objCell.setCellValue("탈퇴여부");
+        objCell.setCellStyle(styleHd_title);
+        
+		//바디
+        int doublecnt = 0;
+		for(int i=0; i<attendance_list.size(); i++) {
+        	//순서
+			objRow = objSheet.createRow(i+1+doublecnt);
+	        objRow.setHeight ((short) 0x150);
+	        objSheet.autoSizeColumn(i);
+	        
+	        //회원번호
+	        objCell = objRow.createCell(0);
+	        objCell.setCellValue(attendance_list.get(i).getMEMBERNO());
+	        objSheet.setColumnWidth(0, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //이름
+	        objCell = objRow.createCell(1);
+	        objCell.setCellValue(attendance_list.get(i).getKNAME());
+	        objSheet.setColumnWidth(1, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+
+	        //연맹
+	        objCell = objRow.createCell(2);
+	        objCell.setCellValue(attendance_list.get(i).getASSOCIATIONNAME());
+	        objSheet.setColumnWidth(2, (short)0x1200);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //소속부서1
+	        String sosock ="";
+	        if(attendance_list.get(i).getSosock() != null) sosock = "본부";
+	        objCell = objRow.createCell(3);
+	        objCell.setCellValue(sosock);
+	        objSheet.setColumnWidth(3, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+        	
+        	//소속부서2
+	        String depart ="";
+	        if(attendance_list.get(i).getDepart() != null) {
+	        	if(attendance_list.get(i).getDepart().equals("1")) depart = "조직훈육팀";
+	        	if(attendance_list.get(i).getDepart().equals("2")) depart = "국제비전팀";
+	        	if(attendance_list.get(i).getDepart().equals("3")) depart = "경영지원팀";
+	        	if(attendance_list.get(i).getDepart().equals("4")) depart = "총무회계팀";
+	        	if(attendance_list.get(i).getDepart().equals("5")) depart = "관리운영팀";
+	        	if(attendance_list.get(i).getDepart().equals("6")) depart = "조직훈육사업본부";
+	        	if(attendance_list.get(i).getDepart().equals("7")) depart = "관리운영사업본부";
+	        	if(attendance_list.get(i).getDepart().equals("8")) depart = "곤지암야영장";
+	        	if(attendance_list.get(i).getDepart().equals("9")) depart = "경영국제사업본부";
+	        	if(attendance_list.get(i).getDepart().equals("10")) depart = "사회공헌팀";
+	        	if(attendance_list.get(i).getDepart().equals("11")) depart = "토당청소년수련관";
+	        	if(attendance_list.get(i).getDepart().equals("12")) depart = "대외협력팀";
+	        }
+	        objCell = objRow.createCell(4);
+	        objCell.setCellValue(depart);
+	        objSheet.setColumnWidth(4, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //직급
+	        String ranked = "";
+	        if(attendance_list.get(i).getRanked() != null) {
+	        	if(attendance_list.get(i).getRanked().equals("1")) ranked = "총재";
+	        	if(attendance_list.get(i).getRanked().equals("2")) ranked = "사무총장";
+	        	if(attendance_list.get(i).getRanked().equals("3")) ranked = "중앙훈련원장";
+	        	if(attendance_list.get(i).getRanked().equals("4")) ranked = "사무처장 직무대리";
+	        	if(attendance_list.get(i).getRanked().equals("5")) ranked = "사무처장";
+	        	if(attendance_list.get(i).getRanked().equals("6")) ranked = "본부장";
+	        	if(attendance_list.get(i).getRanked().equals("7")) ranked = "팀장";
+	        	if(attendance_list.get(i).getRanked().equals("8")) ranked = "야영장장";
+	        	if(attendance_list.get(i).getRanked().equals("9")) ranked = "국장";
+	        	if(attendance_list.get(i).getRanked().equals("10")) ranked = "부장";
+	        	if(attendance_list.get(i).getRanked().equals("11")) ranked = "차장";
+	        	if(attendance_list.get(i).getRanked().equals("12")) ranked = "과장";
+	        	if(attendance_list.get(i).getRanked().equals("13")) ranked = "대리";
+	        	if(attendance_list.get(i).getRanked().equals("14")) ranked = "주임";
+	        	if(attendance_list.get(i).getRanked().equals("15")) ranked = "사원";
+	        	if(attendance_list.get(i).getRanked().equals("16")) ranked = "인턴";
+	        }
+	        objCell = objRow.createCell(5);
+	        objCell.setCellValue(ranked);
+	        objSheet.setColumnWidth(5, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //생년월일
+	        objCell = objRow.createCell(6);
+	        objCell.setCellValue(attendance_list.get(i).getBIRTHDAY());
+	        objSheet.setColumnWidth(6, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //휴대전화
+	        objCell = objRow.createCell(7);
+	        objCell.setCellValue(attendance_list.get(i).getMOBILE());
+	        objSheet.setColumnWidth(7, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //이메일
+	        objCell = objRow.createCell(8);
+	        objCell.setCellValue(attendance_list.get(i).getEMAIL());
+	        objSheet.setColumnWidth(8, (short)0x2000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //탈퇴여부
+	        String emp = "";
+	        if(attendance_list.get(i).getEMPLOYEEY() != null) {
+	        	if(attendance_list.get(i).getEMPLOYEEY().equals("X")) emp = "탈퇴";
+	        }
+	        objCell = objRow.createCell(9);
+	        objCell.setCellValue(emp);
+	        objSheet.setColumnWidth(9, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+        }
+	        
+	      
+	       
+		String filename = "스카우트통합관리_전종지도자목록";
+		String header = request.getHeader("User-Agent");
+		if(header.contains("Edge") || header.contains("MSIE")) {
+			filename = URLEncoder.encode(filename, "UTF-8").replaceAll("//+", "%20");
+		}
+		else if(header.contains("Chrome") || header.contains("Opera") || header.contains("Firefox")) {
+			filename = new String(filename.getBytes("UTF-8"), "ISO-8859-1");
+		}
+        
+        response.setHeader("Content-Disposition", "ATTachment; Filename=" +filename +".xls");
+
+        OutputStream fileOut  = response.getOutputStream();
+        objWorkBook.write(fileOut);
+        fileOut.close();
+
+        response.getOutputStream().flush();
+        response.getOutputStream().close();
 	}
 	//전종클릭시 정보 리턴
 	@RequestMapping("/former_info")

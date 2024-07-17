@@ -122,7 +122,7 @@ public interface PictService {
 
 	public List<PictVO> prev_scout_list(PictVO pictVO) throws Exception;
 
-	public List<?> former_list(PictVO pictVO) throws Exception;
+	public List<PictVO> former_list(PictVO pictVO) throws Exception;
 
 	public void former_save(PictVO pictVO) throws Exception;
 
@@ -179,6 +179,8 @@ public interface PictService {
 	public List<PictVO> youth_list(PictVO pictVO) throws Exception;
 
 	public List<PictVO> youth_group(PictVO pictVO) throws Exception;
+
+	public List<PictVO> units_list_excel(PictVO pictVO) throws Exception;
 
 
 
