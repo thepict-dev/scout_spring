@@ -20,6 +20,7 @@
 	            <div class="joinContainer">
 	            	<form action="" id="search_form" name="search_form" method="post" enctype="multipart/form-data">
 	            		<input type="hidden" id="type" name="type">
+	            		<input type="hidden" id="search_associationcode" name="search_associationcode">
 	            	</form>
                     <form action="" id="register" name="register" method="post" enctype="multipart/form-data">
                         <h2 class="subTitles" style="padding: 16px 0 0 24px;">사용자 정보</h2>
@@ -130,12 +131,18 @@
                            <div class="tableContainer">
                                <div class="tableTopButton">
 			                    	<h2 class="subTitles">사용자 조회 내용</h2>
-			                    	
+
 			                    	<div class="topButtonWrapper">
-			                    		<a href="#lnk" class="smButton" onclick="fn_order('number')">회원번호순</a>
-			                    		<a href="#lnk" class="smButton" onclick="fn_order('birthday')">생년월일순</a>
-			                    		<a href="#lnk" class="smButton" onclick="fn_order('text')">가나다순</a>
-			                    		<a href="#lnk" class="smButton" onclick="former_excel()"><img src="/front_img/download.png" alt="">엑셀저장</a>
+			                    		<select name="search_associationcode_form" id="search_associationcode_form" class="lgThinSelect" style="margin-top:5px">
+                                        	<option value="">연맹선택</option>
+		                             		<c:forEach var="association_list" items="${association_list}" varStatus="status">
+			                                	<option value="${association_list.ASSOCIATIONCODE}" <c:if test="${pictVO.search_associationcode eq association_list.ASSOCIATIONCODE}">selected</c:if>> ${association_list.ASSOCIATIONNAME}</option>
+			                                </c:forEach>
+		                                </select>
+			                    		<a href="#lnk" class="smButton" onclick="fn_order('number')" style="margin-top:5px">회원번호순</a>
+			                    		<a href="#lnk" class="smButton" onclick="fn_order('birthday')" style="margin-top:5px">생년월일순</a>
+			                    		<a href="#lnk" class="smButton" onclick="fn_order('text')" style="margin-top:5px">가나다순</a>
+			                    		<a href="#lnk" class="smButton" onclick="former_excel()" style="margin-top:5px"><img src="/front_img/download.png" alt="">엑셀저장</a>
 			                    	</div>
 			                    </div>
                                <div class="tableWrapper">
@@ -224,6 +231,12 @@
         </div>
 	</body>
 	<script>
+	
+		$("#search_associationcode_form").change(function(){
+			$('#search_associationcode').val($('#search_associationcode_form').val())
+			$("#search_form").attr("action", "/admin/front/former_list");
+			$("#search_form").submit();
+		});
 		function fn_order(type){
 			$('#type').val(type);
 			$("#search_form").attr("action", "/admin/front/former_list");

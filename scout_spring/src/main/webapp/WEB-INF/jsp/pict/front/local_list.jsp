@@ -13,7 +13,7 @@
 		<%@ include file="./include/lnb.jsp" %>
 		<c:import url="./include/header.jsp">
 			<c:param name="pageParent" value="홈페이지 관리"/>
-	    	<c:param name="pageTitle" value="지역대 상담관리"/>
+	    	<c:param name="pageTitle" value="스카우트 가입 관리"/>
 	    </c:import>
 		    <div class="contentsContainer">
 	        <div class="listContainer">
@@ -22,9 +22,36 @@
 	                    <p>총 <span>${board_cnt}</span>개</p>
 	                    
 	                    <div class="inputsContainer">
+		                    <div class="inputBox">
+	                            <select name="search_associationcode" id="search_associationcode" class="lgThinInput">
+	                            	<option value="">연맹선택</option>
+	                                <option value="011" <c:if test="${pictVO.search_associationcode eq '011'}">selected</c:if>> 서울북부</option>
+									<option value="012" <c:if test="${pictVO.search_associationcode eq '012'}">selected</c:if>> 서울남부</option>
+									<option value="020" <c:if test="${pictVO.search_associationcode eq '020'}">selected</c:if>> 부산</option>
+									<option value="030" <c:if test="${pictVO.search_associationcode eq '030'}">selected</c:if>> 대구</option>
+									<option value="040" <c:if test="${pictVO.search_associationcode eq '040'}">selected</c:if>> 인천</option>
+									<option value="050" <c:if test="${pictVO.search_associationcode eq '050'}">selected</c:if>> 광주</option>
+									<option value="060" <c:if test="${pictVO.search_associationcode eq '060'}">selected</c:if>> 대전</option>
+									<option value="070" <c:if test="${pictVO.search_associationcode eq '070'}">selected</c:if>> 울산</option>
+									<option value="100" <c:if test="${pictVO.search_associationcode eq '100'}">selected</c:if>> 경기북부</option>
+									<option value="110" <c:if test="${pictVO.search_associationcode eq '110'}">selected</c:if>> 경기남부</option>
+									<option value="120" <c:if test="${pictVO.search_associationcode eq '120'}">selected</c:if>> 강원</option>
+									<option value="130" <c:if test="${pictVO.search_associationcode eq '130'}">selected</c:if>> 충북</option>
+									<option value="140" <c:if test="${pictVO.search_associationcode eq '140'}">selected</c:if>> 충남세종</option>
+									<option value="150" <c:if test="${pictVO.search_associationcode eq '150'}">selected</c:if>> 전북</option>
+									<option value="160" <c:if test="${pictVO.search_associationcode eq '160'}">selected</c:if>> 전남</option>
+									<option value="170" <c:if test="${pictVO.search_associationcode eq '170'}">selected</c:if>> 경북</option>
+									<option value="180" <c:if test="${pictVO.search_associationcode eq '180'}">selected</c:if>> 경남</option>
+									<option value="190" <c:if test="${pictVO.search_associationcode eq '190'}">selected</c:if>> 제주</option>
+									<option value="210" <c:if test="${pictVO.search_associationcode eq '210'}">selected</c:if>> 가톨릭</option>
+									<option value="220" <c:if test="${pictVO.search_associationcode eq '220'}">selected</c:if>> 원불교</option>
+									<option value="230" <c:if test="${pictVO.search_associationcode eq '230'}">selected</c:if>> 불교</option>
+									<option value="240" <c:if test="${pictVO.search_associationcode eq '240'}">selected</c:if>> 기독교</option>
+	                            </select>
+	                        </div>
 	                        <div class="inputBox">
 	                            <select name="search_status" id="search_status" class="lgThinInput">
-	                            	<option value="">전체</option>
+	                            	<option value="">상태선택</option>
 	                                <option value="1" <c:if test="${pictVO.search_status eq '1'}">selected</c:if>>상담요청중</option>
 	                                <option value="2" <c:if test="${pictVO.search_status eq '2'}">selected</c:if>>상담완료</option>
 	                            </select>
@@ -123,6 +150,10 @@
 	</div>
 		
 	<script>
+		$("#search_associationcode").change(function(){
+			$("#search_fm").attr("action", "/admin/front/local_list");
+			$("#search_fm").submit();
+		});
 	
 		$('select[name="status_select"]').change(function () {
 			var idx = $(this).data("id");

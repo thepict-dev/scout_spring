@@ -58,7 +58,7 @@
             <div class="headerTopLinks">
                 <a href="/admin/front/scout_whole_register" target="_blank" title="새창이동">대등록 신청<img src="/user_img/right.png" alt=""></a>
                 <!-- <a href="#lnk" target="_blank" title="새창이동">대번호 검색<img src="/user_img/right.png" alt=""></a> -->
-                <a href="#lnk" class="localApply">지역가입 안내<img src="/user_img/right.png" alt=""></a>
+                <a href="#lnk" class="localApply">스카우트 가입하기<img src="/user_img/right.png" alt=""></a>
             </div>
         </div>
     </div>

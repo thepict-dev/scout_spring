@@ -157,6 +157,7 @@ public class PictController {
 					request.getSession().setAttribute("id", pictVO.getMEMBERNO());
 					request.getSession().setAttribute("name", pictVO.getKNAME());
 					request.getSession().setAttribute("associationname", pictVO.getASSOCIATIONNAME());
+					request.getSession().setAttribute("associationcode", pictVO.getASSOCIATIONCODE());
 					request.getSession().setAttribute("leaderpositionname", pictVO.getLEADERPOSITIONNAME());
 					request.getSession().setAttribute("employeey", pictVO.getEMPLOYEEY());
 					request.getSession().setAttribute("adminy", pictVO.getADMINY());
@@ -187,6 +188,7 @@ public class PictController {
 		request.getSession().setAttribute("id", null);
 		request.getSession().setAttribute("name", null);
 		request.getSession().setAttribute("associationname", null);
+		request.getSession().setAttribute("associationcode", null);
 		request.getSession().setAttribute("leaderpositionname", null);
 		request.getSession().setAttribute("employeey", null);
 		request.getSession().setAttribute("adminy", null);
@@ -1251,6 +1253,30 @@ public class PictController {
 			return map;
 		}
 	}
+	
+	@RequestMapping("/today_task")
+	@ResponseBody
+	public HashMap<String, Object> today_task(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String memberno = param.get("memberno").toString();
+		String associationcode = param.get("associationcode").toString();
+		
+
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		/*
+		List<PictVO> relation_list = pictService.get_relation_person_search(pictVO);
+		
+		if(relation_list.size() > 0) {
+			map.put("list", relation_list);
+			return map;
+		}
+		else {
+			return map;
+		}
+		*/
+		return map;
+	}
+	
 	
 	//관계
 	@RequestMapping("/relation_insert")

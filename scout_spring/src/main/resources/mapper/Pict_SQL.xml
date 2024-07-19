@@ -906,6 +906,10 @@
 			and m.MEMBERNO = #{MEMBERNO}
 		</if>
 		
+		<if test="search_associationcode != null and search_associationcode != ''">
+			and m.association = #{search_associationcode}
+		</if>
+		
 		<if test="type == null or type == ''">
 			order by m.EMPLOYEEY desc, m.KNAME asc
 		</if>
@@ -1209,7 +1213,9 @@
 		<if test="search_status != null and search_status != ''">
 			and status = #{search_status}
 		</if>
-		
+		<if test="search_associationcode != null and search_associationcode != ''">
+			and a.ASSOCIATIONCODE = #{search_associationcode}
+		</if>
 		order by ENTERDATE desc
 	</select>
 	

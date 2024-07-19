@@ -66,7 +66,7 @@
                 	<li><a href="/admin/front/board_list">중앙 게시물관리</a></li>
                 	<li><a href="/admin/front/board_list_sub">지방·특수 게시물관리</a></li>
                 	<li><a href="/admin/front/reservation_list">시설 예약관리</a></li>
-                	<li><a href="/admin/front/local_list">지역대 상담관리</a></li>
+                	<li><a href="/admin/front/local_list">스카우트 가입 관리</a></li>
                	</ul>
             </li>
             <li <c:if test="${association_price ne -1}">class="active"</c:if>>

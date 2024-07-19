@@ -236,7 +236,7 @@
                             </li>
                         </ul>
                         
-                        <ul class="histories 1980s" id="1980s">
+                        <ul class="histories 1900s" id="1900s">
                             <li>
                                 <p>1984</p>
                                 <span>세계연맹 국제 로터리클럽 국제 이해상 수상</span>
@@ -268,7 +268,7 @@
                         <a href="#2010s"><span></span><span>2010년대</span></a>
                         <a href="#2000s"><span></span><span>2000년대</span></a>
                         <a href="#1990s"><span></span><span>1990년대</span></a>
-                        <a href="#1980s"><span></span><span>1980년대</span></a>
+                        <a href="#1900s"><span></span><span>1900년대</span></a>
                     </div>
                 </div>
             </div>

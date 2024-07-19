@@ -371,7 +371,7 @@
                         <ul class="jamLists">
                             <li>
                                 <div class="jamListImgTexts">
-                                    <img src="/user_img/2023젬버리.png" alt="엠블럼" style="max-width:145px">
+                                    <img src="/user_img/5.png" alt="엠블럼" style="max-width:145px">
                                     <div class="jamListTexts">
                                         <h4>제25회 세계스카우트잼버리</h4>
                                         <p>

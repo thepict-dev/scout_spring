@@ -10,10 +10,10 @@
         <div class="modalInner">
             <form action="">
                 <div class="bookingForm">
-                    <h4 class="modalTitle">지역가입 안내</h4>
+                    <h4 class="modalTitle">스카우트 가입하기</h4>
                     <div class="localDesc">
                         <p>* 지방특수연맹 현황</p>
-                        <span>한국스카우트연맹은 지역과 종교를 기준으로 21개 지방특수연맹으로 구분됩니다.<br>모든 대원과 지도자는 이러한 21개의 연맹에 소속되어 활동할 수 있습니다.</span>
+                        <span>한국스카우트연맹은 지역과 종교를 기준으로 22개 지방특수연맹으로 구분됩니다.<br>모든 대원과 지도자는 이러한 22개의 연맹에 소속되어 활동할 수 있습니다.</span>
                         <span>원활한 상담을 위해 연맹 구분을 참고해주세요.</span>
                     </div>
                     <div class="inputsContainer">
@@ -89,7 +89,6 @@
                             <div class="inputBox" style="width: 100%;">
                                 <p>*상담 희망 연맹</p>
                                 <select name="association" id="association">
-									<option value="200"> 중앙본부</option>
 									<option value="011"> 서울북부</option>
 									<option value="012"> 서울남부</option>
 									<option value="020"> 부산</option>
@@ -112,8 +111,6 @@
 									<option value="220"> 원불교</option>
 									<option value="230"> 불교</option>
 									<option value="240"> 기독교</option>
-									<option value="300"> 국회스카우트의원</option>
-									<option value="400"> 지원재단</option>
                                 </select>
                             </div>
                         </div>

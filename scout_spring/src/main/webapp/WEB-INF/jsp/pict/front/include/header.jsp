@@ -8,6 +8,7 @@
 	pageContext.setAttribute("id", session.getAttribute("id"));
 	pageContext.setAttribute("name", session.getAttribute("name"));
 	pageContext.setAttribute("associationname", session.getAttribute("associationname"));
+	pageContext.setAttribute("associationcode", session.getAttribute("associationcode"));
 	pageContext.setAttribute("leaderpositionname", session.getAttribute("leaderpositionname"));
 	pageContext.setAttribute("picimg", session.getAttribute("picimg"));
 %>
@@ -45,5 +46,33 @@
 			location.href="/admin/logout"
 		}
 	}
+	
+	$(document).ready(function(){
+		var requestData = {
+	        memberno : '${id}',
+	        associationcode : '${associationcode}'
+	    }
+		//여기서~ 연맹별 전종이 오늘 해야할일~
+		debugger
+	 
+		$.ajax({
+			url : "/admin/today_task"
+			, type : "POST"
+			, data : JSON.stringify(param)
+			, contentType : "application/json"
+			, dataType : "json"
+			, async : false
+			, success : function(data, status, xhr) {
+				var html ="";
+				console.log(data)
 
+			}
+			, error : function(xhr, status, error) {
+				console.log(xhr)
+				console.log("에러")
+			}
+		});
+
+   	});
+	
 </script>

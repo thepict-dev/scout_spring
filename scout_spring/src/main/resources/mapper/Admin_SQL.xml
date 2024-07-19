@@ -3,7 +3,7 @@
 <mapper namespace="pict.mapper.AdminMapper">
 	
 	<select id="get_user_info" resultType="pictVO">
-		select m.MEMBERNO, m.KNAME, m.password, a.ASSOCIATIONNAME, m.PICIMG,
+		select m.MEMBERNO, m.KNAME, m.password, a.ASSOCIATIONNAME, m.PICIMG, a.ASSOCIATIONCODE,
 		(select LEADERPOSITIONNAME from leaderpositioncode lp where lp.LEADERPOSITIONCODE1 = l.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2) as LEADERPOSITIONNAME,
 		EMPLOYEEY
 		, ifnull((select ADMINY from leader a where a.MEMBERNO = #{MEMBERNO} and left(a.STARTDAY, 4) = #{YEAR} order by ADMINY desc limit 1 offset 0), "N") as ADMINY

@@ -79,12 +79,12 @@
 			    </div>
 			    <div class="swiper-slide">
 		            <a href="https://www.education.or.kr/studyjob/GroupCourse.asp?GroupSeq=751&QBCode=" target="_blank">
-		                <img src="/user_img/01_2.png" alt="메인배너">
+		                <img src="/user_img/지도자훈련.png" alt="메인배너">
 		            </a>
 			    </div>
 			    <div class="swiper-slide">
 		            <a href="https://notice.naver.com/notices/form/14352?page=1&pageSize=10&newNoticeHour=168&t=d" target="_blank">
-		                <img src="/user_img/main-banner3.png" alt="메인배너">
+		                <img src="/user_img/정기구독.png" alt="메인배너">
 		            </a>
 			    </div>
 			  </div>
