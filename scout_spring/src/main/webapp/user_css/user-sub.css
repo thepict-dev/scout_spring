@@ -231,7 +231,18 @@
 	display: none;
     width: 100%;
 }
+.tabNavSub{
+    display: flex;
+}
+.tabInnerSub{
+	display: none;
+    width: 100%;
+}
 .tabInner.active {
+	display: block;
+	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.tabInnerSub.active {
 	display: block;
 	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
@@ -2533,4 +2544,45 @@ input[type="date"]::after{
 }
 .bookingBtn button:hover{
 	background-color: var(--grey-50);
+}
+
+/* 서브탭 */
+.tabNavSub{
+	display: flex;
+	padding-bottom: 10px;
+}
+.tabNavSub li{
+	padding: 12px 32px;
+	color: var(--grey-500);
+	font-family: SUIT;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 100%; /* 34px */
+	letter-spacing: -1.7px;
+}
+.tabNavSub li:hover{
+	color: var(--text-color);
+}
+.tabNavSub li.active{
+	color: var(--text-color);
+}
+.tabInnerSub{
+	display: none;
+    width: 100%;
+}
+@media all and (max-width : 1024px){
+	.tabNavSub{
+		padding-bottom: 20px;
+		overflow-x: scroll;
+	}
+	.tabNavSub::-webkit-scrollbar{
+		display: none;
+	}
+	.tabNavSub li{
+		white-space: nowrap;
+		padding: 12px 20px;
+		font-size: 16px;
+		letter-spacing: -1px;
+	}
 }

@@ -59,6 +59,28 @@ mbTabItem.forEach((tab, idx) => {
     });
 });
 
+//서브탭
+const subTabItem = document.querySelectorAll('.tabNavSub li');
+const subTabInner = document.querySelectorAll('.tabInnerSub');
+
+function activateSubTab(tabs, idx) {
+    subTabInner.forEach((inners) => {
+      inners.classList.remove('active');
+    });
+
+    tabs.forEach((tab) => {
+      tab.classList.remove('active');
+    });
+
+    tabs[idx].classList.add('active');
+    subTabInner[idx].classList.add('active');
+}
+subTabItem.forEach((tab, idx) => {
+    tab.addEventListener('click', function() {
+      activateSubTab(subTabItem, idx);
+    });
+});
+
 // 예약신청 모달 열기
 $('.bookingBtn button').click(function(){
   $('.modal').show();
