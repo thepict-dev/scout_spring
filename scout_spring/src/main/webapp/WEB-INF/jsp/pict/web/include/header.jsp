@@ -67,13 +67,8 @@
             <div class="gnbLeft">
                 <h1><a href="/"><img src="/user_img/logo.svg" alt="로고"></a></h1>
                 <ul class="gnb">
-                    <!-- <li <c:if test="${main eq true}">class="active"</c:if>><a href="/">홈</a></li> 
-                    <li>
-                        <a href="#lnk">커뮤니티</a>
-                    </li>
-                    <li>
-                        <a href="#lnk">행사</a>
-                    </li> -->
+                    <li><a href="#lnk" class="localApply">스카우트 가입하기</a></li> 
+                    
                     <li <c:if test="${integrated ne -1 || program ne -1 || information ne -1}">class="active"</c:if>>
                         <a href="/integrated">자료실</a>
                         <ul class="gnbSub">
