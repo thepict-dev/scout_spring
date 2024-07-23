@@ -82,13 +82,17 @@ header{
 .gnb{
 	display: flex;
 	column-gap: 12px;
+	height: 100%;
 }
 .gnb > li{
 	position: relative;
+	height: 100%;
 }
 .gnb > li > a{
 	position: relative;
-	display: block;
+	display: flex;
+    align-items: center;
+	height: 100%;
 	padding: 12px 16px;
 	color: var(--grey-700);
 	font-size: 20px;
@@ -161,7 +165,7 @@ header{
 
 .gnbSub{
 	position: absolute;
-	top: 80px;
+	top: 101%;
 	left: 50%;
 	transform: translateX(-50%);
 	z-index: 10;

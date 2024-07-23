@@ -16,6 +16,12 @@
         </div>
         <div class="subContents">
             <div class="noticeWrapper">
+                <form action="">
+                    <div class="searchInputBox">
+                        <input type="text">
+                        <a href="#lnk"><img src="/user_img/list-sc.png" alt=""></a>
+                    </div>
+                </form>
                 <ul class="notice">
                 	<c:forEach var="board_list" items="${board_list}" varStatus="status">
                 		<li>

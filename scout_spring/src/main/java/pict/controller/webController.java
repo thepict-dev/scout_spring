@@ -353,17 +353,35 @@ public class webController {
 		
 		return "pict/web/organization";
 	}
-	//규정,휘장
+	//규정
 	@RequestMapping("rules")
 	public String rules(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		
 		return "pict/web/rules";
+	}
+	//선서
+	@RequestMapping("oath")
+	public String oath(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/oath";
+	}
+	//휘장
+	@RequestMapping("logos")
+	public String logos(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/logos";
 	}
 	//시설안내,예약
 	@RequestMapping("facility")
 	public String facility(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 
 		return "pict/web/facility";
+	}
+	//스카우트 설명
+	@RequestMapping("scouts")
+	public String scouts(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+
+		return "pict/web/scouts";
 	}
 
 	@RequestMapping("facility_reservation")

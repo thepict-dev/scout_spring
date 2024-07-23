@@ -1480,7 +1480,7 @@
 	position: fixed;
 	left: 0;
 	top: 0;
-	z-index: 15;
+	z-index: 100;
 	display: none;
 	width: 100%;
 	height: 100%;
@@ -2584,5 +2584,98 @@ input[type="date"]::after{
 		padding: 12px 20px;
 		font-size: 16px;
 		letter-spacing: -1px;
+	}
+}
+
+.noticeWrapper form{
+	width: 100%;
+	margin-bottom: 20px;
+}
+.searchInputBox{
+	position: relative;
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+}
+.searchInputBox input[type="text"]{
+	border: 1px solid var(--grey-100);
+	width: 209px;
+    padding: 8px 40px 8px 12px;
+    border-bottom: 1px solid var(--grey-100);
+    background: #FFF;
+    color: var(--text-color);
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 100%; /* 18px */
+	font-family: var(--fn-suit);
+	letter-spacing: -0.9px;
+    transition: all .3s;
+}
+.searchInputBox input:focus{
+	outline: none;
+    border: 1px solid var(--grey-800);
+}
+.searchInputBox input::placeholder{
+	color: var(--grey-500);
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 100%; /* 18px */
+	letter-spacing: -0.9px;
+}
+.searchInputBox a{
+	position: absolute;
+	right: 12px;
+	top: 50%;
+	transform: translateY(-50%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+}
+.searchInputBox a img{
+	width: 100%;
+}
+
+.ageImg{
+	position: relative;
+	width: 100%;
+	height: 340px;
+	margin-top: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+.ageImg img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.textsWrapper.ages:not(:first-of-type) {
+    border-top: 0;
+}
+.textsWrapper.ages .bullets p {
+    max-width: 800px;
+}
+@media all and (max-width : 1024px){
+	.contentTitle.ages{
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+        font-size: 26px;
+        letter-spacing: -1.5px;
+    }
+	.ageImg{
+		position: relative;
+		width: 200px;
+		height: 340px;
+		margin: 0 auto 20px;
+	}
+	.ageImg img{
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	.textsWrapper.ages .bullets p {
+		max-width: 800px;
 	}
 }
