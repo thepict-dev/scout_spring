@@ -305,9 +305,16 @@ public class PictVO extends PictDefaultVO {
 	private String troopclscode2_search;
 	private String parentorgno_search;
 	private String scoutclscode_search;
+	private String LIFERANK;
 	
 	
 	
+	public String getLIFERANK() {
+		return LIFERANK;
+	}
+	public void setLIFERANK(String lIFERANK) {
+		LIFERANK = lIFERANK;
+	}
 	public String getAssociationcode_search() {
 		return associationcode_search;
 	}

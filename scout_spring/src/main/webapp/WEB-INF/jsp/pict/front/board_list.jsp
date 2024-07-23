@@ -26,7 +26,7 @@
 	                            	<option value="">전체</option>
 	                                <option value="56" <c:if test="${pictVO.BRDNO eq '56'}">selected</c:if>>공지사항</option>
 	                                <option value="227" <c:if test="${pictVO.BRDNO eq '227'}">selected</c:if>>언론에 비친 SCOUT</option>
-	                                <option value="290" <c:if test="${pictVO.BRDNO eq '290'}">selected</c:if>>대운영자료실</option>
+	                                <option value="290" <c:if test="${pictVO.BRDNO eq '290'}">selected</c:if>>프로그램자료실</option>
 	                                <option value="1587" <c:if test="${pictVO.BRDNO eq '1587'}">selected</c:if>>통합자료실</option>
 	                                <option value="1827" <c:if test="${pictVO.BRDNO eq '1827'}">selected</c:if>>정보공개</option>
 	                            </select>
@@ -60,7 +60,7 @@
 		                        <p>
 		                        	<c:if test="${board_list.BRDNO eq '56'}">공지사항</c:if>
 		                        	<c:if test="${board_list.BRDNO eq '227'}">언론에 비친 SCOUT</c:if>
-		                        	<c:if test="${board_list.BRDNO eq '290'}">대운영자료실</c:if>
+		                        	<c:if test="${board_list.BRDNO eq '290'}">프로그램자료실</c:if>
 		                        	<c:if test="${board_list.BRDNO eq '1587'}">통합자료실</c:if>
 		                        	<c:if test="${board_list.BRDNO eq '1827'}">정보공개</c:if>
 		                        </p>

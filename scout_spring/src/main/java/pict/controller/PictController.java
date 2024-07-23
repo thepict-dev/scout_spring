@@ -214,7 +214,6 @@ public class PictController {
 			return "redirect:/admin/pict_login";
 		}
 		
-		/*
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
@@ -224,7 +223,6 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
-		*/
 		String loginNo = request.getSession().getAttribute("id").toString();
 		String flag = pictService.login_user_info(loginNo);
 		model.addAttribute("flag", flag);
@@ -489,7 +487,6 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		/*
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
@@ -499,7 +496,6 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
-		*/
 		List<PictVO> association_list = pictService.association_list(pictVO);
 		pictVO.setASSOCIATIONCODE("200");
 		List<PictVO> unity_list = pictService.unity_list(pictVO);
@@ -518,7 +514,6 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		/*
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
@@ -528,7 +523,6 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
-		*/
 		
 		Date today = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
@@ -740,7 +734,6 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		/*
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
@@ -750,7 +743,6 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
-		*/
 		List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
 		List<PictVO> scoutcls_list = pictService.scoutcls_list(pictVO);
 		
@@ -788,7 +780,6 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		/*
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
@@ -798,7 +789,6 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
-		*/
 		List<PictVO> former_list= pictService.former_list(pictVO);
 		model.addAttribute("former_list", former_list);
 		model.addAttribute("pictVO", pictVO);
@@ -1130,7 +1120,6 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		/*
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
@@ -1140,7 +1129,6 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
-		*/
 		
 		List<?> job_list= pictService.job_list(pictVO);
 		
@@ -1175,6 +1163,8 @@ public class PictController {
 			String SCOUTSCHOOLYEAR = param.get("SCOUTSCHOOLYEAR").toString();
 			String SCOUTSCHOOLBAN = param.get("SCOUTSCHOOLBAN").toString();
 			String BIGO = param.get("BIGO").toString();
+			String LIFEMEMBERY = param.get("LIFEMEMBERY").toString();
+			String LIFERANK = param.get("LIFERANK").toString();
 			
 			String TROOPRANK = param.get("TROOPRANK").toString();
 			if(TROOPRANK.equals("0")) {
@@ -1204,7 +1194,10 @@ public class PictController {
 			pictVO.setLEADERSCORE(LEADERSCORE);
 			pictVO.setSCOUTSCHOOLYEAR(SCOUTSCHOOLYEAR);
 			pictVO.setSCOUTSCHOOLBAN(SCOUTSCHOOLBAN);
-			pictVO.setBIGO(BIGO);		
+			pictVO.setBIGO(BIGO);
+			pictVO.setLIFEMEMBERY(LIFEMEMBERY);
+			pictVO.setLIFERANK(LIFERANK);
+			
 			pictService.person_save(pictVO);
 			
 			return "Y";
@@ -2469,7 +2462,6 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		/*
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		if ((jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) && (adminy == null || adminy == "null" || adminy.equals("N"))) {
@@ -2479,7 +2471,6 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
-		*/
 		List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
 		List<PictVO> scoutcls_list = pictService.scoutcls_list(pictVO);
 		
@@ -2675,7 +2666,6 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		/*
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
@@ -2685,7 +2675,6 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
-		*/
 		List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
 		List<PictVO> scoutcls_list = pictService.scoutcls_list(pictVO);
 		
@@ -2758,7 +2747,6 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		/*
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
@@ -2768,7 +2756,6 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
-		*/
 		List<PictVO> association_list = pictService.association_list(pictVO);
 		model.addAttribute("association_list", association_list);
 		
@@ -2819,7 +2806,6 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		/*
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
@@ -2829,7 +2815,6 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
-		*/
 		int limitNumber = 20;
 		pictVO.setLimit(limitNumber);
 		
@@ -2984,7 +2969,6 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		/*
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
@@ -2994,7 +2978,6 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
-		*/
 		int limitNumber = 20;
 		pictVO.setLimit(limitNumber);
 		
@@ -3148,7 +3131,6 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		/*
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
@@ -3158,7 +3140,6 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
-		*/
 		int limitNumber = 20;
 		pictVO.setLimit(limitNumber);
 		
@@ -3218,7 +3199,6 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		/*
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
@@ -3228,7 +3208,6 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
-		*/
 		int limitNumber = 20;
 		pictVO.setLimit(limitNumber);
 		

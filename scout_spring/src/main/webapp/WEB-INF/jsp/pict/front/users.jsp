@@ -241,6 +241,22 @@
                                             <option value="X">탈퇴</option>
                                         </select>
                                     </div>
+                                    <div class="inputBox">
+                                        <p class="inputCaption">평생회원여부</p>
+                                        <select name="LIFEMEMBERY" id="LIFEMEMBERY" class="smThinSelect">
+                                        	<option value="">----</option>
+                                            <option value="Y">평생회원</option>
+                                        </select>
+                                    </div>
+                                    <div class="inputBox">
+                                        <p class="inputCaption">평생회원등급</p>
+                                        <select name="LIFERANK" id="LIFERANK" class="smThinSelect">
+                                        	<option value="">----</option>
+                                            <option value="S">실버</option>
+                                            <option value="G">골드</option>
+                                            <option value="P">플래티넘</option>
+                                        </select>
+                                    </div>
                                     <!-- 
                                     <div class="inputBox">
                                         <p class="inputCaption">홈페이지 ID</p>
@@ -902,7 +918,9 @@
 				SCOUTSCHOOLYEAR : $('#SCOUTSCHOOLYEAR').val(),
 				SCOUTSCHOOLBAN : $('#SCOUTSCHOOLBAN').val(),
 				TROOPRANK : $('#TROOPRANK').val(),
-				BIGO : $('#PERSONBIGO').val()
+				BIGO : $('#PERSONBIGO').val(),
+				LIFEMEMBERY : $('#LIFEMEMBERY').val(),
+				LIFERANK : $('#LIFERANK').val()
 			}
 			
 			var text ="회원정보를 수정하시겠습니까?";
@@ -1052,6 +1070,11 @@
 					$('#LEADERSCORE').val(data.info.leaderscore)
 					$('#SCOUTSCHOOLYEAR').val(data.info.scoutschoolyear)
 					$('#SCOUTSCHOOLBAN').val(data.info.scoutschoolban)
+					
+					$('#LIFEMEMBERY').val(data.info.lifemembery)
+					$('#LIFERANK').val(data.info.liferank)
+					
+					
 					
 					
 					$('.contentsContainer select').niceSelect('update')

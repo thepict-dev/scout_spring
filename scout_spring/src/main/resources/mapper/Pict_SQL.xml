@@ -74,7 +74,7 @@
 		 (case when m.EMPLOYEEY = '' then 'N' when m.EMPLOYEEY is null then 'N' when m.EMPLOYEEY = 'N' then 'N' else m.EMPLOYEEY end) as EMPLOYEEY,
 		 m.KNAME, m.ENAME, m.SEX,
 		 m.MOBILE, m.EMAIL,m.HTELNO, m.BIGO,
-		 m.HPOSTCODE, m.HADDR, m.EMAILYN, m.SMSYN, m.JOBCODE, m.SCOUTSCHOOLYEAR, m.SCOUTSCHOOLBAN, m.LEADERSCORE, m.TROOPSCOUTY, m.TROOPLEADERY
+		 m.HPOSTCODE, m.HADDR, m.EMAILYN, m.SMSYN, m.JOBCODE, m.SCOUTSCHOOLYEAR, m.SCOUTSCHOOLBAN, m.LEADERSCORE, m.TROOPSCOUTY, m.TROOPLEADERY, m.LIFEMEMBERY, m.LIFERANK
 		from member m
 		inner join memclscode mc on m.MEMCLSCODE = mc.MEMCLSCODE
 		where m.MEMBERNO = #{MEMBERNO} and m.KNAME = #{KNAME};
@@ -181,7 +181,7 @@
 		update member set MEMCLSCODE= #{MEMCLSCODE}, MEMGRADECODE =#{MEMGRADECODE}, BIRTHDAY=#{BIRTHDAY}, KNAME=#{KNAME}, ENAME=#{ENAME}, SEX=#{SEX}, MOBILE=#{MOBILE}, EMAIL=#{EMAIL},
 		SMSYN=#{SMSYN}, EMAILYN=#{EMAILYN}, JOBCODE=#{JOBCODE}, HPOSTCODE= #{HPOSTCODE}, HADDR=#{HADDR}, UPDATEDATE = now(), EMPLOYEEY = #{EMPLOYEEY}, HTELNO =#{HTELNO},
 		LEADERSCORE =#{LEADERSCORE}, SCOUTSCHOOLYEAR =#{SCOUTSCHOOLYEAR}, SCOUTSCHOOLBAN =#{SCOUTSCHOOLBAN}, TROOPSCOUTY=#{TROOPSCOUTY}, TROOPLEADERY=#{TROOPLEADERY},
-		BIGO=#{BIGO}
+		BIGO=#{BIGO}, LIFEMEMBERY=#{LIFEMEMBERY}, LIFERANK= #{LIFERANK}
 		
 		where MEMBERNO = #{MEMBERNO}
 	</update>
@@ -1046,6 +1046,9 @@
 		<if test="type == null or type == ''">
 			and (BRDNO ='56' or BRDNO = '227' or BRDNO = '290' or BRDNO ='1587' or BRDNO ='1827')
 		</if>
+		<if test="search_text != null and search_text != ''">
+			and SUBJECT LIKE CONCAT('%', #{search_text}, '%')
+		</if>
 		order by NOTI desc, ENTERDATE desc
 		LIMIT #{limit} OFFSET #{startNumber}
 	</select>
@@ -1070,6 +1073,9 @@
 			</if>
 			<if test="type == null or type == ''">
 				and (BRDNO ='56' or BRDNO = '227' or BRDNO = '290' or BRDNO ='1587' or BRDNO ='1827')
+			</if>
+			<if test="search_text != null and search_text != ''">
+				and SUBJECT LIKE CONCAT('%', #{search_text}, '%')
 			</if>
 			order by NOTI desc, ENTERDATE desc
 	</select>

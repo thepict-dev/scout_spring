@@ -16,6 +16,12 @@
         </div>
         <div class="subContents">
             <div class="noticeWrapper">
+	            <form action="" id="search_fm" name="search_fm" method="get">
+	                <div class="searchInputBox">
+	                    <input type="text" id="search_text" name="search_text" value="${pictVO.search_text}" placeholder="검색어를 입력해주세요.">
+	                    <a href="#lnk" onclick="fn_search()"><img src="/user_img/list-sc.png" alt=""></a>
+	                </div>
+	            </form>
                 <ul class="notice">
                 	<c:forEach var="board_list" items="${board_list}" varStatus="status">
                 		<li>
@@ -40,27 +46,33 @@
             </div>
             <div class="pagination">
             	<c:if test="${pictVO.pageNumber ne 1}">
-            		<a href="/program?pageNumber=1"><img src="/user_img/first.png" alt=""></a>
-            		<a href="/program?pageNumber=${pictVO.pageNumber - 1 < 1 ? 1 : pictVO.pageNumber - 1}"><img src="/user_img/prev.png" alt=""></a>
+            		<a href="/program?pageNumber=1&search_text=${pictVO.search_text}"><img src="/user_img/first.png" alt=""></a>
+            		<a href="/program?pageNumber=${pictVO.pageNumber - 1 < 1 ? 1 : pictVO.pageNumber - 1}&search_text=${pictVO.search_text}"><img src="/user_img/prev.png" alt=""></a>
             	</c:if>
             	
             	
             	<c:forEach var="i" begin="${pictVO.startPage}" end="${pictVO.endPage}">
 					<c:if test="${i eq pictVO.pageNumber}">
-						<a href="/program?pageNumber=${i}" class="active">${i}</a>
+						<a href="/program?pageNumber=${i}&search_text=${pictVO.search_text}" class="active">${i}</a>
 					</c:if>
 					<c:if test="${i ne pictVO.pageNumber}">
-						<a href="/program?pageNumber=${i}" >${i}</a>
+						<a href="/program?pageNumber=${i}&search_text=${pictVO.search_text}" >${i}</a>
 					</c:if>
 				</c:forEach>
                 
                 <c:if test="${pictVO.lastPage ne pictVO.pageNumber}">
-					<li><a href="/program?pageNumber=${pictVO.pageNumber + 1 > pictVO.lastPage ?  pictVO.lastPage : pictVO.pageNumber + 1}"><img src="/user_img/next.png" alt=""></a></li>
-					<li><a href="/program?pageNumber=${pictVO.lastPage}"><img src="/user_img/last.png" alt=""></a></li>
+					<li><a href="/program?pageNumber=${pictVO.pageNumber + 1 > pictVO.lastPage ?  pictVO.lastPage : pictVO.pageNumber + 1}&search_text=${pictVO.search_text}"><img src="/user_img/next.png" alt=""></a></li>
+					<li><a href="/program?pageNumber=${pictVO.lastPage}&search_text=${pictVO.search_text}"><img src="/user_img/last.png" alt=""></a></li>
 				</c:if>
             </div>
         </div>
     </div>
 	<%@ include file="./include/footer.jsp" %>
 </body>
+<script>
+	function fn_search(){
+		$("#search_fm").attr("action", "/program");
+		$("#search_fm").submit();
+	}
+</script>
 </html>

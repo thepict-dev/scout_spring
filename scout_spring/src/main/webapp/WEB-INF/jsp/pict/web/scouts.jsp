@@ -13,12 +13,12 @@
     <div class="subWrapper">
         <div class="subTop">
             <h2>연령별 단계</h2>
-            <p>설명을 넣어주시면 좋습니다</p>
+            <p>한국스카우트연맹 연령별 단계를 확인해보세요.</p>
         </div>
         <div class="subContents">
             <div class="flexContainer">
                 <div class="ageImgContainer">
-                    <h3 class="contentTitle ages">Beaver Scout</h3>
+                    <h3 class="contentTitle ages">비버스카우트</h3>
                     <div class="ageImg">
                         <img src="/user_img/bieber.png" alt="">
                         <div class="cardTop"></div>
@@ -49,7 +49,7 @@
             </div>
             <div class="flexContainer">
                 <div class="ageImgContainer">
-                    <h3 class="contentTitle ages">Cub Scout</h3>
+                    <h3 class="contentTitle ages">컵스카우트</h3>
                     <div class="ageImg">
                         <img src="/user_img/cup.jpeg" alt="">
                         <div class="cardTop"></div>
@@ -67,7 +67,7 @@
             </div>
             <div class="flexContainer">
                 <div class="ageImgContainer">
-                    <h3 class="contentTitle ages">Scouts / Venture Scouts</h3>
+                    <h3 class="contentTitle ages">스카우트 /<br>벤처스카우트</h3>
                     <div class="ageImg">
                         <img src="/user_img/venture.jpeg" alt="">
                         <div class="cardTop"></div>

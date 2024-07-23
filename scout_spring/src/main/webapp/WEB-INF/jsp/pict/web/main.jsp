@@ -19,7 +19,7 @@
                 </div>
                 <ul class="links">
                     <li><a href="/notice">공지사항</a></li>
-                    <li><a href="/location_local">지방연맹 소식방</a></li>
+                    <li><a href="/location_local" style="background:#78c992">지방·특수연맹 소식</a></li>
                     <li><a href="#lnk">진급기장신청</a></li>
                     <li><a href="http://scoutcenter.scout.or.kr/SysApplicationController.do" target="_blank" title="새창이동">중앙훈련원</a></li>
                     <li><a href="https://gongiamscout.itpage.kr/" target="_blank" title="새창이동">곤지암야영장</a></li>
@@ -39,28 +39,28 @@
                 </ul>
             </div>
             <div class="cards">
-                <a href="#lnk" data-aos="fade-up" data-aos-delay="200">
+                <a href="/scouts" data-aos="fade-up" data-aos-delay="200">
                     <img src="/user_img/bieber.png" alt="">
                     <div class="cardTop">
                         <p>비버<br>스카우트</p>
                         <span>4~6세까지의 유치원생</span>
                     </div>
                 </a>
-                <a href="#lnk" data-aos="fade-up" data-aos-delay="400">
+                <a href="/scouts" data-aos="fade-up" data-aos-delay="400">
                     <img src="/user_img/cup.jpeg" alt="">
                     <div class="cardTop">
                         <p>컵<br>스카우트</p>
                         <span>6~12세까지의 초등학생</span>
                     </div>
                 </a>
-                <a href="#lnk" data-aos="fade-up" data-aos-delay="600">
+                <a href="/scouts" data-aos="fade-up" data-aos-delay="600">
                     <img src="/user_img/venture.jpeg" alt="">
                     <div class="cardTop">
                         <p>스카우트/<br>벤처스카우트</p>
                         <span>12~18세의 중·고등학생</span>
                     </div>
                 </a>
-                <a href="#lnk" data-aos="fade-up" data-aos-delay="800">
+                <a href="/scouts" data-aos="fade-up" data-aos-delay="800">
                     <img src="/user_img/leader.jpg" alt="">
                     <div class="cardTop">
                         <p>지도자/<br>평생회원</p>
@@ -73,7 +73,7 @@
 	        <div class="swiper">
 			  <div class="swiper-wrapper">
 			    <div class="swiper-slide">
-		            <a href="#lnk">
+		            <a href="/user_img/2024 스카우트 활동 안전매뉴얼.pdf" target="_blank">
 		                <img src="/user_img/main-banner.png" alt="메인배너">
 		            </a>
 			    </div>
@@ -87,7 +87,14 @@
 		                <img src="/user_img/정기구독.png" alt="메인배너">
 		            </a>
 			    </div>
+			    <div class="swiper-slide">
+		            <a href="/user_img/Safe from Harm.pdf" target="_blank">
+		                <img src="/user_img/01_9.png" alt="메인배너">
+		            </a>
+			    </div>
 			  </div>
+			  
+			  
 			</div>
         </div>
         <div class="mainSec3" data-aos="fade-up" data-aos-delay="200">
