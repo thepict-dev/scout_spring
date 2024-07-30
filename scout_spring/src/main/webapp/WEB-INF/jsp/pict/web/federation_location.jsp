@@ -20,12 +20,11 @@
             <div class="greetingContainer">
             	<!-- 연맹소개글 -->
                 ${vo.introduce}
-                
-                <div class="sign" >
-					<p style="float:right; position:relative">연맹장 ${vo.leadername}</p>
-				</div>
                 <span class="feders"><img src="https://scout.thepict.co.kr${vo.leaderimg}" alt="연맹장사진"></span>
             </div>
+            <div class="sign" >
+				<p>연맹장 ${vo.leadername}</p>
+			</div>
             <ul class="tabNav organNav rules">
                 <li><a href="/federation_organ">조직도</a></li>
                 <li><a href="/federation_notice">공지사항</a></li>
