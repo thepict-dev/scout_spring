@@ -61,7 +61,7 @@
                     </div>
                 </a>
                 <a href="/scouts" data-aos="fade-up" data-aos-delay="800">
-                    <img src="/user_img/leader.jpg" alt="">
+                    <img src="/user_img/leader2.jpg" alt="">
                     <div class="cardTop">
                         <p>지도자/<br>평생회원</p>
                         <span>성인 지도자 훈련 이수자</span>

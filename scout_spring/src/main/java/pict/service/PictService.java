@@ -182,6 +182,8 @@ public interface PictService {
 
 	public List<PictVO> units_list_excel(PictVO pictVO) throws Exception;
 
+	public PictVO getLocal_info(PictVO pictVO) throws Exception;
+
 
 
 }

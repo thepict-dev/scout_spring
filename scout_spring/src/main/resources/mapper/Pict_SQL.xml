@@ -95,8 +95,8 @@
 		, SCOUTMAGACNT, CONFIRMY, PAYY, l.ENTERDATE, LEADERORGPOSITIONCODE, ENTRYFEE
 		, (case when LEADERORGPOSITIONCODE = '01' then '교장' when LEADERORGPOSITIONCODE = '02' then '교감' when LEADERORGPOSITIONCODE = '03' then '교사' when LEADERORGPOSITIONCODE = '04' then '일반' when LEADERORGPOSITIONCODE = '05' then '없음' else '' end) as LEADERORGPOSITIONNAME
 		from leader l
-		inner join associationcode a on l.ASSOCIATIONCODE = a.ASSOCIATIONCODE
-		inner join troop t on t.TROOPNO = l.TROOPNO
+		left join associationcode a on l.ASSOCIATIONCODE = a.ASSOCIATIONCODE
+		left join troop t on t.TROOPNO = l.TROOPNO
 		left outer join org o on o.ORGNO = l.LEADERORGNO
 		
 		where l.MEMBERNO = #{MEMBERNO}
@@ -110,8 +110,8 @@
 		ifnull(o.ORGNAME, '') as ORGNAME, ifnull((select ORGCLSNAME from orgclscode oc where oc.ORGCLSCODE1 = o.ORGCLSCODE1 and oc.ORGCLSCODE2 = o.ORGCLSCODE2), '') as ORGCLSNAME
 		, SCOUTMAGACNT, CONFIRMY, PAYY, s.ENTERDATE, ENTRYFEE, s.SCOUTCLSCODE, s.SCOUTPOSITIONCODE, SCOUTBAN, SCOUTSCHOOLBAN, sc.SCOUTCLSNAME, sp.SCOUTPOSITIONNAME
 		from scout s
-		inner join associationcode a on s.ASSOCIATIONCODE = a.ASSOCIATIONCODE
-		inner join troop t on t.TROOPNO = s.TROOPNO
+		left join associationcode a on s.ASSOCIATIONCODE = a.ASSOCIATIONCODE
+		left join troop t on t.TROOPNO = s.TROOPNO
 		left outer join org o on o.ORGNO = s.SCOUTORGNO
 		left outer join scoutclscode sc on sc.SCOUTCLSCODE = s.SCOUTCLSCODE
 		left outer join scoutpositioncode sp on sp.SCOUTPOSITIONCODE = s.SCOUTPOSITIONCODE
@@ -1260,5 +1260,8 @@
 		select YEAR from youth_table group by YEAR order by YEAR asc
 	</select>
 	
-	
+	<select id="getLocal_info" resultType="pictVO">
+		select * from local_info
+		where dataid = #{dataid}
+	</select>
 </mapper>

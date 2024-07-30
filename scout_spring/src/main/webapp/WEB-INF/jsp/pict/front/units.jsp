@@ -42,10 +42,12 @@
 						</select>
 					</div>
                 </div>
+                <!-- 
                 <div class="searchContainer">
                     <p class="inputCaption">법정생년월일</p>
                     <input type="date" name="search_birthday" id="search_birthday" value="${pictVO.search_birthday}" class="lgThinInput">
                 </div>
+                 -->
                 <div class="searchContainer">
                     <p class="inputCaption">단위대 구분</p>
                     <div class="inputsAlign">

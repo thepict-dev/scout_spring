@@ -83,8 +83,8 @@
                             <option value="06">기타</option>
                         </select>
                         <select name="search_type" id="search_type" class="smThinSelect">
-                            <option value="number">대번호</option>
                             <option value="text">단위대명</option>
+                            <option value="number">대번호</option>
                         </select>
                         <input type="text" name="search_text" id="search_text" class="lgThinInput" placeholder="내용을 입력해주세요..." onkeypress="if(event.keyCode == 13){organ_search('number');}">
                     </div>

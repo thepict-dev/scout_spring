@@ -506,6 +506,12 @@ public class PictServiceImpl implements PictService {
 		return pictMapper.units_list_excel(pictVO);
 	}
 
+	@Override
+	public PictVO getLocal_info(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.getLocal_info(pictVO);
+	}
+
 
 	
 	

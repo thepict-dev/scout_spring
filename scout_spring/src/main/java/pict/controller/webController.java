@@ -199,6 +199,47 @@ public class webController {
 	@RequestMapping("federation")
 	public String federation(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		
+		
+		if(pictVO != null) {
+			if(pictVO.getDataid().equals("gangwon")) pictVO.setBRDNO("967");
+		}
+		
+		
+		/* 연맹별 공지사항 */
+		int limitNumber = 20;
+		pictVO.setLimit(limitNumber);
+		Integer pageNum = pictVO.getPageNumber();
+		if(pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		Integer totalCnt = pictService.board_list_cnt(pictVO);
+		
+		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
+		pictVO.setLastPage(lastPageValue);
+		
+		Integer s_page = pageNum - 4;
+		Integer e_page = pageNum + 5;
+		if (s_page <= 0) {
+			s_page = 1;
+			e_page = 10;
+		} 
+		if (e_page > lastPageValue){
+			e_page = lastPageValue;
+		}
+		pictVO.setStartPage(s_page);
+		pictVO.setEndPage(e_page);
+		
+		List<PictVO> board_list = pictService.board_list(pictVO);
+		model.addAttribute("board_list", board_list);
+		model.addAttribute("board_cnt", totalCnt);
+		/* 연맹별 공지사항 */
+		
+		pictVO = pictService.getLocal_info(pictVO);
+		model.addAttribute("pictVO", pictVO);
+		
 		return "pict/web/federation";
 	}
 	//연맹별 공지사항 뷰

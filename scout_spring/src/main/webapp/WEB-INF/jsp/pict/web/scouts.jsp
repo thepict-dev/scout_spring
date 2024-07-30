@@ -98,10 +98,10 @@
                 </div>
             </div>
             <div class="flexContainer">
-                <div class="ageImgContainer">
+                <div class="ageImgContainer" style="max-width:332px">
                     <h3 class="contentTitle ages">지도자 구분</h3>
                     <div class="ageImg">
-                        <img src="/user_img/leader.jpg" alt="">
+                        <img src="/user_img/leader2.jpg" alt="">
                         <div class="cardTop"></div>
                     </div>
                 </div>

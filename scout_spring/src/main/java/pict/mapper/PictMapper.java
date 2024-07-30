@@ -183,6 +183,8 @@ public interface PictMapper {
 	List<PictVO> youth_group(PictVO pictVO) throws Exception;
 
 	List<PictVO> units_list_excel(PictVO pictVO) throws Exception;
+
+	PictVO getLocal_info(PictVO pictVO) throws Exception;
  
 	
 

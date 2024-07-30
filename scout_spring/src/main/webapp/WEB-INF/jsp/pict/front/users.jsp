@@ -18,28 +18,21 @@
     	<c:param name="pageTitle" value="회원 통합 관리"/>
     </c:import>
     <div class="contentsContainer">
-        <form action="" id="search_fm_memberno" name="search_fm_memberno" method="get" class="searchForm">
-            <div class="searchContainer">
-                <p class="inputCaption">조회조건</p>
-                <select name="search" id="search" class="lgSelect">
-                    <option value="1">선택하세요</option>
-                </select>
-            </div>
-            <div class="searchContainer">
-                <p class="inputCaption">회원번호</p>
-                <input type="text" class="lgInput" name="search_memberno_se" id="search_memberno_se" value="${pictVO.search_memberno_se}" onkeypress="if(event.keyCode == 13){search_list_memberno(); return false;}" placeholder="내용을 입력하세요…">
-            </div>
-        </form>
         <div class="formContainer">
             <div class="left">
                 <div class="wholeInquiry">
                     <h2 class="subTitles">통합조회</h2>
                     <form action="" id="search_fm" name="search_fm" method="get">
-	            		<input type="hidden" id="search_memberno" name="search_memberno" value="${pictVO.search_memberno}"/>
-                        <div class="inputsContainer">
+                    	<div class="inputsContainer">
+                    		<div class="inputBox">
+			            		<p class="inputCaption">회원번호</p>
+		            			<input type="text" class="lgThinInput" name="search_memberno" id="search_memberno" value="${pictVO.search_memberno}" onkeypress="if(event.keyCode == 13){search_list(); return false;}" placeholder="내용을 입력하세요…">
+	            			</div>
+            			</div>
+                        <div class="inputsContainer mt20">
                             <div class="inputBox">
                                 <p class="inputCaption">법정생년</p>
-                                <input type="date" name="search_birthday" id="search_birthday" value="${pictVO.search_birthday}" class="lgThinInput">
+                                <input type="date" name="search_birthday" id="search_birthday" value="${pictVO.search_birthday}" class="lgThinInput" maxlength="8">
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">가입이력</p>
@@ -962,17 +955,7 @@
 			$('.contentsContainer select').niceSelect('update')
 			
 		}
-		function search_list_memberno(){
-			var memberno = $('#search_memberno_se').val()
-			if(memberno == '' || memberno == undefined || memberno == null){
-				alert("회원번호는 필수값 입니다.")
-				return false;
-			}
-			else{
-				$("#search_fm_memberno").attr("action", "/admin/front/users");
-				$("#search_fm_memberno").submit();	
-			}
-		}
+
 		function fn_order(type){
 			var kname = $('#search_kname').val()
 			if((kname == '' || kname == undefined || kname == null)){
@@ -987,8 +970,9 @@
 		}
 		function search_list(){
 			var kname = $('#search_kname').val()
-			if((kname == '' || kname == undefined || kname == null)){
-				alert("이름은 필수값 입니다.")
+			var memberno = $('#search_memberno').val()
+			if((memberno == '' || memberno == undefined || memberno == null) && (kname == '' || kname == undefined || kname == null)){
+				alert("회원번호나 이름은 필수값 입니다.")
 				return false;
 			}
 			else{
@@ -1008,6 +992,7 @@
 		
 		function fn_info(memberno, kname, scouty, leadery){
 			$('#initial-loading').css('display', 'flex')
+			
 			var param = {
 				memberno : memberno,
 				kname : kname,

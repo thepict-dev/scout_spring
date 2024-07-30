@@ -212,7 +212,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+                        <a href="/federation?dataid=gangwon" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
                     </li>
                     
                     <li>

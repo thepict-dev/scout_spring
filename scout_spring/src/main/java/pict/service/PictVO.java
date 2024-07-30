@@ -307,8 +307,78 @@ public class PictVO extends PictDefaultVO {
 	private String scoutclscode_search;
 	private String LIFERANK;
 	
+	private String local;
+	private String dataid;
+	private String title;
+	private String introduce;
+	private String leadername;
+	private String leaderimg;
+	private String mainimg;
+	private String organization;
+	private String positionx;
+	private String positiony;
 	
 	
+	public String getDataid() {
+		return dataid;
+	}
+	public void setDataid(String dataid) {
+		this.dataid = dataid;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getIntroduce() {
+		return introduce;
+	}
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
+	public String getLeadername() {
+		return leadername;
+	}
+	public void setLeadername(String leadername) {
+		this.leadername = leadername;
+	}
+	public String getLeaderimg() {
+		return leaderimg;
+	}
+	public void setLeaderimg(String leaderimg) {
+		this.leaderimg = leaderimg;
+	}
+	public String getMainimg() {
+		return mainimg;
+	}
+	public void setMainimg(String mainimg) {
+		this.mainimg = mainimg;
+	}
+	public String getOrganization() {
+		return organization;
+	}
+	public void setOrganization(String organization) {
+		this.organization = organization;
+	}
+	public String getPositionx() {
+		return positionx;
+	}
+	public void setPositionx(String positionx) {
+		this.positionx = positionx;
+	}
+	public String getPositiony() {
+		return positiony;
+	}
+	public void setPositiony(String positiony) {
+		this.positiony = positiony;
+	}
+	public String getLocal() {
+		return local;
+	}
+	public void setLocal(String local) {
+		this.local = local;
+	}
 	public String getLIFERANK() {
 		return LIFERANK;
 	}
