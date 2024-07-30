@@ -212,7 +212,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="/federation?dataid=gangwon" title="새창이동"></a>
+                        <a href="/federation_organ?dataid=gangwon" title="새창이동"></a>
                     </li>
                     
                     <li>

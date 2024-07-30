@@ -195,11 +195,17 @@ public class webController {
 		model.addAttribute("pictVO", pictVO);
 		return "pict/web/news_view";
 	}
-	//연맹별 공지사항
-	@RequestMapping("federation")
-	public String federation(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		
-		
+
+	//연맹조직도
+	@RequestMapping("federation_organ")
+	public String federation_organ(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		PictVO vo = pictService.getLocal_info(pictVO);
+		model.addAttribute("vo", vo);
+		return "pict/web/federation_organ";
+	}
+	//연맹공지사항
+	@RequestMapping("federation_notice")
+	public String federation_notice(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		if(pictVO != null) {
 			if(pictVO.getDataid().equals("gangwon")) pictVO.setBRDNO("967");
 		}
@@ -238,21 +244,10 @@ public class webController {
 
 		model.addAttribute("board_list", board_list);
 		model.addAttribute("board_cnt", totalCnt);
-		/* 연맹별 공지사항 */
+		
+		
 		PictVO vo = pictService.getLocal_info(pictVO);
 		model.addAttribute("vo", vo);
-		
-		return "pict/web/federation";
-	}
-	//연맹조직도
-	@RequestMapping("federation_organ")
-	public String federation_organ(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		
-		return "pict/web/federation_organ";
-	}
-	//연맹공지사항
-	@RequestMapping("federation_notice")
-	public String federation_notice(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		
 		return "pict/web/federation_notice";
 	}
