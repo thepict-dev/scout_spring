@@ -19,13 +19,14 @@
         	<img src="https://scout.thepict.co.kr${vo.mainimg}" style="width:100%; margin-bottom:30px"/>
             <div class="greetingContainer">
             	<!-- 연맹소개글 -->
-                ${vo.introduce}
-                
-                <div class="sign" >
-					<p style="float:right; position:relative">연맹장 ${vo.leadername}</p>
-				</div>
+            	<div class="greetingText feders">
+                	${vo.introduce}
+                </div>
                 <span class="feders"><img src="https://scout.thepict.co.kr${vo.leaderimg}" alt="연맹장사진"></span>
             </div>
+            <div class="sign feders" >
+				<p>연맹장 ${vo.leadername}</p>
+			</div>
             <ul class="tabNav organNav rules">
                 <li><a href="/federation_organ">조직도</a></li>
                 <li class="active"><a href="/federation_notice">공지사항</a></li>
