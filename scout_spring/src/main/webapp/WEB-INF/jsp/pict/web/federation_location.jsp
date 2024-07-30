@@ -27,11 +27,11 @@
                 <span class="feders"><img src="https://scout.thepict.co.kr${vo.leaderimg}" alt="연맹장사진"></span>
             </div>
             <ul class="tabNav organNav rules">
-                <li class="active"><a href="/federation_organ">조직도</a></li>
+                <li><a href="/federation_organ">조직도</a></li>
                 <li><a href="/federation_notice">공지사항</a></li>
                 <li><a href="/federation_files">자료실</a></li>
                 <li><a href="/federation_event">행사안내</a></li>
-                <li><a href="/federation_location">오시는길</a></li>
+                <li class="active"><a href="/federation_location">오시는길</a></li>
             </ul>
             <div class="tabInner ruleContents active">
                 <ul class="locationTexts">
