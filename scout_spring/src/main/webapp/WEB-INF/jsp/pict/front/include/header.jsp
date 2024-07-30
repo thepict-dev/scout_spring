@@ -53,7 +53,7 @@
 	        associationcode : '${associationcode}'
 	    }
 		//여기서~ 연맹별 전종이 오늘 해야할일~
-		debugger
+		//debugger
 	 
 		$.ajax({
 			url : "/admin/today_task"

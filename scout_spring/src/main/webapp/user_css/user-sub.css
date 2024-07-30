@@ -1957,9 +1957,19 @@ input[type="date"]::after{
 	border: 1px solid var(--grey-100);
 	background: #fff;
 	transition: all .2s;
+	background-image: url(/user_img/linkto.png);
+	background-size: 48px;
+	background-repeat: no-repeat;
+	background-position: center center;
 }
 .localLocations > li a:hover{
-	background-color: var(--grey-50);
+	background-color: var(--purple-500);
+	color: #fff;
+	transition: all .2s;
+}
+.localLocations > li a:hover{
+	background-image: url(/user_img/linkto-hover.png);
+	transition: all .2s;
 }
 @media all and (max-width : 1290px){
 	.localTexts ul{
@@ -2635,6 +2645,9 @@ input[type="date"]::after{
 	width: 100%;
 }
 
+.ageImgContainer{
+	width: 340px;
+}
 .ageImg{
 	position: relative;
 	width: 100%;
@@ -2656,6 +2669,9 @@ input[type="date"]::after{
     max-width: 800px;
 }
 @media all and (max-width : 1024px){
+	.ageImgContainer{
+		width: 100%;
+	}
 	.contentTitle.ages{
         display: block;
         width: 100%;
@@ -2677,4 +2693,8 @@ input[type="date"]::after{
 	.textsWrapper.ages .bullets p {
 		max-width: 800px;
 	}
+}
+
+.subContents{
+	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }

@@ -244,6 +244,38 @@ public class webController {
 		
 		return "pict/web/federation";
 	}
+	//연맹조직도
+	@RequestMapping("federation_organ")
+	public String federation_organ(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/federation_organ";
+	}
+	//연맹공지사항
+	@RequestMapping("federation_notice")
+	public String federation_notice(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/federation_notice";
+	}
+	//연맹자료실
+	@RequestMapping("federation_files")
+	public String federation_files(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/federation_files";
+	}
+	//연맹행사안내
+	@RequestMapping("federation_event")
+	public String federation_event(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/federation_event";
+	}
+	//연맹오시는길
+	@RequestMapping("federation_location")
+	public String federation_location(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/federation_location";
+	}
+	
+	
 	//연맹별 공지사항 뷰
 	@RequestMapping("federation_view")
 	public String federation_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {

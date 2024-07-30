@@ -20,8 +20,8 @@
             <div class="joinContainer">
                 <div class="fomrTabContent signContainer" style="border-top: 0;">
                     <form action="" id="register" name="register" method="post" enctype="multipart/form-data">
-                        <h2 class="subTitles" style="padding: 16px 24px;">조회</h2>
-                        <div class="regiSearch">
+                        <h2 class="subTitles" style="padding: 16px 24px; background: var(--grey-50);">조회</h2>
+                        <div class="regiSearch" style="padding-bottom: 16px; background: var(--grey-50);">
                             <div class="searchContainer">
                                 <p class="inputCaption">연맹/지구</p>
                                 <div class="inputsAlign">
@@ -960,7 +960,7 @@
 		function final_submit(){
 			if(confirm("최종 제출 하시겠습니까?")){
 				var data = JSON.parse($('#hiddenTextarea').val());	
-				debugger
+				//debugger
 				$.ajax({
 					url : "/admin/whole_register_input"
 					, type : "POST"

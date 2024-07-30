@@ -18,7 +18,7 @@
 .formContainer{
     display: flex;
     width: 100%;
-    height: calc(100% - 101px);
+    height: 100%;
 
 }
 .formContainer.scroller{
@@ -773,7 +773,6 @@
 }
 .fomrTabContent.signContainer {
     display: block;
-    border-top: 1px solid var(--grey-100);
 }
 .wholeCheck.admins{
     position: unset;
@@ -846,6 +845,11 @@ tbody tr.active td{
 }
 .organForm{
     /* padding: 16px 24px; */
+}
+@media all and (max-width : 1612px){
+	.formContainer.organ{
+	    height: calc(100% - 237px);
+	}
 }
 
 /* 대원일괄등록 */

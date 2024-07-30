@@ -27,7 +27,7 @@
 				                <p>청소년활동을 주관하고 지원하는 소관부처로서 스카우트운동을 포함한 다양한 청소년단체의 사업과 활동을 지원합니다.</p>
 				            </div>
 				        </div>
-				        <a href="http://www.mogef.go.kr" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+				        <a href="http://www.mogef.go.kr" target="_blank" title="새창이동"></a>
 				        <a class="famLink" href="http://www.mogef.go.kr" target="_blank" title="새창이동">http://www.mogef.go.kr</a>
 				    </li>
 				    
@@ -39,7 +39,7 @@
 				                <p>국내외 청소년단체 상호간의 협력과 교류를 지원하는 협회입니다. 2013년 현재 73개 단체가 소속되어 있습니다.</p>
 				            </div>
 				        </div>
-				        <a href="http://www.ncyok.or.kr" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+				        <a href="http://www.ncyok.or.kr" target="_blank" title="새창이동"></a>
 				        <a class="famLink" href="http://www.ncyok.or.kr" target="_blank" title="새창이동">http://www.ncyok.or.kr</a>
 				    </li>
 				    
@@ -51,7 +51,7 @@
 				                <p>활동용품 개발 및 보급, 장학 등 한국스카우트연맹을 재정적으로 지원하기 위한 고유 목적사업 수행을 위해 설립된 재단입니다.</p>
 				            </div>
 				        </div>
-				        <a href="http://www.scoutshop.or.kr" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+				        <a href="http://www.scoutshop.or.kr" target="_blank" title="새창이동"></a>
 				        <a class="famLink" href="http://www.scoutshop.or.kr" target="_blank" title="새창이동">http://www.scoutshop.or.kr</a>
 				    </li>
 				    
@@ -63,7 +63,7 @@
 				                <p>스카우트 출신 위원들로 구성된 의원조직으로 청소년을 위한 정책개발과 입법활동을 통해 결성된 단체입니다.</p>
 				            </div>
 				        </div>
-				        <a href="http://www.pscout.or.kr" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+				        <a href="http://www.pscout.or.kr" target="_blank" title="새창이동"></a>
 				        <a class="famLink" href="http://www.pscout.or.kr" target="_blank" title="새창이동">http://www.pscout.or.kr</a>
 				    </li>
 				    
@@ -75,7 +75,7 @@
 				                <p>청소년의 올바른 식생활 및 농업의 가치에 대한 이해증진을 위한 식(食)사랑 농(農)사랑 어린이 서포터즈에 대해 공동협력을 추진합니다.</p>
 				            </div>
 				        </div>
-				        <a href="http://www.nonghyup.com" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+				        <a href="http://www.nonghyup.com" target="_blank" title="새창이동"></a>
 				        <a class="famLink" href="http://www.nonghyup.com" target="_blank" title="새창이동">http://www.nonghyup.com</a>
 				    </li>
 				    
@@ -87,7 +87,7 @@
 				                <p>법률에 대한 이해와 재미를 돕는 법사랑 사이버랜드의 콘텐츠를 한국스카우트연맹에서 추진하는 학교폭력예방 및 근절사업에 제공합니다.</p>
 				            </div>
 				        </div>
-				        <a href="http://www.moj.go.kr" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+				        <a href="http://www.moj.go.kr" target="_blank" title="새창이동"></a>
 				        <a class="famLink" href="http://www.moj.go.kr" target="_blank" title="새창이동">http://www.moj.go.kr</a>
 				    </li>
 				    
@@ -99,7 +99,7 @@
 				                <p>청소년의 복지 증진 및 세계잼버리 유치를 포함한 각종 대내외 활동에 음식사업 관련 협력업체로 참여하고 있는 종합요리식품기업입니다.</p>
 				            </div>
 				        </div>
-				        <a href="http://www.ourhome.co.kr" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+				        <a href="http://www.ourhome.co.kr" target="_blank" title="새창이동"></a>
 				        <a class="famLink" href="http://www.ourhome.co.kr" target="_blank" title="새창이동">http://www.ourhome.co.kr</a>
 				    </li>
 				    
@@ -111,7 +111,7 @@
 				                <p>잼버리, 휴전선 155마일 횡단 등 다양한 스카우트 사업을 지원하는 21세기 식음료 전문업체입니다.</p>
 				            </div>
 				        </div>
-				        <a href="http://www.donga-otsuka.co.kr" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+				        <a href="http://www.donga-otsuka.co.kr" target="_blank" title="새창이동"></a>
 				        <a class="famLink" href="http://www.donga-otsuka.co.kr" target="_blank" title="새창이동">http://www.donga-otsuka.co.kr</a>
 				    </li>
 				    
@@ -123,7 +123,7 @@
 				                <p>스카우트 활동에 대한 배상책임보험 계약 기업으로서 다양한 분야에서 스카우트운동을 지원하고 있습니다.</p>
 				            </div>
 				        </div>
-				        <a href="http://www.meritzfire.com" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+				        <a href="http://www.meritzfire.com" target="_blank" title="새창이동"></a>
 				        <a class="famLink" href="http://www.meritzfire.com" target="_blank" title="새창이동">http://www.meritzfire.com</a>
 				    </li>
 				    
@@ -135,7 +135,7 @@
 				                <p>(구)대한교과서의 새로운 이름으로서, 스카우트의 교육적 효과 및 다양한 부문에서의 지원을 위해 협약을 체결한 교육출판 전문기업입니다.</p>
 				            </div>
 				        </div>
-				        <a href="http://www.mirae-n.com" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+				        <a href="http://www.mirae-n.com" target="_blank" title="새창이동"></a>
 				        <a class="famLink" href="http://www.mirae-n.com" target="_blank" title="새창이동">http://www.mirae-n.com</a>
 				    </li>
 				    
@@ -147,7 +147,7 @@
 				                <p>한국스카우트연맹과의 협력을 통해 연맹 회원 대상으로 국가공인 청소년지도자 자격증 온라인 학습과정을 지원하는 학점은행제 원격교육 훈련기관입니다.</p>
 				            </div>
 				        </div>
-				        <a href="http://www.ybmhakjum.com/application/application_process4_2.asp" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+				        <a href="http://www.ybmhakjum.com/application/application_process4_2.asp" target="_blank" title="새창이동"></a>
 				        <a class="famLink" href="http://www.ybmhakjum.com/application/application_process4_2.asp" target="_blank" title="새창이동">http://www.ybmhakjum.com/application/application_process4_2.asp</a>
 				    </li>
 				    
@@ -159,7 +159,7 @@
 				                <p>청소년들의 건전한 육성을 위하여 우리 연맹을 지속적으로 후원합니다.</p>
 				            </div>
 				        </div>
-				        <a href="http://www.yuhanfoundation.or.kr/Main/" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+				        <a href="http://www.yuhanfoundation.or.kr/Main/" target="_blank" title="새창이동"></a>
 				        <a class="famLink" href="http://www.yuhanfoundation.or.kr/Main/" target="_blank" title="새창이동">http://www.yuhanfoundation.or.kr/Main/</a>
 				    </li>
 				    
@@ -171,7 +171,7 @@
 				                <p>우리나라의 새로운 에너지원 발굴 및 실용화를 위한 연구를 전문분야로 하고 있으며 관련 교육 프로그램을 우리 연맹에 제공하고 있습니다.</p>
 				            </div>
 				        </div>
-				        <a href="http://www.kier.re.kr" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+				        <a href="http://www.kier.re.kr" target="_blank" title="새창이동"></a>
 				        <a class="famLink" href="http://www.kier.re.kr" target="_blank" title="새창이동">http://www.kier.re.kr</a>
 				    </li>
 				    
@@ -183,7 +183,7 @@
 				                <p>일하는 사람들의 생명과 건강 보호에 앞장서고 있으며 우리 연맹에 청소년 안전을 위한 프로그램을 제공하고 있습니다.</p>
 				            </div>
 				        </div>
-				        <a href="http://www.kosha.or.kr/main.do?chk=1" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+				        <a href="http://www.kosha.or.kr/main.do?chk=1" target="_blank" title="새창이동"></a>
 				        <a class="famLink" href="http://www.kosha.or.kr/main.do?chk=1" target="_blank" title="새창이동">http://www.kosha.or.kr/main.do?chk=1</a>
 				    </li>
 				    
@@ -195,7 +195,7 @@
 				                <p>국내 순수 기술력으로 개발된 세계 정상급의 토종 아웃도어 브랜드로서 국제패트롤잼버리를 지원하고 있습니다.</p>
 				            </div>
 				        </div>
-				        <a href="http://www.blackyak.co.kr" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+				        <a href="http://www.blackyak.co.kr" target="_blank" title="새창이동"></a>
 				        <a class="famLink" href="http://www.blackyak.co.kr" target="_blank" title="새창이동">http://www.blackyak.co.kr</a>
 				    </li>
 				    
@@ -207,7 +207,7 @@
                                 <p>응급처치 및 재난대비용품을 전문적으로 제작하며 안전장비를 연맹에 지원합니다.</p>
                             </div>
                         </div>
-                        <a href="http://www.nextsafe.com" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+                        <a href="http://www.nextsafe.com" target="_blank" title="새창이동"></a>
                         <a class="famLink" href="http://www.nextsafe.com" target="_blank" title="새창이동">http://www.nextsafe.com</a>
                     </li>
                     
@@ -219,7 +219,7 @@
                                 <p>다양한 스포츠 장비의 기술혁신을 주도하고 있으며 우리 연맹에 장비를 지원하고 있습니다.</p>
                             </div>
                         </div>
-                        <a href="http://www.suunto.com/ko-KR/" target="_blank" title="새창이동"><img src="/user_img/linkto.png" alt="링크이동"></a>
+                        <a href="http://www.suunto.com/ko-KR/" target="_blank" title="새창이동"></a>
                         <a class="famLink" href="http://www.suunto.com/ko-KR/" target="_blank" title="새창이동">http://www.suunto.com/ko-KR/</a>
                     </li>
                     
