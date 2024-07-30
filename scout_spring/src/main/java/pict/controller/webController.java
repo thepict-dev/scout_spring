@@ -203,7 +203,7 @@ public class webController {
 		if(pictVO != null) {
 			if(pictVO.getDataid().equals("gangwon")) pictVO.setBRDNO("967");
 		}
-		
+		pictVO.setType("sub");
 		
 		/* 연맹별 공지사항 */
 		int limitNumber = 20;
@@ -216,7 +216,7 @@ public class webController {
 		int startNum = (pageNum - 1) * limitNumber;
 		pictVO.setStartNumber(startNum);
 		Integer totalCnt = pictService.board_list_cnt(pictVO);
-		
+		System.out.println(totalCnt);
 		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
 		pictVO.setLastPage(lastPageValue);
 		
@@ -232,13 +232,15 @@ public class webController {
 		pictVO.setStartPage(s_page);
 		pictVO.setEndPage(e_page);
 		
+		model.addAttribute("pictVO", pictVO);
+		
 		List<PictVO> board_list = pictService.board_list(pictVO);
+
 		model.addAttribute("board_list", board_list);
 		model.addAttribute("board_cnt", totalCnt);
 		/* 연맹별 공지사항 */
-		
-		pictVO = pictService.getLocal_info(pictVO);
-		model.addAttribute("pictVO", pictVO);
+		PictVO vo = pictService.getLocal_info(pictVO);
+		model.addAttribute("vo", vo);
 		
 		return "pict/web/federation";
 	}
