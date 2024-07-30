@@ -43,7 +43,6 @@
 	                                <option value="1093" <c:if test="${pictVO.BRDNO eq '1093'}">selected</c:if>>제주연맹</option>
 	                                <option value="1129" <c:if test="${pictVO.BRDNO eq '1129'}">selected</c:if>>원불교연맹</option>
 	                                <option value="1572" <c:if test="${pictVO.BRDNO eq '1572'}">selected</c:if>>불교연맹</option>
-	                                
 	                            </select>
 	                        </div>
 	                        <div class="inputBox listSearch">

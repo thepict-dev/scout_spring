@@ -317,8 +317,22 @@ public class PictVO extends PictDefaultVO {
 	private String organization;
 	private String positionx;
 	private String positiony;
+	private String address;
+	private String tel;
 	
 	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	public String getDataid() {
 		return dataid;
 	}

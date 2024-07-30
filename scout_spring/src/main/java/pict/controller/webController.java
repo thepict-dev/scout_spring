@@ -254,19 +254,104 @@ public class webController {
 	//연맹자료실
 	@RequestMapping("federation_files")
 	public String federation_files(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		if(pictVO != null) {
+			if(pictVO.getDataid().equals("gangwon")) pictVO.setBRDNO("967");
+		}
+		pictVO.setType("sub");
+		
+		/* 연맹별 공지사항 */
+		int limitNumber = 20;
+		pictVO.setLimit(limitNumber);
+		Integer pageNum = pictVO.getPageNumber();
+		if(pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		Integer totalCnt = pictService.board_list_cnt(pictVO);
+		System.out.println(totalCnt);
+		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
+		pictVO.setLastPage(lastPageValue);
+		
+		Integer s_page = pageNum - 4;
+		Integer e_page = pageNum + 5;
+		if (s_page <= 0) {
+			s_page = 1;
+			e_page = 10;
+		} 
+		if (e_page > lastPageValue){
+			e_page = lastPageValue;
+		}
+		pictVO.setStartPage(s_page);
+		pictVO.setEndPage(e_page);
+		
+		model.addAttribute("pictVO", pictVO);
+		
+		List<PictVO> board_list = pictService.board_list(pictVO);
+
+		model.addAttribute("board_list", board_list);
+		model.addAttribute("board_cnt", totalCnt);
+		
+		
+		PictVO vo = pictService.getLocal_info(pictVO);
+		model.addAttribute("vo", vo);
 		
 		return "pict/web/federation_files";
 	}
 	//연맹행사안내
 	@RequestMapping("federation_event")
 	public String federation_event(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		if(pictVO != null) {
+			if(pictVO.getDataid().equals("gangwon")) pictVO.setBRDNO("967");
+		}
+		pictVO.setType("sub");
 		
+		/* 연맹별 공지사항 */
+		int limitNumber = 20;
+		pictVO.setLimit(limitNumber);
+		Integer pageNum = pictVO.getPageNumber();
+		if(pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		Integer totalCnt = pictService.board_list_cnt(pictVO);
+		System.out.println(totalCnt);
+		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
+		pictVO.setLastPage(lastPageValue);
+		
+		Integer s_page = pageNum - 4;
+		Integer e_page = pageNum + 5;
+		if (s_page <= 0) {
+			s_page = 1;
+			e_page = 10;
+		} 
+		if (e_page > lastPageValue){
+			e_page = lastPageValue;
+		}
+		pictVO.setStartPage(s_page);
+		pictVO.setEndPage(e_page);
+		
+		model.addAttribute("pictVO", pictVO);
+		
+		List<PictVO> board_list = pictService.board_list(pictVO);
+
+		model.addAttribute("board_list", board_list);
+		model.addAttribute("board_cnt", totalCnt);
+		
+		
+		PictVO vo = pictService.getLocal_info(pictVO);
+		model.addAttribute("vo", vo);
 		return "pict/web/federation_event";
 	}
 	//연맹오시는길
 	@RequestMapping("federation_location")
 	public String federation_location(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		
+		PictVO vo = pictService.getLocal_info(pictVO);
+		model.addAttribute("vo", vo);
 		return "pict/web/federation_location";
 	}
 	

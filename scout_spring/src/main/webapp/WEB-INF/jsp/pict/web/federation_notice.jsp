@@ -28,11 +28,11 @@
 				<p>연맹장 ${vo.leadername}</p>
 			</div>
             <ul class="tabNav organNav rules">
-                <li><a href="/federation_organ">조직도</a></li>
-                <li class="active"><a href="/federation_notice">공지사항</a></li>
-                <li><a href="/federation_files">자료실</a></li>
-                <li><a href="/federation_event">행사안내</a></li>
-                <li><a href="/federation_location">오시는길</a></li>
+                <li><a href="/federation_organ?dataid=${vo.dataid}">조직도</a></li>
+                <li class="active"><a href="/federation_notice?dataid=${vo.dataid}">공지사항</a></li>
+                <li><a href="/federation_files?dataid=${vo.dataid}">자료실</a></li>
+                <li><a href="/federation_event?dataid=${vo.dataid}">행사안내</a></li>
+                <li><a href="/federation_location?dataid=${vo.dataid}">오시는길</a></li>
             </ul>
             
             <!-- 공지사항 -->
@@ -75,23 +75,23 @@
                 </div>
                 <div class="pagination">
 	            	<c:if test="${pictVO.pageNumber ne 1}">
-	            		<a href="/federation?dataid=${pictVO.dataid}&pageNumber=1&search_text=${pictVO.search_text}"><img src="/user_img/first.png" alt=""></a>
-	            		<a href="/federation?dataid=${pictVO.dataid}&pageNumber=${pictVO.pageNumber - 1 < 1 ? 1 : pictVO.pageNumber - 1}&search_text=${pictVO.search_text}"><img src="/user_img/prev.png" alt=""></a>
+	            		<a href="/federation_notice?dataid=${pictVO.dataid}&pageNumber=1&search_text=${pictVO.search_text}"><img src="/user_img/first.png" alt=""></a>
+	            		<a href="/federation_notice?dataid=${pictVO.dataid}&pageNumber=${pictVO.pageNumber - 1 < 1 ? 1 : pictVO.pageNumber - 1}&search_text=${pictVO.search_text}"><img src="/user_img/prev.png" alt=""></a>
 	            	</c:if>
 	            	
 	            	
 	            	<c:forEach var="i" begin="${pictVO.startPage}" end="${pictVO.endPage}">
 						<c:if test="${i eq pictVO.pageNumber}">
-							<a href="/federation?dataid=${pictVO.dataid}&pageNumber=${i}&search_text=${pictVO.search_text}" class="active">${i}</a>
+							<a href="/federation_notice?dataid=${pictVO.dataid}&pageNumber=${i}&search_text=${pictVO.search_text}" class="active">${i}</a>
 						</c:if>
 						<c:if test="${i ne pictVO.pageNumber}">
-							<a href="/federation?dataid=${pictVO.dataid}&pageNumber=${i}&search_text=${pictVO.search_text}" >${i}</a>
+							<a href="/federation_notice?dataid=${pictVO.dataid}&pageNumber=${i}&search_text=${pictVO.search_text}" >${i}</a>
 						</c:if>
 					</c:forEach>
 	                
 	                <c:if test="${pictVO.lastPage ne pictVO.pageNumber}">
-						<li><a href="/federation?dataid=${pictVO.dataid}&pageNumber=${pictVO.pageNumber + 1 > pictVO.lastPage ?  pictVO.lastPage : pictVO.pageNumber + 1}&search_text=${pictVO.search_text}"><img src="/user_img/next.png" alt=""></a></li>
-						<li><a href="/federation?dataid=${pictVO.dataid}&pageNumber=${pictVO.lastPage}&search_text=${pictVO.search_text}"><img src="/user_img/last.png" alt=""></a></li>
+						<li><a href="/federation_notice?dataid=${pictVO.dataid}&pageNumber=${pictVO.pageNumber + 1 > pictVO.lastPage ?  pictVO.lastPage : pictVO.pageNumber + 1}&search_text=${pictVO.search_text}"><img src="/user_img/next.png" alt=""></a></li>
+						<li><a href="/federation_notice?dataid=${pictVO.dataid}&pageNumber=${pictVO.lastPage}&search_text=${pictVO.search_text}"><img src="/user_img/last.png" alt=""></a></li>
 					</c:if>
 	            </div>
             </div>

@@ -32,9 +32,38 @@
                         <span>02-6335-2000</span>
                     </li>
                 </ul>
-                <div class="kakaoMap">
+                <div class="kakaoMap" id="map">
+					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0d776bb34a08483e971b1a5e18e0b065&libraries=services"></script>
+					<script>
+						var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+						mapOption = { 
+							center: new kakao.maps.LatLng('37.526702140168055', '126.9164705322456'), // 지도의 중심좌표
+							level: 3 // 지도의 확대 레벨
+						};
+						var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-                </div>
+						// 마커가 표시될 위치입니다 
+						var markerPosition  = new kakao.maps.LatLng('37.526702140168055', '126.9164705322456'); 
+						// 마커를 생성합니다
+						var marker = new kakao.maps.Marker({
+						    position: markerPosition
+						});
+						
+						// 마커가 지도 위에 표시되도록 설정합니다
+						marker.setMap(map);
+						
+						var iwContent = '<div style="line-height:30px; width:230px; text-align:center">' + '한국스카우트연맹 중앙본부' +'</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+
+						// 인포윈도우를 생성합니다
+						var infowindow = new kakao.maps.InfoWindow({
+						    content : iwContent
+						});
+						kakao.maps.event.addListener(marker, 'mouseover', function() {
+						  // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+						    infowindow.open(map, marker);
+						});
+					</script>
+				</div>
             </div>
         </div>
     </div>
