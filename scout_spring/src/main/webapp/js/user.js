@@ -160,3 +160,19 @@ $('.trBookingBtn button').click(function(){
 $('.trModal .modalWrapper button').click(function(){
   $('.trModal').hide();
 });
+
+// 상단으로 이동하는 버튼 기능
+let topBtn = document.querySelector('.top');
+
+window.addEventListener('scroll', function() {
+    if (this.scrollY > 500) {
+        topBtn.classList.add('active');
+    } else {
+        topBtn.classList.remove('active');
+    }
+})
+
+topBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    window.scrollTo({top: 0, behavior: 'smooth'});
+})

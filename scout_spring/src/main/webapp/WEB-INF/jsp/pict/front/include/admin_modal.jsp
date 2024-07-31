@@ -50,8 +50,8 @@
                         <div class="inputBox">
                             <p class="inputCaption">임기</p>
                             <div class="inputsAlign">
-                                <input type="date" name="period1" id="period1" class="lgThinInput">
-                                <input type="date" name="period2" id="period2" class="lgThinInput">
+                                <input type="date" name="period1" id="period1" class="lgThinInput" max="9999-12-31">
+                                <input type="date" name="period2" id="period2" class="lgThinInput" max="9999-12-31">
                                 <input type="checkbox" name="non_period" id="non_period" class="circleCheck"><label for="">임기미정</label>
                             </div>
                         </div>

@@ -20,8 +20,8 @@
             <div class="joinContainer">
                 <div class="fomrTabContent signContainer">
                     <form action="" id="register" name="register" method="post" enctype="multipart/form-data">
-                        <h2 class="subTitles" style="padding: 16px 24px;">납부액 정보</h2>
-                        <div class="regiSearch">
+                    	<h2 class="subTitles" style="padding: 16px 24px; background: var(--grey-50);">납부액 정보</h2>
+                        <div class="regiSearch" style="padding-bottom: 16px; background: var(--grey-50);">
                             <div class="searchContainer">
                                 <p class="inputCaption">연맹</p>
                                 <div class="inputsAlign">

@@ -110,7 +110,7 @@
                                 <div class="inputsContainer">
                                     <div class="inputBox">
                                         <p class="inputCaption">생년월일</p>
-                                        <input type="date" name="BIRTHDAY" id="BIRTHDAY" class="lgThinInput" required>
+                                        <input type="date" name="BIRTHDAY" id="BIRTHDAY" class="lgThinInput" required max="9999-12-31">
                                     </div>
 		                            <div class="inputBox">
 		                                <p class="inputCaption">휴대전화</p>

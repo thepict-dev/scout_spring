@@ -20,8 +20,8 @@
             <div class="joinContainer">
                 <div class="fomrTabContent signContainer" style="border-top: 0;">
                     <form action="" id="register" name="register" method="post" enctype="multipart/form-data">
-                    <h2 class="subTitles" style="padding: 16px 24px;">조회</h2>
-                        <div class="regiSearch">
+                    	<h2 class="subTitles" style="padding: 16px 24px; background: var(--grey-50);">조회</h2>
+                        <div class="regiSearch" style="padding-bottom: 16px; background: var(--grey-50);">
                             <div class="searchContainer">
                                 <p class="inputCaption">연맹/지구</p>
                                 <div class="inputsAlign">
@@ -424,5 +424,10 @@
 				}
 			});
 		}
+		
+		// 팝업닫기
+		$("#regiSearchPopup button").click(function(){
+		    $("#regiSearchPopup").removeClass("active");
+		});
 	</script>
 </html>

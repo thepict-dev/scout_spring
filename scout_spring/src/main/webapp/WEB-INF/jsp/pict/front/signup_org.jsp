@@ -87,7 +87,7 @@
 	                                </div>
 	                                <div class="inputBox">
 	                                    <p class="inputCaption">결성일</p>
-	                                    <input type="date" name="REGDAY" id="REGDAY" value="${pictVO.REGDAY}" class="lgThinInput">
+	                                    <input type="date" name="REGDAY" id="REGDAY" value="${pictVO.REGDAY}" class="lgThinInput" max="9999-12-31">
 	                                </div>
 	                            </div>
 	                            <div class="inputsContainer">

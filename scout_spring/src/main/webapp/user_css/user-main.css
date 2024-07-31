@@ -406,7 +406,7 @@
 .notice li a{
 	display: flex;
 	align-items: center;
-	width: calc(100% - 127.8px);
+	width: calc(100% - 146.8px);
 	color: var(--text-color);
 	font-size: 20px;
 	font-weight: 500;
@@ -424,7 +424,7 @@
 .notice li a span.noti{
 	display: block;
 	min-width: 33px;
-	margin-right: 4px;
+	margin-right: 17px;
 	padding: 4px 5px;
 	color: #fff;
 	font-size: 14px;
@@ -492,5 +492,8 @@
 	}
 	.notice li > p span img{
 		width: 18px;
+	}
+	.notice li a span.noti{
+		margin-right: 9px;
 	}
 }

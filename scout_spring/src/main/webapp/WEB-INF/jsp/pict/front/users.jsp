@@ -32,7 +32,7 @@
                         <div class="inputsContainer mt20">
                             <div class="inputBox">
                                 <p class="inputCaption">법정생년</p>
-                                <input type="date" name="search_birthday" id="search_birthday" value="${pictVO.search_birthday}" class="lgThinInput" maxlength="8">
+                                <input type="date" name="search_birthday" id="search_birthday" value="${pictVO.search_birthday}" class="lgThinInput" maxlength="8" max="9999-12-31">
                             </div>
                             <div class="inputBox">
                                 <p class="inputCaption">가입이력</p>
@@ -69,11 +69,11 @@
                         <div class="inputsContainer mt20">
                             <div class="inputBox">
                                 <p class="inputCaption">등록시작일</p>
-                                <input type="date" id="search_start" name="search_start" value="${pictVO.search_start}" class="lgThinInput"/>
+                                <input type="date" id="search_start" name="search_start" value="${pictVO.search_start}" class="lgThinInput" max="9999-12-31">
                             </div>
                             <div class="inputBox period">
                                 <p class="inputCaption">등록마감일</p>
-                                <input type="date" id="search_end" name="search_end" value="${pictVO.search_end}" class="lgThinInput"/>
+                                <input type="date" id="search_end" name="search_end" value="${pictVO.search_end}" class="lgThinInput" max="9999-12-31">
                                 <!-- 여 -->
                                 <label for="whole_period" class="wholeCheck">
                                     <input type="radio" name="whole_period" id="whole_period">
@@ -224,7 +224,7 @@
                                 <div class="inputsContainer">
                                     <div class="inputBox">
                                         <p class="inputCaption">생년월일</p>
-                                        <input type="date" name="BIRTHDAY" id="BIRTHDAY" class="lgThinInput">
+                                        <input type="date" name="BIRTHDAY" id="BIRTHDAY" class="lgThinInput" max="9999-12-31">
                                     </div>
                                     <div class="inputBox">
                                         <p class="inputCaption">전종여부</p>

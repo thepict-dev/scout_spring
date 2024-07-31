@@ -40,4 +40,6 @@
         </div>
     </div>
 </footer>
+<button type="button" class="top"><img src="/user_img/up.png" alt=""></button>
+
 <%@ include file="./local_apply_modal.jsp" %>

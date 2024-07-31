@@ -117,7 +117,9 @@
             transform: scale(0.75) translateY(-21px);
     -webkit-transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out;
     transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out;
-    z-index: 9; }
+    z-index: 9; 
+		box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.15);
+		}
     /* .nice-select .list:hover .option:not(:hover) {
       background-color: transparent !important; } */
   
@@ -125,7 +127,7 @@
 		background-color: #fff;
 	}
 	.nice-select .list::-webkit-scrollbar{
-		width: 1px;
+		width: 7px;
 	    height: 5px;
 		background-color: #fff;
 	}

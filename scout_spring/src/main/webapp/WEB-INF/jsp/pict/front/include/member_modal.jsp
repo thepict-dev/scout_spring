@@ -147,7 +147,7 @@
 	                    <div class="inputBox">
 	                        <p class="inputCaption">회비정산입금일</p>
 	                            <div class="inputsAlign">
-	                            <input type="date" name="BANKDAY_SCOUT" id="BANKDAY_SCOUT" class="lgThinInput">
+	                            <input type="date" name="BANKDAY_SCOUT" id="BANKDAY_SCOUT" class="lgThinInput" max="9999-12-31">
 	                            <div>
 	                                <input type="checkbox" name="PAYY_SCOUT" id="PAYY_SCOUT" class="circleCheck" value="Y"><label for="PAYY_SCOUT">납부완료</label>
 	                            </div>

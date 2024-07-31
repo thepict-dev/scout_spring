@@ -84,7 +84,7 @@
 		                            <option value="1">기혼</option>
 		                            <option value="2">미혼</option>
 		                        </select>
-		                        <input type="date" name="marry_date" id="marry_date" class="lgThinInput">
+		                        <input type="date" name="marry_date" id="marry_date" class="lgThinInput" max="9999-12-31">
 		                    </div>
 		                </div>
 		            </div>
@@ -289,8 +289,8 @@
 	        <form action="" class="tableContainer relationContainer addTable">
 		   		<div class="addTableBack">
 		            <div class="addSearch">
-		                <input type="date" name="wlrcor1" id="wlrcor1" class="lgThinInput"> -
-		                <input type="date" name="wlrcor2" id="wlrcor2" class="lgThinInput"> 
+		                <input type="date" name="wlrcor1" id="wlrcor1" class="lgThinInput" max="9999-12-31"> -
+		                <input type="date" name="wlrcor2" id="wlrcor2" class="lgThinInput" max="9999-12-31"> 
 		                <a href="" class="smButton"><img src="/front_img/search2.png" alt="">조회</a>
 		            </div>
 		            <div class="tableWrapper">
@@ -422,8 +422,8 @@
 		                        <select name="wlsqh2" id="wlsqh2" class="smThinSelect">
 		                            <option value="">진보</option>
 		                        </select>
-		                        <input type="date" name="wlsqhdate" id="wlsqhdate" class="lgThinInput"> -
-		                        <input type="date" name="wlsqhdate2" id="wlsqhdate2" class="lgThinInput"> 
+		                        <input type="date" name="wlsqhdate" id="wlsqhdate" class="lgThinInput" max="9999-12-31"> -
+		                        <input type="date" name="wlsqhdate2" id="wlsqhdate2" class="lgThinInput" max="9999-12-31"> 
 		                        <input type="checkbox" name="wholeBongsa" id="wholeBongsa">
 		                        <label for="wholeBongsa">전체</label>
 		                    </div>
@@ -534,8 +534,8 @@
 		            <div class="addSearch">
 		                <div class="addScroll">
 		                    <div class="addSearchScroll">
-		                        <input type="date" name="qhdtk11" id="qhdtk11" class="lgThinInput"> -
-		                        <input type="date" name="qhdtk22" id="qhdtk22" class="lgThinInput"> 
+		                        <input type="date" name="qhdtk11" id="qhdtk11" class="lgThinInput" max="9999-12-31"> -
+		                        <input type="date" name="qhdtk22" id="qhdtk22" class="lgThinInput" max="9999-12-31"> 
 		                        <input type="checkbox" name="wholePeriod" id="wholePeriod">
 		                        <label for="wholePeriod">전체</label>
 		                    </div>

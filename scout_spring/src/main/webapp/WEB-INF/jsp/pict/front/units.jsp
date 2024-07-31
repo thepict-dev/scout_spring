@@ -253,6 +253,7 @@
                                 </div>
                             </div>
 		                    <div class="tableButtons rights" style="justify-content: flex-end;">
+		                    	<a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">전체 엑셀저장</a>
                                 <a href="#lnk" class="smButton"><img src="/front_img/doc.png" alt="">청소년단체등록확인서</a>
                                 <a href="#lnk" class="smButton"><img src="/front_img/doc.png" alt="">가맹등록신청서</a>
 		                    </div>
