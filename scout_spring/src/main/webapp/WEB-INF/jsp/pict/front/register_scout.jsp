@@ -68,7 +68,12 @@
                         	<!-- 좌측 -->
                         	<div class="doubleTable">
 	                            <div class="tableContainer">
-	                                <h2 class="subTitles">작년도</h2>
+	                            	<div style="display: flex; justify-content: space-between; align-items: center;">
+	                                	<h2 class="subTitles">작년도</h2>
+	                                    <div class="buttons">
+	                                        <a href="#lnk" class="smButton daeButton" style="padding: 0 8px;">신규등록</a>
+	                                    </div>
+                                    </div>
 	                                <div class="tableWrapper" style="height: 300px;">
 	                                    <table style="min-width: unset;">
 	                                        <colgroup>
@@ -1010,4 +1015,5 @@
 		    $("#regiConfirmPopup").removeClass("active");
 		});
 	</script>
+	<%@ include file="./include/dae_modal.jsp" %>
 </html>
