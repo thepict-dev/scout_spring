@@ -141,6 +141,12 @@
 	line-height: 100%; /* 20px */
 	letter-spacing: -1px;
 }
+.contentDesc > li > p.jams{
+	width: 200px;
+	white-space: wrap;
+	word-break: keep-all;
+	line-height: 120%; /* 20px */
+}
 .contentDesc.schol > li > p{
 	width: 100%;
 }
@@ -184,6 +190,9 @@
 		margin-bottom: 12px;
 		white-space: wrap;
 		font-size: 20px;
+	}
+	.contentDesc > li > p.jams{
+		width: 100%;
 	}
 	.contentDesc.schol > li > p{
 		width: 100%;
@@ -1004,7 +1013,6 @@
 	padding-bottom: 26px;
 }
 .organNav li{
-	padding: 12px 32px;
 	color: var(--grey-500);
 	font-family: SUIT;
 	font-size: 34px;
@@ -1015,6 +1023,10 @@
 }
 .organNav li:hover{
 	color: var(--text-color);
+}
+.organNav li a, .organNav li span{
+	display: block;
+	padding: 12px 32px;
 }
 .organNav li.active{
 	color: var(--text-color);
