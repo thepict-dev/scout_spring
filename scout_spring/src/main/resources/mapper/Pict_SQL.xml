@@ -1027,12 +1027,15 @@
 	
 	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@홈페이지 시작@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 	<select id="board_list" resultType="pictVO">
-		select * from board_table 
+		select c.ASSOCIATIONCODE, c.title, b.*
+		from board_table b
+		left outer join board_category c on b.BRDNO = c.boardcategory
 		where 1=1
 		<if test="BRDNO != null and BRDNO != ''">
-			and BRDNO = #{BRDNO}
+			and b.BRDNO = #{BRDNO}
 		</if>
 
+		<!-- 홈페이지영역인지 확인 -->
 		<if test="main != null and main != ''">
 			and (USEAT = 'Y')
 		</if>
@@ -1040,12 +1043,13 @@
 			and (USEAT = 'Y' or USEAT = 'H')
 		</if>		
 
-		<if test="type != null and type != ''">
-			and BRDNO !='56' and BRDNO != '227' and BRDNO != '290' and BRDNO !='1587' and BRDNO !='1827'  
+		<if test="ASSOCIATIONCODE != null and ASSOCIATIONCODE != ''">
+			and c.ASSOCIATIONCODE = #{ASSOCIATIONCODE}  
 		</if>
-		<if test="type == null or type == ''">
-			and (BRDNO ='56' or BRDNO = '227' or BRDNO = '290' or BRDNO ='1587' or BRDNO ='1827')
+		<if test="ASSOCIATIONCODE == null or ASSOCIATIONCODE == ''">
+			and c.ASSOCIATIONCODE != '200' 
 		</if>
+
 		<if test="search_text != null and search_text != ''">
 			and SUBJECT LIKE CONCAT('%', #{search_text}, '%')
 		</if>
@@ -1054,30 +1058,28 @@
 	</select>
 	
 	<select id="board_list_cnt" resultType="int">
-		select count(*) from board_table 
-			where 1=1
-			<if test="BRDNO != null and BRDNO != ''">
-				and BRDNO = #{BRDNO}
-			</if>
-			
-			<if test="main != null and main != ''">
-				and (USEAT = 'Y')
-			</if>
-			<if test="main == null or main == ''">
-				and (USEAT = 'Y' or USEAT = 'H')
-			</if>
-			
-			
-			<if test="type != null and type != ''">
-				and BRDNO !='56' and BRDNO != '227' and BRDNO != '290' and BRDNO !='1587' and BRDNO !='1827'  
-			</if>
-			<if test="type == null or type == ''">
-				and (BRDNO ='56' or BRDNO = '227' or BRDNO = '290' or BRDNO ='1587' or BRDNO ='1827')
-			</if>
-			<if test="search_text != null and search_text != ''">
-				and SUBJECT LIKE CONCAT('%', #{search_text}, '%')
-			</if>
-			order by NOTI desc, ENTERDATE desc
+		select count(b.BRDCTSNO)
+		from board_table b
+		left outer join board_category c on b.BRDNO = c.boardcategory
+		where 1=1
+		<if test="BRDNO != null and BRDNO != ''">
+			and b.BRDNO = #{BRDNO}
+		</if>
+		
+		<if test="main != null and main != ''">
+			and (b.USEAT = 'Y')
+		</if>
+		<if test="main == null or main == ''">
+			and (b.USEAT = 'Y' or b.USEAT = 'H')
+		</if>
+		
+		<if test="ASSOCIATIONCODE != null and ASSOCIATIONCODE != ''">
+			and c.ASSOCIATIONCODE = #{ASSOCIATIONCODE}  
+		</if>
+		<if test="search_text != null and search_text != ''">
+			and SUBJECT LIKE CONCAT('%', #{search_text}, '%')
+		</if>
+		order by NOTI desc, ENTERDATE desc
 	</select>
 	
 	<select id="board_list_one" resultType="pictVO">
@@ -1263,5 +1265,10 @@
 	<select id="getLocal_info" resultType="pictVO">
 		select * from local_info
 		where dataid = #{dataid}
+	</select>
+	
+	<select id="board_category_list" resultType="pictVO">
+		select * from board_category
+		where ASSOCIATIONCODE = #{ASSOCIATIONCODE}
 	</select>
 </mapper>

@@ -2815,6 +2815,8 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
+		
+		pictVO.setASSOCIATIONCODE("200");
 		int limitNumber = 20;
 		pictVO.setLimit(limitNumber);
 		
@@ -2978,6 +2980,22 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
+		String associationcode = (String) request.getSession().getAttribute("associationcode");
+		
+		//중앙본부 아니면 자기 연맹것만 확인
+		if(!associationcode.equals("200")) {
+			
+			pictVO.setASSOCIATIONCODE(associationcode);
+		}
+		else {
+			if(pictVO != null && pictVO.getASSOCIATIONCODE() != null) {
+				
+			}
+			else {
+				pictVO.setASSOCIATIONCODE("");
+			}
+		}
+		
 		int limitNumber = 20;
 		pictVO.setLimit(limitNumber);
 		
@@ -3015,7 +3033,8 @@ public class PictController {
 		model.addAttribute("board_list", board_list);
 		model.addAttribute("board_cnt", totalCnt);
 		
-		
+		System.out.println(pictVO.getASSOCIATIONCODE());
+		model.addAttribute("pictVO", pictVO);
 		return "pict/front/board_list_sub";
 	}
 	//게시글 폼
@@ -3025,6 +3044,8 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
+		String associationcode = (String) request.getSession().getAttribute("associationcode");
+		
 		if(pictVO != null && pictVO.getBRDCTSNO() != null) {
 			//수정
 			pictVO = pictService.board_list_one(pictVO);
@@ -3033,6 +3054,20 @@ public class PictController {
 		}
 		else {
 			pictVO.setSaveType("insert");
+		}
+		
+		//중앙본부 아니면 자기 연맹것만 확인
+		if(!associationcode.equals("200")) {
+			
+			pictVO.setASSOCIATIONCODE(associationcode);
+		}
+		else {
+			if(pictVO != null && pictVO.getASSOCIATIONCODE() != null) {
+				
+			}
+			else {
+				pictVO.setASSOCIATIONCODE("");
+			}
 		}
 		model.addAttribute("pictVO", pictVO);
 		return "pict/front/board_form_sub";
@@ -3258,6 +3293,25 @@ public class PictController {
 		model.addAttribute("retType", ":location");
 		model.addAttribute("retUrl", "/admin/front/local_list");
 		return "pict/main/message";
+	}
+	
+	//게시물 카테고리
+	@RequestMapping("/get_board_category")
+	@ResponseBody
+	public HashMap<String, Object> get_board_category(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+
+		
+		String associationcode = param.get("associationcode").toString();
+		HashMap<String, Object> map = new HashMap<String, Object>();		
+		pictVO.setASSOCIATIONCODE(associationcode);
+		
+		List<PictVO> board_list = pictService.board_category_list(pictVO);
+		if(board_list.size() > 0) {
+			map.put("list", board_list);
+		}
+		
+
+		return map;
 	}
 	
 	// 공통메소드

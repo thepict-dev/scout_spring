@@ -254,6 +254,8 @@ public class webController {
 	//연맹자료실
 	@RequestMapping("federation_files")
 	public String federation_files(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		//연맹별로 여기세팅
 		if(pictVO != null) {
 			if(pictVO.getDataid().equals("gangwon")) pictVO.setBRDNO("967");
 		}

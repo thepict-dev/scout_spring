@@ -319,8 +319,16 @@ public class PictVO extends PictDefaultVO {
 	private String positiony;
 	private String address;
 	private String tel;
+	private String boardcategory;
+
 	
 	
+	public String getBoardcategory() {
+		return boardcategory;
+	}
+	public void setBoardcategory(String boardcategory) {
+		this.boardcategory = boardcategory;
+	}
 	public String getAddress() {
 		return address;
 	}

@@ -512,6 +512,12 @@ public class PictServiceImpl implements PictService {
 		return pictMapper.getLocal_info(pictVO);
 	}
 
+	@Override
+	public List<PictVO> board_category_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.board_category_list(pictVO);
+	}
+
 
 	
 	

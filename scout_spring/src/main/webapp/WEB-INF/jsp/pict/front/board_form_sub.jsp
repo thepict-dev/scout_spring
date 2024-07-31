@@ -11,6 +11,9 @@
 	<script src="/js/script_signup.js" defer></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<body>
+		<%
+			pageContext.setAttribute("session", session.getAttribute("associationcode"));
+		%>
 		<%@ include file="./include/lnb.jsp" %>
 		<c:import url="./include/header.jsp">
 			<c:param name="pageParent" value="홈페이지 관리"/>
@@ -23,27 +26,35 @@
 	                    <div class="inputsContainer">
 	                        <div class="inputBox">
 	                            <p class="inputCaption">카테고리*</p>
-	                            <select name="BRDNO" id="BRDNO" class="lgThinInput">
-	                            	<option value="">전체</option>
-	                                <option value="787" <c:if test="${pictVO.BRDNO eq '787'}">selected</c:if>>서울북부</option>
-	                                <option value="805" <c:if test="${pictVO.BRDNO eq '805'}">selected</c:if>>서울남부</option>
-	                                <option value="823" <c:if test="${pictVO.BRDNO eq '823'}">selected</c:if>>부산연맹</option>
-	                                <option value="841" <c:if test="${pictVO.BRDNO eq '841'}">selected</c:if>>대구연맹</option>
-	                                <option value="859" <c:if test="${pictVO.BRDNO eq '859'}">selected</c:if>>인천연맹</option>
-	                                <option value="877" <c:if test="${pictVO.BRDNO eq '877'}">selected</c:if>>광주연맹</option>
-	                                <option value="896" <c:if test="${pictVO.BRDNO eq '896'}">selected</c:if>>대전연맹</option>
-	                                <option value="913" <c:if test="${pictVO.BRDNO eq '913'}">selected</c:if>>울산연맹</option>
-	                                <option value="931" <c:if test="${pictVO.BRDNO eq '931'}">selected</c:if>>경기북부</option>
-	                                <option value="967" <c:if test="${pictVO.BRDNO eq '967'}">selected</c:if>>강원연맹</option>
-	                                <option value="985" <c:if test="${pictVO.BRDNO eq '985'}">selected</c:if>>충북연맹</option>
-	                                <option value="1003" <c:if test="${pictVO.BRDNO eq '1003'}">selected</c:if>>충남세종</option>
-	                                <option value="1022" <c:if test="${pictVO.BRDNO eq '1022'}">selected</c:if>>전북연맹</option>
-	                                <option value="1039" <c:if test="${pictVO.BRDNO eq '1039'}">selected</c:if>>전남연맹</option>
-	                                <option value="1058" <c:if test="${pictVO.BRDNO eq '1058'}">selected</c:if>>경북연맹</option>
-	                                <option value="1075" <c:if test="${pictVO.BRDNO eq '1075'}">selected</c:if>>경남연맹</option>
-	                                <option value="1093" <c:if test="${pictVO.BRDNO eq '1093'}">selected</c:if>>제주연맹</option>
-	                                <option value="1129" <c:if test="${pictVO.BRDNO eq '1129'}">selected</c:if>>원불교연맹</option>
-	                                <option value="1572" <c:if test="${pictVO.BRDNO eq '1572'}">selected</c:if>>불교연맹</option>
+	                            <select name="ASSOCIATIONCODE" id="ASSOCIATIONCODE" class="lgThinInput" onchange="fn_change_associationcode()">
+		                        	<option value="011" <c:if test="${pictVO.ASSOCIATIONCODE eq '011'}">selected</c:if>>서울북부</option>
+									<option value="012" <c:if test="${pictVO.ASSOCIATIONCODE eq '012'}">selected</c:if>>서울남부</option>
+									<option value="020" <c:if test="${pictVO.ASSOCIATIONCODE eq '020'}">selected</c:if>>부산</option>
+									<option value="030" <c:if test="${pictVO.ASSOCIATIONCODE eq '030'}">selected</c:if>>대구</option>
+									<option value="040" <c:if test="${pictVO.ASSOCIATIONCODE eq '040'}">selected</c:if>>인천</option>
+									<option value="050" <c:if test="${pictVO.ASSOCIATIONCODE eq '050'}">selected</c:if>>광주</option>
+									<option value="060" <c:if test="${pictVO.ASSOCIATIONCODE eq '060'}">selected</c:if>>대전</option>
+									<option value="070" <c:if test="${pictVO.ASSOCIATIONCODE eq '070'}">selected</c:if>>울산</option>
+									<option value="100" <c:if test="${pictVO.ASSOCIATIONCODE eq '100'}">selected</c:if>>경기북부</option>
+									<option value="110" <c:if test="${pictVO.ASSOCIATIONCODE eq '110'}">selected</c:if>>경기남부</option>
+									<option value="120" <c:if test="${pictVO.ASSOCIATIONCODE eq '120'}">selected</c:if>>강원</option>
+									<option value="130" <c:if test="${pictVO.ASSOCIATIONCODE eq '130'}">selected</c:if>>충북</option>
+									<option value="140" <c:if test="${pictVO.ASSOCIATIONCODE eq '140'}">selected</c:if>>충남세종</option>
+									<option value="150" <c:if test="${pictVO.ASSOCIATIONCODE eq '150'}">selected</c:if>>전북</option>
+									<option value="160" <c:if test="${pictVO.ASSOCIATIONCODE eq '160'}">selected</c:if>>전남</option>
+									<option value="170" <c:if test="${pictVO.ASSOCIATIONCODE eq '170'}">selected</c:if>>경북</option>
+									<option value="180" <c:if test="${pictVO.ASSOCIATIONCODE eq '180'}">selected</c:if>>경남</option>
+									<option value="190" <c:if test="${pictVO.ASSOCIATIONCODE eq '190'}">selected</c:if>>제주</option>
+									<option value="210" <c:if test="${pictVO.ASSOCIATIONCODE eq '210'}">selected</c:if>>가톨릭</option>
+									<option value="220" <c:if test="${pictVO.ASSOCIATIONCODE eq '220'}">selected</c:if>>원불교</option>
+									<option value="230" <c:if test="${pictVO.ASSOCIATIONCODE eq '230'}">selected</c:if>>불교</option>
+									<option value="240" <c:if test="${pictVO.ASSOCIATIONCODE eq '240'}">selected</c:if>>기독교</option>
+	                        	</select>
+	                        </div>
+	                        <div class="inputBox">
+	                            <p class="inputCaption">카테고리*</p>
+	                            <select name="BRDNO" id="BRDNO" class="lgThinInput" >
+
 	                            </select>
 	                        </div>
 	                        <!-- 필요하면 쓸것 -->
@@ -140,7 +151,7 @@
 	                        </div>
 	                    </div>
 	                    <div class="btnContainer organ">
-	                        <a href="/admin/front/board_list"class="normalButton white">목록으로</a>
+	                        <a href="/admin/front/board_list_sub"class="normalButton white">목록으로</a>
 	                        <a href="#lnk" onclick="fn_save()" class="normalButton purple">완료</a>
 	                    </div>
 	                    
@@ -165,6 +176,21 @@
 				if(file3 != '' && file3 != undefined && file3 != null) $('#file_name_3').text(file1.split("/user1/upload_file/scout/"+brdno+"/")[1])
 				if(file4 != '' && file4 != undefined && file4 != null) $('#file_name_4').text(file1.split("/user1/upload_file/scout/"+brdno+"/")[1])
 				if(file5 != '' && file5 != undefined && file5 != null) $('#file_name_5').text(file1.split("/user1/upload_file/scout/"+brdno+"/")[1])
+				
+				
+				var BRDNO = '${pictVO.BRDNO}'
+				if(BRDNO != null && BRDNO != undefined && BRDNO != ''){
+					fn_change_associationcode(BRDNO)
+				}
+				else{
+					fn_change_associationcode()
+					
+				}
+				var login_associationcode = ${session}
+				if(login_associationcode != '200'){
+					$("select[name=ASSOCIATIONCODE]").attr("disabled", true);
+					$('.contentsContainer select').niceSelect('update')	
+				}
 				
 			})
 			$(".jy_input").on('change', function(){
@@ -206,6 +232,40 @@
 					$("#register").attr("action", "/admin/front/board_save_sub");
 					$("#register").submit();
 				}
+			}
+			function fn_change_associationcode(BRDNO){
+				
+				var param = {
+						associationcode : $('#ASSOCIATIONCODE').val(),
+				}
+				$.ajax({
+					url : "/admin/get_board_category"
+					, type : "POST"
+					, data : JSON.stringify(param)
+					, contentType : "application/json"
+					, dataType : "json"
+					, success : function(data, status, xhr) {
+						var html ='<option value="">-----</option>';
+						console.log(data.list)
+						
+						if(data.list){
+							var arr = data.list;
+							$('#BRDNO').children().remove();
+							for(var i=0; i<arr.length; i++){
+								html += '<option value="'+ arr[i].boardcategory +'">'+ arr[i].title +'</option>'
+							}
+							$('#BRDNO').append(html)
+							if(BRDNO != null && BRDNO != '' && BRDNO != undefined){
+								$('#BRDNO').val(BRDNO)
+							}
+							$('.contentsContainer select').niceSelect('update')
+						}
+					}
+					, error : function(xhr, status, error) {
+						console.log(xhr)
+						console.log("에러")
+					}
+				});
 			}
 		</script>
 	</body>

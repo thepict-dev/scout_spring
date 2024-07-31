@@ -185,6 +185,8 @@ public interface PictMapper {
 	List<PictVO> units_list_excel(PictVO pictVO) throws Exception;
 
 	PictVO getLocal_info(PictVO pictVO) throws Exception;
+
+	List<PictVO> board_category_list(PictVO pictVO) throws Exception;
  
 	
 

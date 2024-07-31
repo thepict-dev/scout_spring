@@ -184,6 +184,8 @@ public interface PictService {
 
 	public PictVO getLocal_info(PictVO pictVO) throws Exception;
 
+	public List<PictVO> board_category_list(PictVO pictVO) throws Exception;
+
 
 
 }

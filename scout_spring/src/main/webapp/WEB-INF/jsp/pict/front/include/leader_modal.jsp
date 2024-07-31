@@ -468,6 +468,11 @@
 					$('#troop_leader').append(html)
 					$('#joinPopup select').niceSelect('update')
 				}
+				else{
+					html += '<option value="0">개인등록</option>'
+					$('#troop_leader').append(html)
+					$('#joinPopup select').niceSelect('update')
+				}
 			}
 			, error : function(xhr, status, error) {
 				console.log(xhr)
@@ -585,6 +590,7 @@
 			
 			if(confirm (text)){
 				$('#leader_list').children().remove();
+				debugger
 				$.ajax({
 					url : "/admin/leader_save"
 					, type : "POST"
