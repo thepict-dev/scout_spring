@@ -39,7 +39,12 @@ public class webController {
 	
 	@RequestMapping("/")
 	public String pict_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		pictVO.setType("main");
+		List<PictVO> popup_list = pictService.popup_list(pictVO);
+		Integer totalCnt = pictService.popup_list_cnt(pictVO);
 		
+		model.addAttribute("popup_list", popup_list);
+		model.addAttribute("totalCnt", totalCnt);
 		return "pict/web/main";
 	}
 	@RequestMapping("/logout")
@@ -209,7 +214,10 @@ public class webController {
 		if(pictVO != null) {
 			if(pictVO.getDataid().equals("gangwon")) pictVO.setBRDNO("967");
 			if(pictVO.getDataid().equals("gwangju")) pictVO.setBRDNO("877");
-			
+			if(pictVO.getDataid().equals("daegu")) pictVO.setBRDNO("841");
+			if(pictVO.getDataid().equals("daejeon")) pictVO.setBRDNO("896");
+			if(pictVO.getDataid().equals("seoulnambu")) pictVO.setBRDNO("805");
+			if(pictVO.getDataid().equals("jeju")) pictVO.setBRDNO("1093");
 		}
 		pictVO.setType("sub");
 		
@@ -224,7 +232,6 @@ public class webController {
 		int startNum = (pageNum - 1) * limitNumber;
 		pictVO.setStartNumber(startNum);
 		Integer totalCnt = pictService.board_list_cnt(pictVO);
-		System.out.println(totalCnt);
 		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
 		pictVO.setLastPage(lastPageValue);
 		
@@ -261,6 +268,10 @@ public class webController {
 		if(pictVO != null) {
 			if(pictVO.getDataid().equals("gangwon")) pictVO.setBRDNO("5011");
 			if(pictVO.getDataid().equals("gwangju")) pictVO.setBRDNO("5006");
+			if(pictVO.getDataid().equals("daegu")) pictVO.setBRDNO("5004");
+			if(pictVO.getDataid().equals("daejeon")) pictVO.setBRDNO("5007");
+			if(pictVO.getDataid().equals("seoulnambu")) pictVO.setBRDNO("5002");
+			if(pictVO.getDataid().equals("jeju")) pictVO.setBRDNO("5018");
 		}
 		pictVO.setType("sub");
 		
@@ -318,6 +329,10 @@ public class webController {
 		if(pictVO != null) {
 			if(pictVO.getDataid().equals("gangwon")) pictVO.setBRDNO("6011");
 			if(pictVO.getDataid().equals("gwangju")) pictVO.setBRDNO("6006");
+			if(pictVO.getDataid().equals("daegu")) pictVO.setBRDNO("6004");
+			if(pictVO.getDataid().equals("daejeon")) pictVO.setBRDNO("6007");
+			if(pictVO.getDataid().equals("seoulnambu")) pictVO.setBRDNO("6002");
+			if(pictVO.getDataid().equals("jeju")) pictVO.setBRDNO("6018");
 		}
 		pictVO.setType("sub");
 		
@@ -373,7 +388,9 @@ public class webController {
 	//연맹별 공지사항 뷰
 	@RequestMapping("federation_view")
 	public String federation_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		
+		pictService.board_view_cnt(pictVO);
+		pictVO = pictService.board_list_one(pictVO);
+		model.addAttribute("pictVO", pictVO);
 		return "pict/web/federation_view";
 	}
 	//통합자료실

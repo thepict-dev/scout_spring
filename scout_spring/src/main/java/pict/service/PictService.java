@@ -186,6 +186,20 @@ public interface PictService {
 
 	public List<PictVO> board_category_list(PictVO pictVO) throws Exception;
 
+	public Integer popup_list_cnt(PictVO pictVO) throws Exception;
+
+	public List<PictVO> popup_list(PictVO pictVO) throws Exception;
+
+	public PictVO popup_list_one(PictVO pictVO) throws Exception;
+
+	public void popup_update(PictVO pictVO) throws Exception;
+
+	public void popup_insert(PictVO pictVO) throws Exception;
+
+	public void popup_delete(PictVO pictVO) throws Exception;
+
+	public void popup_cng(PictVO pictVO) throws Exception;
+
 
 
 }

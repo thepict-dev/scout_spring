@@ -1036,6 +1036,42 @@ tbody tr.active td{
     background-color: var(--grey-50);
 }
 
+/*관리자 팝업*/
+.listHead_popup{
+    display: grid;
+    grid-template-columns: 5% 35% 25% 5% 15% 15%;
+    text-align: center;
+}
+.listHead_popup li{
+    padding: 20px 0;
+    background-color: var(--purple-50);
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 100%; /* 14px */
+    letter-spacing: -0.7px;
+}
+
+.listBody_popup li{
+    display: grid;
+    grid-template-columns: 5% 35% 25% 5% 15% 15%;
+    text-align: center;
+    border-bottom: 1px solid var(--grey-100);
+    background-color: #fff;
+}
+.listBody_popup li p, .listBody_popup li > a{
+    padding: 9px 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 100%; /* 14px */
+    letter-spacing: -0.7px;
+}
+.listBody_popup li a.title{
+    text-align: left;
+}
+.listBody_popup li:hover{
+    background-color: var(--grey-50);
+}
 
 /*지방연맹*/
 .listHead2{

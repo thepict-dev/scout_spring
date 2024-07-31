@@ -10,6 +10,15 @@
 	<script src="/js/script_signup.js" defer></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<body>
+	<%
+		pageContext.setAttribute("session", session.getAttribute("associationcode"));
+		pageContext.setAttribute("troopno", session.getAttribute("troopno"));
+		pageContext.setAttribute("troopname", session.getAttribute("troopname"));
+		
+		pageContext.setAttribute("employeey", session.getAttribute("employeey"));
+		pageContext.setAttribute("adminy", session.getAttribute("adminy"));
+		
+	%>
 	<%@ include file="./include/lnb.jsp" %>
 	<c:import url="./include/header.jsp">
 		<c:param name="pageParent" value="회원등록"/>
@@ -329,12 +338,42 @@
 	<input type="hidden" id="troop_no" >
 	<input type="hidden" id="troop_name" >
 	<input type="hidden" id="parrent_troop_no" >
-	
+	<%@ include file="./include/loading.jsp" %>
+	<%@ include file="./include/error_page.jsp" %>
 	</body>
 	<script>
-	$(document).ready(function() {
-	    $('select').niceSelect();
-	});
+		$(document).ready(function() {
+		    $('select').niceSelect();
+		    
+		    var login_associationcode = '${session}'
+			if(login_associationcode != '200'){
+				var adminy = '${adminy}'
+				var employeey = '${employeey}'
+				var troopname = '${troopname}'
+				var code = '${pictVO.ASSOCIATIONCODE}';
+				$('#ASSOCIATIONCODE').val(code)
+				fn_get_unitylist_org()
+				$("select[name=ASSOCIATIONCODE]").attr("disabled", true);
+				$('.contentsContainer select').niceSelect('update')	
+				if(employeey == 'Y'){
+					
+				}
+				else if(employeey != 'Y' && adminy == 'Y'){
+					
+					$("select[name=PARENTTROOPNO]").attr("disabled", true);
+					$("select[name=TROOPCLSCODE1]").attr("disabled", true);
+					$("select[name=TROOPCLSCODE2]").attr("disabled", true);
+					$('#TROOPNAME').val(troopname)
+					$('#TROOPNAME').attr("disabled", true)
+					
+					$('.contentsContainer select').niceSelect('update')
+					
+					console.log("전종은 아니고 관리지도자일 경우")
+				}
+				
+				
+			}
+		});
 		//지도자 좌측
 		function allCheck_left_leader(target) {
 			var $id = $(target).data('check');
@@ -466,6 +505,7 @@
 			});
 		}
 		function choose_troop(){
+			$('#initial-loading').css('display', 'flex')
 			var listVar = $('input[name=selection_list]:checked').val();
 			$('#troop_no').val(listVar);
 			var param = {
@@ -482,8 +522,7 @@
 				, dataType : "json"
 				, async : true
 				, success : function(data, status, xhr) {
-					if(data){
-						
+					if(data.leader_list){
 						//지도자 테이블
 						var leader_html = ""
 						for(var i=0; i<data.leader_list.length; i++){
@@ -594,7 +633,8 @@
                     		'</tr>'
 						}
 						$('#search_prev_leader_list').append(leader_html)
-						
+					}
+					if(data.scout_list){
 						//대원 테이블
 						var scout_html = ""
 						for(var i=0; i<data.scout_list.length; i++){
@@ -707,9 +747,15 @@
 						$('.contentsContainer select').niceSelect('update')
 						$("#regiSearchPopup").removeClass("active");
 					}
+					else{
+						alert("등록된 데이터가 없습니다.")
+					}
+					$('#initial-loading').css('display', 'none')
 				}
 				, error : function(xhr, status, error) {
 					console.log(xhr)
+					$('#initial-loading').css('display', 'none')
+					$('#error').css('display', 'block')
 					console.log("에러")
 				}
 			});

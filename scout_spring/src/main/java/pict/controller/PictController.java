@@ -171,13 +171,13 @@ public class PictController {
 				
 
 			} else {
-				model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.1");
+				model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.<br>관리지도자 여부를 확인하여 주시기 바랍니다.");
 				model.addAttribute("retType", ":location");
 				model.addAttribute("retUrl", "/admin/pict_login");
 				return "pict/main/message";
 			}
 		} else {
-			model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.2");
+			model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.<br>관리지도자 여부를 확인하여 주시기 바랍니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/pict_login");
 			return "pict/main/message";
@@ -2643,6 +2643,20 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
+		
+		String associationcode = (String) request.getSession().getAttribute("associationcode");
+		//중앙본부 아니면 자기 연맹것만 확인
+		if(!associationcode.equals("200")) {
+			pictVO.setASSOCIATIONCODE(associationcode);
+		}
+		else {
+			if(pictVO != null && pictVO.getASSOCIATIONCODE() != null) {
+			}
+			else {
+				pictVO.setASSOCIATIONCODE("");
+			}
+		}
+		
 		List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
 		List<PictVO> scoutcls_list = pictService.scoutcls_list(pictVO);
 		
@@ -2651,7 +2665,6 @@ public class PictController {
 		
 		
 		List<PictVO> association_list = pictService.association_list(pictVO);
-		pictVO.setASSOCIATIONCODE("200");
 		List<PictVO> unity_list = pictService.unity_list(pictVO);
 		model.addAttribute("association_list", association_list);
 		model.addAttribute("unity_list", unity_list);
@@ -2847,6 +2860,20 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
+		
+		String associationcode = (String) request.getSession().getAttribute("associationcode");
+		//중앙본부 아니면 자기 연맹것만 확인
+		if(!associationcode.equals("200")) {
+			pictVO.setASSOCIATIONCODE(associationcode);
+		}
+		else {
+			if(pictVO != null && pictVO.getASSOCIATIONCODE() != null) {
+			}
+			else {
+				pictVO.setASSOCIATIONCODE("");
+			}
+		}
+		
 		List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
 		List<PictVO> scoutcls_list = pictService.scoutcls_list(pictVO);
 		
@@ -2855,7 +2882,6 @@ public class PictController {
 		
 		
 		List<PictVO> association_list = pictService.association_list(pictVO);
-		pictVO.setASSOCIATIONCODE("200");
 		List<PictVO> unity_list = pictService.unity_list(pictVO);
 		model.addAttribute("association_list", association_list);
 		model.addAttribute("unity_list", unity_list);
@@ -3350,8 +3376,17 @@ public class PictController {
 		}
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
+		String associationcode = (String) request.getSession().getAttribute("associationcode");
+		
 		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
+		if(!associationcode.equals("200")) {
+			model.addAttribute("message", "해당 메뉴는 중앙본부 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
 			
@@ -3425,6 +3460,20 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
+		
+		String associationcode = (String) request.getSession().getAttribute("associationcode");
+		//중앙본부 아니면 자기 연맹것만 확인
+		if(!associationcode.equals("200")) {
+			pictVO.setSearch_associationcode(associationcode);
+		}
+		else {
+			if(pictVO != null && pictVO.getSearch_associationcode() != null) {
+			}
+			else {
+				pictVO.setSearch_associationcode("");
+			}
+		}
+		
 		int limitNumber = 20;
 		pictVO.setLimit(limitNumber);
 		
@@ -3494,6 +3543,151 @@ public class PictController {
 		
 
 		return map;
+	}
+	
+	//팝업관리
+	//예약 리스트
+	@RequestMapping("/front/popup_list")
+	public String popup_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
+		String jeonjong = (String) request.getSession().getAttribute("employeey");
+		String adminy = (String) request.getSession().getAttribute("adminy");
+		String associationcode = (String) request.getSession().getAttribute("associationcode");
+		
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
+		if(!associationcode.equals("200")) {
+			model.addAttribute("message", "해당 메뉴는 중앙본부 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
+		int limitNumber = 20;
+		pictVO.setLimit(limitNumber);
+		
+		Integer pageNum = pictVO.getPageNumber();
+		
+		if(pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		
+		Integer totalCnt = pictService.popup_list_cnt(pictVO);
+		
+		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
+		pictVO.setLastPage(lastPageValue);
+		
+		Integer s_page = pageNum - 4;
+		Integer e_page = pageNum + 5;
+		if (s_page <= 0) {
+			s_page = 1;
+			e_page = 10;
+		} 
+		if (e_page > lastPageValue){
+			e_page = lastPageValue;
+		}
+		
+		pictVO.setStartPage(s_page);
+		pictVO.setEndPage(e_page);
+		
+		
+		List<PictVO> board_list = pictService.popup_list(pictVO);
+		model.addAttribute("board_list", board_list);
+		model.addAttribute("board_cnt", totalCnt);
+		
+		
+		return "pict/front/popup_list";
+	}
+	//팝업 폼
+	@RequestMapping("/front/popup_form")
+	public String popup_form(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
+
+		if(pictVO != null && pictVO.getIdx() != 0) {
+			//수정
+			pictVO = pictService.popup_list_one(pictVO);
+			pictVO.setSaveType("update");
+			
+		}
+		else {
+			pictVO.setSaveType("insert");
+		}
+		
+		model.addAttribute("pictVO", pictVO);
+		return "pict/front/popup_form";
+	}
+	//팝업저장
+	@RequestMapping(value = "/front/popup_save", method = RequestMethod.POST)
+	public String popup_save(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, MultipartHttpServletRequest request,
+			@RequestParam("file1root") MultipartFile attach_file1) throws Exception {
+		
+		String sessions = (String) request.getSession().getAttribute("id");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
+		String file_dir = "/user1/upload_file/scout/";
+		
+		
+        if(attach_file1.getSize() != 0) {
+			String uploadPath = fileUpload(request, attach_file1, (String)request.getSession().getAttribute("id"), pictVO.getBRDNO());
+			String filepath = file_dir  + "popup/";
+			String filename = uploadPath.split("#####")[1];
+			pictVO.setMainimg(filepath+filename);
+		}
+        
+        if(pictVO.getSaveType() != null && pictVO.getSaveType().equals("update")) {
+			pictService.popup_update(pictVO);
+			model.addAttribute("message", "정상적으로 수정되었습니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/front/popup_list");
+			return "pict/main/message";
+		}
+		else {
+			pictVO.setRegister(request.getSession().getAttribute("name").toString());
+			pictService.popup_insert(pictVO);
+			model.addAttribute("message", "정상적으로 저장되었습니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/front/popup_list");
+			return "pict/main/message";	
+		}
+	}
+	//팝업삭제
+	@RequestMapping(value = "/front/popup_delete")
+	public String popup_delete(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+		
+		pictService.popup_delete(pictVO);
+		
+		model.addAttribute("message", "정상적으로 삭제되었습니다.");
+		model.addAttribute("retType", ":location");
+		model.addAttribute("retUrl", "/admin/front/popup_list");
+		return "pict/main/message";
+		
+	}
+	//팝업 상태값 변경
+	@RequestMapping(value = "/front/popup_cng")
+	public String popup_cng(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+	
+		pictService.popup_cng(pictVO);
+		
+		model.addAttribute("message", "정상적으로 변경되었습니다.");
+		model.addAttribute("retType", ":location");
+		model.addAttribute("retUrl", "/admin/front/popup_list");
+		return "pict/main/message";
 	}
 	
 	// 공통메소드

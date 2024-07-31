@@ -187,6 +187,20 @@ public interface PictMapper {
 	PictVO getLocal_info(PictVO pictVO) throws Exception;
 
 	List<PictVO> board_category_list(PictVO pictVO) throws Exception;
+
+	Integer popup_list_cnt(PictVO pictVO) throws Exception;
+
+	List<PictVO> popup_list(PictVO pictVO) throws Exception;
+
+	PictVO popup_list_one(PictVO pictVO) throws Exception;
+
+	void popup_update(PictVO pictVO) throws Exception;
+
+	void popup_insert(PictVO pictVO) throws Exception;
+
+	void popup_delete(PictVO pictVO) throws Exception;
+
+	void popup_cng(PictVO pictVO) throws Exception;
  
 	
 

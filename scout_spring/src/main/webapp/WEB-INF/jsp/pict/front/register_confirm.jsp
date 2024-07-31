@@ -10,6 +10,10 @@
 	<script src="/js/script_signup.js" defer></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<body>
+	<%
+		pageContext.setAttribute("session", session.getAttribute("associationcode"));
+
+	%>
 		<%@ include file="./include/lnb.jsp" %>
 		<c:import url="./include/header.jsp">
 			<c:param name="pageParent" value="회원등록"/>
@@ -178,6 +182,18 @@
     </div>
 	</body>
 	<script>
+		$(document).ready(function() {
+		    
+		    var login_associationcode = '${session}'
+			if(login_associationcode != '200'){
+				var code = '${pictVO.ASSOCIATIONCODE}';
+				
+				$('#ASSOCIATIONCODE').val(code)
+				$("select[name=ASSOCIATIONCODE]").attr("disabled", true);
+				fn_get_unitylist_org()
+				$('.contentsContainer select').niceSelect('update')	
+			}
+		});
 	
 		//지도자 좌측
 		function allCheck_left_leader(target) {

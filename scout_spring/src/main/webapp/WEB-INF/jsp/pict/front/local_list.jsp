@@ -10,6 +10,10 @@
 	<script src="/js/script_signup.js" defer></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<body>
+	<%
+		pageContext.setAttribute("session", session.getAttribute("associationcode"));
+		
+	%>
 		<%@ include file="./include/lnb.jsp" %>
 		<c:import url="./include/header.jsp">
 			<c:param name="pageParent" value="홈페이지 관리"/>
@@ -150,6 +154,17 @@
 	</div>
 		
 	<script>
+		$(document).ready(function() {
+
+		    var login_associationcode = '${session}'
+			if(login_associationcode != '200'){
+				var code = '${pictVO.search_associationcode}';
+				$('#search_associationcode').val(code)
+				$("select[name=search_associationcode]").attr("disabled", true);
+				fn_get_unitylist_org()
+				$('.contentsContainer select').niceSelect('update')	
+			}
+		});
 		$("#search_associationcode").change(function(){
 			$("#search_fm").attr("action", "/admin/front/local_list");
 			$("#search_fm").submit();

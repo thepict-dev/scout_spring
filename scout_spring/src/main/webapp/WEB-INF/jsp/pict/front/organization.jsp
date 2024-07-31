@@ -636,7 +636,7 @@
 	<script>
 		$(document).ready(function(){
 
-			var login_associationcode = ${session}
+			var login_associationcode = '${session}'
 			if(login_associationcode != '200'){
 				var code = '${pictVO.search_associationcode}';
 				

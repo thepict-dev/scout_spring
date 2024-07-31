@@ -186,7 +186,7 @@
 					fn_change_associationcode()
 					
 				}
-				var login_associationcode = ${session}
+				var login_associationcode = '${session}'
 				if(login_associationcode != '200'){
 					$("select[name=ASSOCIATIONCODE]").attr("disabled", true);
 					$('.contentsContainer select').niceSelect('update')	

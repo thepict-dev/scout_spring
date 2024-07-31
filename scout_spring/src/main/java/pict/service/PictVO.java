@@ -321,8 +321,22 @@ public class PictVO extends PictDefaultVO {
 	private String tel;
 	private String boardcategory;
 	private String LEVEL;
+	private String linkurl;
+	private int orderby;
 	
 	
+	public int getOrderby() {
+		return orderby;
+	}
+	public void setOrderby(int orderby) {
+		this.orderby = orderby;
+	}
+	public String getLinkurl() {
+		return linkurl;
+	}
+	public void setLinkurl(String linkurl) {
+		this.linkurl = linkurl;
+	}
 	public String getLEVEL() {
 		return LEVEL;
 	}

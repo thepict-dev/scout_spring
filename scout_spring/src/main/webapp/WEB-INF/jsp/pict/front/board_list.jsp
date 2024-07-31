@@ -32,7 +32,7 @@
 	                            </select>
 	                        </div>
 	                        <div class="inputBox listSearch">
-	                            <input type="text" name="search_text" id="search_text" placeholder="내용을 입력하세요…">
+	                            <input type="text" name="search_text" id="search_text" placeholder="내용을 입력하세요…" value="${pictVO.search_text}">
 	                            <a href="#lnk" onclick="fn_search()"><img src="/front_img/search2.png" alt=""></a>
 	                        </div>
 	                    </div>

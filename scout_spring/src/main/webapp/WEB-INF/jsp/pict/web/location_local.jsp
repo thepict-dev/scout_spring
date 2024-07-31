@@ -37,7 +37,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('서울북부')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     <li>
                         <div class="imgTexts">
@@ -54,7 +54,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('서울남부')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     <li>
                         <div class="imgTexts">
@@ -71,7 +71,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('부산')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     <li>
                         <div class="imgTexts">
@@ -88,7 +88,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('대구')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     <li>
                         <div class="imgTexts">
@@ -105,7 +105,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('인천')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     <li>
                         <div class="imgTexts">
@@ -122,7 +122,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('광주')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -140,7 +140,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('대전')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -158,7 +158,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('울산')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -176,7 +176,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('경기북부')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -194,7 +194,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('경기남부')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -212,7 +212,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="/federation_organ?dataid=gangwon" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('강원')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -230,7 +230,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('충북')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -248,7 +248,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('충남세종')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -266,7 +266,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('전북')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -284,7 +284,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('전남')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -302,7 +302,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('경북')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -320,7 +320,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('경남')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -338,7 +338,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('제주')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -356,7 +356,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('가톨릭')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -374,7 +374,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('원불교')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -392,7 +392,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('불교')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -410,7 +410,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('기독교')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -446,7 +446,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
+                        <a href="#lnk" onclick="fn_local('의원')"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>                    
                 </ul>
             </div>
@@ -454,4 +454,19 @@
     </div>
 	<%@ include file="./include/footer.jsp" %>
 </body>
+<script>
+	function fn_local(target){
+		if(target == '강원') location.href="/federation_organ?dataid=gangwon";
+		else if(target == '광주') location.href="/federation_organ?dataid=gwangju";
+		else if(target == '대구') location.href="/federation_organ?dataid=daegu";
+		else if(target == '대전') location.href="/federation_organ?dataid=daejeon";
+		else if(target == '서울남부') location.href="/federation_organ?dataid=seoulnambu";
+		else if(target == '제주') location.href="/federation_organ?dataid=jeju";
+		else{
+			alert("해당 연맹 데이터는 준비중입니다.")
+			return false;
+		}
+		
+	}
+</script>
 </html>

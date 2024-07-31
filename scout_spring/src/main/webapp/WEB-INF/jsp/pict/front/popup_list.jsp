@@ -1,0 +1,102 @@
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fn"	   uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<!DOCTYPE html>	
+<html lang="ko">
+	<%@ include file="./include/head.jsp" %>
+	<script src="/js/script_signup.js" defer></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<body>
+		<%@ include file="./include/lnb.jsp" %>
+		<c:import url="./include/header.jsp">
+			<c:param name="pageParent" value="홈페이지 관리"/>
+	    	<c:param name="pageTitle" value="팝업 관리"/>
+	    </c:import>
+		    <div class="contentsContainer">
+	        <div class="listContainer">
+	            <div class="listInner">
+	                <form action="" id="search_fm" name="search_fm" method="get" class="countList">
+	                    <p>총 <span>${board_cnt}</span>개</p>
+	                    <div class="inputsContainer">
+	                        <div class="inputBox listSearch">
+	                            <input type="text" name="search_text" id="search_text" placeholder="내용을 입력하세요…" value="${pictVO.search_text}">
+	                            <a href="#lnk" onclick="fn_search()"><img src="/front_img/search2.png" alt=""></a>
+	                        </div>
+	                    </div>
+	                </form>
+	                <ul class="listHead_popup">
+	                    <li>순서</li>
+	                    <li>제목</li>
+	                    <li>링크</li>
+	                    <li>정렬순서</li>
+	                    <li>등록일</li>
+	                    <li>삭제</li>
+	                </ul>
+	                <ul class="listBody_popup">
+	                	<c:forEach var="board_list" items="${board_list}" varStatus="status">
+		                    <li>
+		                        <p>
+		                        	<c:if test="${pictVO.pageNumber eq 1}">
+		                        		${board_cnt - status.index}
+	                        		</c:if>
+	                        		<c:if test="${pictVO.pageNumber ne 1}">
+	                        			${board_cnt - (status.index +  ((pictVO.pageNumber - 1) * 20))}
+	                        		</c:if>
+		                        </p>
+		                        <a href="/admin/front/popup_form?idx=${board_list.idx}" class="title">${board_list.title}</a>
+		                        <p>${board_list.linkurl}</p>
+		                        <p>${board_list.orderby}</p>
+		                        <p>${fn:substring(board_list.ENTERDATE,0,11)}</p>
+		                        <p><a href="#lnk" onclick="board_delete('${board_list.idx}')"><img src="/front_img/delete.png" alt="삭제"></a></p>
+		                    </li>
+	                    </c:forEach>
+	                </ul>
+	                <div class="listButton">
+	                    <a href="/admin/front/popup_form"><img src="/front_img/add.png" alt="등록버튼">등록</a>
+	                </div>
+	                <div class="pagination">
+		            	<c:if test="${pictVO.pageNumber ne 1}">
+		            		<a href="/admin/front/popup_list?pageNumber=1"><img src="/user_img/first.png" alt=""></a>
+		            		<a href="/admin/front/popup_list?pageNumber=${pictVO.pageNumber - 1 < 1 ? 1 : pictVO.pageNumber - 1}"><img src="/user_img/prev.png" alt=""></a>
+		            	</c:if>
+		            	
+		            	
+		            	<c:forEach var="i" begin="${pictVO.startPage}" end="${pictVO.endPage}">
+							<c:if test="${i eq pictVO.pageNumber}">
+								<a href="/admin/front/popup_list?pageNumber=${i}" class="active">${i}</a>
+							</c:if>
+							<c:if test="${i ne pictVO.pageNumber}">
+								<a href="/admin/front/popup_list?pageNumber=${i}" >${i}</a>
+							</c:if>
+						</c:forEach>
+		                
+		                <c:if test="${pictVO.lastPage ne pictVO.pageNumber}">
+							<li><a href="/admin/front/popup_list?pageNumber=${pictVO.pageNumber + 1 > pictVO.lastPage ?  pictVO.lastPage : pictVO.pageNumber + 1}"><img src="/user_img/next.png" alt=""></a></li>
+							<li><a href="/admin/front/popup_list?pageNumber=${pictVO.lastPage}"><img src="/user_img/last.png" alt=""></a></li>
+						</c:if>
+		            </div>
+	            </div>
+	        </div>
+	    </div>
+	</body>
+	<form action="" id="register" name="register" method="post" enctype="multipart/form-data">
+		<input type='hidden' name="idx" id="idx" value='' />
+	</form>
+	<script>
+
+		function fn_search(){
+			$("#search_fm").attr("action", "/admin/front/popup_list");
+			$("#search_fm").submit();
+		}
+		function board_delete(idx) {
+			if (confirm("삭제 하시겠습니까?")) {
+				$('#idx').val(idx)
+				$("#register").attr("action", "/admin/front/popup_delete");
+				$("#register").submit();
+			}
+		}
+	</script>
+</html>

@@ -21,11 +21,15 @@
             	<!-- 연맹소개글 -->
                	${vo.introduce}
 
-                <span class="feders"><img src="https://scout.thepict.co.kr${vo.leaderimg}" alt="연맹장사진"></span>
+                <c:if test="${vo.leaderimg ne '' && vo.leaderimg ne null && vo.leaderimg ne undefined}">
+                	<span class="feders"><img src="https://scout.thepict.co.kr${vo.leaderimg}" alt="연맹장사진"></span>
+               	</c:if>
             </div>
-            <div class="sign feders" >
-				<p>연맹장 ${vo.leadername}</p>
-			</div>
+            <c:if test="${vo.leaderimg ne '' && vo.leaderimg ne null && vo.leaderimg ne undefined}">
+	            <div class="sign feders" >
+					<p>연맹장 ${vo.leadername}</p>
+				</div>
+			</c:if>
             <ul class="tabNav organNav rules">
                 <li><a href="/federation_organ?dataid=${vo.dataid}">조직도</a></li>
                 <li class="active"><a href="/federation_notice?dataid=${vo.dataid}">공지사항</a></li>
@@ -41,7 +45,7 @@
                         <c:forEach var="board_list" items="${board_list}" varStatus="status">
 	                		<c:if test="${board_list.NOTI eq 'Y'}">
 			                    <li>
-			                        <a href="/notice_view?BRDCTSNO=${board_list.BRDCTSNO}"><span class="noti">공지</span><span class="title">${board_list.SUBJECT}</span></a>
+			                        <a href="/federation_view?BRDCTSNO=${board_list.BRDCTSNO}"><span class="noti">공지</span><span class="title">${board_list.SUBJECT}</span></a>
 			                        <p>
 			                        	<c:if test="${board_list.file1 ne '' && board_list.file1 ne null && board_list.file1 ne undefined}">
 			                            	<span><img src="/user_img/file.png" alt="첨부파일"></span>
@@ -52,7 +56,7 @@
 		                    </c:if>
 		                    <c:if test="${board_list.NOTI ne 'Y'}">
 		                		<li>
-			                        <a href="/notice_view?BRDCTSNO=${board_list.BRDCTSNO}">
+			                        <a href="/federation_view?BRDCTSNO=${board_list.BRDCTSNO}">
 			                        	<c:if test="${pictVO.pageNumber eq 1}">
 			                        		<p>${board_cnt - status.index}</p>
 		                        		</c:if>

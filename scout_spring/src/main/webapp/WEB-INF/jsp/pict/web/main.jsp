@@ -156,83 +156,41 @@
                 </div>
             </div>
         </div>
-        <!-- 
-        <div class="mainSec4" data-aos="fade-up" data-aos-delay="200">
-            <div class="mainSubTitle">
-                <h2>공지사항</h2>
-                <a href="#lnk"><img src="/user_img/arrow-outward.png" alt="링크이동"></a>
-            </div>
-            <div class="noticeWrapper">
-                <ul class="notice">
-                    <li>
-                        <a href="#lnk"><span class="noti">중요</span>공지사항 내용이 이곳에 들어갑니다</a>
-                        <p>2024-01-16</p>
-                    </li>
-                    <li>
-                        <a href="#lnk"><p>01</p>공지사항 내용이 이곳에 들어갑니다</a>
-                        <p>
-                            <span><img src="/user_img/file.png" alt="첨부파일"></span>
-                            2024-01-16
-                        </p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="mainSec4 sec5" data-aos="fade-up" data-aos-delay="200">
-            <div class="mainSubTitle">
-                <h2>언론에 비친 스카우트</h2>
-                <a href="#lnk"><img src="/user_img/arrow-outward.png" alt="링크이동"></a>
-            </div>
-            <div class="noticeWrapper">
-                <ul class="notice">
-                    <li>
-                        <a href="#lnk"><p>01</p>언론 제목이 이곳에 들어갑니다</a>
-                        <p>2024-01-16</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-         -->
     </div>
 	<%@ include file="./include/footer.jsp" %>
-    <div class="mainPopup">
-        <div class="mainPopupInner">
-            <button type="button" onclick="closePopup()"><img src="/user_img/close-popup.png" alt=""></button>
-            <div class="swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="#lnk">
-                            <img src="/user_img/cup.jpeg" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#lnk">
-                            <img src="/user_img/venture.jpeg" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#lnk">
-                            <img src="/user_img/cup.jpeg" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="mainPopupButtons">
-                <button type="button" onclick="todayClosePopup()">오늘 하루 보지 않기</button>
-                <button type="button" onclick="closePopup()">닫기</button>
-            </div>
-            <div class="swiper-pagination"></div>
-        </div>
-    </div>
+	<c:if test="${totalCnt > 0}">
+		<div class="mainPopup">
+	        <div class="mainPopupInner">
+	            <button type="button" onclick="closePopup()"><img src="/user_img/close-popup.png" alt=""></button>
+	            <div class="swiper">
+	                <div class="swiper-wrapper">
+	                    <c:forEach var="popup_list" items="${popup_list}" varStatus="status">
+		                    <div class="swiper-slide">
+		                        <a href="${popup_list.linkurl}">
+		                            <img src="${popup_list.mainimg}" alt="팝업이미지">
+		                        </a>
+		                    </div>
+	                    </c:forEach>
+	                </div>
+	            </div>
+	            <div class="mainPopupButtons">
+	                <button type="button" onclick="todayClosePopup()">오늘 하루 보지 않기</button>
+	                <button type="button" onclick="closePopup()">닫기</button>
+	            </div>
+	            <div class="swiper-pagination"></div>
+	        </div>
+	    </div>
+	</c:if>
+	
 	<script>
 		AOS.init();
 		
 	    $( document ).ready(function() {
 	        cookiedata = document.cookie; 
-
 	        if ( cookiedata.indexOf("ncookie=done") < 0 ){ 
 	            document.querySelector('.mainPopup').style.display = "flex";    //  팝업창 아이디
-	        } else {
+	        } 
+	        else {
 	            document.querySelector('.mainPopup').style.display = "none";    // 팝업창 아이디
 	        }
 	    });
@@ -248,7 +206,7 @@
 	    }
 
 	    function todayClosePopup() { 
-	        setCookie( "ncookie", "done" , 7 );     // 저장될 쿠키명 , 쿠키 value값 , 기간( ex. 1은 하루, 7은 일주일)
+	        setCookie( "ncookie", "done" , 1 );     // 저장될 쿠키명 , 쿠키 value값 , 기간( ex. 1은 하루, 7은 일주일)
 	        document.querySelector('.mainPopup').style.display = "none";    // 팝업창 아이디
 	    }
 	</script>

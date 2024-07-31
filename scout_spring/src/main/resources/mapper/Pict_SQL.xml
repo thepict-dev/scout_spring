@@ -1229,7 +1229,7 @@
 			and status = #{search_status}
 		</if>
 		<if test="search_associationcode != null and search_associationcode != ''">
-			and a.ASSOCIATIONCODE = #{search_associationcode}
+			and l.association = #{search_associationcode}
 		</if>
 		order by ENTERDATE desc
 	</select>
@@ -1247,6 +1247,9 @@
 		</if>
 		<if test="search_status != null and search_status != ''">
 			and status = #{search_status}
+		</if>
+		<if test="search_associationcode != null and search_associationcode != ''">
+			and l.association = #{search_associationcode}
 		</if>
 		
 	</select>
@@ -1278,4 +1281,66 @@
 		select * from board_category
 		where ASSOCIATIONCODE = #{ASSOCIATIONCODE}
 	</select>
+	
+	<select id="popup_list" resultType="pictVO">
+		select * from popup_table
+		where 1=1
+		<if test="title != null and title != ''">
+			and title LIKE CONCAT('%', #{search_text}, '%')
+		</if>
+		<if test="type != null and type != '' and type == 'main'">
+			and USEAT = 'Y'
+		</if>
+		order by ENTERDATE
+	</select>
+	
+	<select id="popup_list_cnt" resultType="int"> 
+		select count(idx) from popup_table
+		where 1=1
+		<if test="title != null and title != ''">
+			and title LIKE CONCAT('%', #{search_text}, '%')
+		</if>
+		<if test="type != null and type != '' and type == 'main'">
+			and USEAT = 'Y'
+			order by orderby asc
+		</if>
+		<if test="type == null or type == ''">
+			order by ENTERDATE desc
+		</if>
+		
+	</select>
+	
+	<select id="popup_list_one" resultType="pictVO">
+		select * from popup_table
+		where 1=1
+		and idx = #{idx}
+	</select>
+	
+	<update id="popup_update" parameterType="pictVO">
+		update popup_table 
+		set title = #{title}
+		<if test="mainimg != null and mainimg != ''">
+			, mainimg = #{mainimg}
+		</if>
+		, linkurl = #{linkurl}
+		, orderby = #{orderby}
+		, ENTERDATE = now()
+		where idx = #{idx}
+	</update>
+	
+	<insert id="popup_insert" parameterType="pictVO">
+		INSERT INTO popup_table(title, mainimg, linkurl, USEAT, orderby, ENTERDATE) 
+		VALUES (#{title}, #{mainimg}, #{linkurl}, 'Y', #{orderby}, now());
+	</insert>
+	
+	<delete id="popup_delete" parameterType="pictVO">
+		delete from popup_table where idx = #{idx}
+	</delete>
+	
+	<update id="popup_cng" parameterType="pictVO">
+		update popup_table set USEAT = #{USEAT} where idx = #{idx}
+	</update>
+	
+	
+	
 </mapper>

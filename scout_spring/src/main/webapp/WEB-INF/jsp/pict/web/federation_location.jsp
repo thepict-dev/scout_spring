@@ -20,12 +20,15 @@
             <div class="greetingContainer">
             	<!-- 연맹소개글 -->
                	${vo.introduce}
-
-                <span class="feders"><img src="https://scout.thepict.co.kr${vo.leaderimg}" alt="연맹장사진"></span>
+				<c:if test="${vo.leaderimg ne '' && vo.leaderimg ne null && vo.leaderimg ne undefined}">
+                	<span class="feders"><img src="https://scout.thepict.co.kr${vo.leaderimg}" alt="연맹장사진"></span>
+               	</c:if>
             </div>
-            <div class="sign feders" >
-				<p>연맹장 ${vo.leadername}</p>
-			</div>
+            <c:if test="${vo.leaderimg ne '' && vo.leaderimg ne null && vo.leaderimg ne undefined}">
+	            <div class="sign feders" >
+					<p>연맹장 ${vo.leadername}</p>
+				</div>
+			</c:if>
             <ul class="tabNav organNav rules">
                 <li><a href="/federation_organ?dataid=${vo.dataid}">조직도</a></li>
                 <li><a href="/federation_notice?dataid=${vo.dataid}">공지사항</a></li>

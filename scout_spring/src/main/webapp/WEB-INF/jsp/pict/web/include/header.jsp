@@ -36,6 +36,8 @@
 <c:set var="news" value="${fn:indexOf(url, 'news')}"/>
 
 <c:set var="intro" value="${fn:indexOf(url, 'intro')}"/>
+<c:set var="facility" value="${fn:indexOf(url, 'facility')}"/>
+<c:set var="intro" value="${fn:indexOf(url, 'intro')}"/>
 <c:set var="greeting" value="${fn:indexOf(url, 'greeting')}"/>
 <c:set var="history_local" value="${fn:indexOf(url, 'history_local')}"/>
 <c:set var="history_inter" value="${fn:indexOf(url, 'history_inter')}"/>
@@ -45,7 +47,7 @@
 <c:set var="location_local" value="${fn:indexOf(url, 'location_local')}"/>
 <c:set var="family" value="${fn:indexOf(url, 'family')}"/>
 
-<c:set var="feder" value="${intro ne -1 || greeting ne -1 || history_local ne -1 || history_inter ne -1 || organization ne -1 || rules ne -1 || location_center ne -1 || location_local ne -1 || family ne -1}" />
+<c:set var="feder" value="${intro ne -1 || greeting ne -1 || history_local ne -1 || history_inter ne -1 || organization ne -1 || rules ne -1 || location_center ne -1 || location_local ne -1 || family ne -1 || facility ne -1 || store ne -1}" />
 
 <c:set var="tr_intgree" value="${fn:indexOf(url, 'tr_intgree')}"/>
 <c:set var="tr_gil" value="${fn:indexOf(url, 'tr_gil')}"/>
@@ -104,6 +106,11 @@
                             <li><a href="/organization">조직</a></li>
                             <li><a href="/rules">규정</a></li>
                             <li><a href="/location_center">찾아오시는길</a></li>
+                            
+                            <li><a href="/facility">시설안내,예약</a></li>
+                            <li><a href="/store">수품대리점</a></li>
+                            
+                            
 	                        <li><a href="/family">함께하는 기관 및 기업</a></li>
                         </ul>
                     </li>
@@ -175,6 +182,8 @@
                             <li><a href="/organization">조직</a></li>
                             <li><a href="/rules">규정</a></li>
                             <li><a href="/location_center">찾아오시는길</a></li>
+                            <li><a href="/facility">시설안내,예약</a></li>
+                            <li><a href="/store">수품대리점</a></li>
 	                        <li><a href="/family">함께하는 기관 및 기업</a></li>
 	                    </ul>
 	                </li>
