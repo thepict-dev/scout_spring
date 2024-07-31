@@ -353,7 +353,8 @@
 					$('#LEADERORGPOSITIONCODE_LEADER').val(data.rst.leaderorgpositioncode)
 					$('#LEADERPOSITIONCODE1').val(data.rst.leaderpositioncode1)
 					
-					fn_get_leaderposition()
+					debugger
+					fn_get_leaderposition(data.rst.leaderpositioncode2)
 					$('#LEADERPOSITIONCODE2').val(data.rst.leaderpositioncode2)
 					
 					if(data.rst.adminy == "Y") $(":checkbox[id='ADMINY']").attr("checked", true);
@@ -481,7 +482,7 @@
 		});
 	}
 	
-	function fn_get_leaderposition(){
+	function fn_get_leaderposition(leaderpositioncode2){
 		$('#LEADERPOSITIONCODE2').children().remove();
 		
 		if($('#LEADERPOSITIONCODE1').val() == ''){
@@ -511,6 +512,9 @@
 						html += '<option value="'+ arr[i].leaderpositioncode2 +'">'+arr[i].leaderpositionname +'</option>'
 					}
 					$('#LEADERPOSITIONCODE2').append(html)
+					if(leaderpositioncode2 != null && leaderpositioncode2 != '' && leaderpositioncode2 != undefined){
+						$('#LEADERPOSITIONCODE2').val(leaderpositioncode2)
+					}
 					$('#joinPopup select').niceSelect('update')
 				}
 			}

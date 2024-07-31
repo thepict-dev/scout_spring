@@ -320,9 +320,15 @@ public class PictVO extends PictDefaultVO {
 	private String address;
 	private String tel;
 	private String boardcategory;
-
+	private String LEVEL;
 	
 	
+	public String getLEVEL() {
+		return LEVEL;
+	}
+	public void setLEVEL(String lEVEL) {
+		LEVEL = lEVEL;
+	}
 	public String getBoardcategory() {
 		return boardcategory;
 	}

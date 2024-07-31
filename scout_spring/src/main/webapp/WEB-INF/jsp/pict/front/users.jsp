@@ -42,6 +42,14 @@
 	                                <option value="2" <c:if test="${pictVO.search_history eq '2'}">selected</c:if>>지도자</option>
 	                                <option value="3" <c:if test="${pictVO.search_history eq '3'}">selected</c:if>>평생회원</option>
                                 </select>
+                            </div><div class="inputBox">
+                                <p class="inputCaption">소속연맹</p>
+                                <select name="search_associationcode" id="search_associationcode" class="lgThinSelect">
+                                	<option value="" <c:if test="${pictVO.search_associationcode eq ''}">selected</c:if>>전체</option>
+                                    <c:forEach var="association_list" items="${association_list}" varStatus="status">
+                                    	<option value="${association_list.ASSOCIATIONCODE}" <c:if test="${pictVO.search_associationcode eq association_list.ASSOCIATIONCODE}">selected</c:if>>${association_list.ASSOCIATIONNAME}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </div>
                         <div class="inputsContainer mt20">
@@ -74,11 +82,12 @@
                             <div class="inputBox period">
                                 <p class="inputCaption">등록마감일</p>
                                 <input type="date" id="search_end" name="search_end" value="${pictVO.search_end}" class="lgThinInput" max="9999-12-31">
-                                <!-- 여 -->
+                                <!--
                                 <label for="whole_period" class="wholeCheck">
                                     <input type="radio" name="whole_period" id="whole_period">
                                     <span>전체</span>
                                 </label>
+                                -->
                             </div>
                         </div>
                         <div class="btnContainer">

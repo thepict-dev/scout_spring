@@ -9,6 +9,9 @@
 	<%@ include file="./include/head.jsp" %>
 	<script src="/js/script.js" defer></script>
 <body>
+	<%
+		pageContext.setAttribute("session", session.getAttribute("associationcode"));
+	%>
 	<%@ include file="./include/lnb.jsp" %>
 	<c:import url="./include/header.jsp">
 		<c:param name="pageParent" value="스카우트 통합 관리"/>
@@ -17,6 +20,8 @@
 
     <div class="contentsContainer">
         <form action="" id="search_fm_units" name="search_fm_units" method="get" class="organSearchForm">
+        	<input type="hidden" id="TROOPNO" name="TROOPNO">
+        	<input type="hidden" id="TROOPNAME" name="TROOPNAME">
             <h2 class="subTitles">조회 조건</h2>
             <div class="organSearch">
                 <div class="searchContainer">
@@ -253,7 +258,7 @@
                                 </div>
                             </div>
 		                    <div class="tableButtons rights" style="justify-content: flex-end;">
-		                    	<a href="#lnk" class="smButton"><img src="/front_img/download.png" alt="">전체 엑셀저장</a>
+		                    	<a href="#lnk" onclick="fn_units_excel()" class="smButton"><img src="/front_img/download.png" alt="">전체 엑셀저장</a>
                                 <a href="#lnk" class="smButton"><img src="/front_img/doc.png" alt="">청소년단체등록확인서</a>
                                 <a href="#lnk" class="smButton"><img src="/front_img/doc.png" alt="">가맹등록신청서</a>
 		                    </div>
@@ -355,9 +360,19 @@
 	<script>
 		$(document).ready(function() {
 		    fn_troopclscode_search()
+		    var login_associationcode = ${session}
+			if(login_associationcode != '200'){
+				var code = '${pictVO.search_associationcode}';
+				
+				$('#search_associationcode').val(code)
+				$("select[name=search_associationcode]").attr("disabled", true);
+				fn_get_unitylist_organ()
+				$('.contentsContainer select').niceSelect('update')	
+			}
 		});
+
 		function fn_year_reset(){
-			$('#search_year').val("2024")
+			$('#search_year').val('${current_year}')
 		}
 
 		function fn_order(type){
@@ -367,10 +382,19 @@
 			$("#search_fm_units").submit();
 
 		}
-		
+		//단위대 엑셀
 		function units_excel(){
 			if(confirm("해당 리스트를 엑셀파일로 다운로드 하시겠습니까?")){
 				$("#search_fm_units").attr("action", "/admin/units_excel");
+				$("#search_fm_units").submit();
+			}
+			
+		}
+		
+		//단위대 소속 엑셀
+		function fn_units_excel(){
+			if(confirm("해당 단위대 소속 회원 리스트를 엑셀파일로 다운로드 하시겠습니까?")){
+				$("#search_fm_units").attr("action", "/admin/fn_units_excel");
 				$("#search_fm_units").submit();
 			}
 			
@@ -384,7 +408,8 @@
 		
 		function fn_get_units_info(troopno){
 			$('#initial-loading').css('display', 'flex')
-			
+			//엑셀 다운받기 위함
+			$('#TROOPNO').val(troopno)
 			var param = {
 				troopno : troopno,
 				year : $('#search_year').val(),
@@ -402,6 +427,10 @@
 					if(data.rst){
 						$('#span_disptroopno').text(data.rst.disptroopno)
 						$('#span_troopname').text(data.rst.troopname)
+						
+						//엑셀 다운받기 위함
+						$('#TROOPNAME').val(data.rst.troopname)
+						
 						var troopclsname = ""
 						if(data.rst.troopclscode1 == '01') troopclsname = '학교대'
 						if(data.rst.troopclscode1 == '02') troopclsname = '지역대'

@@ -4,13 +4,14 @@
 <mapper namespace="pict.mapper.PictMapper">	
 
 	<select id="scout_left_search_list" resultType="pictVO">
-		select m.MEMBERNO, m.KNAME, m.BIRTHDAY, m.MEMCLSCODE, m.MEMGRADECODE, m.TROOPSCOUTY, m.TROOPLEADERY, m.LEADERINCNT, m.ENTERDATE, m.SCOUTINCNT, 
-		(case when li.idx is not null then 'Y' else 'N' end) as LIFE,
+		select m.MEMBERNO, m.KNAME, m.BIRTHDAY, m.MEMCLSCODE, m.MEMGRADECODE, m.TROOPSCOUTY, m.TROOPLEADERY, m.LEADERINCNT, m.ENTERDATE, m.SCOUTINCNT, m.LIFEMEMBERY,
 		(case when m.EMPLOYEEY = '' then 'N' when m.EMPLOYEEY is null then 'N' when m.EMPLOYEEY = 'N' then 'N' else 'Y' end) as EMPLOYEEY,
 		m.SEX, m.MOBILE, m.EMAIL, m.HPOSTCODE, m.HADDR
 		from member m
 		inner join memclscode mc on m.MEMCLSCODE = mc.MEMCLSCODE
-		left outer join lifetime li on li.MEMBERNO = m.MEMBERNO
+		
+        left outer join leader l on l.MEMBERNO = m.MEMBERNO
+        left outer join scout s on s.MEMBERNO = m.MEMBERNO
 		where 1=1
 		<if test="search_kname != null and search_kname != '' ">
 			and KNAME LIKE CONCAT('%', #{search_kname}, '%')
@@ -52,6 +53,12 @@
 			and m.ENTERDATE between #{search_start} and #{search_end}
 		</if>
 		
+		<if test="search_associationcode != null and search_associationcode != ''">
+			and (l.ASSOCIATIONCODE = #{search_associationcode} or s.ASSOCIATIONCODE = #{search_associationcode})
+		</if>
+		
+		group by m.MEMBERNO
+		
 		<if test="type != null and type != '' and type == 'number'">
         	order by cast(m.MEMBERNO as unsigned) asc
         </if>
@@ -61,7 +68,7 @@
         <if test="type != null and type != '' and type == 'text'">
         	order by m.KNAME asc
         </if>
-		
+		  
 	</select>
 
 	<!-- 대원/리더 기본정보 조회 -->
@@ -794,7 +801,7 @@
 		select
 		l.MEMBERNO, m.KNAME, lp.LEADERPOSITIONNAME, '' as TROOPCODE, l.FEEEXCLUDECODE, l.SCOUTMAGACNT, m.MOBILE, m.EMAIL, 
 		(select count(MEMBERNO) from leader sl where sl.MEMBERNO = l.MEMBERNO) as LEADERCNT,
-		'' as TRAINING, '' as GIFT, m.LIFEMEMBERY, l.CONFIRMY, l.ADMINY
+		'' as TRAINING, '' as GIFT, m.LIFEMEMBERY, l.CONFIRMY, l.ADMINY, "지도자" as LEVEL
 		from leader l
 		left outer join leaderpositioncode lp on l.LEADERPOSITIONCODE1 = lp.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2
 		left join member m on m.MEMBERNO = l.MEMBERNO
@@ -808,7 +815,7 @@
 		select
 		s.MEMBERNO, m.KNAME, sc.SCOUTCLSNAME, '' as SCOUTCODE, s.FEEEXCLUDECODE, s.SCOUTMAGACNT, s.SCOUTSCHOOLYEAR, m.MOBILE, m.EMAIL, 
 		(select count(MEMBERNO) from scout sl where sl.MEMBERNO = s.MEMBERNO) as SCOUTCNT,
-		'' as TRAINING, '' as GIFT, m.LIFEMEMBERY, s.CONFIRMY, '-' as LEVELAPPLY, '' as LEVELINFO
+		'' as TRAINING, '' as GIFT, m.LIFEMEMBERY, s.CONFIRMY, '-' as LEVELAPPLY, '' as LEVELINFO, "대원" as LEVEL
 		from scout s
 		left outer join scoutclscode sc on s.SCOUTCLSCODE = sc.SCOUTCLSCODE
 		left outer join member m on m.MEMBERNO = s.MEMBERNO

@@ -9,6 +9,9 @@
 	<%@ include file="./include/head.jsp" %>
 	<script src="/js/script.js" defer></script>
 <body>
+	<%
+		pageContext.setAttribute("session", session.getAttribute("associationcode"));
+	%>
 	<%@ include file="./include/lnb.jsp" %>
 	<c:import url="./include/header.jsp">
 		<c:param name="pageParent" value="스카우트 통합 관리"/>
@@ -631,7 +634,19 @@
 	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-	
+		$(document).ready(function(){
+
+			var login_associationcode = ${session}
+			if(login_associationcode != '200'){
+				var code = '${pictVO.search_associationcode}';
+				
+				$('#associationcode_search').val(code)
+				$("select[name=associationcode_search]").attr("disabled", true);
+				fn_get_unitylist_organ()
+				$('.contentsContainer select').niceSelect('update')	
+			}
+			
+		})
 		function organ_update(){
 			var idx = $('#idx').val()
 			

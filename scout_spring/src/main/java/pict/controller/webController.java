@@ -207,7 +207,7 @@ public class webController {
 	@RequestMapping("federation_notice")
 	public String federation_notice(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		if(pictVO != null) {
-			if(pictVO.getDataid().equals("gangwon")) pictVO.setBRDNO("967");
+			if(pictVO.getDataid().equals("gangwon")) pictVO.setBRDNO("967");	
 		}
 		pictVO.setType("sub");
 		
@@ -257,7 +257,7 @@ public class webController {
 		
 		//연맹별로 여기세팅
 		if(pictVO != null) {
-			if(pictVO.getDataid().equals("gangwon")) pictVO.setBRDNO("967");
+			if(pictVO.getDataid().equals("gangwon")) pictVO.setBRDNO("5011");
 		}
 		pictVO.setType("sub");
 		
@@ -305,7 +305,7 @@ public class webController {
 	@RequestMapping("federation_event")
 	public String federation_event(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		if(pictVO != null) {
-			if(pictVO.getDataid().equals("gangwon")) pictVO.setBRDNO("967");
+			if(pictVO.getDataid().equals("gangwon")) pictVO.setBRDNO("6011");
 		}
 		pictVO.setType("sub");
 		

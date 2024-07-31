@@ -159,6 +159,8 @@ public class PictController {
 					request.getSession().setAttribute("associationname", pictVO.getASSOCIATIONNAME());
 					request.getSession().setAttribute("associationcode", pictVO.getASSOCIATIONCODE());
 					request.getSession().setAttribute("leaderpositionname", pictVO.getLEADERPOSITIONNAME());
+					request.getSession().setAttribute("troopno", pictVO.getTROOPNO());
+					request.getSession().setAttribute("troopname", pictVO.getTROOPNAME());
 					request.getSession().setAttribute("employeey", pictVO.getEMPLOYEEY());
 					request.getSession().setAttribute("adminy", pictVO.getADMINY());
 					request.getSession().setAttribute("picimg", pictVO.getPICIMG());
@@ -193,6 +195,8 @@ public class PictController {
 		request.getSession().setAttribute("employeey", null);
 		request.getSession().setAttribute("adminy", null);
 		request.getSession().setAttribute("picimg", null);
+		request.getSession().setAttribute("troopno", null);
+		request.getSession().setAttribute("troopname", null);
 
 		return "redirect:/admin/pict_login";
 
@@ -496,8 +500,24 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
+		
+		String associationcode = (String) request.getSession().getAttribute("associationcode");
+		//중앙본부 아니면 자기 연맹것만 확인
+		if(!associationcode.equals("200")) {
+			
+			pictVO.setSearch_associationcode(associationcode);
+		}
+		else {
+			if(pictVO != null && pictVO.getSearch_associationcode() != null) {
+				
+			}
+			else {
+				pictVO.setSearch_associationcode("200");
+			}
+		}
+		
 		List<PictVO> association_list = pictService.association_list(pictVO);
-		pictVO.setASSOCIATIONCODE("200");
+		
 		List<PictVO> unity_list = pictService.unity_list(pictVO);
 		model.addAttribute("association_list", association_list);
 		model.addAttribute("unity_list", unity_list);
@@ -524,10 +544,26 @@ public class PictController {
 			return "pict/main/message";
 		}
 		
+		String associationcode = (String) request.getSession().getAttribute("associationcode");
+		//중앙본부 아니면 자기 연맹것만 확인
+		if(!associationcode.equals("200")) {
+			
+			pictVO.setSearch_associationcode(associationcode);
+		}
+		else {
+			if(pictVO != null && pictVO.getSearch_associationcode() != null) {
+				
+			}
+			else {
+				pictVO.setSearch_associationcode("200");
+			}
+		}
+		
 		Date today = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
 		String current_year = dateFormat.format(today);
 		
+		model.addAttribute("current_year", current_year);
 		List<PictVO> association_list = pictService.association_list(pictVO);
 		if(request.getQueryString() == null) {
 			pictVO.setASSOCIATIONCODE("200");
@@ -535,7 +571,7 @@ public class PictController {
 		}
 		else {
 			if(pictVO == null) {
-				pictVO.setASSOCIATIONCODE("200");
+				
 			}
 			else {
 				pictVO.setASSOCIATIONCODE(pictVO.getSearch_associationcode());
@@ -679,6 +715,142 @@ public class PictController {
 	      
 	       
 		String filename = "단위대통합관리_단위대목록";
+		String header = request.getHeader("User-Agent");
+		if(header.contains("Edge") || header.contains("MSIE")) {
+			filename = URLEncoder.encode(filename, "UTF-8").replaceAll("//+", "%20");
+		}
+		else if(header.contains("Chrome") || header.contains("Opera") || header.contains("Firefox")) {
+			filename = new String(filename.getBytes("UTF-8"), "ISO-8859-1");
+		}
+        
+        response.setHeader("Content-Disposition", "ATTachment; Filename=" +filename +".xls");
+
+        OutputStream fileOut  = response.getOutputStream();
+        objWorkBook.write(fileOut);
+        fileOut.close();
+
+        response.getOutputStream().flush();
+        response.getOutputStream().close();
+	}
+	//단위대 통합관리에서 단위대 소속 리스트 다운로드
+	@RequestMapping(value = "/fn_units_excel")
+	public void fn_units_excel(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		System.out.println(pictVO.getSearch_year());
+		System.out.println(pictVO.getTROOPNO());
+		System.out.println(pictVO.getTROOPNAME());
+		
+		List<PictVO> attendance_list = pictService.fn_get_units_leader(pictVO);
+		List<PictVO> attendance_list2 = pictService.fn_get_units_scout(pictVO);
+		
+		attendance_list.addAll(attendance_list2);
+
+		HSSFWorkbook objWorkBook = new HSSFWorkbook();
+        HSSFSheet objSheet = null;
+        HSSFRow objRow = null;
+        HSSFCell objCell = null;       //셀 생성
+
+        //제목 폰트
+        HSSFFont font = objWorkBook.createFont();
+        HSSFFont font_title = objWorkBook.createFont();
+        font_title.setFontHeightInPoints((short)11);
+        font.setFontHeightInPoints((short)9);
+        font.setFontName("맑은고딕");
+		int rowIndex = 0;
+		
+		HSSFCellStyle styleHd_title = objWorkBook.createCellStyle(); // 제목 스타일
+		HSSFCellStyle styleHd = objWorkBook.createCellStyle();    //내용 스타일
+		
+		styleHd_title.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+		styleHd_title.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		
+		// 각항목 테두리
+		styleHd.setBorderRight(BorderStyle.THIN);
+		styleHd.setBorderLeft(BorderStyle.THIN);
+		styleHd.setBorderTop(BorderStyle.THIN);
+		styleHd.setBorderBottom(BorderStyle.THIN);
+		styleHd.setWrapText(true);//자동 줄바꿈
+
+		styleHd_title.setBorderRight(BorderStyle.THIN);
+		styleHd_title.setBorderLeft(BorderStyle.THIN);
+		styleHd_title.setBorderTop(BorderStyle.THIN);
+		styleHd_title.setBorderBottom(BorderStyle.THIN);
+					
+        objSheet = objWorkBook.createSheet("첫번째 시트");     //워크시트 생성
+		
+		
+		//헤더
+        objRow = objSheet.createRow(0);
+        objRow.setHeight ((short) 0x150);
+        
+        objCell = objRow.createCell(0);
+        objCell.setCellValue("순서");
+        objCell.setCellStyle(styleHd_title);
+
+        objCell = objRow.createCell(1);
+        objCell.setCellValue("단위대명");
+        objCell.setCellStyle(styleHd_title);
+		
+        objCell = objRow.createCell(2);
+        objCell.setCellValue("지도자/대원");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(3);
+        objCell.setCellValue("회원번호");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(4);
+        objCell.setCellValue("이름");
+        objCell.setCellStyle(styleHd_title);
+        
+		//바디
+        int doublecnt = 0;
+		for(int i=0; i<attendance_list.size(); i++) {
+        	//컬럼
+			objRow = objSheet.createRow(i+1+doublecnt);
+	        objRow.setHeight ((short) 0x150);
+	        objSheet.autoSizeColumn(i);
+	        
+	        //순서
+	        objCell = objRow.createCell(0);
+	        objCell.setCellValue(i+1);
+	        objSheet.setColumnWidth(0, (short)0x800);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //단위대명
+	        objCell = objRow.createCell(1);
+	        objCell.setCellValue(pictVO.getTROOPNAME());
+	        objSheet.setColumnWidth(1, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //지도자/대원
+	        objCell = objRow.createCell(2);
+	        String level = "지도자";
+	        if(attendance_list.get(i).getLEVEL().equals("대원")) level = "대원";
+	        objCell.setCellValue(level);
+	        objSheet.setColumnWidth(2, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+
+	        //회원번호
+	        objCell = objRow.createCell(3);
+	        objCell.setCellValue(attendance_list.get(i).getMEMBERNO());
+	        objSheet.setColumnWidth(3, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //이름
+	        objCell = objRow.createCell(4);
+	        objCell.setCellValue(attendance_list.get(i).getKNAME());
+	        objSheet.setColumnWidth(4, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+        	
+
+	        
+	        
+        }
+	        
+	      
+	       
+		String filename = "단위대통합관리_단위대 회원목록";
 		String header = request.getHeader("User-Agent");
 		if(header.contains("Edge") || header.contains("MSIE")) {
 			filename = URLEncoder.encode(filename, "UTF-8").replaceAll("//+", "%20");
@@ -2808,8 +2980,18 @@ public class PictController {
 		}
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
+		String associationcode = (String) request.getSession().getAttribute("associationcode");
+
 		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
-			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("message", "해당 메뉴는 중앙본부 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
+		
+		if(!associationcode.equals("200")) {
+			model.addAttribute("message", "해당 메뉴는 중앙본부 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
 			
