@@ -19,9 +19,9 @@
         	<img src="https://scout.thepict.co.kr${vo.mainimg}" style="width:100%; margin-bottom:30px"/>
             <div class="greetingContainer">
             	<!-- 연맹소개글 -->
-            	<div class="greetingText feders">
-                	${vo.introduce}
-                </div>
+            	
+                ${vo.introduce}
+                
                 <span class="feders"><img src="https://scout.thepict.co.kr${vo.leaderimg}" alt="연맹장사진"></span>
             </div>
             <div class="sign feders" >
@@ -34,16 +34,10 @@
                 <li><a href="/federation_event?dataid=${vo.dataid}">행사안내</a></li>
                 <li><a href="/federation_location?dataid=${vo.dataid}">오시는길</a></li>
             </ul>
-            <div class="tabInner ruleContents active">
-                <ul class="tabNavSub">
-                    <li class="active"><a href="#lnk">임원</a></li>
-                    <li><a href="#lnk">커미셔너</a></li>
-                    <li><a href="#lnk">지방명예회의위원</a></li>
-                </ul>
-                <!-- 여기서부터 조직도 S  -->
-                ${vo.organization}
-                <!-- 여기서부터 조직도 S  -->
-            </div>
+            
+            <!-- 여기서부터 조직도 S  -->
+            ${vo.organization}
+            <!-- 여기서부터 조직도 S  -->
         </div>
     </div>
 	<%@ include file="./include/footer.jsp" %>

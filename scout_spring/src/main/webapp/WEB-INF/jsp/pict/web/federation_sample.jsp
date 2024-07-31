@@ -21,10 +21,8 @@
             	<!-- 연맹소개글 -->
             	<div class="greetingText feders">
                 	<div class="greetingTexts feders">
-                		<p>새로운 100주년을 준비하는 한국스카우트연맹은 다양한 의견을 경청하겠습니다. 긴밀한 소통을 통하여 새로운 변화에 능동적으로 대응하면서 당면한 문제들을 해결해 나가겠습니다. 청소년 단체 활동의 중심에서 그 역할과 책임에 최선을 다 하겠습니다.</p>
-                		<p>스카우트 활동의 혁신을 위하여 새로운 전략과 시스템을 구축하여 한국스카우트연맹과 각 지방 연맹이 더욱 효율적으로 활동할 수 있도록 노력하겠습니다.</p>
-                		<p>현재 스카우트 활동은 대내외적으로 어려운 환경에 놓여있습니다. 이를 극복하기 위하여 안정적으로 재원을 조달하고, 우리 사회가 더욱 번영하고 지속 가능한 방향으로 발전할 수 있도록 만들겠습니다.</p>
-                		<p>세상을 발전시키는 의미 있는 일에 동참하여 주신 한국스카우트 가족 여러분께 다시 한번 진심으로 감사드리며, 앞으로도 더욱 큰 관심과 애정을 부탁드립니다. 감사합니다.</p>
+                		<p>홈페이지를 찾아주신 여러분 안녕하십니까?<br>한국스카우트 대구연맹 홈페이지를 찾아 주셔서 감사합니다.<br>연맹장인 저와 모든 임원들이 합심하여 스카우트 목표들이 실천되고, 확산되어 나아갈 수 있도록 헌신 봉사할 것을 다짐합니다.<br>아울러『한국스카우트대구연맹 홈페이지』를 통하여 일선 대원과 지도자, 학부모님들에게 항상 유용한 정보를 알려드리며 스카우트운동에 대한 안내를 하오니, 많이 이용해 주시고 스카우트운동의 발전을 위하여 고견을 주시기 바랍니다.<br>『한국스카우트대구연맹 홈페이지』를 방문하시는 모든 분들의 가정에 평안과 건강과 행운이 늘 함께 하시기를 기원합니다.</p>                		
+                		<p>한국스카우트대구연맹장 동 영 훈</p>
                		</div>
                 </div>
                 <span class="feders"><img src="https://scout.thepict.co.kr${vo.leaderimg}" alt="연맹장사진"></span>
@@ -39,12 +37,16 @@
                 <li><a href="/federation_event?dataid=${vo.dataid}">행사안내</a></li>
                 <li><a href="/federation_location?dataid=${vo.dataid}">오시는길</a></li>
             </ul>
+            
+            <!-- 조직도S -->
             <div class="tabInner ruleContents active">
                 <ul class="tabNavSub">
                     <li class="active"><a href="#lnk">임원</a></li>
                     <li><a href="#lnk">커미셔너</a></li>
                     <li><a href="#lnk">지방명예회의위원</a></li>
                 </ul>
+                
+                
                 <div class="tabInnerSub active">
 				    <div class="organTableWrapper">
 				        <table>
@@ -63,113 +65,73 @@
 				            <tbody>
 				                <tr>
 				                    <td>연맹장</td>
-				                    <td>정복현</td>
-				                    <td>강원연맹 연맹장</td>
+				                    <td>동영훈</td>
+				                    <td>전.초등학교 교장</td>
 				                </tr>
 				                <tr>
 				                <tr>
 				                    <td rowspan="3">부연맹장</td>
-				                    <td>동석범</td>
-				                    <td>강원연맹</td>
+				                    <td>김영근</td>
+				                    <td>전.달성교육지원청 교육장</td>
 				                </tr>
 				                <tr>
-				                    <td>김종찬</td>
-				                    <td>강원연맹</td>
+				                    <td>권오철</td>
+				                    <td>전.고등학교 교감</td>
 				                </tr>
 				                <tr>
-				                    <td>최인순</td>
-				                    <td>강원연맹</td>
+				                    <td>임선규</td>
+				                    <td>전.초등학교 교감</td>
 				                </tr>
 				                <tr>
 				                    <td>치프커미셔너</td>
-				                    <td>이청학</td>
-				                    <td>강원연맹</td>
+				                    <td>안경섭</td>
+				                    <td>대구노변초등학교 교장</td>
 				                </tr>
 				                <tr>
-				                    <td rowspan="19">직선이사</td>
-				                    <td>김영조</td>
-				                    <td>호반지역대 대장</td>
+				                    <td rowspan="9">직선이사</td>
+				                    <td>박융곤</td>
+				                    <td>전.초등학교 교감</td>
 				                </tr>
 				                <tr>
-				                    <td>김기덕</td>
-				                    <td>강원특별자치도 세계잼버리수련장 장</td>
+				                    <td>황미자</td>
+				                    <td>전.초등학교 교장</td>
 				                </tr>
 				                <tr>
-				                    <td>홍의재</td>
-				                    <td>강원연맹</td>
+				                    <td>박순복</td>
+				                    <td>전.초등학교 교장</td>
 				                </tr>
 				                <tr>
-				                    <td>이옥균</td>
-				                    <td>강원연맹</td>
+				                    <td>이종목</td>
+				                    <td>대구교육대학교 교수</td>
 				                </tr>
 				                <tr>
-				                    <td>윤선희</td>
-				                    <td>강원연맹</td>
+				                    <td>이원우</td>
+				                    <td>전.중학교 교장</td>
 				                </tr>
 				                <tr>
-				                    <td>권기준</td>
-				                    <td>강원연맹</td>
+				                    <td>김장한</td>
+				                    <td>전.중학교 교장</td>
 				                </tr>
 				                <tr>
-				                    <td>김동계</td>
-				                    <td>경포대지역대 대장</td>
+				                    <td>박성해</td>
+				                    <td>대구교동초등학교 교감</td>
 				                </tr>
 				                <tr>
-				                    <td>심락현</td>
-				                    <td>한밝지역대 대장</td>
+				                    <td>김성권</td>
+				                    <td>브러더커머스 대표</td>
 				                </tr>
 				                <tr>
-				                    <td>김진규</td>
-				                    <td>호반지역대 대장</td>
-				                </tr>
-				                <tr>
-				                    <td>김영권</td>
-				                    <td>설악지역대 대장</td>
-				                </tr>
-				                <tr>
-				                    <td>이점동</td>
-				                    <td>한밝지역대 대장</td>
-				                </tr>
-				                <tr>
-				                    <td>엄덕기</td>
-				                    <td>호반지역대 대장</td>
-				                </tr>
-				                <tr>
-				                    <td>오미영</td>
-				                    <td>마루지역대 대장</td>
-				                </tr>
-				                <tr>
-				                    <td>황재익</td>
-				                    <td>강원연맹</td>
-				                </tr>
-				                <tr>
-				                    <td>유호종</td>
-				                    <td>강원연맹</td>
-				                </tr>
-				                <tr>
-				                    <td>김학현</td>
-				                    <td>성수고등학교 교장</td>
-				                </tr>
-				                <tr>
-				                    <td>한우석</td>
-				                    <td>주영초등학교 교감</td>
-				                </tr>
-				                <tr>
-				                    <td>권순조</td>
-				                    <td>설악지역대 대장</td>
-				                </tr>
-				                <tr>
-				                    <td>변홍준</td>
-				                    <td>호반지역대 대장</td>
+				                    <td>임태섭</td>
+				                    <td>그린연합신경외과 원장</td>
 				                </tr>
 				                <tr>
 				                    <td rowspan="2">감사</td>
-				                    <td>이은정</td>
-				                    <td>강원연맹</td>
+				                    <td>이동화</td>
+				                    <td>전.초등학교 교사</td>
 				                </tr>
 				                <tr>
-				                    <td>조한나</td>
-				                    <td>강원연맹</td>
+				                    <td>이기조</td>
+				                    <td>전.중학교 교장</td>
 				                </tr>
 				            </tbody>
 				        </table>
@@ -193,90 +155,80 @@
 				            </thead>
 				            <tbody>
 				                <tr>
-				                    <td rowspan="18">커미셔너</td>
+				                    <td rowspan="15">커미셔너</td>
 				                    <td>치프</td>
-				                    <td>이청학</td>
-				                    <td>강원연맹</td>
+				                    <td>안경섭</td>
+				                    <td>대구노변초등학교 교장</td>
 				                </tr>
 				                <tr>
 				                    <td>프로그램</td>
-				                    <td>양승덕</td>
-				                    <td>강원연맹</td>
+				                    <td>류진영</td>
+				                    <td>대구사월초등학교 교사</td>
 				                </tr>
 				                <tr>
 				                    <td>비버스카우트</td>
-				                    <td>이윤중</td>
-				                    <td>길웰지역대 대장</td>
+				                    <td>양은정</td>
+				                    <td>대구율원초등학교 교사</td>
 				                </tr>
 				                <tr>
 				                    <td>컵스카우트</td>
-				                    <td>최길승</td>
-				                    <td>장호초등학교 교장</td>
+				                    <td>윤성자</td>
+				                    <td>직할대 대장</td>
 				                </tr>
 				                <tr>
 				                    <td>스카우트</td>
-				                    <td>김상윤</td>
-				                    <td>동해광희중학교 교장</td>
+				                    <td>임문희</td>
+				                    <td>침산중학교 교감</td>
 				                </tr>
 				                <tr>
 				                    <td>벤처스카우트</td>
-				                    <td>김응식</td>
-				                    <td>곡운구곡대 대장</td>
+				                    <td>이준구</td>
+				                    <td>경북기계공업고등학교 교장</td>
 				                </tr>
 				                <tr>
 				                    <td>로버스카우트</td>
-				                    <td>주명림</td>
-				                    <td>호반지역대 대장</td>
+				                    <td>송우일</td>
+				                    <td>직할대 대장</td>
 				                </tr>
 				                <tr>
 				                    <td>특별프로그램</td>
-				                    <td>김동수</td>
-				                    <td>양양초등학교 교장</td>
+				                    <td>류병철</td>
+				                    <td>직할대 대장</td>
 				                </tr>
 				                <tr>
 				                    <td>조직1</td>
-				                    <td>김삼진</td>
-				                    <td>경포대지역대 대장</td>
+				                    <td>김응춘</td>
+				                    <td>대서중학교 교장</td>
 				                </tr>
 				                <tr>
 				                    <td>조직2</td>
-				                    <td>김원기</td>
-				                    <td>한밝지역대 대장</td>
+				                    <td>김재한</td>
+				                    <td>대구세현초등학교 교사</td>
 				                </tr>
 				                <tr>
-				                    <td>홍보1</td>
-				                    <td>김장회</td>
-				                    <td>강원연맹</td>
-				                </tr>
-				                <tr>
-				                    <td>홍보2</td>
-				                    <td>최영희</td>
-				                    <td>경포대지역대 대장</td>
-				                </tr>
-				                <tr>
-				                    <td>홍보3</td>
-				                    <td>김대선</td>
-				                    <td>한밝지역대 대장</td>
+				                    <td>홍보</td>
+				                    <td>서희정</td>
+				                    <td>대구대실초등학교 교사</td>
 				                </tr>
 				                <tr>
 				                    <td>국제1</td>
-				                    <td>김광호</td>
-				                    <td>대관령지역대 대장</td>
+				                    <td>김지연</td>
+				                    <td>대구남명초등학교 교사</td>
 				                </tr>
 				                <tr>
 				                    <td>국제2</td>
-				                    <td>임종민</td>
-				                    <td>한밝지역대 대장</td>
+				                    <td>빈윤미</td>
+				                    <td>대구소프트웨어마이스터고등학교 교사</td>
 				                </tr>
 				                <tr>
 				                    <td>훈련1</td>
-				                    <td>김상종</td>
-				                    <td>강원연맹</td>
+				                    <td>주덕중</td>
+				                    <td>대구남덕초등학교 교사</td>
 				                </tr>
 				                <tr>
 				                    <td>훈련2</td>
-				                    <td>권기훈</td>
-				                    <td>한밝지역대 대장</td>
+				                    <td>김지민</td>
+				                    <td>대중금속공업고등학교 교사</td>
 				                </tr>
 				            </tbody>
 				        </table>
@@ -286,28 +238,105 @@
 				    <div class="organTableWrapper">
 				        <table>
 				            <colgroup>
-				                <col width="20%" />
-				                <col width="15%" />
-				                <col width="65%" />
+				                <col width="13%" />
+				                <col width="13%" />
+				                <col width="13%" />
+				                <col width="61%" />
 				            </colgroup>
 				            <thead>
 				                <tr>
-				                    <th>직책</th>
+				                    <th colspan="2">직책</th>
 				                    <th>성명</th>
 				                    <th>소속</th>
 				                </tr>
 				            </thead>
 				            <tbody>
 				                <tr>
-				                    <td>지방명예회의위원</td>
-				                    <td>금연희</td>
-				                    <td>경포대지역대 대장</td>
+				                    <td rowspan="3">동부지구연합회</td>
+				                    <td>지구회장</td>
+				                    <td>지승욱</td>
+				                    <td>대구율금초등학교 교장</td>
+				                </tr>
+				                <tr>
+				                    <td>지구치프커미셔너</td>
+				                    <td>-</td>
+				                    <td>-</td>
+				                </tr>
+				                <tr>
+				                    <td>지구사무국장</td>
+				                    <td>-</td>
+				                    <td>-</td>
+				                </tr>
+				                <tr>
+				                    <td rowspan="3">서부지구연합회</td>
+				                    <td>지구회장</td>
+				                    <td>구본주</td>
+				                    <td>대구칠곡초등학교 교장</td>
+				                </tr>
+				                <tr>
+				                    <td>지구치프커미셔너</td>
+				                    <td>-</td>
+				                    <td>-</td>
+				                </tr>
+				                <tr>
+				                    <td>지구사무국장</td>
+				                    <td>-</td>
+				                    <td>-</td>
+				                </tr>
+				                <tr>
+				                    <td rowspan="3">남부지구연합회</td>
+				                    <td>지구회장</td>
+				                    <td>여환주</td>
+				                    <td>대구덕인초등학교 교장</td>
+				                </tr>
+				                <tr>
+				                    <td>지구치프커미셔너</td>
+				                    <td>-</td>
+				                    <td>-</td>
+				                </tr>
+				                <tr>
+				                    <td>지구사무국장</td>
+				                    <td>-</td>
+				                    <td>-</td>
+				                </tr>
+				                <tr>
+				                    <td rowspan="3">수성지구연합회</td>
+				                    <td>지구회장</td>
+				                    <td>황재수</td>
+				                    <td>대구고산초등학교 교장</td>
+				                </tr>
+				                <tr>
+				                    <td>지구치프커미셔너</td>
+				                    <td>-</td>
+				                    <td>-</td>
+				                </tr>
+				                <tr>
+				                    <td>지구사무국장</td>
+				                    <td>-</td>
+				                    <td>-</td>
+				                </tr>
+				                <tr>
+				                    <td rowspan="3">달성지구연합회</td>
+				                    <td>지구회장</td>
+				                    <td>정영호</td>
+				                    <td>대구죽곡초등학교 교장</td>
+				                </tr>
+				                <tr>
+				                    <td>지구치프커미셔너</td>
+				                    <td>-</td>
+				                    <td>-</td>
+				                </tr>
+				                <tr>
+				                    <td>지구사무국장</td>
+				                    <td>-</td>
+				                    <td>-</td>
 				                </tr>
 				            </tbody>
 				        </table>
 				    </div>
 				</div>
             </div>
+            <!-- 조직도E -->
         </div>
     </div>
 	<%@ include file="./include/footer.jsp" %>

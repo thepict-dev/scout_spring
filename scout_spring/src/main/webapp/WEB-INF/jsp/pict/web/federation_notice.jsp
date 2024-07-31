@@ -19,9 +19,8 @@
         	<img src="https://scout.thepict.co.kr${vo.mainimg}" style="width:100%; margin-bottom:30px"/>
             <div class="greetingContainer">
             	<!-- 연맹소개글 -->
-            	<div class="greetingText feders">
-                	${vo.introduce}
-                </div>
+               	${vo.introduce}
+
                 <span class="feders"><img src="https://scout.thepict.co.kr${vo.leaderimg}" alt="연맹장사진"></span>
             </div>
             <div class="sign feders" >
