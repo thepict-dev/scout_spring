@@ -497,3 +497,174 @@
 		margin-right: 9px;
 	}
 }
+
+
+/* popup */
+.mainPopup{
+	position: fixed;
+	left: 0;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.60);
+}
+.mainPopupInner{
+	position: relative;
+	width: 417px;
+	height: 417px;
+}
+.mainPopupInner > button{
+	position: absolute;
+	top: -78px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+}
+.mainPopupInner .swiper{
+	width: 100%;
+	height: 100%;
+	border: 1px solid var(--Foundation-grey-grey-50, #F0F3F1);
+	box-shadow: 0px 0px 26px 0px rgba(0, 0, 0, 0.05);
+}
+.mainPopupInner .swiper-wrapper{
+	width: 100%;
+	height: 100%;
+}
+.mainPopupInner .swiper-wrapper .swiper-slide{
+	width: 100%;
+	height: 100%;
+}
+.mainPopupInner .swiper-wrapper a{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.mainPopupInner .swiper-wrapper a img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.mainPopupInner .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction{
+	position: unset;
+}
+.mainPopupButtons{
+	display: flex;
+	justify-content: space-between;
+	padding: 12px 0;
+	width: 100%;
+	background-color: var(--grey-50);
+}
+.mainPopupButtons button{
+	padding: 10px 20px;
+	color: #3F3F3F;
+	font-family: var(--fn-suit);
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 100%; /* 14px */
+	letter-spacing: -0.7px;
+	cursor: pointer;
+}
+.swiper-pagination-bullet{
+	width: 10px;
+	height: 6px;
+	margin: 0 2px !important;
+	border-radius: 10px;
+	background-color: var(--grey-50);
+	opacity: 1;
+	transition: all .3s;
+}
+.swiper-pagination-bullet-active{
+	width: 28px;
+	height: 6px;
+	background-color: var(--purple-500);
+}
+
+@media all and (max-width : 768px){
+	.mainPopupInner{
+		width: 90%;
+		height: fit-content;
+	}
+	.mainPopupInner .swiper-wrapper .swiper-slide {
+	    height: auto;
+	}
+}
+    
+
+/* 메인배너 */
+.mainBanner{
+	width: 100%;
+	padding: 32px 0;
+	background-color: var(--purple-50);
+}
+.mainBanner .swiper-wrapper .swiper-slide{
+	height: auto;
+    display: flex;
+}
+.mainBanner a{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	max-width: 1290px;
+	padding: 0 20px;
+	margin: 0 auto;
+}
+.mainBannerText{
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
+}
+.mainBannerText p{
+	color: var(--purple-500);
+	font-size: 38px;
+	font-weight: 800;
+	line-height: 100%; /* 38px */
+	letter-spacing: -1.9px;
+}
+.mainBannerText span{
+	color: var(--purple-800);
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 100%; /* 16px */
+	letter-spacing: -0.8px;
+}
+.mainBanner a > p{
+	display: flex;
+	align-items: center;
+	column-gap: 3px;
+	color: var(--purple-600);
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 100%; /* 20px */
+	letter-spacing: -1px;
+}
+
+@media all and (max-width : 768px){
+	.mainBanner{
+		padding: 16px 0;
+	}
+	.mainBanner a{
+		flex-direction: column;
+		align-items: flex-start;
+		row-gap: 10px;
+	}
+	.mainBannerText{
+		row-gap: 8px;
+	}
+	.mainBannerText p{
+		font-size: 20px;
+		letter-spacing: -1px;
+		word-break: keep-all;
+	}
+	.mainBannerText span{
+		word-break: keep-all;
+	}
+	.mainBanner a > p{
+		font-size: 16px;
+	}
+}

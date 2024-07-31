@@ -10,6 +10,49 @@
 <%@ include file="./include/head.jsp" %>
 <body>
 	<%@ include file="./include/header.jsp" %>
+    <div class="mainBanner" data-aos="fade-up">
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="/user_img/2024 스카우트 활동 안전매뉴얼.pdf" target="_blank">
+                        <div class="mainBannerText">
+                            <p>스카우트 활동 안전 매뉴얼</p>
+                            <span>친구들아 ! 안전한 스카우트 활동 하자!</span>
+                        </div>
+                        <p>이곳을 눌러 확인하기<img src="/user_img/arrow-banner.png" alt=""></p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="https://www.education.or.kr/studyjob/GroupCourse.asp?GroupSeq=751&QBCode=" target="_blank">
+                        <div class="mainBannerText">
+                            <span>스카우트 운동에 동참하는 성인들을 위한</span>
+                            <p>지도자 초·중급훈련과정</p>
+                            <span>이론과정 개설</span>
+                        </div>
+                        <p>이곳을 눌러 확인하기<img src="/user_img/arrow-banner.png" alt=""></p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="https://notice.naver.com/notices/form/14352?page=1&pageSize=10&newNoticeHour=168&t=d" target="_blank">
+                        <div class="mainBannerText">
+                            <p>정기구독 간행물</p>
+                            <span>신청하고 싶은 사람 모여라!</span>
+                        </div>
+                        <p>이곳을 눌러 확인하기<img src="/user_img/arrow-banner.png" alt=""></p>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="/user_img/Safe from Harm.pdf" target="_blank">
+                        <div class="mainBannerText">
+                            <p>Safe From Harm</p>
+                            <span>사랑하는 대원을 보호하는 스카우트만의 방법</span>
+                        </div>
+                        <p>이곳을 눌러 확인하기<img src="/user_img/arrow-banner.png" alt=""></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="mainWrapper">
         <div class="mainSec1">
             <div class="textsLinks" data-aos="fade-up">
@@ -69,6 +112,7 @@
                 </a>
             </div>
         </div>
+        <!-- 
         <div class="mainSec2" data-aos="fade-up" data-aos-delay="800">
 	        <div class="swiper">
 			  <div class="swiper-wrapper">
@@ -93,10 +137,9 @@
 		            </a>
 			    </div>
 			  </div>
-			  
-			  
 			</div>
         </div>
+          -->
         <div class="mainSec3" data-aos="fade-up" data-aos-delay="200">
             <div class="videoWrapper">
                 <video controls>
@@ -152,8 +195,62 @@
          -->
     </div>
 	<%@ include file="./include/footer.jsp" %>
+    <div class="mainPopup">
+        <div class="mainPopupInner">
+            <button type="button" onclick="closePopup()"><img src="/user_img/close-popup.png" alt=""></button>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="#lnk">
+                            <img src="/user_img/cup.jpeg" alt="">
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#lnk">
+                            <img src="/user_img/venture.jpeg" alt="">
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#lnk">
+                            <img src="/user_img/cup.jpeg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mainPopupButtons">
+                <button type="button" onclick="todayClosePopup()">오늘 하루 보지 않기</button>
+                <button type="button" onclick="closePopup()">닫기</button>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
 	<script>
 		AOS.init();
+		
+	    $( document ).ready(function() {
+	        cookiedata = document.cookie; 
+
+	        if ( cookiedata.indexOf("ncookie=done") < 0 ){ 
+	            document.querySelector('.mainPopup').style.display = "flex";    //  팝업창 아이디
+	        } else {
+	            document.querySelector('.mainPopup').style.display = "none";    // 팝업창 아이디
+	        }
+	    });
+
+	    function setCookie( name, value, expiredays ) { 
+	        var todayDate = new Date(); 
+	        todayDate.setDate( todayDate.getDate() + expiredays );
+	        document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+	    }
+
+	    function closePopup() { 
+	        document.querySelector('.mainPopup').style.display = "none";    // 팝업창 아이디
+	    }
+
+	    function todayClosePopup() { 
+	        setCookie( "ncookie", "done" , 7 );     // 저장될 쿠키명 , 쿠키 value값 , 기간( ex. 1은 하루, 7은 일주일)
+	        document.querySelector('.mainPopup').style.display = "none";    // 팝업창 아이디
+	    }
 	</script>
 </body>
 </html>

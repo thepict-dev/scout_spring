@@ -1,3 +1,17 @@
+// 메인 스와이퍼
+const swiper = new Swiper('.swiper', {
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false
+  },
+  loop: true,	// 무한 루프 적용
+  speed: 5000, 
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+});
+
 //헤더 gnb
 $(".gnb > li").mouseenter(function(){
   $(this).children(".gnbSub").stop().slideDown(300);
@@ -18,15 +32,6 @@ $('.siteMapTop button').click(function(){
 $('.videoTopInner button').on('click', function () {
   $('.videoWrapper video').trigger('play');
   $('.videoTop').fadeOut();
-});
-
-const swiper = new Swiper('.swiper', {
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false
-    },
-    loop: true,	// 무한 루프 적용
-    speed: 2000,
 });
 
 //탭
