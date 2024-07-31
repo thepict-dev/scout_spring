@@ -33,7 +33,7 @@
                     </a>
                 </div>
                 <div class="swiper-slide">
-                    <a href="https://notice.naver.com/notices/form/14352?page=1&pageSize=10&newNoticeHour=168&t=d" target="_blank">
+                    <a href="https://docs.google.com/forms/d/1CGcl3DESQ4EiI1ctB5WeDmU-XVq9ByrTCWwpEmjjsoA/edit" target="_blank">
                         <div class="mainBannerText">
                             <p>정기구독 간행물</p>
                             <span>신청하고 싶은 사람 모여라!</span>

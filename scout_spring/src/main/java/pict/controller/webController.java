@@ -301,6 +301,14 @@ public class webController {
 		
 		return "pict/web/federation_files";
 	}
+	
+	//샘플작업용
+	@RequestMapping("federation_sample")
+	public String federation_sample(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		return "pict/web/federation_sample";
+	}
+	
+	
 	//연맹행사안내
 	@RequestMapping("federation_event")
 	public String federation_event(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
