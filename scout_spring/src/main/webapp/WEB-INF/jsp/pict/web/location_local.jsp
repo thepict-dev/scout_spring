@@ -79,12 +79,12 @@
                             <div class="localTexts">
                                 <h3>대구연맹</h3>
                                 <ul>
-                                    <li><p>주소</p><span>대구 북구 연암공원로6길 10-1, 스카우트회관 2층</span></li>
+                                    <li><p>주소</p><span>대구광역시 북구 연암로40 대구시청 산격청사 스카우트회관2층</span></li>
                                     <li><p>Fax</p><span>053-743-0993</span></li>
                                 </ul>
                                 <ul>
                                     <li><p>Tel</p><span>053-743-0900</span></li>
-                                    <li><p>E-mail</p><span>tgscoutlc@scout.or.kr</span></li>
+                                    <li><p>E-mail</p><span>dgscout@scout.or.kr</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -428,7 +428,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="https://www.scoutshop.or.kr/kor/main/main.php" target="_blank" title="새창이동"></a>
                     </li>
                     
                     <li>

@@ -73,7 +73,7 @@
                         <a href="/jamboree">스카우트</a>
                         <ul class="gnbSub">
 	                        <li><a href="/jamboree">잼버리</a></li>
-	                        <li><a href="/scouts">연령별 단계</a></li>
+	                        <li><a href="/scouts">대원 및 지도자</a></li>
                             <li><a href="/oath">선서 및 규율</a></li>
                             <li><a href="/logos">휘장 및 로고</a></li>
                             <li><a href="/youthhero">Youth Hero</a></li>
@@ -138,7 +138,7 @@
 	                    <a href="/jamboree" <c:if test="${scouts eq true}">class="active"</c:if>>스카우트</a>
 	                    <ul class="depth2">
 	                        <li><a href="/jamboree">잼버리</a></li>
-	                        <li><a href="/scouts">연령별 단계</a></li>
+	                        <li><a href="/scouts">대원 및 지도자</a></li>
                             <li><a href="/oath">선서 및 규율</a></li>
                             <li><a href="/logos">휘장 및 로고</a></li>
                             <li><a href="/youthhero">Youth Hero</a></li>
