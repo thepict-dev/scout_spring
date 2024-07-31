@@ -156,7 +156,7 @@
                             <thead>
                                 <tr>
                                     <th style="white-space: nowrap;">선택</th>
-                                    <th style="position: unset;">연맹</th>
+                                    <th style="position: sticky; left: unset;">연맹</th>
                                     <th>지구연합회</th>
                                     <th>단위대번호</th>
                                     <th>단위대명</th>

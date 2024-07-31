@@ -37,7 +37,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     <li>
                         <div class="imgTexts">
@@ -54,7 +54,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     <li>
                         <div class="imgTexts">
@@ -71,7 +71,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     <li>
                         <div class="imgTexts">
@@ -88,7 +88,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     <li>
                         <div class="imgTexts">
@@ -105,7 +105,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     <li>
                         <div class="imgTexts">
@@ -122,7 +122,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -140,7 +140,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -158,7 +158,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -176,7 +176,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -194,7 +194,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -212,7 +212,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="/federation_organ?dataid=gangwon" title="새창이동"></a>
+                        <a href="/federation_organ?dataid=gangwon" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -230,7 +230,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -248,7 +248,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -266,7 +266,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -284,7 +284,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -302,7 +302,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -320,7 +320,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -338,7 +338,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -356,7 +356,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -374,7 +374,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -392,7 +392,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -410,7 +410,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -428,7 +428,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="https://www.scoutshop.or.kr/kor/main/main.php" target="_blank" title="새창이동"></a>
+                        <a href="https://www.scoutshop.or.kr/kor/main/main.php" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>
                     
                     <li>
@@ -446,7 +446,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#lnk" target="_blank" title="새창이동"></a>
+                        <a href="#lnk" target="_blank" title="새창이동"><span>지방연맹 소식<br>바로가기</span></a>
                     </li>                    
                 </ul>
             </div>

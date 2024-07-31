@@ -63,8 +63,8 @@
             	<span><img src="/front_img/lnb4.png" alt=""></span>
                 <a href="#lnk">홈페이지 관리</a>
                 <ul class="subNav">
-                	<li><a href="/admin/front/board_list">중앙본부<br>게시물관리</a></li>
-                	<li><a href="/admin/front/board_list_sub">지방·특수연맹<br>게시물관리</a></li>
+                	<li><a href="/admin/front/board_list">중앙본부 게시물</a></li>
+                	<li><a href="/admin/front/board_list_sub">지방·특수연맹 게시물</a></li>
                 	<li><a href="/admin/front/reservation_list">시설 예약관리</a></li>
                 	<li><a href="/admin/front/local_list">스카우트 가입 관리</a></li>
                	</ul>
