@@ -18,7 +18,7 @@
         <div class="subContents">
             <ul class="tabNav organNav rules">
                 <li class="active"><span>수련시설 안내</span></li>
-                <li><span>옥상정원 예약</span></li>
+                <li><span>스카우트 홀 예약</span></li>
             </ul>
             <!-- 스카우트 구성 -->
             <div class="tabInner ruleContents active">

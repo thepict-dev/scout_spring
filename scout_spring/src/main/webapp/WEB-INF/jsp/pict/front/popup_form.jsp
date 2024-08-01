@@ -67,6 +67,7 @@
 	                    
 	                    <input type='hidden' name="saveType" id="saveType" value='${pictVO.saveType}' /> 
     					<input type='hidden' name="fileidx" id="fileidx"/>
+    					<input type='hidden' name="idx" id="idx" value="${pictVO.idx }"/>
 	                </form>
 	            </div>
 	        </div>

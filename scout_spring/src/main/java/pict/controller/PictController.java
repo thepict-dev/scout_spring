@@ -3644,7 +3644,7 @@ public class PictController {
 		
 		
         if(attach_file1.getSize() != 0) {
-			String uploadPath = fileUpload(request, attach_file1, (String)request.getSession().getAttribute("id"), pictVO.getBRDNO());
+			String uploadPath = fileUpload(request, attach_file1, (String)request.getSession().getAttribute("id"), "popup");
 			String filepath = file_dir  + "popup/";
 			String filename = uploadPath.split("#####")[1];
 			pictVO.setMainimg(filepath+filename);

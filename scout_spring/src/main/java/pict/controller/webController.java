@@ -118,6 +118,7 @@ public class webController {
 		int startNum = (pageNum - 1) * limitNumber;
 		pictVO.setStartNumber(startNum);
 		pictVO.setBRDNO("56");
+		pictVO.setASSOCIATIONCODE("200");
 		Integer totalCnt = pictService.board_list_cnt(pictVO);
 		
 		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
@@ -167,6 +168,7 @@ public class webController {
 		int startNum = (pageNum - 1) * limitNumber;
 		pictVO.setStartNumber(startNum);
 		pictVO.setBRDNO("227");
+		pictVO.setASSOCIATIONCODE("200");
 		Integer totalCnt = pictService.board_list_cnt(pictVO);
 		
 		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
@@ -409,7 +411,7 @@ public class webController {
 		int startNum = (pageNum - 1) * limitNumber;
 		pictVO.setStartNumber(startNum);
 		pictVO.setBRDNO("1587");
-		
+		pictVO.setASSOCIATIONCODE("200");
 		Integer totalCnt = pictService.board_list_cnt(pictVO);
 		
 		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
@@ -469,6 +471,7 @@ public class webController {
 		int startNum = (pageNum - 1) * limitNumber;
 		pictVO.setStartNumber(startNum);
 		pictVO.setBRDNO("290");
+		pictVO.setASSOCIATIONCODE("200");
 		Integer totalCnt = pictService.board_list_cnt(pictVO);
 		
 		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
@@ -698,6 +701,7 @@ public class webController {
 		int startNum = (pageNum - 1) * limitNumber;
 		pictVO.setStartNumber(startNum);
 		pictVO.setBRDNO("1827");
+		pictVO.setASSOCIATIONCODE("200");
 		Integer totalCnt = pictService.board_list_cnt(pictVO);
 		
 		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 

@@ -1051,7 +1051,7 @@
 		</if>		
 
 		<if test="ASSOCIATIONCODE != null and ASSOCIATIONCODE != ''">
-			and c.ASSOCIATIONCODE = #{ASSOCIATIONCODE}  
+			and c.ASSOCIATIONCODE = #{ASSOCIATIONCODE}
 		</if>
 		<if test="ASSOCIATIONCODE == null or ASSOCIATIONCODE == ''">
 			and c.ASSOCIATIONCODE != '200' 
