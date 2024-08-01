@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="/front_img/sm-logo.png">
     
-    <meta property="og:image" content="/front_img/c-logo.png"/>
     <title>스카우트</title>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
@@ -25,6 +24,16 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="/js/odometer.min.js"></script>
     <script src="/js/user.js" defer></script>
+    
+    <meta name="Title" content="한국스카우트연맹" >
+	<meta name="Description" content="한국스카우트연맹은 범세계적인 청소년운동으로 우리나라 최대/최고의 청소년 운동단체입니다.">
+	<meta name="Keywords" content="한국스카우트연맹,스카우트,컵스카우트,한국잼버리스카우트,한국잼버리,잼버리,한국스카우트,스카우트연맹,청소년단체,보이스카우트, 대장,scout,jamboree,Korea Scout Association,KSA">
+	<meta name="Robots" content="INDEX,FOLLOW">
+	<meta property="og:url" content="http://www.scout.or.kr/">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="한국스카우트연맹" >
+	<meta property="og:description" content="한국스카우트연맹은 범세계적인 청소년운동으로 우리나라 최대/최고의 청소년 운동단체입니다.">
+	<meta property="og:image" content="/user_img/opengraph.png">
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LC2B3BP4TL"></script>
 	<script>
