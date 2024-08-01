@@ -175,7 +175,7 @@
                                        </thead>
                 					<tbody id="former_body">
 										<c:forEach var="former_list" items="${former_list}" varStatus="status">
-											<tr onclick="former_info('${former_list.MEMBERNO}')" id="former_${former_list.MEMBERNO}" <c:if test="${former_list.EMPLOYEEY eq 'X'}">class="active"</c:if>>
+											<tr onclick="former_info('${former_list.MEMBERNO}')" id="former_${former_list.MEMBERNO}" <c:if test="${former_list.EMPLOYEEY eq 'X'}">class="disable"</c:if>>
 												<td>${status.count}</td>
 												<td style="left: 84px;">${former_list.MEMBERNO}</td>
 												<td id="name_${former_list.MEMBERNO}">${former_list.KNAME}</td>

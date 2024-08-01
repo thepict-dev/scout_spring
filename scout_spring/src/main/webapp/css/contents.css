@@ -822,8 +822,9 @@
 tbody tr.active td{
 	background-color: var(--grey-50);
 }
-#former_body tr.active td{
-	background-color: #cacfd4;
+tbody tr.disable td{
+	background-color: var(--grey-200);
+	color: var(--grey-500);
 }
 .mainProfile.sign{
 	display: flex;
