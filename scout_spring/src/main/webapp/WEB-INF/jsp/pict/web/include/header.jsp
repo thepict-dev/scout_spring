@@ -37,7 +37,6 @@
 
 <c:set var="intro" value="${fn:indexOf(url, 'intro')}"/>
 <c:set var="facility" value="${fn:indexOf(url, 'facility')}"/>
-<c:set var="intro" value="${fn:indexOf(url, 'intro')}"/>
 <c:set var="greeting" value="${fn:indexOf(url, 'greeting')}"/>
 <c:set var="history_local" value="${fn:indexOf(url, 'history_local')}"/>
 <c:set var="history_inter" value="${fn:indexOf(url, 'history_inter')}"/>
@@ -52,7 +51,6 @@
 <c:set var="tr_intgree" value="${fn:indexOf(url, 'tr_intgree')}"/>
 <c:set var="tr_gil" value="${fn:indexOf(url, 'tr_gil')}"/>
 <c:set var="tr_board" value="${fn:indexOf(url, 'tr_borad')}"/>
-
 
 <header>
     <div class="headerTop">
@@ -97,7 +95,7 @@
                             <li><a href="/news">언론에 비친 SCOUT</a></li>
                         </ul>
                     </li>
-                    <li <c:if test="${feder eq true}">class="active"</c:if>>
+                    <li <c:if test="${fn:contains(url, '/intro') || fn:contains(url, '/greeting') || fn:contains(url, '/history_local') || fn:contains(url, '/organization') || fn:contains(url, '/rules') || fn:contains(url, '/location_center') || fn:contains(url, '/facility') || fn:contains(url, '/store') || fn:contains(url, '/family')}">class="active"</c:if>>
                         <a href="/intro">한국스카우트연맹</a>
                         <ul class="gnbSub">
                             <li><a href="/intro">소개</a></li>
@@ -174,7 +172,7 @@
 	            </ul>
 	            <ul class="depth1">
 	                <li>
-	                    <a href="/intro" <c:if test="${feder eq true}">class="active"</c:if>><span class="pcText">한국스카우트연맹</span><span class="mbText">한국<br>스카우트<br>연맹</span></a>
+	                    <a href="/intro" <c:if test="${fn:contains(url, '/intro') || fn:contains(url, '/greeting') || fn:contains(url, '/history_local') || fn:contains(url, '/organization') || fn:contains(url, '/rules') || fn:contains(url, '/location_center') || fn:contains(url, '/facility') || fn:contains(url, '/store') || fn:contains(url, '/family')}">class="active"</c:if>><span class="pcText">한국스카우트연맹</span><span class="mbText">한국<br>스카우트<br>연맹</span></a>
 	                    <ul class="depth2">
                             <li><a href="/intro">소개</a></li>
                             <li><a href="/greeting">인사말</a></li>
