@@ -1588,6 +1588,59 @@
 	}
 }
 
+
+.agreeModal{
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 100;
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	row-gap: 12px;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.50);
+}
+.agreeModal button{
+	cursor: pointer;
+}
+.agreeModalInner{
+	max-width: 537px;
+	width: 90%;
+	padding: 30px 40px;
+	background-color: #fff;
+}
+.agreeModalInner p{
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 100%; /* 24px */
+	letter-spacing: -1.2px;
+}
+.agreeModalInner > span{
+	display: block;
+	margin-top: 20px;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 120%;
+	letter-spacing: -1px;
+}
+.agreeModalInner span span{
+	font-weight: 700;
+}
+.agreeInfo{
+	display: flex;
+	align-items: center;
+	column-gap: 8px;
+	margin: 40px 0 28px 0;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 120%;
+	letter-spacing: -1px;
+	cursor: pointer;
+}
+
 /* inputs */
 .InputsTitle{
 	padding: 69px 0 32px 0;

@@ -513,8 +513,8 @@
 }
 .mainPopupInner{
 	position: relative;
-	width: 417px;
-	height: 417px;
+	width: 550px;
+	height: 550px;
 }
 .mainPopupInner > button{
 	position: absolute;

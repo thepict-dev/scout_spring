@@ -115,6 +115,24 @@
                             </div>
                         </div>
                     </div>
+                    <div class="agreeInfo">
+                    	<input type="checkbox" id="agree_info" name="agree_info" />
+                    	<label for="agree_info">개인정보 수집이용 동의</label>
+                    </div>
+                    <div class="agreeModal">
+        				<button type="button"><img src="/user_img/close.png" alt="닫기"></button>
+                    	<div class="agreeModalInner">
+                    		<p>1. [개인정보 수집이용 동의]</p>
+                    		<span>
+                    			한국스카우트연맹은 단위대 가입 상담 등을 위해 아래와 같이 개인정보를 수집, 이용합니다.<br>
+							    수집목적 : 회원가입 및 상담<br>
+							    수집항목 : 이름, 연락처, 이메일, 연령대
+                    		</span>
+                    		<span>
+                    			한국스카우트연맹의 단위대 가입 상담을 위해 최소한의 개인정보 수집에 동의하지 않을 수 있으나, <span>동의를 거부할 경우 단위대 가입 상담이 불가합니다.</span>
+                    		</span>
+                    	</div>
+                    </div>
                     <a href="#lnk" class="rulesButton apply active" onclick="apply()">
                         <p>신청하기</p>
                         <span></span>
@@ -134,6 +152,7 @@
 		var mobile = tel1+"-"+tel2  
 		var age = ""
 		var relation = ""
+		var agree_info = ""
 		$('input[name=age]:checked').each(function(){
 			var chk = $(this).val();
 			age = chk
@@ -174,6 +193,11 @@
 		if(association == '' || association == null || association == undefined){
 			alert("상담 희망 연맹을 선택해주세요.")
 			$('#association').focus();
+			return false;
+		}
+		if(agree_info == '' || agree_info == null || agree_info == undefined){
+			alert("개인정보 이용에 동의해주세요.")
+			$('#agree_info').focus();
 			return false;
 		}
 		if(confirm ("상담 예약을 신청하시겠습니까?")){

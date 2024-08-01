@@ -154,8 +154,16 @@ const phoneAutoHyphen = (target) => {
 $('.localApply').click(function(){
   $('.localAppModal').show();
 });
-$('.localAppModal .modalWrapper button').click(function(){
+$('.localAppModal .modalWrapper > button').click(function(){
   $('.localAppModal').hide();
+});
+
+// 개인정보 팝업
+$('#agree_info').click(function(){
+  $('.agreeModal').css('display', 'flex');
+});
+$('.agreeModal button').click(function(){
+  $('.agreeModal').css('display', 'none');
 });
 
 // 중앙훈련원 예약신청 모달 열기
