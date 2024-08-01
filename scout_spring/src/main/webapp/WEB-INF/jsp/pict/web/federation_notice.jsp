@@ -16,13 +16,13 @@
             <p>${vo.ASSOCIATIONNAME}</p>
         </div>
         <div class="subContents">
-        	<img src="https://scout.thepict.co.kr${vo.mainimg}" style="width:100%; margin-bottom:30px"/>
+        	<img src="${vo.mainimg}" style="width:100%; margin-bottom:30px"/>
             <div class="greetingContainer">
             	<!-- 연맹소개글 -->
                	${vo.introduce}
 
                 <c:if test="${vo.leaderimg ne '' && vo.leaderimg ne null && vo.leaderimg ne undefined}">
-                	<span class="feders"><img src="https://scout.thepict.co.kr${vo.leaderimg}" alt="연맹장사진"></span>
+                	<span class="feders"><img src="${vo.leaderimg}" alt="연맹장사진"></span>
                	</c:if>
             </div>
             <c:if test="${vo.leaderimg ne '' && vo.leaderimg ne null && vo.leaderimg ne undefined}">

@@ -16,7 +16,7 @@
             <p>${vo.ASSOCIATIONNAME}</p>
         </div>
         <div class="subContents">
-        	<img src="https://scout.thepict.co.kr${vo.mainimg}" style="width:100%; margin-bottom:30px"/>
+        	<img src="${vo.mainimg}" style="width:100%; margin-bottom:30px"/>
             <div class="greetingContainer">
             	<!-- 연맹소개글 -->
             	<div class="greetingText feders">
@@ -32,7 +32,7 @@
                 		<p>한국스카우트 서울남부연맹 연맹장 문 효 순</p>
                		</div>
                 </div>
-                <span class="feders"><img src="https://scout.thepict.co.kr${vo.leaderimg}" alt="연맹장사진"></span>
+                <span class="feders"><img src="${vo.leaderimg}" alt="연맹장사진"></span>
             </div>
             <div class="sign feders" >
 				<p>연맹장 ${vo.leadername}</p>

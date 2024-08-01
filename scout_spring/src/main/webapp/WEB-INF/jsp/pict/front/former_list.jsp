@@ -265,7 +265,7 @@
 					var html ="";
 					console.log(data)
 					if(data.list){
-						var picimg = "http://scout.thepict.co.kr/front_img/profile.png"
+						var picimg = "/front_img/profile.png"
 						if(data.list[0].picimg != '' && data.list[0].picimg != null && data.list[0].picimg != undefined)
 							picimg = data.list[0].picimg
 							

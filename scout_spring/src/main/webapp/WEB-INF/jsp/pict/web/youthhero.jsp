@@ -65,7 +65,7 @@
 							var html = ""
 							for(var i=0; i<list.length; i++){
 								html +='<li>'+
-				                '<img src="http://scout.thepict.co.kr'+list[i].picimg+'" alt="역대 수상자">'+
+				                '<img src="'+list[i].picimg+'" alt="역대 수상자">'+
 				                '<div class="texts">'+
 				                '<p>'+list[i].kname+'</p>'+
 				                '<span>'+list[i].year+'</span>'+
