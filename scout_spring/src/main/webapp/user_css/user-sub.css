@@ -2113,6 +2113,7 @@ input[type="date"]::after{
 		font-size: 16px;
 	}
 	.localTexts ul li span{
+		width: 100%;
 		font-size: 16px;
 		line-height: 120%;
 	}
