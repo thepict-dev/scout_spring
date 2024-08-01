@@ -25,7 +25,7 @@
                 <ul class="locationTexts">
                     <li>
                         <p><img src="/user_img/location.png" alt="주소">주소</p>
-                        <span>서울 영등포구 국회대로62길 14</span>
+                        <span>서울 영등포구 국회대로62길 14, 10층</span>
                     </li>
                     <li>
                         <p><img src="/user_img/call.png" alt="전화번호">전화번호</p>

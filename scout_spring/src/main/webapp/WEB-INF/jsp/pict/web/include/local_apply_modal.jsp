@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="checkRadio">
                                         <input id="age2" type="radio" name="age" value="2">
-                                        <label for="age2">컵스카우트(초틍학생, 만6~12세)</label>
+                                        <label for="age2">컵스카우트(초등학생, 만6~12세)</label>
                                     </div>
                                     <div class="checkRadio">
                                         <input id="age3" type="radio" name="age" value="3">
@@ -161,6 +161,11 @@
 		$('input[name=relation]:checked').each(function(){
 			var chk = $(this).val();
 			relation = chk
+		})
+		
+		$('input[name=agree_info]:checked').each(function(){
+			var chk = $(this).val();
+			agree_info = chk
 		})
 		
 		var association = $('#association').val()

@@ -27,7 +27,7 @@
                 <li>서울특별시 영등포구 국회대로62길 14</li>
                 <li>
                     <p>E-MAIL<span>scoutshq@scout.or.kr</span></p>
-                    <p>FAX<span>02&#41;6335-2020</span></p>
+                    <p>FAX<span>0507-514-2015</span></p>
                     <p>TEL<span>02&#41;6335-2000</span></p>
                 </li>
                 <li>Copyright Korea Scout Association All right reserved.</li>

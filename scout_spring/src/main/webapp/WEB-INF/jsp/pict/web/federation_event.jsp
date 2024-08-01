@@ -100,5 +100,13 @@
         </div>
     </div>
 	<%@ include file="./include/footer.jsp" %>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+		    var targetDiv = document.querySelector('.tabNav.organNav.rules');
+		    if (targetDiv) {
+		        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		    }
+		});
+	</script>
 </body>
 </html>

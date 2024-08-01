@@ -23,11 +23,14 @@
             <!-- 스카우트 구성 -->
             <div class="tabInner ruleContents active">
                 <div class="flexContainer">
-                    <div class="titleImg">
+                    <div class="titleImg center">
                         <h3 class="contentTitle">중앙훈련원</h3>
                         <h3 class="contentTitle mbText">중앙훈련원</h3>
                         <span><img src="/user_img/facility1.png" alt="중앙훈련원"></span>
-                        <a href="http://scoutcenter.scout.or.kr/SysApplicationController.do" target="_blank" title="새창이동">중앙훈련원 사이트 바로가기</a>
+                        <div class="bookingButtons">
+                        	<a href="http://scoutcenter.scout.or.kr/SysApplicationController.do" target="_blank" title="새창이동">중앙훈련원 사이트 바로가기</a>
+                        	<a href="https://search.naver.com/search.naver?where=nexearch&sm=top_sug.pre&fbm=0&acr=1&acq=%EC%84%9C%EC%82%BC%EB%A6%89%EC%B2%AD%EC%86%8C%EB%85%84&qdt=0&ie=utf8&query=%EC%84%9C%EC%82%BC%EB%A6%89%EC%B2%AD%EC%86%8C%EB%85%84%EC%95%BC%EC%98%81%EC%9E%A5" target="_blank" title="새창이동">서삼릉청소년야영장 예약하기</a>
+                       	</div>
                     </div>
                     <div class="contentDesc">
                         <div class="textsWrapper rules facility">
@@ -36,7 +39,7 @@
                                 <li><p>명칭</p><span>중앙훈련원/서삼릉 청소년 야영장</span></li>
                                 <li><p>면적</p><span>32,135㎡</span></li>
                                 <li><p>주소</p><span>경기도 고양시 원당동 200-5</span></li>
-                                <li><p>연락처</p><span>Tel&#41; 031-963-016 Fax&#41; 031-966-1976</span></li>
+                                <li><p>연락처</p><span>Tel&#41; 031-967-9164</span></li>
                                 <li><p>이메일</p><span>scoutcenter@scout.or.kr</span></li>
                             </ul>
                         </div>
@@ -135,12 +138,12 @@
                                 <li><p>09시~12시(오전)</p><span>210,000원</span></li>
                                 <li><p>13시~18시(오후)</p><span>350,000원</span></li>
                                 <li><p>09시~18시(전일)</p><span>500,000원</span></li>
-                                <li><p>18시~21시(야간)</p><span>300,000원(19시~22시)</span></li>
+                                <li><p>18시~21시(야간)</p><span>300,000원(18시~21시)</span></li>
                                 <li><p>초과시간비용</p><span>주간 : 80,000원 / 야간 : 120,000원</span></li>
                             </ul>
                         </div>
                         <div class="facilityCaption">
-                            <p>※ 스카우트연맹빌딩 입주사, 장애인, 청소년단체 사용시 : 20%할인</p>
+                            <p>※ 입주사, 장애인, 청소년 단체 및 장기계약 시 : 20%할인</p>
                             <p>※ 문의 전화번호 : 02-6335-2005</p>
                         </div>
                     </div>

@@ -66,7 +66,7 @@
                     <li><a href="#lnk">진급기장신청</a></li>
                     <li><a href="http://scoutcenter.scout.or.kr/SysApplicationController.do" target="_blank" title="새창이동">중앙훈련원</a></li>
                     <li><a href="https://gongiamscout.itpage.kr/" target="_blank" title="새창이동">곤지암야영장</a></li>
-                    <li><a href="/family">스카우트와함께</a></li>
+                    <li><a href="/youthhero">Youth Hero</a></li>
                 	<!-- 
                     <li><a href="#lnk">지역대검색</a></li>
                     <li><a href="#lnk">임원통합소개</a></li>
@@ -186,10 +186,10 @@
 		AOS.init();
 		
 	    $( document ).ready(function() {
-	        cookiedata = document.cookie; 
-	        if ( cookiedata.indexOf("ncookie=done") < 0 ){ 
-	            document.querySelector('.mainPopup').style.display = "flex";    //  팝업창 아이디
-	        } 
+	        var cookiedata = document.cookie;
+	        if (cookiedata.indexOf("ncookie=done") < 0) {
+	            document.querySelector('.mainPopup').style.display = "flex";
+	        }
 	        else {
 	            document.querySelector('.mainPopup').style.display = "none";    // 팝업창 아이디
 	        }

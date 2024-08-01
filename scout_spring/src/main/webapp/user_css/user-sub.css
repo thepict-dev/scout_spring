@@ -1028,7 +1028,8 @@
 	display: block;
 	padding: 12px 32px;
 }
-.organNav li.active{
+.organNav li.active a, 
+.organNav li.active span{
 	color: var(--text-color);
 	border-bottom: 2px solid var(--p-Purple-NORMAL_purple-500, #583D94);
 }
@@ -1281,6 +1282,11 @@
 	letter-spacing: -0.7px;
 	transition: all .2s;
 }
+.titleImg .bookingButtons{
+	display: flex;
+	flex-direction: column;
+	row-gap: 8px;
+}
 .titleImg a.gon{
 	width: 191px;
 }
@@ -1374,6 +1380,9 @@
 		row-gap: 20px;
 		padding-bottom: 20px;
 	}
+	.titleImg.center{
+		row-gap: 65px;
+	}
 	.titleImg span{
 		width: 100%;
 		max-width: unset;
@@ -1381,7 +1390,12 @@
 		/* height: 148px; */
 		margin-top: 40px;
 	}
-	.titleImg a{
+	.titleImg .bookingButtons{
+		position: absolute;
+		left: 0;
+		top: 60px;
+	}
+	.titleImg a.gon{
 		position: absolute;
 		left: 0;
 		top: 60px;
@@ -2170,6 +2184,15 @@ input[type="date"]::after{
 	line-height: 160%;
 	font-weight: 500;
 }
+.localLocations.family > li a:not(.famLink){
+	background-image: url(/user_img/linkto.png);
+	background-size: 48px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.localLocations.family > li a:not(.famLink):hover{
+	background-image: url(/user_img/linkto-hover.png);
+}
 .localLocations > li a.famLink{
 	display: none;
 	position: unset;
@@ -2201,7 +2224,10 @@ input[type="date"]::after{
 		font-size: 16px;
 		line-height: 140%;
 	}
-	.localLocations > li a.famLink{
+	.localLocations.family > li a:not(.famLink){
+		display: none;
+	}
+	.localLocations.family > li a.famLink{
 		display: flex;
 		position: unset;
 		width: fit-content;
