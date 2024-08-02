@@ -22,9 +22,6 @@
                         <div class="inputBox">
                             <p class="inputCaption">연차년도</p>
                             <select name="YEAR_SCOUT" id="YEAR_SCOUT" class="smThinSelect">
-                                <option value="2027">2027</option>
-                                <option value="2026">2026</option>
-                                <option value="2025">2025</option>
                                 <option value="2024" selected>2024</option>
                                 <option value="2023">2023</option>
                                 <option value="2022">2022</option>
@@ -110,7 +107,9 @@
                                 	<option value="06">기타</option>
                                 	<option value="99">복합</option>
                                 </select>
-                                <select name="SCOUTPOSITIONCODE" id="SCOUTPOSITIONCODE" class="lgThinSelect"></select>
+                                <select name="SCOUTPOSITIONCODE" id="SCOUTPOSITIONCODE" class="lgThinSelect">
+                                	<option value="">-----</option>
+                                </select>
                             </div>
                         </div>
                         <div class="inputBox">
@@ -567,6 +566,7 @@
 			savetype : "update",
 			kname : $('#KNAME').val()
 		}
+		debugger
 		
 		var text ="선택한 연공을 수정하시겠습니까?";
 		if($('#scout_idx').val() == '' || $('#scout_idx').val() == undefined || $('#scout_idx').val() == null){

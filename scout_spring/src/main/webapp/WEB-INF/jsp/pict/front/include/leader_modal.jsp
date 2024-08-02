@@ -17,14 +17,11 @@
                     <div class="inputsContainer">
                         <div class="inputBox">
                             <p class="inputCaption">성명</p>
-                            <input type="text" name="dmyKNAME" id="dmyKNAME" readonly placeholder="내용을 입력하세요…" class="lgThinInput">
+                            <input type="text" name="dmyKNAME" id="dmyKNAME" readonly placeholder="내용을 입력하세요…" class="lgThinInput" value="${pictVO.KNAME}">
                         </div>
                         <div class="inputBox">
                             <p class="inputCaption">연차년도</p>
                             <select name="YEAR" id="YEAR" class="smThinSelect">
-                                <option value="2027">2027</option>
-                                <option value="2026">2026</option>
-                                <option value="2025">2025</option>
                                 <option value="2024" selected>2024</option>
                                 <option value="2023">2023</option>
                                 <option value="2022">2022</option>

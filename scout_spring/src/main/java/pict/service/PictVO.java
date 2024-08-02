@@ -323,8 +323,29 @@ public class PictVO extends PictDefaultVO {
 	private String LEVEL;
 	private String linkurl;
 	private int orderby;
+	private String LIFEMEMBERNO;
+	private String LIFEENTERDATE;
+	private String LIFESTATUS;
 	
 	
+	public String getLIFEMEMBERNO() {
+		return LIFEMEMBERNO;
+	}
+	public void setLIFEMEMBERNO(String lIFEMEMBERNO) {
+		LIFEMEMBERNO = lIFEMEMBERNO;
+	}
+	public String getLIFEENTERDATE() {
+		return LIFEENTERDATE;
+	}
+	public void setLIFEENTERDATE(String lIFEENTERDATE) {
+		LIFEENTERDATE = lIFEENTERDATE;
+	}
+	public String getLIFESTATUS() {
+		return LIFESTATUS;
+	}
+	public void setLIFESTATUS(String lIFESTATUS) {
+		LIFESTATUS = lIFESTATUS;
+	}
 	public int getOrderby() {
 		return orderby;
 	}

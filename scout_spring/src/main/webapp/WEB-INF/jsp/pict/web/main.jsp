@@ -63,7 +63,7 @@
                 <ul class="links">
                     <li><a href="/notice">공지사항</a></li>
                     <li><a href="/location_local" style="background:#78c992">지방·특수연맹 소식</a></li>
-                    <li><a href="#lnk">진급기장신청</a></li>
+                    <li><a href="https://www.scout.or.kr/notice_view?BRDCTSNO=4065">진급기장신청</a></li>
                     <li><a href="/facility">중앙훈련원</a></li>
                     <li><a href="https://gongiamscout.itpage.kr/" target="_blank" title="새창이동">곤지암야영장</a></li>
                     <li><a href="/youthhero">Youth Hero</a></li>

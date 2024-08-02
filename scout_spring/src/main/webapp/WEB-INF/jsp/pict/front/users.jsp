@@ -243,28 +243,42 @@
                                             <option value="X">탈퇴</option>
                                         </select>
                                     </div>
-                                    <div class="inputBox">
-                                        <p class="inputCaption">평생회원여부</p>
-                                        <select name="LIFEMEMBERY" id="LIFEMEMBERY" class="smThinSelect">
-                                        	<option value="">----</option>
-                                            <option value="Y">평생회원</option>
-                                        </select>
+                                </div>
+                                <div class="inputsContainer">
+	                                <div class="inputBox">
+	                                    <p class="inputCaption">평생회원여부</p>
+	                                    <select name="LIFEMEMBERY" id="LIFEMEMBERY" class="smThinSelect">
+	                                    	<option value="">----</option>
+	                                        <option value="Y">평생회원</option>
+	                                    </select>
+	                                </div>
+	                                <div class="inputBox">
+	                                    <p class="inputCaption">평생회원등급</p>
+	                                    <select name="LIFERANK" id="LIFERANK" class="smThinSelect">
+	                                    	<option value="">----</option>
+	                                        <option value="C">일반</option>
+	                                        <option value="S">실버</option>
+	                                        <option value="G">골드</option>
+	                                    </select>
+	                                </div>
+	                                <div class="inputBox">
+                                        <p class="inputCaption">평생회원번호</p>
+                                        <input type="text"  name="LIFEMEMBERNO" id="LIFEMEMBERNO" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                    </div>
+	                                <div class="inputBox">
+                                        <p class="inputCaption">평생회원등록일</p>
+                                        <input type="date" name="LIFEENTERDATE" id="LIFEENTERDATE" class="lgThinInput" max="9999-12-31">
                                     </div>
                                     <div class="inputBox">
-                                        <p class="inputCaption">평생회원등급</p>
-                                        <select name="LIFERANK" id="LIFERANK" class="smThinSelect">
-                                        	<option value="">----</option>
-                                            <option value="S">실버</option>
-                                            <option value="G">골드</option>
-                                            <option value="P">플래티넘</option>
-                                        </select>
-                                    </div>
-                                    <!-- 
-                                    <div class="inputBox">
-                                        <p class="inputCaption">홈페이지 ID</p>
-                                        <input type="text" name="USERNAME" id="USERNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                    </div>
-                                     -->
+	                                    <p class="inputCaption">평생회원상태</p>
+	                                    <select name="LIFESTATUS" id="LIFESTATUS" class="smThinSelect">
+	                                    	<option value="">상태선택</option>
+	                                    	<option value="1">유지</option>
+	                                        <option value="2">승계</option>
+	                                        <option value="3">탈퇴</option>
+	                                        <option value="4">사망</option>
+	                                    </select>
+	                                </div>
                                 </div>
                                 <div class="inputsContainer">
                                     <div class="inputBox">
@@ -922,7 +936,11 @@
 				TROOPRANK : $('#TROOPRANK').val(),
 				BIGO : $('#PERSONBIGO').val(),
 				LIFEMEMBERY : $('#LIFEMEMBERY').val(),
-				LIFERANK : $('#LIFERANK').val()
+				LIFERANK : $('#LIFERANK').val(),
+				LIFEMEMBERNO : $('#LIFEMEMBERNO').val(),
+				LIFEENTERDATE : $('#LIFEENTERDATE').val(),
+				LIFESTATUS : $('#LIFESTATUS').val(),
+				
 			}
 			
 			var text ="회원정보를 수정하시겠습니까?";
@@ -1067,6 +1085,10 @@
 					
 					$('#LIFEMEMBERY').val(data.info.lifemembery)
 					$('#LIFERANK').val(data.info.liferank)
+					
+					$('#LIFEMEMBERNO').val(data.info.lifememberno)
+					$('#LIFEENTERDATE').val(data.info.lifeenterdate)
+					$('#LIFESTATUS').val(data.info.lifestatus)
 					
 					
 					

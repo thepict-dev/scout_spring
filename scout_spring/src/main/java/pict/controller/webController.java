@@ -114,7 +114,7 @@ public class webController {
 			pictVO.setPageNumber(1);
 			pageNum = 1;
 		}
-
+		pictVO.setMain("sub");
 		int startNum = (pageNum - 1) * limitNumber;
 		pictVO.setStartNumber(startNum);
 		pictVO.setBRDNO("56");
@@ -164,7 +164,7 @@ public class webController {
 			pictVO.setPageNumber(1);
 			pageNum = 1;
 		}
-
+		pictVO.setMain("sub");
 		int startNum = (pageNum - 1) * limitNumber;
 		pictVO.setStartNumber(startNum);
 		pictVO.setBRDNO("227");
@@ -222,6 +222,7 @@ public class webController {
 			if(pictVO.getDataid().equals("jeju")) pictVO.setBRDNO("1093");
 		}
 		pictVO.setType("sub");
+		pictVO.setMain("sub");
 		
 		/* 연맹별 공지사항 */
 		int limitNumber = 20;
@@ -276,7 +277,7 @@ public class webController {
 			if(pictVO.getDataid().equals("jeju")) pictVO.setBRDNO("5018");
 		}
 		pictVO.setType("sub");
-		
+		pictVO.setMain("sub");
 		/* 연맹별 공지사항 */
 		int limitNumber = 20;
 		pictVO.setLimit(limitNumber);
@@ -337,7 +338,7 @@ public class webController {
 			if(pictVO.getDataid().equals("jeju")) pictVO.setBRDNO("6018");
 		}
 		pictVO.setType("sub");
-		
+		pictVO.setMain("sub");
 		/* 연맹별 공지사항 */
 		int limitNumber = 20;
 		pictVO.setLimit(limitNumber);
@@ -407,7 +408,7 @@ public class webController {
 			pictVO.setPageNumber(1);
 			pageNum = 1;
 		}
-
+		pictVO.setMain("sub");
 		int startNum = (pageNum - 1) * limitNumber;
 		pictVO.setStartNumber(startNum);
 		pictVO.setBRDNO("1587");
@@ -467,7 +468,7 @@ public class webController {
 			pictVO.setPageNumber(1);
 			pageNum = 1;
 		}
-
+		pictVO.setMain("sub");
 		int startNum = (pageNum - 1) * limitNumber;
 		pictVO.setStartNumber(startNum);
 		pictVO.setBRDNO("290");
@@ -697,7 +698,7 @@ public class webController {
 			pictVO.setPageNumber(1);
 			pageNum = 1;
 		}
-
+		pictVO.setMain("sub");
 		int startNum = (pageNum - 1) * limitNumber;
 		pictVO.setStartNumber(startNum);
 		pictVO.setBRDNO("1827");

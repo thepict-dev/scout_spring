@@ -218,6 +218,11 @@ public class PictController {
 			return "redirect:/admin/pict_login";
 		}
 		
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String current_year = dateFormat.format(today);
+		model.addAttribute("current_year", current_year);
+		
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
@@ -1338,6 +1343,10 @@ public class PictController {
 			String LIFEMEMBERY = param.get("LIFEMEMBERY").toString();
 			String LIFERANK = param.get("LIFERANK").toString();
 			
+			String LIFEMEMBERNO = param.get("LIFEMEMBERNO").toString();
+			String LIFEENTERDATE = param.get("LIFEENTERDATE").toString();
+			String LIFESTATUS = param.get("LIFESTATUS").toString();
+			
 			String TROOPRANK = param.get("TROOPRANK").toString();
 			if(TROOPRANK.equals("0")) {
 				pictVO.setTROOPSCOUTY("Y");
@@ -1369,6 +1378,16 @@ public class PictController {
 			pictVO.setBIGO(BIGO);
 			pictVO.setLIFEMEMBERY(LIFEMEMBERY);
 			pictVO.setLIFERANK(LIFERANK);
+			pictVO.setLIFEMEMBERNO(LIFEMEMBERNO);
+			pictVO.setLIFEENTERDATE(LIFEENTERDATE);
+			pictVO.setLIFESTATUS(LIFESTATUS);
+			
+			System.out.println(MEMBERNO);
+			System.out.println(LIFEMEMBERY);
+			System.out.println(LIFERANK);
+			System.out.println(LIFEMEMBERNO);
+			System.out.println(LIFEENTERDATE);
+			System.out.println(LIFESTATUS);
 			
 			pictService.person_save(pictVO);
 			
