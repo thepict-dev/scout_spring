@@ -24,6 +24,7 @@
                 	<span class="feders"><img src="${vo.leaderimg}" alt="연맹장사진"></span>
                	</c:if>
             </div>
+			<div class="dummy"></div>
             <c:if test="${vo.leaderimg ne '' && vo.leaderimg ne null && vo.leaderimg ne undefined}">
 	            <div class="sign feders" >
 					<p>연맹장 ${vo.leadername}</p>
@@ -89,7 +90,7 @@
 	<%@ include file="./include/footer.jsp" %>
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
-		    var targetDiv = document.querySelector('.tabNav.organNav.rules');
+		    var targetDiv = document.querySelector('.dummy');
 		    if (targetDiv) {
 		        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
 		    }

@@ -19,8 +19,8 @@
             <div class="flexContainer">
                 <div class="ageImgContainer">
                     <h3 class="contentTitle ages">비버스카우트</h3>
-                    <div class="ageImg">
-                        <img src="/user_img/bieber.png" alt="">
+                    <div class="ageImg" style="display: flex; justify-content: center; align-items: center;">
+                        <img src="/user_img/bieber.png" alt="" style="width: 78%; height: auto; object-fit: unset;">
                         <div class="cardTop"></div>
                     </div>
                 </div>

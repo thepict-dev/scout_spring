@@ -729,18 +729,14 @@
 .viewBottomInner p{
 	width: 100%;
 }
-.viewBottomInner p img{
+.viewBottomInner img{
 	width: 80%;
 	margin: 0 auto;
 	text-align: center;
 }
-.viewBottomInner span{
-	display: inline-block;
-    max-width: 500px;
-	margin: 0 auto;
-}
 .viewBottomInner span img{
-	width: 100%;
+   	width: 100%;
+	margin: 0 auto;
 }
 .addFile{
 	display: flex;
@@ -807,6 +803,9 @@
 	}
 	.viewBottomInner p{
 		width: 100%;
+	}
+	.viewBottomInner img{
+		width: 100% !important;
 	}
 }
 
@@ -1395,7 +1394,7 @@
 		left: 0;
 		top: 60px;
 	}
-	.titleImg a.gon{
+	.titleImg a{
 		position: absolute;
 		left: 0;
 		top: 60px;

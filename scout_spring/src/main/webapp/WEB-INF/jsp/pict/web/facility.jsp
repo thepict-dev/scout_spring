@@ -23,14 +23,17 @@
             <!-- 스카우트 구성 -->
             <div class="tabInner ruleContents active">
                 <div class="flexContainer">
-                    <div class="titleImg center">
+                    <div class="titleImg"><!-- center class -->
                         <h3 class="contentTitle">중앙훈련원</h3>
                         <h3 class="contentTitle mbText">중앙훈련원</h3>
                         <span><img src="/user_img/facility1.png" alt="중앙훈련원"></span>
+                        <!-- 
                         <div class="bookingButtons">
                         	<a href="http://scoutcenter.scout.or.kr/SysApplicationController.do" target="_blank" title="새창이동">중앙훈련원 사이트 바로가기</a>
                         	<a href="https://search.naver.com/search.naver?where=nexearch&sm=top_sug.pre&fbm=0&acr=1&acq=%EC%84%9C%EC%82%BC%EB%A6%89%EC%B2%AD%EC%86%8C%EB%85%84&qdt=0&ie=utf8&query=%EC%84%9C%EC%82%BC%EB%A6%89%EC%B2%AD%EC%86%8C%EB%85%84%EC%95%BC%EC%98%81%EC%9E%A5" target="_blank" title="새창이동">서삼릉청소년야영장 예약하기</a>
                        	</div>
+                       	 -->
+                       	 <a href="https://search.naver.com/search.naver?where=nexearch&sm=top_sug.pre&fbm=0&acr=1&acq=%EC%84%9C%EC%82%BC%EB%A6%89%EC%B2%AD%EC%86%8C%EB%85%84&qdt=0&ie=utf8&query=%EC%84%9C%EC%82%BC%EB%A6%89%EC%B2%AD%EC%86%8C%EB%85%84%EC%95%BC%EC%98%81%EC%9E%A5" target="_blank" title="새창이동">서삼릉청소년야영장 예약하기</a>
                     </div>
                     <div class="contentDesc">
                         <div class="textsWrapper rules facility">
