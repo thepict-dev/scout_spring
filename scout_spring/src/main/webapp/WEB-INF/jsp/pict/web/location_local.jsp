@@ -462,6 +462,25 @@
 		else if(target == '대전') location.href="/federation_organ?dataid=daejeon";
 		else if(target == '서울남부') location.href="/federation_organ?dataid=seoulnambu";
 		else if(target == '제주') location.href="/federation_organ?dataid=jeju";
+		
+		else if(target == '서울북부') location.href="/federation_organ?dataid=seoulbukbu";
+		else if(target == '부산') location.href="/federation_organ?dataid=busan";
+		else if(target == '인천') location.href="/federation_organ?dataid=incheon";
+		else if(target == '울산') location.href="/federation_organ?dataid=ulsan";
+		else if(target == '경기북부') location.href="/federation_organ?dataid=gyeonggibukbu";
+		else if(target == '경기남부') location.href="/federation_organ?dataid=gyeongginambu";
+		else if(target == '충북') location.href="/federation_organ?dataid=chungbuk";
+		else if(target == '충남세종') location.href="/federation_organ?dataid=chungnamsejong";
+		else if(target == '전북') location.href="/federation_organ?dataid=jeonbuk";
+		else if(target == '전남') location.href="/federation_organ?dataid=jeonnam";
+		else if(target == '경북') location.href="/federation_organ?dataid=gyeongbuk";
+		else if(target == '경남') location.href="/federation_organ?dataid=gyeongnam";
+		else if(target == '가톨릭') location.href="/federation_organ?dataid=catholic";
+		else if(target == '원불교') location.href="/federation_organ?dataid=wonbuddhism";
+		else if(target == '불교') location.href="/federation_organ?dataid=buddhism";
+		else if(target == '기독교') location.href="/federation_organ?dataid=christian";
+		
+		
 		else{
 			alert("해당 연맹 데이터는 준비중입니다.")
 			return false;

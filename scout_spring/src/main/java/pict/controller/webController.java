@@ -207,6 +207,7 @@ public class webController {
 	@RequestMapping("federation_organ")
 	public String federation_organ(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		PictVO vo = pictService.getLocal_info(pictVO);
+		System.out.println(vo.getOrganization()+ "@@@@@@@@@@@@@@@@@@");
 		model.addAttribute("vo", vo);
 		return "pict/web/federation_organ";
 	}
@@ -220,6 +221,28 @@ public class webController {
 			if(pictVO.getDataid().equals("daejeon")) pictVO.setBRDNO("896");
 			if(pictVO.getDataid().equals("seoulnambu")) pictVO.setBRDNO("805");
 			if(pictVO.getDataid().equals("jeju")) pictVO.setBRDNO("1093");
+
+			if(pictVO.getDataid().equals("seoulbukbu")) pictVO.setBRDNO("787");
+			if(pictVO.getDataid().equals("busan")) pictVO.setBRDNO("823");
+			if(pictVO.getDataid().equals("incheon")) pictVO.setBRDNO("859");
+			if(pictVO.getDataid().equals("ulsan")) pictVO.setBRDNO("913");
+			if(pictVO.getDataid().equals("gyeonggibukbu")) pictVO.setBRDNO("931");
+			if(pictVO.getDataid().equals("gyeongginambu")) pictVO.setBRDNO("932");
+			if(pictVO.getDataid().equals("chungbuk")) pictVO.setBRDNO("985");
+			if(pictVO.getDataid().equals("chungnamsejong")) pictVO.setBRDNO("1003");
+			if(pictVO.getDataid().equals("jeonbuk")) pictVO.setBRDNO("1022");
+			if(pictVO.getDataid().equals("jeonnam")) pictVO.setBRDNO("1039");
+			if(pictVO.getDataid().equals("gyeongbuk")) pictVO.setBRDNO("1058");
+			if(pictVO.getDataid().equals("gyeongnam")) pictVO.setBRDNO("1075");
+			if(pictVO.getDataid().equals("catholic")) pictVO.setBRDNO("1004");
+			if(pictVO.getDataid().equals("wonbuddhism")) pictVO.setBRDNO("1129");
+			if(pictVO.getDataid().equals("buddhism")) pictVO.setBRDNO("1572");
+			if(pictVO.getDataid().equals("christian")) pictVO.setBRDNO("1005");
+			
+			
+			
+			
+			
 		}
 		pictVO.setType("sub");
 		pictVO.setMain("sub");
@@ -275,6 +298,23 @@ public class webController {
 			if(pictVO.getDataid().equals("daejeon")) pictVO.setBRDNO("5007");
 			if(pictVO.getDataid().equals("seoulnambu")) pictVO.setBRDNO("5002");
 			if(pictVO.getDataid().equals("jeju")) pictVO.setBRDNO("5018");
+			
+			if(pictVO.getDataid().equals("seoulbukbu")) pictVO.setBRDNO("5001");
+			if(pictVO.getDataid().equals("busan")) pictVO.setBRDNO("5003");
+			if(pictVO.getDataid().equals("incheon")) pictVO.setBRDNO("5005");
+			if(pictVO.getDataid().equals("ulsan")) pictVO.setBRDNO("5008");
+			if(pictVO.getDataid().equals("gyeonggibukbu")) pictVO.setBRDNO("5009");
+			if(pictVO.getDataid().equals("gyeongginambu")) pictVO.setBRDNO("5010");
+			if(pictVO.getDataid().equals("chungbuk")) pictVO.setBRDNO("5012");
+			if(pictVO.getDataid().equals("chungnamsejong")) pictVO.setBRDNO("5013");
+			if(pictVO.getDataid().equals("jeonbuk")) pictVO.setBRDNO("5014");
+			if(pictVO.getDataid().equals("jeonnam")) pictVO.setBRDNO("5015");
+			if(pictVO.getDataid().equals("gyeongbuk")) pictVO.setBRDNO("5016");
+			if(pictVO.getDataid().equals("gyeongnam")) pictVO.setBRDNO("5017");
+			if(pictVO.getDataid().equals("catholic")) pictVO.setBRDNO("5019");
+			if(pictVO.getDataid().equals("wonbuddhism")) pictVO.setBRDNO("5020");
+			if(pictVO.getDataid().equals("buddhism")) pictVO.setBRDNO("5021");
+			if(pictVO.getDataid().equals("christian")) pictVO.setBRDNO("5022");
 		}
 		pictVO.setType("sub");
 		pictVO.setMain("sub");
@@ -336,6 +376,23 @@ public class webController {
 			if(pictVO.getDataid().equals("daejeon")) pictVO.setBRDNO("6007");
 			if(pictVO.getDataid().equals("seoulnambu")) pictVO.setBRDNO("6002");
 			if(pictVO.getDataid().equals("jeju")) pictVO.setBRDNO("6018");
+			
+			if(pictVO.getDataid().equals("seoulbukbu")) pictVO.setBRDNO("6001");
+			if(pictVO.getDataid().equals("busan")) pictVO.setBRDNO("6003");
+			if(pictVO.getDataid().equals("incheon")) pictVO.setBRDNO("6005");
+			if(pictVO.getDataid().equals("ulsan")) pictVO.setBRDNO("6008");
+			if(pictVO.getDataid().equals("gyeonggibukbu")) pictVO.setBRDNO("6009");
+			if(pictVO.getDataid().equals("gyeongginambu")) pictVO.setBRDNO("6010");
+			if(pictVO.getDataid().equals("chungbuk")) pictVO.setBRDNO("6012");
+			if(pictVO.getDataid().equals("chungnamsejong")) pictVO.setBRDNO("6013");
+			if(pictVO.getDataid().equals("jeonbuk")) pictVO.setBRDNO("6014");
+			if(pictVO.getDataid().equals("jeonnam")) pictVO.setBRDNO("6015");
+			if(pictVO.getDataid().equals("gyeongbuk")) pictVO.setBRDNO("6016");
+			if(pictVO.getDataid().equals("gyeongnam")) pictVO.setBRDNO("6017");
+			if(pictVO.getDataid().equals("catholic")) pictVO.setBRDNO("6019");
+			if(pictVO.getDataid().equals("wonbuddhism")) pictVO.setBRDNO("6020");
+			if(pictVO.getDataid().equals("buddhism")) pictVO.setBRDNO("6021");
+			if(pictVO.getDataid().equals("christian")) pictVO.setBRDNO("6022");
 		}
 		pictVO.setType("sub");
 		pictVO.setMain("sub");

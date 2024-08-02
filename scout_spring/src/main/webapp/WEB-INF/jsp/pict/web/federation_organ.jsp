@@ -40,7 +40,12 @@
             </ul>
             
             <!-- 여기서부터 조직도 S  -->
-            ${vo.organization}
+            <c:if test="${vo.organization ne '' && organization ne null && organization ne undefined}">
+            	${vo.organization}
+            </c:if>
+            <c:if test="${vo.organization eq '' || organization eq null || organization eq undefined}">
+            	등록된 자료가 없습니다.
+            </c:if>
             <!-- 여기서부터 조직도 S  -->
         </div>
     </div>
