@@ -207,7 +207,7 @@ public class webController {
 	@RequestMapping("federation_organ")
 	public String federation_organ(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		PictVO vo = pictService.getLocal_info(pictVO);
-		System.out.println(vo.getOrganization()+ "@@@@@@@@@@@@@@@@@@");
+		
 		model.addAttribute("vo", vo);
 		return "pict/web/federation_organ";
 	}
@@ -329,7 +329,7 @@ public class webController {
 		int startNum = (pageNum - 1) * limitNumber;
 		pictVO.setStartNumber(startNum);
 		Integer totalCnt = pictService.board_list_cnt(pictVO);
-		System.out.println(totalCnt);
+		
 		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
 		pictVO.setLastPage(lastPageValue);
 		
@@ -407,7 +407,7 @@ public class webController {
 		int startNum = (pageNum - 1) * limitNumber;
 		pictVO.setStartNumber(startNum);
 		Integer totalCnt = pictService.board_list_cnt(pictVO);
-		System.out.println(totalCnt);
+		
 		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
 		pictVO.setLastPage(lastPageValue);
 		

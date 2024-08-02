@@ -112,8 +112,8 @@ public class PictController {
 			// 나중에 여기 계정별로 리다이렉트 분기처리
 			String jeonjong = (String) request.getSession().getAttribute("employeey");
 			String adminy = (String) request.getSession().getAttribute("adminy");
-			System.out.println(jeonjong);
-			System.out.println(adminy);
+			
+			
 			if (jeonjong.equals("Y")) {
 				return "redirect:/admin/front/users";
 			}
@@ -741,10 +741,7 @@ public class PictController {
 	@RequestMapping(value = "/fn_units_excel")
 	public void fn_units_excel(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println(pictVO.getSearch_year());
-		System.out.println(pictVO.getTROOPNO());
-		System.out.println(pictVO.getTROOPNAME());
-		
+				
 		List<PictVO> attendance_list = pictService.fn_get_units_leader(pictVO);
 		List<PictVO> attendance_list2 = pictService.fn_get_units_scout(pictVO);
 		
@@ -1382,12 +1379,6 @@ public class PictController {
 			pictVO.setLIFEENTERDATE(LIFEENTERDATE);
 			pictVO.setLIFESTATUS(LIFESTATUS);
 			
-			System.out.println(MEMBERNO);
-			System.out.println(LIFEMEMBERY);
-			System.out.println(LIFERANK);
-			System.out.println(LIFEMEMBERNO);
-			System.out.println(LIFEENTERDATE);
-			System.out.println(LIFESTATUS);
 			
 			pictService.person_save(pictVO);
 			
@@ -2792,18 +2783,6 @@ public class PictController {
 				String scoutmagafee = item.get("maga_price").toString();
 				String entryfee = item.get("price").toString();
 				
-				System.out.println(memberno);
-				System.out.println(troopno);
-				System.out.println(startday);
-				System.out.println(endday);
-				System.out.println(associationcode);
-				System.out.println(parrenttroopno);
-				System.out.println(payy);
-				System.out.println(confirmy);
-				System.out.println(scoutmagacnt);
-				System.out.println(scoutmagafee);
-				System.out.println(entryfee);
-				
 				pictVO.setMEMBERNO(memberno);
 				pictVO.setTROOPNO(troopno);
 				pictVO.setSTARTDAY(startday);
@@ -2828,19 +2807,12 @@ public class PictController {
 					pictVO.setADMINY(adminy);
 					
 					
-					System.out.println("지도자");
-					System.out.println(leaderpositioncode1);
-					System.out.println(leaderpositioncode2);
-					System.out.println(adminy);
 					pictService.leader_whole_register(pictVO);
 				}
 				//대원연공
 				else {
 					String scoutclscode = item.get("SCOUTCLSCODE").toString();
 					String scoutpositioncode = item.get("SCOUTPOSITIONCODE").toString();
-					System.out.println("대원");
-					System.out.println(scoutclscode);
-					System.out.println(scoutpositioncode);
 					
 					pictVO.setSCOUTCLSCODE(scoutclscode);
 					pictVO.setSCOUTPOSITIONCODE(scoutpositioncode);
@@ -2995,13 +2967,13 @@ public class PictController {
 		String associationcode = pictVO.getASSOCIATIONCODE();
 		String search_year = pictVO.getSearch_year();
 		
-		System.out.println(associationcode + "  @@@@@@@@@@@@@@@  " + search_year);
+		
 		if(pictVO.getType().equals("insert")) {
-			System.out.println("인서트");
+			
 			pictService.price_insert(pictVO);
 		}
 		else {
-			System.out.println("업데이트");
+			
 			pictService.price_update(pictVO);
 		}
 		
@@ -3180,7 +3152,7 @@ public class PictController {
 	}
 	@RequestMapping(value = "/front/file_delete")
 	public String file_delete(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
-		System.out.println("여기타"+ pictVO.getFileidx());
+		
 		
 		pictService.file_delete(pictVO);
 		
@@ -3260,7 +3232,7 @@ public class PictController {
 		model.addAttribute("board_list", board_list);
 		model.addAttribute("board_cnt", totalCnt);
 		
-		System.out.println(pictVO.getASSOCIATIONCODE());
+		
 		model.addAttribute("pictVO", pictVO);
 		return "pict/front/board_list_sub";
 	}
