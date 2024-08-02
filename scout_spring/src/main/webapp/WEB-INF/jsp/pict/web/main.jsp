@@ -142,7 +142,7 @@
           -->
         <div class="mainSec3" data-aos="fade-up" data-aos-delay="200">
             <div class="videoWrapper">
-                <video controls>
+                <video controls playsinline>
                     <source src="/user_img/홍보.mp4" type="video/mp4" />
                 </video>
                 <div class="videoTop">

@@ -108,6 +108,7 @@ footer{
 
 @media all and (max-width : 1024px){
 	.footerRelated{
+		justify-content: flex-start;
 		overflow-y: scroll;
 	}
 	.footerRelated a{
