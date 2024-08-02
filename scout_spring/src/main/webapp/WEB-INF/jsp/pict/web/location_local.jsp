@@ -221,7 +221,7 @@
                             <div class="localTexts">
                                 <h3>충북연맹</h3>
                                 <ul>
-                                    <li><p>주소</p><span>충북 청주시 흥덕구 청남로 2097번길 28호 한국스카우트충북연맹</span></li>
+                                    <li><p>주소</p><span>충북 청주시 흥덕구 청남로 2097번길 28 한국스카우트충북연맹</span></li>
                                     <li><p>Fax</p><span>043-263-9638</span></li>
                                 </ul>
                                 <ul>
