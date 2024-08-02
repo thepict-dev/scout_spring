@@ -3273,15 +3273,7 @@ public class PictController {
 		}
 		String associationcode = (String) request.getSession().getAttribute("associationcode");
 		
-		if(pictVO != null && pictVO.getBRDCTSNO() != null) {
-			//수정
-			pictVO = pictService.board_list_one(pictVO);
-			pictVO.setSaveType("update");
-			
-		}
-		else {
-			pictVO.setSaveType("insert");
-		}
+		
 		
 		//중앙본부 아니면 자기 연맹것만 확인
 		if(!associationcode.equals("200")) {
@@ -3295,6 +3287,15 @@ public class PictController {
 			else {
 				pictVO.setASSOCIATIONCODE("");
 			}
+		}
+		if(pictVO != null && pictVO.getBRDCTSNO() != null) {
+			//수정
+			pictVO = pictService.board_list_one(pictVO);
+			pictVO.setSaveType("update");
+			
+		}
+		else {
+			pictVO.setSaveType("insert");
 		}
 		model.addAttribute("pictVO", pictVO);
 		return "pict/front/board_form_sub";

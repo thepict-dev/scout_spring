@@ -1089,8 +1089,11 @@
 	</select>
 	
 	<select id="board_list_one" resultType="pictVO">
-		select * from board_table 
-		where BRDCTSNO = #{BRDCTSNO}
+		select b.*, c.ASSOCIATIONCODE, c.title
+		from board_table b
+		left outer join board_category c on b.BRDNO = c.boardcategory
+		where 1=1
+		and BRDCTSNO = #{BRDCTSNO}
 	</select>
 	
 	<update id="board_view_cnt" parameterType="pictVO">

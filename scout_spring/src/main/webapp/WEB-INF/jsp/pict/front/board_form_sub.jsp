@@ -80,7 +80,7 @@
 	                    </div>
 	                    <div class="inputBox">
 	                        <p class="inputCaption">내용*</p>
-								<textarea name="CONTENTS" id="CONTENTS" cols="50" rows="40" class="txt" style="width:100%;">${pictVO.CONTENTS}</textarea>
+								<textarea name="CONTENTS" id="CONTENTS" cols="50" rows="40" class="txt" style="width:100%; height:400px">${pictVO.CONTENTS}</textarea>
 								<script type="text/javascript">
 									var oEditors = [];
 									nhn.husky.EZCreator.createInIFrame({
