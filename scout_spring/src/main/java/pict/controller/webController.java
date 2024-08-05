@@ -147,8 +147,11 @@ public class webController {
 	//공지사항 뷰
 	@RequestMapping("notice_view")
 	public String notice_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		pictService.board_view_cnt(pictVO);
-		pictVO = pictService.board_list_one(pictVO);
+		if(pictVO != null) {
+			pictService.board_view_cnt(pictVO);
+			pictVO = pictService.board_list_one(pictVO);
+		}
+		
 		model.addAttribute("pictVO", pictVO);
 		return "pict/web/notice_view";
 	}
@@ -197,8 +200,11 @@ public class webController {
 	//공지사항 뷰
 	@RequestMapping("news_view")
 	public String news_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		pictService.board_view_cnt(pictVO);
-		pictVO = pictService.board_list_one(pictVO);
+		if(pictVO != null) {
+			pictService.board_view_cnt(pictVO);
+			pictVO = pictService.board_list_one(pictVO);
+		}
+		
 		model.addAttribute("pictVO", pictVO);
 		return "pict/web/news_view";
 	}
@@ -448,8 +454,11 @@ public class webController {
 	//연맹별 공지사항 뷰
 	@RequestMapping("federation_view")
 	public String federation_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		pictService.board_view_cnt(pictVO);
-		pictVO = pictService.board_list_one(pictVO);
+		if(pictVO != null) {
+			pictService.board_view_cnt(pictVO);
+			pictVO = pictService.board_list_one(pictVO);
+		}
+		
 		model.addAttribute("pictVO", pictVO);
 		return "pict/web/federation_view";
 	}
@@ -498,8 +507,11 @@ public class webController {
 	//통합자료실 뷰
 	@RequestMapping("integrated_view")
 	public String integrated_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		pictService.board_view_cnt(pictVO);
-		pictVO = pictService.board_list_one(pictVO);
+		if(pictVO != null) {
+			pictService.board_view_cnt(pictVO);
+			pictVO = pictService.board_list_one(pictVO);
+		}
+		
 		model.addAttribute("pictVO", pictVO);
 		return "pict/web/integrated_view";
 	}
@@ -558,8 +570,11 @@ public class webController {
 	//통합자료실 뷰
 	@RequestMapping("program_view")
 	public String program_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		pictService.board_view_cnt(pictVO);
-		pictVO = pictService.board_list_one(pictVO);
+		if(pictVO != null) {
+			pictService.board_view_cnt(pictVO);
+			pictVO = pictService.board_list_one(pictVO);
+		}
+		
 		model.addAttribute("pictVO", pictVO);
 		return "pict/web/program_view";
 	}
@@ -788,8 +803,11 @@ public class webController {
 	//정보공개 뷰
 	@RequestMapping("information_view")
 	public String information_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		pictService.board_view_cnt(pictVO);
-		pictVO = pictService.board_list_one(pictVO);
+		if(pictVO != null) {
+			pictService.board_view_cnt(pictVO);
+			pictVO = pictService.board_list_one(pictVO);
+		}
+		
 		model.addAttribute("pictVO", pictVO);
 		return "pict/web/information_view";
 	}

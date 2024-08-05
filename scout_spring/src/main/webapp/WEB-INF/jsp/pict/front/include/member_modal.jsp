@@ -566,7 +566,16 @@
 			savetype : "update",
 			kname : $('#KNAME').val()
 		}
-		debugger
+		
+		if($('#YEAR_SCOUT').val() == null || $('#YEAR_SCOUT').val() == '' || $('#YEAR_SCOUT').val() == undefined){
+			alert("연차 년도를 입력해주세요.")
+			return false;
+		}
+		
+		if($('#CONFIRMY_SCOUT').val() == null || $('#CONFIRMY_SCOUT').val() == '' || $('#CONFIRMY_SCOUT').val() == undefined){
+			alert("승인여부를 입력해주세요.")
+			return false;
+		}
 		
 		var text ="선택한 연공을 수정하시겠습니까?";
 		if($('#scout_idx').val() == '' || $('#scout_idx').val() == undefined || $('#scout_idx').val() == null){

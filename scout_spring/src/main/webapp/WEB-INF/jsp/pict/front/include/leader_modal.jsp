@@ -583,6 +583,16 @@
 			kname : $('#KNAME').val()
 		}
 		
+		if($('#YEAR').val() == null || $('#YEAR').val() == '' || $('#YEAR').val() == undefined){
+			alert("연차 년도를 입력해주세요.")
+			return false;
+		}
+		
+		if($('#CONFIRMY').val() == null || $('#CONFIRMY').val() == '' || $('#CONFIRMY').val() == undefined){
+			alert("승인여부를 입력해주세요.")
+			return false;
+		}
+		
 		var text ="선택한 연공을 수정하시겠습니까?";
 		if($('#leader_idx').val() == '' || $('#leader_idx').val() == undefined || $('#leader_idx').val() == null){
 			text ="신규 연공을 등록하시겠습니까?";

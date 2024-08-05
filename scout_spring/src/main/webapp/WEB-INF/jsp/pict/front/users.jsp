@@ -943,6 +943,7 @@
 				
 			}
 			
+			
 			var text ="회원정보를 수정하시겠습니까?";
 			if(confirm (text)){
 				$('#initial-loading').css('display', 'flex')
