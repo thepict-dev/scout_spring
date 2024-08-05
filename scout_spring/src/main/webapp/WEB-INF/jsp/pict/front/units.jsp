@@ -231,8 +231,16 @@
                             </div>
                             <div class="inputsContainer">
                                 <div class="inputBox">
-                                    <p class="inputCaption">대표관리지도자</p>
-                                    <span class="bindingText" id="span_leaderinfo" style="width : 500px"></span>
+                                    <p class="inputCaption">대표관리지도자 성명</p>
+                                    <span class="bindingText" id="span_leader_name"></span>
+                                </div>
+                                <div class="inputBox">
+                                    <p class="inputCaption">대표관리지도자 연락처</p>
+                                    <span class="bindingText" id="span_leader_mobile"></span>
+                                </div>
+                                <div class="inputBox">
+                                    <p class="inputCaption">대표관리지도자 이메일</p>
+                                    <span class="bindingText" id="span_leader_email"></span>
                                 </div>
                             </div>
                             <div class="inputsContainer">
@@ -240,21 +248,49 @@
                                     <p class="inputCaption">지도자수</p>
                                     <div class="inputsAlign">
                                         <span class="bindingText" id="span_leadercnt"></span>
-                                        <span class="bindingText" id="span_leadercnt2"></span>
                                     </div>
                                 </div>
+                                <div class="inputBox">
+                                    <p class="inputCaption">지도자수(남)</p>
+                                    <div class="inputsAlign">
+                                        <span class="bindingText" id="span_leadercnt_m"></span>
+                                    </div>
+                                </div>
+                                <div class="inputBox">
+                                    <p class="inputCaption">지도자수(여)</p>
+                                    <div class="inputsAlign">
+                                        <span class="bindingText" id="span_leadercnt_w"></span>
+                                    </div>
+                                </div>
+							</div>
+							<div class="inputsContainer">
                                 <div class="inputBox">
                                     <p class="inputCaption">대원수</p>
                                     <div class="inputsAlign">
                                         <span class="bindingText" id="span_scoutcnt"></span>
-                                        <span class="bindingText" id="span_scoutcnt2"></span>
+                                    </div>
+                                </div>
+                                <div class="inputBox">
+                                    <p class="inputCaption">대원수(남)</p>
+                                    <div class="inputsAlign">
+                                        <span class="bindingText" id="span_scoutcnt_m"></span>
+                                    </div>
+                                </div>
+                                <div class="inputBox">
+                                    <p class="inputCaption">대원수(여)</p>
+                                    <div class="inputsAlign">
+                                        <span class="bindingText" id="span_scoutcnt_w"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="inputsContainer">
                                 <div class="inputBox">
-                                    <p class="inputCaption">월간지</p>
+                                    <p class="inputCaption">월간지(부)</p>
                                     <span class="bindingText" id="span_scoutmaga"></span>
+                                </div>
+                                <div class="inputBox">
+                                    <p class="inputCaption">월간지(총액)</p>
+                                    <span class="bindingText" id="span_scoutmaga_won"></span>
                                 </div>
                             </div>
 		                    <div class="tableButtons rights" style="justify-content: flex-end;">
@@ -441,13 +477,35 @@
 						$('#span_postcode').text(data.rst.postcode)
 						$('#span_addr').text(data.rst.addr)
 						
-						$('#span_leaderinfo').text(data.rst.leaderinfotext)	//얘 왜안댈까
+						//$('#span_leaderinfo').text(data.rst.leaderinfotext)	//얘 왜안댈까
+						var leader_name = ''
+						var leader_mobile = ''
+						var leader_email = ''
+						if(data.rst.leaderinfotext){
+							var arr = data.rst.leaderinfotext.split(',')
+							if(arr[0]) leader_name = arr[0]
+							if(arr[1]) leader_mobile = arr[1]
+							if(arr[2]) leader_email = arr[2]
+						}
+						//$('#span_leader_name').text(data.rst.leaderinfotext)	//얘 왜안댈까
+						$('#span_leader_name').text(leader_name)
+						$('#span_leader_mobile').text(leader_mobile)
+						$('#span_leader_email').text(leader_email)
 						
 						
-						$('#span_leadercnt').text(data.rst.leaderconfirm + ", " + data.rst.leadernoconfirm)
-						$('#span_scoutcnt').text(data.rst.scoutconfirm + ", " + data.rst.scoutnoconfirm)
+						$('#span_leadercnt').text(Number(data.rst.leadermcnt) + Number(data.rst.leaderwcnt))
+						$('#span_leadercnt_m').text(data.rst.leadermcnt)
+						$('#span_leadercnt_w').text(data.rst.leaderwcnt)
 						
-						$('#span_scoutmaga').text(data.rst.leadermagazinecnt + data.rst.scoutmagazinecnt + ", " + data.rst.leadermagazinefee + data.rst.scoutmagazinefee)
+						
+						$('#span_scoutcnt').text(Number(data.rst.scoutmcnt) + Number(data.rst.scoutwcnt))
+						$('#span_scoutcnt_m').text(data.rst.scoutmcnt)
+						$('#span_scoutcnt_w').text(data.rst.scoutwcnt)
+						
+						$('#span_scoutmaga').text(Number(data.rst.leadermagazinecnt) + Number(data.rst.scoutmagazinecnt))
+						var won = Number(data.rst.leadermagazinefee) + Number(data.rst.scoutmagazinefee);
+						$('#span_scoutmaga_won').text(won.toLocaleString('ko-KR'))
+						
 						
 					}
 					if(data.leader_list.length > 0){

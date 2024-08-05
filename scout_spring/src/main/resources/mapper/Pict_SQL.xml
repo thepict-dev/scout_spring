@@ -745,7 +745,7 @@
 			select group_concat(KNAME, ',', m.MOBILE, ',', m.EMAIL) as LEADERINFOTEXT, TROOPNO
 			from member m
 			left outer join leader l on l.MEMBERNO = m.MEMBERNO
-			where l.TROOPNO = #{TROOPNO} and left(STARTDAY, '4') = #{search_year}
+			where l.TROOPNO = #{TROOPNO} and left(STARTDAY, '4') = #{search_year} and l.ADMINY = 'Y'
 			group by l.LEADERPOSITIONCODE1, KNAME, l.LEADERPOSITIONCODE2, m.MOBILE, m.EMAIL 
 			order by l.LEADERPOSITIONCODE1 desc, l.LEADERPOSITIONCODE2 asc
 			limit 1 offset 0
@@ -754,32 +754,34 @@
 			select
 		    TROOPNO, 
 			count(idx),
-			SUM(CASE WHEN l.CONFIRMY = 'Y' and left(l.STARTDAY, 4) = #{search_year} THEN 1 ELSE 0 END) as leaderconfirm,
-		    SUM(CASE WHEN (l.CONFIRMY = 'N' or l.CONFIRMY ='' or l.CONFIRMY is null) and left(l.STARTDAY, 4) = #{search_year} THEN 1 ELSE 0 END) as leadernoconfirm,
+			SUM(CASE WHEN left(l.STARTDAY, 4) = #{search_year} and m.SEX = 'M' THEN 1 ELSE 0 END) as LEADERMCNT,
+			SUM(CASE WHEN left(l.STARTDAY, 4) = #{search_year} and m.SEX = 'W' THEN 1 ELSE 0 END) as LEADERWCNT,
 		    SUM(l.SCOUTMAGACNT) as leadermagazinecnt,
 		    SUM(l.SCOUTMAGAFEE) as leadermagazinefee
 			from leader l
+			LEFT JOIN member m ON l.MEMBERNO = m.MEMBERNO
 			where l.TROOPNO = #{TROOPNO} and left(l.STARTDAY, '4') = #{search_year}
 		),
 		ScoutCount as (
 		select
 		    TROOPNO, 
 			count(idx),
-			SUM(CASE WHEN s.CONFIRMY = 'Y' and left(s.STARTDAY, 4) = #{search_year} THEN 1 ELSE 0 END) as scoutconfirm,
-		    SUM(CASE WHEN (s.CONFIRMY = 'N' or s.CONFIRMY ='' or s.CONFIRMY is null) and left(s.STARTDAY, 4) = #{search_year} THEN 1 ELSE 0 END) as scoutnoconfirm,
+			SUM(CASE WHEN left(s.STARTDAY, 4) = #{search_year} and m.SEX = 'M' THEN 1 ELSE 0 END) as SCOUTMCNT,
+			SUM(CASE WHEN left(s.STARTDAY, 4) = #{search_year} and m.SEX = 'W' THEN 1 ELSE 0 END) as SCOUTWCNT,
 		    SUM(s.SCOUTMAGACNT) as scoutmagazinecnt,
 		    SUM(s.SCOUTMAGAFEE) as scoutmagazinefee
 			from scout s
+			LEFT JOIN member m ON s.MEMBERNO = m.MEMBERNO
 			where s.TROOPNO = #{TROOPNO} and left(s.STARTDAY, '4') = #{search_year}
 		)
 		
 		select 
 		t.TROOPNO, t.DISPTROOPNO, t.TROOPNAME, t.TROOPCLSCODE1, tc.TROOPCLSNAME, sc.SCOUTCLSNAME, t.POSTCODE,
 		t.ADDR, li.LEADERINFOTEXT as LEADERINFOTEXT,
-		COALESCE(lc.leaderconfirm, 0) leaderconfirm, 
-		COALESCE(lc.leadernoconfirm, 0) leadernoconfirm, 
-		COALESCE(sc2.scoutconfirm, 0) scoutconfirm, 
-		COALESCE(sc2.scoutnoconfirm, 0) scoutnoconfirm,
+		COALESCE(lc.LEADERMCNT, 0) LEADERMCNT, 
+		COALESCE(lc.LEADERWCNT, 0) LEADERWCNT, 
+		COALESCE(sc2.SCOUTMCNT, 0) SCOUTMCNT, 
+		COALESCE(sc2.SCOUTWCNT, 0) SCOUTWCNT,
 		
 		COALESCE(lc.leadermagazinecnt, 0) leadermagazinecnt,
 		COALESCE(lc.leadermagazinefee, 0) leadermagazinefee,

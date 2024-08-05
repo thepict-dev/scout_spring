@@ -875,28 +875,36 @@ public class PictController {
 	@RequestMapping("/fn_get_units_info")
 	@ResponseBody
 	public HashMap<String, Object> fn_get_units_info(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
-		String troopno = param.get("troopno").toString();
-		String year = param.get("year").toString();
-		pictVO.setSearch_year(year);
-		pictVO.setTROOPNO(troopno);
-		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		pictVO = pictService.fn_get_units_info(pictVO);
-		if(pictVO != null) {
-			map.put("rst", pictVO);
-			
+		try {
+			String troopno = param.get("troopno").toString();
+			String year = param.get("year").toString();
 			pictVO.setSearch_year(year);
-			List<PictVO> leader_list = pictService.fn_get_units_leader(pictVO);
+			pictVO.setTROOPNO(troopno);
 			
-			map.put("leader_list", leader_list);
-			List<PictVO> scout_list = pictService.fn_get_units_scout(pictVO);
 			
-			map.put("scout_list", scout_list);
+			pictVO = pictService.fn_get_units_info(pictVO);
+			if(pictVO != null) {
+				map.put("rst", pictVO);
+				
+				pictVO.setSearch_year(year);
+				List<PictVO> leader_list = pictService.fn_get_units_leader(pictVO);
+				
+				map.put("leader_list", leader_list);
+				List<PictVO> scout_list = pictService.fn_get_units_scout(pictVO);
+				
+				map.put("scout_list", scout_list);
+				return map;
+			}
+			else {
+				return map;
+			}	
+		}
+		catch(Exception e) {
+			System.out.println(e);
 			return map;
 		}
-		else {
-			return map;
-		}
+		
 	}
 	
 	
@@ -2744,6 +2752,7 @@ public class PictController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
 		String current_year = dateFormat.format(today);
 		
+		
 		String associationcode = param.get("associationcode").toString();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 
@@ -2938,13 +2947,24 @@ public class PictController {
 		}
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
+		String associationcode = (String) request.getSession().getAttribute("associationcode");
+		
 		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
-			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("message", "해당 메뉴는 중앙본부 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
 			
 			return "pict/main/message";
 		}
+		
+		if(!associationcode.equals("200")) {
+			model.addAttribute("message", "해당 메뉴는 중앙본부 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
+		
 		List<PictVO> association_list = pictService.association_list(pictVO);
 		model.addAttribute("association_list", association_list);
 		

@@ -79,9 +79,6 @@
 	                            <div class="tableContainer">
 	                            	<div style="display: flex; justify-content: space-between; align-items: center;">
 	                                	<h2 class="subTitles">작년도</h2>
-	                                    <div class="buttons">
-	                                        <a href="#lnk" class="smButton daeButton" style="padding: 0 8px;">신규등록</a>
-	                                    </div>
                                     </div>
 	                                <div class="tableWrapper" style="height: 300px;">
 	                                    <table style="min-width: unset;">
@@ -110,11 +107,13 @@
 	                                        </tbody>
 	                                    </table>
 	                                </div>
+	                                <!-- 
 	                                <div class="tableButtons" style="justify-content: flex-end;">
 	                                    <div class="buttons">
 	                                        <a href="#lnk" onclick="fn_submit()" class="smButton"><img src="/front_img/download.png" alt="">엑셀 내려받기</a>
 	                                    </div>
 	                                </div>
+	                                 -->
 	                            </div>
 	                            <div class="tableContainer">
 	                                <div class="tableWrapper" style="height: 300px;">
@@ -142,11 +141,13 @@
 	                                        </tbody>
 	                                    </table>
 	                                </div>
+	                                <!-- 
 	                                <div class="tableButtons" style="justify-content: flex-end;">
 	                                    <div class="buttons">
 	                                        <a href="#lnk" onclick="fn_submit()" class="smButton"><img src="/front_img/download.png" alt="">엑셀 내려받기</a>
 	                                    </div>
 	                                </div>
+	                                 -->
 	                            </div>
                             </div>
                             <div class="buttonWrapper">
@@ -157,6 +158,9 @@
                             <div class="doubleTable">
 	                            <div class="tableContainer">
 	                                <h2 class="subTitles">당해년도</h2>
+	                                <div class="buttons">
+                                        <a href="#lnk" class="smButton daeButton" style="padding: 0 8px;">신규등록</a>
+                                    </div>
 	                                <div class="tableWrapper" style="height: 300px;">
 	                                    <table style="min-width: unset;">
 	                                        <colgroup>
@@ -839,6 +843,7 @@
 				var SCOUTMAGACNT = $('#leader_magacnt_'+memberno).is(':checked') ? 'Y' : "N";
 				var maga_price = 0
 				
+				
 				var price = price_info.cls99new;
 				if(LEADERPOSITIONCODE2 == '01'){
 					price = 0
@@ -1004,7 +1009,7 @@
 				}
 				whole_price += Number(total_price)
 			}
-			$('#price_text').text($('#current_year').val() + '년도 대등록 가입비 : '+whole_price+'원')
+			$('#price_text').text($('#current_year').val() + '년도 대등록 가입비 : '+whole_price.toLocaleString('ko-KR')+'원')
 			
 			$('#final_list').append(html)
 		}
