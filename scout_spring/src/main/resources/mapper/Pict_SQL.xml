@@ -415,9 +415,12 @@
 	
 	<!-- 대원 신규 등록 -->
 	<insert id="new_person" parameterType="pictVO">
-		insert into member (MEMBERNO, MEMCLSCODE, MEMGRADECODE, BIRTHDAY, EMPLOYEEY, KNAME, ENAME, SEX, HTELNO, MOBILE, EMAIL, SMSYN, EMAILYN, JOBCODE, HPOSTCODE, HADDR, ENTERDATE)
+		<selectKey keyProperty="MEMBERNO" resultType="string" order="AFTER">
+	        select max(cast(MEMBERNO as unsigned)) MEMBERNO from member
+	    </selectKey>
+		insert into member (MEMBERNO, MEMCLSCODE, MEMGRADECODE, BIRTHDAY, EMPLOYEEY, KNAME, ENAME, SEX, HTELNO, MOBILE, EMAIL, SMSYN, EMAILYN, JOBCODE, HPOSTCODE, HADDR, ENTERDATE, TROOPSCOUTY, TROOPLEADERY, LIFEMEMBERY)
 		values(
-			(select max(MEMBERNO + 1) from member t), #{MEMCLSCODE}, #{MEMGRADECODE}, #{BIRTHDAY}, #{EMPLOYEEY}, #{KNAME}, #{ENAME}, #{SEX}, #{HTELNO}, #{MOBILE}, #{EMAIL}, #{SMSYN}, #{EMAILYN}, #{JOBCODE}, #{HPOSTCODE}, #{HADDR}, now()
+			(select max(cast(MEMBERNO as unsigned)) + 1 from member t), #{MEMCLSCODE}, #{MEMGRADECODE}, #{BIRTHDAY}, #{EMPLOYEEY}, #{KNAME}, #{ENAME}, #{SEX}, #{HTELNO}, #{MOBILE}, #{EMAIL}, #{SMSYN}, #{EMAILYN}, #{JOBCODE}, #{HPOSTCODE}, #{HADDR}, now(), #{TROOPSCOUTY},#{TROOPLEADERY},#{LIFEMEMBERY}
 		)
 	</insert>
 	

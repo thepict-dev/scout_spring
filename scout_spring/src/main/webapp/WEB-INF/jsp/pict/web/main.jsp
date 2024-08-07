@@ -66,7 +66,7 @@
                     <li><a href="https://www.scout.or.kr/notice_view?BRDCTSNO=4065">진급기장신청</a></li>
                     <li><a href="/facility">중앙훈련원</a></li>
                     <li><a href="https://gongiamscout.itpage.kr/" target="_blank" title="새창이동">곤지암야영장</a></li>
-                    <li><a href="/youthhero">Youth Hero</a></li>
+                    <li><a href="https://www.scout.or.kr/notice_view?BRDCTSNO=4071">Youth Hero</a></li>
                 	<!-- 
                     <li><a href="#lnk">지역대검색</a></li>
                     <li><a href="#lnk">임원통합소개</a></li>

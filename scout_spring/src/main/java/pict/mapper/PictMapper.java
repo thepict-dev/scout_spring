@@ -18,7 +18,7 @@ package pict.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-
+import org.apache.ibatis.annotations.Options;
 
 import pict.service.PictVO;
 

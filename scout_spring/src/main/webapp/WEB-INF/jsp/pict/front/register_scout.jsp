@@ -157,8 +157,8 @@
                             <!-- 우측 -->
                             <div class="doubleTable">
 	                            <div class="tableContainer">
-	                                <h2 class="subTitles">당해년도</h2>
-	                                <div class="buttons">
+	                            	<div style="display: flex; justify-content: space-between; align-items: center;">
+	                                	<h2 class="subTitles">당해년도</h2>
                                         <a href="#lnk" class="smButton daeButton" style="padding: 0 8px;">신규등록</a>
                                     </div>
 	                                <div class="tableWrapper" style="height: 300px;">
@@ -191,9 +191,11 @@
 	                                    </table>
 	                                </div>
 	                                <div class="tableButtons" style="justify-content: flex-end;">
+	                                <!-- 
 	                                    <div class="buttons">
 	                                        <a href="#lnk" onclick="fn_submit()" class="smButton"><img src="/front_img/download.png" alt="">엑셀 업로드</a>
 	                                    </div>
+	                                     -->
 	                                </div>
 	                            </div>
 	                            <div class="tableContainer">
@@ -225,9 +227,11 @@
 	                                    </table>
 	                                </div>
 	                                <div class="tableButtons" style="justify-content: flex-end;">
+	                                <!-- 
 	                                    <div class="buttons">
 	                                        <a href="#lnk" onclick="fn_submit()" class="smButton"><img src="/front_img/download.png" alt="">엑셀 업로드</a>
 	                                    </div>
+	                                    -->
 	                                </div>
 	                            </div>
                             </div>
@@ -526,7 +530,8 @@
 				, dataType : "json"
 				, async : true
 				, success : function(data, status, xhr) {
-					if(data.leader_list){
+					
+					if(data.leader_list && data.leader_list.length > 0){
 						//지도자 테이블
 						var leader_html = ""
 						for(var i=0; i<data.leader_list.length; i++){
@@ -638,7 +643,7 @@
 						}
 						$('#search_prev_leader_list').append(leader_html)
 					}
-					if(data.scout_list){
+					if(data.scout_list && data.scout_list.length > 0){
 						//대원 테이블
 						var scout_html = ""
 						for(var i=0; i<data.scout_list.length; i++){
@@ -748,12 +753,13 @@
 						
 						$('#search_prev_scout_list').append(scout_html)
 						
-						$('.contentsContainer select').niceSelect('update')
-						$("#regiSearchPopup").removeClass("active");
+						
 					}
-					else{
+					if(data.scout_list == undefined && data.leader_list == undefined){
 						alert("등록된 데이터가 없습니다.")
 					}
+					$('.contentsContainer select').niceSelect('update')
+					$("#regiSearchPopup").removeClass("active");
 					$('#initial-loading').css('display', 'none')
 				}
 				, error : function(xhr, status, error) {
@@ -809,17 +815,19 @@
 			var data = JSON.parse($('#hiddenTextarea').val());
 			$("input[name='leader_remove_chk']:checked").each(function (e){
 				var chk_id =  $(this).data("id");
+				
 				$('#cur_leader_'+chk_id).remove()
 				data = data.filter(function (item){
-					return item.memberno !== chk_id
+					return item.MEMBERNO !== chk_id
 				})
 				$('#hiddenTextarea').val(JSON.stringify(data))
 			})
 			$("input[name='scout_remove_chk']:checked").each(function (e){
 				var chk_id =  $(this).data("id");
+				
 				$('#cur_scout_'+chk_id).remove()
 				data = data.filter(function (item){
-					return item.memberno !== chk_id
+					return item.MEMBERNO !== chk_id
 				})
 				$('#hiddenTextarea').val(JSON.stringify(data))
 			})
@@ -982,9 +990,10 @@
 			for(var i=0; i<data.length; i++){
 				var total_price = Number(data[i].price) + Number(data[i].maga_price)
 				var leader_life = "Y"
-				if(data[i].LIFEMEMBERY == '') leader_life = 'N' 
+				if(data[i].LIFEMEMBERY == '' || data[i].LIFEMEMBERY == undefined || data[i].LIFEMEMBERY == null || data[i].LIFEMEMBERY == 'Y') leader_life = 'N' 
 				var scout_life = "N"
-				if(data[i].LIFEMEMBERY == '') scout_life = 'N'
+				if(data[i].LIFEMEMBERY == '' || data[i].LIFEMEMBERY == undefined || data[i].LIFEMEMBERY == null || data[i].LIFEMEMBERY == 'Y') scout_life = 'N'
+				
 				if(data[i].type == 'leader'){
 					html += '<tr>'+
 			            '<td style="position: unset;">지도자</td>'+
@@ -1014,9 +1023,11 @@
 			$('#final_list').append(html)
 		}
 		function final_submit(){
+			debugger
 			if(confirm("최종 제출 하시겠습니까?")){
-				var data = JSON.parse($('#hiddenTextarea').val());	
-				//debugger
+				$('#initial-loading').css('display', 'flex')
+				var data = JSON.parse($('#hiddenTextarea').val());
+				
 				$.ajax({
 					url : "/admin/whole_register_input"
 					, type : "POST"
@@ -1028,13 +1039,16 @@
 						if(data){
 							if(data.result == 'Y'){
 								alert("정상적으로 연공이 신청되었습니다.")
+								$("#regiConfirmPopup").removeClass("active");
+								$('#initial-loading').css('display', 'none')
 							}
 						}
 					}
 					, error : function(xhr, status, error) {
 						console.log(xhr)
 						console.log("에러")
-						alert("오류가 발생하였습니다.")
+						$('#initial-loading').css('display', 'none')
+						$('#error').css('display', 'block')
 					}
 				})
 			}

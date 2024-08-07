@@ -2237,7 +2237,7 @@ public class PictController {
 	public String new_person(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		
 		pictService.new_person(pictVO);
-		
+		System.out.println("다녀왔는가" + pictVO.getMEMBERNO());
 		
 		model.addAttribute("message", "정상적으로 저장되었습니다.");
 		model.addAttribute("retType", ":location");
@@ -2779,68 +2779,144 @@ public class PictController {
 			
 			
 			for (Map<String, Object> item : data) {
-				//공통으로 쓸 부분
-				String memberno = item.get("MEMBERNO").toString();
-				String troopno = item.get("TROOPNO").toString();
-				String startday = current_year + "-01-01";
-				String endday = current_year + "-12-31";
-				String associationcode = item.get("ASSOCIATIONCODE").toString();
-				String parrenttroopno = item.get("PARRENTTROOPNO").toString();
-				String payy = "N";
-				String confirmy = "N";
-				String scoutmagacnt = item.get("SCOUTMAGACNT").toString().equals("Y") ? "1" : "0";
-				String scoutmagafee = item.get("maga_price").toString();
-				String entryfee = item.get("price").toString();
-				
-				pictVO.setMEMBERNO(memberno);
-				pictVO.setTROOPNO(troopno);
-				pictVO.setSTARTDAY(startday);
-				pictVO.setENDDAY(endday);
-				pictVO.setASSOCIATIONCODE(associationcode);
-				pictVO.setPARENTTROOPNO(parrenttroopno);
-				pictVO.setPAYY(payy);
-				pictVO.setCONFIRMY(confirmy);
-				pictVO.setSCOUTMAGACNT(scoutmagacnt);
-				pictVO.setSCOUTMAGAFEE(scoutmagafee);
-				pictVO.setENTRYFEE(entryfee);
-				
-				
-				//지도자연공
-				if(item.get("type").equals("leader")) {
-					String leaderpositioncode1 = item.get("LEADERPOSITIONCODE1").toString();
-					String leaderpositioncode2 = item.get("LEADERPOSITIONCODE2").toString();
-					String adminy = item.get("ADMINY").toString();
+				System.out.println(item.get("MEMBERNO").toString());
+				if(item.get("MEMBERNO").toString() != null && !item.get("MEMBERNO").toString().contains("new")) {
+					System.out.println("기존에 있던사람들");
+					//공통으로 쓸 부분
+					String memberno = item.get("MEMBERNO").toString();
+					String troopno = item.get("TROOPNO").toString();
+					String startday = current_year + "-01-01";
+					String endday = current_year + "-12-31";
+					String associationcode = item.get("ASSOCIATIONCODE").toString();
+					String parrenttroopno = item.get("PARRENTTROOPNO").toString();
+					String payy = "N";
+					String confirmy = "N";
+					String scoutmagacnt = item.get("SCOUTMAGACNT").toString().equals("Y") ? "1" : "0";
+					String scoutmagafee = item.get("maga_price").toString();
+					String entryfee = item.get("price").toString();
+					
+					pictVO.setMEMBERNO(memberno);
+					pictVO.setTROOPNO(troopno);
+					pictVO.setSTARTDAY(startday);
+					pictVO.setENDDAY(endday);
+					pictVO.setASSOCIATIONCODE(associationcode);
+					pictVO.setPARENTTROOPNO(parrenttroopno);
+					pictVO.setPAYY(payy);
+					pictVO.setCONFIRMY(confirmy);
+					pictVO.setSCOUTMAGACNT(scoutmagacnt);
+					pictVO.setSCOUTMAGAFEE(scoutmagafee);
+					pictVO.setENTRYFEE(entryfee);
+					
+					
+					//지도자연공
+					if(item.get("type").equals("leader")) {
+						String leaderpositioncode1 = item.get("LEADERPOSITIONCODE1").toString();
+						String leaderpositioncode2 = item.get("LEADERPOSITIONCODE2").toString();
+						String adminy = item.get("ADMINY").toString();
 
-					pictVO.setLEADERPOSITIONCODE1(leaderpositioncode1);
-					pictVO.setLEADERPOSITIONCODE2(leaderpositioncode2);
-					pictVO.setADMINY(adminy);
-					
-					
-					pictService.leader_whole_register(pictVO);
+						pictVO.setLEADERPOSITIONCODE1(leaderpositioncode1);
+						pictVO.setLEADERPOSITIONCODE2(leaderpositioncode2);
+						pictVO.setADMINY(adminy);
+						
+						
+						pictService.leader_whole_register(pictVO);
+					}
+					//대원연공
+					else {
+						String scoutclscode = item.get("SCOUTCLSCODE").toString();
+						String scoutpositioncode = item.get("SCOUTPOSITIONCODE").toString();
+						
+						pictVO.setSCOUTCLSCODE(scoutclscode);
+						pictVO.setSCOUTPOSITIONCODE(scoutpositioncode);
+						
+						pictService.scout_whole_register(pictVO);
+
+					}
 				}
-				//대원연공
+				//신규일때
 				else {
-					String scoutclscode = item.get("SCOUTCLSCODE").toString();
-					String scoutpositioncode = item.get("SCOUTPOSITIONCODE").toString();
+					String KNAME = item.get("KNAME").toString();
+					String BIRTHDAY = item.get("BIRTHDAY").toString();
+					String MOBILE = item.get("MOBILE").toString();
+					String TROOPSCOUTY = item.get("type").toString().equals("scout") ? "Y" : "N";
+					String TROOPLEADERY = item.get("type").toString().equals("leader") ? "Y" : "N";
+					String LIFEMEMBERY = item.get("LIFEMEMBERY").toString();
 					
-					pictVO.setSCOUTCLSCODE(scoutclscode);
-					pictVO.setSCOUTPOSITIONCODE(scoutpositioncode);
+					pictVO.setKNAME(KNAME);
+					pictVO.setBIRTHDAY(BIRTHDAY);
+					pictVO.setMOBILE(MOBILE);
+					pictVO.setTROOPSCOUTY(TROOPSCOUTY);
+					pictVO.setTROOPLEADERY(TROOPLEADERY);
+					pictVO.setLIFEMEMBERY(LIFEMEMBERY);
+					pictVO.setMEMCLSCODE("1");
+					pictService.new_person(pictVO);
 					
-					pictService.scout_whole_register(pictVO);
+					System.out.println("새로운 사람 넣고서 그 멤바NO값!!!!!!!!!" + pictVO.getMEMBERNO());
+					
+					
+					String memberno = pictVO.getMEMBERNO();
+					String troopno = item.get("TROOPNO").toString();
+					String startday = current_year + "-01-01";
+					String endday = current_year + "-12-31";
+					String associationcode = item.get("ASSOCIATIONCODE").toString();
+					String parrenttroopno = item.get("PARRENTTROOPNO").toString();
+					String payy = "N";
+					String confirmy = "N";
+					String scoutmagacnt = item.get("SCOUTMAGACNT").toString().equals("Y") ? "1" : "0";
+					String scoutmagafee = item.get("maga_price").toString();
+					String entryfee = item.get("price").toString();
+					
+					pictVO.setMEMBERNO(memberno);
+					pictVO.setTROOPNO(troopno);
+					pictVO.setSTARTDAY(startday);
+					pictVO.setENDDAY(endday);
+					pictVO.setASSOCIATIONCODE(associationcode);
+					pictVO.setPARENTTROOPNO(parrenttroopno);
+					pictVO.setPAYY(payy);
+					pictVO.setCONFIRMY(confirmy);
+					pictVO.setSCOUTMAGACNT(scoutmagacnt);
+					pictVO.setSCOUTMAGAFEE(scoutmagafee);
+					pictVO.setENTRYFEE(entryfee);
+					
+					
+					//지도자연공
+					if(item.get("type").equals("leader")) {
+						String leaderpositioncode1 = item.get("LEADERPOSITIONCODE1").toString();
+						String leaderpositioncode2 = item.get("LEADERPOSITIONCODE2").toString();
+						String adminy = item.get("ADMINY").toString();
 
+						pictVO.setLEADERPOSITIONCODE1(leaderpositioncode1);
+						pictVO.setLEADERPOSITIONCODE2(leaderpositioncode2);
+						pictVO.setADMINY(adminy);
+						
+						
+						pictService.leader_whole_register(pictVO);
+					}
+					//대원연공
+					else {
+						String scoutclscode = item.get("SCOUTCLSCODE").toString();
+						String scoutpositioncode = item.get("SCOUTPOSITIONCODE").toString();
+						
+						pictVO.setSCOUTCLSCODE(scoutclscode);
+						pictVO.setSCOUTPOSITIONCODE(scoutpositioncode);
+						
+						pictService.scout_whole_register(pictVO);
+
+					}
 				}
+				
+				
+				
 			}
 			map.put("result", "Y");
-			
+			return map;
 		}
 		catch (Exception e) {
 			System.out.println(e);
 			map.put("result", "N");
+			return map;
 		}
 		
-
-		
-		return map;
 	}
 	
 	//대원일괄승인
