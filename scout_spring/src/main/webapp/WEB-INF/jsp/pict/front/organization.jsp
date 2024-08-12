@@ -1036,12 +1036,17 @@
 				, async : false
 				, success : function(data, status, xhr) {
 					var html ='<option value="">전체</option>'
+					
 					if(data.list){
 						var arr = data.list;
 						$('#parentorgno_search').children().remove();
 						for(var i=0; i<arr.length; i++){
 							html += '<option value="'+ arr[i].orgno +'">'+arr[i].orgname +'</option>'
 						}
+						$('#parentorgno_search').append(html)
+						$('.contentsContainer select').niceSelect('update')
+					}
+					else{
 						$('#parentorgno_search').append(html)
 						$('.contentsContainer select').niceSelect('update')
 					}

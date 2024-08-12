@@ -17,18 +17,21 @@
         </div>
         <div class="subContents">
         	<img src="${vo.mainimg}" style="width:100%; margin-bottom:30px"/>
-			<p>연맹장 인사말</p>
-            <div class="greetingContainer feders">
-            	<!-- 연맹소개글 -->
-               	${vo.introduce}
-                <c:if test="${vo.leaderimg ne '' && vo.leaderimg ne null && vo.leaderimg ne undefined}">
-                	<span class="feders"><img src="${vo.leaderimg}" alt="연맹장사진"></span>
-               	</c:if>
-            </div>
-			<div class="dummy"></div>
+			<p class="federTitle">연맹장 인사말</p>
+			<c:if test="${vo.introduce ne '' && vo.introduce ne null && vo.introduce ne undefined}">
+	            <div class="greetingContainer feders">
+	            	<!-- 연맹소개글 -->
+	            	
+	                ${vo.introduce}
+	                
+	                <c:if test="${vo.leaderimg ne '' && vo.leaderimg ne null && vo.leaderimg ne undefined}">
+	                	<span class="feders"><img src="${vo.leaderimg}" alt="연맹장사진"></span>
+	               	</c:if>
+	            </div>
+            </c:if>
             <c:if test="${vo.leaderimg ne '' && vo.leaderimg ne null && vo.leaderimg ne undefined}">
 	            <div class="sign feders" >
-					<p>연맹장 ${vo.leadername}</p>
+					<p>한국스카우트연맹 ${vo.ASSOCIATIONNAME} 연맹장 ${vo.leadername}</p>
 				</div>
 			</c:if>
             <ul class="tabNav organNav rules">

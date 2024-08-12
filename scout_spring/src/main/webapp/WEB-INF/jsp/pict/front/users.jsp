@@ -685,7 +685,7 @@
 	    	var login_memberno = ${sessionid}
 	    	login_memberno =login_memberno+""
 	    	//재영여기 사무국
-	    	if(login_memberno != '505162' && login_memberno != '645849'){
+	    	if(login_memberno != '505162' && login_memberno != '1123506'){
 	    		$("select[name=EMPLOYEEY]").attr("disabled", true);
 	    		$('.contentsContainer select').niceSelect('update')
 	    		
@@ -1178,6 +1178,9 @@
 						
 						$('#year_cnt_leader').text(arr.length + " rows")
 						for(var i=0; i<arr.length; i++){
+							var enterdate = arr[i].enterdate
+							if(enterdate) enterdate = enterdate.substring(0,11)
+							
 							html += '<tr id="leader_list_row_'+arr[i].idx+'" onclick="fn_leader_info('+arr[i].idx+')">'+
 								'<td>' + Number(i+1) + '</td>' +
 								'<td>' + arr[i].adminy + '</td>'+
@@ -1192,7 +1195,7 @@
 								'<td>Y</td>'+
 								'<td>' + arr[i].confirmy + '</td>'+
 								'<td>' + arr[i].payy + '</td>'+
-								'<td>' + arr[i].enterdate.substring(0,11) + '</td>'+
+								'<td>' + enterdate + '</td>'+
 								'<td></td>'+
 								'<td></td>'+
 								'<td>' + arr[i].leaderorgpositionname + '</td>'+
@@ -1212,6 +1215,8 @@
 						$('#scout_incnt').text(data.info.scoutincnt)
 						$('#year_cnt_scout').text(arr.length + " rows")
 						for(var i=0; i<arr.length; i++){
+							var enterdate = arr[i].enterdate
+							if(enterdate) enterdate = enterdate.substring(0,11)
 							html += '<tr id="scout_list_row_'+arr[i].idx+'" onclick="fn_scout_info('+arr[i].idx+')">'+
 								'<td>' + Number(i+1) + '</td>' +
 								'<td>' + arr[i].year + '</td>'+
@@ -1227,7 +1232,7 @@
 								'<td>Y</td>'+
 								'<td>' + arr[i].confirmy + '</td>'+
 								'<td>' + arr[i].payy + '</td>'+
-								'<td>' + arr[i].enterdate.substring(0, 11) + '</td>'+
+								'<td>' + enterdate + '</td>'+
 								'<td></td>'+
 								'<td></td>'+
 								'<td>' + arr[i].scoutpositionname + '</td>'+

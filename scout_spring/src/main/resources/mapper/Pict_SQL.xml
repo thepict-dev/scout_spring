@@ -7,7 +7,7 @@
 		select m.MEMBERNO, m.KNAME, m.BIRTHDAY, m.MEMCLSCODE, m.MEMGRADECODE, m.TROOPSCOUTY, m.TROOPLEADERY, m.LEADERINCNT, m.ENTERDATE, m.SCOUTINCNT, m.LIFEMEMBERY,
 		(case when m.EMPLOYEEY = '' then 'N' when m.EMPLOYEEY is null then 'N' when m.EMPLOYEEY = 'N' then 'N' else 'Y' end) as EMPLOYEEY,
 		m.SEX, m.MOBILE, m.EMAIL, m.HPOSTCODE, m.HADDR,
-		(select DISPTROOPNO from troop t2 where t2.TROOPNO = MAX(CASE WHEN left(l.STARTDAY, 4) = '2024' THEN l.TROOPNO ELSE NULL END) ) as DISPTROOPNO,
+		(select DISPTROOPNO from troop t2 where t2.TROOPNO = MAX(CASE WHEN left(l.STARTDAY, 4) = #{search_year} THEN l.TROOPNO ELSE NULL END) ) as DISPTROOPNO,
 		(select TROOPNAME from troop t2 where t2.TROOPNO = MAX(CASE WHEN left(l.STARTDAY, 4) = #{search_year} THEN l.TROOPNO ELSE NULL END) ) as TROOPNAME
 		from member m
 		inner join memclscode mc on m.MEMCLSCODE = mc.MEMCLSCODE
@@ -98,8 +98,8 @@
 	<select id="leader_list" resultType="pictVO">
 		select l.idx, ifnull(l.ADMINY, '') as ADMINY, substring(l.STARTDAY, 1,4) as YEAR, a.ASSOCIATIONNAME, t.TROOPNAME, t.TROOPNO,
 		(select TROOPNAME from troop t2 where t2.TROOPNO = l.PARENT_TROOPNO) as UNITY,
-		(case when l.LEADERPOSITIONCODE1 = '01' then '협조' when l.LEADERPOSITIONCODE1 = '02' then '훈육' else '전종' end) as LEADERPOSITION,
-		(select LEADERPOSITIONNAME from leaderpositioncode lp where lp.LEADERPOSITIONCODE1 = l.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2) as LEADERPOSITIONNAME,
+		(case when l.LEADERPOSITIONCODE1 = '01' then '협조' when l.LEADERPOSITIONCODE1 = '02' then '훈육' when l.LEADERPOSITIONCODE1 = '03' then '전종' else '' end) as LEADERPOSITION,
+		ifnull((select LEADERPOSITIONNAME from leaderpositioncode lp where lp.LEADERPOSITIONCODE1 = l.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2), '') as LEADERPOSITIONNAME,
 		ifnull(o.ORGNAME, '') as ORGNAME
 		, SCOUTMAGACNT, CONFIRMY, PAYY, l.ENTERDATE, LEADERORGPOSITIONCODE, ENTRYFEE
 		, (case when LEADERORGPOSITIONCODE = '01' then '교장' when LEADERORGPOSITIONCODE = '02' then '교감' when LEADERORGPOSITIONCODE = '03' then '교사' when LEADERORGPOSITIONCODE = '04' then '일반' when LEADERORGPOSITIONCODE = '05' then '없음' else '' end) as LEADERORGPOSITIONNAME
@@ -760,7 +760,7 @@
 		    TROOPNO, 
 			count(idx),
 			SUM(CASE WHEN left(l.STARTDAY, 4) = #{search_year} and m.SEX = 'M' THEN 1 ELSE 0 END) as LEADERMCNT,
-			SUM(CASE WHEN left(l.STARTDAY, 4) = #{search_year} and m.SEX = 'W' THEN 1 ELSE 0 END) as LEADERWCNT,
+			SUM(CASE WHEN left(l.STARTDAY, 4) = #{search_year} and (m.SEX != 'M' or m.SEX is null or m.SEX = '') THEN 1 ELSE 0 END) as LEADERWCNT,
 		    SUM(l.SCOUTMAGACNT) as leadermagazinecnt,
 		    SUM(l.SCOUTMAGAFEE) as leadermagazinefee
 			from leader l
@@ -772,7 +772,7 @@
 		    TROOPNO, 
 			count(idx),
 			SUM(CASE WHEN left(s.STARTDAY, 4) = #{search_year} and m.SEX = 'M' THEN 1 ELSE 0 END) as SCOUTMCNT,
-			SUM(CASE WHEN left(s.STARTDAY, 4) = #{search_year} and m.SEX = 'W' THEN 1 ELSE 0 END) as SCOUTWCNT,
+			SUM(CASE WHEN left(s.STARTDAY, 4) = #{search_year} and (m.SEX != 'M' or m.SEX is null or m.SEX = '') THEN 1 ELSE 0 END) as SCOUTWCNT,
 		    SUM(s.SCOUTMAGACNT) as scoutmagazinecnt,
 		    SUM(s.SCOUTMAGAFEE) as scoutmagazinefee
 			from scout s
