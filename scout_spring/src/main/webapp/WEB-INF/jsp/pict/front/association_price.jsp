@@ -76,92 +76,94 @@
 	                                                <td rowspan="7">신규</td>
 	                                                <td rowspan="6">등록비(대원)</td>
 	                                                <td>비버</td>
-	                                                <td><input type="text" name="cls01" id="cls01" class="amoutInput" value="${vo.cls01}"></td>
-	                                                <td><input type="text" name="cls01bigo" id="cls01bigo" class="amoutInput" value="${vo.cls01bigo}"></td>
+	                                                <td><input type="text" name="cls01new" id="cls01new" class="amoutInput" value="${vo.cls01new}"></td>
+	                                                <td><input type="text" name="cls01newbigo" id="cls01newbigo" class="amoutInput" value="${vo.cls01newbigo}"></td>
 	                                            </tr>
 	                                            <tr>
 	                                                <td style="position: unset;">2</td>
 	                                                <td>컵</td>
-	                                                <td><input type="text" name="cls02" id="cls02" class="amoutInput" value="${vo.cls02}"></td>
-	                                                <td><input type="text" name="cls02bigo" id="cls02bigo" class="amoutInput" value="${vo.cls02bigo}"></td>
+	                                                <td><input type="text" name="cls02new" id="cls02new" class="amoutInput" value="${vo.cls02new}"></td>
+	                                                <td><input type="text" name="cls02newbigo" id="cls02newbigo" class="amoutInput" value="${vo.cls02newbigo}"></td>
 	                                            </tr>
 	                                            <tr>
 	                                                <td style="position: unset;">3</td>
 	                                                <td>스카우트</td>
-	                                                <td><input type="text" name="cls03" id="cls03" class="amoutInput" value="${vo.cls03}"></td>
-	                                                <td><input type="text" name="cls03bigo" id="cls03bigo" class="amoutInput" value="${vo.cls03bigo}"></td>
+	                                                <td><input type="text" name="cls03new" id="cls03new" class="amoutInput" value="${vo.cls03new}"></td>
+	                                                <td><input type="text" name="cls03newbigo" id="cls03newbigo" class="amoutInput" value="${vo.cls03newbigo}"></td>
 	                                            </tr>
 	                                            <tr>
 	                                                <td style="position: unset;">4</td>
 	                                                <td>벤처</td>
-	                                                <td><input type="text" name="cls04" id="cls04" class="amoutInput" value="${vo.cls04}"></td>
-	                                                <td><input type="text" name="cls04bigo" id="cls04bigo" class="amoutInput" value="${vo.cls04bigo}"></td>
+	                                                <td><input type="text" name="cls04new" id="cls04new" class="amoutInput" value="${vo.cls04new}"></td>
+	                                                <td><input type="text" name="cls04newbigo" id="cls04newbigo" class="amoutInput" value="${vo.cls04newbigo}"></td>
 	                                            </tr>
 	                                            <tr>
 	                                                <td style="position: unset;">5</td>
 	                                                <td>로버</td>
-	                                                <td><input type="text" name="cls05" id="cls05" class="amoutInput" value="${vo.cls05}"></td>
-	                                                <td><input type="text" name="cls05bigo" id="cls05bigo" class="amoutInput" value="${vo.cls05bigo}"></td>
+	                                                <td><input type="text" name="cls05new" id="cls05new" class="amoutInput" value="${vo.cls05new}"></td>
+	                                                <td><input type="text" name="cls05newbigo" id="cls05newbigo" class="amoutInput" value="${vo.cls05newbigo}"></td>
 	                                            </tr>
 	                                            <tr>
 	                                                <td style="position: unset;">6</td>
 	                                                <td>기타</td>
-	                                                <td><input type="text" name="cls06" id="cls06" class="amoutInput" value="${vo.cls06}"></td>
-	                                                <td><input type="text" name="cls06bigo" id="cls06bigo" class="amoutInput" value="${vo.cls06bigo}"></td>
+	                                                <td><input type="text" name="cls06new" id="cls06new" class="amoutInput" value="${vo.cls06new}"></td>
+	                                                <td><input type="text" name="cls06newbigo" id="cls06newbigo" class="amoutInput" value="${vo.cls06newbigo}"></td>
 	                                            </tr>
 	                                            <tr>
 	                                                <td style="position: unset;">7</td>
 	                                                <td>등록비(지도자)</td>
 	                                                <td>복합</td>
-	                                                <td><input type="text" name="cls99" id="cls99" class="amoutInput" value="${vo.cls99}"></td>
-	                                                <td><input type="text" name="cls99bigo" id="cls99bigo" class="amoutInput" value="${vo.cls99bigo}"></td>
+	                                                <td><input type="text" name="cls99new" id="cls99new" class="amoutInput" value="${vo.cls99new}"></td>
+	                                                <td><input type="text" name="cls99newbigo" id="cls99newbigo" class="amoutInput" value="${vo.cls99newbigo}"></td>
 	                                            </tr>
+	                                            
 	                                            <!-- 여기부터 신규 -->
 	                                            <tr>
 	                                                <td style="position: unset;">8</td>
 	                                                <td rowspan="7">계속</td>
 	                                                <td rowspan="6">등록비(대원)</td>
 	                                                <td>비버</td>
-	                                                <td><input type="text" name="cls01new" id="cls01new" class="amoutInput" value="${vo.cls01new}"></td>
-	                                                <td><input type="text" name="cls01newbigo" id="cls01newbigo" class="amoutInput" value="${vo.cls01newbigo}"></td>
+	                                                <td><input type="text" name="cls01" id="cls01" class="amoutInput" value="${vo.cls01}"></td>
+	                                                <td><input type="text" name="cls01bigo" id="cls01bigo" class="amoutInput" value="${vo.cls01bigo}"></td>
 	                                            </tr>
 	                                            <tr>
 	                                                <td style="position: unset;">9</td>
 	                                                <td>컵</td>
-	                                                <td><input type="text" name="cls02new" id="cls02new" class="amoutInput" value="${vo.cls02new}"></td>
-	                                                <td><input type="text" name="cls02newbigo" id="cls02newbigo" class="amoutInput" value="${vo.cls02newbigo}"></td>
+	                                                <td><input type="text" name="cls02" id="cls02" class="amoutInput" value="${vo.cls02}"></td>
+	                                                <td><input type="text" name="cls02bigo" id="cls02bigo" class="amoutInput" value="${vo.cls02bigo}"></td>
 	                                            </tr>
 	                                            <tr>
 	                                                <td style="position: unset;">10</td>
 	                                                <td>스카우트</td>
-	                                                <td><input type="text" name="cls03new" id="cls03new" class="amoutInput" value="${vo.cls03new}"></td>
-	                                                <td><input type="text" name="cls03newbigo" id="cls03newbigo" class="amoutInput" value="${vo.cls03newbigo}"></td>
+	                                                <td><input type="text" name="cls03" id="cls03" class="amoutInput" value="${vo.cls03}"></td>
+	                                                <td><input type="text" name="cls03bigo" id="cls03bigo" class="amoutInput" value="${vo.cls03bigo}"></td>
 	                                            </tr>
 	                                            <tr>
 	                                                <td style="position: unset;">11</td>
 	                                                <td>벤처</td>
-	                                                <td><input type="text" name="cls04new" id="cls04new" class="amoutInput" value="${vo.cls04new}"></td>
-	                                                <td><input type="text" name="cls04newbigo" id="cls04newbigo" class="amoutInput" value="${vo.cls04newbigo}"></td>
+	                                                <td><input type="text" name="cls04" id="cls04" class="amoutInput" value="${vo.cls04}"></td>
+	                                                <td><input type="text" name="cls04bigo" id="cls04bigo" class="amoutInput" value="${vo.cls04bigo}"></td>
 	                                            </tr>
 	                                            <tr>
 	                                                <td style="position: unset;">12</td>
 	                                                <td>로버</td>
-	                                                <td><input type="text" name="cls05new" id="cls05new" class="amoutInput" value="${vo.cls05new}"></td>
-	                                                <td><input type="text" name="cls05newbigo" id="cls05newbigo" class="amoutInput" value="${vo.cls05newbigo}"></td>
+	                                                <td><input type="text" name="cls05" id="cls05" class="amoutInput" value="${vo.cls05}"></td>
+	                                                <td><input type="text" name="cls05bigo" id="cls05bigo" class="amoutInput" value="${vo.cls05bigo}"></td>
 	                                            </tr>
 	                                            <tr>
 	                                                <td style="position: unset;">13</td>
 	                                                <td>기타</td>
-	                                                <td><input type="text" name="cls06new" id="cls06new" class="amoutInput" value="${vo.cls06new}"></td>
-	                                                <td><input type="text" name="cls06newbigo" id="cls06newbigo" class="amoutInput" value="${vo.cls06newbigo}"></td>
+	                                                <td><input type="text" name="cls06" id="cls06" class="amoutInput" value="${vo.cls06}"></td>
+	                                                <td><input type="text" name="cls06bigo" id="cls06bigo" class="amoutInput" value="${vo.cls06bigo}"></td>
 	                                            </tr>
 	                                            <tr>
 	                                                <td style="position: unset;">14</td>
 	                                                <td>등록비(지도자)</td>
 	                                                <td>복합</td>
-	                                                <td><input type="text" name="cls99new" id="cls99new" class="amoutInput" value="${vo.cls99new}"></td>
-	                                                <td><input type="text" name="cls99newbigo" id="cls99newbigo" class="amoutInput" value="${vo.cls99newbigo}"></td>
+	                                                <td><input type="text" name="cls99" id="cls99" class="amoutInput" value="${vo.cls99}"></td>
+	                                                <td><input type="text" name="cls99bigo" id="cls99bigo" class="amoutInput" value="${vo.cls99bigo}"></td>
 	                                            </tr>
+	                                            
 	                                        </tbody>
 	                                    </table>
 	                                </div>

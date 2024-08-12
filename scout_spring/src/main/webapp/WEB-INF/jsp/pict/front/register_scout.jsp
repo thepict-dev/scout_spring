@@ -45,8 +45,14 @@
                                             <option value="${unity_list.TROOPNO}">${unity_list.TROOPNAME}</option>
                                         </c:forEach>
                                     </select>
+                                    <select name="search_type" id="search_type" class="smThinSelect">
+			                            <option value="text">단위대명</option>
+			                            <option value="number">대번호</option>
+			                        </select>
+			                        <input type="text" name="search_text" id="search_text" class="lgThinInput" placeholder="내용을 입력해주세요..." onkeypress="if(event.keyCode == 13){organ_search('number');}">
                                 </div>
                             </div>
+                            <!-- 
                             <div class="searchContainer">
                                 <p class="inputCaption">단위대 구분</p>
                                 <div class="inputsAlign">
@@ -68,6 +74,7 @@
                                     <input type="text"  name="TROOPNAME" id="TROOPNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
                                 </div>
                             </div>
+                             -->
                             <div class="btnContainer organ" style="justify-content: flex-start; margin-top: 5px;">
                                 <a href="#regiSearchPopup" onclick="troop_search()" class="smButton searches purple regiSearch"><img src="/front_img/search2.png" alt="">조회</a>
                             </div>
@@ -438,9 +445,11 @@
 			var param = {
 				associationcode : $('#ASSOCIATIONCODE').val(),
 				parenttroopno : $('#PARENTTROOPNO').val(),
-				troopclscode1 : $('#TROOPCLSCODE1').val(), 
-				troopclscode2 : $('#TROOPCLSCODE2').val(),
-				troopname : $('#TROOPNAME').val()
+				//troopclscode1 : $('#TROOPCLSCODE1').val(), 
+				//troopclscode2 : $('#TROOPCLSCODE2').val(),
+				//troopname : $('#TROOPNAME').val()
+				search_type : $('#search_type').val(),
+				search_text : $('#search_text').val()
 			}
 			$('#search_troop_list').children().remove();
 			$('.contentsContainer select').niceSelect('update')
@@ -852,7 +861,7 @@
 				var maga_price = 0
 				
 				
-				var price = price_info.cls99new;
+				var price = price_info.cls99;
 				if(LEADERPOSITIONCODE2 == '01'){
 					price = 0
 				}
@@ -895,12 +904,13 @@
 				var price = $('#scout_regi_price_'+memberno).val()
 				var maga_price = 0
 				
-				var price = price_info.cls01new
-				if(SCOUTCLSCODE == '02') price = price_info.cls02new
-				if(SCOUTCLSCODE == '03') price = price_info.cls03new
-				if(SCOUTCLSCODE == '04') price = price_info.cls04new
-				if(SCOUTCLSCODE == '05') price = price_info.cls05new
-				if(SCOUTCLSCODE == '06') price = price_info.cls06new
+				var price = price_info.cls01
+				debugger
+				if(SCOUTCLSCODE == '02') price = price_info.cls02
+				if(SCOUTCLSCODE == '03') price = price_info.cls03
+				if(SCOUTCLSCODE == '04') price = price_info.cls04
+				if(SCOUTCLSCODE == '05') price = price_info.cls05
+				if(SCOUTCLSCODE == '06') price = price_info.cls06
 				
 				if(LIFEMEMBERY == '평생회원'){
 					price = 0

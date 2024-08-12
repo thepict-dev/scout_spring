@@ -222,7 +222,7 @@ public class PictController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
 		String current_year = dateFormat.format(today);
 		model.addAttribute("current_year", current_year);
-		
+		pictVO.setSearch_year(current_year);
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
@@ -434,8 +434,12 @@ public class PictController {
 	        objCell.setCellStyle(styleHd);
 
 	        //성별
-	        String sex = "남";
-	        if(attendance_list.get(i).getSEX().equals("W")) sex = "여";
+	        String sex = "";
+	        if(attendance_list.get(i).getSEX() != null) {
+	        	if(attendance_list.get(i).getSEX().equals("W")) sex = "여";
+	        	if(attendance_list.get(i).getSEX().equals("M")) sex = "남";
+	        }
+	        
 	        objCell = objRow.createCell(9);
 	        objCell.setCellValue(sex);
 	        objSheet.setColumnWidth(9, (short)0x1000);
@@ -2696,16 +2700,19 @@ public class PictController {
 	public HashMap<String, Object> troop_search(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
 		String associationcode = param.get("associationcode").toString();
 		String parenttroopno = param.get("parenttroopno").toString();
-		String troopclscode1 = param.get("troopclscode1").toString();
-		String troopclscode2 = param.get("troopclscode2").toString();
-		String troopname = param.get("troopname").toString();
+		//String troopclscode1 = param.get("troopclscode1").toString();
+		//String troopclscode2 = param.get("troopclscode2").toString();
+		//String troopname = param.get("troopname").toString();
+		String search_type = param.get("search_type").toString();
+		String search_text = param.get("search_text").toString();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		pictVO.setASSOCIATIONCODE(associationcode);
 		pictVO.setPARENTTROOPNO(parenttroopno);
-		pictVO.setTROOPCLSCODE1(troopclscode1);
-		pictVO.setTROOPCLSCODE2(troopclscode2);
-		pictVO.setTROOPNAME(troopname);
+		//pictVO.setTROOPCLSCODE1(troopclscode1);
+		//pictVO.setTROOPCLSCODE2(troopclscode2);
+		pictVO.setSearch_type(search_type);
+		pictVO.setSearch_text(search_text);
 		
 		
 		List<PictVO> troop_list = pictService.troop_search(pictVO);
@@ -3017,6 +3024,7 @@ public class PictController {
 	@SuppressWarnings("null")
 	@RequestMapping("/front/association_price")
 	public String association_price(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		//여기 유학준, 안기혁
 		String sessions = (String) request.getSession().getAttribute("id");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";

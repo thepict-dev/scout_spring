@@ -40,8 +40,14 @@
                                             <option value="${unity_list.TROOPNO}">${unity_list.TROOPNAME}</option>
                                         </c:forEach>
                                     </select>
+                                    <select name="search_type" id="search_type" class="smThinSelect">
+			                            <option value="text">단위대명</option>
+			                            <option value="number">대번호</option>
+			                        </select>
+			                        <input type="text" name="search_text" id="search_text" class="lgThinInput" placeholder="내용을 입력해주세요..." onkeypress="if(event.keyCode == 13){organ_search('number');}">
                                 </div>
                             </div>
+                            <!-- 
                             <div class="searchContainer">
                                 <p class="inputCaption">단위대 구분</p>
                                 <div class="inputsAlign">
@@ -57,12 +63,15 @@
                                     </select>
                                 </div>
                             </div>
+                             -->
+                             <!-- 
                             <div class="searchContainer">
                                 <p class="inputCaption">단위대명</p>
                                 <div class="inputsAlign">
                                     <input type="text"  name="TROOPNAME" id="TROOPNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
                                 </div>
                             </div>
+                             -->
                             <div class="btnContainer organ" style="justify-content: flex-start; margin-top: 5px;">
                                 <a href="#regiSearchPopup" onclick="troop_search()" class="smButton searches purple regiSearch"><img src="/front_img/search2.png" alt="">조회</a>
                             </div>
@@ -279,7 +288,7 @@
 					var scout_html = ""
 					var leader_list = data.leader_list
 					var scout_list = data.scout_list
-					if(data && data.leader_list){
+					if(data.leader_list && data.leader_list.length > 0){
 						for(var i=0; i<leader_list.length; i++){
 							var maga = "N"
 							if(leader_list[i].scoutmagacnt >= '1') maga = ""
@@ -297,8 +306,11 @@
 		                		'</tr>'
 							
 						}
+						$('#leader_target_list').append(leader_html)
+						$('.contentsContainer select').niceSelect('update')
+						$("#regiSearchPopup").removeClass("active");
 					}
-					if(data && data.scout_list){
+					if(data.scout_list && data.scout_list.length > 0){
 						for(var i=0; i<scout_list.length; i++){
 							var maga = "N"
 							if(scout_list[i].scoutmagacnt >= '1') maga = "Y"
@@ -314,17 +326,18 @@
 		                    	'<td>'+maga+'</td>'+
 		                		'</tr>'
 						}
-						$('#leader_target_list').append(leader_html)
+						
 						$('#scout_target_list').append(scout_html)
 						
 						
 						$('.contentsContainer select').niceSelect('update')
 						$("#regiSearchPopup").removeClass("active");
 					}
-					else{
+					if(data.scout_list == undefined && data.leader_list == undefined){
 						console.log(data)
 						alert("해당 단위대의 신청정보가 없습니다.")
 					}
+	
 				}
 				, error : function(xhr, status, error) {
 					console.log(xhr)
@@ -345,7 +358,7 @@
 				, dataType : "json"
 				, async : false
 				, success : function(data, status, xhr) {
-					var html ="";
+					var html ="<option value=''>전체</option>";
 					if(data.list){
 						var arr = data.list;
 						$('#PARENTTROOPNO').children().remove();
@@ -366,9 +379,11 @@
 			var param = {
 				associationcode : $('#ASSOCIATIONCODE').val(),
 				parenttroopno : $('#PARENTTROOPNO').val(),
-				troopclscode1 : $('#TROOPCLSCODE1').val(), 
-				troopclscode2 : $('#TROOPCLSCODE2').val(),
-				troopname : $('#TROOPNAME').val()
+				//troopclscode1 : $('#TROOPCLSCODE1').val(), 
+				//troopclscode2 : $('#TROOPCLSCODE2').val(),
+				//troopname : $('#TROOPNAME').val()
+				search_type : $('#search_type').val(),
+				search_text : $('#search_text').val()
 			}
 			$('#search_troop_list').children().remove();
 			$('.contentsContainer select').niceSelect('update')

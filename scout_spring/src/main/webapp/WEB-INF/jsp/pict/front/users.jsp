@@ -113,6 +113,8 @@
                                 <col width="13.5%" />
                                 <col width="8%" />
                                 <col width="14.5%" />
+                                <col width="8%" />
+                                <col width="8%" />
                                 <col width="12.5%" />
                                 <col width="10.5%" />
                                 <col width="10%" />
@@ -125,6 +127,8 @@
 	                                <th>회원번호</th>
 	                                <th>회원명</th>
 	                                <th>법정생년월일</th>
+	                                <th>대번호(당해)</th>
+	                                <th>단위대명(당해)</th>
 	                                <th>회원구분</th>
 	                    			<th>회원등급</th>
 	                                <th>대원여부</th>
@@ -139,6 +143,8 @@
 	                                    <td>${resultList.MEMBERNO}</td>
 	                                    <td>${resultList.KNAME}</td>
 	                         			<td>${resultList.BIRTHDAY}</td>
+	                         			<td>${resultList.DISPTROOPNO}</td>
+	                         			<td>${resultList.TROOPNAME}</td>
 	                                    <td>
 				                         	<c:if test='${resultList.MEMCLSCODE eq "1"}'>개인</c:if>
 				                         	<c:if test='${resultList.MEMCLSCODE eq "2"}'>법인</c:if>
@@ -986,8 +992,13 @@
 
 		function fn_order(type){
 			var kname = $('#search_kname').val()
-			if((kname == '' || kname == undefined || kname == null)){
-				alert("이름은 필수값 입니다.")
+			var memberno = $('#search_memberno').val()
+			var search_start = $('#search_start').val()
+			var search_end = $('#search_end').val()
+			
+			if((memberno == '' || memberno == undefined || memberno == null) && (kname == '' || kname == undefined || kname == null) 
+					&& (search_start == '' || search_start == undefined || search_start == null) && (search_end == '' || search_end == undefined || search_end == null)){
+				alert("회원번호나 이름은 혹은 등록시작, 종료일은 필수값 입니다.")
 				return false;
 			}
 			else{
@@ -999,8 +1010,12 @@
 		function search_list(){
 			var kname = $('#search_kname').val()
 			var memberno = $('#search_memberno').val()
-			if((memberno == '' || memberno == undefined || memberno == null) && (kname == '' || kname == undefined || kname == null)){
-				alert("회원번호나 이름은 필수값 입니다.")
+			var search_start = $('#search_start').val()
+			var search_end = $('#search_end').val()
+			
+			if((memberno == '' || memberno == undefined || memberno == null) && (kname == '' || kname == undefined || kname == null) 
+					&& (search_start == '' || search_start == undefined || search_start == null) && (search_end == '' || search_end == undefined || search_end == null)){
+				alert("회원번호나 이름은 혹은 등록시작, 종료일은 필수값 입니다.")
 				return false;
 			}
 			else{

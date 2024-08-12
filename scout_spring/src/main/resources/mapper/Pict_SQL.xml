@@ -6,7 +6,9 @@
 	<select id="scout_left_search_list" resultType="pictVO">
 		select m.MEMBERNO, m.KNAME, m.BIRTHDAY, m.MEMCLSCODE, m.MEMGRADECODE, m.TROOPSCOUTY, m.TROOPLEADERY, m.LEADERINCNT, m.ENTERDATE, m.SCOUTINCNT, m.LIFEMEMBERY,
 		(case when m.EMPLOYEEY = '' then 'N' when m.EMPLOYEEY is null then 'N' when m.EMPLOYEEY = 'N' then 'N' else 'Y' end) as EMPLOYEEY,
-		m.SEX, m.MOBILE, m.EMAIL, m.HPOSTCODE, m.HADDR
+		m.SEX, m.MOBILE, m.EMAIL, m.HPOSTCODE, m.HADDR,
+		(select DISPTROOPNO from troop t2 where t2.TROOPNO = MAX(CASE WHEN left(l.STARTDAY, 4) = '2024' THEN l.TROOPNO ELSE NULL END) ) as DISPTROOPNO,
+		(select TROOPNAME from troop t2 where t2.TROOPNO = MAX(CASE WHEN left(l.STARTDAY, 4) = #{search_year} THEN l.TROOPNO ELSE NULL END) ) as TROOPNAME
 		from member m
 		inner join memclscode mc on m.MEMCLSCODE = mc.MEMCLSCODE
 		
@@ -50,7 +52,7 @@
 		</if>
 		
 		<if test="search_start != null and search_start != '' and search_end != null and search_end != '' ">
-			and m.ENTERDATE between #{search_start} and #{search_end}
+			and date_format(m.ENTERDATE, '%Y-%m-%d') between #{search_start} and #{search_end}
 		</if>
 		
 		<if test="search_associationcode != null and search_associationcode != ''">
@@ -876,6 +878,17 @@
 		</if>
 		<if test="TROOPNAME != null and TROOPNAME != ''">
 			and t.TROOPNAME LIKE CONCAT('%', #{TROOPNAME}, '%')
+		</if>
+		
+		<if test="search_text != null and search_text != ''">
+			<if test="search_type != null and search_type != '' and search_type == 'number'">
+				and t.DISPTROOPNO = #{search_text}
+			</if>
+			<if test="search_type != null and search_type != '' and search_type == 'text'">
+				and (
+					t.TROOPNAME LIKE CONCAT('%', #{search_text}, '%')	
+					) 
+			</if>
 		</if>
 		
 	</select>
