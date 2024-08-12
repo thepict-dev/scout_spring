@@ -17,10 +17,10 @@
         </div>
         <div class="subContents">
         	<img src="${vo.mainimg}" style="width:100%; margin-bottom:30px"/>
-            <div class="greetingContainer">
+			<p>연맹장 인사말</p>
+            <div class="greetingContainer feders">
             	<!-- 연맹소개글 -->
                	${vo.introduce}
-
                 <c:if test="${vo.leaderimg ne '' && vo.leaderimg ne null && vo.leaderimg ne undefined}">
                 	<span class="feders"><img src="${vo.leaderimg}" alt="연맹장사진"></span>
                	</c:if>

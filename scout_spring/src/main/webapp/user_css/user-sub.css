@@ -863,6 +863,11 @@
 	justify-content: space-between;
 	width: 100%;
 }
+.greetingContainer.feders{
+	border-top: 1px solid var(--grey-500);
+    border-bottom: 1px solid var(--grey-500);
+    padding: 10px 0;
+}
 .greetingTexts{
 	display: flex;
 	flex-direction: column;
@@ -2782,6 +2787,13 @@ input[type="date"]::after{
 .textsWrapper.ages .bullets p {
     max-width: 800px;
 }
+.federTitle{
+    color: var(--purple-500);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: -1.2px;
+}
 @media all and (max-width : 1024px){
 	.ageImgContainer{
 		width: 100%;
@@ -2806,6 +2818,9 @@ input[type="date"]::after{
 	}
 	.textsWrapper.ages .bullets p {
 		max-width: 800px;
+	}
+	.federTitle{
+		margin-bottom: 16px;
 	}
 }
 

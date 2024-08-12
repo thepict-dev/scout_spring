@@ -17,7 +17,8 @@
         </div>
         <div class="subContents">
         	<img src="${vo.mainimg}" style="width:100%; margin-bottom:30px"/>
-            <div class="greetingContainer">
+			<p class="federTitle">연맹장 인사말</p>
+            <div class="greetingContainer feders">
             	<!-- 연맹소개글 -->
             	
                 ${vo.introduce}
