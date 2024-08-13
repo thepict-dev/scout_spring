@@ -551,6 +551,27 @@ textarea:focus{
 	letter-spacing: -0.7px;
 	pointer-events: none;
 }
+.pwInputs a.smButton{
+	margin-top: 0;
+    display: flex;
+    width: fit-content;
+    height: 20px;
+    padding: 0 8px 0 4px;
+    align-items: center;
+    gap: 4px;
+    border-radius: 4px;
+    border: 1px solid var(--grey-100);
+    background: #FFF;
+    color: var(--text-color);
+    text-align: center;
+    font-family: SUIT;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 12px */
+    letter-spacing: -0.6px;
+    pointer-events: all;
+}
 .pwInputs a.active{
 	color: #fff;
 	background: var(--purple-500);

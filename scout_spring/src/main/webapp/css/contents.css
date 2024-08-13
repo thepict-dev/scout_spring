@@ -138,6 +138,9 @@
     width: 100%;
     min-width: 952px;
 }
+.tableWrapper.users table{
+    min-width: 1216px;
+}
 .tableWrapper.orgTableWrapper table{
     min-width: 1150px;
 }
@@ -182,6 +185,12 @@
     top: 0;
     z-index: 3;
 }
+.tableWrapper.users table th:nth-child(2){
+    position: sticky; 
+    left: 85.5px;
+    top: 0;
+    z-index: 3;
+}
 .tableWrapper table td{
     background-color: #fff; 
     border-bottom: 1px solid var(--grey-100);
@@ -202,6 +211,9 @@
 .tableWrapper table td:nth-child(2){
     position: sticky; 
     left: 110.5px;
+}
+.tableWrapper.users table td:nth-child(2){
+    left: 85.5px;
 }
 .tableWrapper.orgTableWrapper table td:nth-child(2){
     left: 93.5px;
@@ -235,10 +247,32 @@
 }
 
 .resizer{
+	position: relative;
     width: 2px;
     height: 100%;
     background-color: var(--grey-100);
     cursor: ew-resize;
+}
+.resizer button{
+	display: block;
+	position: absolute;
+	left: 50%;
+	top: 45%;
+	transform: translate(-50%, -50%);
+	width: 28px;
+	height: 28px; 
+	padding: 0;
+    cursor: ew-resize;
+}
+.resizer button::after{
+	content: "";
+	display: inline-block;
+	width: 28px;
+	height: 28px; 
+	background-image: url(/front_img/resizer.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
 }
 .right{
     flex: 1;
@@ -623,7 +657,7 @@
     display: none;
 }
 #daePopup{
-    display: none;
+    display:none;
     position: fixed;
     left: 0;
     top: 0;

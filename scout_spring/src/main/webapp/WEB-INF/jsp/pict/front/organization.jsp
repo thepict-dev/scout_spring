@@ -150,7 +150,7 @@
                     </div>
                 </div>
             </div>
-            <div class="resizer" id="dragMe"></div>
+            <div class="resizer" id="dragMe"><button></button></div>
             <div class="right">
                 <ul class="formTabNav">
                     <li class="active">기본정보</li>

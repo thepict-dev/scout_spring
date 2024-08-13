@@ -44,7 +44,39 @@
 						<option value="Y">평생회원</option>
 					</select>
 				</div>
+                <div class="buttons" style="justify-content: flex-end; width: 100%;">
+                	<a href="#lnk" class="smButton"><img src="/front_img/search2.png" alt="">조회</a>
+                </div>
             </div>
+            <div class="inputsContainer">
+				<div class="inputBox" style="width: 100%;">
+	                <p class="inputCaption">조회결과</p>
+	                <div class="tableWrapper" style="height: 150px; margin-top: 0;">
+	                    <table style="min-width: unset; width: 100%;">
+	                        <colgroup>
+	                            <col width="17%" />
+	                            <col width="20%" />
+	                            <col width="20%" />
+	                            <col width="20%" />
+	                            <col width="23%" />
+	                        </colgroup>
+	                        <thead>
+	                            <tr>
+	                                <th>회원번호</th>
+	                                <th style="position: unset;">회원명</th>
+	                                <th>생년월일</th>
+	                                <th>연락처</th>
+	                                <th>대원/지도자</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody id="new_member_list">
+	                            
+	                        </tbody>
+	                    </table>
+	                </div>
+                </div>
+            </div>	
+            <div class="inputsContainer" style="font-size: 14px; text-align: center; justify-content: center;">조회된 데이터가 없습니다.</div>
             <!-- 비밀번호 조건 통과 시 active class 추가 -->
             <a href="#lnk" id="save_new" class="active" onclick="fn_submit()">등록</a>
         </div>

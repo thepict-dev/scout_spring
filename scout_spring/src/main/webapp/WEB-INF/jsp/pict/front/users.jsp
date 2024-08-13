@@ -107,20 +107,20 @@
                     		<a href="#lnk" class="smButton" onclick="fn_order('text')">가나다순</a>
                     	</div>
                     </div>
-                    <div class="tableWrapper">
+                    <div class="tableWrapper users">
                         <table>
                             <colgroup>
-                                <col width="13.5%" />
-                                <col width="8%" />
-                                <col width="14.5%" />
-                                <col width="8%" />
-                                <col width="8%" />
-                                <col width="12.5%" />
-                                <col width="10.5%" />
+                                <col width="7%" />
+                                <col width="7%" />
+                                <col width="9%" />
+                                <col width="9%" />
+                                <col width="13%" />
+                                <col width="9%" />
                                 <col width="10%" />
-                                <col width="10%" />
-                                <col width="12%" />
-                                <col width="10%" />
+                                <col width="9%" />
+                                <col width="9%" />
+                                <col width="9%" />
+                                <col width="8%" />
                             </colgroup>
                             <thead>
                                 <tr>
@@ -189,7 +189,7 @@
                     </div>
                 </div>
             </div>
-            <div class="resizer" id="dragMe"></div>
+            <div class="resizer" id="dragMe"><button></button></div>
             <div class="right">
                 <ul class="formTabNav">
                     <li class="active">기본정보</li>

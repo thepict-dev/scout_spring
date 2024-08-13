@@ -130,7 +130,7 @@
                             <thead>
                                 <tr>
 	                                <th rowspan="2">지구연합회</th>
-	                                <th rowspan="2" style="left: 95.5px;">대번호</th>
+	                                <th rowspan="2">대번호</th>
 	                                <th rowspan="2">단위대명</th>
 	                                <th rowspan="2">스카우트구분</th>
 	                                <th rowspan="2">단위대구분</th>
@@ -194,7 +194,7 @@
                     </div>
                 </div>
             </div>
-            <div class="resizer" id="dragMe"></div>
+            <div class="resizer" id="dragMe"><button></button></div>
             <div class="right" style="background-color: var(--grey-50);">
                 <div class="fomrTabContent active unitScroll" style="height: 100%;">
                     <form action="" class="organForm">
