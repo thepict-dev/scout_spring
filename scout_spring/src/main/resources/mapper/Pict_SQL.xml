@@ -747,12 +747,31 @@
 	
 	<select id="fn_get_units_info" resultType="pictVO">
 		WITH LeaderInfo as(
-			select group_concat(KNAME, ',', m.MOBILE, ',', m.EMAIL) as LEADERINFOTEXT, TROOPNO
+			select group_concat(KNAME, ',', m.MOBILE, ',', m.EMAIL) as LEADERINFOTEXT, TROOPNO, m.MEMBERNO
 			from member m
 			left outer join leader l on l.MEMBERNO = m.MEMBERNO
 			where l.TROOPNO = #{TROOPNO} and left(STARTDAY, '4') = #{search_year} and l.ADMINY = 'Y'
-			group by l.LEADERPOSITIONCODE1, KNAME, l.LEADERPOSITIONCODE2, m.MOBILE, m.EMAIL 
-			order by l.LEADERPOSITIONCODE1 desc, l.LEADERPOSITIONCODE2 asc
+			group by l.LEADERPOSITIONCODE1, KNAME, l.LEADERPOSITIONCODE2, m.MOBILE, m.EMAIL, m.MEMBERNO
+			order by 
+            (CASE 
+				WHEN l.LEADERPOSITIONCODE1 = '02' THEN 1
+				WHEN l.LEADERPOSITIONCODE1 = '01' THEN 2
+				WHEN l.LEADERPOSITIONCODE1 = '03' THEN 3
+				-- 추가적인 조건들
+				ELSE 999
+			END) asc, 
+              (CASE 
+				WHEN l.LEADERPOSITIONCODE2 = '09' THEN 1
+				WHEN l.LEADERPOSITIONCODE2 = '10' THEN 2
+				WHEN l.LEADERPOSITIONCODE2 = '11' THEN 3
+                WHEN l.LEADERPOSITIONCODE2 = '12' THEN 4
+                WHEN l.LEADERPOSITIONCODE2 = '13' THEN 5
+                WHEN l.LEADERPOSITIONCODE2 = '01' THEN 6
+				-- 추가적인 조건들
+				ELSE 999
+			END) asc
+            , cast(m.MEMBERNO as unsigned) asc
+            
 			limit 1 offset 0
 		) ,
 		LeaderCount AS (
@@ -1252,6 +1271,7 @@
 			and l.association = #{search_associationcode}
 		</if>
 		order by ENTERDATE desc
+		LIMIT #{limit} OFFSET #{startNumber}
 	</select>
 	
 	
