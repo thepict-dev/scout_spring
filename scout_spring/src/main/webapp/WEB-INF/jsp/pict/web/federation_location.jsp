@@ -31,7 +31,7 @@
             </c:if>
             <c:if test="${vo.leaderimg ne '' && vo.leaderimg ne null && vo.leaderimg ne undefined}">
 	            <div class="sign feders" >
-					<p>한국스카우트연맹 ${vo.ASSOCIATIONNAME} 연맹장 ${vo.leadername}</p>
+					<p>${vo.ASSOCIATIONNAME} 연맹장 ${vo.leadername}</p>
 				</div>
 			</c:if>
             <ul class="tabNav organNav rules">
