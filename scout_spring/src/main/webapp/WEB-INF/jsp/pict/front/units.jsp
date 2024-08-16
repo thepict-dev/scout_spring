@@ -328,9 +328,9 @@
                                             <th>면제코드</th>
                                             <th>월간지구독부수</th>
                                             <th>휴대전화</th>
+                                            <th>생년월일</th>
                                             <th>이메일</th>
                                             <th>연공</th>
-                                            <th>훈련과정</th>
                                             <th>포상</th>
                                             <th>평생회원</th>
                                             <th>승인여부</th>
@@ -371,11 +371,12 @@
                                             <th>월간지구독부수</th>
                                             <th>학년</th>
                                             <th>휴대전화</th>
+                                            <th>생년월일</th>
                                             <th>이메일</th>
                                             <th>연공</th>
                                             <th>승인여부</th>
                                             <th>진급신청내역</th>
-                                            <th>진급승인내역</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody id="unit_scout_list"></tbody>
@@ -533,10 +534,12 @@
 								'<td>' + excludename + '</td>'+
 								'<td>' + arr[i].scoutmagacnt + '</td>'+
 								'<td>' + arr[i].mobile + '</td>'+
+								'<td>' + arr[i].birthday + '</td>'+
 								'<td>' + arr[i].email + '</td>'+
 								'<td>' + arr[i].leadercnt + '</td>'+
-								'<td>' + arr[i].training + '</td>'+
 								'<td>' + arr[i].gift + '</td>'+
+								'<td>' + arr[i].lifemembery + '</td>'+
+								'<td>' + arr[i].confirmy + '</td>'+
 								'<td>' + arr[i].adminy + '</td>'+
 								'</tr>';
 						}
@@ -569,10 +572,12 @@
 							'<td>' + arr[i].scoutmagacnt + '</td>'+
 							'<td>' + arr[i].scoutschoolyear + '</td>'+
 							'<td>' + arr[i].mobile + '</td>'+
+							'<td>' + arr[i].birthday + '</td>'+
 							'<td>' + arr[i].email + '</td>'+
 							'<td>' + arr[i].scoutcnt + '</td>'+
 							'<td>' + arr[i].levelapply + '</td>'+
 							'<td>' + arr[i].levelinfo + '</td>'+
+							
 							'</tr>';
 						}
 						

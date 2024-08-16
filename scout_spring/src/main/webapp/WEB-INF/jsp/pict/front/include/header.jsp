@@ -34,7 +34,7 @@
             </div>
             <div class="navBtns">
                 <a href="#lnk" onclick="javascript:fn_logout()"><img src="/front_img/logout.png" alt="">로그아웃</a>
-                <a href="https://www.scout.or.kr/SysApplicationController.do" target="_blank">홈페이지 바로가기</a>
+                <a href="https://www.scout.or.kr" target="_blank">홈페이지 바로가기</a>
             </div>
         </div>
     </div>

@@ -225,7 +225,7 @@ public class PictController {
 		pictVO.setSearch_year(current_year);
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -537,7 +537,7 @@ public class PictController {
 		}
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -580,7 +580,7 @@ public class PictController {
 		}
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -957,7 +957,7 @@ public class PictController {
 		}
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -1003,7 +1003,7 @@ public class PictController {
 		}
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -1343,7 +1343,7 @@ public class PictController {
 		}
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -2693,7 +2693,7 @@ public class PictController {
 		}
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
-		if ((jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) && (adminy == null || adminy == "null" || adminy.equals("N"))) {
+		if ((jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) && (adminy == null || adminy == "null" || adminy.equals("N") || adminy.equals(""))) {
 			model.addAttribute("message", "해당 메뉴는 관리지도자 권한 이상만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -2971,7 +2971,7 @@ public class PictController {
 		}
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -3069,7 +3069,7 @@ public class PictController {
 		String associationcode = (String) request.getSession().getAttribute("associationcode");
 		String memberno = (String) request.getSession().getAttribute("id");
 		
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
 			model.addAttribute("message", "해당 메뉴는 중앙본부 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -3147,7 +3147,7 @@ public class PictController {
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		String associationcode = (String) request.getSession().getAttribute("associationcode");
 
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
 			model.addAttribute("message", "해당 메뉴는 중앙본부 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -3320,7 +3320,7 @@ public class PictController {
 		}
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -3518,7 +3518,7 @@ public class PictController {
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		String associationcode = (String) request.getSession().getAttribute("associationcode");
 		
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -3593,7 +3593,7 @@ public class PictController {
 		}
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -3697,7 +3697,7 @@ public class PictController {
 		String adminy = (String) request.getSession().getAttribute("adminy");
 		String associationcode = (String) request.getSession().getAttribute("associationcode");
 		
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N")) {
+		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");

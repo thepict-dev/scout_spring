@@ -143,8 +143,22 @@
 	                                    <td>${resultList.MEMBERNO}</td>
 	                                    <td>${resultList.KNAME}</td>
 	                         			<td>${resultList.BIRTHDAY}</td>
-	                         			<td>${resultList.DISPTROOPNO}</td>
-	                         			<td>${resultList.TROOPNAME}</td>
+	                         			<td>
+	                         				<c:if test="${resultList.TROOPSCOUTY eq 'Y'}">
+	                         					${resultList.DISPTROOPNO2}
+	                         				</c:if>
+	                         				<c:if test="${resultList.TROOPSCOUTY ne 'Y'}">
+	                         					${resultList.DISPTROOPNO}
+	                         				</c:if>
+                         				</td>
+	                         			<td>
+		                         			<c:if test="${resultList.TROOPSCOUTY eq 'Y'}">
+	                         					${resultList.TROOPNAME2}
+	                         				</c:if>
+	                         				<c:if test="${resultList.TROOPSCOUTY ne 'Y'}">
+	                         					${resultList.TROOPNAME}
+	                         				</c:if>
+                         				</td>
 	                                    <td>
 				                         	<c:if test='${resultList.MEMCLSCODE eq "1"}'>개인</c:if>
 				                         	<c:if test='${resultList.MEMCLSCODE eq "2"}'>법인</c:if>

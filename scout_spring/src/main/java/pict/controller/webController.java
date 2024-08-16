@@ -148,6 +148,34 @@ public class webController {
 	@RequestMapping("notice_view")
 	public String notice_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		if(pictVO != null) {
+			String ip = request.getHeader("X-Forwarded-For");
+		    System.out.println("> X-FORWARDED-FOR : " + ip);
+
+		    if (ip == null) {
+		        ip = request.getHeader("Proxy-Client-IP");
+		        System.out.println("> Proxy-Client-IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("WL-Proxy-Client-IP");
+		        System.out.println(">  WL-Proxy-Client-IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("HTTP_CLIENT_IP");
+		        System.out.println("> HTTP_CLIENT_IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+		        System.out.println("> HTTP_X_FORWARDED_FOR : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getRemoteAddr();
+		        System.out.println("> getRemoteAddr : "+ip);
+		    }
+		    System.out.println("> Result : IP Address : "+ip);
+			System.out.println(request.getRequestURL());
+			System.out.println("공지사항 뷰");
+			System.out.println(pictVO.getBRDCTSNO() + "이게 공지사항idx");
+			System.out.println(pictVO.getBRDNO() + "카테고리 넘버");
 			pictService.board_view_cnt(pictVO);
 			pictVO = pictService.board_list_one(pictVO);
 		}
@@ -201,6 +229,34 @@ public class webController {
 	@RequestMapping("news_view")
 	public String news_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		if(pictVO != null) {
+			String ip = request.getHeader("X-Forwarded-For");
+		    System.out.println("> X-FORWARDED-FOR : " + ip);
+
+		    if (ip == null) {
+		        ip = request.getHeader("Proxy-Client-IP");
+		        System.out.println("> Proxy-Client-IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("WL-Proxy-Client-IP");
+		        System.out.println(">  WL-Proxy-Client-IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("HTTP_CLIENT_IP");
+		        System.out.println("> HTTP_CLIENT_IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+		        System.out.println("> HTTP_X_FORWARDED_FOR : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getRemoteAddr();
+		        System.out.println("> getRemoteAddr : "+ip);
+		    }
+		    System.out.println("> Result : IP Address : "+ip);
+			System.out.println(request.getRequestURL());
+			System.out.println("뉴스 뷰");
+			System.out.println(pictVO.getBRDCTSNO() + "이게 공지사항idx");
+			System.out.println(pictVO.getBRDNO() + "카테고리 넘버");
 			pictService.board_view_cnt(pictVO);
 			pictVO = pictService.board_list_one(pictVO);
 		}
@@ -455,6 +511,34 @@ public class webController {
 	@RequestMapping("federation_view")
 	public String federation_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		if(pictVO != null) {
+			String ip = request.getHeader("X-Forwarded-For");
+		    System.out.println("> X-FORWARDED-FOR : " + ip);
+
+		    if (ip == null) {
+		        ip = request.getHeader("Proxy-Client-IP");
+		        System.out.println("> Proxy-Client-IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("WL-Proxy-Client-IP");
+		        System.out.println(">  WL-Proxy-Client-IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("HTTP_CLIENT_IP");
+		        System.out.println("> HTTP_CLIENT_IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+		        System.out.println("> HTTP_X_FORWARDED_FOR : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getRemoteAddr();
+		        System.out.println("> getRemoteAddr : "+ip);
+		    }
+		    System.out.println("> Result : IP Address : "+ip);
+			System.out.println(request.getRequestURL());
+			System.out.println("연맹공지 뷰");
+			System.out.println(pictVO.getBRDCTSNO() + "이게 공지사항idx");
+			System.out.println(pictVO.getBRDNO() + "카테고리 넘버");
 			pictService.board_view_cnt(pictVO);
 			pictVO = pictService.board_list_one(pictVO);
 		}
@@ -508,6 +592,34 @@ public class webController {
 	@RequestMapping("integrated_view")
 	public String integrated_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		if(pictVO != null) {
+			String ip = request.getHeader("X-Forwarded-For");
+		    System.out.println("> X-FORWARDED-FOR : " + ip);
+
+		    if (ip == null) {
+		        ip = request.getHeader("Proxy-Client-IP");
+		        System.out.println("> Proxy-Client-IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("WL-Proxy-Client-IP");
+		        System.out.println(">  WL-Proxy-Client-IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("HTTP_CLIENT_IP");
+		        System.out.println("> HTTP_CLIENT_IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+		        System.out.println("> HTTP_X_FORWARDED_FOR : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getRemoteAddr();
+		        System.out.println("> getRemoteAddr : "+ip);
+		    }
+		    System.out.println("> Result : IP Address : "+ip);
+			System.out.println(request.getRequestURL());
+			System.out.println("통합자료실 뷰");
+			System.out.println(pictVO.getBRDCTSNO() + "이게 공지사항idx");
+			System.out.println(pictVO.getBRDNO() + "카테고리 넘버");
 			pictService.board_view_cnt(pictVO);
 			pictVO = pictService.board_list_one(pictVO);
 		}
@@ -571,6 +683,34 @@ public class webController {
 	@RequestMapping("program_view")
 	public String program_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		if(pictVO != null) {
+			String ip = request.getHeader("X-Forwarded-For");
+		    System.out.println("> X-FORWARDED-FOR : " + ip);
+
+		    if (ip == null) {
+		        ip = request.getHeader("Proxy-Client-IP");
+		        System.out.println("> Proxy-Client-IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("WL-Proxy-Client-IP");
+		        System.out.println(">  WL-Proxy-Client-IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("HTTP_CLIENT_IP");
+		        System.out.println("> HTTP_CLIENT_IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+		        System.out.println("> HTTP_X_FORWARDED_FOR : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getRemoteAddr();
+		        System.out.println("> getRemoteAddr : "+ip);
+		    }
+		    System.out.println("> Result : IP Address : "+ip);
+			System.out.println(request.getRequestURL());
+			System.out.println("프로그램 뷰");
+			System.out.println(pictVO.getBRDCTSNO() + "이게 공지사항idx");
+			System.out.println(pictVO.getBRDNO() + "카테고리 넘버");
 			pictService.board_view_cnt(pictVO);
 			pictVO = pictService.board_list_one(pictVO);
 		}
@@ -804,6 +944,34 @@ public class webController {
 	@RequestMapping("information_view")
 	public String information_view(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		if(pictVO != null) {
+			System.out.println(request.getRequestURL());
+			String ip = request.getHeader("X-Forwarded-For");
+		    System.out.println("> X-FORWARDED-FOR : " + ip);
+
+		    if (ip == null) {
+		        ip = request.getHeader("Proxy-Client-IP");
+		        System.out.println("> Proxy-Client-IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("WL-Proxy-Client-IP");
+		        System.out.println(">  WL-Proxy-Client-IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("HTTP_CLIENT_IP");
+		        System.out.println("> HTTP_CLIENT_IP : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+		        System.out.println("> HTTP_X_FORWARDED_FOR : " + ip);
+		    }
+		    if (ip == null) {
+		        ip = request.getRemoteAddr();
+		        System.out.println("> getRemoteAddr : "+ip);
+		    }
+		    System.out.println("> Result : IP Address : "+ip);
+			System.out.println("정보공개 뷰");
+			System.out.println(pictVO.getBRDCTSNO() + "이게 공지사항idx");
+			System.out.println(pictVO.getBRDNO() + "카테고리 넘버");
 			pictService.board_view_cnt(pictVO);
 			pictVO = pictService.board_list_one(pictVO);
 		}

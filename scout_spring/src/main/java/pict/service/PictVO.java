@@ -326,8 +326,22 @@ public class PictVO extends PictDefaultVO {
 	private String LIFEMEMBERNO;
 	private String LIFEENTERDATE;
 	private String LIFESTATUS;
+	private String DISPTROOPNO2;
+	private String TROOPNAME2;
 	
 	
+	public String getDISPTROOPNO2() {
+		return DISPTROOPNO2;
+	}
+	public void setDISPTROOPNO2(String dISPTROOPNO2) {
+		DISPTROOPNO2 = dISPTROOPNO2;
+	}
+	public String getTROOPNAME2() {
+		return TROOPNAME2;
+	}
+	public void setTROOPNAME2(String tROOPNAME2) {
+		TROOPNAME2 = tROOPNAME2;
+	}
 	public String getLIFEMEMBERNO() {
 		return LIFEMEMBERNO;
 	}
