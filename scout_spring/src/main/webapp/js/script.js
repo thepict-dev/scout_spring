@@ -2,12 +2,15 @@ $(document).ready(function() {
     $('select').niceSelect();
 });
 
-$('.lnb').mouseover(function(){
+$('.header h1, .lnb').mouseover(function(){
+    $('.lnb').addClass('active');
     $('.header').addClass('active');
 });
-$('.lnb').mouseleave(function(){
+$('.header h1, .lnb').mouseleave(function(){
+    $('.lnb').removeClass('active');
     $('.header').removeClass('active');
 });
+
 
 // 각 nav 항목의 클릭 이벤트를 설정
 $('.nav > li > a').click(function(e) {
@@ -24,8 +27,21 @@ $('.nav > li > a').click(function(e) {
         $subNav.fadeIn(500);  // 현재 subNav만 표시
     }
 });
-$('.lnb').mouseleave(function() {
-    $('.subNav').fadeOut(300);  // 모든 subNav 숨김
+
+$('.header').mouseleave(function(){
+    if (!$('.lnb:hover').length) {
+        $('.lnb').removeClass('active');
+        $('.header').removeClass('active');
+        $('.subNav').fadeOut(300);  // 모든 subNav 숨김
+    }
+});
+
+$('.lnb').mouseleave(function(){
+    if (!$('.header:hover').length) {
+        $('.lnb').removeClass('active');
+        $('.header').removeClass('active');
+        $('.subNav').fadeOut(300);  // 모든 subNav 숨김
+    }
 });
 
 // 대상 Element 선택

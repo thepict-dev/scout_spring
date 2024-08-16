@@ -55,6 +55,12 @@ nav::-webkit-scrollbar{
 .nav li:hover{
     background: var(--purple-500);
 }
+.lnb.active{
+	width: 200px;
+}
+.lnb.active .nav > li > a{
+    display: flex;
+}
 .lnb:hover{
     width: 200px;
 }
