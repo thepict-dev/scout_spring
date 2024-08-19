@@ -1690,7 +1690,7 @@
 	line-height: 134%; /* 26.8px */
 	letter-spacing: -1px;
 }
-.inputBox input[type="text"]{
+.inputBox input[type="text"], .inputBox input[type="password"]{
 	border: 0;
 	width: 100%;
     padding: 24px 12px;

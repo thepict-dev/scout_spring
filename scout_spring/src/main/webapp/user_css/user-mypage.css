@@ -350,3 +350,15 @@ input[type=radio]:checked + label {
 		padding: 8px 4px;
 	}
 }
+
+
+.inputBox p.wrongT1{
+	display: none;
+	font-size: 14px;
+	color: var(--purple-600);
+}
+.inputBox p.wrongT2{
+	display: none;
+	font-size: 14px;
+	color: var(--purple-600);
+}

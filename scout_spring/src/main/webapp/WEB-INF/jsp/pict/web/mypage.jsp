@@ -180,15 +180,17 @@
                 <div class="pwCngInner">
                     <div class="inputBox">
                         <p class="inputCaption">현재 비밀번호</p>
-                        <input type="text" name="organ" id="organ" placeholder="현재 비밀번호를 입력하세요">
+                        <input type="password" name="PASSWORD" id="PASSWORD" placeholder="현재 비밀번호를 입력하세요">
                     </div>
-                    <div class="inputBox">
+                    <div class="inputBox passVerify">
                         <p class="inputCaption">변경 비밀번호</p>
-                        <input type="text" name="organ" id="organ" placeholder="변경할 비밀번호를 입력하세요">
+                        <input type="password" name="newpassword" id="newpassword" placeholder="변경할 비밀번호를 입력하세요">
+                		<p class="wrongT1">문자, 숫자, 특수문자를 모두 사용해주세요</p>
                     </div>
-                    <div class="inputBox">
+                    <div class="inputBox passVerify">
                         <p class="inputCaption">변경 비밀번호 확인</p>
-                        <input type="text" name="organ" id="organ" placeholder="변경할 비밀번호를 입력하세요">
+                        <input type="password" name="newpassword2" id="newpassword2" placeholder="변경할 비밀번호를 입력하세요">
+                		<p class="wrongT2">비밀번호가 동일하지 않습니다</p>
                     </div>
                 </div>
                 <div class="buttonContainer find">
@@ -207,8 +209,36 @@
         $('#pwCngModal > button').click(function(){
             $('#pwCngModal').css('display', 'none');
         });
+		
 
-        
+        var $newPassword = $('#newpassword');
+        var $newPassword2 = $('#newpassword2');
+        var $wrongT1 = $('.wrongT1');
+        var $wrongT2 = $('.wrongT2');
+        var password2Touched = false;
+
+        function validatePassword(password) {
+            var reg = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[a-zA-Z\d!@#$%^&*()]{8,12}$/;
+            return reg.test(password);
+        }
+
+        $newPassword.on('keyup', function() {
+            if ($(this).val() !== '') {
+                $wrongT1.toggle(!validatePassword($(this).val()));
+            } else {
+                $wrongT1.hide();
+            }
+        });
+
+        $newPassword2.on('focus', function() {
+            password2Touched = true;
+        });
+
+        $newPassword2.on('keyup', function() {
+            if (password2Touched && $newPassword.val() !== '') {
+                $wrongT2.toggle($(this).val() !== $newPassword.val());
+            }
+        });
     </script>
 </body>
 </html>
