@@ -1,0 +1,342 @@
+.loginContainer{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin-top: 28px;
+}
+.loginForm{
+	display: flex;
+	flex-direction: column;
+	row-gap: 16px;
+	width: 90%;
+	max-width: 574px;
+	padding: 80px 0;
+}
+.loginForm .inputBox{
+	width: 100%;
+}
+
+/* modal */
+.userModalContianer{
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 15;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	row-gap: 20px;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.80);
+}
+#userModal{
+	display: none;
+}
+#userResetModal{
+	display: none;
+}
+#userFoundModal{
+	display: none;
+}
+#pwCngModal{
+	display: none;
+}
+
+.userModalContianer button{
+	cursor: pointer;
+}
+.userModalInner{
+	width: 100%;
+	height: fit-content;
+	max-width: 1059px;
+	max-height: 686px;
+	border-radius: 20px;
+	background-color: #fff;
+	overflow: hidden;
+}
+.userModalTitle{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	padding: 40px 0;
+	background-color: var(--grey-50);
+	color: #000;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 100%; /* 24px */
+	letter-spacing: -1.2px;
+}
+.userModalContents{
+	width: 100%;
+	height: calc(100% - 100px);
+	padding: 16px 40px;
+	overflow-y: auto;
+}
+
+@media all and (max-width : 768px){
+	.userModalContianer{
+		row-gap: 10px;
+		padding-top: 15%;
+	}
+	.userModalContianer button{
+		width: 40px;
+		height: 40px;
+		padding: 0;
+	}
+	.userModalContianer button img{
+		width: 100%;
+	}
+	.userModalTitle{
+		padding: 20px 0;
+		font-size: 18px;
+	}
+	.userModalContents{
+		height: calc(100% - 58px);
+		padding: 16px 24px;
+	}
+}
+
+/* tab */
+.loginTab{
+	display: flex;
+	justify-content: center;
+	column-gap: 8px;
+	width: 100%;
+}
+.loginTab li{
+	padding: 20px 24px;
+	color: var(--grey-500);
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 140%; /* 28px */
+	letter-spacing: -1px;
+	transition: all .2s;
+	cursor: pointer;
+}
+.loginTab li:hover{
+	font-weight: 700;
+	color: #000;
+}
+.loginTab li.active{
+	font-weight: 700;
+	color: #000;
+	border-bottom: 1px solid #000;
+}
+.userModalContents .tabInner{
+	width: 100%;
+	margin-top: 24px;
+	animation: unset !important;
+}
+
+@media all and (max-width : 768px){
+	.loginTab li{
+		padding: 16px 20px;
+		font-size: 18px;
+	}
+}
+
+.verifyContainer{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	padding-bottom: 60px;
+}
+.verifyContainer a, .findContainer > a{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 23px;
+	width: 100%;
+	max-width: 327px;
+	padding: 60px 0;
+	border: 1px solid var(--grey-100);
+}
+.verifyContainer a p, .findContainer > a p{
+	color: #000;
+	font-family: SUIT;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 100%; /* 24px */
+	letter-spacing: -1.2px;
+}
+.verifyContainer a i, .findContainer > a i{
+	width: 20px;
+	height: 1px;
+	margin: 4px 0;
+	background-color: #000;
+}
+.verifyContainer a span, .findContainer > a span{
+	color: #000;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 140%; /* 22.4px */
+	letter-spacing: -0.8px;
+}
+
+@media all and (max-width : 768px){
+	.verifyContainer{
+		padding-bottom: 40px;
+	}
+	.verifyContainer a, .findContainer > a{
+		row-gap: 20px;
+		width: 90%;
+		padding: 40px 0;
+	}
+	.verifyContainer a p, .findContainer > a p{
+		font-size: 18px;
+		letter-spacing: -1px;
+	}
+	.verifyContainer a span, .findContainer > a span{
+		font-size: 14px;
+	}
+}
+
+/* 비밀번호 찾기 */
+.findContainer{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+.findInputs{
+	display: flex;
+	flex-direction: column;
+	row-gap: 20px;
+	width: 100%;
+	max-width: 479.5px;
+	padding: 20px 0;
+	margin-top: 20px;
+}
+.findContainer .inputBox{
+	width: 100%;
+	row-gap: 8px;
+}
+.findContainer .inputBox p {
+    font-size: 18px;
+    line-height: 100%;
+}
+.buttonContainer.find{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	padding: 20px 0;
+	margin-top: 16px;
+}
+.buttonContainer.find a{
+	width: 206px;
+}
+
+.foundContainer{
+	display: flex;
+	flex-direction: column;
+	row-gap: 24px;
+	width: 100%;
+	max-width: 739px;
+	padding: 40px 0 40px 90px;
+	border-radius: 20px;
+	border: 1px solid var(--grey-100);
+	background: var(--grey-50);
+}
+.foundContainer p{
+	display: flex;
+	column-gap: 12px;
+	color: var(--text-color);
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 100%; /* 22px */
+	letter-spacing: -1.1px;
+}
+.foundContainer p span{
+	display: inline-block;
+	min-width: 80px;
+	font-weight: 700;
+}
+
+@media all and (max-width : 768px){
+	.foundContainer{
+		padding: 40px 0 40px 40px;
+	}
+	.foundContainer p{
+		font-size: 18px;
+		letter-spacing: -1px;
+	}
+	.foundContainer p span{
+		min-width: 70px;
+	}
+}
+
+.passInner{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 40px;
+	width: 100%;
+	padding: 24px 0 0 0;
+}
+.passTitle{
+	color: var(--text-color);
+	font-size: 32px;
+	font-weight: 500;
+	line-height: 100%; /* 32px */
+	letter-spacing: -1.6px;
+}
+.passTitle span{
+	color: var(--purple-500);
+	font-weight: 700;
+}
+.passContainer{
+	display: flex;
+	column-gap: 15px;
+	width: 100%;
+	max-width: 739px;
+	padding: 40px 0 40px 90px;
+	border-radius: 20px;
+	border: 1px solid var(--grey-100);
+	background: var(--grey-50);
+}
+.passContainer p{
+	color: var(--text-color);
+	font-size: 22px;
+	font-weight: 700;
+	line-height: 100%; /* 22px */
+	letter-spacing: -1.1px;
+}
+.passContainer span{
+	color: var(--grey-500);
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 100%; /* 22px */
+	letter-spacing: -1.1px;
+}
+.passContainer span span{
+	color: var(--purple-500);
+}
+.buttonContainer.find.pass{
+	display: flex;
+	column-gap: 16px;
+	margin-top: 0;
+}
+
+@media all and (max-width : 768px){
+	.passTitle{
+		font-size: 20px;
+		letter-spacing: -1px;
+	}
+	.passTitle span{
+		color: var(--purple-500);
+		font-weight: 700;
+	}
+	.passContainer{
+		padding: 40px 0 40px 40px;
+	}
+	.passContainer p{
+		font-size: 18px;
+	}
+	.passContainer span{
+		font-size: 18px;
+		letter-spacing: -1px;
+	}
+}
+

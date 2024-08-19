@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/user_css/user-common.css">
     <link rel="stylesheet" href="/user_css/user-header.css">
     <link rel="stylesheet" href="/user_css/user-footer.css">
+    <link rel="stylesheet" href="/user_css/user-login.css">
+    <link rel="stylesheet" href="/user_css/user-mypage.css">
     <link rel="stylesheet" href="/user_css/user-main.css">
     <link rel="stylesheet" href="/user_css/user-sub.css">
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>

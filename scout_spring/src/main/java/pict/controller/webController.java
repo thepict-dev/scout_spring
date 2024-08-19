@@ -62,6 +62,25 @@ public class webController {
 
 	}
 	
+
+	//로그인
+	@RequestMapping("login")
+	public String login(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/login";
+	}
+	//마이페이지
+	@RequestMapping("mypage")
+	public String mypage(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/mypage";
+	}
+	//정보수정
+	@RequestMapping("modify")
+	public String modify(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "pict/web/modify";
+	}
 	//행사
 	//잼버리
 	@RequestMapping("jamboree")
