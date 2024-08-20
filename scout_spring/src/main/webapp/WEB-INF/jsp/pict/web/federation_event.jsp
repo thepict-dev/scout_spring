@@ -29,7 +29,7 @@
 	               	</c:if>
 	            </div>
             </c:if>
-            <c:if test="${vo.leaderimg ne '' && vo.leaderimg ne null && vo.leaderimg ne undefined}">
+            <c:if test="${vo.leadername ne '' && vo.leadername ne null && vo.leadername ne undefined}">>
 	            <div class="sign feders" >
 					<p>${vo.ASSOCIATIONNAME} 연맹장 ${vo.leadername}</p>
 				</div>
