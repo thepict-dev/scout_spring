@@ -20,7 +20,7 @@
                 <p class="pwTit">새 비밀번호 입력*</p>
                 <input type="password" name="newpassword" id="newpassword">
                 <span class="clear"><img src="" alt=""></span>
-                <p class="wrongT">문자, 숫자, 특수문자를 모두 사용해주세요</p>
+                <p class="wrongT">문자, 숫자, 특수문자를 모두 사용해주세요(8자 이상)</p>
             </div>
             <div class="pwInput" id="pw2">
                 <p class="pwTit">새 비밀번호 입력*</p>
