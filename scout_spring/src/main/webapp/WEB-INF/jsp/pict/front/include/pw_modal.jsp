@@ -20,10 +20,10 @@
                 <p class="pwTit">새 비밀번호 입력*</p>
                 <input type="password" name="newpassword" id="newpassword">
                 <span class="clear"><img src="" alt=""></span>
-                <p class="wrongT">문자, 숫자, 특수문자를 모두 사용해주세요(8자 이상)</p>
+                <p class="wrongT">8자 이상 문자, 숫자, 특수문자를 조합하여 사용해주세요.</p>
             </div>
             <div class="pwInput" id="pw2">
-                <p class="pwTit">새 비밀번호 입력*</p>
+                <p class="pwTit">새 비밀번호 확인*</p>
                 <input type="password" name="newpassword2" id="newpassword2">
                 <span class="clear"><img src="" alt=""></span>
                 <p class="wrongT">비밀번호가 동일하지 않습니다</p>
