@@ -22,11 +22,17 @@
 <c:set var="scout_whole_confirm" value="${fn:indexOf(url, 'register_confirm')}"/>
 
 <c:set var="board_lists" value="${fn:indexOf(url, 'board_list')}"/>
-<c:set var="reservation_lists" value="${fn:indexOf(url, 'reservation_list')}"/>
+<c:set var="reservation_list" value="${fn:indexOf(url, 'reservation_list')}"/>
+<c:set var="local_list" value="${fn:indexOf(url, 'local_list')}"/>
+<c:set var="popup_list" value="${fn:indexOf(url, 'popup_list')}"/>
+
+<c:set var="home_man" value="${board_lists ne -1 || reservation_list ne -1 || local_list ne -1 || popup_list ne -1 }" />
 
 <c:set var="association_price" value="${fn:indexOf(url, 'association_price')}"/>
 
 <c:set var="stats_list" value="${fn:indexOf(url, 'stats_list')}"/>
+<c:set var="stats_organ" value="${fn:indexOf(url, 'stats_organ')}"/>
+<c:set var="stats_member" value="${fn:indexOf(url, 'stats_member')}"/>
 
 <div class="lnb">
     <nav>
@@ -55,11 +61,16 @@
                 <span><img src="/front_img/lnb2.png" alt=""></span>
                 <a href="#lnk">행사/활동 관리</a>
             </li>
-            <li <c:if test="${stats_list ne -1}">class="active"</c:if>>
+            <li <c:if test="${stats_list ne -1 || stats_organ ne -1 || stats_member ne -1}">class="active"</c:if>>
                 <span><img src="/front_img/lnb3.png" alt=""></span>
-                <a href="/stats_list">통계 및 현황</a>
+                <a href="#lnk">통계 및 현황</a>
+                <ul class="subNav">
+                    <li><a href="/admin/front/stats_list">전체 대시보드 보기</a></li>
+                    <li><a href="/admin/front/stats_organ">연맹별 조직 등록 현황</a></li>
+                    <li><a href="/admin/front/stats_member">대원 등록 현황</a></li>
+                </ul>
             </li>
-            <li <c:if test="${board_lists ne -1 || reservation_lists ne -1}">class="active"</c:if>>
+            <li <c:if test="${home_man eq true}">class="active"</c:if>>
                 <span><img src="/front_img/lnb4.png" alt=""></span>
                 <a href="#lnk">홈페이지 관리</a>
                 <ul class="subNav">
