@@ -1328,3 +1328,152 @@ tbody tr.disable td{
 }
  
 
+
+
+
+/* 통계 */
+.statsWrapper{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: var(--grey-50);
+}
+.statsWrapper::-webkit-scrollbar{
+    display: none;
+}
+.statsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+    /* height: 100%; */
+    padding: 40px 16px;
+}
+.statsContainer li{
+    width: 273px;
+    height: fit-content;
+    border-radius: 10px;
+    background-color: #fff;
+    transition: all 0.2s;
+}
+.statsContainer li a{
+    display: block;
+    width: 100%;
+    padding: 20px 32px;
+}
+.statsContainer li a > p{
+    margin-bottom: 15px;
+    color: var(--text-color);
+    font-weight: 500;
+    line-height: 100%; /* 16px */
+    letter-spacing: -0.8px;
+}
+.counts{
+    display: flex;
+    column-gap: 4px;
+    align-items: flex-end;
+    margin-bottom: 12px;
+    color: var(--text-color);
+    font-weight: 500;
+    line-height: 100%; /* 16px */
+    letter-spacing: -0.8px;
+}
+.counts span{
+    margin-right: 2px;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+}
+.increase, .decrease{
+    display: flex;
+    align-items: center;
+    column-gap: 2px;
+    color: #137055;
+}
+.decrease{
+    color: #BB1219;
+}
+.increase img, .decrease img{
+    width: 12px;
+}
+.statsContainer li a > span{
+    color: var(--grey-500);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 100%; /* 12px */
+    letter-spacing: -0.6px;
+}
+.statsContainer li:hover{
+    background: var(--purple-50);
+}
+.statsContainer li.active{
+    border: 1px solid var(--purple-100);
+    background: var(--purple-50);
+}
+
+/* 통계뷰 */
+.statsViewWrapper{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: var(--grey-50);
+}
+.statsViewWrapper::-webkit-scrollbar{
+    display: none;
+}
+.statsListsContainer{
+    width: 333px;
+    height: 100%;
+    padding: 16px;
+    background-color: var(--grey-50);
+    border-right: 1px solid var(--grey-100);
+    overflow-y: auto;
+}
+.statsListsContainer::-webkit-scrollbar{
+    display: none;
+}
+.statsContainer.view{
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 12px 0 0 0;
+}
+.statsDetails{
+    width: calc(100% - 333px);
+}
+.statsDetails .tableContainer, .statsWrapper .tableContainer{
+    background-color: #fff;
+
+}
+.tableWrapper.stats{
+    height: 433px;
+}
+.tableButtons.stats{
+    padding: 12px 16px;
+}
+
+.formTabNav.stats{
+    border-bottom: 1px solid var(--grey-100);
+}
+.organSearchForm.stats{
+    height: fit-content;
+    border-bottom: 1px solid var(--grey-100);
+}
+.organSearch.stats{
+    column-gap: 16px;
+}
+.inputsAlign.stats a{
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid var(--grey-100);
+    background: #FFF;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 100%; /* 14px */
+    letter-spacing: -0.7px;
+}
+.inputsAlign.stats a:hover{
+    background-color: var(--grey-50);
+}

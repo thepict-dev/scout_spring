@@ -1,13 +1,12 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="fn"	   uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <%
-	String url = request.getRequestURL().toString();
-	pageContext.setAttribute("url", url);
-	
+    String url = request.getRequestURL().toString();
+    pageContext.setAttribute("url", url);
 %>
 
 <c:set var="organization" value="${fn:indexOf(url, 'organization')}"/>
@@ -27,12 +26,13 @@
 
 <c:set var="association_price" value="${fn:indexOf(url, 'association_price')}"/>
 
+<c:set var="stats_list" value="${fn:indexOf(url, 'stats_list')}"/>
 
 <div class="lnb">
     <nav>
         <ul class="nav">
             <li <c:if test="${management eq true}">class="active"</c:if>>
-            	<span><img src="/front_img/lnb1.png" alt=""></span>
+                <span><img src="/front_img/lnb1.png" alt=""></span>
                 <a href="#lnk">스카우트 통합 관리</a>
                 <ul class="subNav">
                     <li><a href="/admin/front/organization">조직 통합 관리</a></li>
@@ -44,7 +44,7 @@
                 </ul>
             </li>
             <li <c:if test="${scout_whole_register ne -1 || scout_whole_confirm ne -1}">class="active"</c:if>>
-            	<span><img src="/front_img/lnb5.png" alt=""></span>
+                <span><img src="/front_img/lnb5.png" alt=""></span>
                 <a href="#lnk">회원등록</a>
                 <ul class="subNav">
                     <li><a href="/admin/front/scout_whole_register">대등록</a></li>
@@ -52,30 +52,30 @@
                 </ul>
             </li>
             <li>
-            	<span><img src="/front_img/lnb2.png" alt=""></span>
+                <span><img src="/front_img/lnb2.png" alt=""></span>
                 <a href="#lnk">행사/활동 관리</a>
             </li>
-            <li>
-            	<span><img src="/front_img/lnb3.png" alt=""></span>
-                <a href="#lnk">통계 및 현황</a>
+            <li <c:if test="${stats_list ne -1}">class="active"</c:if>>
+                <span><img src="/front_img/lnb3.png" alt=""></span>
+                <a href="/stats_list">통계 및 현황</a>
             </li>
             <li <c:if test="${board_lists ne -1 || reservation_lists ne -1}">class="active"</c:if>>
-            	<span><img src="/front_img/lnb4.png" alt=""></span>
+                <span><img src="/front_img/lnb4.png" alt=""></span>
                 <a href="#lnk">홈페이지 관리</a>
                 <ul class="subNav">
-                	<li><a href="/admin/front/board_list">중앙본부 게시물</a></li>
-                	<li><a href="/admin/front/board_list_sub">지방·특수연맹 게시물</a></li>
-                	<li><a href="/admin/front/reservation_list">시설 예약관리</a></li>
-                	<li><a href="/admin/front/local_list">스카우트 가입 관리</a></li>
-                	<li><a href="/admin/front/popup_list">팝업 관리</a></li>
-               	</ul>
+                    <li><a href="/admin/front/board_list">중앙본부 게시물</a></li>
+                    <li><a href="/admin/front/board_list_sub">지방·특수연맹 게시물</a></li>
+                    <li><a href="/admin/front/reservation_list">시설 예약관리</a></li>
+                    <li><a href="/admin/front/local_list">스카우트 가입 관리</a></li>
+                    <li><a href="/admin/front/popup_list">팝업 관리</a></li>
+                </ul>
             </li>
             <li <c:if test="${association_price ne -1}">class="active"</c:if>>
                 <span><img src="/front_img/setting.png" alt=""></span>
                 <a href="#lnk">기본설정관리</a>
                 <ul class="subNav">
-                	<li><a href="/admin/front/association_price">연맹별납부액관리</a></li>
-               	</ul>
+                    <li><a href="/admin/front/association_price">연맹별납부액관리</a></li>
+                </ul>
             </li>
         </ul>
     </nav>
