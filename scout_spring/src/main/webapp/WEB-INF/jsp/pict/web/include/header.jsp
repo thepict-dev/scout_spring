@@ -201,10 +201,25 @@
 	        </div>
 	    </div>
 	</div>
+	<input type="hidden" id="tttt" value="N">
 </header>
 <script>
+	document.addEventListener('keydown', function(event) {
+	    // 눌린 키의 코드 값을 가져옵니다
+	    if (event.key === 'p' || event.key === 'P') {
+	        // 'P' 키가 눌렸을 때 실행할 코드
+	        $('#tttt').val("Y")
+	    }
+	});
 	function fn_login(){
-		alert("현재 지원하지 않는 기능입니다.")
+		var tttt = $('#tttt').val()
+		if(tttt == 'N'){
+			alert("현재 지원하지 않는 기능입니다.")	
+		}
+		else{
+			location.href= "/login"	
+		}
+		
 	}
 	function fn_logout(){
 		if(confirm("로그아웃 하시겠습니까?")){

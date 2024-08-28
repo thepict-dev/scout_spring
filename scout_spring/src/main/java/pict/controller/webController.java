@@ -5,7 +5,9 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +49,54 @@ public class webController {
 		model.addAttribute("totalCnt", totalCnt);
 		return "pict/web/main";
 	}
+	@RequestMapping("/action_login")
+	public String action_login(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model)
+			throws Exception {
+		// 처음 드러와서 세션에 정보있으면 메인으로 보내줘야함
+		String inpuId = pictVO.getMEMBERNO();
+		String inputPw = pictVO.getPassword();
+		
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String current_year = dateFormat.format(today);
+		
+		pictVO.setYEAR(current_year);
+		pictVO = adminService.get_user_info(pictVO);
+
+		if (pictVO != null && pictVO.getMEMBERNO() != null && !pictVO.getMEMBERNO().equals("")) {
+			String user_id = pictVO.getMEMBERNO();
+			String enpassword = encryptPassword(inputPw); // 입력비밀번호
+			
+			if (enpassword.equals(pictVO.getPassword())) {
+				request.getSession().setAttribute("id", pictVO.getMEMBERNO());
+				request.getSession().setAttribute("name", pictVO.getKNAME());
+				request.getSession().setAttribute("associationname", pictVO.getASSOCIATIONNAME());
+				request.getSession().setAttribute("associationcode", pictVO.getASSOCIATIONCODE());
+				request.getSession().setAttribute("leaderpositionname", pictVO.getLEADERPOSITIONNAME());
+				request.getSession().setAttribute("troopno", pictVO.getTROOPNO());
+				request.getSession().setAttribute("troopname", pictVO.getTROOPNAME());
+				request.getSession().setAttribute("employeey", pictVO.getEMPLOYEEY());
+				request.getSession().setAttribute("adminy", pictVO.getADMINY());
+				request.getSession().setAttribute("picimg", pictVO.getPICIMG());
+				request.getSession().setAttribute("parenttroopno", pictVO.getPARENTTROOPNO());
+				request.getSession().setAttribute("unity", pictVO.getUNITY());
+
+				return "redirect:/";
+			
+
+			} else {
+				model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.");
+				model.addAttribute("retType", ":location");
+				model.addAttribute("retUrl", "/admin/pict_login");
+				return "pict/main/message";
+			}
+		} else {
+			model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/pict_login");
+			return "pict/main/message";
+		}
+	}
 	@RequestMapping("/logout")
 	public String logout(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model)
 			throws Exception {
@@ -72,15 +122,55 @@ public class webController {
 	//마이페이지
 	@RequestMapping("mypage")
 	public String mypage(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		String memberno = request.getSession().getAttribute("id").toString();
+		pictVO.setMEMBERNO(memberno);
 		
+		pictVO = pictService.member_info(pictVO);
+		List<PictVO> list = null;
+		if(pictVO != null) {
+			if(pictVO.getTROOPSCOUTY() != null && pictVO.getTROOPSCOUTY().equals("Y")) {
+				list = pictService.scout_list(pictVO);
+			}
+			else if(pictVO.getTROOPLEADERY() != null && pictVO.getTROOPLEADERY().equals("Y")) {
+				list = pictService.leader_list(pictVO);
+			}
+			
+		}
+		List<?> job_list= pictService.job_list(pictVO);
+		model.addAttribute("job_list", job_list);
+		
+		model.addAttribute("pictVO", pictVO);
+		model.addAttribute("list", list);
 		return "pict/web/mypage";
 	}
 	//정보수정
 	@RequestMapping("modify")
 	public String modify(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		String memberno = request.getSession().getAttribute("id").toString();
+		pictVO.setMEMBERNO(memberno);
 		
+		pictVO = pictService.member_info(pictVO);
+		model.addAttribute("pictVO", pictVO);
+		
+		List<?> job_list= pictService.job_list(pictVO);
+		model.addAttribute("job_list", job_list);
 		return "pict/web/modify";
 	}
+	@RequestMapping("mypage_mod")
+	public String mypage_mod(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		String memberno = request.getSession().getAttribute("id").toString();
+		pictVO.setMEMBERNO(memberno);
+		
+		pictService.mypage_mod(pictVO);
+		
+		model.addAttribute("message", "정상적으로 저장되었습니다.");
+		model.addAttribute("retType", ":location");
+		model.addAttribute("retUrl", "/mypage");
+		return "pict/main/message";	
+	}
+	
+	
+	
 	//행사
 	//잼버리
 	@RequestMapping("jamboree")
@@ -1037,8 +1127,56 @@ public class webController {
 		return "pict/web/tr_borad_view";
 	}
 
-
-
+	
+	//ajax
+	@RequestMapping("/fine_member_info")
+	@ResponseBody
+	public HashMap<String, Object> fine_member_info(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String kname = param.get("kname").toString();
+		String mobile = param.get("mobile").toString();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		pictVO.setKNAME(kname);
+		pictVO.setMOBILE(mobile);
+		
+		
+		pictVO = pictService.fine_member_info(pictVO);
+		
+		if(pictVO != null) {
+			map.put("rst", pictVO);
+			return map;
+		}
+		else {
+			return map;
+		}
+	}
+	@RequestMapping("/find_pw_reset")
+	@ResponseBody
+	public HashMap<String, Object> find_pw_reset(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		try {
+			String memberno = param.get("memberno").toString();
+			pictVO.setMEMBERNO(memberno);
+			
+			
+			String enpassword = encryptPassword(memberno+"1!");
+			pictVO.setPassword(enpassword);
+			pictVO.setMEMBERNO(memberno);
+			
+			
+			adminService.user_reset(pictVO);
+			
+			map.put("rst", "Y");
+			return map;
+	
+		}
+		catch(Exception e) {
+			map.put("rst", "N");
+			return map;
+		}
+		
+		
+	}
+	
 	
 	// 공통메소드
 	public String fileUpload(MultipartHttpServletRequest request, MultipartFile uploadFile, String target) {

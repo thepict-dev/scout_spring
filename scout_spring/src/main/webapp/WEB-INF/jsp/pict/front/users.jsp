@@ -1056,7 +1056,8 @@
 				scouty : scouty,
 				leadery : leadery,
 			}
-
+			$('#dmyKNAME_SCOUT').val(kname)
+			$('#dmyKNAME').val(kname)
 			
 			$.ajax({
 				url : "/admin/get_per_info"

@@ -201,6 +201,14 @@ public interface PictMapper {
 	void popup_delete(PictVO pictVO) throws Exception;
 
 	void popup_cng(PictVO pictVO) throws Exception;
+
+	List<PictVO> dae_modal_search(PictVO pictV) throws Exception;
+
+	PictVO fine_member_info(PictVO pictVO) throws Exception;
+
+	PictVO member_info(PictVO pictVO) throws Exception;
+
+	void mypage_mod(PictVO pictVO) throws Exception;
  
 	
 

@@ -21,9 +21,11 @@
     <link rel="stylesheet" href="/user_css/user-mypage.css">
     <link rel="stylesheet" href="/user_css/user-main.css">
     <link rel="stylesheet" href="/user_css/user-sub.css">
+    <link href="/css/nice-select.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="/js/jquery.nice-select.js"></script>
     <script src="/js/odometer.min.js"></script>
     <script src="/js/user.js" defer></script>
     
@@ -39,6 +41,9 @@
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LC2B3BP4TL"></script>
 	<script>
+		$(document).ready(function() {
+		    $('select').niceSelect();
+		});
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());

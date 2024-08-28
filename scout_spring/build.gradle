@@ -67,6 +67,13 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+	
+	//json
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	
+	//본인인증
+	//implementation fileTree(dir: 'src/main/resources/libs', include: ['*.jar'])
+	//runtimeOnly files('libs/OkCert3-java1.5-2.3.1.jar')
 }
 
 tasks.named('test') {

@@ -17,17 +17,12 @@
 		}
 
 		function fn_login() {
-			
-			// rsa 암호화
-			//var rsa = new RSAKey();
-			//rsa.setPublic($('#RSAModulus').val(),$('#RSAExponent').val());
-			
 			if ($("#id").val() == "") {
 				alert("아이디를 입력하세요.");
 				$("#id").focus();
 				return false;
-			} else {
-				//$("#adminId").val(rsa.encrypt($("#id").val()));
+			} 
+			else {
 				$("#MEMBERNO").val($("#id").val());
 			}
 			
@@ -36,12 +31,10 @@
 				$("#password2").focus();
 				return false;
 			} else {
-				//$("#adminPw").val(rsa.encrypt($("#pw").val()));
 				$("#password").val($("#password2").val());
 			}
 			document.loginForm.action = "/admin/login";
 			document.loginForm.submit();
-			
 		}
 	</script>
    	<link href="/css/reset.css" rel="stylesheet">

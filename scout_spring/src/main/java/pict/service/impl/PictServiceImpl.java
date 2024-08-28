@@ -560,6 +560,30 @@ public class PictServiceImpl implements PictService {
 		pictMapper.popup_cng(pictVO);
 	}
 
+	@Override
+	public List<PictVO> dae_modal_search(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.dae_modal_search(pictVO);
+	}
+
+	@Override
+	public PictVO fine_member_info(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.fine_member_info(pictVO);
+	}
+
+	@Override
+	public PictVO member_info(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.member_info(pictVO);
+	}
+
+	@Override
+	public void mypage_mod(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.mypage_mod(pictVO);
+	}
+
 
 	
 	

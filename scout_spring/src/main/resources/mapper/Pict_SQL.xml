@@ -7,10 +7,10 @@
 		select m.MEMBERNO, m.KNAME, m.BIRTHDAY, m.MEMCLSCODE, m.MEMGRADECODE, m.TROOPSCOUTY, m.TROOPLEADERY, m.LEADERINCNT, m.ENTERDATE, m.SCOUTINCNT, m.LIFEMEMBERY,
 		(case when m.EMPLOYEEY = '' then 'N' when m.EMPLOYEEY is null then 'N' when m.EMPLOYEEY = 'N' then 'N' else 'Y' end) as EMPLOYEEY,
 		m.SEX, m.MOBILE, m.EMAIL, m.HPOSTCODE, m.HADDR,
-		(select DISPTROOPNO from troop t2 where t2.TROOPNO = MAX(CASE WHEN left(l.STARTDAY, 4) = #{search_year} THEN l.TROOPNO ELSE NULL END) ) as DISPTROOPNO,
-		(select TROOPNAME from troop t2 where t2.TROOPNO = MAX(CASE WHEN left(l.STARTDAY, 4) = #{search_year} THEN l.TROOPNO ELSE NULL END) ) as TROOPNAME,
-		(select DISPTROOPNO from troop t2 where t2.TROOPNO = MAX(CASE WHEN left(s.STARTDAY, 4) = #{search_year} THEN s.TROOPNO ELSE NULL END) ) as DISPTROOPNO2,
-		(select TROOPNAME from troop t2 where t2.TROOPNO = MAX(CASE WHEN left(s.STARTDAY, 4) = #{search_year} THEN s.TROOPNO ELSE NULL END) ) as TROOPNAME2
+		(select DISPTROOPNO from troop t2 where t2.TROOPNO = MAX(CASE WHEN left(l.STARTDAY, 4) = #{search_year} THEN l.TROOPNO ELSE NULL END)  limit 1 offset 0) as DISPTROOPNO,
+		(select TROOPNAME from troop t2 where t2.TROOPNO = MAX(CASE WHEN left(l.STARTDAY, 4) = #{search_year} THEN l.TROOPNO ELSE NULL END)  limit 1 offset 0) as TROOPNAME,
+		(select DISPTROOPNO from troop t2 where t2.TROOPNO = MAX(CASE WHEN left(s.STARTDAY, 4) = #{search_year} THEN s.TROOPNO ELSE NULL END)  limit 1 offset 0) as DISPTROOPNO2,
+		(select TROOPNAME from troop t2 where t2.TROOPNO = MAX(CASE WHEN left(s.STARTDAY, 4) = #{search_year} THEN s.TROOPNO ELSE NULL END)  limit 1 offset 0) as TROOPNAME2
 		from member m
 		inner join memclscode mc on m.MEMCLSCODE = mc.MEMCLSCODE
 		
@@ -1383,6 +1383,63 @@
 		update popup_table set USEAT = #{USEAT} where idx = #{idx}
 	</update>
 	
+	
+	<select id="dae_modal_search" resultType="pictVO">
+		SELECT 
+		    m.MEMBERNO, 
+		    m.KNAME, 
+		    m.BIRTHDAY, 
+		    m.MOBILE, 
+		    m.TROOPSCOUTY, 
+		    m.TROOPLEADERY, 
+		    m.LIFEMEMBERY, 
+		    l.ADMINY, 
+		    l.STARTDAY
+		FROM 
+		    member m
+		LEFT JOIN 
+		    leader l 
+		ON 
+		    m.MEMBERNO = l.MEMBERNO
+		    AND l.STARTDAY = (
+		        SELECT 
+		            MAX(l2.STARTDAY)
+		        FROM 
+		            leader l2
+		        
+		    )
+		WHERE 1=1
+			<if test="KNAME != null and KNAME != ''">
+				and m.KNAME = #{KNAME}
+			</if>
+			<if test="MOBILE != null and MOBILE != ''">
+				and m.MOBILE = #{MOBILE}
+			</if>
+			<if test="BIRTHDAY != null and BIRTHDAY != ''">
+				and m.BIRTHDAY = #{BIRTHDAY}
+			</if>
+		    
+	</select>
+	
+	
+	
+	<select id="fine_member_info" resultType="pictVO">
+		select * from member where KNAME = #{KNAME} and MOBILE = #{MOBILE}
+		limit 1 offset 0;
+		
+	</select>
+	
+	<select id="member_info" resultType="pictVO">
+		select * from member where MEMBERNO = #{MEMBERNO}
+		limit 1 offset 0;
+	</select>
+	
+	
+	<update id="mypage_mod" parameterType="pictVO">
+		update member set BIRTHDAY=#{BIRTHDAY},  ENAME=#{ENAME}, SEX=#{SEX}, EMAIL=#{EMAIL},
+		JOBCODE=#{JOBCODE}, HPOSTCODE= #{HPOSTCODE}, HADDR=#{HADDR}, UPDATEDATE = now(), HTELNO =#{HTELNO}
+		where MEMBERNO = #{MEMBERNO}
+	</update>
 	
 	
 </mapper>

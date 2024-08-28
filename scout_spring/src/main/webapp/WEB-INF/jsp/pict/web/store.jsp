@@ -225,9 +225,9 @@
                         <!-- 전북 -->
                         <div class="tabInner">
 	                        <div class="textsWrapper rules facility">
-	                            <p class="lh120">이벤트사</p>
+	                            <p class="lh120">이벤트샵</p>
 	                            <ul class="textsSub">
-	                                <li><p>전화번호</p><span>063-278-6172</span></li>
+	                                <li><p>전화번호</p><span>063-278-6112</span></li>
 	                                <li><p>주소</p><span>전주시 덕진구 시천로45</span></li>
 	                            </ul>
 	                        </div>

@@ -343,14 +343,14 @@
 					$('#associationcode_leader').val(data.rst.associationcode)
 					fn_get_unitylist()
 					$('#unitycode_leader').val(data.rst.parenttroopno)
-					fn_get_trooplist()
+					fn_get_trooplist(data.rst.parenttroopno)
 					$('#troop_leader').val(data.rst.troopno)
 					$('#leader_orgno').val(data.rst.leaderorgno)
 					$('#leader_orgname').val(data.rst.orgname)
 					$('#LEADERORGPOSITIONCODE_LEADER').val(data.rst.leaderorgpositioncode)
 					$('#LEADERPOSITIONCODE1').val(data.rst.leaderpositioncode1)
 					
-					debugger
+					
 					fn_get_leaderposition(data.rst.leaderpositioncode2)
 					$('#LEADERPOSITIONCODE2').val(data.rst.leaderpositioncode2)
 					
@@ -443,10 +443,14 @@
 		
 		
 	}
-	function fn_get_trooplist(){
+	function fn_get_trooplist(parenttroopno_val){
+		var parenttroopno = parenttroopno_val
+		if(parenttroopno == '' || parenttroopno == null || parenttroopno == undefined){
+			parenttroopno = $('#unitycode_leader').val()
+		}
 		var param = {
 				associationcode : $('#associationcode_leader').val(),
-				parenttroopno : $('#unitycode_leader').val()
+				parenttroopno : parenttroopno
 		}
 		$.ajax({
 			url : "/admin/get_troop_list_leader"
@@ -467,6 +471,7 @@
 					$('#joinPopup select').niceSelect('update')
 				}
 				else{
+					$('#troop_leader').children().remove();
 					html += '<option value="0">개인등록</option>'
 					$('#troop_leader').append(html)
 					$('#joinPopup select').niceSelect('update')

@@ -164,6 +164,8 @@ public class PictController {
 					request.getSession().setAttribute("employeey", pictVO.getEMPLOYEEY());
 					request.getSession().setAttribute("adminy", pictVO.getADMINY());
 					request.getSession().setAttribute("picimg", pictVO.getPICIMG());
+					request.getSession().setAttribute("parenttroopno", pictVO.getPARENTTROOPNO());
+					request.getSession().setAttribute("unity", pictVO.getUNITY());
 
 					return "redirect:/admin/pict_main";
 				}
@@ -197,6 +199,13 @@ public class PictController {
 		request.getSession().setAttribute("picimg", null);
 		request.getSession().setAttribute("troopno", null);
 		request.getSession().setAttribute("troopname", null);
+		
+		request.getSession().setAttribute("employeey", null);
+		request.getSession().setAttribute("adminy", null);
+		request.getSession().setAttribute("picimg", null);
+		request.getSession().setAttribute("parenttroopno", null);
+		request.getSession().setAttribute("unity", null);
+		
 
 		return "redirect:/admin/pict_login";
 
@@ -2159,6 +2168,7 @@ public class PictController {
 			return "Y";
 		}
 		catch(Exception e) {
+			System.out.println(e);
 			return "N";
 		}
 	}
@@ -2282,7 +2292,6 @@ public class PictController {
 		model.addAttribute("retType", ":location");
 		model.addAttribute("retUrl", "/admin/front/signup");
 		return "pict/main/message";	
-		//return "pict/front/ko/management";
 	}
 	
 	//조직통합창에서 단위대 구분 검색
@@ -2693,6 +2702,15 @@ public class PictController {
 		}
 		String jeonjong = (String) request.getSession().getAttribute("employeey");
 		String adminy = (String) request.getSession().getAttribute("adminy");
+		
+		String parenttroopno = (String) request.getSession().getAttribute("parenttroopno");
+		String unity = (String) request.getSession().getAttribute("unity");
+		String troopname = (String) request.getSession().getAttribute("troopname");
+		model.addAttribute("parenttroopno", parenttroopno);
+		model.addAttribute("unity", unity);
+		model.addAttribute("troopname", troopname);
+		
+		
 		if ((jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) && (adminy == null || adminy == "null" || adminy.equals("N") || adminy.equals(""))) {
 			model.addAttribute("message", "해당 메뉴는 관리지도자 권한 이상만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
@@ -2759,6 +2777,30 @@ public class PictController {
 			return map;
 		}
 	}
+	//대등록에서 회원등록시 검색
+	@RequestMapping("/dae_modal_search")
+	@ResponseBody
+	public HashMap<String, Object> dae_modal_search(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String kname = param.get("kname").toString();
+		String birthday= param.get("birthday").toString();
+		String mobile = param.get("mobile").toString();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		pictVO.setKNAME(kname);
+		pictVO.setBIRTHDAY(birthday);
+		pictVO.setMOBILE(mobile);
+		
+		
+		List<PictVO> troop_list = pictService.dae_modal_search(pictVO);
+		if(troop_list.size() > 0) {
+			map.put("list", troop_list);
+			return map;
+		}
+		else {
+			return map;
+		}
+	}
+	
 	
 	//대등록에서 단위대 대원/리스트 작년꺼 가져와
 	@RequestMapping("/prev_troop_info")

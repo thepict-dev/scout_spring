@@ -200,6 +200,14 @@ public interface PictService {
 
 	public void popup_cng(PictVO pictVO) throws Exception;
 
+	public List<PictVO> dae_modal_search(PictVO pictVO) throws Exception;
+
+	public PictVO fine_member_info(PictVO pictVO) throws Exception;
+
+	public PictVO member_info(PictVO pictVO) throws Exception;
+
+	public void mypage_mod(PictVO pictVO) throws Exception;
+
 
 
 }

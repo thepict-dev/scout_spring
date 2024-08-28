@@ -63,11 +63,11 @@
                                 <h3>부산연맹</h3>
                                 <ul>
                                     <li><p>주소</p><span>부산 부산진구 연지로 17(연지동189-5), 지하 1층</span></li>
-                                    <li><p>Fax</p><span>051-464-4575</span></li>
+                                    <li><p>Fax</p><span></span></li>
                                 </ul>
                                 <ul>
                                     <li><p>Tel</p><span>051-467-3661</span></li>
-                                    <li><p>E-mail</p><span>busan5@scout.or.kr</span></li>
+                                    <li><p>E-mail</p><span>busan@scout.or.kr</span></li>
                                 </ul>
                             </div>
                         </div>

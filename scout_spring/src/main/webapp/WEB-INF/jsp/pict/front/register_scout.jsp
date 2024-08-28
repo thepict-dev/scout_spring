@@ -353,6 +353,7 @@
 	<input type="hidden" id="troop_no" >
 	<input type="hidden" id="troop_name" >
 	<input type="hidden" id="parrent_troop_no" >
+	<input type="hidden" id="troop_select_y" value="N">
 	<%@ include file="./include/loading.jsp" %>
 	<%@ include file="./include/error_page.jsp" %>
 	</body>
@@ -367,6 +368,7 @@
 				var troopname = '${troopname}'
 				var code = '${pictVO.ASSOCIATIONCODE}';
 				$('#ASSOCIATIONCODE').val(code)
+				
 				fn_get_unitylist_org()
 				$("select[name=ASSOCIATIONCODE]").attr("disabled", true);
 				$('.contentsContainer select').niceSelect('update')	
@@ -375,11 +377,14 @@
 				}
 				else if(employeey != 'Y' && adminy == 'Y'){
 					
+					var parenttroopno = '${parenttroopno}'
+					$('#PARENTTROOPNO').val(parenttroopno)
 					$("select[name=PARENTTROOPNO]").attr("disabled", true);
 					$("select[name=TROOPCLSCODE1]").attr("disabled", true);
 					$("select[name=TROOPCLSCODE2]").attr("disabled", true);
-					$('#TROOPNAME').val(troopname)
-					$('#TROOPNAME').attr("disabled", true)
+					$('#search_type').attr("disabled", true)
+					$('#search_text').val(troopname)
+					$('#search_text').attr("disabled", true)
 					
 					$('.contentsContainer select').niceSelect('update')
 					
@@ -766,10 +771,13 @@
 					}
 					if(data.scout_list == undefined && data.leader_list == undefined){
 						alert("등록된 데이터가 없습니다.")
+						var parenttroopno = '${parenttroopno}'
+						$('#parrent_troop_no').val(parenttroopno)
 					}
 					$('.contentsContainer select').niceSelect('update')
 					$("#regiSearchPopup").removeClass("active");
 					$('#initial-loading').css('display', 'none')
+					$('#troop_select_y').val("Y")
 				}
 				, error : function(xhr, status, error) {
 					console.log(xhr)
@@ -1033,7 +1041,6 @@
 			$('#final_list').append(html)
 		}
 		function final_submit(){
-			debugger
 			if(confirm("최종 제출 하시겠습니까?")){
 				$('#initial-loading').css('display', 'flex')
 				var data = JSON.parse($('#hiddenTextarea').val());

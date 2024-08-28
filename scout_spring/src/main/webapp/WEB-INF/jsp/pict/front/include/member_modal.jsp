@@ -316,12 +316,13 @@
 				, async : true
 				, success : function(data, status, xhr) {
 					console.log(data.rst)
+					debugger
 					$('#YEAR_SCOUT').val(data.rst.startday.substring(0,4))
 					$('#CONFIRMY_SCOUT').val(data.rst.confirmy)
 					$('#associationcode_scout').val(data.rst.associationcode)
 					fn_get_unitylist_scout()
 					$('#unitycode_scout').val(data.rst.parenttroopno)
-					fn_get_trooplist_scout()
+					fn_get_trooplist_scout(data.rst.parenttroopno)
 					$('#troop_scout').val(data.rst.troopno)
 					$('#scout_orgno').val(data.rst.scoutorgno)
 					$('#scout_orgname').val(data.rst.orgname)
@@ -429,10 +430,14 @@
 			});	
 		}
 	}
-	function fn_get_trooplist_scout(){
+	function fn_get_trooplist_scout(parenttroopno_val){
+		var parenttroopno = parenttroopno_val
+		if(parenttroopno == '' || parenttroopno == null || parenttroopno == undefined){
+			parenttroopno = $('#unitycode_scout').val()
+		}
 		var param = {
 			associationcode : $('#associationcode_scout').val(),
-			parenttroopno : $('#unitycode_scout').val()
+			parenttroopno : parenttroopno
 		}
 		$.ajax({
 			url : "/admin/get_troop_list_leader"
@@ -449,6 +454,12 @@
 					for(var i=0; i<arr.length; i++){
 						html += '<option value="'+ arr[i].troopno +'">'+ arr[i].disptroopno + " " + arr[i].troopname +'</option>'
 					}
+					$('#troop_scout').append(html)
+					$('#joinMemPopup select').niceSelect('update')
+				}
+				else{
+					$('#troop_scout').children().remove();
+					html += '<option value="0">개인등록</option>'
 					$('#troop_scout').append(html)
 					$('#joinMemPopup select').niceSelect('update')
 				}
