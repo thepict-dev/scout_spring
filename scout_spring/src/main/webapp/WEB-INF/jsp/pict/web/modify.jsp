@@ -19,7 +19,10 @@
                 <h3 class="myTitles">기본정보</h3>
                 <div class="myInfoContainer">
                     <div class="profile">
-                        <img src="/user_img/test.jpg" alt="프로필 이미지">
+                        <label for="attach_file">
+                             <img src="/user_img/test.jpg" alt="프로필 이미지" class="profileImg" id="profile_img">
+					    </label>
+                        <input type="file" class="imgUpload" id="attach_file" name="attach_file" accept="image/*" >
                     </div>
                     <div class="stackInputs">
                         <div class="myInputsContainer">
@@ -122,6 +125,18 @@
 	<%@ include file="./include/footer.jsp" %>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
+
+		//파일업로드
+		const file = document.querySelector(".imgUpload");
+		const preview = document.querySelector(".profileImg");
+	
+		file.addEventListener("change", () => {
+		    const reader = new FileReader();
+		    reader.onload = () => {
+		        preview.src = reader.result;
+		    }
+		    reader.readAsDataURL(file.files[0]);
+		});
 
 		window.onload = function(){
 		    document.getElementById("searchZip").addEventListener("click", function(){ //주소입력칸을 클릭하면
