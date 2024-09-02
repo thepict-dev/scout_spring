@@ -129,6 +129,10 @@
                 <ul class="tabNav addNav">
                     <li class="active"><a href="#lnk">연공</a></li>
                     <li><a href="#lnk">대원/진보</a></li>
+                    <li><a href="#lnk">자격</a></li>
+                    <li><a href="#lnk">훈련</a></li>
+                    <li><a href="#lnk">포상</a></li>
+                    <li><a href="#lnk">봉사</a></li>
                 </ul>
                 <div class="tabInner active">
                     <h3 class="myTitles">연공 정보</h3>
@@ -182,6 +186,21 @@
                         </div>
                     </div>
                 </div>
+                <div class="tabInner">
+                	<p class="emptyComment">현재 준비중인 기능입니다.</p>
+                </div>
+                <div class="tabInner">
+                	<p class="emptyComment">현재 준비중인 기능입니다.</p>
+                </div>
+                <div class="tabInner">
+                	<p class="emptyComment">현재 준비중인 기능입니다.</p>
+                </div>
+                <div class="tabInner">
+                	<p class="emptyComment">현재 준비중인 기능입니다.</p>
+                </div>
+                <div class="tabInner">
+                	<p class="emptyComment">현재 준비중인 기능입니다.</p>
+                </div>
                 <!-- 
                 <div class="tabInner">
                     <h3 class="myTitles">대원/진보</h3>
@@ -213,12 +232,12 @@
                 <div class="pwCngInner">
                     <div class="inputBox passVerify">
                         <p class="inputCaption">변경 비밀번호</p>
-                        <input type="password" name="newpassword" id="newpassword" placeholder="변경할 비밀번호를 입력하세요">
-                		<p class="wrongT1">문자, 숫자, 특수문자를 모두 사용해주세요</p>
+                        <input type="password" name="newpassword" id="newpassword" placeholder="변경할 비밀번호를 입력하세요" maxlength="13">
+                		<p class="wrongT1">8자 이상 13자 이하 문자, 숫자, 특수문자를 조합하여 사용해주세요.</p>
                     </div>
                     <div class="inputBox passVerify">
                         <p class="inputCaption">변경 비밀번호 확인</p>
-                        <input type="password" name="newpassword2" id="newpassword2" placeholder="변경할 비밀번호를 입력하세요">
+                        <input type="password" name="newpassword2" id="newpassword2" placeholder="변경할 비밀번호를 입력하세요" maxlength="13">
                 		<p class="wrongT2">비밀번호가 동일하지 않습니다</p>
                     </div>
                 </div>
@@ -270,7 +289,7 @@
         var password2Touched = false;
 
         function validatePassword(password) {
-            var reg = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[a-zA-Z\d!@#$%^&*()]{8,12}$/;
+            var reg = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[a-zA-Z\d!@#$%^&*()]{8,13}$/;
             return reg.test(password);
         }
 

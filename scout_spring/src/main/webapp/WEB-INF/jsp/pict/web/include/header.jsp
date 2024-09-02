@@ -116,12 +116,14 @@
             </div>
             <div class="gnbRight">
             	<c:if test="${name ne null && name ne undefined && name ne ''}">
+            		<a href="/mypage"><img src="/user_img/mypage.png" alt="마이페이지">마이페이지</a>
                 	<a href="#lnk" onclick="fn_logout()">로그아웃</a>
                	</c:if>
                	<c:if test="${name eq null || name eq undefined || name eq ''}">
                 	<a href="#lnk" onclick="fn_login()">로그인</a>
                	</c:if>
                 <!-- <a href="#lnk">소통게시판</a> -->
+           		<a href="/mypage" class="mb"><img src="/user_img/mypage.png" alt="마이페이지"></a>
                 <button type="button"><img src="/user_img/menu.png" alt="메뉴열기"></button>
             </div>
         </div>

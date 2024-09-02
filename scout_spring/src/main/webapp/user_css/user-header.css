@@ -134,7 +134,9 @@ header{
 	padding: 12px 16px;
 }
 .gnbRight a{
-	display: block;
+	display: flex;
+	align-items: center;
+	column-gap: 4px;
 	padding: 8px 12px;
 	color: var(--grey-500);
 	font-size: 16px;
@@ -157,6 +159,7 @@ header{
 	}
 	.gnbRight{
 		padding: 0;
+		column-gap: 0;
 	}
 	.gnbRight button{
 		padding: 0;
@@ -388,5 +391,15 @@ header{
 		font-weight: 500;
 		line-height: 100%; /* 18px */
 		letter-spacing: -0.9px;
+	}
+}
+
+
+.gnbRight a.mb{
+	display: none;
+}
+@media all and (max-width : 1024px){
+	.gnbRight a.mb{
+		display: block;
 	}
 }

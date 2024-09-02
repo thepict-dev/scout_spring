@@ -1304,13 +1304,15 @@ tbody tr.disable td{
 }
 .listBody.reservation li{
     grid-template-columns: 5% 10% 10% 10% 10% 10% 10% 5% 10% 10% 10%;
-    cursor: pointer;
 }
 
 .listBody.reservation li p{
 	display:flex; 
 	align-items : center;
 	justify-content : center;
+}
+.listBody.reservation li p:nth-child(2){
+	cursor: pointer;
 }
 
 .listHead.local{

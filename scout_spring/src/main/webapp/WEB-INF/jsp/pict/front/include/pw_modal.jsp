@@ -18,13 +18,13 @@
             <!-- pwInput에 wrong class 추가 시 css 로 틀린 효과 적용됨 -->
             <div class="pwInput" id="pw1">
                 <p class="pwTit">새 비밀번호 입력*</p>
-                <input type="password" name="newpassword" id="newpassword">
+                <input type="password" name="newpassword" id="newpassword" maxlength="13">
                 <span class="clear"><img src="" alt=""></span>
-                <p class="wrongT">8자 이상 문자, 숫자, 특수문자를 조합하여 사용해주세요.</p>
+                <p class="wrongT">8자 이상 13자 이하 문자, 숫자, 특수문자를 조합하여 사용해주세요.</p>
             </div>
             <div class="pwInput" id="pw2">
                 <p class="pwTit">새 비밀번호 확인*</p>
-                <input type="password" name="newpassword2" id="newpassword2">
+                <input type="password" name="newpassword2" id="newpassword2" maxlength="13">
                 <span class="clear"><img src="" alt=""></span>
                 <p class="wrongT">비밀번호가 동일하지 않습니다</p>
             </div>
@@ -74,7 +74,7 @@
 		var clearImg_1 = $('#pw1 .clear img');
 		var clearImg_2 = $('#pw2 .clear img');
 		
-		var reg = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[a-zA-Z\d!@#$%^&*()]{8,12}$/;
+		var reg = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[a-zA-Z\d!@#$%^&*()]{8,13}$/;
 		
 		if(!reg.test(password)){
 			$('#pw1').addClass("wrong");

@@ -524,7 +524,6 @@ textarea:focus{
     display: flex;
     flex-direction: column;
     row-gap: 8px;
-    width: 208px;
 }
 .pwTit{
     color: var(--text-color);
@@ -587,7 +586,7 @@ textarea:focus{
     letter-spacing: -0.5px;
 }
 .pwInput input{
-    width: 100%;
+    width: 208px;
     height: 34px;
     padding: 8px 16px;
     border-radius: 4px;
@@ -609,7 +608,7 @@ textarea:focus{
 }
 .clear{
     position: absolute;
-    right: 16px;
+    left: 171px;
     top: 26px;
     display: none;
     width: 20px;
