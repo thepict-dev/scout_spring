@@ -1437,7 +1437,7 @@
 	
 	<update id="mypage_mod" parameterType="pictVO">
 		update member set BIRTHDAY=#{BIRTHDAY},  ENAME=#{ENAME}, SEX=#{SEX}, EMAIL=#{EMAIL},
-		JOBCODE=#{JOBCODE}, HPOSTCODE= #{HPOSTCODE}, HADDR=#{HADDR}, UPDATEDATE = now(), HTELNO =#{HTELNO}
+		JOBCODE=#{JOBCODE}, HPOSTCODE= #{HPOSTCODE}, HADDR=#{HADDR}, UPDATEDATE = now(), HTELNO =#{HTELNO}, MOBILE=#{MOBILE}
 		where MEMBERNO = #{MEMBERNO}
 	</update>
 	

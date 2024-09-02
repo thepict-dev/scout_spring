@@ -79,7 +79,7 @@
 	                        </div>
 	                        <div class="myInputBox">
 	                            <p class="myCaption">휴대전화</p>
-	                            <span class="bindingText sm2 disable">${pictVO.MOBILE}</span>
+	                            <input type="text" name="MOBILE" id="MOBILE" class="sm2" value="${pictVO.MOBILE}">
 	                        </div>
 	                        <div class="myInputBox">
 	                            <p class="myCaption">이메일</p>

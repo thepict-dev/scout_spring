@@ -26,8 +26,8 @@
     //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     //' 라이센스 파일
     //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    String license = "C:\\Users\\82105\\git\\scout_spring\\scout_spring\\src\\main\\webapp\\_kcb\\";
-	//String license = "/user1/scout_spring/scout_spring/_kcb/";
+    //String license = "C:\\Users\\82105\\git\\scout_spring\\scout_spring\\src\\main\\webapp\\_kcb\\";
+	String license = "/user1/scout_spring/scout_spring/_kcb/";
 	String licenseName = CP_CD + "_IDS_01_" + target + "_AES_license.dat";
 
     //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
