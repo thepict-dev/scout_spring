@@ -17,19 +17,25 @@
         <div class="pwInputs">
             <div class="inputsContainer">
                	<div class="inputBox">
-                    <p class="inputCaption">성명</p>
-	                <input type="text" name="newname" id="newname" placeholder="내용을 입력하세요…" class="smThinInput">
+                    <p class="inputCaption">회원번호</p>
+	                <input type="text" name="newmemberno" id="newmemberno" placeholder="내용을 입력하세요…" class="lgThinInput">
                 </div>
                	<div class="inputBox">
-	                <p class="inputCaption">생년월일*</p>
-	                <input type="date" name="newbirthday" id="newbirthday" class="lgThinInput" required max="9999-12-31">
+                    <p class="inputCaption">성명</p>
+	                <input type="text" name="newname" id="newname" placeholder="내용을 입력하세요…" class="smThinInput">
                 </div>
             </div>
             <div class="inputsContainer">
                	<div class="inputBox">
+	                <p class="inputCaption">생년월일*</p>
+	                <input type="date" name="newbirthday" id="newbirthday" class="lgThinInput" required max="9999-12-31">
+                </div>
+               	<div class="inputBox">
                     <p class="inputCaption">연락처*</p>
 	                <input type="text" name="newmobile" id="newmobile" placeholder="내용을 입력하세요…" class="lgThinInput">
                 </div>
+            </div>
+            <div class="inputsContainer">
                 <div class="inputBox">
 					<p class="inputCaption">대원/지도자*</p>
 					<select name="newtype" id="newtype" class="smThinSelect">
@@ -43,6 +49,46 @@
 						<option value="N">----</option>
 						<option value="Y">평생회원</option>
 					</select>
+				</div>
+                <div class="inputBox">
+					<p class="inputCaption">관리지도자 여부</p>
+					<select name="newleader_adminy" id="newleader_adminy" class="smThinSelect">
+						<option value="Y">Y</option>
+						<option value="N">N</option>
+					</select>
+				</div>
+            </div>
+            <div class="inputsContainer">
+                <div class="inputBox">
+					<p class="inputCaption">지도자직책1</p>
+					<select name="newleaderpositioncode1" id="newleaderpositioncode1" class="smThinSelect">
+						<option value="01">협조</option>
+						<option value="02">훈육</option>
+						<option value="03">전종</option>
+					</select>
+				</div>
+				<div class="inputBox">
+					<p class="inputCaption">지도자직책2</p>
+					<select name="newleaderpositioncode2" id="newleaderpositioncode2" class="lgThinSelect">
+						<option value="01">육성단체대표</option>
+						<option value="02">육성단체부대표</option>
+						<option value="09">단위원장</option>
+						<option value="03">단대위원</option>
+						<option value="04">단위원</option>
+						<option value="05">대위원장</option>
+						<option value="06">대위원</option>
+						<option value="07">육성회장</option>
+						<option value="08">협조지도자</option>
+						<option value="09">단대장</option>
+						<option value="10">대장</option>
+						<option value="11">부대장</option>
+						<option value="12">로버</option>
+						<option value="13">전종지도자</option>
+						<option value="99">기타</option>
+					</select>
+				</div>
+                <div class="inputBox" style="justify-content: center; margin-top: 15px;">
+					<input type="checkbox" id="newleader_magacnt"><label for="newleader_magacnt">연맹지구독여부</label>
 				</div>
                 <div class="buttons" style="justify-content: flex-end; width: 100%;">
                 	<a href="#lnk" class="smButton" onclick="dae_modal_search()"><img src="/front_img/search2.png" alt="">조회</a>
@@ -77,9 +123,6 @@
 	                </div>
                 </div>
             </div>	
-            <!-- 조회결과 없음 리스트 -->
-            <div class="inputsContainer" style="font-size: 14px; text-align: center; justify-content: center;">조회된 데이터가 없습니다.</div>
-            <!-- 비밀번호 조건 통과 시 active class 추가 -->
             <a href="#lnk" id="save_new" class="active" onclick="fn_submit()">등록</a>
         </div>
     </form>

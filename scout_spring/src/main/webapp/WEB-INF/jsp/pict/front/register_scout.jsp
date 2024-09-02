@@ -31,6 +31,18 @@
                     <form action="" id="register" name="register" method="post" enctype="multipart/form-data">
                         <h2 class="subTitles" style="padding: 16px 24px; background: var(--grey-50);">조회</h2>
                         <div class="regiSearch" style="padding-bottom: 16px; background: var(--grey-50);">
+                        	<!--셀렉트 1개 컨테이너 -->
+                            <div class="searchContainer">
+                                <p class="inputCaption">연맹/지구</p>
+                                <div class="inputsAlign">
+                                    <select name="ASSOCIATIONCODE" id="ASSOCIATIONCODE" onchange="fn_get_unitylist_org()" class="lgThinSelect">
+                                        <c:forEach var="association_list" items="${association_list}" varStatus="status">
+                                            <option value="${association_list.ASSOCIATIONCODE}"> ${association_list.ASSOCIATIONNAME}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--셀렉트 2개 컨테이너 -->
                             <div class="searchContainer">
                                 <p class="inputCaption">연맹/지구</p>
                                 <div class="inputsAlign">
@@ -52,29 +64,6 @@
 			                        <input type="text" name="search_text" id="search_text" class="lgThinInput" placeholder="내용을 입력해주세요..." onkeypress="if(event.keyCode == 13){organ_search('number');}">
                                 </div>
                             </div>
-                            <!-- 
-                            <div class="searchContainer">
-                                <p class="inputCaption">단위대 구분</p>
-                                <div class="inputsAlign">
-                                    <select name="TROOPCLSCODE1" id="TROOPCLSCODE1" onchange="fn_troopclscode_search()" class="lgThinSelect">
-                                        <option value="">-----</option>
-                                        <option value="01">학교대</option>
-                                        <option value="02">지역대</option>
-                                        <option value="03">동우대</option>
-                                        <option value="04">특수대</option>
-                                    </select>
-                                    <select name="TROOPCLSCODE2" id="TROOPCLSCODE2" class="lgThinSelect">
-                                        <option value="">-----</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="searchContainer">
-                                <p class="inputCaption">단위대명</p>
-                                <div class="inputsAlign">
-                                    <input type="text"  name="TROOPNAME" id="TROOPNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                </div>
-                            </div>
-                             -->
                             <div class="btnContainer organ" style="justify-content: flex-start; margin-top: 5px;">
                                 <a href="#regiSearchPopup" onclick="troop_search()" class="smButton searches purple regiSearch"><img src="/front_img/search2.png" alt="">조회</a>
                             </div>
@@ -84,10 +73,13 @@
                         	<!-- 좌측 -->
                         	<div class="doubleTable">
 	                            <div class="tableContainer">
-	                            	<div style="display: flex; justify-content: space-between; align-items: center;">
+	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
 	                                	<h2 class="subTitles">작년도</h2>
                                     </div>
-	                                <div class="tableWrapper" style="height: 300px;">
+	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+	                                	<h2 class="subTitles">지도자</h2>
+                                    </div>
+	                                <div class="tableWrapper" style="height: 300px; margin-top: 0;">
 	                                    <table style="min-width: unset;">
 	                                        <colgroup>
 	                                            <col width="8%" />
@@ -123,7 +115,10 @@
 	                                 -->
 	                            </div>
 	                            <div class="tableContainer">
-	                                <div class="tableWrapper" style="height: 300px;">
+	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+	                                	<h2 class="subTitles">대원</h2>
+	                                </div>
+	                                <div class="tableWrapper" style="height: 300px; margin-top: 0;">
 	                                    <table style="min-width: unset;">
 	                                        <colgroup>
 	                                            <col width="8%" />
@@ -164,11 +159,14 @@
                             <!-- 우측 -->
                             <div class="doubleTable">
 	                            <div class="tableContainer">
-	                            	<div style="display: flex; justify-content: space-between; align-items: center;">
+	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
 	                                	<h2 class="subTitles">당해년도</h2>
                                         <a href="#lnk" class="smButton daeButton" style="padding: 0 8px;">신규등록</a>
                                     </div>
-	                                <div class="tableWrapper" style="height: 300px;">
+	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+	                                	<h2 class="subTitles">지도자</h2>
+                                    </div>
+	                                <div class="tableWrapper" style="height: 300px; margin-top: 0;">
 	                                    <table style="min-width: unset;">
 	                                        <colgroup>
 	                                            <col width="8%" />
@@ -206,7 +204,10 @@
 	                                </div>
 	                            </div>
 	                            <div class="tableContainer">
-	                                <div class="tableWrapper" style="height: 300px;">
+	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+	                                	<h2 class="subTitles">대원</h2>
+	                                </div>
+	                                <div class="tableWrapper" style="height: 300px; margin-top: 0;">
 	                                    <table style="min-width: unset;">
 	                                        <colgroup>
 	                                            <col width="10%" />
