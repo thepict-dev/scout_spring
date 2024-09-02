@@ -1479,3 +1479,25 @@ tbody tr.disable td{
 .inputsAlign.stats a:hover{
     background-color: var(--grey-50);
 }
+
+
+.listHead.certi{
+    grid-template-columns: 5% 10% 10% 10% 22.5% 22.5% 20%;
+}
+.listBody.certi li{
+    grid-template-columns: 5% 10% 10% 10% 22.5% 22.5% 20%;
+}
+.listHead.delMember{
+    grid-template-columns: 5% 20% 20% 15% 20% 20%;
+}
+.listBody.delMember li{
+    grid-template-columns: 5% 20% 20% 15% 20% 20%;
+}
+.listBody.delMember li p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.listBody.delMember li p:nth-of-type(3){
+    cursor: pointer;
+}
