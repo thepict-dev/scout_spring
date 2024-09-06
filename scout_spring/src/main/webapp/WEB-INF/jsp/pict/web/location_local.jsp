@@ -49,7 +49,7 @@
                                     <li><p>Fax</p><span>02-785-3580</span></li>
                                 </ul>
                                 <ul>
-                                    <li><p>Tel</p><span>02-785-4716</span></li>
+                                    <li><p>Tel</p><span>02-785-4716~8</span></li>
                                     <li><p>E-mail</p><span>nambuscout@hanmail.net</span></li>
                                 </ul>
                             </div>
