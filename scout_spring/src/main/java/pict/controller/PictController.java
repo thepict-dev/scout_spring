@@ -2781,11 +2781,13 @@ public class PictController {
 	@RequestMapping("/dae_modal_search")
 	@ResponseBody
 	public HashMap<String, Object> dae_modal_search(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String memberno = param.get("memberno").toString();
 		String kname = param.get("kname").toString();
 		String birthday= param.get("birthday").toString();
 		String mobile = param.get("mobile").toString();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
+		pictVO.setMEMBERNO(memberno);
 		pictVO.setKNAME(kname);
 		pictVO.setBIRTHDAY(birthday);
 		pictVO.setMOBILE(mobile);

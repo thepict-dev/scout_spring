@@ -31,9 +31,9 @@
                     <form action="" id="register" name="register" method="post" enctype="multipart/form-data">
                         <h2 class="subTitles" style="padding: 16px 24px; background: var(--grey-50);">조회</h2>
                         <div class="regiSearch" style="padding-bottom: 16px; background: var(--grey-50);">
-                        	<!--셀렉트 1개 컨테이너 -->
+                        	<!--셀렉트 1개 컨테이너(관리지도자) -->
                             <div class="searchContainer">
-                                <p class="inputCaption">연맹/지구</p>
+                                <p class="inputCaption">단위대 리스트</p>
                                 <div class="inputsAlign">
                                     <select name="ASSOCIATIONCODE" id="ASSOCIATIONCODE" onchange="fn_get_unitylist_org()" class="lgThinSelect">
                                         <c:forEach var="association_list" items="${association_list}" varStatus="status">
@@ -42,7 +42,9 @@
                                     </select>
                                 </div>
                             </div>
-                            <!--셀렉트 2개 컨테이너 -->
+                            
+                            
+                            <!--셀렉트 2개 컨테이너(기존, 전종지도자 지방연맹지도자) -->
                             <div class="searchContainer">
                                 <p class="inputCaption">연맹/지구</p>
                                 <div class="inputsAlign">
@@ -545,6 +547,8 @@
 				, dataType : "json"
 				, async : true
 				, success : function(data, status, xhr) {
+					$('#search_prev_leader_list').children().remove();
+					$('#search_prev_scout_list').children().remove();
 					
 					if(data.leader_list && data.leader_list.length > 0){
 						//지도자 테이블
@@ -739,7 +743,7 @@
 							'<option value="02" '+scoutclscode2+'>컵</option>'+
 							'<option value="03" '+scoutclscode3+'>스카우트</option>'+
 							'<option value="04" '+scoutclscode4+'>벤처</option>'+
-							'<option value="05" '+scoutclscode5+'>로버</option>'+
+							//'<option value="05" '+scoutclscode5+'>로버</option>'+
 							'<option value="06" '+scoutclscode6+'>기타</option>'+
 							'<option value="99" '+scoutclscode7+'>복합</option>'+
 							'</select>'+
@@ -852,139 +856,140 @@
 		}
 		
 		function list_act(){
-			$('#leader_target_list').children().remove();
-			$('#scout_target_list').children().remove();
-			
-			var price_info = JSON.parse($('#price_info').val());
-			var check_list = []
-			$("input[name='leader_check']:checked").each(function (e){
-				var memberno = $(this).data("id");
-				var ADMINY = $('#leader_adminy_'+memberno).val()
-				var KNAME = $('#leader_name_'+memberno).text()
-				var LIFEMEMBERY = $('#leader_life_'+memberno).text()
-				var LEADERPOSITIONCODE1 = $('#leaderpositioncode1_'+memberno).val()
-				var LEADERPOSITIONCODE2 = $('#leaderpositioncode2_'+memberno).val()
-				var leaderpositioncodename1 = $('#leaderpositioncode1_'+memberno + ' option:checked').text()
-				var leaderpositioncodename2 = $('#leaderpositioncode2_'+memberno + ' option:checked').text()
-				var SCOUTMAGACNT = $('#leader_magacnt_'+memberno).is(':checked') ? 'Y' : "N";
-				var maga_price = 0
+			if(confirm("당해년도 리스트를 초기화하고 반영하시겠습니까?")){
+				$('#leader_target_list').children().remove();
+				$('#scout_target_list').children().remove();
 				
+				var price_info = JSON.parse($('#price_info').val());
+				var check_list = []
+				$("input[name='leader_check']:checked").each(function (e){
+					var memberno = $(this).data("id");
+					var ADMINY = $('#leader_adminy_'+memberno).val()
+					var KNAME = $('#leader_name_'+memberno).text()
+					var LIFEMEMBERY = $('#leader_life_'+memberno).text()
+					var LEADERPOSITIONCODE1 = $('#leaderpositioncode1_'+memberno).val()
+					var LEADERPOSITIONCODE2 = $('#leaderpositioncode2_'+memberno).val()
+					var leaderpositioncodename1 = $('#leaderpositioncode1_'+memberno + ' option:checked').text()
+					var leaderpositioncodename2 = $('#leaderpositioncode2_'+memberno + ' option:checked').text()
+					var SCOUTMAGACNT = $('#leader_magacnt_'+memberno).is(':checked') ? 'Y' : "N";
+					var maga_price = 0
+					
+					
+					var price = price_info.cls99;
+					if(LEADERPOSITIONCODE2 == '01'){
+						price = 0
+					}
+					if(LIFEMEMBERY == '평생회원'){
+						price = 0
+					}
+					if(SCOUTMAGACNT == 'Y'){
+						maga_price = Number(10000)
+					}
+							
+					
+					var json ={}
+					json.MEMBERNO = memberno
+					json.ADMINY = ADMINY
+					json.KNAME = KNAME
+					json.LIFEMEMBERY = LIFEMEMBERY
+					json.LEADERPOSITIONCODE1 = LEADERPOSITIONCODE1
+					json.LEADERPOSITIONCODE2 = LEADERPOSITIONCODE2
+					json.leaderpositioncodename1 = leaderpositioncodename1
+					json.leaderpositioncodename2 = leaderpositioncodename2
+					json.price = price
+					json.SCOUTMAGACNT = SCOUTMAGACNT
+					json.type = "leader"
+					json.ASSOCIATIONCODE = $('#ASSOCIATIONCODE').val()
+					json.TROOPNO = $('#troop_no').val()
+					json.PARRENTTROOPNO = $('#parrent_troop_no').val()
+					json.maga_price = maga_price
+					check_list.push(json);
+				});
 				
-				var price = price_info.cls99;
-				if(LEADERPOSITIONCODE2 == '01'){
-					price = 0
-				}
-				if(LIFEMEMBERY == '평생회원'){
-					price = 0
-				}
-				if(SCOUTMAGACNT == 'Y'){
-					maga_price = Number(10000)
-				}
-						
+				$("input[name='scout_check']:checked").each(function (e){
+					var memberno = $(this).data("id");
+					var KNAME = $('#scout_name_'+memberno).text()
+					var LIFEMEMBERY = $('#scout_life_'+memberno).text()
+					var SCOUTCLSCODE = $('#scoutclscode_'+memberno).val()
+					var SCOUTPOSITIONCODE = $('#scoutpositioncode_'+memberno).val()
+					var scoutclscodename = $('#scoutclscode_'+memberno + ' option:checked').text()
+					var scoutpositioncodename = $('#scoutpositioncode_'+memberno + ' option:checked').text()
+					var SCOUTMAGACNT = $('#scout_magacnt_'+memberno).is(':checked') ? 'Y' : "N"
+					var price = $('#scout_regi_price_'+memberno).val()
+					var maga_price = 0
+					
+					var price = price_info.cls01
+					
+					if(SCOUTCLSCODE == '02') price = price_info.cls02
+					if(SCOUTCLSCODE == '03') price = price_info.cls03
+					if(SCOUTCLSCODE == '04') price = price_info.cls04
+					if(SCOUTCLSCODE == '05') price = price_info.cls05
+					if(SCOUTCLSCODE == '06') price = price_info.cls06
+					
+					if(LIFEMEMBERY == '평생회원'){
+						price = 0
+					}
+					if(SCOUTMAGACNT == 'Y'){
+						maga_price = Number(10000)
+					}
+					
+					var json ={}
+					json.MEMBERNO = memberno
+					json.KNAME = KNAME
+					json.LIFEMEMBERY = LIFEMEMBERY
+					json.SCOUTCLSCODE = SCOUTCLSCODE
+					json.SCOUTPOSITIONCODE = SCOUTPOSITIONCODE
+					json.scoutclscodename = scoutclscodename
+					json.scoutpositioncodename = scoutpositioncodename
+					json.price = price
+					json.SCOUTMAGACNT = SCOUTMAGACNT
+					json.type = "scout"
+					json.ASSOCIATIONCODE = $('#ASSOCIATIONCODE').val()
+					json.TROOPNO = $('#troop_no').val()
+					json.PARRENTTROOPNO = $('#parrent_troop_no').val()
+					json.maga_price = maga_price
+					check_list.push(json);
+				});
 				
-				var json ={}
-				json.MEMBERNO = memberno
-				json.ADMINY = ADMINY
-				json.KNAME = KNAME
-				json.LIFEMEMBERY = LIFEMEMBERY
-				json.LEADERPOSITIONCODE1 = LEADERPOSITIONCODE1
-				json.LEADERPOSITIONCODE2 = LEADERPOSITIONCODE2
-				json.leaderpositioncodename1 = leaderpositioncodename1
-				json.leaderpositioncodename2 = leaderpositioncodename2
-				json.price = price
-				json.SCOUTMAGACNT = SCOUTMAGACNT
-				json.type = "leader"
-				json.ASSOCIATIONCODE = $('#ASSOCIATIONCODE').val()
-				json.TROOPNO = $('#troop_no').val()
-				json.PARRENTTROOPNO = $('#parrent_troop_no').val()
-				json.maga_price = maga_price
-				check_list.push(json);
-			});
-			
-			$("input[name='scout_check']:checked").each(function (e){
-				var memberno = $(this).data("id");
-				var KNAME = $('#scout_name_'+memberno).text()
-				var LIFEMEMBERY = $('#scout_life_'+memberno).text()
-				var SCOUTCLSCODE = $('#scoutclscode_'+memberno).val()
-				var SCOUTPOSITIONCODE = $('#scoutpositioncode_'+memberno).val()
-				var scoutclscodename = $('#scoutclscode_'+memberno + ' option:checked').text()
-				var scoutpositioncodename = $('#scoutpositioncode_'+memberno + ' option:checked').text()
-				var SCOUTMAGACNT = $('#scout_magacnt_'+memberno).is(':checked') ? 'Y' : "N"
-				var price = $('#scout_regi_price_'+memberno).val()
-				var maga_price = 0
-				
-				var price = price_info.cls01
-				debugger
-				if(SCOUTCLSCODE == '02') price = price_info.cls02
-				if(SCOUTCLSCODE == '03') price = price_info.cls03
-				if(SCOUTCLSCODE == '04') price = price_info.cls04
-				if(SCOUTCLSCODE == '05') price = price_info.cls05
-				if(SCOUTCLSCODE == '06') price = price_info.cls06
-				
-				if(LIFEMEMBERY == '평생회원'){
-					price = 0
+				var leader_html = ""
+				var scout_html = ""
+				for(var i=0; i<check_list.length; i++){
+					var total_price = Number(check_list[i].price) + Number(check_list[i].maga_price) 
+					if(check_list[i].type == 'leader'){
+						leader_html +=
+							'<tr id="cur_leader_'+check_list[i].MEMBERNO+'">'+
+	                    	'<td style="position: unset;">'+
+	                        '<input type="checkbox" name="leader_remove_chk" id="selection_act_leader_'+check_list[i].MEMBERNO+'" data-id="'+check_list[i].MEMBERNO+'"><label for="selection_act_leader_'+check_list[i].MEMBERNO+'" class="lableOnly"></label>'+
+	                    	'</td>'+
+	                    	'<td style="position: unset;">'+check_list[i].ADMINY+'</td>'+
+	                    	'<td>'+check_list[i].KNAME+'</td>'+
+	                    	'<td>'+check_list[i].LIFEMEMBERY+'</td>'+
+	                    	'<td>'+check_list[i].leaderpositioncodename1+'</td>'+
+	                    	'<td>'+check_list[i].leaderpositioncodename2+'</td>'+
+	                    	'<td>'+total_price+'</td>'+
+	                    	'<td>'+check_list[i].SCOUTMAGACNT+'</td>'+
+	                		'</tr>'
+					}
+					else{
+						scout_html +=
+							'<tr id="cur_scout_'+check_list[i].MEMBERNO+'">'+
+	                    	'<td style="position: unset;">'+
+	                        '<input type="checkbox" name="scout_remove_chk" id="selection_act_scout_'+check_list[i].MEMBERNO+'" data-id="'+check_list[i].MEMBERNO+'"><label for="selection_act_scout_'+check_list[i].MEMBERNO+'" class="lableOnly"></label>'+
+	                    	'</td>'+
+	                    	'<td style="position: unset;">'+check_list[i].KNAME+'</td>'+
+	                    	'<td>'+check_list[i].LIFEMEMBERY+'</td>'+
+	                    	'<td>'+check_list[i].scoutclscodename+'</td>'+
+	                    	'<td>'+check_list[i].scoutpositioncodename+'</td>'+
+	                    	'<td>'+total_price+'</td>'+
+	                    	'<td>'+check_list[i].SCOUTMAGACNT+'</td>'+
+	                		'</tr>'
+					}
 				}
-				if(SCOUTMAGACNT == 'Y'){
-					maga_price = Number(10000)
-				}
-				
-				var json ={}
-				json.MEMBERNO = memberno
-				json.KNAME = KNAME
-				json.LIFEMEMBERY = LIFEMEMBERY
-				json.SCOUTCLSCODE = SCOUTCLSCODE
-				json.SCOUTPOSITIONCODE = SCOUTPOSITIONCODE
-				json.scoutclscodename = scoutclscodename
-				json.scoutpositioncodename = scoutpositioncodename
-				json.price = price
-				json.SCOUTMAGACNT = SCOUTMAGACNT
-				json.type = "scout"
-				json.ASSOCIATIONCODE = $('#ASSOCIATIONCODE').val()
-				json.TROOPNO = $('#troop_no').val()
-				json.PARRENTTROOPNO = $('#parrent_troop_no').val()
-				json.maga_price = maga_price
-				check_list.push(json);
-			});
-			
-			var leader_html = ""
-			var scout_html = ""
-			for(var i=0; i<check_list.length; i++){
-				var total_price = Number(check_list[i].price) + Number(check_list[i].maga_price) 
-				if(check_list[i].type == 'leader'){
-					leader_html +=
-						'<tr id="cur_leader_'+check_list[i].MEMBERNO+'">'+
-                    	'<td style="position: unset;">'+
-                        '<input type="checkbox" name="leader_remove_chk" id="selection_act_leader_'+check_list[i].MEMBERNO+'" data-id="'+check_list[i].MEMBERNO+'"><label for="selection_act_leader_'+check_list[i].MEMBERNO+'" class="lableOnly"></label>'+
-                    	'</td>'+
-                    	'<td style="position: unset;">'+check_list[i].ADMINY+'</td>'+
-                    	'<td>'+check_list[i].KNAME+'</td>'+
-                    	'<td>'+check_list[i].LIFEMEMBERY+'</td>'+
-                    	'<td>'+check_list[i].leaderpositioncodename1+'</td>'+
-                    	'<td>'+check_list[i].leaderpositioncodename2+'</td>'+
-                    	'<td>'+total_price+'</td>'+
-                    	'<td>'+check_list[i].SCOUTMAGACNT+'</td>'+
-                		'</tr>'
-				}
-				else{
-					scout_html +=
-						'<tr id="cur_scout_'+check_list[i].MEMBERNO+'">'+
-                    	'<td style="position: unset;">'+
-                        '<input type="checkbox" name="scout_remove_chk" id="selection_act_scout_'+check_list[i].MEMBERNO+'" data-id="'+check_list[i].MEMBERNO+'"><label for="selection_act_scout_'+check_list[i].MEMBERNO+'" class="lableOnly"></label>'+
-                    	'</td>'+
-                    	'<td style="position: unset;">'+check_list[i].KNAME+'</td>'+
-                    	'<td>'+check_list[i].LIFEMEMBERY+'</td>'+
-                    	'<td>'+check_list[i].scoutclscodename+'</td>'+
-                    	'<td>'+check_list[i].scoutpositioncodename+'</td>'+
-                    	'<td>'+total_price+'</td>'+
-                    	'<td>'+check_list[i].SCOUTMAGACNT+'</td>'+
-                		'</tr>'
-				}
+				$('#leader_target_list').append(leader_html)
+				$('#scout_target_list').append(scout_html)
+				$('#hiddenTextarea').val(JSON.stringify(check_list))
+				$('.contentsContainer select').niceSelect('update')
 			}
-			$('#leader_target_list').append(leader_html)
-			$('#scout_target_list').append(scout_html)
-			$('#hiddenTextarea').val(JSON.stringify(check_list))
-			$('.contentsContainer select').niceSelect('update')
-			
 		}
 		
 		function reflect(){
@@ -1005,7 +1010,7 @@
 			var data = JSON.parse($('#hiddenTextarea').val());
 			var html = ""
 			var whole_price = 0
-			
+			debugger
 			for(var i=0; i<data.length; i++){
 				var total_price = Number(data[i].price) + Number(data[i].maga_price)
 				var leader_life = "Y"

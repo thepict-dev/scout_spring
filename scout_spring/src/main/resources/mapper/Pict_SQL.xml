@@ -1409,6 +1409,9 @@
 		        
 		    )
 		WHERE 1=1
+			<if test="MEMBERNO != null and MEMBERNO != ''">
+				and m.MEMBERNO = #{MEMBERNO}
+			</if>
 			<if test="KNAME != null and KNAME != ''">
 				and m.KNAME = #{KNAME}
 			</if>

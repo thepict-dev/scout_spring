@@ -53,13 +53,13 @@
                 <div class="inputBox">
 					<p class="inputCaption">관리지도자 여부</p>
 					<select name="newleader_adminy" id="newleader_adminy" class="smThinSelect">
-						<option value="Y">Y</option>
 						<option value="N">N</option>
+						<option value="Y">Y</option>
 					</select>
 				</div>
             </div>
             <div class="inputsContainer">
-                <div class="inputBox">
+                <div class="inputBox" style="display:none" id="newleader_1">
 					<p class="inputCaption">지도자직책1</p>
 					<select name="newleaderpositioncode1" id="newleaderpositioncode1" class="smThinSelect">
 						<option value="01">협조</option>
@@ -67,7 +67,7 @@
 						<option value="03">전종</option>
 					</select>
 				</div>
-				<div class="inputBox">
+				<div class="inputBox" style="display:none" id="newleader_2">
 					<p class="inputCaption">지도자직책2</p>
 					<select name="newleaderpositioncode2" id="newleaderpositioncode2" class="lgThinSelect">
 						<option value="01">육성단체대표</option>
@@ -85,6 +85,35 @@
 						<option value="12">로버</option>
 						<option value="13">전종지도자</option>
 						<option value="99">기타</option>
+					</select>
+				</div>
+				 <div class="inputBox" id="newscout_1">
+					<p class="inputCaption">스카우트직책1</p>
+					<select name="newscoutpositioncode1" id="newscoutpositioncode1" class="smThinSelect">
+						<option value="01">비버</option>
+						<option value="02">컵</option>
+						<option value="03">스카우트</option>
+						<option value="04">벤처</option>
+						<option value="05">로버</option>
+						<option value="06">기타</option>
+						<option value="99">복합</option>
+						
+					</select>
+				</div>
+				<div class="inputBox" id="newscout_2">
+					<p class="inputCaption">스카우트직책2</p>
+					<select name="newscoutpositioncode2" id="newscoutpositioncode2" class="lgThinSelect">
+						<option value="21">보장</option>
+						<option value="22">부보장</option>
+						<option value="23">단/대보장</option>
+						<option value="31">도반장</option>
+						<option value="32">부도반장</option>
+						<option value="33">반장</option>
+						<option value="34">부반장</option>
+						<option value="41">영조장</option>
+						<option value="42">부영조장</option>
+						<option value="43">조장</option>
+						<option value="44">부조장</option>
 					</select>
 				</div>
                 <div class="inputBox" style="justify-content: center; margin-top: 15px;">
@@ -139,6 +168,21 @@
 </div>
 
 <script>
+	$("#newtype").change(function(){
+		var newtype = $('#newtype').val()
+		if(newtype == 'L'){
+			$('#newleader_1').css("display", 'flex')
+			$('#newleader_2').css("display", 'flex')
+			$('#newscout_1').css("display", 'none')
+			$('#newscout_2').css("display", 'none')
+		}
+		else{
+			$('#newleader_1').css("display", 'none')
+			$('#newleader_2').css("display", 'none')
+			$('#newscout_1').css("display", 'flex')
+			$('#newscout_2').css("display", 'flex')
+		}
+	})
 	function fn_select_person(memberno, name, birthday, mobile, troopscouty, troopleadery, lifemembery, adminy){
 		$('#dmy_memberno').val(memberno)
 		$('#dmy_name').val(name)
@@ -154,31 +198,25 @@
 		$('#new_or_origin').val("Y")
 	}
 	function dae_modal_search(){
+		var memberno = $('#newmemberno').val();
 		var newname = $('#newname').val();
 		var newbirthday = $('#newbirthday').val();
 		var newmobile = $('#newmobile').val();
 		
-		if (newname == null || newname == undefined || newname == ''){
-			alert("성명을 입력해주세요.");
+		
+		if((memberno == '' || memberno == undefined || memberno == null) && 
+				(newname == '' || newname == undefined || newname == null || newbirthday == '' || newbirthday == undefined || newbirthday == null || newmobile == '' || newmobile == undefined || newmobile == null)) {
+			alert("회원번호 혹은 이름,생년,연락처는 필수값 입니다..");
 			$("#newname").focus();
 			return false;
-		}
+		} 
+				
 		
-		if (newbirthday == null || newbirthday == undefined || newbirthday == ''){
-			alert("생년월일을 입력해주세요.");
-			$("#newbirthday").focus();
-			return false;
-		}
-		
-		if (newmobile == "" || newmobile == undefined || newmobile == '') {
-			alert("연락처를 입력해주세요.");
-			$('#newmobile').focus();
-			return false;
-		}
 		
 		$('#initial-loading').css('display', 'flex')
 		
 		var param = {
+			memberno : memberno,
 			kname : newname,
 			birthday : newbirthday,
 			mobile : newmobile
@@ -191,6 +229,7 @@
 			, dataType : "json"
 			, async : true
 			, success : function(data, status, xhr) {
+				$('#new_member_list').children().remove();
 				var html ="";
 				console.log(data.list)
 				if(data.list != undefined && data.list.length > 0){
@@ -214,7 +253,7 @@
 					$('#new_member_list').append(html);
 				}
 				else{
-					alert("등록된 회원정보가 없습니다.")
+					alert("등록된 회원정보가 없습니다.\n회원 등록을 원하실 경우 아래 등록을 클릭하세요.")
 				}
 				$('#initial-loading').css('display', 'none')
 				
@@ -226,8 +265,6 @@
 				$('#error').css('display', 'block')
 			}
 		});
-		
-		
 	}
 
 	var new_cnt = 0;
@@ -242,7 +279,7 @@
 		}
 		else if(is_list_data == 'Y' && new_or_origin == "Y"){
 			console.log("리스트가 있고 선택도 했어")
-			debugger
+			
 			var text = "등록하시겠습니까?";
 			var newmemberno = $('#dmy_memberno').val();
 			var newname = $('#dmy_name').val();
@@ -250,8 +287,8 @@
 			var newmobile = $('#dmy_mobile').val();
 			var newtype = $('#dmy_type').val();
 			var newlife = $('#dmy_life').val();
-			var newadminy = $('#dmy_adminy').val();
-			
+			var newadminy = $('#newleader_adminy').val();
+			var magacnt_y = $('#newleader_magacnt').prop('checked') == true ? "Y" : "N"
 	
 			if(confirm(text)){
 				var html = ""
@@ -259,6 +296,11 @@
 				var check_list = []
 				if(newtype == 'L'){
 					var price = price_info.cls99new;
+					var maga_price = 0
+					if(magacnt_y == 'Y'){
+						maga_price = Number(10000)
+					}
+					var total_price = Number(price) + Number(maga_price)
 					html +=
 						'<tr id="cur_leader_'+newmemberno+'">'+
                     	'<td style="position: unset;">'+
@@ -267,10 +309,10 @@
                     	'<td style="position: unset;">'+newadminy+'</td>'+
                     	'<td>'+newname+'</td>'+
                     	'<td>'+newlife+'</td>'+
-                    	'<td></td>'+
-                    	'<td></td>'+
-                    	'<td>'+price+'</td>'+
-                    	'<td>N</td>'+
+                    	'<td>'+$("#newleaderpositioncode1 :selected").text()+'</td>'+
+                    	'<td>'+$("#newleaderpositioncode2 :selected").text()+'</td>'+
+                    	'<td>'+total_price+'</td>'+
+                    	'<td>'+magacnt_y+'</td>'+
                 		'</tr>'
 	           		$('#leader_target_list').append(html)
 	           		
@@ -282,25 +324,39 @@
 					json.KNAME = newname
 					json.LIFEMEMBERY = newlife
 					json.price = price
-					json.SCOUTMAGACNT = 0
+					json.SCOUTMAGACNT = magacnt_y
 					json.type = "leader"
 					json.ASSOCIATIONCODE = $('#ASSOCIATIONCODE').val()
 					json.TROOPNO = $('#troop_no').val()
 					json.PARRENTTROOPNO = $('#parrent_troop_no').val()
 					json.maga_price = 0
+					json.ADMINY = newadminy
 					
 					
-					json.LEADERPOSITIONCODE1 = ""
-					json.LEADERPOSITIONCODE2 = ""
-					json.leaderpositioncodename1 = ""
-					json.leaderpositioncodename2 = ""
+					json.LEADERPOSITIONCODE1 = $('#newleaderpositioncode1').val()
+					json.LEADERPOSITIONCODE2 = $('#newleaderpositioncode2').val()
+					json.leaderpositioncodename1 = $("#newleaderpositioncode1 :selected").text();
+					json.leaderpositioncodename2 = $("#newleaderpositioncode2 :selected").text();
 					json.BIRTHDAY = newbirthday
 					json.MOBILE= newmobile;
-					json.ADMINY = 'N';
+					
 					check_list.push(json);
 				}
 				else{
+					var scoutclscode =  $("#newscoutpositioncode1").val();
 					var price = price_info.cls01new
+					if(scoutclscode == '01') price = price_info.cls01new
+					if(scoutclscode == '02') price = price_info.cls02new
+					if(scoutclscode == '03') price = price_info.cls03new
+					if(scoutclscode == '04') price = price_info.cls04new
+					if(scoutclscode == '05') price = price_info.cls05new
+					if(scoutclscode == '06') price = price_info.cls06new
+					
+					var maga_price = 0
+					if(magacnt_y == 'Y'){
+						maga_price = Number(10000)
+					}
+					var total_price = Number(price) + Number(maga_price)
 					html +=
 						'<tr id="cur_scout_'+newmemberno+'">'+
                     	'<td style="position: unset;">'+
@@ -308,10 +364,10 @@
                     	'</td>'+
                     	'<td style="position: unset;">'+newname+'</td>'+
                     	'<td>'+newlife+'</td>'+
-                    	'<td></td>'+
-                    	'<td></td>'+
-                    	'<td>'+price+'</td>'+
-                    	'<td>N</td>'+
+                    	'<td>'+$("#newscoutpositioncode1 :selected").text()+'</td>'+
+                    	'<td>'+$("#newscoutpositioncode2 :selected").text()+'</td>'+
+                    	'<td>'+total_price+'</td>'+
+                    	'<td>'+magacnt_y+'</td>'+
                 		'</tr>'
 	           		$('#scout_target_list').append(html)
 	           		
@@ -322,20 +378,20 @@
 					json.KNAME = newname
 					json.LIFEMEMBERY = newlife
 					json.price = price
-					json.SCOUTMAGACNT = 0
+					json.SCOUTMAGACNT = magacnt_y
 					json.type = "scout"
 					json.ASSOCIATIONCODE = $('#ASSOCIATIONCODE').val()
 					json.TROOPNO = $('#troop_no').val()
 					json.PARRENTTROOPNO = $('#parrent_troop_no').val()
-					json.maga_price = 0
+					json.maga_price = maga_price
 					
-					json.SCOUTCLSCODE = ""
-					json.SCOUTPOSITIONCODE = ""
-					json.scoutclscodename = ""
-					json.scoutpositioncodename = ""
+					json.SCOUTCLSCODE = $('#newscoutpositioncode1').val()
+					json.SCOUTPOSITIONCODE = $('#newscoutpositioncode2').val()
+					json.scoutclscodename = $("#newscoutpositioncode1 :selected").text()
+					json.scoutpositioncodename = $("#newscoutpositioncode2 :selected").text()
 					json.BIRTHDAY = newbirthday
 					json.MOBILE= newmobile;
-					
+	           		
 					check_list.push(json);
 				}
 				
@@ -362,7 +418,9 @@
 			var newmobile = $('#newmobile').val();
 			var newtype = $('#newtype').val();
 			var newlife = $('#newlife').val();
-			
+			var newadminy = $('#newleader_adminy').val();
+			var magacnt_y = $('#newleader_magacnt').prop('checked') == true ? "Y" : "N"
+					
 			if (newname == null || newname == undefined || newname == ''){
 				alert("성명을 입력해주세요.");
 				$("#newname").focus();
@@ -397,48 +455,66 @@
 				var check_list = []
 				if(newtype == 'L'){
 					var price = price_info.cls99new;
+					var maga_price = 0
+					if(magacnt_y == 'Y'){
+						maga_price = Number(10000)
+					}
+					var total_price = Number(price) + Number(maga_price)
 					html +=
 					'<tr id="cur_leader_new_'+new_cnt+'">'+
 	               	'<td style="position: unset;">'+
 	                '<input type="checkbox" name="leader_remove_chk" id="selection_act_leader_new_'+new_cnt+'" data-id="new_'+new_cnt+'"><label for="selection_act_leader_new_'+new_cnt+'" class="lableOnly"></label>'+
 	               	'</td>'+
-	               	'<td style="position: unset;"></td>'+
+	               	'<td style="position: unset;">'+newadminy+'</td>'+
 	               	'<td>'+newname+'</td>'+
 	               	'<td>'+newlife+'</td>'+
-	               	'<td></td>'+
-	               	'<td></td>'+
-	               	'<td>'+price+'</td>'+
-	               	'<td>N</td>'+
+	               	'<td>'+$("#newleaderpositioncode1 :selected").text()+'</td>'+
+                	'<td>'+$("#newleaderpositioncode2 :selected").text()+'</td>'+
+                	'<td>'+total_price+'</td>'+
+	               	'<td>'+magacnt_y+'</td>'+
 	           		'</tr>'
 	           		$('#leader_target_list').append(html)
 	           		
 	           		
 					
 					
-					var json ={}
-	           		json.MEMBERNO = "new_"+new_cnt
+	           		var json ={}
+	           		json.MEMBERNO = newmemberno
 					json.KNAME = newname
 					json.LIFEMEMBERY = newlife
 					json.price = price
-					json.SCOUTMAGACNT = 0
+					json.SCOUTMAGACNT = magacnt_y
 					json.type = "leader"
 					json.ASSOCIATIONCODE = $('#ASSOCIATIONCODE').val()
 					json.TROOPNO = $('#troop_no').val()
 					json.PARRENTTROOPNO = $('#parrent_troop_no').val()
-					json.maga_price = 0
+					json.maga_price = maga_price
+					json.ADMINY = newadminy
 					
 					
-					json.LEADERPOSITIONCODE1 = ""
-					json.LEADERPOSITIONCODE2 = ""
-					json.leaderpositioncodename1 = ""
-					json.leaderpositioncodename2 = ""
+					json.LEADERPOSITIONCODE1 = $('#newleaderpositioncode1').val()
+					json.LEADERPOSITIONCODE2 = $('#newleaderpositioncode2').val()
+					json.leaderpositioncodename1 = $("#newleaderpositioncode1 :selected").text();
+					json.leaderpositioncodename2 = $("#newleaderpositioncode2 :selected").text();
 					json.BIRTHDAY = newbirthday
 					json.MOBILE= newmobile;
-					json.ADMINY = 'N';
 					check_list.push(json);
 				}
 				else{
+					var scoutclscode =  $("#newscoutpositioncode1").val();
 					var price = price_info.cls01new
+					if(scoutclscode == '01') price = price_info.cls01new
+					if(scoutclscode == '02') price = price_info.cls02new
+					if(scoutclscode == '03') price = price_info.cls03new
+					if(scoutclscode == '04') price = price_info.cls04new
+					if(scoutclscode == '05') price = price_info.cls05new
+					if(scoutclscode == '06') price = price_info.cls06new
+					
+					var maga_price = 0
+					if(magacnt_y == 'Y'){
+						maga_price = Number(10000)
+					}
+					var total_price = Number(price) + Number(maga_price)
 					html +=
 					'<tr id="cur_scout_new_'+new_cnt+'">'+
 	               	'<td style="position: unset;">'+
@@ -446,34 +522,33 @@
 	               	'</td>'+
 	               	'<td style="position: unset;">'+newname+'</td>'+
 	               	'<td>'+newlife+'</td>'+
-	               	'<td></td>'+
-	               	'<td></td>'+
-	               	'<td>'+price+'</td>'+
-	               	'<td>N</td>'+
+	               	'<td>'+$("#newscoutpositioncode1 :selected").text()+'</td>'+
+	               	'<td>'+$("#newscoutpositioncode2 :selected").text()+'</td>'+
+	               	'<td>'+total_price+'</td>'+
+	               	'<td>'+magacnt_y+'</td>'+
 	           		'</tr>'
 	           		$('#scout_target_list').append(html)
 	           		
-
 					
-					var json ={}
+	           		var json ={}
 	           		json.MEMBERNO = "new_"+new_cnt
 					json.KNAME = newname
 					json.LIFEMEMBERY = newlife
 					json.price = price
-					json.SCOUTMAGACNT = 0
+					json.SCOUTMAGACNT = magacnt_y
 					json.type = "scout"
 					json.ASSOCIATIONCODE = $('#ASSOCIATIONCODE').val()
 					json.TROOPNO = $('#troop_no').val()
 					json.PARRENTTROOPNO = $('#parrent_troop_no').val()
-					json.maga_price = 0
+					json.maga_price = maga_price
 					
-					json.SCOUTCLSCODE = ""
-					json.SCOUTPOSITIONCODE = ""
-					json.scoutclscodename = ""
-					json.scoutpositioncodename = ""
+					json.SCOUTCLSCODE = $("#newscoutpositioncode1").val()
+					json.SCOUTPOSITIONCODE = $("#newscoutpositioncode2").val()
+					json.scoutclscodename = $("#newscoutpositioncode1 :selected").text()
+					json.scoutpositioncodename = $("#newscoutpositioncode2 :selected").text()
 					json.BIRTHDAY = newbirthday
 					json.MOBILE= newmobile;
-					
+	           		
 					check_list.push(json);
 				}
 				
