@@ -347,7 +347,10 @@
 					$('#troop_leader').val(data.rst.troopno)
 					$('#leader_orgno').val(data.rst.leaderorgno)
 					$('#leader_orgname').val(data.rst.orgname)
-					$('#LEADERORGPOSITIONCODE_LEADER').val(data.rst.leaderorgpositioncode)
+					
+					var leaderorgpositioncode = ""
+					if(data.rst.leaderorgpositioncode) leaderorgpositioncode = data.rst.leaderorgpositioncode
+					$('#LEADERORGPOSITIONCODE_LEADER').val(leaderorgpositioncode)
 					$('#LEADERPOSITIONCODE1').val(data.rst.leaderpositioncode1)
 					
 					

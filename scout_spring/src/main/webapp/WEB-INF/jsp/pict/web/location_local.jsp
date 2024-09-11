@@ -50,7 +50,7 @@
                                 </ul>
                                 <ul>
                                     <li><p>Tel</p><span>02-785-4716~8</span></li>
-                                    <li><p>E-mail</p><span>nambuscout@hanmail.net</span></li>
+                                    <li><p>E-mail</p><span>nambu@scout.or.kr</span></li>
                                 </ul>
                             </div>
                         </div>

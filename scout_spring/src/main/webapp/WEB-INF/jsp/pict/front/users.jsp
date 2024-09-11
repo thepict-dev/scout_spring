@@ -367,7 +367,7 @@
                         <div class="inputsContainer inputsPd_">
                             <div class="inputBox">
                                 <p class="inputCaption">비고</p>
-                                <textarea name="PERSONBIGO" id="PERSONBIGO" cols="100"></textarea>
+                                <textarea name="PERSONBIGO" id="PERSONBIGO" cols="100" style="height:80px"></textarea>
                             </div>
                         </div>
                         <div class="tableButtons inputsPd bottomBd" style="justify-content: flex-end;">
@@ -378,76 +378,7 @@
                                 <a href="#lnk" class="smButton" onclick="person_save()"><img src="/front_img/download.png" alt="">저장</a>
                             </div>
                         </div>
-                        <div class="inputsContainer inputsPd bottomBd">
-                            <div class="inputBox">
-                                <p class="inputCaption">소속/단체</p>
-                                <input type="text" name="main_leader_org" id="main_leader_org" readonly class="lgThinInput">
-                            </div>
-                            <div class="inputBox">
-                                <p class="inputCaption">승진 가산점</p>
-                                <input type="text" name="LEADERSCORE" id="LEADERSCORE" class="smThinInput">
-                            </div>
-                            <div class="inputBox">
-                                <p class="inputCaption">훈련과정</p>
-                                <span class="bindingText"></span>
-                            </div>
-                            <div class="inputBox">
-                                <p class="inputCaption">전문과정</p>
-                                <span class="bindingText"></span>
-                            </div>
-                            <div class="inputBox">
-                                <p class="inputCaption">자격증</p>
-                                <span class="bindingText"></span>
-                            </div>
-                            <div class="inputBox">
-                                <p class="inputCaption">평생회원</p>
-                                <span class="bindingText"></span>
-                            </div>
-                            <div class="tableButtons" style="justify-content: flex-end;">
-                                <div class="buttons">
-                                    <a href="#groupPopup" onclick="fn_orgnize('main_leader')" class="smButton relationBtn"><img src="/front_img/modify.png" alt="">수정</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="inputsContainer inputsPd bottomBd">
-                            <div class="inputBox">
-                                <p class="inputCaption">대원학교</p>
-                                <input type="text" name="main_scout_org" id="main_scout_org" readonly readonly class="lgThinInput">
-                            </div>
-                            <div class="inputBox">
-                                <p class="inputCaption">학년</p>
-                                <input type="text" name="SCOUTSCHOOLYEAR" id="SCOUTSCHOOLYEAR" class="smThinInput">
-                            </div>
-                            <div class="inputBox">
-                                <p class="inputCaption">반</p>
-                                <input type="text" name="SCOUTSCHOOLBAN" id="SCOUTSCHOOLBAN" class="smThinInput">
-                            </div>
-                            <div class="inputBox">
-                                <p class="inputCaption">대원 진보</p>
-                                <span class="bindingText"></span>
-                            </div>
-                            <div class="inputBox">
-                                <p class="inputCaption">대원 기능장</p>
-                                <span class="bindingText"></span>
-                            </div>
-                            <div class="tableButtons" style="justify-content: flex-end;">
-                                <div class="buttons">
-                                    <a href="#groupPopup" onclick="fn_orgnize('main_scout')" class="smButton groupBtn"><img src="/front_img/search2.png" alt="">학교/단체찾기</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 
-                        <div class="inputsContainer inputsPd bottomBd">
-                            <div class="inputBox">
-                                <p class="inputCaption">등록</p>
-                                <input type="text" name="" id="" readonly readonly class="lgThinInput">
-                            </div>
-                            <div class="inputBox">
-                                <p class="inputCaption">수정</p>
-                                <input type="text" name="" id="" readonly readonly class="lgThinInput">
-                            </div>
-                        </div>
-                         -->
+                        <!-- 연공시작 -->
                         <div class="tableTab bottomBd">
                             <ul class="historyNav">
                                 <li class="active">대원 가입 이력</li>
@@ -588,6 +519,68 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- 소속단체 -->
+                        <div class="inputsContainer inputsPd bottomBd">
+                            <div class="inputBox">
+                                <p class="inputCaption">소속/단체</p>
+                                <input type="text" name="main_leader_org" id="main_leader_org" readonly class="lgThinInput">
+                            </div>
+                            <div class="inputBox">
+                                <p class="inputCaption">승진 가산점</p>
+                                <input type="text" name="LEADERSCORE" id="LEADERSCORE" class="smThinInput">
+                            </div>
+                            <div class="inputBox">
+                                <p class="inputCaption">훈련과정</p>
+                                <span class="bindingText"></span>
+                            </div>
+                            <div class="inputBox">
+                                <p class="inputCaption">전문과정</p>
+                                <span class="bindingText"></span>
+                            </div>
+                            <div class="inputBox">
+                                <p class="inputCaption">자격증</p>
+                                <span class="bindingText"></span>
+                            </div>
+                            <div class="inputBox">
+                                <p class="inputCaption">평생회원</p>
+                                <span class="bindingText"></span>
+                            </div>
+                            <div class="tableButtons" style="justify-content: flex-end;">
+                                <div class="buttons">
+                                    <a href="#groupPopup" onclick="fn_orgnize('main_leader')" class="smButton relationBtn"><img src="/front_img/modify.png" alt="">수정</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inputsContainer inputsPd bottomBd">
+                            <div class="inputBox">
+                                <p class="inputCaption">대원학교</p>
+                                <input type="text" name="main_scout_org" id="main_scout_org" readonly readonly class="lgThinInput">
+                            </div>
+                            <div class="inputBox">
+                                <p class="inputCaption">학년</p>
+                                <input type="text" name="SCOUTSCHOOLYEAR" id="SCOUTSCHOOLYEAR" class="smThinInput">
+                            </div>
+                            <div class="inputBox">
+                                <p class="inputCaption">반</p>
+                                <input type="text" name="SCOUTSCHOOLBAN" id="SCOUTSCHOOLBAN" class="smThinInput">
+                            </div>
+                            <div class="inputBox">
+                                <p class="inputCaption">대원 진보</p>
+                                <span class="bindingText"></span>
+                            </div>
+                            <div class="inputBox">
+                                <p class="inputCaption">대원 기능장</p>
+                                <span class="bindingText"></span>
+                            </div>
+                            <div class="tableButtons" style="justify-content: flex-end;">
+                                <div class="buttons">
+                                    <a href="#groupPopup" onclick="fn_orgnize('main_scout')" class="smButton groupBtn"><img src="/front_img/search2.png" alt="">학교/단체찾기</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 관계 -->
                         <div class="tableContainer relationContainer">
                             <h2 class="subTitles">관계연결</h2>
                             <div class="tableWrapper">
@@ -1114,7 +1107,12 @@
 					$('#SCOUTSCHOOLYEAR').val(data.info.scoutschoolyear)
 					$('#SCOUTSCHOOLBAN').val(data.info.scoutschoolban)
 					
-					$('#LIFEMEMBERY').val(data.info.lifemembery)
+					
+					var lifemembery = ""
+					if(data.info.lifemembery && data.info.lifemembery == 'Y') lifemembery = "Y"
+					if(data.info.lifemembery && data.info.lifemembery == 'N') lifemembery = ""
+					
+					$('#LIFEMEMBERY').val(lifemembery)
 					$('#LIFERANK').val(data.info.liferank)
 					
 					$('#LIFEMEMBERNO').val(data.info.lifememberno)
