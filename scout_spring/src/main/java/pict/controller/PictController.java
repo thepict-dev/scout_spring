@@ -3167,27 +3167,9 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		String jeonjong = (String) request.getSession().getAttribute("employeey");
-		String adminy = (String) request.getSession().getAttribute("adminy");
-		String associationcode = (String) request.getSession().getAttribute("associationcode");
+		 
 		String memberno = (String) request.getSession().getAttribute("id");
-		
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
-			model.addAttribute("message", "해당 메뉴는 중앙본부 전종지도자만 활용 가능한 메뉴입니다.");
-			model.addAttribute("retType", ":location");
-			model.addAttribute("retUrl", "/admin/main");
-			
-			return "pict/main/message";
-		}
-		
-		if(!associationcode.equals("200")) {
-			model.addAttribute("message", "해당 메뉴는 중앙본부 전종지도자만 활용 가능한 메뉴입니다.");
-			model.addAttribute("retType", ":location");
-			model.addAttribute("retUrl", "/admin/main");
-			
-			return "pict/main/message";
-		}
-		
+		  
 		if(!memberno.equals("505162") && !memberno.equals("24397") && !memberno.equals("1123506")) {
 			model.addAttribute("message", "해당 메뉴는 중앙본부 조직담당자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
