@@ -2,6 +2,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fn"	   uri="http://java.sun.com/jsp/jstl/functions"%>
 	<!-- 
 	<script src="/rsa/rsa.js"></script>
 	<script src="/rsa/jsbn.js"></script>
@@ -42,6 +46,34 @@
 			document.loginForm.action = "/admin/login";
 			document.loginForm.submit();
 		}
+		function fn_troop_login() {
+			if ($("#ASSOCIATIONCODE_S").val() == "") {
+				alert("연맹을 선택해주세요.");
+				$("#ASSOCIATIONCODE_S").focus();
+				return false;
+			}
+			else{
+				$("#ASSOCIATIONCODE").val($("#ASSOCIATIONCODE_S").val())
+			}
+			if ($("#TROOPNO_S").val() == "") {
+				alert("단위대를 선택해주세요.");
+				$("#TROOPNO_S").focus();
+				return false;
+			}
+			else{
+				$("#TROOPNO").val($("#TROOPNO_S").val())
+			}
+			if ($("#password_organ").val() == "") {
+				alert("비밀번호를 입력하세요.");
+				$("#password_organ").focus();
+				return false;
+			} else {
+				$("#password").val($("#password_organ").val());
+			}
+			debugger
+			document.loginForm.action = "/admin/sub_admin_login";
+			document.loginForm.submit();
+		}
 	</script>
    	<link href="/css/reset.css" rel="stylesheet">
    	<link href="/css/common.css" rel="stylesheet">
@@ -75,16 +107,20 @@
 	                <div class="loginInputs second">
 	                    <div class="loginInput">
 	                        <p class="inputCaption">연맹</p>
-		                	<select class="js-example-basic-single" name="ASSOCIATIONCODE" id="ASSOCIATIONCODE">
+		                	<select class="js-example-basic-single" name="ASSOCIATIONCODE_S" id="ASSOCIATIONCODE_S" onchange="fn_get_unitylist()">
 							  	<option value="">연맹을 선택하세요</option>
-							  	<option value="1">강원연맹</option>
+					  			<c:forEach var="resultList" items="${resultList}" varStatus="status">
+						  			<option value="${resultList.ASSOCIATIONCODE}">${resultList.ASSOCIATIONNAME}</option>
+					  			</c:forEach>
 							</select>
 						</div>
 	                    <div class="loginInput">
 	                        <p class="inputCaption">단위대</p>
-		                	<select class="js-example-basic-single" name="TROOPNAME" id="TROOPNAME">
+		                	<select class="js-example-basic-single" name="TROOPNO_S" id="TROOPNO_S">
 							  	<option value="">단위대를 선택하세요</option>
-							  	<option value="1">더픽트단위대</option>
+							  	<c:forEach var="troop_list" items="${troop_list}" varStatus="status">
+						  			<option value="${troop_list.TROOPNO}">${troop_list.TROOPNAME}</option>
+					  			</c:forEach>
 							</select>
 						</div>
 	                    <div class="loginInput">
@@ -92,7 +128,7 @@
 	                        <input type="password" id="password_organ" onkeypress="if(event.keyCode == 13)" autocomplete="off" class="loginInput" placeholder="비밀번호를 입력하세요.">
 	                    </div>
 					</div>
-                	<button type="button" onclick="javascript:fn_login();" class="loginButton">로그인</button>
+                	<button type="button" onclick="javascript:fn_troop_login();" class="loginButton">로그인</button>
                 </div>
             </div>
         </div>
@@ -105,6 +141,10 @@
 		--%>
 		<input type="hidden" name="MEMBERNO" id="MEMBERNO" value="">
 		<input type="hidden" name="password" id="password" value="">
+		
+		
+		<input type="hidden" name="ASSOCIATIONCODE" id="ASSOCIATIONCODE" value="">
+		<input type="hidden" name="TROOPNO" id="TROOPNO" value="">
 	</form>
 	<script>
 
@@ -125,4 +165,34 @@
 		        tabInner[idx].classList.add('active')
 		    });
 		});
+		
+		function fn_get_unitylist(){
+			var param = {
+				associationcode : $('#ASSOCIATIONCODE_S').val(),
+			}
+			$.ajax({
+				url : "/admin/get_login_troop"
+				, type : "POST"
+				, data : JSON.stringify(param)
+				, contentType : "application/json"
+				, dataType : "json"
+				, async : false
+				, success : function(data, status, xhr) {
+					var html ="";
+					if(data.list){
+						var arr = data.list;
+						$('#TROOPNO_S').children().remove();
+						for(var i=0; i<arr.length; i++){
+							html += '<option value="'+ arr[i].troopno +'">'+arr[i].troopname+"(" + arr[i].disptroopno +')</option>'
+						}
+						$('#TROOPNO_S').append(html)
+					}
+				}
+				, error : function(xhr, status, error) {
+					console.log(xhr)
+					console.log("에러")
+				}
+			});
+		}
+		
 	</script>

@@ -3,22 +3,18 @@
 <mapper namespace="pict.mapper.AdminMapper">
 	
 	<select id="get_user_info" resultType="pictVO">
-		select m.MEMBERNO, m.KNAME, m.password, a.ASSOCIATIONNAME, m.PICIMG, a.ASSOCIATIONCODE,
-		(select LEADERPOSITIONNAME from leaderpositioncode lp where lp.LEADERPOSITIONCODE1 = l.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2) as LEADERPOSITIONNAME,
-		EMPLOYEEY
-		, ifnull((select ADMINY from leader a where a.MEMBERNO = #{MEMBERNO} and left(a.STARTDAY, 4) = #{YEAR} order by ADMINY desc limit 1 offset 0), "N") as ADMINY
-		, ifnull((select TROOPNO from leader a where a.MEMBERNO = #{MEMBERNO} and left(a.STARTDAY, 4) = #{YEAR} order by ADMINY desc, ASSOCIATIONCODE desc limit 1 offset 0), "N") as TROOPNO
-        , ifnull((select t.TROOPNAME from leader a left outer join troop t on a.TROOPNO = t.TROOPNO where a.MEMBERNO = #{MEMBERNO} and left(a.STARTDAY, 4) = #{YEAR} order by ADMINY desc, a.ASSOCIATIONCODE desc limit 1 offset 0), "N") as TROOPNAME
-        , (select TROOPNAME from troop t where l.PARENT_TROOPNO = t.TROOPNO limit 1 offset 0) as UNITY
-        , (select TROOPNO from troop t where l.PARENT_TROOPNO = t.TROOPNO limit 1 offset 0) as PARENTTROOPNO
+		select a.ASSOCIATIONNAME, a.ASSOCIATIONCODE, m.*
 		from member m
-		left join leader l on m.MEMBERNO = l.MEMBERNO
-		left outer join associationcode a on a.ASSOCIATIONCODE = l.ASSOCIATIONCODE
-		where m.MEMBERNO = #{MEMBERNO}
-		
-		order by l.STARTDAY desc, ASSOCIATIONCODE asc
-		limit 1 offset 0;
+		left outer join associationcode a on m.association = a.ASSOCIATIONCODE
+		where (EMPLOYEEY = 'Y' or EMPLOYEEY = 'X')
+		and m.MEMBERNO = #{MEMBERNO}
 	</select>
+	
+	<select id="sub_admin_info" resultType="pictVO">
+		select * from troop
+		where TROOPNO = #{TROOPNO}
+	</select>
+	
 	
 	<update id="user_reset">
 		UPDATE member

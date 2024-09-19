@@ -209,6 +209,14 @@ public interface PictMapper {
 	PictVO member_info(PictVO pictVO) throws Exception;
 
 	void mypage_mod(PictVO pictVO) throws Exception;
+
+	List<PictVO> first_password(PictVO pictVO) throws Exception;
+
+	void first_password_cng(PictVO pictVO) throws Exception;
+
+	List<PictVO> login_troop_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> login_troop_list2(PictVO pictVO) throws Exception;
  
 	
 

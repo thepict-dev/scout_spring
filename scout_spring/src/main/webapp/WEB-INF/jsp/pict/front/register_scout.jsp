@@ -32,43 +32,45 @@
                         <h2 class="subTitles" style="padding: 16px 24px; background: var(--grey-50);">조회</h2>
                         <div class="regiSearch" style="padding-bottom: 16px; background: var(--grey-50);">
                         	<!--셀렉트 1개 컨테이너(관리지도자) -->
-                            <div class="searchContainer">
-                                <p class="inputCaption">단위대 리스트</p>
-                                <div class="inputsAlign">
-                                    <select name="ASSOCIATIONCODE" id="ASSOCIATIONCODE" onchange="fn_get_unitylist_org()" class="lgThinSelect">
-                                        <c:forEach var="association_list" items="${association_list}" varStatus="status">
-                                            <option value="${association_list.ASSOCIATIONCODE}"> ${association_list.ASSOCIATIONNAME}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                            </div>
-                            
+                        	<c:if test="${authority eq 'sub_admin'}">
+	                            <div class="searchContainer">
+	                                <p class="inputCaption">단위대 리스트</p>
+	                                <div class="inputsAlign">
+	                                    <select name="target_troopno" id="target_troopno" class="lgThinSelect">
+	                                        
+	                                    </select>
+	                                </div>
+	                            </div>
+                            </c:if>
                             
                             <!--셀렉트 2개 컨테이너(기존, 전종지도자 지방연맹지도자) -->
-                            <div class="searchContainer">
-                                <p class="inputCaption">연맹/지구</p>
-                                <div class="inputsAlign">
-                                    <select name="ASSOCIATIONCODE" id="ASSOCIATIONCODE" onchange="fn_get_unitylist_org()" class="lgThinSelect">
-                                        <c:forEach var="association_list" items="${association_list}" varStatus="status">
-                                            <option value="${association_list.ASSOCIATIONCODE}"> ${association_list.ASSOCIATIONNAME}</option>
-                                        </c:forEach>
-                                    </select>
-                                    <select name="PARENTTROOPNO" id="PARENTTROOPNO" class="smThinSelect">
-                                        <option value="">지구 선택</option>
-                                        <c:forEach var="unity_list" items="${unity_list}" varStatus="status">
-                                            <option value="${unity_list.TROOPNO}">${unity_list.TROOPNAME}</option>
-                                        </c:forEach>
-                                    </select>
-                                    <select name="search_type" id="search_type" class="smThinSelect">
-			                            <option value="text">단위대명</option>
-			                            <option value="number">대번호</option>
-			                        </select>
-			                        <input type="text" name="search_text" id="search_text" class="lgThinInput" placeholder="내용을 입력해주세요..." onkeypress="if(event.keyCode == 13){organ_search('number');}">
-                                </div>
-                            </div>
-                            <div class="btnContainer organ" style="justify-content: flex-start; margin-top: 5px;">
-                                <a href="#regiSearchPopup" onclick="troop_search()" class="smButton searches purple regiSearch"><img src="/front_img/search2.png" alt="">조회</a>
-                            </div>
+                            <c:if test="${authority eq 'jeonjong'}">
+	                            <div class="searchContainer">
+	                                <p class="inputCaption">연맹/지구</p>
+	                                <div class="inputsAlign">
+	                                    <select name="ASSOCIATIONCODE" id="ASSOCIATIONCODE" onchange="fn_get_unitylist_org()" class="lgThinSelect">
+	                                        <c:forEach var="association_list" items="${association_list}" varStatus="status">
+	                                            <option value="${association_list.ASSOCIATIONCODE}"> ${association_list.ASSOCIATIONNAME}</option>
+	                                        </c:forEach>
+	                                    </select>
+	                                    <select name="PARENTTROOPNO" id="PARENTTROOPNO" class="smThinSelect">
+	                                        <option value="">지구 선택</option>
+	                                        <c:forEach var="unity_list" items="${unity_list}" varStatus="status">
+	                                            <option value="${unity_list.TROOPNO}">${unity_list.TROOPNAME}</option>
+	                                        </c:forEach>
+	                                    </select>
+	                                    <select name="search_type" id="search_type" class="smThinSelect">
+				                            <option value="text">단위대명</option>
+				                            <option value="number">대번호</option>
+				                        </select>
+				                        <input type="text" name="search_text" id="search_text" class="lgThinInput" placeholder="내용을 입력해주세요..." onkeypress="if(event.keyCode == 13){organ_search('number');}">
+	                                </div>
+	                            </div>
+                            	<div class="btnContainer organ" style="justify-content: flex-start; margin-top: 5px;">
+	                                <a href="#regiSearchPopup" onclick="troop_search()" class="smButton searches purple regiSearch"><img src="/front_img/search2.png" alt="">조회</a>
+	                            </div>
+                            </c:if>
+                            
                         </div>
                         <!-- 리스트 -->
                         <div class="registrationWrap">
@@ -364,38 +366,30 @@
 		$(document).ready(function() {
 		    $('select').niceSelect();
 		    
-		    var login_associationcode = '${session}'
-			if(login_associationcode != '200'){
-				var adminy = '${adminy}'
-				var employeey = '${employeey}'
-				var troopname = '${troopname}'
-				var code = '${pictVO.ASSOCIATIONCODE}';
-				$('#ASSOCIATIONCODE').val(code)
+		    var authority = '${authority}'
+		    var login_associationcode = '${associationcode}'
+			if(login_associationcode != '200' && authority == 'jeonjong'){
+				
+				$('#ASSOCIATIONCODE').val(login_associationcode)
 				
 				fn_get_unitylist_org()
 				$("select[name=ASSOCIATIONCODE]").attr("disabled", true);
 				$('.contentsContainer select').niceSelect('update')	
-				if(employeey == 'Y'){
-					
-				}
-				else if(employeey != 'Y' && adminy == 'Y'){
-					
-					var parenttroopno = '${parenttroopno}'
-					$('#PARENTTROOPNO').val(parenttroopno)
-					$("select[name=PARENTTROOPNO]").attr("disabled", true);
-					$("select[name=TROOPCLSCODE1]").attr("disabled", true);
-					$("select[name=TROOPCLSCODE2]").attr("disabled", true);
-					$('#search_type').attr("disabled", true)
-					$('#search_text').val(troopname)
-					$('#search_text').attr("disabled", true)
-					
-					$('.contentsContainer select').niceSelect('update')
-					
-					console.log("전종은 아니고 관리지도자일 경우")
-				}
-				
-				
 			}
+		    if(authority == 'sub_admin'){
+		    	var troopno = "${troopno}"
+		    	var troopname = "${troopname}"
+		    	var asso = "${asso}"
+		    	
+		    	$('#target_troopno').val(troopno)
+		    	
+		    	var html = '<option value="'+ troopno +'">'+ troopname +'</option>'
+		    	$('#target_troopno').append(html)
+		    	$("select[name=target_troopno]").attr("disabled", true);
+		    	$('.contentsContainer select').niceSelect('update')	
+		    	choose_troop(troopno, asso)
+		    }
+		    
 		});
 		//지도자 좌측
 		function allCheck_left_leader(target) {
@@ -529,15 +523,20 @@
 				}
 			});
 		}
-		function choose_troop(){
+		function choose_troop(target_troopno, target_associationcode){
 			$('#initial-loading').css('display', 'flex')
 			var listVar = $('input[name=selection_list]:checked').val();
+			if(target_troopno) listVar = target_troopno
 			$('#troop_no').val(listVar);
+			
+			var asso = $('#ASSOCIATIONCODE').val()
+			if(target_associationcode) asso = target_associationcode
+			
 			var param = {
 				troopno : listVar,
 			}
 			var param2 = {
-				associationcode : $('#ASSOCIATIONCODE').val(),
+				associationcode : asso,
 			}
 			$.ajax({
 				url : "/admin/prev_troop_info"

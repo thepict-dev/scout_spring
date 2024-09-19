@@ -5,12 +5,16 @@
 <%@ taglib prefix="fn"	   uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <%
+	pageContext.setAttribute("authority", session.getAttribute("authority"));
 	pageContext.setAttribute("id", session.getAttribute("id"));
 	pageContext.setAttribute("name", session.getAttribute("name"));
 	pageContext.setAttribute("associationname", session.getAttribute("associationname"));
 	pageContext.setAttribute("associationcode", session.getAttribute("associationcode"));
 	pageContext.setAttribute("leaderpositionname", session.getAttribute("leaderpositionname"));
 	pageContext.setAttribute("picimg", session.getAttribute("picimg"));
+	
+	
+	pageContext.setAttribute("troopname", session.getAttribute("picimg"));
 %>
 
 <div class="header">
@@ -21,17 +25,26 @@
             <li>${param.pageTitle}</li>
         </ul>
         <div class="topNav">
-            <div class="profile">
-                <span>
-                	
-                	<img src="<c:if test="${picimg eq null or pictimg eq ''}">/front_img/profile.png</c:if>
-                	<c:if test="${picimg ne null and pictimg ne ''}">${picimg }</c:if>" alt="프로필 이미지">
-               	</span>
-                <div class="profileTexts">
-                    <p>${name}(${id})</p>
-                    <span>${associationname}<span>•</span>${leaderpositionname}</span>
-                </div>
-            </div>
+        	<c:if test="${authority eq 'jeonjong' }">
+	            <div class="profile">
+	                <span>
+	                	<img src="<c:if test="${picimg eq null or pictimg eq ''}">/front_img/profile.png</c:if>
+	                	<c:if test="${picimg ne null and pictimg ne ''}">${picimg }</c:if>" alt="프로필 이미지">
+	               	</span>
+	                <div class="profileTexts">
+	                    <p>${name}(${id})</p>
+	                    <span>${associationname}<span>•</span>전종지도자</span>
+	                </div>
+	            </div>
+            </c:if>
+            <c:if test="${authority eq 'sub_admin'}">
+            	<div class="profile">
+	                <div class="profileTexts">
+	                    <p>${troopname}</p>
+	                    <span>관리지도자</span>
+	                </div>
+	            </div>
+            </c:if>
             <div class="navBtns">
                 <a href="#lnk" onclick="javascript:fn_logout()"><img src="/front_img/logout.png" alt="">로그아웃</a>
                 <a href="https://www.scout.or.kr" target="_blank">홈페이지 바로가기</a>

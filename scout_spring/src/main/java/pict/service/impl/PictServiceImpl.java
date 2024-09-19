@@ -584,6 +584,30 @@ public class PictServiceImpl implements PictService {
 		pictMapper.mypage_mod(pictVO);
 	}
 
+	@Override
+	public List<PictVO> first_password(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.first_password(pictVO);
+	}
+
+	@Override
+	public void first_password_cng(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.first_password_cng(pictVO);
+	}
+
+	@Override
+	public List<PictVO> login_troop_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.login_troop_list(pictVO);
+	}
+
+	@Override
+	public List<PictVO> login_troop_list2(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.login_troop_list2(pictVO);
+	}
+
 
 	
 	

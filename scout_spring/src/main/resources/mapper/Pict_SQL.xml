@@ -1445,4 +1445,20 @@
 	</update>
 	
 	
+	<select id="first_password" resultType="pictVO">
+		select * from troop
+		
+	</select>
+	
+	<update id="first_password_cng" parameterType="pictVO">
+		update troop set password = #{password} where TROOPNO = #{TROOPNO}
+	</update>
+	
+	<select id="login_troop_list" resultType="pictVO">
+		select * from troop where ASSOCIATIONCODE = #{ASSOCIATIONCODE}
+	</select>
+	
+	<select id="login_troop_list2" resultType="pictVO">
+		select * from troop where TROOPNO = #{TROOPNO}
+	</select>
 </mapper>

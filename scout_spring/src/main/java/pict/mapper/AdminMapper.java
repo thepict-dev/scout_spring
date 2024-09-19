@@ -46,6 +46,8 @@ public interface AdminMapper {
 	void user_delete(AdminVO adminVO) throws Exception;
 
 	void admin_password(PictVO pictVO) throws Exception;
+
+	PictVO sub_admin_info(PictVO pictVO) throws Exception;
 	
 
 }

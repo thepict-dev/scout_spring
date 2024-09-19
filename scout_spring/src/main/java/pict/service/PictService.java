@@ -208,6 +208,14 @@ public interface PictService {
 
 	public void mypage_mod(PictVO pictVO) throws Exception;
 
+	public List<PictVO> first_password(PictVO pictVO) throws Exception;
+
+	public void first_password_cng(PictVO pictVO) throws Exception;
+
+	public List<PictVO> login_troop_list(PictVO pictVO) throws Exception;
+
+	public List<PictVO> login_troop_list2(PictVO pictVO) throws Exception;
+
 
 
 }

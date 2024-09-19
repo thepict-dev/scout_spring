@@ -63,22 +63,23 @@ public class PictController {
 	@RequestMapping("/pict_main")
 	public String pict_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
-		String sessions = (String) request.getSession().getAttribute("id");
-		if (sessions == null || sessions == "null") {
+		String authority = (String) request.getSession().getAttribute("authority");
+		if (authority == null || authority == "null") {
 			return "redirect:/admin/pict_login";
 		} else {
-			String user_id = (String) request.getSession().getAttribute("id");
+			
+			/*
 			if (request.getSession().getAttribute("id") != null) {
 				pictVO.setMEMBERNO((String) request.getSession().getAttribute("id"));
 				pictVO = adminService.get_user_info(pictVO);
 				model.addAttribute("adminVO", pictVO);
 			}
-			String jeonjong = (String) request.getSession().getAttribute("employeey");
-			String adminy = (String) request.getSession().getAttribute("adminy");
-			if (jeonjong.equals("Y")) {
+			*/
+			
+			if (authority.equals("jeonjong")) {
 				return "redirect:/admin/front/users";
 			}
-			else if(adminy.equals("Y")) {
+			else if(authority.equals("sub_admin")) {
 				return "redirect:/admin/front/scout_whole_register";
 			}
 			else {
@@ -94,7 +95,7 @@ public class PictController {
 	public String login_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpServletResponse response) throws Exception {
 		String userAgent = request.getHeader("user-agent");
-		String sessions = (String) request.getSession().getAttribute("id");
+		String authority = (String) request.getSession().getAttribute("authority");
 		boolean mobile1 = userAgent.matches(
 				".*(iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson).*");
 		boolean mobile2 = userAgent.matches(".*(LG|SAMSUNG|Samsung).*");
@@ -106,18 +107,25 @@ public class PictController {
 			return "pict/main/message";
 		}
 
-		if (sessions == null || sessions == "null") {
+		if (authority == null || authority == "null") {
+			System.out.println("여아님?");
+			List<PictVO> association_list = pictService.association_list(pictVO);
+			model.addAttribute("resultList", association_list);
+			
+			pictVO.setASSOCIATIONCODE("200");
+			List<PictVO> troop_list = pictService.login_troop_list(pictVO);
+			model.addAttribute("association_list", association_list);
+			model.addAttribute("troop_list", troop_list);
+			
 			return "pict/main/login";
 		} else {
 			// 나중에 여기 계정별로 리다이렉트 분기처리
-			String jeonjong = (String) request.getSession().getAttribute("employeey");
-			String adminy = (String) request.getSession().getAttribute("adminy");
 			
 			
-			if (jeonjong.equals("Y")) {
+			if (authority.equals("jeonjong")) {
 				return "redirect:/admin/front/users";
 			}
-			else if(adminy.equals("Y")) {
+			else if(authority.equals("sub_admin")) {
 				return "redirect:/admin/front/scout_whole_register";
 			}
 			else {
@@ -127,6 +135,25 @@ public class PictController {
 		}
 
 	}
+	
+	@RequestMapping("/get_login_troop")
+	@ResponseBody
+	public HashMap<String, Object> get_login_troop(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		String associationcode = param.get("associationcode").toString();
+		pictVO.setASSOCIATIONCODE(associationcode);
+		List<PictVO> relation_list = pictService.login_troop_list(pictVO);
+		
+		if(relation_list.size() > 0) {
+			map.put("list", relation_list);
+			return map;
+		}
+		else {
+			return map;
+		}
+	}
+	
+	
 
 	@RequestMapping("/login")
 	public String login(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model)
@@ -134,12 +161,7 @@ public class PictController {
 		// 처음 드러와서 세션에 정보있으면 메인으로 보내줘야함
 		String inpuId = pictVO.getMEMBERNO();
 		String inputPw = pictVO.getPassword();
-		
-		Date today = new Date();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
-		String current_year = dateFormat.format(today);
-		
-		pictVO.setYEAR(current_year);
+
 		pictVO = adminService.get_user_info(pictVO);
 
 		if (pictVO != null && pictVO.getMEMBERNO() != null && !pictVO.getMEMBERNO().equals("")) {
@@ -158,28 +180,53 @@ public class PictController {
 					request.getSession().setAttribute("name", pictVO.getKNAME());
 					request.getSession().setAttribute("associationname", pictVO.getASSOCIATIONNAME());
 					request.getSession().setAttribute("associationcode", pictVO.getASSOCIATIONCODE());
-					request.getSession().setAttribute("leaderpositionname", pictVO.getLEADERPOSITIONNAME());
-					request.getSession().setAttribute("troopno", pictVO.getTROOPNO());
-					request.getSession().setAttribute("troopname", pictVO.getTROOPNAME());
-					request.getSession().setAttribute("employeey", pictVO.getEMPLOYEEY());
-					request.getSession().setAttribute("adminy", pictVO.getADMINY());
 					request.getSession().setAttribute("picimg", pictVO.getPICIMG());
-					request.getSession().setAttribute("parenttroopno", pictVO.getPARENTTROOPNO());
-					request.getSession().setAttribute("unity", pictVO.getUNITY());
-
+					request.getSession().setAttribute("authority", "jeonjong");
+					
 					return "redirect:/admin/pict_main";
 				}
-				
-				
 
 			} else {
-				model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.<br>관리지도자 여부를 확인하여 주시기 바랍니다.");
+				model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.");
 				model.addAttribute("retType", ":location");
 				model.addAttribute("retUrl", "/admin/pict_login");
 				return "pict/main/message";
 			}
 		} else {
-			model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.<br>관리지도자 여부를 확인하여 주시기 바랍니다.");
+			model.addAttribute("message", "해당 로그인 방식은 전종지도자 이상만 활용이 가능합니다.<br>대등록이 필요한 지도자분들은 상단탭의 대등록 로그인방식을 이용해주세요.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/pict_login");
+			return "pict/main/message";
+		}
+	}
+	
+	@RequestMapping("/sub_admin_login")
+	public String sub_admin_login(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model)
+			throws Exception {
+		String inpuId = pictVO.getMEMBERNO();
+		String inputPw = pictVO.getPassword();
+		pictVO = adminService.sub_admin_info(pictVO);
+		System.out.println("여기가 로그인 액션이 필요함");
+		if (pictVO != null && pictVO.getTROOPNO() != null && !pictVO.getTROOPNO().equals("")) {
+			String enpassword = encryptPassword(inputPw); // 입력비밀번호
+			
+			if (enpassword.equals(pictVO.getPassword())) {
+				
+				request.getSession().setAttribute("troopno", pictVO.getTROOPNO());
+				request.getSession().setAttribute("troopname", pictVO.getTROOPNAME());
+				request.getSession().setAttribute("authority", "sub_admin");
+				
+				return "redirect:/admin/pict_main";
+		
+
+			} else {
+				model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.");
+				model.addAttribute("retType", ":location");
+				model.addAttribute("retUrl", "/admin/pict_login");
+				return "pict/main/message";
+			}
+		} else {
+			model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/pict_login");
 			return "pict/main/message";
@@ -193,19 +240,10 @@ public class PictController {
 		request.getSession().setAttribute("name", null);
 		request.getSession().setAttribute("associationname", null);
 		request.getSession().setAttribute("associationcode", null);
-		request.getSession().setAttribute("leaderpositionname", null);
-		request.getSession().setAttribute("employeey", null);
-		request.getSession().setAttribute("adminy", null);
 		request.getSession().setAttribute("picimg", null);
 		request.getSession().setAttribute("troopno", null);
 		request.getSession().setAttribute("troopname", null);
-		
-		request.getSession().setAttribute("employeey", null);
-		request.getSession().setAttribute("adminy", null);
-		request.getSession().setAttribute("picimg", null);
-		request.getSession().setAttribute("parenttroopno", null);
-		request.getSession().setAttribute("unity", null);
-		
+		request.getSession().setAttribute("authority", null);
 
 		return "redirect:/admin/pict_login";
 
@@ -222,7 +260,7 @@ public class PictController {
 	public String ko_main(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
@@ -232,9 +270,9 @@ public class PictController {
 		String current_year = dateFormat.format(today);
 		model.addAttribute("current_year", current_year);
 		pictVO.setSearch_year(current_year);
-		String jeonjong = (String) request.getSession().getAttribute("employeey");
-		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -540,13 +578,13 @@ public class PictController {
 	@RequestMapping("/front/organization")
 	public String organization(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		String jeonjong = (String) request.getSession().getAttribute("employeey");
-		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -583,13 +621,13 @@ public class PictController {
 	@RequestMapping("/front/units")
 	public String units(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		String jeonjong = (String) request.getSession().getAttribute("employeey");
-		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -960,13 +998,13 @@ public class PictController {
 	@RequestMapping("/front/signup_org")
 	public String signup_org(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		String jeonjong = (String) request.getSession().getAttribute("employeey");
-		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -1006,13 +1044,13 @@ public class PictController {
 	//전종리스트
 	@RequestMapping("/front/former_list")
 	public String former_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		String jeonjong = (String) request.getSession().getAttribute("employeey");
-		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -1346,13 +1384,13 @@ public class PictController {
 	public String signup(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model,
 			HttpSession session, RedirectAttributes rttr) throws Exception {
 		
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		String jeonjong = (String) request.getSession().getAttribute("employeey");
-		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -2696,55 +2734,76 @@ public class PictController {
 	@RequestMapping("/front/scout_whole_register")
 	public String scout_whole_register(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		//여기서 로그인한 지도자의 연맹, 단위대 골라줘야함 혹여나 로그인한 사람이 전종이면 셀렉트 해줄 필요 없고
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		String jeonjong = (String) request.getSession().getAttribute("employeey");
-		String adminy = (String) request.getSession().getAttribute("adminy");
-		
-		String parenttroopno = (String) request.getSession().getAttribute("parenttroopno");
-		String unity = (String) request.getSession().getAttribute("unity");
-		String troopname = (String) request.getSession().getAttribute("troopname");
-		model.addAttribute("parenttroopno", parenttroopno);
-		model.addAttribute("unity", unity);
-		model.addAttribute("troopname", troopname);
-		
-		
-		if ((jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) && (adminy == null || adminy == "null" || adminy.equals("N") || adminy.equals(""))) {
+		String authority = (String) request.getSession().getAttribute("authority");
+		System.out.println("이분 권한은?" + authority);
+
+		if ((authority == null || authority == "null" || authority.equals("jeonjong") || authority.equals("")) && (authority == null || authority == "null" || authority.equals("sub_admin") || authority.equals(""))) {
 			model.addAttribute("message", "해당 메뉴는 관리지도자 권한 이상만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
 			
 			return "pict/main/message";
 		}
-		
 		String associationcode = (String) request.getSession().getAttribute("associationcode");
-		//중앙본부 아니면 자기 연맹것만 확인
-		if(!associationcode.equals("200")) {
-			pictVO.setASSOCIATIONCODE(associationcode);
-		}
-		else {
-			if(pictVO != null && pictVO.getASSOCIATIONCODE() != null) {
+		//전종지도자 일경우
+		if(authority != null && authority != "null" && authority.equals("jeonjong") && !authority.equals("") ){
+			//중앙본부 아니면 자기 연맹것만 확인
+			if(!associationcode.equals("200")) {
+				pictVO.setASSOCIATIONCODE(associationcode);
 			}
 			else {
-				pictVO.setASSOCIATIONCODE("");
+				if(pictVO != null && pictVO.getASSOCIATIONCODE() != null) {
+				}
+				else {
+					pictVO.setASSOCIATIONCODE("");
+				}
 			}
+			
+			List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
+			List<PictVO> scoutcls_list = pictService.scoutcls_list(pictVO);
+			
+			model.addAttribute("trooplevel_list", trooplevel_list);
+			model.addAttribute("scoutcls_list", scoutcls_list);
+			
+			
+			List<PictVO> association_list = pictService.association_list(pictVO);
+			List<PictVO> unity_list = pictService.unity_list(pictVO);
+			model.addAttribute("association_list", association_list);
+			model.addAttribute("unity_list", unity_list);
+			model.addAttribute("associationcode", associationcode);
+			model.addAttribute("pictVO", pictVO);
+		}
+		//단위대 일경우
+		else if(authority != null && authority != "null" && authority.equals("sub_admin") && !authority.equals("") ){
+			String troopno = (String) request.getSession().getAttribute("troopno");
+			model.addAttribute("authority", authority);
+			model.addAttribute("troopno", troopno);
+			pictVO.setTROOPNO(troopno);
+			List<PictVO> troop_list = pictService.login_troop_list2(pictVO);
+			String asso = "";
+			String troopname = "";
+			String disptroopno = "";
+			
+			for(int i=0; i<troop_list.size(); i++) {
+				asso = troop_list.get(i).getASSOCIATIONCODE();
+				troopname = troop_list.get(i).getTROOPNAME();
+				disptroopno = troop_list.get(i).getDISPTROOPNO();
+			}
+			model.addAttribute("asso", asso);
+			model.addAttribute("troopname", troopname);
+			model.addAttribute("disptroopno", disptroopno);
+			System.out.println("여기에서 이제 단위대 정보를 보여줘야해");
+		}
+		else {
+			model.addAttribute("message", "비정상적인 접근입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
 		}
 		
-		List<PictVO> trooplevel_list = pictService.trooplevel_list(pictVO);
-		List<PictVO> scoutcls_list = pictService.scoutcls_list(pictVO);
-		
-		model.addAttribute("trooplevel_list", trooplevel_list);
-		model.addAttribute("scoutcls_list", scoutcls_list);
-		
-		
-		List<PictVO> association_list = pictService.association_list(pictVO);
-		List<PictVO> unity_list = pictService.unity_list(pictVO);
-		model.addAttribute("association_list", association_list);
-		model.addAttribute("unity_list", unity_list);
-		
-		model.addAttribute("pictVO", pictVO);
 		return "pict/front/register_scout";
 	}
 	//대등록에서 단위대 검색 모달
@@ -3009,13 +3068,13 @@ public class PictController {
 	@RequestMapping("/front/scout_whole_confirm")
 	public String scout_whole_confirm(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		//여기서 로그인한 지도자의 연맹, 단위대 골라줘야함 혹여나 로그인한 사람이 전종이면 셀렉트 해줄 필요 없고
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		String jeonjong = (String) request.getSession().getAttribute("employeey");
-		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -3104,7 +3163,7 @@ public class PictController {
 	@RequestMapping("/front/association_price")
 	public String association_price(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
 		//여기 유학준, 안기혁
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
@@ -3183,7 +3242,7 @@ public class PictController {
 	//게시글 리스트
 	@RequestMapping("/front/board_list")
 	public String board_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
@@ -3250,7 +3309,7 @@ public class PictController {
 	//게시글 폼
 	@RequestMapping("/front/board_form")
 	public String board_form(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
@@ -3286,7 +3345,7 @@ public class PictController {
 			@RequestParam("file4root") MultipartFile attach_file4,
 			@RequestParam("file5root") MultipartFile attach_file5) throws Exception {
 		
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
@@ -3358,13 +3417,13 @@ public class PictController {
 	//연맹별게시글 리스트
 	@RequestMapping("/front/board_list_sub")
 	public String board_list_sub(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		String jeonjong = (String) request.getSession().getAttribute("employeey");
-		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -3431,7 +3490,7 @@ public class PictController {
 	//게시글 폼
 	@RequestMapping("/front/board_form_sub")
 	public String board_form_sub(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
@@ -3484,7 +3543,7 @@ public class PictController {
 			@RequestParam("file4root") MultipartFile attach_file4,
 			@RequestParam("file5root") MultipartFile attach_file5) throws Exception {
 		
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
@@ -3554,15 +3613,14 @@ public class PictController {
 	//예약 리스트
 	@RequestMapping("/front/reservation_list")
 	public String reservation_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		String jeonjong = (String) request.getSession().getAttribute("employeey");
-		String adminy = (String) request.getSession().getAttribute("adminy");
 		String associationcode = (String) request.getSession().getAttribute("associationcode");
+		String authority = (String) request.getSession().getAttribute("authority");
 		
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -3631,13 +3689,13 @@ public class PictController {
 	//지역가입안내
 	@RequestMapping("/front/local_list")
 	public String local_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		String jeonjong = (String) request.getSession().getAttribute("employeey");
-		String adminy = (String) request.getSession().getAttribute("adminy");
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -3733,15 +3791,15 @@ public class PictController {
 	//예약 리스트
 	@RequestMapping("/front/popup_list")
 	public String popup_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		String jeonjong = (String) request.getSession().getAttribute("employeey");
-		String adminy = (String) request.getSession().getAttribute("adminy");
 		String associationcode = (String) request.getSession().getAttribute("associationcode");
 		
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
@@ -3797,7 +3855,7 @@ public class PictController {
 	//팝업 폼
 	@RequestMapping("/front/popup_form")
 	public String popup_form(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
@@ -3820,7 +3878,7 @@ public class PictController {
 	public String popup_save(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, MultipartHttpServletRequest request,
 			@RequestParam("file1root") MultipartFile attach_file1) throws Exception {
 		
-		String sessions = (String) request.getSession().getAttribute("id");
+		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
@@ -3874,6 +3932,26 @@ public class PictController {
 		return "pict/main/message";
 	}
 	
+	
+	//단위대 최초비밀번호 넣기
+	@RequestMapping("/first_password")
+	public String first_password(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request) throws Exception {
+	
+		List<PictVO> board_list = pictService.first_password(pictVO);
+		for(int i=0; i<board_list.size(); i++) {
+			String inputPw = board_list.get(i).getASSOCIATIONCODE() + board_list.get(i).getDISPTROOPNO();
+			String enpassword = encryptPassword(inputPw);
+			String troopno = board_list.get(i).getTROOPNO();
+			
+			pictVO.setPassword(enpassword);
+			pictVO.setTROOPNO(troopno);
+			pictService.first_password_cng(pictVO);
+			System.out.println(troopno);
+		}
+		System.out.println("끝");
+		
+		return "pict/main/message";
+	}
 	// 공통메소드
 	public String fileUpload(MultipartHttpServletRequest request, MultipartFile uploadFile, String target, String brdno) {
 		String path = "";
