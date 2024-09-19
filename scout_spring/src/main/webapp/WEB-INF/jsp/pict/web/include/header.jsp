@@ -214,6 +214,8 @@
 	    }
 	});
 	function fn_login(){
+		location.href= "/login"	
+		/*
 		var tttt = $('#tttt').val()
 		if(tttt == 'N'){
 			alert("현재 지원하지 않는 기능입니다.")	
@@ -221,6 +223,7 @@
 		else{
 			location.href= "/login"	
 		}
+		*/
 		
 	}
 	function fn_logout(){
