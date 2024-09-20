@@ -316,7 +316,7 @@
 				, async : true
 				, success : function(data, status, xhr) {
 					console.log(data.rst)
-					debugger
+					
 					$('#YEAR_SCOUT').val(data.rst.startday.substring(0,4))
 					$('#CONFIRMY_SCOUT').val(data.rst.confirmy)
 					$('#associationcode_scout').val(data.rst.associationcode)
@@ -349,7 +349,7 @@
 					$('#SCOUTMAGAFEE_SCOUT').val(data.rst.scoutmagafee)
 					$('#BIGO_SCOUT').val(data.rst.bigo)
 					calculate_scout()
-					
+					debugger
 					//상단 항목 리드온리
 				    //$("select[name=YEAR_SCOUT]").attr("disabled", true);
 				    //$("select[name=CONFIRMY_SCOUT]").attr("disabled", true);
@@ -377,7 +377,7 @@
 			, data : JSON.stringify(param)
 			, contentType : "application/json"
 			, dataType : "json"
-			, async : true
+			, async : false
 			, success : function(data, status, xhr) {
 				var html ="";
 				if(data.list){
@@ -431,9 +431,9 @@
 		}
 	}
 	function fn_get_trooplist_scout(parenttroopno_val){
-		var parenttroopno = parenttroopno_val
+		var parenttroopno = $('#unitycode_scout').val()
 		if(parenttroopno == '' || parenttroopno == null || parenttroopno == undefined){
-			parenttroopno = $('#unitycode_scout').val()
+			parenttroopno = parenttroopno_val 
 		}
 		var param = {
 			associationcode : $('#associationcode_scout').val(),
