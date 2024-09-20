@@ -70,7 +70,7 @@
 			} else {
 				$("#password").val($("#password_organ").val());
 			}
-			debugger
+			
 			document.loginForm.action = "/admin/sub_admin_login";
 			document.loginForm.submit();
 		}
@@ -125,7 +125,7 @@
 						</div>
 	                    <div class="loginInput">
 	                        <p class="inputCaption">비밀번호</p>
-	                        <input type="password" id="password_organ" onkeypress="if(event.keyCode == 13)" autocomplete="off" class="loginInput" placeholder="비밀번호를 입력하세요.">
+	                        <input type="password" id="password_organ" onkeypress="if(event.keyCode == 13){fn_troop_login();}" autocomplete="off" class="loginInput" placeholder="비밀번호를 입력하세요.">
 	                    </div>
 					</div>
                 	<button type="button" onclick="javascript:fn_troop_login();" class="loginButton">로그인</button>
@@ -170,6 +170,7 @@
 			var param = {
 				associationcode : $('#ASSOCIATIONCODE_S').val(),
 			}
+			console.log($('#ASSOCIATIONCODE_S').val())
 			$.ajax({
 				url : "/admin/get_login_troop"
 				, type : "POST"
