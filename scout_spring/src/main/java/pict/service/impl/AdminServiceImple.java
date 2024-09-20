@@ -98,6 +98,12 @@ public class AdminServiceImple implements AdminService {
 		// TODO Auto-generated method stub
 		return adminMapper.sub_admin_info(pictVO);
 	}
+
+	@Override
+	public PictVO get_user_info_web(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return adminMapper.get_user_info_web(pictVO);
+	}
 	
 	
 	

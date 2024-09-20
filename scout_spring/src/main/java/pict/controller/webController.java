@@ -61,7 +61,7 @@ public class webController {
 		String current_year = dateFormat.format(today);
 		
 		pictVO.setYEAR(current_year);
-		pictVO = adminService.get_user_info(pictVO);
+		pictVO = adminService.get_user_info_web(pictVO);
 
 		if (pictVO != null && pictVO.getMEMBERNO() != null && !pictVO.getMEMBERNO().equals("")) {
 			String user_id = pictVO.getMEMBERNO();
@@ -87,13 +87,13 @@ public class webController {
 			} else {
 				model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.");
 				model.addAttribute("retType", ":location");
-				model.addAttribute("retUrl", "/admin/pict_login");
+				model.addAttribute("retUrl", "/login");
 				return "pict/main/message";
 			}
 		} else {
 			model.addAttribute("message", "입력하신 정보가 일치하지 않습니다.");
 			model.addAttribute("retType", ":location");
-			model.addAttribute("retUrl", "/admin/pict_login");
+			model.addAttribute("retUrl", "/login");
 			return "pict/main/message";
 		}
 	}
@@ -107,6 +107,8 @@ public class webController {
 		request.getSession().setAttribute("employeey", null);
 		request.getSession().setAttribute("adminy", null);
 		request.getSession().setAttribute("picimg", null);
+		
+		request.getSession().setAttribute("authority", null);
 
 		return "redirect:/";
 

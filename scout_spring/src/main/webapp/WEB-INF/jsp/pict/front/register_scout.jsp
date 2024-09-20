@@ -367,6 +367,7 @@
 		    $('select').niceSelect();
 		    
 		    var authority = '${authority}'
+		    debugger
 		    var login_associationcode = '${associationcode}'
 			if(login_associationcode != '200' && authority == 'jeonjong'){
 				

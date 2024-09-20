@@ -46,5 +46,7 @@ public interface AdminService {
 	void admin_password(PictVO pictVO) throws Exception;
 
 	PictVO sub_admin_info(PictVO pictVO) throws Exception;
+
+	PictVO get_user_info_web(PictVO pictVO) throws Exception;
 	
 }

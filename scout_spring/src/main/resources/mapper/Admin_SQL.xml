@@ -10,6 +10,15 @@
 		and m.MEMBERNO = #{MEMBERNO}
 	</select>
 	
+	<select id="get_user_info_web" resultType="pictVO">
+		select m.*
+		from member m
+		
+		where 1=1
+		and m.MEMBERNO = #{MEMBERNO}
+	</select>
+	
+	
 	<select id="sub_admin_info" resultType="pictVO">
 		select * from troop
 		where TROOPNO = #{TROOPNO}
