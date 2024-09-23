@@ -3224,16 +3224,24 @@ public class PictController {
 	//게시글 리스트
 	@RequestMapping("/front/board_list")
 	public String board_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
 		String sessions = (String) request.getSession().getAttribute("authority");
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		String jeonjong = (String) request.getSession().getAttribute("employeey");
-		String adminy = (String) request.getSession().getAttribute("adminy");
+		String authority = (String) request.getSession().getAttribute("authority");
+		System.out.println(authority);
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
 		String associationcode = (String) request.getSession().getAttribute("associationcode");
-
-		if (jeonjong == null || jeonjong == "null" || jeonjong.equals("N") || jeonjong.equals("")) {
-			model.addAttribute("message", "해당 메뉴는 중앙본부 전종지도자만 활용 가능한 메뉴입니다.");
+		System.out.println(associationcode);
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
 			model.addAttribute("retUrl", "/admin/main");
 			
