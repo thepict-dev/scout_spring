@@ -189,6 +189,8 @@
             </form>
         </div>
     </div>
+    <%@ include file="./include/loading.jsp" %>
+	<%@ include file="./include/error_page.jsp" %>
 	</body>
 	<script>
 		$(document).ready(function() {
@@ -275,7 +277,7 @@
 			var param = {
 				troopno : listVar,
 			}
-
+			$('#initial-loading').css('display', 'flex')
 			$.ajax({
 				url : "/admin/current_troop_info"
 				, type : "POST"
@@ -284,6 +286,8 @@
 				, dataType : "json"
 				, async : true
 				, success : function(data, status, xhr) {
+					$('#leader_target_list').children().remove();
+					$('#scout_target_list').children().remove();
 					var leader_html = ""
 					var scout_html = ""
 					var leader_list = data.leader_list
@@ -337,11 +341,13 @@
 						console.log(data)
 						alert("해당 단위대의 신청정보가 없습니다.")
 					}
-	
+					$('#initial-loading').css('display', 'none')
 				}
 				, error : function(xhr, status, error) {
 					console.log(xhr)
 					console.log("에러")
+					$('#initial-loading').css('display', 'none')
+					$('#error').css('display', 'block')
 				}
 			});
 			
