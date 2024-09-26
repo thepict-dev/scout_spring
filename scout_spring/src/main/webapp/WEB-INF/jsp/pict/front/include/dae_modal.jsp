@@ -241,6 +241,7 @@
 						var scouty = "대원";
 						if(arr[i].troopscouty == 'Y') scouty= "대원";
 						if(arr[i].troopleadery == 'Y') scouty= "지도자";
+						var lifemem = 'N'
 						html += 
 							'<tr onclick="fn_select_person(\''+arr[i].memberno+'\', \''+arr[i].kname+'\', \''+arr[i].birthday+'\', \''+arr[i].mobile+'\', \''+arr[i].troopscouty+'\', \''+arr[i].troopleadery+'\', \''+arr[i].lifemembery+'\', \''+arr[i].adminy+'\')">'+
 		                    '<td>'+arr[i].memberno+'</td>'+
@@ -279,7 +280,7 @@
 		}
 		else if(is_list_data == 'Y' && new_or_origin == "Y"){
 			console.log("리스트가 있고 선택도 했어")
-			
+			debugger
 			var text = "등록하시겠습니까?";
 			var newmemberno = $('#dmy_memberno').val();
 			var newname = $('#dmy_name').val();
@@ -479,7 +480,7 @@
 					
 					
 	           		var json ={}
-	           		json.MEMBERNO = newmemberno
+	           		json.MEMBERNO = new_cnt + "_new"
 					json.KNAME = newname
 					json.LIFEMEMBERY = newlife
 					json.price = price

@@ -3058,6 +3058,8 @@ public class PictController {
 		}
 		catch (Exception e) {
 			System.out.println(e);
+			e.printStackTrace();
+			System.out.println(e.getMessage());
 			map.put("result", "N");
 			return map;
 		}

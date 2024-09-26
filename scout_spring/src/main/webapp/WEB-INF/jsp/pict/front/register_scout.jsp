@@ -1014,9 +1014,9 @@
 			for(var i=0; i<data.length; i++){
 				var total_price = Number(data[i].price) + Number(data[i].maga_price)
 				var leader_life = "Y"
-				if(data[i].LIFEMEMBERY == '' || data[i].LIFEMEMBERY == undefined || data[i].LIFEMEMBERY == null || data[i].LIFEMEMBERY == 'Y') leader_life = 'N' 
+				if(data[i].LIFEMEMBERY == '' || data[i].LIFEMEMBERY == undefined || data[i].LIFEMEMBERY == null || data[i].LIFEMEMBERY == 'N') leader_life = 'N' 
 				var scout_life = "N"
-				if(data[i].LIFEMEMBERY == '' || data[i].LIFEMEMBERY == undefined || data[i].LIFEMEMBERY == null || data[i].LIFEMEMBERY == 'Y') scout_life = 'N'
+				if(data[i].LIFEMEMBERY == '' || data[i].LIFEMEMBERY == undefined || data[i].LIFEMEMBERY == null || data[i].LIFEMEMBERY == 'N') scout_life = 'N'
 				
 				if(data[i].type == 'leader'){
 					html += '<tr>'+
