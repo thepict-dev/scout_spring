@@ -1461,4 +1461,34 @@
 	<select id="login_troop_list2" resultType="pictVO">
 		select * from troop where TROOPNO = #{TROOPNO}
 	</select>
+	
+	
+	<select id="life_list" resultType="pictVO">
+		select * from member where LIFEMEMBERY = 'Y'
+		<if test="MEMBERNO != null and MEMBERNO != ''">
+			and MEMBERNO = #{MEMBERNO}
+		</if>
+		
+		<if test="type != null and type != '' and type =='number'">
+			order by cast(MEMBERNO as unsigned) asc
+		</if>
+		<if test="type != null and type != '' and type =='birthday'">
+			order by BIRTHDAY asc
+		</if>
+		<if test="type != null and type != '' and type =='text'">
+			order by KNAME asc
+		</if>
+		
+		<if test="type == null or type == ''">
+			order by cast(MEMBERNO as unsigned) asc
+		</if>
+		LIMIT #{limit} OFFSET #{startNumber}
+	</select>
+	
+	<select id="life_list_cnt" resultType="int"> 
+		select count(MEMBERNO) from member where LIFEMEMBERY = 'Y'
+	</select>
+	
+	
+	
 </mapper>

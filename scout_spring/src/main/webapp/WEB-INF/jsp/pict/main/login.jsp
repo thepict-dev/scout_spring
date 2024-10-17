@@ -87,23 +87,10 @@
                     <h2>로그인</h2>
                 </div>
 				<ul class="tabNav">
-					<li class="active">전종지도자</li>
-					<li>단위대(대등록)</li>
+					<li class="active">단위대(대등록)</li>
+					<li>전종지도자</li>
 				</ul>
                 <div class="tabInner active">
-	                <div class="loginInputs">
-	                    <div class="loginInput">
-	                        <p class="inputCaption">아이디</p>
-	                        <input type="text" id="id" onkeypress="if(event.keyCode == 13){fn_login();}" autocomplete="off" class="loginInput" placeholder="아이디를 입력하세요.">
-	                    </div>
-	                    <div class="loginInput">
-	                        <p class="inputCaption">비밀번호</p>
-	                        <input type="password" id="password2" onkeypress="if(event.keyCode == 13){fn_login();}" autocomplete="off" class="loginInput" placeholder="비밀번호를 입력하세요.">
-	                    </div>
-	                </div>
-                	<button type="button" onclick="javascript:fn_login();" class="loginButton">로그인</button>
-                </div>
-                <div class="tabInner">
 	                <div class="loginInputs second">
 	                    <div class="loginInput">
 	                        <p class="inputCaption">연맹</p>
@@ -129,6 +116,19 @@
 	                    </div>
 					</div>
                 	<button type="button" onclick="javascript:fn_troop_login();" class="loginButton">로그인</button>
+                </div>
+                <div class="tabInner">
+	                <div class="loginInputs">
+	                    <div class="loginInput">
+	                        <p class="inputCaption">아이디</p>
+	                        <input type="text" id="id" onkeypress="if(event.keyCode == 13){fn_login();}" autocomplete="off" class="loginInput" placeholder="아이디를 입력하세요.">
+	                    </div>
+	                    <div class="loginInput">
+	                        <p class="inputCaption">비밀번호</p>
+	                        <input type="password" id="password2" onkeypress="if(event.keyCode == 13){fn_login();}" autocomplete="off" class="loginInput" placeholder="비밀번호를 입력하세요.">
+	                    </div>
+	                </div>
+                	<button type="button" onclick="javascript:fn_login();" class="loginButton">로그인</button>
                 </div>
             </div>
         </div>

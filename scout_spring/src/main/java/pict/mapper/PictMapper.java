@@ -217,6 +217,10 @@ public interface PictMapper {
 	List<PictVO> login_troop_list(PictVO pictVO) throws Exception;
 
 	List<PictVO> login_troop_list2(PictVO pictVO) throws Exception;
+
+	List<PictVO> life_list(PictVO pictVO) throws Exception;
+
+	Integer life_list_cnt(PictVO pictVO) throws Exception;
  
 	
 

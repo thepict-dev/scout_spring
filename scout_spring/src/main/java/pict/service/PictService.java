@@ -216,6 +216,10 @@ public interface PictService {
 
 	public List<PictVO> login_troop_list2(PictVO pictVO) throws Exception;
 
+	public List<PictVO> life_list(PictVO pictVO) throws Exception;
+
+	public Integer life_list_cnt(PictVO pictVO) throws Exception;
+
 
 
 }

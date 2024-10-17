@@ -608,6 +608,18 @@ public class PictServiceImpl implements PictService {
 		return pictMapper.login_troop_list2(pictVO);
 	}
 
+	@Override
+	public List<PictVO> life_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.life_list(pictVO);
+	}
+
+	@Override
+	public Integer life_list_cnt(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.life_list_cnt(pictVO);
+	}
+
 
 	
 	

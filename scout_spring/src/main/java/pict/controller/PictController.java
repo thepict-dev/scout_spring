@@ -1335,7 +1335,279 @@ public class PictController {
 		}
 	}
 	
+	//평생회원 리스트
+	@RequestMapping("/front/life_list")
+	public String life_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model) throws Exception {
+		String sessions = (String) request.getSession().getAttribute("authority");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
+		int limitNumber = 20;
+		pictVO.setLimit(limitNumber);
+		
+		Integer pageNum = pictVO.getPageNumber();
+		
+		if(pageNum == 0) {
+			pictVO.setPageNumber(1);
+			pageNum = 1;
+		}
+
+		int startNum = (pageNum - 1) * limitNumber;
+		pictVO.setStartNumber(startNum);
+		
+		Integer totalCnt = pictService.life_list_cnt(pictVO);
+		
+		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
+		pictVO.setLastPage(lastPageValue);
+		
+		Integer s_page = pageNum - 4;
+		Integer e_page = pageNum + 5;
+		if (s_page <= 0) {
+			s_page = 1;
+			e_page = 10;
+		} 
+		if (e_page > lastPageValue){
+			e_page = lastPageValue;
+		}
+		
+		pictVO.setStartPage(s_page);
+		pictVO.setEndPage(e_page);
+		
+		
+		List<PictVO> life_list = pictService.life_list(pictVO);
+		model.addAttribute("resultList", life_list);
+		model.addAttribute("pictVO", pictVO);
+		model.addAttribute("life_cnt", totalCnt);
+		
+		return "pict/front/life_list";
+	}
 	
+	//평생회원 클릭시 정보 리턴
+	@RequestMapping("/life_info")
+	@ResponseBody
+	public HashMap<String, Object> life_info(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		String memberno = param.get("memberno").toString();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		pictVO.setMEMBERNO(memberno);
+		pictVO.setLimit(1);
+		pictVO.setOffset(0);
+		
+		List<?> former_list = pictService.life_list(pictVO);
+		if(former_list.size() > 0) {
+			map.put("list", former_list);
+			return map;
+		}
+		else {
+			return map;
+		}
+	}
+	@RequestMapping(value = "/life_excel")
+	public void life_excel(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		pictVO.setLimit(99999);
+		pictVO.setOffset(0);
+		List<PictVO> attendance_list = pictService.life_list(pictVO);
+
+		HSSFWorkbook objWorkBook = new HSSFWorkbook();
+        HSSFSheet objSheet = null;
+        HSSFRow objRow = null;
+        HSSFCell objCell = null;       //셀 생성
+
+        //제목 폰트
+        HSSFFont font = objWorkBook.createFont();
+        HSSFFont font_title = objWorkBook.createFont();
+        font_title.setFontHeightInPoints((short)11);
+        font.setFontHeightInPoints((short)9);
+        font.setFontName("맑은고딕");
+		int rowIndex = 0;
+		
+		HSSFCellStyle styleHd_title = objWorkBook.createCellStyle(); // 제목 스타일
+		HSSFCellStyle styleHd = objWorkBook.createCellStyle();    //내용 스타일
+		
+		styleHd_title.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+		styleHd_title.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		
+		// 각항목 테두리
+		styleHd.setBorderRight(BorderStyle.THIN);
+		styleHd.setBorderLeft(BorderStyle.THIN);
+		styleHd.setBorderTop(BorderStyle.THIN);
+		styleHd.setBorderBottom(BorderStyle.THIN);
+		styleHd.setWrapText(true);//자동 줄바꿈
+
+		styleHd_title.setBorderRight(BorderStyle.THIN);
+		styleHd_title.setBorderLeft(BorderStyle.THIN);
+		styleHd_title.setBorderTop(BorderStyle.THIN);
+		styleHd_title.setBorderBottom(BorderStyle.THIN);
+					
+        objSheet = objWorkBook.createSheet("첫번째 시트");     //워크시트 생성
+		
+		
+		//헤더
+        objRow = objSheet.createRow(0);
+        objRow.setHeight ((short) 0x150);
+        
+        objCell = objRow.createCell(0);
+        objCell.setCellValue("회원번호");
+        objCell.setCellStyle(styleHd_title);
+
+        objCell = objRow.createCell(1);
+        objCell.setCellValue("이름");
+        objCell.setCellStyle(styleHd_title);
+		
+        objCell = objRow.createCell(2);
+        objCell.setCellValue("생년월일");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(3);
+        objCell.setCellValue("성별");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(4);
+        objCell.setCellValue("연락처");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(5);
+        objCell.setCellValue("지도자/대원");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(6);
+        objCell.setCellValue("평생회원번호");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(7);
+        objCell.setCellValue("평생회원등급");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(8);
+        objCell.setCellValue("평생회원상태");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(9);
+        objCell.setCellValue("평생회원등록일");
+        objCell.setCellStyle(styleHd_title);
+        
+		//바디
+        int doublecnt = 0;
+		for(int i=0; i<attendance_list.size(); i++) {
+        	//순서
+			objRow = objSheet.createRow(i+1+doublecnt);
+	        objRow.setHeight ((short) 0x150);
+	        objSheet.autoSizeColumn(i);
+	        
+	        //회원번호
+	        objCell = objRow.createCell(0);
+	        objCell.setCellValue(attendance_list.get(i).getMEMBERNO());
+	        objSheet.setColumnWidth(0, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //이름
+	        objCell = objRow.createCell(1);
+	        objCell.setCellValue(attendance_list.get(i).getKNAME());
+	        objSheet.setColumnWidth(1, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+
+	        //생년월일
+	        objCell = objRow.createCell(2);
+	        objCell.setCellValue(attendance_list.get(i).getBIRTHDAY());
+	        objSheet.setColumnWidth(2, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //성별
+	        String SEX ="";
+	        if(attendance_list.get(i).getSEX() != null && attendance_list.get(i).getSEX().equals("W")) SEX = "여자";
+	        if(attendance_list.get(i).getSEX() != null && attendance_list.get(i).getSEX().equals("M")) SEX = "남자";
+	        objCell = objRow.createCell(3);
+	        objCell.setCellValue(SEX);
+	        objSheet.setColumnWidth(3, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+        	
+        	//연락처
+	        objCell = objRow.createCell(4);
+	        objCell.setCellValue(attendance_list.get(i).getMOBILE());
+	        objSheet.setColumnWidth(4, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //지도자/대원
+	        String ranked = "";
+	        if(attendance_list.get(i).getTROOPSCOUTY() != null && attendance_list.get(i).getTROOPSCOUTY().equals("Y")) ranked = "대원";
+	        	
+	        if(attendance_list.get(i).getTROOPLEADERY() != null && attendance_list.get(i).getTROOPLEADERY().equals("Y")) ranked = "지도자";
+	        
+	        objCell = objRow.createCell(5);
+	        objCell.setCellValue(ranked);
+	        objSheet.setColumnWidth(5, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //평생회원번호
+	        objCell = objRow.createCell(6);
+	        objCell.setCellValue(attendance_list.get(i).getLIFEMEMBERNO());
+	        objSheet.setColumnWidth(6, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //평생회원등급
+	        String liferank = "";
+	        if(attendance_list.get(i).getLIFERANK() != null) {
+	        	if(attendance_list.get(i).getLIFERANK().equals("C")) liferank = "일반";
+	        	if(attendance_list.get(i).getLIFERANK().equals("S")) liferank = "실버";
+	        	if(attendance_list.get(i).getLIFERANK().equals("G")) liferank = "골드";
+	        }
+	        objCell = objRow.createCell(7);
+	        objCell.setCellValue(liferank);
+	        objSheet.setColumnWidth(7, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //평생회원상태
+	        String lifestatus = "";
+	        if(attendance_list.get(i).getLIFERANK() != null) {
+	        	if(attendance_list.get(i).getLIFESTATUS().equals("1")) lifestatus = "유지";
+	        	if(attendance_list.get(i).getLIFESTATUS().equals("2")) lifestatus = "승계";
+	        	if(attendance_list.get(i).getLIFESTATUS().equals("3")) lifestatus = "탈퇴";
+	        	if(attendance_list.get(i).getLIFESTATUS().equals("4")) lifestatus = "사망";
+	        }
+	        
+	        objCell = objRow.createCell(8);
+	        objCell.setCellValue(lifestatus);
+	        objSheet.setColumnWidth(8, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //평생회원등록일
+	        objCell = objRow.createCell(9);
+	        objCell.setCellValue(attendance_list.get(i).getLIFEENTERDATE());
+	        objSheet.setColumnWidth(9, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+        }
+	        
+	      
+	       
+		String filename = "스카우트통합관리_평생회원목록";
+		String header = request.getHeader("User-Agent");
+		if(header.contains("Edge") || header.contains("MSIE")) {
+			filename = URLEncoder.encode(filename, "UTF-8").replaceAll("//+", "%20");
+		}
+		else if(header.contains("Chrome") || header.contains("Opera") || header.contains("Firefox")) {
+			filename = new String(filename.getBytes("UTF-8"), "ISO-8859-1");
+		}
+        
+        response.setHeader("Content-Disposition", "ATTachment; Filename=" +filename +".xls");
+
+        OutputStream fileOut  = response.getOutputStream();
+        objWorkBook.write(fileOut);
+        fileOut.close();
+
+        response.getOutputStream().flush();
+        response.getOutputStream().close();
+	}
 	
 	//조직 수정 저장
 	@RequestMapping("/organ_update")

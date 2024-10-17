@@ -35,6 +35,7 @@
 <c:set var="stats_list" value="${fn:indexOf(url, 'stats_list')}"/>
 <c:set var="stats_organ" value="${fn:indexOf(url, 'stats_organ')}"/>
 <c:set var="stats_member" value="${fn:indexOf(url, 'stats_member')}"/>
+<c:set var="life_list" value="${fn:indexOf(url, 'life_list')}"/>
 
 <c:if test="${authority eq 'jeonjong'}">
 	<div class="lnb">
@@ -49,7 +50,8 @@
 	                    <li><a href="/admin/front/units">단위대 통합 관리</a></li>
 	                    <li><a href="/admin/front/signup_org">신규 조직 등록</a></li>
 	                    <li><a href="/admin/front/signup">신규 회원 등록</a></li>
-	                    <li><a href="/admin/front/former_list">전종리스트</a></li>
+	                    <li><a href="/admin/front/former_list">전종 리스트</a></li>
+	                    <li><a href="/admin/front/life_list">평생회원 리스트</a></li>
 	                </ul>
 	            </li>
 	            <li <c:if test="${scout_whole_register ne -1 || scout_whole_confirm ne -1}">class="active"</c:if>>
