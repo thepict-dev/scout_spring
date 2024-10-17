@@ -431,6 +431,7 @@
 					if(data.list){
 						var arr = data.list;
 						$('#PARENTTROOPNO').children().remove();
+						html += '<option value="">전체</option>'
 						for(var i=0; i<arr.length; i++){
 							html += '<option value="'+ arr[i].troopno +'">'+ arr[i].troopname +'</option>'
 						}
