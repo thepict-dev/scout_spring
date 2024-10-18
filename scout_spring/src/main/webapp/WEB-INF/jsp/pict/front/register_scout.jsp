@@ -14,6 +14,8 @@
 		pageContext.setAttribute("session", session.getAttribute("associationcode"));
 		pageContext.setAttribute("troopno", session.getAttribute("troopno"));
 		pageContext.setAttribute("troopname", session.getAttribute("troopname"));
+		pageContext.setAttribute("associationcode", session.getAttribute("associationcode"));
+		pageContext.setAttribute("troop_associationcode", session.getAttribute("troop_associationcode"));
 		
 		pageContext.setAttribute("employeey", session.getAttribute("employeey"));
 		pageContext.setAttribute("adminy", session.getAttribute("adminy"));
@@ -860,7 +862,8 @@
 			if(confirm("당해년도 리스트를 초기화하고 반영하시겠습니까?")){
 				$('#leader_target_list').children().remove();
 				$('#scout_target_list').children().remove();
-				
+				var troop_associationcode = '${troop_associationcode}'
+					
 				var price_info = JSON.parse($('#price_info').val());
 				var check_list = []
 				$("input[name='leader_check']:checked").each(function (e){
@@ -887,8 +890,11 @@
 						maga_price = Number(10000)
 					}
 							
-					
+					//troop_associationcode
 					var json ={}
+					var target_associationcode = $('#ASSOCIATIONCODE').val();
+					if(target_associationcode == '' || target_associationcode == null || target_associationcode == undefined) target_associationcode =troop_associationcode 
+					
 					json.MEMBERNO = memberno
 					json.ADMINY = ADMINY
 					json.KNAME = KNAME
@@ -900,7 +906,7 @@
 					json.price = price
 					json.SCOUTMAGACNT = SCOUTMAGACNT
 					json.type = "leader"
-					json.ASSOCIATIONCODE = $('#ASSOCIATIONCODE').val()
+					json.ASSOCIATIONCODE = troop_associationcode
 					json.TROOPNO = $('#troop_no').val()
 					json.PARRENTTROOPNO = $('#parrent_troop_no').val()
 					json.maga_price = maga_price
@@ -934,6 +940,9 @@
 						maga_price = Number(10000)
 					}
 					
+					var target_associationcode = $('#ASSOCIATIONCODE').val();
+					if(target_associationcode == '' || target_associationcode == null || target_associationcode == undefined) target_associationcode =troop_associationcode 
+					
 					var json ={}
 					json.MEMBERNO = memberno
 					json.KNAME = KNAME
@@ -945,7 +954,7 @@
 					json.price = price
 					json.SCOUTMAGACNT = SCOUTMAGACNT
 					json.type = "scout"
-					json.ASSOCIATIONCODE = $('#ASSOCIATIONCODE').val()
+					json.ASSOCIATIONCODE = target_associationcode
 					json.TROOPNO = $('#troop_no').val()
 					json.PARRENTTROOPNO = $('#parrent_troop_no').val()
 					json.maga_price = maga_price
@@ -1051,7 +1060,7 @@
 			if(confirm("최종 제출 하시겠습니까?")){
 				$('#initial-loading').css('display', 'flex')
 				var data = JSON.parse($('#hiddenTextarea').val());
-				
+				debugger
 				$.ajax({
 					url : "/admin/whole_register_input"
 					, type : "POST"

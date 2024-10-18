@@ -221,7 +221,15 @@ public interface PictMapper {
 	List<PictVO> life_list(PictVO pictVO) throws Exception;
 
 	Integer life_list_cnt(PictVO pictVO) throws Exception;
- 
+
+	List<PictVO> scout_stats_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> leader_stats_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> stats_scout_page(PictVO pictVO) throws Exception;
+
+	List<PictVO> stats_organ_page(PictVO pictVO) throws Exception;
+
 	
 
 }

@@ -13,7 +13,7 @@
 		<%@ include file="./include/lnb.jsp" %>
 		<c:import url="./include/header.jsp">
 			<c:param name="pageParent" value="통계 및 현황"/>
-	    	<c:param name="pageTitle" value="육성단체 등록"/>
+	    	<c:param name="pageTitle" value="연맹별등록"/>
 	    </c:import>
         <div class="contentsContainer">
 	        <div class="statsWrapper">
@@ -65,9 +65,9 @@
 	                                    <th>벤처</th>
 	                                    <th>로버</th>
 	                                    <th>복합</th>
-	                                    <th>지역대</th>
-	                                    <th>동우대</th>
-	                                    <th>특수대</th>
+	                                    <th>기타</th>
+	                                    <th>미할당</th>
+	                                    <th>미승인</th>
 	                                    <th>계</th>
 	                                </tr>
 	                            </thead>
@@ -94,7 +94,7 @@
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '170'}">경북연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '180'}">경남연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '190'}">제주연맹</c:if>
-					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '200'}">중앙본부</c:if>
+					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '전체 합계'}"><span style="font-weight:700">전체 합계</span></c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '210'}">가톨릭연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '220'}">원불교연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '230'}">불교연맹</c:if>
@@ -106,10 +106,10 @@
 		                                    <td>${resultList.scoutclscode4}</td>
 		                                    <td>${resultList.scoutclscode5}</td>
 		                                    <td>${resultList.scoutclscode6}</td>
-		                                    <td>${resultList.local}</td>
-		                                    <td>${resultList.dongwoo}</td>
-		                                    <td>${resultList.special}</td>
-		                                    <td>${resultList.scoutclscode1 + resultList.scoutclscode2 + resultList.scoutclscode3 +resultList.scoutclscode4+resultList.scoutclscode5+resultList.scoutclscode6+resultList.local+resultList.dongwoo+ resultList.special}</td>
+		                                    <td>${resultList.scoutclscodeetc}</td>
+		                                    <td>${resultList.scoutclscodenull}</td>
+		                                    <td>${resultList.scoutclscodenonconfirm}</td>
+		                                    <td>${resultList.scoutclscodesum}</td>
 		                                </tr>
 	                                </c:forEach>
 	                            </tbody>

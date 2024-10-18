@@ -620,6 +620,32 @@ public class PictServiceImpl implements PictService {
 		return pictMapper.life_list_cnt(pictVO);
 	}
 
+	@Override
+	public List<PictVO> scout_stats_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.scout_stats_list(pictVO);
+	}
+
+	@Override
+	public List<PictVO> leader_stats_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.leader_stats_list(pictVO);
+	}
+
+	@Override
+	public List<PictVO> stats_scout_page(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.stats_scout_page(pictVO);
+	}
+
+	@Override
+	public List<PictVO> stats_organ_page(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.stats_organ_page(pictVO);
+	}
+
+
+
 
 	
 	

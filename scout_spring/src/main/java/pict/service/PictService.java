@@ -220,6 +220,14 @@ public interface PictService {
 
 	public Integer life_list_cnt(PictVO pictVO) throws Exception;
 
+	public List<PictVO> scout_stats_list(PictVO pictVO) throws Exception;
+
+	public List<PictVO> leader_stats_list(PictVO pictVO) throws Exception;
+
+	public List<PictVO> stats_scout_page(PictVO pictVO) throws Exception;
+
+	public List<PictVO> stats_organ_page(PictVO pictVO) throws Exception;
+
 
 
 }

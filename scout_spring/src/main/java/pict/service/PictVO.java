@@ -330,6 +330,173 @@ public class PictVO extends PictDefaultVO {
 	private String TROOPNAME2;
 	
 	
+	private String scoutclscode1;
+	private String scoutclscode2;
+	private String scoutclscode3;
+	private String scoutclscode4;
+	private String scoutclscode5;
+	private String scoutclscode6;
+	private String scoutclscodeetc;
+	private String scoutclscodenull;
+	private String scoutclscodenonconfirm;
+	private String scoutclscodesum;
+	
+	private String gubun;
+	private String registernonconfirm;
+	private String registersum;
+	private String registercontinue;
+	private String registernew;
+	
+	private String scoutcurrent;
+	private String scoutpre;
+	
+	private String leadercurrent;
+	private String leaderpre;
+	private String levels;
+	private String troopcount;
+	private String dongwoo;
+	private String special;
+	
+	
+	public String getDongwoo() {
+		return dongwoo;
+	}
+	public void setDongwoo(String dongwoo) {
+		this.dongwoo = dongwoo;
+	}
+	public String getSpecial() {
+		return special;
+	}
+	public void setSpecial(String special) {
+		this.special = special;
+	}
+	public String getTroopcount() {
+		return troopcount;
+	}
+	public void setTroopcount(String troopcount) {
+		this.troopcount = troopcount;
+	}
+	
+	public String getLevels() {
+		return levels;
+	}
+	public void setLevels(String levels) {
+		this.levels = levels;
+	}
+	public String getLeadercurrent() {
+		return leadercurrent;
+	}
+	public void setLeadercurrent(String leadercurrent) {
+		this.leadercurrent = leadercurrent;
+	}
+	public String getLeaderpre() {
+		return leaderpre;
+	}
+	public void setLeaderpre(String leaderpre) {
+		this.leaderpre = leaderpre;
+	}
+	public String getScoutcurrent() {
+		return scoutcurrent;
+	}
+	public void setScoutcurrent(String scoutcurrent) {
+		this.scoutcurrent = scoutcurrent;
+	}
+	public String getScoutpre() {
+		return scoutpre;
+	}
+	public void setScoutpre(String scoutpre) {
+		this.scoutpre = scoutpre;
+	}
+	public String getScoutclscode1() {
+		return scoutclscode1;
+	}
+	public void setScoutclscode1(String scoutclscode1) {
+		this.scoutclscode1 = scoutclscode1;
+	}
+	public String getScoutclscode2() {
+		return scoutclscode2;
+	}
+	public void setScoutclscode2(String scoutclscode2) {
+		this.scoutclscode2 = scoutclscode2;
+	}
+	public String getScoutclscode3() {
+		return scoutclscode3;
+	}
+	public void setScoutclscode3(String scoutclscode3) {
+		this.scoutclscode3 = scoutclscode3;
+	}
+	public String getScoutclscode4() {
+		return scoutclscode4;
+	}
+	public void setScoutclscode4(String scoutclscode4) {
+		this.scoutclscode4 = scoutclscode4;
+	}
+	public String getScoutclscode5() {
+		return scoutclscode5;
+	}
+	public void setScoutclscode5(String scoutclscode5) {
+		this.scoutclscode5 = scoutclscode5;
+	}
+	public String getScoutclscode6() {
+		return scoutclscode6;
+	}
+	public void setScoutclscode6(String scoutclscode6) {
+		this.scoutclscode6 = scoutclscode6;
+	}
+	public String getScoutclscodeetc() {
+		return scoutclscodeetc;
+	}
+	public void setScoutclscodeetc(String scoutclscodeetc) {
+		this.scoutclscodeetc = scoutclscodeetc;
+	}
+	public String getScoutclscodenull() {
+		return scoutclscodenull;
+	}
+	public void setScoutclscodenull(String scoutclscodenull) {
+		this.scoutclscodenull = scoutclscodenull;
+	}
+	public String getScoutclscodenonconfirm() {
+		return scoutclscodenonconfirm;
+	}
+	public void setScoutclscodenonconfirm(String scoutclscodenonconfirm) {
+		this.scoutclscodenonconfirm = scoutclscodenonconfirm;
+	}
+	public String getScoutclscodesum() {
+		return scoutclscodesum;
+	}
+	public void setScoutclscodesum(String scoutclscodesum) {
+		this.scoutclscodesum = scoutclscodesum;
+	}
+	public String getGubun() {
+		return gubun;
+	}
+	public void setGubun(String gubun) {
+		this.gubun = gubun;
+	}
+	public String getRegisternonconfirm() {
+		return registernonconfirm;
+	}
+	public void setRegisternonconfirm(String registernonconfirm) {
+		this.registernonconfirm = registernonconfirm;
+	}
+	public String getRegistersum() {
+		return registersum;
+	}
+	public void setRegistersum(String registersum) {
+		this.registersum = registersum;
+	}
+	public String getRegistercontinue() {
+		return registercontinue;
+	}
+	public void setRegistercontinue(String registercontinue) {
+		this.registercontinue = registercontinue;
+	}
+	public String getRegisternew() {
+		return registernew;
+	}
+	public void setRegisternew(String registernew) {
+		this.registernew = registernew;
+	}
 	public String getDISPTROOPNO2() {
 		return DISPTROOPNO2;
 	}

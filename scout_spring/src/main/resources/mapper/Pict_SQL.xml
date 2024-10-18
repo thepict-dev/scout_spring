@@ -1491,4 +1491,124 @@
 	
 	
 	
+	<!-- 통계 작업 -->
+	<select id="scout_stats_list" resultType="pictVO">
+		WITH A AS (
+		    SELECT 
+		        COALESCE(ac.ASSOCIATIONCODE, '전체 합계') AS 'ASSOCIATIONCODE', 
+		        SUM(CASE WHEN s.SCOUTCLSCODE IN ('01', '02', '03', '04', '05', '06', '99', '', null) AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) +
+		        SUM(CASE WHEN s.CONFIRMY = 'N' OR s.CONFIRMY IS NULL OR s.CONFIRMY = '' THEN 1 ELSE 0 END) AS 'scoutcurrent'
+		    FROM scout s
+		    JOIN associationcode ac ON s.ASSOCIATIONCODE = ac.ASSOCIATIONCODE
+		    WHERE LEFT(s.STARTDAY, 4) = #{search_year}
+		    GROUP BY ac.ASSOCIATIONCODE WITH ROLLUP
+		),
+		B AS (
+		    SELECT 
+		        COALESCE(ac.ASSOCIATIONCODE, '전체 합계') AS 'ASSOCIATIONCODE', 
+		        SUM(CASE WHEN s.SCOUTCLSCODE IN ('01', '02', '03', '04', '05', '06', '99', '', null) AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) +
+		        SUM(CASE WHEN s.CONFIRMY = 'N' OR s.CONFIRMY IS NULL OR s.CONFIRMY = '' THEN 1 ELSE 0 END) AS 'scoutpre'
+		    FROM scout s
+		    JOIN associationcode ac ON s.ASSOCIATIONCODE = ac.ASSOCIATIONCODE
+		    WHERE LEFT(s.STARTDAY, 4) = #{pre_year}
+		    GROUP BY ac.ASSOCIATIONCODE WITH ROLLUP
+		)
+		
+		SELECT 
+		    COALESCE(A.ASSOCIATIONCODE, B.ASSOCIATIONCODE) AS 'ASSOCIATIONCODE',
+		    A.scoutcurrent,
+		    B.scoutpre
+		FROM A
+		left outer JOIN B ON A.ASSOCIATIONCODE = B.ASSOCIATIONCODE
+		ORDER BY 
+		    CASE WHEN A.ASSOCIATIONCODE IS NULL THEN 1 ELSE 0 END,
+		    COALESCE(A.ASSOCIATIONCODE, B.ASSOCIATIONCODE);
+
+	</select>
+
+	
+	<select id="leader_stats_list" resultType="pictVO">
+		WITH A AS (
+		    SELECT 
+		        COALESCE(ac.ASSOCIATIONCODE, '전체 합계') AS gubun,
+		        SUM(CASE WHEN l.CONFIRMY IN ('Y', 'N', '', NULL) THEN 1 ELSE 0 END) AS leadercurrent
+		    FROM leader l
+		    JOIN associationcode ac ON ac.ASSOCIATIONCODE = l.ASSOCIATIONCODE
+		    WHERE LEFT(l.STARTDAY, 4) = #{search_year}
+		    GROUP BY ac.ASSOCIATIONCODE WITH ROLLUP
+		),
+		B AS (
+		    SELECT 
+		        COALESCE(ac.ASSOCIATIONCODE, '전체 합계') AS gubun,
+		        SUM(CASE WHEN l.CONFIRMY IN ('Y', 'N', '', NULL) THEN 1 ELSE 0 END) AS leaderpre
+		    FROM leader l
+		    JOIN associationcode ac ON ac.ASSOCIATIONCODE = l.ASSOCIATIONCODE
+		    WHERE LEFT(l.STARTDAY, 4) = #{pre_year}
+		    GROUP BY ac.ASSOCIATIONCODE WITH ROLLUP
+		)
+		
+		SELECT 
+		    COALESCE(A.gubun, B.gubun) AS gubun,
+		    A.leadercurrent,
+		    B.leaderpre
+		FROM A
+		LEFT JOIN B ON A.gubun = B.gubun
+		ORDER BY 
+		    COALESCE(A.gubun, B.gubun);
+
+	</select>
+
+	<!-- 연맹별등록현황 -->
+	<select id="stats_scout_page" resultType="pictVO">
+		SELECT 
+		    COALESCE(ac.ASSOCIATIONCODE, '전체 합계') AS 'ASSOCIATIONCODE', 
+		    SUM(CASE WHEN s.SCOUTCLSCODE = '01' AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'scoutclscode1',
+		    SUM(CASE WHEN s.SCOUTCLSCODE = '02' AND s.CONFIRMY = 'Y'  THEN 1 ELSE 0 END) AS 'scoutclscode2',
+		    SUM(CASE WHEN s.SCOUTCLSCODE = '03' AND s.CONFIRMY = 'Y'  THEN 1 ELSE 0 END) AS 'scoutclscode3',
+		    SUM(CASE WHEN s.SCOUTCLSCODE = '04' AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'scoutclscode4',
+		    SUM(CASE WHEN s.SCOUTCLSCODE = '05' AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'scoutclscode5',
+		    SUM(CASE WHEN s.SCOUTCLSCODE = '06' AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'scoutclscode6',
+		    SUM(CASE WHEN s.SCOUTCLSCODE = '99' AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'scoutclscodeetc',
+		    SUM(CASE WHEN (s.SCOUTCLSCODE = '' or s.SCOUTCLSCODE is null)  AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'scoutclscodenull',
+		    SUM(CASE WHEN (s.CONFIRMY = 'N' or s.CONFIRMY is null or s.CONFIRMY = '')  THEN 1 ELSE 0 END) AS 'scoutclscodenonconfirm',
+		    SUM(CASE WHEN s.SCOUTCLSCODE IN ('01', '02', '03', '04', '05', '06', '99', '', null) AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END ) + SUM(CASE WHEN s.CONFIRMY = 'N' or s.CONFIRMY is null  or s.CONFIRMY = '' THEN 1 ELSE 0 END) AS 'scoutclscodesum'
+		FROM scout s
+		JOIN associationcode ac ON s.ASSOCIATIONCODE = ac.ASSOCIATIONCODE
+		WHERE LEFT(s.STARTDAY, 4) = #{search_year}
+		GROUP BY ac.ASSOCIATIONCODE WITH ROLLUP
+		ORDER BY CASE WHEN ac.ASSOCIATIONCODE IS NULL THEN 1 ELSE 0 END, ac.ASSOCIATIONCODE;
+	</select>
+
+	<!-- 육성단체 조직 -->
+	<select id="stats_organ_page" resultType="pictVO">
+		SELECT t.ASSOCIATIONCODE,
+	       COUNT(DISTINCT t.TROOPNO) AS troopcount,
+	       a.ASSOCIATIONNAME,
+	       (CASE 
+	           WHEN t.TROOPCLSCODE1 = '01' THEN 
+	               (CASE 
+	                   WHEN t.SCOUTCLSCODE = '01' THEN 'scoutclscode1'
+	                   WHEN t.SCOUTCLSCODE = '02' THEN 'scoutclscode2'
+	                   WHEN t.SCOUTCLSCODE = '03' THEN 'scoutclscode3'
+	                   WHEN t.SCOUTCLSCODE = '04' THEN 'scoutclscode4'
+	                   WHEN t.SCOUTCLSCODE = '05' THEN 'scoutclscode5'
+	                   WHEN t.SCOUTCLSCODE = '06' THEN 'scoutclscodeetc'
+	                   WHEN t.SCOUTCLSCODE = '99' THEN 'scoutclscode6'
+	                END)
+	           WHEN t.TROOPCLSCODE1 = '02' THEN 'local'
+	           WHEN t.TROOPCLSCODE1 = '03' THEN 'dongwoo'
+	           WHEN t.TROOPCLSCODE1 = '04' THEN 'special'
+	        END) AS levels
+		FROM troop t
+		LEFT JOIN associationcode a ON t.ASSOCIATIONCODE = a.ASSOCIATIONCODE
+		LEFT JOIN trooplevelcode tl ON tl.TROOPLEVELCODE = t.TROOPLEVELCODE
+		LEFT JOIN leader l ON l.TROOPNO = t.TROOPNO AND left(l.STARTDAY, 4 ) = #{search_year}
+		LEFT JOIN scout s ON s.TROOPNO = t.TROOPNO AND left(s.STARTDAY, 4) = #{search_year}
+		WHERE l.TROOPNO IS NOT NULL OR s.TROOPNO IS NOT NULL
+		GROUP BY t.associationcode, a.ASSOCIATIONNAME, levels
+		ORDER BY t.associationcode, cast(levels as unsigned) asc;
+			
+	</select>
+	
+	
 </mapper>

@@ -27,6 +27,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -211,7 +212,7 @@ public class PictController {
 			String enpassword = encryptPassword(inputPw); // 입력비밀번호
 			
 			if (enpassword.equals(pictVO.getPassword())) {
-				
+				request.getSession().setAttribute("troop_associationcode", pictVO.getASSOCIATIONCODE());
 				request.getSession().setAttribute("troopno", pictVO.getTROOPNO());
 				request.getSession().setAttribute("troopname", pictVO.getTROOPNAME());
 				request.getSession().setAttribute("authority", "sub_admin");
@@ -3491,6 +3492,177 @@ public class PictController {
 		
 		model.addAttribute("retUrl", "/admin/front/association_price");
 		return "pict/main/message";
+	}
+	
+	
+	
+	
+	//관리자 통계
+	//대시보드
+	@RequestMapping("/front/stats_list")
+	public String stats_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		
+		String sessions = (String) request.getSession().getAttribute("authority");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
+		
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String current_year = dateFormat.format(today);
+		model.addAttribute("current_year", current_year);
+		pictVO.setSearch_year(current_year);
+		int pre_year = Integer.parseInt(current_year) - 1;
+		pictVO.setPre_year(pre_year+"");
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
+		
+		
+		List<PictVO> scout_stats_list = pictService.scout_stats_list(pictVO);
+		List<PictVO> leader_stats_list = pictService.leader_stats_list(pictVO);
+		ArrayList arr = new ArrayList();
+		for(int i=0; i<leader_stats_list.size(); i++) {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			for(int j=0; j<scout_stats_list.size(); j++) {
+				if(!leader_stats_list.get(i).getGubun().equals("전체 합계")) {
+					if(leader_stats_list.get(i).getGubun().equals(scout_stats_list.get(j).getASSOCIATIONCODE())) {
+						map.put("ASSOCIATIONCODE", leader_stats_list.get(i).getGubun());
+						
+						map.put("current", Integer.parseInt(leader_stats_list.get(i).getLeadercurrent()) + Integer.parseInt(scout_stats_list.get(j).getScoutcurrent()));
+						map.put("pre", Integer.parseInt(leader_stats_list.get(i).getLeaderpre()) + Integer.parseInt(scout_stats_list.get(j).getScoutpre()));
+						arr.add(map);
+					}
+					
+				}
+			}
+			if(leader_stats_list.get(i).getGubun().equals("200")) {
+				map.put("ASSOCIATIONCODE", leader_stats_list.get(i).getGubun());
+				map.put("current", Integer.parseInt(leader_stats_list.get(i).getLeadercurrent()));
+				map.put("pre", Integer.parseInt(leader_stats_list.get(i).getLeaderpre()));
+				arr.add(map);
+			}
+		}
+		model.addAttribute("resultList", arr);
+		model.addAttribute("pictVO", pictVO);
+		return "pict/front/stats_list";
+	}
+	
+	//연맹별등록
+	@RequestMapping("/front/stats_scout")
+	public String stats_scout(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		
+		String sessions = (String) request.getSession().getAttribute("authority");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String current_year = dateFormat.format(today);
+		model.addAttribute("current_year", current_year);
+		pictVO.setSearch_year(current_year);
+		int pre_year = Integer.parseInt(current_year) - 1;
+		pictVO.setPre_year(pre_year+"");
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
+		
+		//재영 작업
+		List<PictVO> scout_stats_list = pictService.stats_scout_page(pictVO);
+		model.addAttribute("resultList", scout_stats_list);
+		model.addAttribute("pictVO", pictVO);
+		return "pict/front/stats_scout";
+	}
+	/*
+	//전년대비비율
+	@RequestMapping("/front/stats_rate")
+	public String stats_rate(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		
+		String sessions = (String) request.getSession().getAttribute("authority");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String current_year = dateFormat.format(today);
+		model.addAttribute("current_year", current_year);
+		pictVO.setSearch_year(current_year);
+		int pre_year = Integer.parseInt(current_year) - 1;
+		pictVO.setPre_year(pre_year+"");
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
+		
+		//재영 작업
+		List<PictVO> scout_stats_list = pictService.stats_rate_page(pictVO);
+		model.addAttribute("resultList", scout_stats_list);
+		model.addAttribute("pictVO", pictVO);
+		return "pict/front/stats_rate";
+	}
+	*/
+	//전년대비비율
+	@RequestMapping("/front/stats_organ")
+	public String stats_organ(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		
+		String sessions = (String) request.getSession().getAttribute("authority");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String current_year = dateFormat.format(today);
+		model.addAttribute("current_year", current_year);
+		pictVO.setSearch_year(current_year);
+		int pre_year = Integer.parseInt(current_year) - 1;
+		pictVO.setPre_year(pre_year+"");
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			return "pict/main/message";
+		}
+		
+		//재영 작업
+		List<PictVO> organ_list = pictService.stats_organ_page(pictVO);
+		HashMap<String, Object> currentMap = null; // 현재 코드에 대한 맵
+		
+		ArrayList arr = new ArrayList();
+		for (PictVO pict : organ_list) {
+            String associationCode = pict.getASSOCIATIONCODE(); // associationcode
+            String level = pict.getLevels(); // level
+            String troopCount = pict.getTroopcount(); // troopcount
+
+            if (currentMap == null || !currentMap.get("ASSOCIATIONCODE").equals(associationCode)) {
+                currentMap = new HashMap<>();
+                currentMap.put("ASSOCIATIONCODE", associationCode); 
+                arr.add(currentMap);
+            }
+            currentMap.put(level, troopCount);
+        }
+		
+		model.addAttribute("resultList", arr);
+		model.addAttribute("pictVO", pictVO);
+		return "pict/front/stats_organ";
 	}
 	
 	

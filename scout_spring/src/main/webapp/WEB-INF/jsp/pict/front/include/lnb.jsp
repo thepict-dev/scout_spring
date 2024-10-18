@@ -71,8 +71,11 @@
 	                <a href="#lnk">통계 및 현황</a>
 	                <ul class="subNav">
 	                    <li><a href="/admin/front/stats_list">전체 대시보드 보기</a></li>
-	                    <li><a href="/admin/front/stats_organ">연맹별 조직 등록 현황</a></li>
-	                    <li><a href="/admin/front/stats_member">대원 등록 현황</a></li>
+	                    <li><a href="/admin/front/stats_scout">연맹별등록</a></li>
+	                    <li><a href="/admin/front/stats_rate">전년대비 비율</a></li>
+	                    <li><a href="/admin/front/stats_organ">육성단체 등록</a></li>
+	                    <li><a href="/admin/front/stats_leader">연맹별 지도자 등록</a></li>
+	                    <li><a href="/admin/front/stats_continue">대원구성</a></li>
 	                </ul>
 	            </li>
 	            <li <c:if test="${home_man eq true}">class="active"</c:if>>
