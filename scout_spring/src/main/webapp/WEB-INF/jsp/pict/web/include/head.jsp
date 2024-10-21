@@ -12,6 +12,7 @@
     <title>한국스카우트연맹</title>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT.css" rel="stylesheet">
     <link rel="stylesheet" href="/user_css/odometer-theme-default.css" />
     <link rel="stylesheet" href="/user_css/reset.css">
     <link rel="stylesheet" href="/user_css/user-common.css">

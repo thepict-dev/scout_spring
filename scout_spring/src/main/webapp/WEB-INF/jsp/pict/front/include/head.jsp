@@ -11,6 +11,7 @@
     
     <meta property="og:image" content="/front_img/c-logo.png"/>
     <title>스카우트</title>
+    <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
     <link href="/css/nice-select.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/reset.css">

@@ -1,18 +1,18 @@
-@import url('https://webfontworld.github.io/sunn/SUIT.css');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 *{
     box-sizing: border-box;
+    font-family: 'SUIT', sans-serif;
 }
 
 body{
     position: relative;
     height: 100vh;
-    font-family: 'SUIT';
+    font-family: 'SUIT', sans-serif;
     /* overflow: hidden; */
 }
 :root {
-    --fn-suit: 'SUIT';
+    --fn-suit: 'SUIT', sans-serif;
     --purple-50: #eeecf4;
     --purple-100: #cbc3de;
     --purple-200: #b2a6ce;
