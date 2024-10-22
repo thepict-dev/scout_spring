@@ -644,6 +644,12 @@ public class PictServiceImpl implements PictService {
 		return pictMapper.stats_organ_page(pictVO);
 	}
 
+	@Override
+	public List<PictVO> stats_leader_page(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.stats_leader_page(pictVO);
+	}
+
 
 
 

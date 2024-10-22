@@ -3618,7 +3618,7 @@ public class PictController {
 		return "pict/front/stats_rate";
 	}
 	*/
-	//전년대비비율
+	//육성단체
 	@RequestMapping("/front/stats_organ")
 	public String stats_organ(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
 		
@@ -3664,7 +3664,36 @@ public class PictController {
 		model.addAttribute("pictVO", pictVO);
 		return "pict/front/stats_organ";
 	}
-	
+	//연맹별지도자
+	@RequestMapping("/front/stats_leader")
+	public String stats_leader(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		
+		String sessions = (String) request.getSession().getAttribute("authority");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String current_year = dateFormat.format(today);
+		model.addAttribute("current_year", current_year);
+		pictVO.setSearch_year(current_year);
+		int pre_year = Integer.parseInt(current_year) - 1;
+		pictVO.setPre_year(pre_year+"");
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
+		
+		List<PictVO> scout_stats_list = pictService.stats_leader_page(pictVO);
+		model.addAttribute("resultList", scout_stats_list);
+		model.addAttribute("pictVO", pictVO);
+		return "pict/front/stats_leader";
+	}
 	
 	//홈페이지관리
 	//게시글 리스트

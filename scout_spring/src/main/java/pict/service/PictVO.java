@@ -356,8 +356,15 @@ public class PictVO extends PictDefaultVO {
 	private String troopcount;
 	private String dongwoo;
 	private String special;
+	private String registerconfirm;
 	
 	
+	public String getRegisterconfirm() {
+		return registerconfirm;
+	}
+	public void setRegisterconfirm(String registerconfirm) {
+		this.registerconfirm = registerconfirm;
+	}
 	public String getDongwoo() {
 		return dongwoo;
 	}

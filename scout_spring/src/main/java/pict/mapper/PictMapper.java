@@ -230,6 +230,8 @@ public interface PictMapper {
 
 	List<PictVO> stats_organ_page(PictVO pictVO) throws Exception;
 
+	List<PictVO> stats_leader_page(PictVO pictVO) throws Exception;
+
 	
 
 }

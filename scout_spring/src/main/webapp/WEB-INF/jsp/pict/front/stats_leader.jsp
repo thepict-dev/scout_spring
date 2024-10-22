@@ -13,7 +13,7 @@
 		<%@ include file="./include/lnb.jsp" %>
 		<c:import url="./include/header.jsp">
 			<c:param name="pageParent" value="통계 및 현황"/>
-	    	<c:param name="pageTitle" value="육성단체 등록"/>
+	    	<c:param name="pageTitle" value="연맹별 지도자 등록"/>
 	    </c:import>
         <div class="contentsContainer">
 	        <div class="statsWrapper">
@@ -45,30 +45,21 @@
 	                    <div class="tableWrapper stats">
 	                        <table>
 	                            <colgroup>
+	                                <col width="15%" />
 	                                <col width="10%" />
-	                                <col width="9%" />
-	                                <col width="9%" />
-	                                <col width="9%" />
-	                                <col width="9%" />
-	                                <col width="9%" />
-	                                <col width="9%" />
-	                                <col width="9%" />
-	                                <col width="9%" />
-	                                <col width="9%" />
+	                                <col width="10%" />
+	                                <col width="10%" />
+	                                <col width="10%" />
+	                                <col width="10%" />
 	                            </colgroup>
 	                            <thead>
 	                                <tr>
 	                                    <th>연맹</th>
-	                                    <th>비버</th>
-	                                    <th>컵</th>
-	                                    <th>스카우트</th>
-	                                    <th>벤처</th>
-	                                    <th>로버</th>
-	                                    <th>복합</th>
-	                                    <th>지역대</th>
-	                                    <th>동우대</th>
-	                                    <th>특수대</th>
-	                                    <th>계</th>
+	                                    <th>등록</th>
+	                                    <th>미승인</th>
+	                                    <th>계속등록</th>
+	                                    <th>신규등록</th>
+	                                    <th>총계</th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>
@@ -99,44 +90,28 @@
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '220'}">원불교연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '230'}">불교연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '240'}">기독교연맹</c:if>
+					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '전체 합계'}">전체 합계</c:if>
 		                                    </td>
 		                                    <td>
-		                                    	<c:if test="${empty resultList.scoutclscode1}">0</c:if>
-		                                    	<c:if test="${!empty resultList.scoutclscode1}">${resultList.scoutclscode1}</c:if>
+		                                    	<c:if test="${empty resultList.registerconfirm}">0</c:if>
+		                                    	<c:if test="${!empty resultList.registerconfirm}">${resultList.registerconfirm}</c:if>
 	                                    	</td>
 		                                    <td>
-		                                    	<c:if test="${empty resultList.scoutclscode2}">0</c:if>
-		                                    	<c:if test="${!empty resultList.scoutclscode2}">${resultList.scoutclscode2}</c:if>
+		                                    	<c:if test="${empty resultList.registernonconfirm}">0</c:if>
+		                                    	<c:if test="${!empty resultList.registernonconfirm}">${resultList.registernonconfirm}</c:if>
 	                                    	</td>
 		                                    <td>
-		                                    	<c:if test="${empty resultList.scoutclscode3}">0</c:if>
-		                                    	<c:if test="${!empty resultList.scoutclscode3}">${resultList.scoutclscode3}</c:if>
+		                                    	<c:if test="${empty resultList.registercontinue}">0</c:if>
+		                                    	<c:if test="${!empty resultList.registercontinue}">${resultList.registercontinue}</c:if>
 	                                    	</td>
 		                                    <td>
-		                                    	<c:if test="${empty resultList.scoutclscode4}">0</c:if>
-		                                    	<c:if test="${!empty resultList.scoutclscode4}">${resultList.scoutclscode4}</c:if>
+		                                    	<c:if test="${empty resultList.registernew}">0</c:if>
+		                                    	<c:if test="${!empty resultList.registernew}">${resultList.registernew}</c:if>
 	                                    	</td>
 		                                    <td>
-		                                    	<c:if test="${empty resultList.scoutclscode5}">0</c:if>
-		                                    	<c:if test="${!empty resultList.scoutclscode5}">${resultList.scoutclscode5}</c:if>
+		                                    	<c:if test="${empty resultList.registersum}">0</c:if>
+		                                    	<c:if test="${!empty resultList.registersum}">${resultList.registersum}</c:if>
 	                                    	</td>
-		                                    <td>
-		                                    	<c:if test="${empty resultList.scoutclscode6}">0</c:if>
-		                                    	<c:if test="${!empty resultList.scoutclscode6}">${resultList.scoutclscode6}</c:if>
-	                                    	</td>
-		                                    <td>
-		                                    	<c:if test="${empty resultList.local}">0</c:if>
-		                                    	<c:if test="${!empty resultList.local}">${resultList.local}</c:if>
-	                                    	</td>
-		                                    <td>
-		                                    	<c:if test="${empty resultList.dongwoo}">0</c:if>
-		                                    	<c:if test="${!empty resultList.dongwoo}">${resultList.dongwoo}</c:if>
-	                                    	</td>
-		                                    <td>
-		                                    	<c:if test="${empty resultList.special}">0</c:if>
-		                                    	<c:if test="${!empty resultList.special}">${resultList.special}</c:if>
-	                                    	</td>
-		                                    <td>${resultList.scoutclscode1 + resultList.scoutclscode2 + resultList.scoutclscode3 +resultList.scoutclscode4+resultList.scoutclscode5+resultList.scoutclscode6+resultList.local+resultList.dongwoo+ resultList.special}</td>
 		                                </tr>
 	                                </c:forEach>
 	                            </tbody>

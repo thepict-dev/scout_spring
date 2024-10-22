@@ -1611,4 +1611,38 @@
 	</select>
 	
 	
+	<!-- 지도자통계 -->
+	<select id="stats_leader_page" resultType="pictVO">
+		SELECT 
+		    COALESCE(ac.ASSOCIATIONCODE, '전체 합계') AS 'ASSOCIATIONCODE',
+		    SUM(CASE WHEN l.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'registerconfirm',
+		    SUM(CASE WHEN (l.CONFIRMY = 'N' OR l.CONFIRMY IS NULL OR l.CONFIRMY = '') THEN 1 ELSE 0 END) AS 'registernonconfirm',
+		    SUM(CASE WHEN l.CONFIRMY IN ('Y', 'N', '', NULL) THEN 1 ELSE 0 END) AS 'registersum',
+		    SUM(CASE 
+		        WHEN LEFT(l.STARTDAY, 4) = #{search_year} 
+		             AND l.CONFIRMY = 'Y' 
+		             AND l.MEMBERNO IN (
+		                 SELECT MEMBERNO 
+		                 FROM leader 
+		                 WHERE LEFT(STARTDAY, 4) = #{pre_year}
+		             ) 
+		        THEN 1 ELSE 0 END) AS 'registercontinue',
+		    SUM(CASE 
+		        WHEN LEFT(l.STARTDAY, 4) = '2024' 
+		             AND l.CONFIRMY = 'Y' 
+		             AND l.MEMBERNO NOT IN (
+		                 SELECT MEMBERNO 
+		                 FROM leader 
+		                 WHERE LEFT(STARTDAY, 4) = #{pre_year}
+		             ) 
+		        THEN 1 ELSE 0 END) AS 'registernew'
+		FROM leader l
+		JOIN associationcode ac ON ac.ASSOCIATIONCODE = l.ASSOCIATIONCODE
+		WHERE LEFT(l.STARTDAY, 4) = #{search_year}
+		  
+		GROUP BY ac.ASSOCIATIONCODE WITH ROLLUP
+		ORDER BY CASE WHEN ac.ASSOCIATIONCODE IS NULL THEN 1 ELSE 0 END, ac.ASSOCIATIONCODE;
+	</select>
+	
+	
 </mapper>

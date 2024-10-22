@@ -228,6 +228,8 @@ public interface PictService {
 
 	public List<PictVO> stats_organ_page(PictVO pictVO) throws Exception;
 
+	public List<PictVO> stats_leader_page(PictVO pictVO) throws Exception;
+
 
 
 }
