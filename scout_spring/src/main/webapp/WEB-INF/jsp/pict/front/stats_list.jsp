@@ -29,7 +29,7 @@
 		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '040'}">인천연맹</c:if>
 		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '050'}">광주연맹</c:if>
 		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '060'}">대전연맹</c:if>
-		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '070'}">대전연맹</c:if>
+		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '070'}">울산연맹</c:if>
 		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '080'}">울산연맹</c:if>
 		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '100'}">경기북부연맹</c:if>
 		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '110'}">경기남부연맹</c:if>

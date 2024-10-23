@@ -57,13 +57,13 @@
 		                                <tr>
 		                                    <td>
 		                                    	<c:if test="${resultList.ASSOCIATIONCODE eq '011'}">서울북부연맹</c:if>
-		                        				<c:if test="${resultList.ASSOCIATIONCODE eq '012'}">서울남부연맹</c:if>
+					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '012'}">서울남부연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '020'}">부산연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '030'}">대구연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '040'}">인천연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '050'}">광주연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '060'}">대전연맹</c:if>
-					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '070'}">대전연맹</c:if>
+					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '070'}">울산연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '080'}">울산연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '100'}">경기북부연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '110'}">경기남부연맹</c:if>
@@ -80,7 +80,6 @@
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '220'}">원불교연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '230'}">불교연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '240'}">기독교연맹</c:if>
-					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '전체 합계'}">전체 합계</c:if>
 		                                    </td>
 		                                    <td>
 		                                    	<c:if test="${empty resultList.registerconfirm}">0</c:if>
