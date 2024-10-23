@@ -1352,43 +1352,22 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
-		int limitNumber = 20;
-		pictVO.setLimit(limitNumber);
-		
-		Integer pageNum = pictVO.getPageNumber();
-		
-		if(pageNum == 0) {
-			pictVO.setPageNumber(1);
-			pageNum = 1;
-		}
-
-		int startNum = (pageNum - 1) * limitNumber;
-		pictVO.setStartNumber(startNum);
-		
-		Integer totalCnt = pictService.life_list_cnt(pictVO);
-		
-		int lastPageValue = (int)(Math.ceil( totalCnt * 1.0 / 20 )); 
-		pictVO.setLastPage(lastPageValue);
-		
-		Integer s_page = pageNum - 4;
-		Integer e_page = pageNum + 5;
-		if (s_page <= 0) {
-			s_page = 1;
-			e_page = 10;
-		} 
-		if (e_page > lastPageValue){
-			e_page = lastPageValue;
-		}
-		
-		pictVO.setStartPage(s_page);
-		pictVO.setEndPage(e_page);
-		
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String current_year = dateFormat.format(today);
+		pictVO.setSearch_year(current_year);
 		
 		List<PictVO> life_list = pictService.life_list(pictVO);
 		model.addAttribute("resultList", life_list);
-		model.addAttribute("pictVO", pictVO);
-		model.addAttribute("life_cnt", totalCnt);
 		
+		model.addAttribute("pictVO", pictVO);
+		
+		PictVO vo = new PictVO();
+		vo = pictService.life_sub_info(pictVO);
+		model.addAttribute("vo", vo);
+		
+		List<PictVO> association_list = pictService.association_list(pictVO);
+		model.addAttribute("association_list", association_list);
 		return "pict/front/life_list";
 	}
 	

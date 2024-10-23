@@ -1464,25 +1464,60 @@
 	
 	
 	<select id="life_list" resultType="pictVO">
-		select * from member where LIFEMEMBERY = 'Y'
-		<if test="MEMBERNO != null and MEMBERNO != ''">
-			and MEMBERNO = #{MEMBERNO}
+		WITH YearlyLeader AS (
+		    SELECT l.MEMBERNO, l.ASSOCIATIONCODE
+		    FROM leader l
+		    WHERE LEFT(l.STARTDAY, 4) = #{search_year}
+		),
+		YearlyScout AS (
+		    SELECT s.MEMBERNO, s.ASSOCIATIONCODE
+		    FROM scout s
+		    WHERE LEFT(s.STARTDAY, 4) = #{search_year}
+		)
+		SELECT m.MEMBERNO, 
+		       MAX(m.KNAME) AS KNAME, 
+		       MAX(m.BIRTHDAY) AS BIRTHDAY, 
+		       MAX(m.SEX) AS SEX, 
+		       MAX(m.MOBILE) AS MOBILE, 
+		       MAX(m.TROOPSCOUTY) AS TROOPSCOUTY, 
+		       MAX(m.TROOPLEADERY) AS TROOPLEADERY, 
+		       MAX(m.LIFEMEMBERNO) AS LIFEMEMBERNO, 
+		       MAX(m.LIFERANK) AS LIFERANK, 
+		       MAX(m.LIFESTATUS) AS LIFESTATUS, 
+		       MAX(m.LIFEENTERDATE) AS LIFEENTERDATE,
+		       COALESCE(MAX(ac.ASSOCIATIONCODE), MAX(l.ASSOCIATIONCODE), MAX(s.ASSOCIATIONCODE)) AS ASSOCIATIONCODE,
+		       COALESCE(MAX(ac.ASSOCIATIONNAME)) AS ASSOCIATIONNAME
+		FROM member m
+		LEFT JOIN YearlyLeader l ON l.MEMBERNO = m.MEMBERNO
+		LEFT JOIN YearlyScout s ON s.MEMBERNO = m.MEMBERNO
+		LEFT JOIN associationcode ac ON ac.ASSOCIATIONCODE = COALESCE(l.ASSOCIATIONCODE, s.ASSOCIATIONCODE)
+		WHERE m.LIFEMEMBERY = 'Y'
+		<if test="search_liferank != null and search_liferank != '' ">
+			and m.LIFERANK = #{search_liferank}
+		</if>
+		<if test="search_associationcode != null and search_associationcode != ''">
+			and (l.ASSOCIATIONCODE = #{search_associationcode} or s.ASSOCIATIONCODE = #{search_associationcode})
+		</if>
+		<if test="search_lifestatus != null and search_lifestatus != '' ">
+			and m.LIFESTATUS = #{search_lifestatus}
 		</if>
 		
+		GROUP BY m.MEMBERNO
+
+		
 		<if test="type != null and type != '' and type =='number'">
-			order by cast(MEMBERNO as unsigned) asc
+			order by cast(m.MEMBERNO as unsigned) asc
 		</if>
 		<if test="type != null and type != '' and type =='birthday'">
-			order by BIRTHDAY asc
+			order by m.BIRTHDAY asc
 		</if>
 		<if test="type != null and type != '' and type =='text'">
-			order by KNAME asc
+			order by m.KNAME asc
 		</if>
 		
 		<if test="type == null or type == ''">
-			order by cast(MEMBERNO as unsigned) asc
+			order by cast(m.MEMBERNO as unsigned) asc
 		</if>
-		LIMIT #{limit} OFFSET #{startNumber}
 	</select>
 	
 	<select id="life_list_cnt" resultType="int"> 
@@ -1935,4 +1970,37 @@
 	ORDER BY CASE WHEN ac.ASSOCIATIONCODE IS NULL THEN 1 ELSE 0 END, ac.ASSOCIATIONCODE;
 			
 	</select>
+	
+	
+	<select id="life_info_leader" resultType="pictVO">
+		select a.ASSOCIATIONNAME
+		from leader l
+		left outer join associationcode a on a.ASSOCIATIONCODE = l.ASSOCIATIONCODE
+		where MEMBERNO = #{MEMBERNO}
+		order by l.STARTDAY desc
+		limit 1 offset 0
+	</select>
+	
+	<select id="life_info_scout" resultType="pictVO">
+		select a.ASSOCIATIONNAME
+		from scout s
+		left outer join associationcode a on a.ASSOCIATIONCODE = s.ASSOCIATIONCODE
+		where MEMBERNO = #{MEMBERNO}
+		order by s.STARTDAY desc
+		limit 1 offset 0
+	</select>
+	
+	<select id="life_sub_info" resultType="pictVO">
+		SELECT 
+		    COUNT(CASE WHEN LIFERANK = 'C' THEN MEMBERNO END) AS lifec,
+		    COUNT(CASE WHEN LIFERANK = 'S' THEN MEMBERNO END) AS lifes,
+		    COUNT(CASE WHEN LIFERANK = 'G' THEN MEMBERNO END) AS lifeg,
+		    COUNT(MEMBERNO) AS totallife
+		FROM member 
+		WHERE LIFEMEMBERY = 'Y';
+				
+	</select>
+	
+	
+	
 </mapper>

@@ -234,6 +234,12 @@ public interface PictService {
 
 	public List<PictVO> stats_continue_page(PictVO pictVO) throws Exception;
 
+	public PictVO life_info_scout(PictVO pictVO) throws Exception;
+
+	public PictVO life_info_leader(PictVO pictVO) throws Exception;
+
+	public PictVO life_sub_info(PictVO pictVO) throws Exception;
+
 
 
 }

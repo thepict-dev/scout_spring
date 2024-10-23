@@ -662,5 +662,23 @@ public class PictServiceImpl implements PictService {
 		return pictMapper.stats_continue_page(pictVO);
 	}
 
+	@Override
+	public PictVO life_info_scout(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.life_info_scout(pictVO);
+	}
+
+	@Override
+	public PictVO life_info_leader(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.life_info_leader(pictVO);
+	}
+
+	@Override
+	public PictVO life_sub_info(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.life_sub_info(pictVO);
+	}
+
 	
 }

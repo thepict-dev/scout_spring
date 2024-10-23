@@ -236,6 +236,12 @@ public interface PictMapper {
 
 	List<PictVO> stats_continue_page(PictVO pictVO) throws Exception;
 
+	PictVO life_info_scout(PictVO pictVO) throws Exception;
+
+	PictVO life_info_leader(PictVO pictVO) throws Exception;
+
+	PictVO life_sub_info(PictVO pictVO) throws Exception;
+
 	
 
 }

@@ -389,8 +389,51 @@ public class PictVO extends PictDefaultVO {
 	private String currentscoutclscode4;
 	private String currentscoutclscode5;
 	private String currentscoutclscode6;
+	private String lifec;
+	private String lifes;
+	private String lifeg;
+	private String lifetotal;
+	private String search_liferank;
+	private String search_lifestatus;
 	
 	
+	
+	public String getSearch_lifestatus() {
+		return search_lifestatus;
+	}
+	public void setSearch_lifestatus(String search_lifestatus) {
+		this.search_lifestatus = search_lifestatus;
+	}
+	public String getSearch_liferank() {
+		return search_liferank;
+	}
+	public void setSearch_liferank(String search_liferank) {
+		this.search_liferank = search_liferank;
+	}
+	public String getLifec() {
+		return lifec;
+	}
+	public void setLifec(String lifec) {
+		this.lifec = lifec;
+	}
+	public String getLifes() {
+		return lifes;
+	}
+	public void setLifes(String lifes) {
+		this.lifes = lifes;
+	}
+	public String getLifeg() {
+		return lifeg;
+	}
+	public void setLifeg(String lifeg) {
+		this.lifeg = lifeg;
+	}
+	public String getLifetotal() {
+		return lifetotal;
+	}
+	public void setLifetotal(String lifetotal) {
+		this.lifetotal = lifetotal;
+	}
 	public String getNewscoutclscode1() {
 		return newscoutclscode1;
 	}

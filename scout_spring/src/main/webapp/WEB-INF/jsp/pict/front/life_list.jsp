@@ -20,6 +20,9 @@
 	            <div class="joinContainer">
 	            	<form action="" id="search_form" name="search_form" method="post" enctype="multipart/form-data">
 	            		<input type="hidden" id="type" name="type">
+	            		<input type="hidden" id="search_associationcode" name="search_associationcode">
+	            		<input type="hidden" id="search_liferank" name="search_liferank">
+	            		<input type="hidden" id="search_lifestatus" name="search_lifestatus">
 	            	</form>
                     <form action="" id="register" name="register" method="post" enctype="multipart/form-data">
                         <h2 class="subTitles" style="padding: 16px 0 0 24px;">사용자 정보</h2>
@@ -82,7 +85,31 @@
 						<div class="tableContainer">
                                <div class="tableTopButton">
 			                    	<h2 class="subTitles">사용자 조회 내용</h2>
+			                    	<div>
+			                    		<span>골드:${vo.lifeg}건 </span>
+			                    		<span>실버:${vo.lifes}건 </span>
+			                    		<span>일반:${vo.lifec}건</span>
+			                    	</div>
 			                    	<div class="topButtonWrapper">
+				                    	<select name="search_associationcode_form" id="search_associationcode_form" class="lgThinSelect" style="margin-top:5px">
+	                                       	<option value="">전체</option>
+		                             		<c:forEach var="association_list" items="${association_list}" varStatus="status">
+			                                	<option value="${association_list.ASSOCIATIONCODE}" <c:if test="${pictVO.search_associationcode eq association_list.ASSOCIATIONCODE}">selected</c:if>> ${association_list.ASSOCIATIONNAME}</option>
+			                                </c:forEach>
+		                                </select>
+		                                <select name="search_liferank_form" id="search_liferank_form" class="lgThinSelect" style="margin-top:5px">
+	                                       	<option value="" <c:if test="${pictVO.search_liferank eq '' || pictVO.search_liferank eq null || pictVO.search_liferank eq undefined}">selected</c:if>>전체</option>
+		                             		<option value="C" <c:if test="${pictVO.search_liferank eq 'C'}">selected</c:if>>일반</option>
+		                             		<option value="S" <c:if test="${pictVO.search_liferank eq 'S'}">selected</c:if>>실버</option>
+		                             		<option value="G" <c:if test="${pictVO.search_liferank eq 'G'}">selected</c:if>>골드</option>
+		                                </select>
+		                                <select name="search_lifestatus_form" id="search_lifestatus_form" class="lgThinSelect" style="margin-top:5px">
+	                                       	<option value="" <c:if test="${pictVO.search_lifestatus eq '' || pictVO.search_lifestatus eq null || pictVO.search_lifestatus eq undefined}">selected</c:if>>전체</option>
+		                             		<option value="1" <c:if test="${pictVO.search_lifestatus eq '1'}">selected</c:if>>유지</option>
+		                             		<option value="2" <c:if test="${pictVO.search_lifestatus eq '2'}">selected</c:if>>승계</option>
+		                             		<option value="3" <c:if test="${pictVO.search_lifestatus eq '3'}">selected</c:if>>탈퇴</option>
+		                             		<option value="4" <c:if test="${pictVO.search_lifestatus eq '4'}">selected</c:if>>사망</option>
+		                                </select>
 			                    		<a href="#lnk" class="smButton" onclick="fn_order('number')" style="margin-top:5px">회원번호순</a>
 			                    		<a href="#lnk" class="smButton" onclick="fn_order('birthday')" style="margin-top:5px">생년월일순</a>
 			                    		<a href="#lnk" class="smButton" onclick="fn_order('text')" style="margin-top:5px">가나다순</a>
@@ -95,19 +122,21 @@
                                            <col width="5%" />
                                            <col width="5%" />
                                            <col width="5%" />
+                                           <col width="5%" />
                                            <col width="10%" />
                                            <col width="5%" />
                                            <col width="10%" />
-                                           <col width="10%" />
+                                           <col width="8%" />
                                            <col width="10%" />
                                            <col width="7%" />
                                            <col width="8%" />
-                                           <col width="10%" />
+                                           <col width="7%" />
                                        </colgroup>
                                        <thead>
                                            <tr>
                                                <th>No</th>
                                                <th>회원번호</th>
+                                               <th>소속연맹</th>
                                                <th>이름</th>
                                                <th>생년월일</th>
                                                <th>성별</th>
@@ -124,6 +153,7 @@
 											<tr onclick="former_info('${resultList.MEMBERNO}')">
 												<td>${status.count}</td>
 												<td>${resultList.MEMBERNO}</td>
+												<td>${resultList.ASSOCIATIONNAME}</td>
 												<td>${resultList.KNAME}</td>
 												<td>${resultList.BIRTHDAY}</td>
 												<td>
@@ -156,26 +186,7 @@
                                </div>
                            </div>
                     </form>
-                    <div class="pagination">
-		            	<c:if test="${pictVO.pageNumber ne 1}">
-		            		<a href="/admin/front/life_list?pageNumber=1&type=${pictVO.type}"><img src="/user_img/first.png" alt=""></a>
-		            		<a href="/admin/front/life_list?pageNumber=${pictVO.pageNumber - 1 < 1 ? 1 : pictVO.pageNumber - 1}&type=${pictVO.type}"><img src="/user_img/prev.png" alt=""></a>
-		            	</c:if>
-		            	
-		            	<c:forEach var="i" begin="${pictVO.startPage}" end="${pictVO.endPage}">
-							<c:if test="${i eq pictVO.pageNumber}">
-								<a href="/admin/front/life_list?pageNumber=${i}&type=${pictVO.type}" class="active">${i}</a>
-							</c:if>
-							<c:if test="${i ne pictVO.pageNumber}">
-								<a href="/admin/front/life_list?pageNumber=${i}&type=${pictVO.type}" >${i}</a>
-							</c:if>
-						</c:forEach>
-		                
-		                <c:if test="${pictVO.lastPage ne pictVO.pageNumber}">
-							<li><a href="/admin/front/life_list?pageNumber=${pictVO.pageNumber + 1 > pictVO.lastPage ?  pictVO.lastPage : pictVO.pageNumber + 1}&type=${pictVO.type}"><img src="/user_img/next.png" alt=""></a></li>
-							<li><a href="/admin/front/life_list?pageNumber=${pictVO.lastPage}&type=${pictVO.type}"><img src="/user_img/last.png" alt=""></a></li>
-						</c:if>
-		            </div>
+
                 </div>
             </div>
         </div>
@@ -188,6 +199,28 @@
 			$("#search_form").submit();
 
 		}
+		$("#search_associationcode_form").change(function(){
+			$('#search_associationcode').val($('#search_associationcode_form').val())
+			$('#search_liferank').val($('#search_liferank_form').val())
+			$('#search_lifestatus').val($('#search_lifestatus_form').val())
+			$("#search_form").attr("action", "/admin/front/life_list");
+			$("#search_form").submit();
+		});
+		$("#search_liferank_form").change(function(){
+			$('#search_associationcode').val($('#search_associationcode_form').val())
+			$('#search_liferank').val($('#search_liferank_form').val())
+			$('#search_lifestatus').val($('#search_lifestatus_form').val())
+			$("#search_form").attr("action", "/admin/front/life_list");
+			$("#search_form").submit();
+		});
+		$("#search_lifestatus_form").change(function(){
+			$('#search_associationcode').val($('#search_associationcode_form').val())
+			$('#search_liferank').val($('#search_liferank_form').val())
+			$('#search_lifestatus').val($('#search_lifestatus_form').val())
+			$("#search_form").attr("action", "/admin/front/life_list");
+			$("#search_form").submit();
+		});
+		
 		function former_excel(){
 			if(confirm("해당 리스트를 엑셀파일로 다운로드 하시겠습니까?")){
 				$("#search_form").attr("action", "/admin/life_excel");
