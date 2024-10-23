@@ -1545,16 +1545,43 @@
 		    JOIN associationcode ac ON ac.ASSOCIATIONCODE = l.ASSOCIATIONCODE
 		    WHERE LEFT(l.STARTDAY, 4) = #{pre_year}
 		    GROUP BY ac.ASSOCIATIONCODE WITH ROLLUP
+		),
+		SortingOrder AS (
+		    SELECT 
+		        '011' AS code, 1 AS sort_order UNION ALL
+		        SELECT '012', 2 UNION ALL
+		        SELECT '020', 3 UNION ALL
+		        SELECT '030', 4 UNION ALL
+		        SELECT '040', 5 UNION ALL
+		        SELECT '050', 6 UNION ALL
+		        SELECT '060', 7 UNION ALL
+		        SELECT '070', 8 UNION ALL
+		        SELECT '100', 9 UNION ALL
+		        SELECT '110', 10 UNION ALL
+		        SELECT '120', 11 UNION ALL
+		        SELECT '130', 12 UNION ALL
+		        SELECT '140', 13 UNION ALL
+		        SELECT '150', 14 UNION ALL
+		        SELECT '160', 15 UNION ALL
+		        SELECT '170', 16 UNION ALL
+		        SELECT '180', 17 UNION ALL
+		        SELECT '190', 18 UNION ALL
+		        SELECT '210', 19 UNION ALL
+		        SELECT '220', 20 UNION ALL
+		        SELECT '230', 21 UNION ALL
+		        SELECT '240', 22 UNION ALL
+		        SELECT '200', 23 UNION ALL
+		        SELECT '전체 합계', 24
 		)
-		
 		SELECT 
 		    COALESCE(A.gubun, B.gubun) AS gubun,
 		    A.leadercurrent,
 		    B.leaderpre
 		FROM A
 		LEFT JOIN B ON A.gubun = B.gubun
+		LEFT JOIN SortingOrder so ON COALESCE(A.gubun, B.gubun) = so.code
 		ORDER BY 
-		    COALESCE(A.gubun, B.gubun);
+		    so.sort_order;  -- 정렬 기준으로 sort_order 사용
 
 	</select>
 
@@ -1581,32 +1608,65 @@
 
 	<!-- 육성단체 조직 -->
 	<select id="stats_organ_page" resultType="pictVO">
-		SELECT t.ASSOCIATIONCODE,
-	       COUNT(DISTINCT t.TROOPNO) AS troopcount,
-	       a.ASSOCIATIONNAME,
-	       (CASE 
-	           WHEN t.TROOPCLSCODE1 = '01' THEN 
-	               (CASE 
-	                   WHEN t.SCOUTCLSCODE = '01' THEN 'scoutclscode1'
-	                   WHEN t.SCOUTCLSCODE = '02' THEN 'scoutclscode2'
-	                   WHEN t.SCOUTCLSCODE = '03' THEN 'scoutclscode3'
-	                   WHEN t.SCOUTCLSCODE = '04' THEN 'scoutclscode4'
-	                   WHEN t.SCOUTCLSCODE = '05' THEN 'scoutclscode5'
-	                   WHEN t.SCOUTCLSCODE = '06' THEN 'scoutclscodeetc'
-	                   WHEN t.SCOUTCLSCODE = '99' THEN 'scoutclscode6'
-	                END)
-	           WHEN t.TROOPCLSCODE1 = '02' THEN 'local'
-	           WHEN t.TROOPCLSCODE1 = '03' THEN 'dongwoo'
-	           WHEN t.TROOPCLSCODE1 = '04' THEN 'special'
-	        END) AS levels
+		WITH SortingOrder AS (
+		    SELECT 
+		        '011' AS code, 1 AS sort_order UNION ALL
+		        SELECT '012', 2 UNION ALL
+		        SELECT '020', 3 UNION ALL
+		        SELECT '030', 4 UNION ALL
+		        SELECT '040', 5 UNION ALL
+		        SELECT '050', 6 UNION ALL
+		        SELECT '060', 7 UNION ALL
+		        SELECT '070', 8 UNION ALL
+		        SELECT '100', 9 UNION ALL
+		        SELECT '110', 10 UNION ALL
+		        SELECT '120', 11 UNION ALL
+		        SELECT '130', 12 UNION ALL
+		        SELECT '140', 13 UNION ALL
+		        SELECT '150', 14 UNION ALL
+		        SELECT '160', 15 UNION ALL
+		        SELECT '170', 16 UNION ALL
+		        SELECT '180', 17 UNION ALL
+		        SELECT '190', 18 UNION ALL
+		        SELECT '210', 19 UNION ALL
+		        SELECT '220', 20 UNION ALL
+		        SELECT '230', 21 UNION ALL
+		        SELECT '240', 22 UNION ALL
+		        SELECT '200', 23 
+		)
+		
+		SELECT 
+		    t.ASSOCIATIONCODE,
+		    COUNT(DISTINCT t.TROOPNO) AS troopcount,
+		    a.ASSOCIATIONNAME,
+		    (CASE 
+		        WHEN t.TROOPCLSCODE1 = '01' THEN 
+		            (CASE 
+		                WHEN t.SCOUTCLSCODE = '01' THEN 'scoutclscode1'
+		                WHEN t.SCOUTCLSCODE = '02' THEN 'scoutclscode2'
+		                WHEN t.SCOUTCLSCODE = '03' THEN 'scoutclscode3'
+		                WHEN t.SCOUTCLSCODE = '04' THEN 'scoutclscode4'
+		                WHEN t.SCOUTCLSCODE = '05' THEN 'scoutclscode5'
+		                WHEN t.SCOUTCLSCODE = '06' THEN 'scoutclscodeetc'
+		                WHEN t.SCOUTCLSCODE = '99' THEN 'scoutclscode6'
+		            END)
+		        WHEN t.TROOPCLSCODE1 = '02' THEN 'local'
+		        WHEN t.TROOPCLSCODE1 = '03' THEN 'dongwoo'
+		        WHEN t.TROOPCLSCODE1 = '04' THEN 'special'
+		    END) AS levels,
+		    so.sort_order  -- 추가한 sort_order 컬럼
 		FROM troop t
 		LEFT JOIN associationcode a ON t.ASSOCIATIONCODE = a.ASSOCIATIONCODE
 		LEFT JOIN trooplevelcode tl ON tl.TROOPLEVELCODE = t.TROOPLEVELCODE
-		LEFT JOIN leader l ON l.TROOPNO = t.TROOPNO AND left(l.STARTDAY, 4 ) = #{search_year}
-		LEFT JOIN scout s ON s.TROOPNO = t.TROOPNO AND left(s.STARTDAY, 4) = #{search_year}
+		LEFT JOIN leader l ON l.TROOPNO = t.TROOPNO AND LEFT(l.STARTDAY, 4) = #{search_year}
+		LEFT JOIN scout s ON s.TROOPNO = t.TROOPNO AND LEFT(s.STARTDAY, 4) = #{search_year}
+		LEFT JOIN SortingOrder so ON t.ASSOCIATIONCODE = so.code  -- SortingOrder와 조인
 		WHERE l.TROOPNO IS NOT NULL OR s.TROOPNO IS NOT NULL
-		GROUP BY t.associationcode, a.ASSOCIATIONNAME, levels
-		ORDER BY t.associationcode, cast(levels as unsigned) asc;
+		GROUP BY t.ASSOCIATIONCODE, a.ASSOCIATIONNAME, levels, so.sort_order  -- sort_order 추가
+		ORDER BY 
+		    so.sort_order,  -- sort_order로 정렬
+		    CAST(levels AS UNSIGNED) ASC;
+
 			
 	</select>
 	
@@ -1644,5 +1704,235 @@
 		ORDER BY CASE WHEN ac.ASSOCIATIONCODE IS NULL THEN 1 ELSE 0 END, ac.ASSOCIATIONCODE;
 	</select>
 	
+	<!-- 대원비율 -->
+	<select id="stats_rate_page" resultType="pictVO">
+		WITH CurrentYearData AS (
+		    SELECT
+		        ac.ASSOCIATIONCODE,
+		        ac.ASSOCIATIONNAME AS 'ASSOCIATIONNAME',
+		        SUM(CASE WHEN s.SCOUTCLSCODE = '01' AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'currentbeaber',
+		        SUM(CASE WHEN s.SCOUTCLSCODE = '02' AND s.CONFIRMY = 'Y'  THEN 1 ELSE 0 END) AS 'currentcup',
+		        SUM(CASE WHEN s.SCOUTCLSCODE = '03' AND s.CONFIRMY = 'Y'  THEN 1 ELSE 0 END) AS 'currentscout',
+		        SUM(CASE WHEN s.SCOUTCLSCODE = '04' AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'currentventure',
+		        SUM(CASE WHEN s.SCOUTCLSCODE = '05' AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'currentrover',
+		        SUM(CASE WHEN s.SCOUTCLSCODE = '06' AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'currentcomposite',
+		        SUM(CASE WHEN s.SCOUTCLSCODE = '99' AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'currentother',
+		        SUM(CASE WHEN (s.SCOUTCLSCODE = '' or s.SCOUTCLSCODE is null)  AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'currentnotapplicable',
+		        SUM(CASE WHEN (s.CONFIRMY = 'N' or s.CONFIRMY is null or s.CONFIRMY = '')  THEN 1 ELSE 0 END) AS 'currentnotapproved',
+		        SUM(CASE WHEN s.SCOUTCLSCODE IN ('01', '02', '03', '04', '05', '06', '99', '', null) AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) + 
+		        SUM(CASE WHEN s.CONFIRMY = 'N' or s.CONFIRMY is null or s.CONFIRMY = '' THEN 1 ELSE 0 END) AS 'currenttotal'
+		    FROM scout s
+		    LEFT JOIN associationcode ac ON s.ASSOCIATIONCODE = ac.ASSOCIATIONCODE
+		    WHERE LEFT(s.STARTDAY, 4) = #{search_year}
+		    
+		    GROUP BY ac.ASSOCIATIONCODE, ac.ASSOCIATIONNAME
+		    ORDER BY ac.ASSOCIATIONCODE
+		),
+		PreviousYearData AS (
+		    SELECT
+		        ac.ASSOCIATIONCODE,
+		        SUM(CASE WHEN s.SCOUTCLSCODE = '01' AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'prebeaber',
+		        SUM(CASE WHEN s.SCOUTCLSCODE = '02' AND s.CONFIRMY = 'Y'  THEN 1 ELSE 0 END) AS 'precup',
+		        SUM(CASE WHEN s.SCOUTCLSCODE = '03' AND s.CONFIRMY = 'Y'  THEN 1 ELSE 0 END) AS 'prescout',
+		        SUM(CASE WHEN s.SCOUTCLSCODE = '04' AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'preventure',
+		        SUM(CASE WHEN s.SCOUTCLSCODE = '05' AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'prerover',
+		        SUM(CASE WHEN s.SCOUTCLSCODE = '06' AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'precomposite',
+		        SUM(CASE WHEN s.SCOUTCLSCODE = '99' AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'preother',
+		        SUM(CASE WHEN (s.SCOUTCLSCODE = '' or s.SCOUTCLSCODE is null)  AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) AS 'premissing',
+		        SUM(CASE WHEN (s.CONFIRMY = 'N' or s.CONFIRMY is null or s.CONFIRMY = '')  THEN 1 ELSE 0 END) AS 'premissingapproval',
+		        SUM(CASE WHEN s.SCOUTCLSCODE IN ('01', '02', '03', '04', '05', '06', '99', '', null) AND s.CONFIRMY = 'Y' THEN 1 ELSE 0 END) + 
+		        SUM(CASE WHEN s.CONFIRMY = 'N' or s.CONFIRMY is null or s.CONFIRMY = '' THEN 1 ELSE 0 END) AS 'pretotal'
+		    FROM scout s
+		    LEFT JOIN associationcode ac ON s.ASSOCIATIONCODE = ac.ASSOCIATIONCODE
+		    WHERE LEFT(s.STARTDAY, 4) = #{pre_year}
+		    GROUP BY ac.ASSOCIATIONCODE
+		    ORDER BY ac.ASSOCIATIONCODE
+		)
+		SELECT
+		    cy.ASSOCIATIONCODE,
+		    cy.`ASSOCIATIONNAME`,
+		    cy.`currentbeaber`,
+		    cy.`currentcup`,
+		    cy.`currentscout`,
+		    cy.`currentventure`,
+		    cy.`currentrover`,
+		    cy.`currentcomposite`,
+		    cy.`currentother`,
+		    cy.`currentnotapplicable`,
+		    cy.`currentnotapproved`,
+		    cy.`currenttotal`,
+		    ROUND((cy.`currentbeaber` / py.`prebeaber`) * 100, 2) AS 'prebeaberrate',
+		    ROUND((cy.`currentcup` / py.`precup`) * 100, 2) AS 'precuprate',
+		    ROUND((cy.`currentscout` / py.`prescout`) * 100, 2) AS 'prescoutrate',
+		    ROUND((cy.`currentventure` / py.`preventure`) * 100, 2) AS 'preventurerate',
+		    ROUND((cy.`currentrover` / py.`prerover`) * 100, 2) AS 'preroverrate',
+		    ROUND((cy.`currentcomposite` / py.`precomposite`) * 100, 2) AS 'precompositerate',
+		    ROUND((cy.`currentother` / py.`preother`) * 100, 2) AS 'preotherrate',
+		    ROUND((cy.`currentnotapplicable` / py.`premissing`) * 100, 2) AS 'premissingrate',
+		    ROUND((cy.`currentnotapproved` / py.`premissingapproval`) * 100, 2) AS 'premissingapprovalrate'
+		FROM CurrentYearData cy
+		LEFT JOIN PreviousYearData py ON cy.ASSOCIATIONCODE = py.ASSOCIATIONCODE
+		
+		UNION ALL
+		
+		SELECT
+		    '전체 합계' AS '구분',
+		    NULL AS 'ASSOCIATIONNAME',
+		    SUM(cy.`currentbeaber`),
+		    SUM(cy.`currentcup`),
+		    SUM(cy.`currentscout`),
+		    SUM(cy.`currentventure`),
+		    SUM(cy.`currentrover`),
+		    SUM(cy.`currentcomposite`),
+		    SUM(cy.`currentother`),
+		    SUM(cy.`currentnotapplicable`),
+		    SUM(cy.`currentnotapproved`),
+		    SUM(cy.`currenttotal`),
+		    ROUND((SUM(cy.`currentbeaber`) / SUM(py.`prebeaber`)) * 100, 2),
+		    ROUND((SUM(cy.`currentcup`) / SUM(py.`precup`)) * 100, 2),
+		    ROUND((SUM(cy.`currentscout`) / SUM(py.`prescout`)) * 100, 2),
+		    ROUND((SUM(cy.`currentventure`) / SUM(py.`preventure`)) * 100, 2),
+		    ROUND((SUM(cy.`currentrover`) / SUM(py.`prerover`)) * 100, 2),
+		    ROUND((SUM(cy.`currentcomposite`) / SUM(py.`precomposite`)) * 100, 2),
+		    ROUND((SUM(cy.`currentother`) / SUM(py.`preother`)) * 100, 2),
+		    ROUND((SUM(cy.`currentnotapplicable`) / SUM(py.`premissing`)) * 100, 2),
+		    ROUND((SUM(cy.`currentnotapproved`) / SUM(py.`premissingapproval`)) * 100, 2)
+		FROM CurrentYearData cy
+		LEFT JOIN PreviousYearData py ON cy.ASSOCIATIONCODE = py.ASSOCIATIONCODE;
+			
+	</select>
 	
+	<!-- 대원구성 -->
+	<select id="stats_continue_page" resultType="pictVO">
+		SELECT 
+	    COALESCE(ac.ASSOCIATIONCODE, '전체 합계') AS 'ASSOCIATIONCODE',
+	    SUM(CASE 
+	        WHEN s.SCOUTCLSCODE = '01' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	             AND s.CONFIRMY = 'Y' 
+	             AND s.MEMBERNO NOT IN (
+	                 SELECT MEMBERNO 
+	                 FROM scout 
+	                 WHERE LEFT(STARTDAY, 4) = #{pre_year} 
+	                   AND ASSOCIATIONCODE = s.ASSOCIATIONCODE
+	             ) 
+	        THEN 1 ELSE 0 END) AS 'newscoutclscode1',
+	    SUM(CASE 
+	        WHEN s.SCOUTCLSCODE = '02' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	             AND s.CONFIRMY = 'Y' 
+	             AND s.MEMBERNO NOT IN (
+	                 SELECT MEMBERNO 
+	                 FROM scout 
+	                 WHERE LEFT(STARTDAY, 4) = #{pre_year} 
+	                   AND ASSOCIATIONCODE = s.ASSOCIATIONCODE
+	             ) 
+	        THEN 1 ELSE 0 END) AS 'newscoutclscode2',
+	    SUM(CASE 
+	        WHEN s.SCOUTCLSCODE = '03' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	             AND s.CONFIRMY = 'Y' 
+	             AND s.MEMBERNO NOT IN (
+	                 SELECT MEMBERNO 
+	                 FROM scout 
+	                 WHERE LEFT(STARTDAY, 4) = #{pre_year} 
+	                   AND ASSOCIATIONCODE = s.ASSOCIATIONCODE
+	             ) 
+	        THEN 1 ELSE 0 END) AS 'newscoutclscode3',
+	    SUM(CASE 
+	        WHEN s.SCOUTCLSCODE = '04' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	             AND s.CONFIRMY = 'Y' 
+	             AND s.MEMBERNO NOT IN (
+	                 SELECT MEMBERNO 
+	                 FROM scout 
+	                 WHERE LEFT(STARTDAY, 4) = #{pre_year} 
+	                   AND ASSOCIATIONCODE = s.ASSOCIATIONCODE
+	             ) 
+	        THEN 1 ELSE 0 END) AS 'newscoutclscode4',
+	    SUM(CASE 
+	        WHEN s.SCOUTCLSCODE = '05' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	             AND s.CONFIRMY = 'Y' 
+	             AND s.MEMBERNO NOT IN (
+	                 SELECT MEMBERNO 
+	                 FROM scout 
+	                 WHERE LEFT(STARTDAY, 4) = #{pre_year} 
+	                   AND ASSOCIATIONCODE = s.ASSOCIATIONCODE
+	             ) 
+	        THEN 1 ELSE 0 END) AS 'newscoutclscode5',
+	    SUM(CASE 
+	        WHEN s.SCOUTCLSCODE = '06' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	             AND s.CONFIRMY = 'Y' 
+	             AND s.MEMBERNO NOT IN (
+	                 SELECT MEMBERNO 
+	                 FROM scout 
+	                 WHERE LEFT(STARTDAY, 4) = #{pre_year} 
+	                   AND ASSOCIATIONCODE = s.ASSOCIATIONCODE
+	             ) 
+	        THEN 1 ELSE 0 END) AS 'newscoutclscode6',
+		SUM(CASE 
+	        WHEN s.SCOUTCLSCODE = '01' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	             AND s.CONFIRMY = 'Y' 
+	             AND s.MEMBERNO NOT IN (
+	                 SELECT MEMBERNO 
+	                 FROM scout 
+	                 WHERE LEFT(STARTDAY, 4) = #{search_year} 
+	                   AND ASSOCIATIONCODE = s.ASSOCIATIONCODE
+	             ) 
+	        THEN 1 ELSE 0 END) AS 'currentscoutclscode1',
+		SUM(CASE 
+	        WHEN s.SCOUTCLSCODE = '02' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	             AND s.CONFIRMY = 'Y' 
+	             AND s.MEMBERNO NOT IN (
+	                 SELECT MEMBERNO 
+	                 FROM scout 
+	                 WHERE LEFT(STARTDAY, 4) = #{search_year} 
+	                   AND ASSOCIATIONCODE = s.ASSOCIATIONCODE
+	             ) 
+	        THEN 1 ELSE 0 END) AS 'currentscoutclscode2',
+	         SUM(CASE 
+	        WHEN s.SCOUTCLSCODE = '03' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	             AND s.CONFIRMY = 'Y' 
+	             AND s.MEMBERNO IN (
+	                 SELECT MEMBERNO 
+	                 FROM scout 
+	                 WHERE LEFT(STARTDAY, 4) = #{pre_year} 
+	                   AND ASSOCIATIONCODE = s.ASSOCIATIONCODE
+	             ) 
+	        THEN 1 ELSE 0 END) AS 'currentscoutclscode3',
+	    SUM(CASE 
+	        WHEN s.SCOUTCLSCODE = '04' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	             AND s.CONFIRMY = 'Y' 
+	             AND s.MEMBERNO IN (
+	                 SELECT MEMBERNO 
+	                 FROM scout 
+	                 WHERE LEFT(STARTDAY, 4) = #{pre_year} 
+	                   AND ASSOCIATIONCODE = s.ASSOCIATIONCODE
+	             ) 
+	        THEN 1 ELSE 0 END) AS 'currentscoutclscode4',
+	    SUM(CASE 
+	        WHEN s.SCOUTCLSCODE = '05' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	             AND s.CONFIRMY = 'Y' 
+	             AND s.MEMBERNO IN (
+	                 SELECT MEMBERNO 
+	                 FROM scout 
+	                 WHERE LEFT(STARTDAY, 4) = #{pre_year} 
+	                   AND ASSOCIATIONCODE = s.ASSOCIATIONCODE
+	             ) 
+	        THEN 1 ELSE 0 END) AS 'currentscoutclscode5',
+	    SUM(CASE 
+	        WHEN s.SCOUTCLSCODE = '06' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	             AND s.CONFIRMY = 'Y' 
+	             AND s.MEMBERNO IN (
+	                 SELECT MEMBERNO 
+	                 FROM scout 
+	                 WHERE LEFT(STARTDAY, 4) = #{pre_year} 
+	                   AND ASSOCIATIONCODE = s.ASSOCIATIONCODE
+	             ) 
+	        THEN 1 ELSE 0 END) AS 'currentscoutclscode6'
+	
+	
+	FROM scout s
+	JOIN associationcode ac ON s.ASSOCIATIONCODE = ac.ASSOCIATIONCODE
+	WHERE LEFT(s.STARTDAY, 4) = #{search_year} 
+	GROUP BY ac.ASSOCIATIONCODE WITH ROLLUP
+	ORDER BY CASE WHEN ac.ASSOCIATIONCODE IS NULL THEN 1 ELSE 0 END, ac.ASSOCIATIONCODE;
+			
+	</select>
 </mapper>

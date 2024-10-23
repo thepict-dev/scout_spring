@@ -232,6 +232,10 @@ public interface PictMapper {
 
 	List<PictVO> stats_leader_page(PictVO pictVO) throws Exception;
 
+	List<PictVO> stats_rate_page(PictVO pictVO) throws Exception;
+
+	List<PictVO> stats_continue_page(PictVO pictVO) throws Exception;
+
 	
 
 }

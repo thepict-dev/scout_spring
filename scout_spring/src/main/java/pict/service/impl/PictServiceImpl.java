@@ -650,9 +650,17 @@ public class PictServiceImpl implements PictService {
 		return pictMapper.stats_leader_page(pictVO);
 	}
 
+	@Override
+	public List<PictVO> stats_rate_page(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.stats_rate_page(pictVO);
+	}
 
+	@Override
+	public List<PictVO> stats_continue_page(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.stats_continue_page(pictVO);
+	}
 
-
-	
 	
 }

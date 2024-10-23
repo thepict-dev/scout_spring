@@ -13,7 +13,7 @@
 		<%@ include file="./include/lnb.jsp" %>
 		<c:import url="./include/header.jsp">
 			<c:param name="pageParent" value="통계 및 현황"/>
-	    	<c:param name="pageTitle" value="연맹별 지도자 등록"/>
+	    	<c:param name="pageTitle" value="대원 구성"/>
 	    </c:import>
         <div class="contentsContainer">
 	        <div class="statsWrapper">
@@ -35,21 +35,35 @@
 	                    <div class="tableWrapper stats">
 	                        <table>
 	                            <colgroup>
-	                                <col width="15%" />
-	                                <col width="10%" />
-	                                <col width="10%" />
-	                                <col width="10%" />
-	                                <col width="10%" />
-	                                <col width="10%" />
+	                                <col width="7.699%" />
+	                                <col width="7.699%" />
+	                                <col width="7.699%" />
+	                                <col width="7.699%" />
+	                                <col width="7.699%" />
+	                                <col width="7.699%" />
+	                                <col width="7.699%" />
+	                                <col width="7.699%" />
+	                                <col width="7.699%" />
+	                                <col width="7.699%" />
+	                                <col width="7.699%" />
+	                                <col width="7.699%" />
+	                                <col width="7.699%" />
 	                            </colgroup>
 	                            <thead>
 	                                <tr>
 	                                    <th>연맹</th>
-	                                    <th>등록</th>
-	                                    <th>미승인</th>
-	                                    <th>계속등록</th>
-	                                    <th>신규등록</th>
-	                                    <th>총계</th>
+	                                    <th>비버(신규)</th>
+	                                    <th>컵(신규)</th>
+	                                    <th>스카우트(신규)</th>
+	                                    <th>벤처(신규)</th>
+	                                    <th>로버(신규)</th>
+	                                    <th>복합(신규)</th>
+	                                    <th>비버(계속)</th>
+	                                    <th>컵(계속)</th>
+	                                    <th>스카우트(계속)</th>
+	                                    <th>벤처(계속)</th>
+	                                    <th>로버(계속)</th>
+	                                    <th>복합(계속)</th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>
@@ -83,24 +97,53 @@
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '전체 합계'}">전체 합계</c:if>
 		                                    </td>
 		                                    <td>
-		                                    	<c:if test="${empty resultList.registerconfirm}">0</c:if>
-		                                    	<c:if test="${!empty resultList.registerconfirm}">${resultList.registerconfirm}</c:if>
+		                                    	<c:if test="${empty resultList.newscoutclscode1}">0</c:if>
+		                                    	<c:if test="${!empty resultList.newscoutclscode1}">${resultList.newscoutclscode1}</c:if>
 	                                    	</td>
 		                                    <td>
-		                                    	<c:if test="${empty resultList.registernonconfirm}">0</c:if>
-		                                    	<c:if test="${!empty resultList.registernonconfirm}">${resultList.registernonconfirm}</c:if>
+		                                    	<c:if test="${empty resultList.newscoutclscode2}">0</c:if>
+		                                    	<c:if test="${!empty resultList.newscoutclscode2}">${resultList.newscoutclscode2}</c:if>
 	                                    	</td>
 		                                    <td>
-		                                    	<c:if test="${empty resultList.registercontinue}">0</c:if>
-		                                    	<c:if test="${!empty resultList.registercontinue}">${resultList.registercontinue}</c:if>
+		                                    	<c:if test="${empty resultList.newscoutclscode3}">0</c:if>
+		                                    	<c:if test="${!empty resultList.newscoutclscode3}">${resultList.newscoutclscode3}</c:if>
 	                                    	</td>
 		                                    <td>
-		                                    	<c:if test="${empty resultList.registernew}">0</c:if>
-		                                    	<c:if test="${!empty resultList.registernew}">${resultList.registernew}</c:if>
+		                                    	<c:if test="${empty resultList.newscoutclscode4}">0</c:if>
+		                                    	<c:if test="${!empty resultList.newscoutclscode4}">${resultList.newscoutclscode4}</c:if>
 	                                    	</td>
 		                                    <td>
-		                                    	<c:if test="${empty resultList.registersum}">0</c:if>
-		                                    	<c:if test="${!empty resultList.registersum}">${resultList.registersum}</c:if>
+		                                    	<c:if test="${empty resultList.newscoutclscode5}">0</c:if>
+		                                    	<c:if test="${!empty resultList.newscoutclscode5}">${resultList.newscoutclscode5}</c:if>
+	                                    	</td>
+		                                    <td>
+		                                    	<c:if test="${empty resultList.newscoutclscode6}">0</c:if>
+		                                    	<c:if test="${!empty resultList.newscoutclscode6}">${resultList.newscoutclscode6}</c:if>
+	                                    	</td>
+	                                    	
+	                                    	<td>
+		                                    	<c:if test="${empty resultList.currentscoutclscode1}">0</c:if>
+		                                    	<c:if test="${!empty resultList.currentscoutclscode1}">${resultList.currentscoutclscode1}</c:if>
+	                                    	</td>
+		                                    <td>
+		                                    	<c:if test="${empty resultList.currentscoutclscode2}">0</c:if>
+		                                    	<c:if test="${!empty resultList.currentscoutclscode2}">${resultList.currentscoutclscode2}</c:if>
+	                                    	</td>
+		                                    <td>
+		                                    	<c:if test="${empty resultList.currentscoutclscode3}">0</c:if>
+		                                    	<c:if test="${!empty resultList.currentscoutclscode3}">${resultList.currentscoutclscode3}</c:if>
+	                                    	</td>
+		                                    <td>
+		                                    	<c:if test="${empty resultList.currentscoutclscode4}">0</c:if>
+		                                    	<c:if test="${!empty resultList.currentscoutclscode4}">${resultList.currentscoutclscode4}</c:if>
+	                                    	</td>
+		                                    <td>
+		                                    	<c:if test="${empty resultList.currentscoutclscode5}">0</c:if>
+		                                    	<c:if test="${!empty resultList.currentscoutclscode5}">${resultList.currentscoutclscode5}</c:if>
+	                                    	</td>
+		                                    <td>
+		                                    	<c:if test="${empty resultList.currentscoutclscode6}">0</c:if>
+		                                    	<c:if test="${!empty resultList.currentscoutclscode6}">${resultList.currentscoutclscode6}</c:if>
 	                                    	</td>
 		                                </tr>
 	                                </c:forEach>
@@ -114,7 +157,7 @@
 	</body>
 	<script>
 		function fn_search(){
-			$("#search_form").attr("action", "/admin/front/stats_leader");
+			$("#search_form").attr("action", "/admin/front/stats_continue");
 			$("#search_form").submit();
 		}	
 	</script>

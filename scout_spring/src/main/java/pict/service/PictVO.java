@@ -358,7 +358,226 @@ public class PictVO extends PictDefaultVO {
 	private String special;
 	private String registerconfirm;
 	
+	private String currentbeaber;
+	private String currentcup;
+	private String currentscout;
+	private String currentventure;
+	private String currentrover;
+	private String currentcomposite;
+	private String currentother;
+	private String currentnotapplicable;
+	private String currentnotapproved;
+	private String currenttotal;
+	private String prebeaberrate;
+	private String precuprate;
+	private String preventurerate;
+	private String preroverrate;
+	private String precompositerate;
+	private String preotherrate;
+	private String premissingrate;
+	private String premissingapprovalrate;
+	private String prescoutrate;
+	private String newscoutclscode1;
+	private String newscoutclscode2;
+	private String newscoutclscode3;
+	private String newscoutclscode4;
+	private String newscoutclscode5;
+	private String newscoutclscode6;
+	private String currentscoutclscode1;
+	private String currentscoutclscode2;
+	private String currentscoutclscode3;
+	private String currentscoutclscode4;
+	private String currentscoutclscode5;
+	private String currentscoutclscode6;
 	
+	
+	public String getNewscoutclscode1() {
+		return newscoutclscode1;
+	}
+	public void setNewscoutclscode1(String newscoutclscode1) {
+		this.newscoutclscode1 = newscoutclscode1;
+	}
+	public String getNewscoutclscode2() {
+		return newscoutclscode2;
+	}
+	public void setNewscoutclscode2(String newscoutclscode2) {
+		this.newscoutclscode2 = newscoutclscode2;
+	}
+	public String getNewscoutclscode3() {
+		return newscoutclscode3;
+	}
+	public void setNewscoutclscode3(String newscoutclscode3) {
+		this.newscoutclscode3 = newscoutclscode3;
+	}
+	public String getNewscoutclscode4() {
+		return newscoutclscode4;
+	}
+	public void setNewscoutclscode4(String newscoutclscode4) {
+		this.newscoutclscode4 = newscoutclscode4;
+	}
+	public String getNewscoutclscode5() {
+		return newscoutclscode5;
+	}
+	public void setNewscoutclscode5(String newscoutclscode5) {
+		this.newscoutclscode5 = newscoutclscode5;
+	}
+	public String getNewscoutclscode6() {
+		return newscoutclscode6;
+	}
+	public void setNewscoutclscode6(String newscoutclscode6) {
+		this.newscoutclscode6 = newscoutclscode6;
+	}
+	public String getCurrentscoutclscode1() {
+		return currentscoutclscode1;
+	}
+	public void setCurrentscoutclscode1(String currentscoutclscode1) {
+		this.currentscoutclscode1 = currentscoutclscode1;
+	}
+	public String getCurrentscoutclscode2() {
+		return currentscoutclscode2;
+	}
+	public void setCurrentscoutclscode2(String currentscoutclscode2) {
+		this.currentscoutclscode2 = currentscoutclscode2;
+	}
+	public String getCurrentscoutclscode3() {
+		return currentscoutclscode3;
+	}
+	public void setCurrentscoutclscode3(String currentscoutclscode3) {
+		this.currentscoutclscode3 = currentscoutclscode3;
+	}
+	public String getCurrentscoutclscode4() {
+		return currentscoutclscode4;
+	}
+	public void setCurrentscoutclscode4(String currentscoutclscode4) {
+		this.currentscoutclscode4 = currentscoutclscode4;
+	}
+	public String getCurrentscoutclscode5() {
+		return currentscoutclscode5;
+	}
+	public void setCurrentscoutclscode5(String currentscoutclscode5) {
+		this.currentscoutclscode5 = currentscoutclscode5;
+	}
+	public String getCurrentscoutclscode6() {
+		return currentscoutclscode6;
+	}
+	public void setCurrentscoutclscode6(String currentscoutclscode6) {
+		this.currentscoutclscode6 = currentscoutclscode6;
+	}
+	public String getPrescoutrate() {
+		return prescoutrate;
+	}
+	public void setPrescoutrate(String prescoutrate) {
+		this.prescoutrate = prescoutrate;
+	}
+	public String getCurrentbeaber() {
+		return currentbeaber;
+	}
+	public void setCurrentbeaber(String currentbeaber) {
+		this.currentbeaber = currentbeaber;
+	}
+	public String getCurrentcup() {
+		return currentcup;
+	}
+	public void setCurrentcup(String currentcup) {
+		this.currentcup = currentcup;
+	}
+	public String getCurrentscout() {
+		return currentscout;
+	}
+	public void setCurrentscout(String currentscout) {
+		this.currentscout = currentscout;
+	}
+	public String getCurrentventure() {
+		return currentventure;
+	}
+	public void setCurrentventure(String currentventure) {
+		this.currentventure = currentventure;
+	}
+	public String getCurrentrover() {
+		return currentrover;
+	}
+	public void setCurrentrover(String currentrover) {
+		this.currentrover = currentrover;
+	}
+	public String getCurrentcomposite() {
+		return currentcomposite;
+	}
+	public void setCurrentcomposite(String currentcomposite) {
+		this.currentcomposite = currentcomposite;
+	}
+	public String getCurrentother() {
+		return currentother;
+	}
+	public void setCurrentother(String currentother) {
+		this.currentother = currentother;
+	}
+	public String getCurrentnotapplicable() {
+		return currentnotapplicable;
+	}
+	public void setCurrentnotapplicable(String currentnotapplicable) {
+		this.currentnotapplicable = currentnotapplicable;
+	}
+	public String getCurrentnotapproved() {
+		return currentnotapproved;
+	}
+	public void setCurrentnotapproved(String currentnotapproved) {
+		this.currentnotapproved = currentnotapproved;
+	}
+	public String getCurrenttotal() {
+		return currenttotal;
+	}
+	public void setCurrenttotal(String currenttotal) {
+		this.currenttotal = currenttotal;
+	}
+	
+	public String getPrebeaberrate() {
+		return prebeaberrate;
+	}
+	public void setPrebeaberrate(String prebeaberrate) {
+		this.prebeaberrate = prebeaberrate;
+	}
+	public String getPrecuprate() {
+		return precuprate;
+	}
+	public void setPrecuprate(String precuprate) {
+		this.precuprate = precuprate;
+	}
+	public String getPreventurerate() {
+		return preventurerate;
+	}
+	public void setPreventurerate(String preventurerate) {
+		this.preventurerate = preventurerate;
+	}
+	public String getPreroverrate() {
+		return preroverrate;
+	}
+	public void setPreroverrate(String preroverrate) {
+		this.preroverrate = preroverrate;
+	}
+	public String getPrecompositerate() {
+		return precompositerate;
+	}
+	public void setPrecompositerate(String precompositerate) {
+		this.precompositerate = precompositerate;
+	}
+	public String getPreotherrate() {
+		return preotherrate;
+	}
+	public void setPreotherrate(String preotherrate) {
+		this.preotherrate = preotherrate;
+	}
+	public String getPremissingrate() {
+		return premissingrate;
+	}
+	public void setPremissingrate(String premissingrate) {
+		this.premissingrate = premissingrate;
+	}
+	public String getPremissingapprovalrate() {
+		return premissingapprovalrate;
+	}
+	public void setPremissingapprovalrate(String premissingapprovalrate) {
+		this.premissingapprovalrate = premissingapprovalrate;
+	}
 	public String getRegisterconfirm() {
 		return registerconfirm;
 	}

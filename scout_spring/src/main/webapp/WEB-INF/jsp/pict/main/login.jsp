@@ -104,7 +104,7 @@
 	                    <div class="loginInput">
 	                        <p class="inputCaption">단위대</p>
 		                	<select class="js-example-basic-single" name="TROOPNO_S" id="TROOPNO_S">
-							  	<option value="">단위대를 선택하세요</option>
+							  	<option value="">단위대를 검색하세요.</option>
 							  	<c:forEach var="troop_list" items="${troop_list}" varStatus="status">
 						  			<option value="${troop_list.TROOPNO}">${troop_list.TROOPNAME}</option>
 					  			</c:forEach>

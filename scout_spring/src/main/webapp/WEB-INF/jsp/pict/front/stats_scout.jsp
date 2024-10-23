@@ -18,26 +18,16 @@
         <div class="contentsContainer">
 	        <div class="statsWrapper">
 	            <div class="fomrTabContent active">
-	                <form action="" class="organSearchForm stats">
+	                <form action="" class="organSearchForm stats" id="search_form" name="search_form" method="post" enctype="multipart/form-data">
 	                    <h2 class="subTitles">조회 결과</h2>
 	                    <div class="organSearch stats">
 	                        <div class="searchContainer">
 	                            <p class="inputCaption">연도</p>
 	                            <div class="inputsAlign stats">
-	                                <input type="text" name="" id="" class="smThinInput" placeholder="내용을 입력해주세요...">
-	                                <a href="#lnk">초기화</a>
+	                                <input type="text" name="search_year" id="search_year" class="smThinInput" placeholder="연도를 입력해주세요." value="${pictVO.search_year}">
 	                            </div>
 	                        </div>
-	                        <div class="searchContainer">
-	                            <p class="inputCaption">연맹/지구</p>
-	                            <select name="" id="" class="smThinSelect">
-	                                <option value="1">중앙본부</option>
-	                            </select>
-	                        </div>
-	                    </div>
-	                    <div class="btnContainer organ">
-	                        <a href="#lnk" class="basicButton white"><img src="/front_img/reset.png" alt="">취소</a>
-	                        <a href="#lnk" class="basicButton purple"><img src="/front_img/search.png" alt="">조회</a>
+	                        <a href="#lnk" onclick="fn_search()" class="basicButton purple"><img src="/front_img/search.png" alt="">조회</a>
 	                    </div>
 	                </form>
 	                <div class="tableContainer bottomBd">
@@ -120,4 +110,10 @@
 	        </div>
 	    </div>
 	</body>
+	<script>
+		function fn_search(){
+			$("#search_form").attr("action", "/admin/front/stats_scout");
+			$("#search_form").submit();
+		}	
+	</script>
 </html>

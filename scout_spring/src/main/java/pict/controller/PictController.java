@@ -3495,8 +3495,6 @@ public class PictController {
 	}
 	
 	
-	
-	
 	//관리자 통계
 	//대시보드
 	@RequestMapping("/front/stats_list")
@@ -3531,15 +3529,12 @@ public class PictController {
 		for(int i=0; i<leader_stats_list.size(); i++) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			for(int j=0; j<scout_stats_list.size(); j++) {
-				if(!leader_stats_list.get(i).getGubun().equals("전체 합계")) {
-					if(leader_stats_list.get(i).getGubun().equals(scout_stats_list.get(j).getASSOCIATIONCODE())) {
-						map.put("ASSOCIATIONCODE", leader_stats_list.get(i).getGubun());
-						
-						map.put("current", Integer.parseInt(leader_stats_list.get(i).getLeadercurrent()) + Integer.parseInt(scout_stats_list.get(j).getScoutcurrent()));
-						map.put("pre", Integer.parseInt(leader_stats_list.get(i).getLeaderpre()) + Integer.parseInt(scout_stats_list.get(j).getScoutpre()));
-						arr.add(map);
-					}
+				if(leader_stats_list.get(i).getGubun().equals(scout_stats_list.get(j).getASSOCIATIONCODE())) {
+					map.put("ASSOCIATIONCODE", leader_stats_list.get(i).getGubun());
 					
+					map.put("current", Integer.parseInt(leader_stats_list.get(i).getLeadercurrent()) + Integer.parseInt(scout_stats_list.get(j).getScoutcurrent()));
+					map.put("pre", Integer.parseInt(leader_stats_list.get(i).getLeaderpre()) + Integer.parseInt(scout_stats_list.get(j).getScoutpre()));
+					arr.add(map);
 				}
 			}
 			if(leader_stats_list.get(i).getGubun().equals("200")) {
@@ -3562,13 +3557,22 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		Date today = new Date();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
-		String current_year = dateFormat.format(today);
-		model.addAttribute("current_year", current_year);
-		pictVO.setSearch_year(current_year);
-		int pre_year = Integer.parseInt(current_year) - 1;
-		pictVO.setPre_year(pre_year+"");
+		if(pictVO != null && pictVO.getSearch_year() != null) {
+			String current_year = pictVO.getSearch_year();
+			int pre_year = Integer.parseInt(current_year) - 1;
+			
+			pictVO.setPre_year(pre_year+"");
+		}
+		else {
+			Date today = new Date();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+			String current_year = dateFormat.format(today);
+			model.addAttribute("current_year", current_year);
+			pictVO.setSearch_year(current_year);
+			int pre_year = Integer.parseInt(current_year) - 1;
+			pictVO.setPre_year(pre_year+"");
+		}
+		
 		String authority = (String) request.getSession().getAttribute("authority");
 		
 		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
@@ -3585,7 +3589,7 @@ public class PictController {
 		model.addAttribute("pictVO", pictVO);
 		return "pict/front/stats_scout";
 	}
-	/*
+
 	//전년대비비율
 	@RequestMapping("/front/stats_rate")
 	public String stats_rate(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
@@ -3594,13 +3598,22 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		Date today = new Date();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
-		String current_year = dateFormat.format(today);
-		model.addAttribute("current_year", current_year);
-		pictVO.setSearch_year(current_year);
-		int pre_year = Integer.parseInt(current_year) - 1;
-		pictVO.setPre_year(pre_year+"");
+		if(pictVO != null && pictVO.getSearch_year() != null) {
+			String current_year = pictVO.getSearch_year();
+			int pre_year = Integer.parseInt(current_year) - 1;
+			
+			pictVO.setPre_year(pre_year+"");
+		}
+		else {
+			Date today = new Date();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+			String current_year = dateFormat.format(today);
+			model.addAttribute("current_year", current_year);
+			pictVO.setSearch_year(current_year);
+			int pre_year = Integer.parseInt(current_year) - 1;
+			pictVO.setPre_year(pre_year+"");
+		}
+		
 		String authority = (String) request.getSession().getAttribute("authority");
 		
 		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
@@ -3617,7 +3630,6 @@ public class PictController {
 		model.addAttribute("pictVO", pictVO);
 		return "pict/front/stats_rate";
 	}
-	*/
 	//육성단체
 	@RequestMapping("/front/stats_organ")
 	public String stats_organ(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
@@ -3626,13 +3638,22 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		Date today = new Date();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
-		String current_year = dateFormat.format(today);
-		model.addAttribute("current_year", current_year);
-		pictVO.setSearch_year(current_year);
-		int pre_year = Integer.parseInt(current_year) - 1;
-		pictVO.setPre_year(pre_year+"");
+		if(pictVO != null && pictVO.getSearch_year() != null) {
+			String current_year = pictVO.getSearch_year();
+			int pre_year = Integer.parseInt(current_year) - 1;
+			
+			pictVO.setPre_year(pre_year+"");
+		}
+		else {
+			Date today = new Date();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+			String current_year = dateFormat.format(today);
+			model.addAttribute("current_year", current_year);
+			pictVO.setSearch_year(current_year);
+			int pre_year = Integer.parseInt(current_year) - 1;
+			pictVO.setPre_year(pre_year+"");
+		}
+		
 		String authority = (String) request.getSession().getAttribute("authority");
 		
 		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
@@ -3646,7 +3667,7 @@ public class PictController {
 		List<PictVO> organ_list = pictService.stats_organ_page(pictVO);
 		HashMap<String, Object> currentMap = null; // 현재 코드에 대한 맵
 		
-		ArrayList arr = new ArrayList();
+		ArrayList<HashMap<String, Object>> arr = new ArrayList<>();
 		for (PictVO pict : organ_list) {
             String associationCode = pict.getASSOCIATIONCODE(); // associationcode
             String level = pict.getLevels(); // level
@@ -3658,13 +3679,35 @@ public class PictController {
                 arr.add(currentMap);
             }
             currentMap.put(level, troopCount);
-        }
+		}
 		
+		
+		HashMap<String, Integer> totals = new HashMap<>();
+
+        // arr 리스트를 반복하면서 합계 계산
+		for (HashMap<String, Object> map : arr) { // 여기에서 오류 발생
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                String key = entry.getKey();
+                // ASSOCIATIONCODE는 무시
+                if (!key.equals("ASSOCIATIONCODE")) {
+                    Integer value = Integer.parseInt((String) entry.getValue());
+                    totals.put(key, totals.getOrDefault(key, 0) + value);
+                }
+            }
+        }
+
+        // 결과 출력
+		HashMap<String, Object> totalMap = new HashMap<>();
+        totalMap.put("ASSOCIATIONCODE", "전체 합계"); // 혹은 다른 키로 설정 가능
+        totalMap.putAll(totals); // 합계 추가
+        arr.add(totalMap); // arr에 추가
+
 		model.addAttribute("resultList", arr);
 		model.addAttribute("pictVO", pictVO);
 		return "pict/front/stats_organ";
 	}
 	//연맹별지도자
+	//지도자
 	@RequestMapping("/front/stats_leader")
 	public String stats_leader(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
 		
@@ -3672,13 +3715,25 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		Date today = new Date();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
-		String current_year = dateFormat.format(today);
-		model.addAttribute("current_year", current_year);
-		pictVO.setSearch_year(current_year);
-		int pre_year = Integer.parseInt(current_year) - 1;
-		pictVO.setPre_year(pre_year+"");
+		
+		if(pictVO != null && pictVO.getSearch_year() != null) {
+			String current_year = pictVO.getSearch_year();
+			int pre_year = Integer.parseInt(current_year) - 1;
+			
+			pictVO.setPre_year(pre_year+"");
+		}
+		else {
+			Date today = new Date();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+			String current_year = dateFormat.format(today);
+			model.addAttribute("current_year", current_year);
+			pictVO.setSearch_year(current_year);
+			int pre_year = Integer.parseInt(current_year) - 1;
+			pictVO.setPre_year(pre_year+"");
+		}
+		
+		
+		
 		String authority = (String) request.getSession().getAttribute("authority");
 		
 		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
@@ -3690,6 +3745,16 @@ public class PictController {
 		}
 		
 		List<PictVO> scout_stats_list = pictService.stats_leader_page(pictVO);
+		List<PictVO> scout_stats_list2 = new ArrayList<PictVO>();
+		for(int i=0; i<scout_stats_list.size(); i++) {
+			if(scout_stats_list.get(i).getASSOCIATIONCODE().equals("200") || scout_stats_list.get(i).getASSOCIATIONCODE().equals("전체 합계")) {
+				scout_stats_list2.add(scout_stats_list.get(i));
+				scout_stats_list.remove(i);
+			}
+		}
+		scout_stats_list.addAll(scout_stats_list2);
+		
+		
 		model.addAttribute("resultList", scout_stats_list);
 		model.addAttribute("pictVO", pictVO);
 		return "pict/front/stats_leader";
@@ -4234,6 +4299,47 @@ public class PictController {
 	}
 	
 	//게시물 카테고리
+	//대원구성
+	@RequestMapping("/front/stats_continue")
+	public String stats_continue(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		
+		String sessions = (String) request.getSession().getAttribute("authority");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
+		if(pictVO != null && pictVO.getSearch_year() != null) {
+			String current_year = pictVO.getSearch_year();
+			int pre_year = Integer.parseInt(current_year) - 1;
+			
+			pictVO.setPre_year(pre_year+"");
+		}
+		else {
+			Date today = new Date();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+			String current_year = dateFormat.format(today);
+			model.addAttribute("current_year", current_year);
+			pictVO.setSearch_year(current_year);
+			int pre_year = Integer.parseInt(current_year) - 1;
+			pictVO.setPre_year(pre_year+"");
+		}
+		
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
+		
+		//재영 작업
+		List<PictVO> scout_stats_list = pictService.stats_continue_page(pictVO);
+		model.addAttribute("resultList", scout_stats_list);
+		model.addAttribute("pictVO", pictVO);
+		return "pict/front/stats_continue";
+	}
+	
 	@RequestMapping("/get_board_category")
 	@ResponseBody
 	public HashMap<String, Object> get_board_category(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	

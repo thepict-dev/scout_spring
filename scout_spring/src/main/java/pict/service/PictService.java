@@ -230,6 +230,10 @@ public interface PictService {
 
 	public List<PictVO> stats_leader_page(PictVO pictVO) throws Exception;
 
+	public List<PictVO> stats_rate_page(PictVO pictVO) throws Exception;
+
+	public List<PictVO> stats_continue_page(PictVO pictVO) throws Exception;
+
 
 
 }

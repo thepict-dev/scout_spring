@@ -273,10 +273,13 @@
 		var new_or_origin = $('#new_or_origin').val();
 		var is_list_data = $('#is_list_data').val()
 		
+		var troop_associationcode = '${troop_associationcode}'
+		var target_associationcode = $('#ASSOCIATIONCODE').val();
+		if(target_associationcode == '' || target_associationcode == null || target_associationcode == undefined) target_associationcode = troop_associationcode
+		
 		if(is_list_data == 'Y' && new_or_origin != 'Y'){
 			alert("조회결과 리스트에서 회원을 선택해주세요.")
 			return false;
-			
 		}
 		else if(is_list_data == 'Y' && new_or_origin == "Y"){
 			console.log("리스트가 있고 선택도 했어")
@@ -327,7 +330,7 @@
 					json.price = price
 					json.SCOUTMAGACNT = magacnt_y
 					json.type = "leader"
-					json.ASSOCIATIONCODE = $('#ASSOCIATIONCODE').val()
+					json.ASSOCIATIONCODE = target_associationcode
 					json.TROOPNO = $('#troop_no').val()
 					json.PARRENTTROOPNO = $('#parrent_troop_no').val()
 					json.maga_price = 0
@@ -381,7 +384,7 @@
 					json.price = price
 					json.SCOUTMAGACNT = magacnt_y
 					json.type = "scout"
-					json.ASSOCIATIONCODE = $('#ASSOCIATIONCODE').val()
+					json.ASSOCIATIONCODE = target_associationcode
 					json.TROOPNO = $('#troop_no').val()
 					json.PARRENTTROOPNO = $('#parrent_troop_no').val()
 					json.maga_price = maga_price
@@ -486,7 +489,7 @@
 					json.price = price
 					json.SCOUTMAGACNT = magacnt_y
 					json.type = "leader"
-					json.ASSOCIATIONCODE = $('#ASSOCIATIONCODE').val()
+					json.ASSOCIATIONCODE = target_associationcode
 					json.TROOPNO = $('#troop_no').val()
 					json.PARRENTTROOPNO = $('#parrent_troop_no').val()
 					json.maga_price = maga_price
@@ -538,7 +541,7 @@
 					json.price = price
 					json.SCOUTMAGACNT = magacnt_y
 					json.type = "scout"
-					json.ASSOCIATIONCODE = $('#ASSOCIATIONCODE').val()
+					json.ASSOCIATIONCODE = target_associationcode
 					json.TROOPNO = $('#troop_no').val()
 					json.PARRENTTROOPNO = $('#parrent_troop_no').val()
 					json.maga_price = maga_price
