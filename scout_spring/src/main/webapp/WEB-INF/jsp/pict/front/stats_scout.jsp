@@ -27,7 +27,7 @@
 	                                <input type="text" name="search_year" id="search_year" class="smThinInput" placeholder="연도를 입력해주세요." value="${pictVO.search_year}">
 	                            </div>
 	                        </div>
-	                        <a href="#lnk" onclick="fn_search()" class="basicButton purple"><img src="/front_img/search.png" alt="">조회</a>
+	                        <a href="#lnk" onclick="fn_search()" class="basicButton purple" style="height:35px; margin-top:20px"><img src="/front_img/search.png" alt="">조회</a>
 	                    </div>
 	                </form>
 	                <div class="tableContainer bottomBd">
