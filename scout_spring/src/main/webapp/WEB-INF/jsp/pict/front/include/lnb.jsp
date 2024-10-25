@@ -33,6 +33,12 @@
 <c:set var="association_price" value="${fn:indexOf(url, 'association_price')}"/>
 
 <c:set var="stats_list" value="${fn:indexOf(url, 'stats_list')}"/>
+<c:set var="stats_scout" value="${fn:indexOf(url, 'stats_scout')}"/>
+<c:set var="stats_leader" value="${fn:indexOf(url, 'stats_leader')}"/>
+<c:set var="stats_continue" value="${fn:indexOf(url, 'stats_continue')}"/>
+<c:set var="stats_rate" value="${fn:indexOf(url, 'stats_rate')}"/>
+<c:set var="stats_organ" value="${fn:indexOf(url, 'stats_organ')}"/>
+
 <c:set var="stats_organ" value="${fn:indexOf(url, 'stats_organ')}"/>
 <c:set var="stats_member" value="${fn:indexOf(url, 'stats_member')}"/>
 <c:set var="life_list" value="${fn:indexOf(url, 'life_list')}"/>
@@ -51,7 +57,7 @@
 	                    <li><a href="/admin/front/signup_org">신규 조직 등록</a></li>
 	                    <li><a href="/admin/front/signup">신규 회원 등록</a></li>
 	                    <li><a href="/admin/front/former_list">전종 리스트</a></li>
-	                    <li><a href="/admin/front/life_list">평생회원 리스트</a></li>
+	                    <li><a href="/admin/front/life_list">평생회원 관리</a></li>
 	                </ul>
 	            </li>
 	            <li <c:if test="${scout_whole_register ne -1 || scout_whole_confirm ne -1}">class="active"</c:if>>
@@ -66,16 +72,19 @@
 	                <span><img src="/front_img/lnb2.png" alt=""></span>
 	                <a href="#lnk">행사/활동 관리</a>
 	            </li>
-	            <li <c:if test="${stats_list ne -1 || stats_organ ne -1 || stats_member ne -1}">class="active"</c:if>>
+	            <li <c:if test="${stats_list ne -1 || stats_scout ne -1 || stats_leader ne -1 || stats_continue ne -1 || stats_rate ne -1 || stats_organ ne -1}">class="active"</c:if>>
 	                <span><img src="/front_img/lnb3.png" alt=""></span>
 	                <a href="#lnk">통계 및 현황</a>
 	                <ul class="subNav">
-	                    <li><a href="/admin/front/stats_list">전체 대시보드 보기</a></li>
-	                    <li><a href="/admin/front/stats_scout">연맹별등록</a></li>
+	                    <li><a href="/admin/front/stats_list">전체 대시보드</a></li>
+	                    <li><a href="#lnk" onclick="fn_later()">조직등록현황</a></li>
+	                    <li><a href="/admin/front/stats_scout">대원구성 현황</a></li>
+	                    <li><a href="/admin/front/stats_leader">지도자 구성현황</a></li>
+	                    <li><a href="/admin/front/stats_continue">대원(신규,계속) 현황</a></li>
 	                    <li><a href="/admin/front/stats_rate">전년대비 비율</a></li>
-	                    <li><a href="/admin/front/stats_organ">육성단체 등록</a></li>
-	                    <li><a href="/admin/front/stats_leader">연맹별 지도자 등록</a></li>
-	                    <li><a href="/admin/front/stats_continue">대원구성</a></li>
+	                    <li><a href="/admin/front/stats_organ">육성단체 현황</a></li>
+	                    
+	                    
 	                </ul>
 	            </li>
 	            <li <c:if test="${home_man eq true}">class="active"</c:if>>
@@ -117,3 +126,8 @@
 	    </nav>
 	</div>
 </c:if>
+<script>
+	function fn_later(){
+		alert("추후 제공에정입니다.");
+	}
+</script>

@@ -13,7 +13,7 @@
 		<%@ include file="./include/lnb.jsp" %>
 		<c:import url="./include/header.jsp">
 			<c:param name="pageParent" value="통계 및 현황"/>
-	    	<c:param name="pageTitle" value="육성단체 등록"/>
+	    	<c:param name="pageTitle" value="육성단체 현황"/>
 	    </c:import>
         <div class="contentsContainer">
 	        <div class="statsWrapper">
@@ -31,7 +31,7 @@
 	                    </div>
 	                </form>
 	                <div class="tableContainer bottomBd">
-	                    <h2 class="subTitles">대원 정보</h2>
+	                    <h2 class="subTitles">육성단체 현황</h2>
 	                    <div class="tableWrapper stats">
 	                        <table>
 	                            <colgroup>

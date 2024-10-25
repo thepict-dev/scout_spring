@@ -13,7 +13,7 @@
 		<%@ include file="./include/lnb.jsp" %>
 		<c:import url="./include/header.jsp">
 			<c:param name="pageParent" value="통계 및 현황"/>
-	    	<c:param name="pageTitle" value="연맹별 지도자 등록"/>
+	    	<c:param name="pageTitle" value="지도자 구성현황"/>
 	    </c:import>
         <div class="contentsContainer">
 	        <div class="statsWrapper">
@@ -35,21 +35,56 @@
 	                    <div class="tableWrapper stats">
 	                        <table>
 	                            <colgroup>
-	                                <col width="15%" />
-	                                <col width="10%" />
-	                                <col width="10%" />
-	                                <col width="10%" />
-	                                <col width="10%" />
-	                                <col width="10%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
+	                                <col width="5%" />
 	                            </colgroup>
 	                            <thead>
 	                                <tr>
-	                                    <th>연맹</th>
-	                                    <th>등록</th>
-	                                    <th>미승인</th>
-	                                    <th>계속등록</th>
-	                                    <th>신규등록</th>
-	                                    <th>총계</th>
+	                                    <th rowspan="2">구분</th>
+	                                    <th rowspan="2">등록</th>
+	                                    <th rowspan="2">미승인</th>
+	                                    <th rowspan="2">계속등록</th>
+	                                    <th rowspan="2">신규등록</th>
+	                                    <th colspan="3" style="text-align:center">협조</th>
+	                                    <th colspan="3" style="text-align:center">훈육(일반)</th>
+	                                    <th colspan="3" style="text-align:center">훈육(로버)</th>
+	                                    <th colspan="3" style="text-align:center">전종</th>
+	                                    <th colspan="3" style="text-align:center">합계</th>
+	                                </tr>
+	                                <tr>
+	                                    <th>남자</th>
+	                                    <th>여자</th>
+	                                    <th>계</th>
+	                                    <th>남자</th>
+	                                    <th>여자</th>
+	                                    <th>계</th>
+	                                    <th>남자</th>
+	                                    <th>여자</th>
+	                                    <th>계</th>
+	                                    <th>남자</th>
+	                                    <th>여자</th>
+	                                    <th>계</th>
+	                                    <th>남자</th>
+	                                    <th>여자</th>
+	                                    <th>계</th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>
@@ -64,7 +99,6 @@
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '050'}">광주연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '060'}">대전연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '070'}">울산연맹</c:if>
-					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '080'}">울산연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '100'}">경기북부연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '110'}">경기남부연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '120'}">강원연맹</c:if>
@@ -98,8 +132,61 @@
 		                                    	<c:if test="${!empty resultList.registernew}">${resultList.registernew}</c:if>
 	                                    	</td>
 		                                    <td>
-		                                    	<c:if test="${empty resultList.registersum}">0</c:if>
-		                                    	<c:if test="${!empty resultList.registersum}">${resultList.registersum}</c:if>
+		                                    	<c:if test="${empty resultList.leaderposition1m}">0</c:if>
+		                                    	<c:if test="${!empty resultList.leaderposition1m}">${resultList.leaderposition1m}</c:if>
+	                                    	</td>
+	                                    	<td>
+		                                    	<c:if test="${empty resultList.leaderposition1w}">0</c:if>
+		                                    	<c:if test="${!empty resultList.leaderposition1w}">${resultList.leaderposition1w}</c:if>
+	                                    	</td>
+	                                    	<td>
+		                                    	${resultList.leaderposition1w + resultList.leaderposition1m}
+	                                    	</td>
+	                                    	
+	                                    	<td>
+		                                    	<c:if test="${empty resultList.leaderposition2m}">0</c:if>
+		                                    	<c:if test="${!empty resultList.leaderposition2m}">${resultList.leaderposition2m}</c:if>
+	                                    	</td>
+	                                    	<td>
+		                                    	<c:if test="${empty resultList.leaderposition2w}">0</c:if>
+		                                    	<c:if test="${!empty resultList.leaderposition2w}">${resultList.leaderposition2w}</c:if>
+	                                    	</td>
+	                                    	<td>
+		                                    	${resultList.leaderposition2w + resultList.leaderposition2m}
+	                                    	</td>
+	                                    	
+	                                    	<td>
+		                                    	<c:if test="${empty resultList.leaderposition4m}">0</c:if>
+		                                    	<c:if test="${!empty resultList.leaderposition4m}">${resultList.leaderposition4m}</c:if>
+	                                    	</td>
+	                                    	<td>
+		                                    	<c:if test="${empty resultList.leaderposition4w}">0</c:if>
+		                                    	<c:if test="${!empty resultList.leaderposition4w}">${resultList.leaderposition4w}</c:if>
+	                                    	</td>
+	                                    	<td>
+		                                    	${resultList.leaderposition4w + resultList.leaderposition4m}
+	                                    	</td>
+	                                    	
+	                                    	<td>
+		                                    	<c:if test="${empty resultList.leaderposition3m}">0</c:if>
+		                                    	<c:if test="${!empty resultList.leaderposition3m}">${resultList.leaderposition3m}</c:if>
+	                                    	</td>
+	                                    	<td>
+		                                    	<c:if test="${empty resultList.leaderposition3w}">0</c:if>
+		                                    	<c:if test="${!empty resultList.leaderposition3w}">${resultList.leaderposition3w}</c:if>
+	                                    	</td>
+	                                    	<td>
+		                                    	${resultList.leaderposition3w + resultList.leaderposition3m}
+	                                    	</td>
+	                                    	
+	                                    	<td>
+		                                    	${resultList.leaderposition1m+resultList.leaderposition2m+resultList.leaderposition3m+resultList.leaderposition4m}
+	                                    	</td>
+	                                    	<td>
+		                                    	${resultList.leaderposition1w+resultList.leaderposition2w+resultList.leaderposition3w+resultList.leaderposition4w}
+	                                    	</td>
+	                                    	<td>
+		                                    	${resultList.leaderposition1m+resultList.leaderposition2m+resultList.leaderposition3m+resultList.leaderposition4m + resultList.leaderposition1w+resultList.leaderposition2w+resultList.leaderposition3w+resultList.leaderposition4w}
 	                                    	</td>
 		                                </tr>
 	                                </c:forEach>

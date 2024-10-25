@@ -581,6 +581,7 @@
                         </div>
                         
                         <!-- 관계 -->
+                        <!-- 
                         <div class="tableContainer relationContainer">
                             <h2 class="subTitles">관계연결</h2>
                             <div class="tableWrapper">
@@ -610,6 +611,7 @@
                                 </div>
                             </div>
                         </div>
+                         -->
                         <div class="tableContainer infoTableContainer">
                             <h2 class="subTitles">가입정보</h2>
                             <div class="tableWrapper">

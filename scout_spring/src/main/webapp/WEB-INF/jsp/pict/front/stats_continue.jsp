@@ -13,7 +13,7 @@
 		<%@ include file="./include/lnb.jsp" %>
 		<c:import url="./include/header.jsp">
 			<c:param name="pageParent" value="통계 및 현황"/>
-	    	<c:param name="pageTitle" value="대원 구성"/>
+	    	<c:param name="pageTitle" value="대원(신규,계속) 현황"/>
 	    </c:import>
         <div class="contentsContainer">
 	        <div class="statsWrapper">
@@ -35,35 +35,36 @@
 	                    <div class="tableWrapper stats">
 	                        <table>
 	                            <colgroup>
-	                                <col width="7.699%" />
-	                                <col width="7.699%" />
-	                                <col width="7.699%" />
-	                                <col width="7.699%" />
-	                                <col width="7.699%" />
-	                                <col width="7.699%" />
-	                                <col width="7.699%" />
-	                                <col width="7.699%" />
-	                                <col width="7.699%" />
-	                                <col width="7.699%" />
-	                                <col width="7.699%" />
-	                                <col width="7.699%" />
-	                                <col width="7.699%" />
+	                                <col width="9.09%" />
+	                                <col width="9.09%" />
+	                                <col width="9.09%" />
+	                                <col width="9.09%" />
+	                                <col width="9.09%" />
+	                                <col width="9.09%" />
+	                                <col width="9.09%" />
+	                                <col width="9.09%" />
+	                                <col width="9.09%" />
+	                                <col width="9.09%" />
+	                                <col width="9.09%" />
+	                                <col width="9.09%" />
 	                            </colgroup>
 	                            <thead>
+	                            	<tr>
+	                            		<th rowspan="2" style="text-align:center">연맹</th>
+	                            		<th colspan="5" style="text-align:center">신규</th>
+	                            		<th colspan="5" style="text-align:center">계속</th>
+	                            	</tr>
 	                                <tr>
-	                                    <th>연맹</th>
-	                                    <th>비버(신규)</th>
-	                                    <th>컵(신규)</th>
-	                                    <th>스카우트(신규)</th>
-	                                    <th>벤처(신규)</th>
-	                                    <th>로버(신규)</th>
-	                                    <th>복합(신규)</th>
-	                                    <th>비버(계속)</th>
-	                                    <th>컵(계속)</th>
-	                                    <th>스카우트(계속)</th>
-	                                    <th>벤처(계속)</th>
-	                                    <th>로버(계속)</th>
-	                                    <th>복합(계속)</th>
+	                                    <th>비버</th>
+	                                    <th>컵</th>
+	                                    <th>스카우트</th>
+	                                    <th>벤처</th>
+	                                    <th>복합</th>
+	                                    <th>비버</th>
+	                                    <th>컵</th>
+	                                    <th>스카우트</th>
+	                                    <th>벤처</th>
+	                                    <th>복합</th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>
@@ -77,8 +78,7 @@
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '040'}">인천연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '050'}">광주연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '060'}">대전연맹</c:if>
-					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '070'}">대전연맹</c:if>
-					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '080'}">울산연맹</c:if>
+					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '070'}">울산연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '100'}">경기북부연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '110'}">경기남부연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '120'}">강원연맹</c:if>
@@ -113,10 +113,6 @@
 		                                    	<c:if test="${!empty resultList.newscoutclscode4}">${resultList.newscoutclscode4}</c:if>
 	                                    	</td>
 		                                    <td>
-		                                    	<c:if test="${empty resultList.newscoutclscode5}">0</c:if>
-		                                    	<c:if test="${!empty resultList.newscoutclscode5}">${resultList.newscoutclscode5}</c:if>
-	                                    	</td>
-		                                    <td>
 		                                    	<c:if test="${empty resultList.newscoutclscode6}">0</c:if>
 		                                    	<c:if test="${!empty resultList.newscoutclscode6}">${resultList.newscoutclscode6}</c:if>
 	                                    	</td>
@@ -136,10 +132,6 @@
 		                                    <td>
 		                                    	<c:if test="${empty resultList.currentscoutclscode4}">0</c:if>
 		                                    	<c:if test="${!empty resultList.currentscoutclscode4}">${resultList.currentscoutclscode4}</c:if>
-	                                    	</td>
-		                                    <td>
-		                                    	<c:if test="${empty resultList.currentscoutclscode5}">0</c:if>
-		                                    	<c:if test="${!empty resultList.currentscoutclscode5}">${resultList.currentscoutclscode5}</c:if>
 	                                    	</td>
 		                                    <td>
 		                                    	<c:if test="${empty resultList.currentscoutclscode6}">0</c:if>

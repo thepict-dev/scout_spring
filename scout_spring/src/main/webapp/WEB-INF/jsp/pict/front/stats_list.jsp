@@ -13,7 +13,7 @@
 		<%@ include file="./include/lnb.jsp" %>
 		<c:import url="./include/header.jsp">
 			<c:param name="pageParent" value="통계 및 현황"/>
-	    	<c:param name="pageTitle" value="전체 대시보드 보기"/>
+	    	<c:param name="pageTitle" value="전체 대시보드"/>
 	    </c:import>
 	    <div class="contentsContainer">
 	        <div class="statsWrapper">
@@ -30,7 +30,6 @@
 		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '050'}">광주연맹</c:if>
 		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '060'}">대전연맹</c:if>
 		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '070'}">울산연맹</c:if>
-		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '080'}">울산연맹</c:if>
 		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '100'}">경기북부연맹</c:if>
 		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '110'}">경기남부연맹</c:if>
 		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '120'}">강원연맹</c:if>
@@ -57,7 +56,8 @@
 		                            	<div class="increase"><img src="/front_img/count-up.png" alt="">${resultList.pre - resultList.current}명</div>
 	                            	</c:if>
 		                        </div>
-		                        <span>대원과 지도자수를 합산한 인원수입니다</span>
+		                        <span>대원과 지도자수를 합산한 인원수입니다</span><br>
+		                        <span>※ 미승인 포함된 인원</span>
 		                    </a>
 		                </li>
 	                </c:forEach>

@@ -13,7 +13,7 @@
 		<%@ include file="./include/lnb.jsp" %>
 		<c:import url="./include/header.jsp">
 			<c:param name="pageParent" value="통계 및 현황"/>
-	    	<c:param name="pageTitle" value="연맹별등록"/>
+	    	<c:param name="pageTitle" value="대원구성 현황"/>
 	    </c:import>
         <div class="contentsContainer">
 	        <div class="statsWrapper">
@@ -53,7 +53,6 @@
 	                                    <th>컵</th>
 	                                    <th>스카우트</th>
 	                                    <th>벤처</th>
-	                                    <th>로버</th>
 	                                    <th>복합</th>
 	                                    <th>기타</th>
 	                                    <th>미할당</th>
@@ -73,7 +72,6 @@
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '050'}">광주연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '060'}">대전연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '070'}">울산연맹</c:if>
-					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '080'}">울산연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '100'}">경기북부연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '110'}">경기남부연맹</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '120'}">강원연맹</c:if>
@@ -95,7 +93,6 @@
 		                                    <td>${resultList.scoutclscode2}</td>
 		                                    <td>${resultList.scoutclscode3}</td>
 		                                    <td>${resultList.scoutclscode4}</td>
-		                                    <td>${resultList.scoutclscode5}</td>
 		                                    <td>${resultList.scoutclscode6}</td>
 		                                    <td>${resultList.scoutclscodeetc}</td>
 		                                    <td>${resultList.scoutclscodenull}</td>

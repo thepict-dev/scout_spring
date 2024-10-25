@@ -13,7 +13,7 @@
 		<%@ include file="./include/lnb.jsp" %>
 		<c:import url="./include/header.jsp">
 			<c:param name="pageParent" value="스카우트 통합 관리"/>
-	    	<c:param name="pageTitle" value="평생회원 리스트"/>
+	    	<c:param name="pageTitle" value="평생회원 관리"/>
 	    </c:import>
 	    <div class="contentsContainer">
 	        <div class="formContainer scroller">
@@ -89,6 +89,7 @@
 			                    		<span>골드:${vo.lifeg}건 </span>
 			                    		<span>실버:${vo.lifes}건 </span>
 			                    		<span>일반:${vo.lifec}건</span>
+			                    		<span>전체:${vo.lifec + vo.lifes + vo.lifeg}건</span>
 			                    	</div>
 			                    	<div class="topButtonWrapper">
 				                    	<select name="search_associationcode_form" id="search_associationcode_form" class="lgThinSelect" style="margin-top:5px">

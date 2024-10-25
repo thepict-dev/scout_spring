@@ -1714,7 +1714,7 @@
 		    SUM(CASE WHEN (l.CONFIRMY = 'N' OR l.CONFIRMY IS NULL OR l.CONFIRMY = '') THEN 1 ELSE 0 END) AS 'registernonconfirm',
 		    SUM(CASE WHEN l.CONFIRMY IN ('Y', 'N', '', NULL) THEN 1 ELSE 0 END) AS 'registersum',
 		    SUM(CASE 
-		        WHEN LEFT(l.STARTDAY, 4) = #{search_year} 
+		        WHEN LEFT(l.STARTDAY, 4) = #{search_year}
 		             AND l.CONFIRMY = 'Y' 
 		             AND l.MEMBERNO IN (
 		                 SELECT MEMBERNO 
@@ -1723,16 +1723,25 @@
 		             ) 
 		        THEN 1 ELSE 0 END) AS 'registercontinue',
 		    SUM(CASE 
-		        WHEN LEFT(l.STARTDAY, 4) = '2024' 
+		        WHEN LEFT(l.STARTDAY, 4) = #{search_year}
 		             AND l.CONFIRMY = 'Y' 
 		             AND l.MEMBERNO NOT IN (
 		                 SELECT MEMBERNO 
 		                 FROM leader 
 		                 WHERE LEFT(STARTDAY, 4) = #{pre_year}
 		             ) 
-		        THEN 1 ELSE 0 END) AS 'registernew'
+		        THEN 1 ELSE 0 END) AS 'registernew',
+                 SUM(CASE WHEN l.CONFIRMY = 'Y' and l.LEADERPOSITIONCODE1 = '01' and m.SEX = 'M' THEN 1 ELSE 0 END) AS 'leaderposition1m',
+                 SUM(CASE WHEN l.CONFIRMY = 'Y' and l.LEADERPOSITIONCODE1 = '01' and m.SEX = 'W' THEN 1 ELSE 0 END) AS 'leaderposition1w',
+                 SUM(CASE WHEN l.CONFIRMY = 'Y' and l.LEADERPOSITIONCODE1 = '02' and l.LEADERPOSITIONCODE2 != '12' and m.SEX = 'M' THEN 1 ELSE 0 END) AS 'leaderposition2m',
+                 SUM(CASE WHEN l.CONFIRMY = 'Y' and l.LEADERPOSITIONCODE1 = '02' and l.LEADERPOSITIONCODE2 != '12' and m.SEX = 'W' THEN 1 ELSE 0 END) AS 'leaderposition2w',
+                 SUM(CASE WHEN l.CONFIRMY = 'Y' and l.LEADERPOSITIONCODE1 = '03' and m.SEX = 'M' THEN 1 ELSE 0 END) AS 'leaderposition3m',
+                 SUM(CASE WHEN l.CONFIRMY = 'Y' and l.LEADERPOSITIONCODE1 = '03' and m.SEX = 'W' THEN 1 ELSE 0 END) AS 'leaderposition3w',
+                 SUM(CASE WHEN l.CONFIRMY = 'Y' and l.LEADERPOSITIONCODE1 = '02' and l.LEADERPOSITIONCODE2 = '12' and m.SEX = 'M' THEN 1 ELSE 0 END) AS 'leaderposition4m',
+                 SUM(CASE WHEN l.CONFIRMY = 'Y' and l.LEADERPOSITIONCODE1 = '02' and l.LEADERPOSITIONCODE2 = '12' and m.SEX = 'W' THEN 1 ELSE 0 END) AS 'leaderposition4w'
 		FROM leader l
 		JOIN associationcode ac ON ac.ASSOCIATIONCODE = l.ASSOCIATIONCODE
+        join member m on m.MEMBERNO = l.MEMBERNO
 		WHERE LEFT(l.STARTDAY, 4) = #{search_year}
 		  
 		GROUP BY ac.ASSOCIATIONCODE WITH ROLLUP
@@ -1842,7 +1851,7 @@
 		SELECT 
 	    COALESCE(ac.ASSOCIATIONCODE, '전체 합계') AS 'ASSOCIATIONCODE',
 	    SUM(CASE 
-	        WHEN s.SCOUTCLSCODE = '01' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	        WHEN s.SCOUTCLSCODE = '01' AND LEFT(s.STARTDAY, 4) = #{search_year}
 	             AND s.CONFIRMY = 'Y' 
 	             AND s.MEMBERNO NOT IN (
 	                 SELECT MEMBERNO 
@@ -1852,7 +1861,7 @@
 	             ) 
 	        THEN 1 ELSE 0 END) AS 'newscoutclscode1',
 	    SUM(CASE 
-	        WHEN s.SCOUTCLSCODE = '02' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	        WHEN s.SCOUTCLSCODE = '02' AND LEFT(s.STARTDAY, 4) = #{search_year}
 	             AND s.CONFIRMY = 'Y' 
 	             AND s.MEMBERNO NOT IN (
 	                 SELECT MEMBERNO 
@@ -1862,7 +1871,7 @@
 	             ) 
 	        THEN 1 ELSE 0 END) AS 'newscoutclscode2',
 	    SUM(CASE 
-	        WHEN s.SCOUTCLSCODE = '03' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	        WHEN s.SCOUTCLSCODE = '03' AND LEFT(s.STARTDAY, 4) = #{search_year}
 	             AND s.CONFIRMY = 'Y' 
 	             AND s.MEMBERNO NOT IN (
 	                 SELECT MEMBERNO 
@@ -1872,7 +1881,7 @@
 	             ) 
 	        THEN 1 ELSE 0 END) AS 'newscoutclscode3',
 	    SUM(CASE 
-	        WHEN s.SCOUTCLSCODE = '04' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	        WHEN s.SCOUTCLSCODE = '04' AND LEFT(s.STARTDAY, 4) = #{search_year}
 	             AND s.CONFIRMY = 'Y' 
 	             AND s.MEMBERNO NOT IN (
 	                 SELECT MEMBERNO 
@@ -1882,7 +1891,7 @@
 	             ) 
 	        THEN 1 ELSE 0 END) AS 'newscoutclscode4',
 	    SUM(CASE 
-	        WHEN s.SCOUTCLSCODE = '05' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	        WHEN s.SCOUTCLSCODE = '05' AND LEFT(s.STARTDAY, 4) = #{search_year}
 	             AND s.CONFIRMY = 'Y' 
 	             AND s.MEMBERNO NOT IN (
 	                 SELECT MEMBERNO 
@@ -1892,7 +1901,7 @@
 	             ) 
 	        THEN 1 ELSE 0 END) AS 'newscoutclscode5',
 	    SUM(CASE 
-	        WHEN s.SCOUTCLSCODE = '06' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	        WHEN s.SCOUTCLSCODE = '06' AND LEFT(s.STARTDAY, 4) = #{search_year}
 	             AND s.CONFIRMY = 'Y' 
 	             AND s.MEMBERNO NOT IN (
 	                 SELECT MEMBERNO 
@@ -1902,27 +1911,27 @@
 	             ) 
 	        THEN 1 ELSE 0 END) AS 'newscoutclscode6',
 		SUM(CASE 
-	        WHEN s.SCOUTCLSCODE = '01' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	        WHEN s.SCOUTCLSCODE = '01' AND LEFT(s.STARTDAY, 4) = #{search_year}
 	             AND s.CONFIRMY = 'Y' 
-	             AND s.MEMBERNO NOT IN (
+	             AND s.MEMBERNO IN (
 	                 SELECT MEMBERNO 
 	                 FROM scout 
-	                 WHERE LEFT(STARTDAY, 4) = #{search_year} 
+	                 WHERE LEFT(STARTDAY, 4) = #{pre_year}
 	                   AND ASSOCIATIONCODE = s.ASSOCIATIONCODE
 	             ) 
 	        THEN 1 ELSE 0 END) AS 'currentscoutclscode1',
 		SUM(CASE 
-	        WHEN s.SCOUTCLSCODE = '02' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	        WHEN s.SCOUTCLSCODE = '02' AND LEFT(s.STARTDAY, 4) = #{search_year}
 	             AND s.CONFIRMY = 'Y' 
-	             AND s.MEMBERNO NOT IN (
+	             AND s.MEMBERNO IN (
 	                 SELECT MEMBERNO 
 	                 FROM scout 
-	                 WHERE LEFT(STARTDAY, 4) = #{search_year} 
+	                 WHERE LEFT(STARTDAY, 4) = #{pre_year}
 	                   AND ASSOCIATIONCODE = s.ASSOCIATIONCODE
 	             ) 
 	        THEN 1 ELSE 0 END) AS 'currentscoutclscode2',
 	         SUM(CASE 
-	        WHEN s.SCOUTCLSCODE = '03' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	        WHEN s.SCOUTCLSCODE = '03' AND LEFT(s.STARTDAY, 4) = #{search_year}
 	             AND s.CONFIRMY = 'Y' 
 	             AND s.MEMBERNO IN (
 	                 SELECT MEMBERNO 
@@ -1932,7 +1941,7 @@
 	             ) 
 	        THEN 1 ELSE 0 END) AS 'currentscoutclscode3',
 	    SUM(CASE 
-	        WHEN s.SCOUTCLSCODE = '04' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	        WHEN s.SCOUTCLSCODE = '04' AND LEFT(s.STARTDAY, 4) = #{search_year}
 	             AND s.CONFIRMY = 'Y' 
 	             AND s.MEMBERNO IN (
 	                 SELECT MEMBERNO 
@@ -1942,7 +1951,7 @@
 	             ) 
 	        THEN 1 ELSE 0 END) AS 'currentscoutclscode4',
 	    SUM(CASE 
-	        WHEN s.SCOUTCLSCODE = '05' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	        WHEN s.SCOUTCLSCODE = '05' AND LEFT(s.STARTDAY, 4) = #{search_year}
 	             AND s.CONFIRMY = 'Y' 
 	             AND s.MEMBERNO IN (
 	                 SELECT MEMBERNO 
@@ -1952,7 +1961,7 @@
 	             ) 
 	        THEN 1 ELSE 0 END) AS 'currentscoutclscode5',
 	    SUM(CASE 
-	        WHEN s.SCOUTCLSCODE = '06' AND LEFT(s.STARTDAY, 4) = #{search_year} 
+	        WHEN s.SCOUTCLSCODE = '06' AND LEFT(s.STARTDAY, 4) = #{search_year}
 	             AND s.CONFIRMY = 'Y' 
 	             AND s.MEMBERNO IN (
 	                 SELECT MEMBERNO 
@@ -1965,10 +1974,11 @@
 	
 	FROM scout s
 	JOIN associationcode ac ON s.ASSOCIATIONCODE = ac.ASSOCIATIONCODE
-	WHERE LEFT(s.STARTDAY, 4) = #{search_year} 
+	WHERE LEFT(s.STARTDAY, 4) = #{search_year}
 	GROUP BY ac.ASSOCIATIONCODE WITH ROLLUP
 	ORDER BY CASE WHEN ac.ASSOCIATIONCODE IS NULL THEN 1 ELSE 0 END, ac.ASSOCIATIONCODE;
-			
+    
+    
 	</select>
 	
 	

@@ -395,9 +395,65 @@ public class PictVO extends PictDefaultVO {
 	private String lifetotal;
 	private String search_liferank;
 	private String search_lifestatus;
+	private String leaderposition1m;
+	private String leaderposition1w;
+	private String leaderposition2m;
+	private String leaderposition2w;
+	private String leaderposition3m;
+	private String leaderposition3w;
+	private String leaderposition4m;
+	private String leaderposition4w;
 	
 	
 	
+	public String getLeaderposition1m() {
+		return leaderposition1m;
+	}
+	public void setLeaderposition1m(String leaderposition1m) {
+		this.leaderposition1m = leaderposition1m;
+	}
+	public String getLeaderposition1w() {
+		return leaderposition1w;
+	}
+	public void setLeaderposition1w(String leaderposition1w) {
+		this.leaderposition1w = leaderposition1w;
+	}
+	public String getLeaderposition2m() {
+		return leaderposition2m;
+	}
+	public void setLeaderposition2m(String leaderposition2m) {
+		this.leaderposition2m = leaderposition2m;
+	}
+	public String getLeaderposition2w() {
+		return leaderposition2w;
+	}
+	public void setLeaderposition2w(String leaderposition2w) {
+		this.leaderposition2w = leaderposition2w;
+	}
+	public String getLeaderposition3m() {
+		return leaderposition3m;
+	}
+	public void setLeaderposition3m(String leaderposition3m) {
+		this.leaderposition3m = leaderposition3m;
+	}
+	public String getLeaderposition3w() {
+		return leaderposition3w;
+	}
+	public void setLeaderposition3w(String leaderposition3w) {
+		this.leaderposition3w = leaderposition3w;
+	}
+	public String getLeaderposition4m() {
+		return leaderposition4m;
+	}
+	public void setLeaderposition4m(String leaderposition4m) {
+		this.leaderposition4m = leaderposition4m;
+	}
+	public String getLeaderposition4w() {
+		return leaderposition4w;
+	}
+	public void setLeaderposition4w(String leaderposition4w) {
+		this.leaderposition4w = leaderposition4w;
+	}
 	public String getSearch_lifestatus() {
 		return search_lifestatus;
 	}

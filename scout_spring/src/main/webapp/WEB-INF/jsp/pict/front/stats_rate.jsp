@@ -43,41 +43,41 @@
 	                                <col width="5%" />
 	                                <col width="5%" />
 	                                <col width="5%" />
-	                                <col width="5%" />
-	                                <col width="5%" />
-	                                <col width="5%" />
-	                                <col width="5%" />
-	                                <col width="5%" />
-	                                <col width="5%" />
-	                                <col width="5%" />
-	                                <col width="5%" />
-	                                <col width="5%" />
-	                                <col width="5%" />
-	                                <col width="5%" />
-	                                <col width="5%" />
+	                                <col width="6%" />
+	                                <col width="6%" />
+	                                <col width="6%" />
+	                                <col width="6%" />
+	                                <col width="6%" />
+	                                <col width="6%" />
+	                                <col width="6%" />
+	                                <col width="6%" />
+	                                <col width="6%" />
+	                                <col width="6%" />
 	                            </colgroup>
 	                            <thead>
+	                            	<tr>
+	                            		<th rowspan="2" style="text-align:center">연맹</th>
+	                            		<th colspan="9" style="text-align:center">${pictVO.search_year}년 인원</th>
+	                            		<th colspan="8" style="text-align:center">전년대비 비율</th>
+	                            	</tr>
 	                                <tr>
-	                                    <th>연맹</th>
-	                                    <th>비버(당해)</th>
-	                                    <th>컵(당해)</th>
-	                                    <th>스카우트(당해)</th>
-	                                    <th>벤처(당해)</th>
-	                                    <th>로버(당해)</th>
-	                                    <th>복합(당해)</th>
-	                                    <th>기타(당해)</th>
-	                                    <th>미해당(당해)</th>
-	                                    <th>미승인(당해)</th>
-	                                    <th>계(당해)</th>
-	                                    <th>비버(이전)</th>
-	                                    <th>컵(이전)</th>
-	                                    <th>스카우트(이전)</th>
-	                                    <th>벤처(이전)</th>
-	                                    <th>로버(이전)</th>
-	                                    <th>복합(이전)</th>
-	                                    <th>기타(이전)</th>
-	                                    <th>미해당(이전)</th>
-	                                    <th>미승인(이전)</th>
+	                                    <th>비버</th>
+	                                    <th>컵</th>
+	                                    <th>스카우트</th>
+	                                    <th>벤처</th>
+	                                    <th>복합</th>
+	                                    <th>기타</th>
+	                                    <th>미해당</th>
+	                                    <th>미승인</th>
+	                                    <th>계</th>
+	                                    <th>비버</th>
+	                                    <th>컵</th>
+	                                    <th>스카우트</th>
+	                                    <th>벤처</th>
+	                                    <th>복합</th>
+	                                    <th>기타</th>
+	                                    <th>미해당</th>
+	                                    <th>미승인</th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>
@@ -108,10 +108,6 @@
 		                                    	<c:if test="${!empty resultList.currentventure}">${resultList.currentventure}</c:if>
 	                                    	</td>
 		                                    <td>
-		                                    	<c:if test="${empty resultList.currentrover}">0</c:if>
-		                                    	<c:if test="${!empty resultList.currentrover}">${resultList.currentrover}</c:if>
-	                                    	</td>
-		                                    <td>
 		                                    	<c:if test="${empty resultList.currentcomposite}">0</c:if>
 		                                    	<c:if test="${!empty resultList.currentcomposite}">${resultList.currentcomposite}</c:if>
 	                                    	</td>
@@ -135,7 +131,6 @@
 		                                    <td>${resultList.precuprate}</td>
 		                                    <td>${resultList.prescoutrate}</td>
 		                                    <td>${resultList.preventurerate}</td>
-		                                    <td>${resultList.preroverrate}</td>
 		                                    <td>${resultList.precompositerate}</td>
 		                                    <td>${resultList.preotherrate}</td>
 		                                    <td>${resultList.premissingrate}</td>
