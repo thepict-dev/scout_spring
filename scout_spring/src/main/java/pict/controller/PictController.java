@@ -3724,6 +3724,7 @@ public class PictController {
 		}
 		
 		List<PictVO> scout_stats_list = pictService.stats_leader_page(pictVO);
+		System.out.println(scout_stats_list.get(1).getRegisterconfirm());
 		List<PictVO> scout_stats_list2 = new ArrayList<PictVO>();
 		for(int i=0; i<scout_stats_list.size(); i++) {
 			if(scout_stats_list.get(i).getASSOCIATIONCODE().equals("200") || scout_stats_list.get(i).getASSOCIATIONCODE().equals("전체 합계")) {
@@ -3732,7 +3733,7 @@ public class PictController {
 			}
 		}
 		scout_stats_list.addAll(scout_stats_list2);
-		
+		System.out.println(scout_stats_list.get(1).getRegisterconfirm());
 		
 		model.addAttribute("resultList", scout_stats_list);
 		model.addAttribute("pictVO", pictVO);
