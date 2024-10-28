@@ -25,6 +25,7 @@
                     <p class="inputCaption">연맹/지구</p>
                     <div class="inputsAlign">
                         <select name="associationcode_search" id="associationcode_search" onchange="fn_get_unitylist_organ()" class="lgThinSelect">
+                        	<option value="all">전체</option>
 							<c:forEach var="association_list" items="${association_list}" varStatus="status">
 								<option value="${association_list.ASSOCIATIONCODE}"> ${association_list.ASSOCIATIONNAME}</option>
 							</c:forEach>
@@ -37,6 +38,7 @@
 						</select>
                     </div>
                 </div>
+                <!-- 
                 <div class="searchContainer">
                     <p class="inputCaption">등급</p>
                     <div class="inputsAlign">
@@ -49,6 +51,7 @@
                         </select>
                     </div>
                 </div>
+                 -->
                 <div class="searchContainer">
                     <p class="inputCaption">단위대 구분</p>
                     <div class="inputsAlign">
@@ -59,11 +62,14 @@
                             <option value="03">동우대</option>
                             <option value="04">특수대</option>
                         </select>
+                        <!-- 
                         <select name="troopclscode2_search" id="troopclscode2_search" class="lgThinSelect">
                             <option value="">-----</option>
                         </select>
+                         -->
                     </div>
                 </div>
+                <!-- 
                 <div class="searchContainer">
                     <p class="inputCaption">관할교육청</p>
                     <div class="inputsAlign">
@@ -72,6 +78,7 @@
                         </select>
                     </div>
                 </div>
+                 -->
                 <div class="searchContainer">
                     <p class="inputCaption">스카우트구분</p>
                     <div class="inputsAlign">
@@ -117,10 +124,6 @@
                                 <col width="9%" />
                                 <col width="9%" />
                                 <col width="10%" />
-                                <col width="10%" />
-                                <col width="10%" />
-                                <col width="10%" />
-                                <col width="10%" />
                             </colgroup>
                             <thead>
                                 <tr>
@@ -130,13 +133,6 @@
 	                                <th rowspan="2">스카우트구분</th>
 	                                <th rowspan="2">단위대구분</th>
 	                                <th rowspan="2">최종대활동년도</th>
-	                                <th colspan="4" style="text-align: center;">최종활동년도</th>
-                                </tr>
-                                <tr>
-                                	<th style="z-index: 2;">남자대원수</th>
-                                	<th style="z-index: 2;">여자대원수</th>
-                                	<th style="z-index: 2;">남자지도자수</th>
-                                	<th style="z-index: 2;">여자지도자수</th>
                                 </tr>
                             </thead>
                             <tbody id="org_list"></tbody>
@@ -296,10 +292,12 @@
 	                            </div>
 	                        </div>
 	                        <div class="inputsContainer">
+	                        	<!-- 
 	                            <div class="inputBox">
 	                                <p class="inputCaption">최종등록일</p>
 	                                <span class="bindingText" id="LASTREGDAY"></span>
 	                            </div>
+	                             -->
 	                            <div class="inputBox">
 	                                <p class="inputCaption">지도자수</p>
 	                                <span class="bindingText" id="LEADERCNT"></span>
@@ -316,8 +314,10 @@
 		                    <div class="tableButtons rights">
 	                            <a href="#lnk" class="smButton"><img src="/front_img/refresh.png" alt="">조직이전</a>
 	                            <div class="buttons">
+	                            	<!-- 
 	                                <a href="#lnk" class="smButton"><img src="/front_img/doc.png" alt="">청소년단체등록확인서</a>
 	                                <a href="#lnk" class="smButton"><img src="/front_img/doc.png" alt="">가맹등록확인서</a>
+	                                 -->
 	                                <a href="#lnk" class="smButton" onclick="organ_update()"><img src="/front_img/download.png" alt="">수정</a>
 	                            </div>
 		                    </div>
@@ -357,6 +357,7 @@
                                 <p>0<span>rows</span></p>
                             </div>
                         </div>
+                        <!-- 
                         <div class="tableContainer orgContainer">
                             <h2 class="subTitles">연소지도자</h2>
                             <div class="tableWrapper">
@@ -390,6 +391,7 @@
                                 <p>0<span>rows</span></p>
                             </div>
                         </div> 
+                         -->
                     </form>
                 </div>
                 <div class="fomrTabContent">
@@ -906,10 +908,10 @@
 			var param = {
 				associationcode : $('#associationcode_search').val(),
 				parenttroopno : $('#unitycode_search').val(),
-				trooplevelcode : $('#trooplevelcode_search').val(),
+				trooplevelcode : '',//$('#trooplevelcode_search').val(),
 				troopclscode1 : $('#troopclscode1_search').val(),
-				troopclscode2 : $('#troopclscode2_search').val(),
-				parentorgno : $('#parentorgno_search').val(),
+				troopclscode2 : '',//$('#troopclscode2_search').val(),
+				parentorgno : '',//$('#parentorgno_search').val(),
 				scoutclscode : $('#scoutclscode_search').val(),
 				search_type : $('#search_type').val(),
 				search_text : $('#search_text').val(),
@@ -937,10 +939,6 @@
 							'<td>' + arr[i].scoutclsname + '</td>'+
 							'<td>' + arr[i].troopclsname + '</td>'+
 							'<td>' + arr[i].lastregyear + '</td>'+
-							'<td>' + arr[i].scoutmcnt + '</td>'+
-							'<td>' + arr[i].scoutwcnt + '</td>'+
-							'<td>' + arr[i].leadermcnt + '</td>'+
-							'<td>' + arr[i].leaderwcnt + '</td>'+
 							'</tr>'
 						}
 						$('#org_list').append(html)
