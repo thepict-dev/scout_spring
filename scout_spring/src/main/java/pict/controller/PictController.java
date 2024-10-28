@@ -626,8 +626,9 @@ public class PictController {
 		if (sessions == null || sessions == "null") {
 			return "redirect:/admin/pict_login";
 		}
-		String authority = (String) request.getSession().getAttribute("authority");
 		
+		String authority = (String) request.getSession().getAttribute("authority");
+		/*
 		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
 			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
 			model.addAttribute("retType", ":location");
@@ -635,52 +636,71 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
-		
-		String associationcode = (String) request.getSession().getAttribute("associationcode");
-		//중앙본부 아니면 자기 연맹것만 확인
-		if(!associationcode.equals("200")) {
-			
-			pictVO.setSearch_associationcode(associationcode);
-		}
-		else {
-			if(pictVO != null && pictVO.getSearch_associationcode() != null) {
-				
-			}
-			else {
-				pictVO.setSearch_associationcode("200");
-			}
-		}
-		
+		*/
 		Date today = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
 		String current_year = dateFormat.format(today);
-		
 		model.addAttribute("current_year", current_year);
-		List<PictVO> association_list = pictService.association_list(pictVO);
-		if(request.getQueryString() == null) {
-			pictVO.setASSOCIATIONCODE("200");
-			pictVO.setSearch_year(current_year);	//재영 이거 시스템 날짜로 바꿔야해
-		}
-		else {
-			if(pictVO == null) {
+		if(authority != null && authority != "null" && authority.equals("jeonjong") && !authority.equals("") ) {
+			String associationcode = (String) request.getSession().getAttribute("associationcode");
+			//중앙본부 아니면 자기 연맹것만 확인
+			if(!associationcode.equals("200")) {
 				
+				pictVO.setSearch_associationcode(associationcode);
 			}
 			else {
-				pictVO.setASSOCIATIONCODE(pictVO.getSearch_associationcode());
-				int year = Integer.parseInt(pictVO.getSearch_year());
-				pictVO.setPre_year((year - 1) + "");
-				List<PictVO> units_list = pictService.units_list(pictVO);
-
-				model.addAttribute("units_list", units_list);
-				model.addAttribute("units_cnt", units_list.size());
+				if(pictVO != null && pictVO.getSearch_associationcode() != null) {
+					
+				}
+				else {
+					pictVO.setSearch_associationcode("200");
+				}
 			}
-			
-			model.addAttribute("pictVO", pictVO);
+			List<PictVO> association_list = pictService.association_list(pictVO);
+			if(request.getQueryString() == null) {
+				pictVO.setASSOCIATIONCODE("200");
+				pictVO.setSearch_year(current_year);	//재영 이거 시스템 날짜로 바꿔야해
+			}
+			else {
+				if(pictVO == null) {
+					
+				}
+				else {
+					pictVO.setASSOCIATIONCODE(pictVO.getSearch_associationcode());
+					int year = Integer.parseInt(pictVO.getSearch_year());
+					pictVO.setPre_year((year - 1) + "");
+					List<PictVO> units_list = pictService.units_list(pictVO);
+	
+					model.addAttribute("units_list", units_list);
+					model.addAttribute("units_cnt", units_list.size());
+				}
+				
+				model.addAttribute("pictVO", pictVO);
+			}
+			List<PictVO> unity_list = pictService.unity_list(pictVO);
+			model.addAttribute("association_list", association_list);
+			model.addAttribute("unity_list", unity_list);
 		}
-		List<PictVO> unity_list = pictService.unity_list(pictVO);
-		model.addAttribute("association_list", association_list);
-		model.addAttribute("unity_list", unity_list);
-		
+		else if(authority != null && authority != "null" && authority.equals("sub_admin") && !authority.equals("") ){
+			String troopno = (String) request.getSession().getAttribute("troopno");
+			model.addAttribute("authority", authority);
+			model.addAttribute("troopno", troopno);
+			pictVO.setTROOPNO(troopno);
+			List<PictVO> troop_list = pictService.login_troop_list2(pictVO);
+			String asso = "";
+			String troopname = "";
+			String disptroopno = "";
+			
+			for(int i=0; i<troop_list.size(); i++) {
+				asso = troop_list.get(i).getASSOCIATIONCODE();
+				troopname = troop_list.get(i).getTROOPNAME();
+				disptroopno = troop_list.get(i).getDISPTROOPNO();
+			}
+			model.addAttribute("asso", asso);
+			model.addAttribute("troopname", troopname);
+			model.addAttribute("disptroopno", disptroopno);
+			System.out.println("여기에서 이제 단위대 정보를 보여줘야해");
+		}
 		return "pict/front/units";
 	}
 	@RequestMapping(value = "/units_excel")
@@ -877,20 +897,61 @@ public class PictController {
         objCell.setCellStyle(styleHd_title);
 
         objCell = objRow.createCell(1);
-        objCell.setCellValue("단위대명");
+        objCell.setCellValue("등록구분");
         objCell.setCellStyle(styleHd_title);
 		
         objCell = objRow.createCell(2);
-        objCell.setCellValue("지도자/대원");
-        objCell.setCellStyle(styleHd_title);
-        
-        objCell = objRow.createCell(3);
         objCell.setCellValue("회원번호");
         objCell.setCellStyle(styleHd_title);
         
-        objCell = objRow.createCell(4);
-        objCell.setCellValue("이름");
+        objCell = objRow.createCell(3);
+        objCell.setCellValue("승인여부");
         objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(4);
+        objCell.setCellValue("성명");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(5);
+        objCell.setCellValue("구분");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(6);
+        objCell.setCellValue("연락처");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(7);
+        objCell.setCellValue("생년월일");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(8);
+        objCell.setCellValue("이메일");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(9);
+        objCell.setCellValue("평생회원");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(10);
+        objCell.setCellValue("등록비");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(11);
+        objCell.setCellValue("연맹지구독");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(12);
+        objCell.setCellValue("연공");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(13);
+        objCell.setCellValue("성별");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(14);
+        objCell.setCellValue("비고");
+        objCell.setCellStyle(styleHd_title);
+        
         
 		//바디
         int doublecnt = 0;
@@ -906,34 +967,103 @@ public class PictController {
 	        objSheet.setColumnWidth(0, (short)0x800);
 	        objCell.setCellStyle(styleHd);
 	        
-	        //단위대명
+	        //등록구분
 	        objCell = objRow.createCell(1);
-	        objCell.setCellValue(pictVO.getTROOPNAME());
-	        objSheet.setColumnWidth(1, (short)0x1500);
+	        objCell.setCellValue(attendance_list.get(i).getLEVEL());
+	        objSheet.setColumnWidth(1, (short)0x1000);
 	        objCell.setCellStyle(styleHd);
 	        
-	        //지도자/대원
+	        //회원번호
 	        objCell = objRow.createCell(2);
-	        String level = "지도자";
-	        if(attendance_list.get(i).getLEVEL().equals("대원")) level = "대원";
-	        objCell.setCellValue(level);
+	        objCell.setCellValue(attendance_list.get(i).getMEMBERNO());
 	        objSheet.setColumnWidth(2, (short)0x1500);
 	        objCell.setCellStyle(styleHd);
 
-	        //회원번호
+	        //승인여부
 	        objCell = objRow.createCell(3);
-	        objCell.setCellValue(attendance_list.get(i).getMEMBERNO());
-	        objSheet.setColumnWidth(3, (short)0x1500);
+	        objCell.setCellValue(attendance_list.get(i).getCONFIRMY());
+	        objSheet.setColumnWidth(3, (short)0x1000);
 	        objCell.setCellStyle(styleHd);
 	        
-	        //이름
+	        //성명
 	        objCell = objRow.createCell(4);
 	        objCell.setCellValue(attendance_list.get(i).getKNAME());
 	        objSheet.setColumnWidth(4, (short)0x1500);
 	        objCell.setCellStyle(styleHd);
         	
-
+	        //성명
+	        objCell = objRow.createCell(5);
+	        String gubun = "";
+	        if(attendance_list.get(i).getLEVEL().equals("지도자")) gubun = attendance_list.get(i).getLEADERPOSITIONNAME();
+	        if(attendance_list.get(i).getLEVEL().equals("대원")) gubun = attendance_list.get(i).getSCOUTCLSNAME();
+	        objCell.setCellValue(gubun);
+	        objSheet.setColumnWidth(5, (short)0x2000);
+	        objCell.setCellStyle(styleHd);
 	        
+	        //연락처
+	        objCell = objRow.createCell(6);
+	        objCell.setCellValue(attendance_list.get(i).getMOBILE());
+	        objSheet.setColumnWidth(6, (short)0x2000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //생년월일
+	        objCell = objRow.createCell(7);
+	        objCell.setCellValue(attendance_list.get(i).getBIRTHDAY());
+	        objSheet.setColumnWidth(7, (short)0x2000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //이메일
+	        objCell = objRow.createCell(8);
+	        objCell.setCellValue(attendance_list.get(i).getEMAIL());
+	        objSheet.setColumnWidth(8, (short)0x2000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //평생회원
+	        objCell = objRow.createCell(9);
+	        objCell.setCellValue(attendance_list.get(i).getLIFEMEMBERY());
+	        objSheet.setColumnWidth(9, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //등록비
+	        objCell = objRow.createCell(10);
+	        objCell.setCellValue(attendance_list.get(i).getENTRYFEE());
+	        objSheet.setColumnWidth(10, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //연맹지구독
+	        objCell = objRow.createCell(11);
+	        objCell.setCellValue(attendance_list.get(i).getSCOUTMAGACNT());
+	        objSheet.setColumnWidth(11, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //연공
+	        String yeongong = "";
+	        if(attendance_list.get(i).getLEVEL().equals("지도자")) yeongong = attendance_list.get(i).getLEADERCNT();
+	        if(attendance_list.get(i).getLEVEL().equals("대원")) yeongong = attendance_list.get(i).getSCOUTCNT();
+	        objCell = objRow.createCell(12);
+	        objCell.setCellValue(yeongong);
+	        objSheet.setColumnWidth(12, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //성별
+	        String sex = "";
+	        if(attendance_list.get(i).getSEX() != null) {
+		        if(attendance_list.get(i).getSEX().equals("M")) sex = "남";
+		        if(attendance_list.get(i).getSEX().equals("W")) sex = "여";
+	        }
+	        objCell = objRow.createCell(13);
+	        objCell.setCellValue(sex);
+	        objSheet.setColumnWidth(13, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //비고
+	        String etc = "";
+	        if(attendance_list.get(i).getLEVEL().equals("지도자")) etc = "";
+	        if(attendance_list.get(i).getLEVEL().equals("대원")) etc = attendance_list.get(i).getSCOUTSCHOOLYEAR() == null ? "" : attendance_list.get(i).getSCOUTSCHOOLYEAR();
+	        objCell = objRow.createCell(14);
+	        objCell.setCellValue(etc);
+	        objSheet.setColumnWidth(14, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
 	        
         }
 	        

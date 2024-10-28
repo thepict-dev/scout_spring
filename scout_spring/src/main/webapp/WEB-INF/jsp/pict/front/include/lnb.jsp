@@ -118,7 +118,7 @@
 	                <a href="#lnk">회원등록</a>
 	                <ul class="subNav">
 	                    <li><a href="/admin/front/scout_whole_register">대등록</a></li>
-	                    
+	                    <li><a href="/admin/front/units">단위대 관리</a></li>
 	                </ul>
 	            </li>
 	           

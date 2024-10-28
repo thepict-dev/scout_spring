@@ -31,63 +31,76 @@
                         <a href="#lnk" class="smButton bigWhiteBtn" onclick="fn_year_reset()">초기화</a>
                     </div>
                 </div>
-                <div class="searchContainer">
-                    <p class="inputCaption">연맹/지구</p>
-                    <div class="inputsAlign">
-	                    <select name="search_associationcode" id="search_associationcode" onchange="fn_get_unitylist_organ()" class="smThinSelect">
-							<c:forEach var="association_list" items="${association_list}" varStatus="status">
-								<option value="${association_list.ASSOCIATIONCODE}" <c:if test="${association_list.ASSOCIATIONCODE eq pictVO.search_associationcode}">selected</c:if>> ${association_list.ASSOCIATIONNAME}</option>
-							</c:forEach>
-						</select>
-						<select name="search_parenttroopno" id="search_parenttroopno" class="smThinSelect">
-							<option value="">전체</option>
-							<c:forEach var="unity_list" items="${unity_list}" varStatus="status">
-								<option value="${unity_list.TROOPNO}" <c:if test="${unity_list.TROOPNO eq pictVO.search_parenttroopno}">selected</c:if>>${unity_list.TROOPNAME}</option>
-							</c:forEach>
-						</select>
-					</div>
-                </div>
-                <!-- 
-                <div class="searchContainer">
-                    <p class="inputCaption">법정생년월일</p>
-                    <input type="date" name="search_birthday" id="search_birthday" value="${pictVO.search_birthday}" class="lgThinInput">
-                </div>
-                 -->
-                <div class="searchContainer">
-                    <p class="inputCaption">단위대 구분</p>
-                    <div class="inputsAlign">
-                        <select name="search_troopcls" id="search_troopcls" class="lgThinSelect" onchange="fn_troopclscode_search()">
-                        	<option value="" <c:if test="${pictVO.search_troopcls eq ''}">selected</c:if>>-----</option>
-                            <option value="01" <c:if test="${pictVO.search_troopcls eq '01'}">selected</c:if>>학교대</option>
-                            <option value="02" <c:if test="${pictVO.search_troopcls eq '02'}">selected</c:if>>지역대</option>
-                            <option value="03" <c:if test="${pictVO.search_troopcls eq '03'}">selected</c:if>>동우대</option>
-                            <option value="04" <c:if test="${pictVO.search_troopcls eq '04'}">selected</c:if>>특수대</option>
-                        </select>
-                        <select name="search_troopcls2" id="search_troopcls2" class="lgThinSelect">
-                            <option value="">-----</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="searchContainer">
-                    <p class="inputCaption">스카우트구분</p>
-                    <div class="inputsAlign">
-                        <select name="search_level" id="search_level" class="lgThinSelect" style="margin-right: 50px;">
-                            <option value="" <c:if test="${pictVO.search_level eq ''}">selected</c:if>>-----</option>
-                            <option value="01" <c:if test="${pictVO.search_level eq '01'}">selected</c:if>>비버</option>
-                            <option value="02" <c:if test="${pictVO.search_level eq '02'}">selected</c:if>>컵</option>
-                            <option value="03" <c:if test="${pictVO.search_level eq '03'}">selected</c:if>>스카우트</option>
-                            <option value="04" <c:if test="${pictVO.search_level eq '04'}">selected</c:if>>벤처</option>
-                            <option value="99" <c:if test="${pictVO.search_level eq '99'}">selected</c:if>>복합</option>
-                            <option value="05" <c:if test="${pictVO.search_level eq '05'}">selected</c:if>>로버</option>
-                            <option value="06" <c:if test="${pictVO.search_level eq '06'}">selected</c:if>>기타</option>
-                        </select>
-                        <select name="search_type2" id="search_type2" class="smThinSelect">
-                            <option value="name" <c:if test="${pictVO.search_type2 eq 'name'}">selected</c:if>>대이름</option>
-                            <option value="number" <c:if test="${pictVO.search_type2 eq 'number'}">selected</c:if>>대번호</option>
-                        </select>
-                        <input type="text" name="search_text2" id="search_text2" class="lgThinInput" placeholder="내용을 입력해주세요..." value="${pictVO.search_text2}">
-                    </div>
-                </div>
+                <!--셀렉트 1개 컨테이너(관리지도자) -->
+	           	<c:if test="${authority eq 'sub_admin'}">
+	                <div class="searchContainer">
+	                    <p class="inputCaption">단위대 리스트</p>
+	                    <div class="inputsAlign">
+	                        <select name="target_troopno" id="target_troopno" class="lgThinSelect">
+	                            
+	                        </select>
+	                    </div>
+	                </div>
+                </c:if>
+                <c:if test="${authority eq 'jeonjong'}">
+	                <div class="searchContainer">
+	                    <p class="inputCaption">연맹/지구</p>
+	                    <div class="inputsAlign">
+		                    <select name="search_associationcode" id="search_associationcode" onchange="fn_get_unitylist_organ()" class="smThinSelect">
+								<c:forEach var="association_list" items="${association_list}" varStatus="status">
+									<option value="${association_list.ASSOCIATIONCODE}" <c:if test="${association_list.ASSOCIATIONCODE eq pictVO.search_associationcode}">selected</c:if>> ${association_list.ASSOCIATIONNAME}</option>
+								</c:forEach>
+							</select>
+							<select name="search_parenttroopno" id="search_parenttroopno" class="smThinSelect">
+								<option value="">전체</option>
+								<c:forEach var="unity_list" items="${unity_list}" varStatus="status">
+									<option value="${unity_list.TROOPNO}" <c:if test="${unity_list.TROOPNO eq pictVO.search_parenttroopno}">selected</c:if>>${unity_list.TROOPNAME}</option>
+								</c:forEach>
+							</select>
+						</div>
+	                </div>
+	                <!-- 
+	                <div class="searchContainer">
+	                    <p class="inputCaption">법정생년월일</p>
+	                    <input type="date" name="search_birthday" id="search_birthday" value="${pictVO.search_birthday}" class="lgThinInput">
+	                </div>
+	                 -->
+	                <div class="searchContainer">
+	                    <p class="inputCaption">단위대 구분</p>
+	                    <div class="inputsAlign">
+	                        <select name="search_troopcls" id="search_troopcls" class="lgThinSelect" onchange="fn_troopclscode_search()">
+	                        	<option value="" <c:if test="${pictVO.search_troopcls eq ''}">selected</c:if>>-----</option>
+	                            <option value="01" <c:if test="${pictVO.search_troopcls eq '01'}">selected</c:if>>학교대</option>
+	                            <option value="02" <c:if test="${pictVO.search_troopcls eq '02'}">selected</c:if>>지역대</option>
+	                            <option value="03" <c:if test="${pictVO.search_troopcls eq '03'}">selected</c:if>>동우대</option>
+	                            <option value="04" <c:if test="${pictVO.search_troopcls eq '04'}">selected</c:if>>특수대</option>
+	                        </select>
+	                        <select name="search_troopcls2" id="search_troopcls2" class="lgThinSelect">
+	                            <option value="">-----</option>
+	                        </select>
+	                    </div>
+	                </div>
+	                <div class="searchContainer">
+	                    <p class="inputCaption">스카우트구분</p>
+	                    <div class="inputsAlign">
+	                        <select name="search_level" id="search_level" class="lgThinSelect" style="margin-right: 50px;">
+	                            <option value="" <c:if test="${pictVO.search_level eq ''}">selected</c:if>>-----</option>
+	                            <option value="01" <c:if test="${pictVO.search_level eq '01'}">selected</c:if>>비버</option>
+	                            <option value="02" <c:if test="${pictVO.search_level eq '02'}">selected</c:if>>컵</option>
+	                            <option value="03" <c:if test="${pictVO.search_level eq '03'}">selected</c:if>>스카우트</option>
+	                            <option value="04" <c:if test="${pictVO.search_level eq '04'}">selected</c:if>>벤처</option>
+	                            <option value="99" <c:if test="${pictVO.search_level eq '99'}">selected</c:if>>복합</option>
+	                            <option value="05" <c:if test="${pictVO.search_level eq '05'}">selected</c:if>>로버</option>
+	                            <option value="06" <c:if test="${pictVO.search_level eq '06'}">selected</c:if>>기타</option>
+	                        </select>
+	                        <select name="search_type2" id="search_type2" class="smThinSelect">
+	                            <option value="name" <c:if test="${pictVO.search_type2 eq 'name'}">selected</c:if>>대이름</option>
+	                            <option value="number" <c:if test="${pictVO.search_type2 eq 'number'}">selected</c:if>>대번호</option>
+	                        </select>
+	                        <input type="text" name="search_text2" id="search_text2" class="lgThinInput" placeholder="내용을 입력해주세요..." value="${pictVO.search_text2}">
+	                    </div>
+	                </div>
+                </c:if>
             </div>
             <input type="hidden" id="type" name="type">
             <div class="btnContainer organ">
@@ -108,24 +121,12 @@
                     <div class="tableWrapper unitTableWrapper">
                         <table>
                             <colgroup>
-                                <col width="5.2%" />
-                                <col width="3.5%" />
-                                <col width="6.9%" />
-                                <col width="5.2%" />
-                                <col width="5.2%" />
-                                <col width="4.5%" />
-                                <col width="5.9%" />
-                                <col width="5.2%" />
-                                <col width="5.2%" />
-                                <col width="5.2%" />
-                                <col width="5.2%" />
-                                <col width="5.2%" />
-                                <col width="5.2%" />
-                                <col width="5.2%" />
-                                <col width="5.2%" />
-                                <col width="5.2%" />
-                                <col width="5.2%" />
-                                <col width="5.2%" />
+                                <col width="14.285%" />
+                                <col width="14.285%" />
+                                <col width="14.285%" />
+                                <col width="14.285%" />
+                                <col width="14.285%" />
+                                <col width="14.285%" />
                             </colgroup>
                             <thead>
                                 <tr>
@@ -135,26 +136,8 @@
 	                                <th rowspan="2">스카우트구분</th>
 	                                <th rowspan="2">단위대구분</th>
 	                                <th rowspan="2">상세</th>
-	                                <th rowspan="2">최종대활동년도</th>
-	                                <th colspan="2" style="border-bottom: 0">${pictVO.search_year -1 }년도 승인자수</th>
-	                                <th colspan="2" style="border-bottom: 0">${pictVO.search_year}년도 승인자수</th>
-	                                <th colspan="2" style="border-bottom: 0">당해년도 납부자수</th>
-	                                <th colspan="2" style="border-bottom: 0">지도자등록유형(승인)</th>
-	                                <th colspan="3" style="border-bottom: 0">대원등록유형(승인)</th>
                                 </tr>
-                                <tr>
-                                	<th style="z-index: 2; top: 30px;">지도자</th>
-                                	<th style="z-index: 2; top: 30px;">대원</th>
-                                	<th style="z-index: 2; top: 30px;">지도자</th>
-                                	<th style="z-index: 2; top: 30px;">대원</th>
-                                	<th style="z-index: 2; top: 30px;">지도자</th>
-                                	<th style="z-index: 2; top: 30px;">대원</th>
-                                	<th style="z-index: 2; top: 30px;">계속</th>
-                                	<th style="z-index: 2; top: 30px;">신규</th>
-                                	<th style="z-index: 2; top: 30px;">신규</th>
-                                	<th style="z-index: 2; top: 30px;">2년연속</th>
-                                	<th style="z-index: 2; top: 30px;">3년연속</th>
-                                </tr>
+
                             </thead>
                             <tbody id="unit_list">
 	                            <c:forEach var="units_list" items="${units_list}" varStatus="status">
@@ -165,22 +148,6 @@
 										<td>${units_list.SCOUTCLSNAME}</td>
 										<td>${units_list.TROOPCLSNAME}</td>
 										<td>${units_list.DETAIL}</td>
-										<td>${units_list.LASTREGYEAR}</td>
-										
-										<td>${units_list.preleader}</td>
-										<td>${units_list.prescout}</td>
-										<td>${units_list.thisleader}</td>
-										<td>${units_list.thisscout}</td>
-										<td>${units_list.payleader}</td>
-										<td>${units_list.payscout}</td>
-										
-										<td>0</td>
-										<td>0</td>
-										<td>0</td>
-										<td>0</td>
-										<td>0</td>
-										
-										
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -300,7 +267,7 @@
 		                    </div>
                         </div>
                         <div class="tableContainer orgContainer unitTable bottomBd">
-                            <h2 class="subTitles">지도자</h2>
+                            <h2 class="subTitles">지도자 <span id="leader_cnt"></span></h2>
                             <div class="tableWrapper" style="height: 250px;">
                                 <table>
                                     <colgroup>
@@ -317,24 +284,22 @@
                                         <col width="7.1%" />
                                         <col width="7.1%" />
                                         <col width="7.1%" />
-                                        <col width="7.1%" />
                                     </colgroup>
                                     <thead>
                                         <tr>
                                             <th>회원번호</th>
+                                            <th>승인여부</th>
                                             <th>성명</th>
-                                            <th>지도자직책</th>
-                                            <th>단위대직책</th>
-                                            <th>면제코드</th>
-                                            <th>월간지구독부수</th>
-                                            <th>휴대전화</th>
+                                            <th>구분</th>
+                                            <th>연락처</th>
                                             <th>생년월일</th>
                                             <th>이메일</th>
-                                            <th>연공</th>
-                                            <th>포상</th>
                                             <th>평생회원</th>
-                                            <th>승인여부</th>
-                                            <th>관리자지도여부</th>
+                                            <th>등록비</th>
+                                            <th>연맹지구독</th>
+                                            <th>연공</th>
+                                            <th>성별</th>
+                                            <th>비고</th>
                                         </tr>
                                     </thead>
                                     <tbody id="unit_leader_list">
@@ -343,7 +308,7 @@
                             </div>
                         </div>
                         <div class="tableContainer orgContainer unitTable">
-                            <h2 class="subTitles">대원</h2>
+                            <h2 class="subTitles">대원 <span id="scout_cnt"></span></h2>
                             <div class="tableWrapper" style="height: 250px;">
                                 <table>
                                     <colgroup>
@@ -364,19 +329,18 @@
                                     <thead>
                                         <tr>
                                             <th>회원번호</th>
+                                            <th>승인여부</th>
                                             <th>성명</th>
-                                            <th>스카우트구분</th>
-                                            <th>스카우트직책</th>
-                                            <th>면제코드</th>
-                                            <th>월간지구독부수</th>
-                                            <th>학년</th>
-                                            <th>휴대전화</th>
+                                            <th>구분</th>
+                                            <th>연락처</th>
                                             <th>생년월일</th>
                                             <th>이메일</th>
+                                            <th>평생회원</th>
+                                            <th>등록비</th>
+                                            <th>연맹지구독</th>
                                             <th>연공</th>
-                                            <th>승인여부</th>
-                                            <th>진급신청내역</th>
-                                            
+                                            <th>성별</th>
+                                            <th>학년</th>
                                         </tr>
                                     </thead>
                                     <tbody id="unit_scout_list"></tbody>
@@ -396,9 +360,13 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		$(document).ready(function() {
-		    fn_troopclscode_search()
+			var year = '${pictVO.search_year}'
+			if(year == null || year == undefined || year == '') year = '${current_year}'
+		    $('#search_year').val(year)
+		    var authority = '${authority}'
 		    var login_associationcode = '${session}'
-			if(login_associationcode != '200'){
+			if(login_associationcode != '200' && authority == 'jeonjong'){
+				fn_troopclscode_search()
 				var code = '${pictVO.search_associationcode}';
 				
 				$('#search_associationcode').val(code)
@@ -406,6 +374,21 @@
 				fn_get_unitylist_organ()
 				$('.contentsContainer select').niceSelect('update')	
 			}
+		    if(authority == 'sub_admin'){
+		    	var troopno = "${troopno}"
+		    	var troopname = "${troopname}"
+		    	var asso = "${asso}"
+		    	
+		    	$('#target_troopno').val(troopno)
+		    	
+		    	var html = '<option value="'+ troopno +'">'+ troopname +'</option>'
+		    	$('#target_troopno').append(html)
+		    	$("select[name=target_troopno]").attr("disabled", true);
+		    	$('.contentsContainer select').niceSelect('update')	
+		    	//fn_search()
+		    	fn_get_units_info(troopno)
+		    	
+		    }
 		});
 
 		function fn_year_reset(){
@@ -514,33 +497,24 @@
 						var arr = data.leader_list;
 						var leader_html = ""
 						for(var i=0; i<arr.length; i++){
-							var excludename = ""
-							if(arr[i].feeexcludecode == '01') excludename = "연맹지원"
-							if(arr[i].feeexcludecode == '02') excludename = "신체장애"
-							if(arr[i].feeexcludecode == '03') excludename = "계속등록"
-							if(arr[i].feeexcludecode == '04') excludename = "조직변경"
-							if(arr[i].feeexcludecode == '05') excludename = "평생회원"
-							if(arr[i].feeexcludecode == '06') excludename = "육성단체대표"
-							if(arr[i].feeexcludecode == '07') excludename = "중복가입"
-							if(arr[i].feeexcludecode == '08') excludename = "다문화"
-							if(arr[i].feeexcludecode == '99') excludename = "기타"
-							
+							var sex = "";
+							if(arr[i].sex == 'M') sex = "남";
+							if(arr[i].sex == 'W') sex = "여";
 							
 							leader_html += '<tr>'+
 								'<td>' + arr[i].memberno + '</td>' +
+								'<td>' + arr[i].confirmy + '</td>'+
 								'<td>' + arr[i].kname + '</td>'+
 								'<td>' + arr[i].leaderpositionname + '</td>'+
-								'<td>' + arr[i].troopcode + '</td>'+
-								'<td>' + excludename + '</td>'+
-								'<td>' + arr[i].scoutmagacnt + '</td>'+
 								'<td>' + arr[i].mobile + '</td>'+
 								'<td>' + arr[i].birthday + '</td>'+
 								'<td>' + arr[i].email + '</td>'+
-								'<td>' + arr[i].leadercnt + '</td>'+
-								'<td>' + arr[i].gift + '</td>'+
 								'<td>' + arr[i].lifemembery + '</td>'+
-								'<td>' + arr[i].confirmy + '</td>'+
-								'<td>' + arr[i].adminy + '</td>'+
+								'<td>' + arr[i].entryfee + '</td>'+
+								'<td>' + arr[i].scoutmagacnt + '</td>'+
+								'<td>' + arr[i].leadercnt + '</td>'+
+								'<td>' + sex + '</td>'+
+								'<td></td>'+
 								'</tr>';
 						}
 						$('#unit_leader_list').append(leader_html)
@@ -552,34 +526,31 @@
 						var scout_html = ""
 						
 						for(var i=0; i<arr.length; i++){
-							var excludename = ""
-							if(arr[i].feeexcludecode == '01') excludename = "연맹지원"
-							if(arr[i].feeexcludecode == '02') excludename = "신체장애"
-							if(arr[i].feeexcludecode == '03') excludename = "계속등록"
-							if(arr[i].feeexcludecode == '04') excludename = "조직변경"
-							if(arr[i].feeexcludecode == '05') excludename = "평생회원"
-							if(arr[i].feeexcludecode == '06') excludename = "육성단체대표"
-							if(arr[i].feeexcludecode == '07') excludename = "중복가입"
-							if(arr[i].feeexcludecode == '08') excludename = "다문화"
-							if(arr[i].feeexcludecode == '99') excludename = "기타"
+							var sex = "";
+							if(arr[i].sex == 'M') sex = "남";
+							if(arr[i].sex == 'W') sex = "여";
 							
 							scout_html += '<tr>'+
 							'<td>' + arr[i].memberno + '</td>' +
+							'<td>' + arr[i].confirmy + '</td>'+
 							'<td>' + arr[i].kname + '</td>'+
 							'<td>' + arr[i].scoutclsname + '</td>'+
-							'<td>' + arr[i].scoutcode + '</td>'+
-							'<td>' + excludename + '</td>'+
-							'<td>' + arr[i].scoutmagacnt + '</td>'+
-							'<td>' + arr[i].scoutschoolyear + '</td>'+
 							'<td>' + arr[i].mobile + '</td>'+
 							'<td>' + arr[i].birthday + '</td>'+
 							'<td>' + arr[i].email + '</td>'+
+							'<td>' + arr[i].lifemembery + '</td>'+
+							'<td>' + arr[i].entryfee + '</td>'+
+							'<td>' + arr[i].scoutmagacnt + '</td>'+
 							'<td>' + arr[i].scoutcnt + '</td>'+
-							'<td>' + arr[i].levelapply + '</td>'+
-							'<td>' + arr[i].levelinfo + '</td>'+
-							
+							'<td>' + sex + '</td>'+
+							'<td>' + arr[i].scoutschoolyear + '</td>'+
 							'</tr>';
 						}
+						
+						
+						//총건 데이터 바인딩
+						$('#leader_cnt').text('(' + data.leader_list.length + '건)')
+						$('#scout_cnt').text('(' + data.scout_list.length + '건)')
 						
 						$('#unit_scout_list').append(scout_html)
 						$('.contentsContainer select').niceSelect('update')
@@ -607,7 +578,7 @@
 				, dataType : "json"
 				, async : true
 				, success : function(data, status, xhr) {
-					var html ='<option value="">-----</option>';
+					var html ='<option value="">전체</option>';
 					if(data.list){
 						var arr = data.list;
 						$('#search_parenttroopno').children().remove();
@@ -628,6 +599,7 @@
 			var param = {
 				troopclscode1 : $('#search_troopcls').val(),
 			}
+			
 			$.ajax({
 				url : "/admin/troopclscode1_search"
 				, type : "POST"

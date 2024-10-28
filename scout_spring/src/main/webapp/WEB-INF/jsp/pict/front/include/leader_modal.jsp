@@ -158,6 +158,7 @@
 	                        </div>
 	                    </div>
 	                </div>
+	                <!-- 
 	                <div class="stackInputs">
 	                    <div class="inpustFlex">
 	                        <div class="mountResult">
@@ -168,11 +169,9 @@
 		                                원
 		                            </p>
 	                            </div>
-	                            <!-- 
 	                            <div style="position: absolute;right: -35px;">
 	                                <input type="checkbox" name="" id="" class="circleCheck"><label for="" class="lableOnly"></label>
 	                            </div>
-	                             -->
 	                        </div>
 	                        <div class="inputBox">
 	                            <div class="inputsAlign">
@@ -184,12 +183,13 @@
 	                        </div>
 	                    </div>
 	                </div>
+	                 -->
 	                <div class="stackInputs">
 	                    <div class="inpustFlex">
 	                        <div class="inputBox">
 	                            <div class="inputsAlign">
 			                        <div class="mountResult">
-	                            		<p class="inputCaption mount">월간지</p>
+	                            		<p class="inputCaption mount">연맹지</p>
 			                            <p class="mountCaption">
 			                                <span>0</span>
 			                                원
@@ -220,22 +220,21 @@
 	                        </div>
 	                    </div>
 	                </div>
+	                <!-- 
 	                <div class="stackInputs">
 	                    <div class="inpustFlex">
 	                        <div class="inputBox">
 	                            <div class="inputsAlign">
 			                        <div class="mountResult">
-	                            		<p class="inputCaption mount">격월간지</p>
+	                            		<p class="inputCaption mount">연맹지</p>
 			                            <p class="mountCaption">
 			                                <span>0</span>
 			                                원
 			                            </p>
 			                        </div>
-			                        <!-- 
 	                                <div>
 	                                    <input type="checkbox" name="" id="" class="circleCheck"><label for="" class="lableOnly"></label>
 	                                </div>
-	                                 -->
 	                                <div class="inputBox" style="position: relative; bottom: 9px;">
 	                                    <p class="inputCaption">부수</p>
 	                                    <div class="inputsAlign">
@@ -256,6 +255,7 @@
 	                        </div>
 	                    </div>
 	                </div>
+	                 -->
 	                <div class="stackInputs">
 	                    <div class="inpustFlex">
 	                        <div class="mountResult">
@@ -366,11 +366,11 @@
 					$('#BANKDAY').val(data.rst.bankday)
 					
 					$('#ENTRYFEE').val(data.rst.entryfee)
-					$('#INSURANCEFEE').val(data.rst.insurancefee)
+					//$('#INSURANCEFEE').val(data.rst.insurancefee)
 					$('#SCOUTMAGACNT').val(data.rst.scoutmagacnt)
 					$('#SCOUTMAGAFEE').val(data.rst.scoutmagafee)
-					$('#LEADERMAGACNT').val(data.rst.leadermagacnt)
-					$('#LEADERMAGAFEE').val(data.rst.leadermagafee)
+					$('#LEADERMAGACNT').val(0)
+					$('#LEADERMAGAFEE').val(0)
 					$('#BIGO').val(data.rst.bigo)
 					calculate_leader()
 					//상단 항목 리드온리
@@ -581,11 +581,11 @@
 			bankday : $('#BANKDAY').val(),
 			payy : payy,
 			entryfee : $('#ENTRYFEE').val(),
-			insurancefee : $('#INSURANCEFEE').val(),
+			insurancefee : 0,
 			scoutmagacnt : $('#SCOUTMAGACNT').val(),
 			scoutmagafee : $('#SCOUTMAGAFEE').val(),
-			leadermagacnt : $('#LEADERMAGACNT').val(),
-			ledermagafee : $('#LEADERMAGAFEE').val(),
+			leadermagacnt : '0',
+			ledermagafee : '0',
 			leader_idx : $('#leader_idx').val(),
 			savetype : "update",
 			kname : $('#KNAME').val()
@@ -670,6 +670,7 @@
 		}
 		else{
 			if(confirm (text)){
+				debugger
 				$('#leader_list').children().remove();
 				$.ajax({
 					url : "/admin/leader_update"
@@ -740,11 +741,11 @@
 	
 	function calculate_leader(){
 		var ENTRYFEE = $('#ENTRYFEE').val()
-		var INSURANCEFEE = $('#INSURANCEFEE').val()
+		//var INSURANCEFEE = $('#INSURANCEFEE').val()
 		var SCOUTMAGAFEE = $('#SCOUTMAGAFEE').val()
 		var LEADERMAGAFEE = $('#LEADERMAGAFEE').val()
 		
-		var total_amount = Number(ENTRYFEE) + Number(INSURANCEFEE) + Number(SCOUTMAGAFEE) + Number(LEADERMAGAFEE)
+		var total_amount = Number(ENTRYFEE) + Number(SCOUTMAGAFEE)
 		
 		$('#total_amount').val(total_amount)
 		
@@ -761,7 +762,7 @@
 		var LEADERMAGAFEE = Number(LEADERMAGACNT) * 10000
 		$('#LEADERMAGAFEE').val(LEADERMAGAFEE);
 		
-		var total_amount = Number(ENTRYFEE) + Number(INSURANCEFEE) + Number(SCOUTMAGAFEE) + Number(LEADERMAGAFEE)
+		var total_amount = Number(ENTRYFEE)  + Number(SCOUTMAGAFEE)
 		
 		$('#total_amount').val(total_amount)
 		

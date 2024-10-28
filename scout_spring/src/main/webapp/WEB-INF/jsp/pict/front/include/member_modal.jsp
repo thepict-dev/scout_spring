@@ -89,7 +89,9 @@
 	                                <option value="5">5</option>
 	                                <option value="6">6</option>
 	                            </select>
+	                            <!-- 
 	                            <input type="text" name="SCOUTSCHOOLBAN_SCOUT" id="SCOUTSCHOOLBAN_SCOUT" class="smThinInput">
+	                             -->
                         	</div>
                         </div> 
                     </div>
@@ -112,10 +114,12 @@
                                 </select>
                             </div>
                         </div>
+                        <!-- 
                         <div class="inputBox">
                             <p class="inputCaption">스카우트반</p>
                             <input type="text" name="SCOUTBAN" id="SCOUTBAN" placeholder="내용을 입력하세요…" class="smThinInput">
                         </div>
+                         -->
                     </div>
                 </div>
             </div>
@@ -172,6 +176,7 @@
 	                        </div>
 	                    </div>
 	                </div>
+	                <!-- 
 	                <div class="stackInputs">
 	                    <div class="inpustFlex">
 	                        <div class="mountResult">
@@ -182,11 +187,11 @@
 		                                원
 		                            </p>
 	                            </div>
-	                            <!-- 
+	                            
 	                            <div style="position: absolute;right: -35px;">
 	                                <input type="checkbox" name="" id="" class="circleCheck"><label for="" class="lableOnly"></label>
 	                            </div>
-	                             -->
+	                            
 	                        </div>
 	                        <div class="inputBox">
 	                            <div class="inputsAlign">
@@ -198,12 +203,13 @@
 	                        </div>
 	                    </div>
 	                </div>
+	                 -->
 	                <div class="stackInputs">
 	                    <div class="inpustFlex">
 	                        <div class="inputBox">
 	                            <div class="inputsAlign">
 			                        <div class="mountResult">
-	                            		<p class="inputCaption mount">월간지</p>
+	                            		<p class="inputCaption mount">연맹지</p>
 			                            <p class="mountCaption">
 			                                <span>0</span>
 			                                원
@@ -344,7 +350,7 @@
 					$('#BANKDAY_SCOUT').val(data.rst.bankday)
 					
 					$('#ENTRYFEE_SCOUT').val(data.rst.entryfee)
-					$('#INSURANCEFEE_SCOUT').val(data.rst.insurancefee)
+					//$('#INSURANCEFEE_SCOUT').val(data.rst.insurancefee)
 					$('#SCOUTMAGACNT_SCOUT').val(data.rst.scoutmagacnt)
 					$('#SCOUTMAGAFEE_SCOUT').val(data.rst.scoutmagafee)
 					$('#BIGO_SCOUT').val(data.rst.bigo)
@@ -570,7 +576,7 @@
 			bankday : $('#BANKDAY_SCOUT').val(),
 			payy : payy,
 			entryfee : $('#ENTRYFEE_SCOUT').val(),
-			insurancefee : $('#INSURANCEFEE_SCOUT').val(),
+			insurancefee : '0',
 			scoutmagacnt : $('#SCOUTMAGACNT_SCOUT').val(),
 			scoutmagafee : $('#SCOUTMAGAFEE_SCOUT').val(),
 			scout_idx : $('#scout_idx').val(),
@@ -723,23 +729,23 @@
 	
 	function calculate_scout(){
 		var ENTRYFEE = $('#ENTRYFEE_SCOUT').val()
-		var INSURANCEFEE = $('#INSURANCEFEE_SCOUT').val()
+		//var INSURANCEFEE = $('#INSURANCEFEE_SCOUT').val()
 		var SCOUTMAGAFEE = $('#SCOUTMAGAFEE_SCOUT').val()
-		var total_amount = Number(ENTRYFEE) + Number(INSURANCEFEE) + Number(SCOUTMAGAFEE)
+		var total_amount = Number(ENTRYFEE)  + Number(SCOUTMAGAFEE)
 		
 		$('#total_amount_scout').val(total_amount)
 		
 	}
 	function calculate_boo_scout(){
 		var ENTRYFEE = $('#ENTRYFEE_SCOUT').val()
-		var INSURANCEFEE = $('#INSURANCEFEE_SCOUT').val()
+		//var INSURANCEFEE = $('#INSURANCEFEE_SCOUT').val()
 		
 		var SCOUTMAGACNT = $('#SCOUTMAGACNT_SCOUT').val()
 		var SCOUTMAGAFEE = Number(SCOUTMAGACNT) * 10000
 		$('#SCOUTMAGAFEE_SCOUT').val(SCOUTMAGAFEE)
 		
 
-		var total_amount = Number(ENTRYFEE) + Number(INSURANCEFEE) + Number(SCOUTMAGAFEE)
+		var total_amount = Number(ENTRYFEE) + Number(SCOUTMAGAFEE)
 		
 		$('#total_amount_scout').val(total_amount)
 		

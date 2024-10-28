@@ -103,6 +103,7 @@
 				<div class="inputBox" id="newscout_2">
 					<p class="inputCaption">스카우트직책2</p>
 					<select name="newscoutpositioncode2" id="newscoutpositioncode2" class="lgThinSelect">
+						<option value="">-----</option>
 						<option value="21">보장</option>
 						<option value="22">부보장</option>
 						<option value="23">단/대보장</option>

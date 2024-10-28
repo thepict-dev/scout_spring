@@ -826,9 +826,9 @@
 	
 	<select id="fn_get_units_leader" resultType="pictVO">
 		select
-		l.MEMBERNO, m.KNAME, lp.LEADERPOSITIONNAME, '' as TROOPCODE, l.FEEEXCLUDECODE, l.SCOUTMAGACNT, m.MOBILE, m.EMAIL, m.BIRTHDAY,
+		l.MEMBERNO, m.KNAME, lp.LEADERPOSITIONNAME, '' as TROOPCODE, l.FEEEXCLUDECODE, l.SCOUTMAGACNT, m.MOBILE, m.EMAIL, m.BIRTHDAY, m.SEX,
 		(select count(MEMBERNO) from leader sl where sl.MEMBERNO = l.MEMBERNO) as LEADERCNT,
-		'' as TRAINING, '' as GIFT, m.LIFEMEMBERY, l.CONFIRMY, l.ADMINY, "지도자" as LEVEL
+		'' as TRAINING, '' as GIFT, m.LIFEMEMBERY, l.CONFIRMY, l.ADMINY, "지도자" as LEVEL, l.ENTRYFEE
 		from leader l
 		left outer join leaderpositioncode lp on l.LEADERPOSITIONCODE1 = lp.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2
 		left join member m on m.MEMBERNO = l.MEMBERNO
@@ -840,9 +840,9 @@
 	
 	<select id="fn_get_units_scout" resultType="pictVO">
 		select
-		s.MEMBERNO, m.KNAME, sc.SCOUTCLSNAME, '' as SCOUTCODE, s.FEEEXCLUDECODE, s.SCOUTMAGACNT, ifnull(s.SCOUTSCHOOLYEAR,'') as SCOUTSCHOOLYEAR, m.MOBILE, m.EMAIL, m.BIRTHDAY,
+		s.MEMBERNO, m.KNAME, sc.SCOUTCLSNAME, '' as SCOUTCODE, s.FEEEXCLUDECODE, s.SCOUTMAGACNT, ifnull(s.SCOUTSCHOOLYEAR,'') as SCOUTSCHOOLYEAR, m.MOBILE, m.EMAIL, m.BIRTHDAY, m.SEX,
 		(select count(MEMBERNO) from scout sl where sl.MEMBERNO = s.MEMBERNO) as SCOUTCNT,
-		'' as TRAINING, '' as GIFT, m.LIFEMEMBERY, s.CONFIRMY, '-' as LEVELAPPLY, '' as LEVELINFO, "대원" as LEVEL
+		'' as TRAINING, '' as GIFT, m.LIFEMEMBERY, s.CONFIRMY, '-' as LEVELAPPLY, '' as LEVELINFO, "대원" as LEVEL, s.ENTRYFEE, s.SCOUTSCHOOLYEAR
 		from scout s
 		left outer join scoutclscode sc on s.SCOUTCLSCODE = sc.SCOUTCLSCODE
 		left outer join member m on m.MEMBERNO = s.MEMBERNO
@@ -1455,7 +1455,15 @@
 	</update>
 	
 	<select id="login_troop_list" resultType="pictVO">
-		select * from troop where ASSOCIATIONCODE = #{ASSOCIATIONCODE}
+		SELECT *
+		FROM troop t1
+		WHERE t1.ASSOCIATIONCODE = #{ASSOCIATIONCODE}  
+		AND
+		NOT EXISTS (
+		    SELECT 1
+		    FROM troop t2
+		    WHERE t1.TROOPNO = t2.PARENT_TROOPNO
+		);
 	</select>
 	
 	<select id="login_troop_list2" resultType="pictVO">
