@@ -31,7 +31,7 @@
             			</div>
                         <div class="inputsContainer mt20">
                             <div class="inputBox">
-                                <p class="inputCaption">법정생년</p>
+                                <p class="inputCaption">생년월일</p>
                                 <input type="date" name="search_birthday" id="search_birthday" value="${pictVO.search_birthday}" class="lgThinInput" maxlength="8" max="9999-12-31">
                             </div>
                             <div class="inputBox">
@@ -74,6 +74,7 @@
                                 </select>
                             </div>
                         </div>
+                        <!-- 
                         <div class="inputsContainer mt20">
                             <div class="inputBox">
                                 <p class="inputCaption">등록시작일</p>
@@ -82,14 +83,15 @@
                             <div class="inputBox period">
                                 <p class="inputCaption">등록마감일</p>
                                 <input type="date" id="search_end" name="search_end" value="${pictVO.search_end}" class="lgThinInput" max="9999-12-31">
-                                <!--
+                                
                                 <label for="whole_period" class="wholeCheck">
                                     <input type="radio" name="whole_period" id="whole_period">
                                     <span>전체</span>
                                 </label>
-                                -->
+                                
                             </div>
                         </div>
+                         -->
                         <div class="btnContainer">
                         	<!-- 여기 -->
                             <a href="#lnk" class="basicButton white" onclick="search_reset()"><img src="/front_img/reset.png" alt="">화면 초기화</a>
@@ -110,31 +112,21 @@
                     <div class="tableWrapper users">
                         <table>
                             <colgroup>
-                                <col width="7%" />
-                                <col width="7%" />
-                                <col width="9%" />
-                                <col width="9%" />
-                                <col width="13%" />
-                                <col width="9%" />
+                                <col width="10%" />
+                                <col width="10%" />
+                                <col width="10%" />
+                                <col width="10%" />
                                 <col width="10%" />
                                 <col width="9%" />
-                                <col width="9%" />
-                                <col width="9%" />
-                                <col width="8%" />
                             </colgroup>
                             <thead>
                                 <tr>
 	                                <th>회원번호</th>
-	                                <th>회원명</th>
-	                                <th>법정생년월일</th>
-	                                <th>대번호(당해)</th>
-	                                <th>단위대명(당해)</th>
-	                                <th>회원구분</th>
-	                    			<th>회원등급</th>
-	                                <th>대원여부</th>
-	                                <th>지도자여부</th>
-	                                <th>평생회원여부</th>
-	                                <th>전종여부</th>
+	                                <th>성명</th>
+	                                <th>생년월일</th>
+	                                <th>대번호</th>
+	                                <th>단위대명</th>
+	                                <th>등록구분</th>
                                 </tr>
                             </thead>
                             <tbody id="searchResultList">
@@ -160,35 +152,10 @@
 	                         				</c:if>
                          				</td>
 	                                    <td>
-				                         	<c:if test='${resultList.MEMCLSCODE eq "1"}'>개인</c:if>
-				                         	<c:if test='${resultList.MEMCLSCODE eq "2"}'>법인</c:if>
-				                         	<c:if test='${resultList.MEMCLSCODE eq "3"}'>단체</c:if>
+				                         	<c:if test='${resultList.TROOPSCOUTY eq "Y"}'>대원</c:if>
+				                         	<c:if test='${resultList.TROOPLEADERY eq "Y"}'>지도자</c:if>
 	                                    </td>
-	                                    <td>
-				                         	<c:choose>
-					                         	<c:when test='${resultList.MEMGRADECODE eq "1"}'>행사회원</c:when>
-					                         	<c:when test='${resultList.MEMGRADECODE eq "2"}'>후원회원</c:when>
-					                         	<c:otherwise>
-					                         		대원/지도자
-					                         	</c:otherwise>
-				                         	</c:choose>
-	                                    </td>
-	                                    <td>
-				                         	<c:if test='${resultList.TROOPSCOUTY eq "Y"}'>Y</c:if>
-				                         	<c:if test='${resultList.TROOPSCOUTY ne "Y"}'>N</c:if>
-	                                    </td>
-	                                    <td>
-				                         	<c:if test='${resultList.TROOPLEADERY eq "Y"}'>Y</c:if>
-				                         	<c:if test='${resultList.TROOPLEADERY ne "Y"}'>N</c:if>
-	                                    </td>
-	                                    <td>
-				                         	<c:if test='${resultList.LIFE eq "Y"}'>Y</c:if>
-				                         	<c:if test='${resultList.LIFE ne "Y"}'>N</c:if>
-	                                    </td>
-	                                    <td>
-				                         	<c:if test='${resultList.EMPLOYEEY eq "Y"}'>Y</c:if>
-				                         	<c:if test='${resultList.EMPLOYEEY ne "Y"}'>N</c:if>
-	                                    </td>
+	                                    
 	                                </tr>
 	                    		</c:forEach>
                             </tbody>
@@ -388,29 +355,18 @@
                                 <div class="tableWrapper">
                                     <table>
                                         <colgroup>
-                                            <col width="2.5%" />
-                                            <col width="3.5%" />
-                                            <col width="3.5%" />
-                                            <col width="4.5%" />
-                                            <col width="6.5%" />
-                                            <col width="5.5%" />
-                                            <col width="2.5%" />
-                                            <col width="2.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="2.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="3.5%" />
-                                            <col width="4.5%" />
-                                            <col width="8.5%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
                                         </colgroup>
                                         <thead id="div_scout">
                                             <tr>
@@ -419,24 +375,13 @@
                                                 <th>연맹</th>
                                                 <th>연합회</th>
                                                 <th>단위대</th>
-                                                <th>학교</th>
-                                                <th>구분</th>
-                                                <th>학년</th>
-                                                <th>반</th>
-                                                <th>연맹지(부수)</th>
-                                                <th>정산대상</th>
+                                                <th>직책1</th>
+                                                <th>직책2</th>
                                                 <th>승인</th>
-                                                <th>납부</th>
-                                                <th>등록일</th>
-                                                <th>승인신청</th>
-                                                <th>납부이력</th>
-                                                <th>직책</th>
-                                                <th>스카우트구분</th>
-                                                <th>스카우트반</th>
                                                 <th>등록비</th>
-                                                <th>월간지</th>
-                                                <th>보험료</th>
-                                                <th>회원기간</th>
+                                                <th>연맹지</th>
+                                                <th>등록일</th>
+                                                <th>학년</th>
                                             </tr>
                                         </thead>
 	                					<tbody id="scout_list"></tbody>
@@ -456,53 +401,33 @@
                                 <div class="tableWrapper" id="div_leader">
                                     <table>
                                         <colgroup>
-                                            <col width="2.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="6.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="2.5%" />
-                                            <col width="2.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="4.5%" />
-                                            <col width="8.5%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
+                                            <col width="8.333%" />
                                         </colgroup>
                                         <thead id="div_leader">
                                             <tr>
                                                 <th>No</th>
-                                                <th>지도자지도여부</th>
                                                 <th>년도</th>
                                                 <th>연맹</th>
                                                 <th>연합회</th>
                                                 <th>단위대</th>
                                                 <th>직책1</th>
                                                 <th>직책2</th>
-                                                <th>학교</th>
-                                                <th>연맹지(부수)</th>
-                                                <th>정산대상</th>
                                                 <th>승인</th>
-                                                <th>납부</th>
-                                                <th>등록일</th>
-                                                <th>승인신청</th>
-                                                <th>납부이력</th>
-                                                <th>학교직책</th>
                                                 <th>등록비</th>
-                                                <th>월간지</th>
-                                                <th>격월간지</th>
-                                                <th>보험료</th>
-                                                <th>회원기간</th>
+                                                <th>연맹지</th>
+                                                <th>등록일</th>
+                                                <th>평생회원</th>
                                             </tr>
                                         </thead>
                                         <tbody id="leader_list"></tbody>
@@ -701,6 +626,12 @@
 	    	}
     		if(flag != 'Y'){
     			$('#pwPopup').addClass("active");
+    		}
+    		
+    		var size = '${resultListCnt}'
+   			var search_flag = '${search_flag}'
+    		if(search_flag == 'search' && size == 0){
+    			alert("등록된 회원정보가 없습니다.")
     		}
 	    	
 		});
@@ -1093,8 +1024,13 @@
 					$("#TROOPRANK").val(trooprank)
 					
 					
-					if(data.info.sex == "M") $(":radio[id='SEX_M']").attr("checked", true);
-					else $(":radio[id='SEX_W']").attr("checked", true);
+					if(data.info.sex == "M") {
+						$(":radio[id='SEX_M']").attr("checked", true);
+					}
+					if(data.info.sex == "W") {
+						$(":radio[id='SEX_W']").attr("checked", true);
+					}
+					//else $(":radio[id='SEX_W']").attr("checked", true);
 					
 					$("#HTELNO").val(data.info.htelno)
 					$("#MOBILE").val(data.info.mobile)
@@ -1158,9 +1094,12 @@
 					}
 					$('#main_leader_org').val(leaderorgname)
 					
-					var html ="";
+					var leader_html ="";
+					var scout_html ="";
 					var relation_html = "";
-					var arr = data.list;
+					
+					var leader_list = data.leader_list;
+					var scout_list = data.scout_list;
 					var relation_arr = data.relation_list;
 					$('#leader_list').children().remove();
 					$('#scout_list').children().remove();
@@ -1184,85 +1123,61 @@
 					
 					
 					
-					if(leadery == 'Y'){//지도자일경우
-						//가입정보 기입
-						$('#leader_date').text(data.info.enterdate)
-						$('#leader_whole_incnt').text(arr.length)
-						$('#leader_incnt').text(data.info.leaderincnt)
-						
-						
-						$('#year_cnt_leader').text(arr.length + " rows")
-						for(var i=0; i<arr.length; i++){
-							var enterdate = arr[i].enterdate
-							if(enterdate) enterdate = enterdate.substring(0,11)
-							
-							html += '<tr id="leader_list_row_'+arr[i].idx+'" onclick="fn_leader_info('+arr[i].idx+')">'+
-								'<td>' + Number(i+1) + '</td>' +
-								'<td>' + arr[i].adminy + '</td>'+
-								'<td>' + arr[i].year + '</td>'+
-								'<td>' + arr[i].associationname + '</td>'+
-								'<td>' + arr[i].unity + '</td>'+
-								'<td>' + arr[i].troopname + '</td>'+
-								'<td>' + arr[i].leaderposition + '</td>'+
-								'<td>' + arr[i].leaderpositionname + '</td>'+
-								'<td>' + arr[i].orgname  + '</td>'+
-								'<td>' + arr[i].scoutmagacnt  + '</td>'+
-								'<td>Y</td>'+
-								'<td>' + arr[i].confirmy + '</td>'+
-								'<td>' + arr[i].payy + '</td>'+
-								'<td>' + enterdate + '</td>'+
-								'<td></td>'+
-								'<td></td>'+
-								'<td>' + arr[i].leaderorgpositionname + '</td>'+
-								'<td>' + arr[i].entryfee + '</td>'+
-								'<td>' + Number(arr[i].scoutmagacnt) * 10000  + '</td>'+
-								'<td>X</td>'+
-								'<td>X</td>'+
-								'<td>' + arr[i].year + '-01-01 ~ ' + arr[i].year + '-12-31' + '</td>'+
-								'</tr>';
-						}
-						$('#leader_list').append(html)
-						
-					}
-					else{//대원일경우
-						$('#scout_date').text(data.info.enterdate)
-						$('#scout_whole_incnt').text(arr.length)
-						$('#scout_incnt').text(data.info.scoutincnt)
-						$('#year_cnt_scout').text(arr.length + " rows")
-						for(var i=0; i<arr.length; i++){
-							var enterdate = arr[i].enterdate
-							if(enterdate) enterdate = enterdate.substring(0,11)
-							html += '<tr id="scout_list_row_'+arr[i].idx+'" onclick="fn_scout_info('+arr[i].idx+')">'+
-								'<td>' + Number(i+1) + '</td>' +
-								'<td>' + arr[i].year + '</td>'+
-								'<td>' + arr[i].associationname + '</td>'+
-								'<td>' + arr[i].unity + '</td>'+
-								'<td>' + arr[i].troopname + '</td>'+
-								'<td>' + arr[i].orgname + '</td>'+
-								//'<td>' + arr[i].orgclsname + '</td>'+
-								'<td></td>'+
-								'<td>' + arr[i].scoutschoolyear + '</td>'+
-								'<td>' + arr[i].scoutschoolban + '</td>'+
-								'<td>' + arr[i].scoutmagacnt + '</td>'+
-								'<td>Y</td>'+
-								'<td>' + arr[i].confirmy + '</td>'+
-								'<td>' + arr[i].payy + '</td>'+
-								'<td>' + enterdate + '</td>'+
-								'<td></td>'+
-								'<td></td>'+
-								'<td>' + arr[i].scoutpositionname + '</td>'+
-								'<td>' + arr[i].scoutclsname + '</td>'+
-								'<td>' + arr[i].scoutban + '</td>'+
-								'<td>' + arr[i].entryfee + '</td>'+
-								'<td>' + Number(arr[i].scoutmagacnt) * 10000 + '</td>'+
-								'<td></td>'+
-								'<td>' + arr[i].year + '-01-01 ~ ' + arr[i].year + '-12-31' + '</td>'+
-								'</tr>';
-							
-						}
-						$('#scout_list').append(html)
-					}
+					//가입정보 기입
+					$('#leader_date').text(data.info.enterdate)
+					$('#leader_whole_incnt').text(leader_list.length)
+					$('#leader_incnt').text(data.info.leaderincnt)
 					
+					
+					$('#year_cnt_leader').text(leader_list.length + " rows")
+					for(var i=0; i<leader_list.length; i++){
+						var enterdate = leader_list[i].enterdate
+						if(enterdate) enterdate = enterdate.substring(0,11)
+						
+						leader_html += '<tr id="leader_list_row_'+leader_list[i].idx+'" onclick="fn_leader_info('+leader_list[i].idx+')">'+
+							'<td>' + Number(i+1) + '</td>' +
+							'<td>' + leader_list[i].year + '</td>'+
+							'<td>' + leader_list[i].associationname + '</td>'+
+							'<td>' + leader_list[i].unity + '</td>'+
+							'<td>' + leader_list[i].troopname + '</td>'+
+							'<td>' + leader_list[i].leaderposition + '</td>'+
+							'<td>' + leader_list[i].leaderpositionname + '</td>'+
+							'<td>' + leader_list[i].confirmy  + '</td>'+
+							'<td>' + leader_list[i].entryfee  + '</td>'+
+							'<td>' + leader_list[i].scoutmagacnt  + '</td>'+
+							'<td>' + enterdate + '</td>'+
+							'<td>' + lifemembery +'</td>'+
+							'</tr>';
+					}
+					$('#leader_list').append(leader_html)
+					
+					
+					//대원연공
+					$('#scout_date').text(data.info.enterdate)
+					$('#scout_whole_incnt').text(scout_list.length)
+					$('#scout_incnt').text(data.info.scoutincnt)
+					$('#year_cnt_scout').text(scout_list.length + " rows")
+					for(var i=0; i<scout_list.length; i++){
+						var enterdate_scout = scout_list[i].enterdate
+						if(enterdate) enterdate = enterdate.substring(0,11)
+						scout_html += '<tr id="scout_list_row_'+scout_list[i].idx+'" onclick="fn_scout_info('+scout_list[i].idx+')">'+
+							'<td>' + Number(i+1) + '</td>' +
+							'<td>' + scout_list[i].year + '</td>'+
+							'<td>' + scout_list[i].associationname + '</td>'+
+							'<td>' + scout_list[i].unity + '</td>'+
+							'<td>' + scout_list[i].troopname + '</td>'+
+							'<td>' + scout_list[i].scoutclsname + '</td>'+
+							'<td>' + scout_list[i].scoutpositionname+ '</td>'+
+							'<td>'+scout_list[i].confirmy+'</td>'+
+							'<td>' + scout_list[i].entryfee + '</td>'+
+							'<td>' + scout_list[i].scoutmagacnt + '</td>'+
+							'<td>' + enterdate_scout + '</td>'+
+							'<td>' + scout_list[i].scoutschoolyear + '</td>'+
+							'</tr>';
+						
+					}
+					$('#scout_list').append(scout_html)
+					/*
 					//관계연결
 					var relation_popup = ""
 					var target_memberno = $('#MEMBERNO').val()
@@ -1294,8 +1209,9 @@
 					
 					$('#main_relation').append(relation_html)
 					$('#relation_list').append(relation_popup)
-					
+					*/
 					$('#initial-loading').css('display', 'none')
+					
 					
 				}
 				, error : function(xhr, status, error) {

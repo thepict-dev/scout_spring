@@ -566,11 +566,11 @@
 			
 			scoutorgno : $('#scout_orgno').val(),
 			scoutschoolyear : $('#SCOUTSCHOOLYEAR_SCOUT').val(),
-			scoutschoolban :$('#SCOUTSCHOOLBAN_SCOUT').val(),
+			scoutschoolban :'',
 			
 			scoutclscode :$('#SCOUTCLSCODE').val(),
 			scoutpositioncode :$('#SCOUTPOSITIONCODE').val(),
-			scoutban :$('#SCOUTBAN').val(),
+			scoutban :'',
 			
 			feeexcludcode : $('#FEEEXCLUDCODE_SCOUT').val(),
 			bankday : $('#BANKDAY_SCOUT').val(),

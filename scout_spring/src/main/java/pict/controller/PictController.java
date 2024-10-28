@@ -296,6 +296,7 @@ public class PictController {
 			model.addAttribute("resultList", "");
 			model.addAttribute("job_list", "");
 			model.addAttribute("pictVO", null);
+			model.addAttribute("search_flag", "");
 		}
 		else {
 			List<PictVO> scout_list = pictService.scout_left_search_list(pictVO);
@@ -307,6 +308,7 @@ public class PictController {
 			model.addAttribute("resultListCnt", scout_list.size());
 			model.addAttribute("job_list", job_list);
 			model.addAttribute("pictVO", pictVO);
+			model.addAttribute("search_flag", "search");
 		}
 		
 		
@@ -3080,29 +3082,29 @@ public class PictController {
 		vo.setMEMBERNO(memberno);
 		
 		if(pictVO != null) {
-			List<PictVO> relation_list = pictService.get_relation_info(vo);
-			map.put("relation_list", relation_list);
-			
-			
+			/*
 			//지도자일경우
 			if(leadery.equals("Y")) {
-				List<PictVO> leader_list = pictService.leader_list(pictVO);
 				
-				map.put("info", pictVO);
-				map.put("list", leader_list);
 				
 				return map;
 			}
 			//대원의경우
 			else{
 				
-				List<PictVO> scout_list = pictService.scout_list(pictVO);
 				
 				map.put("info", pictVO);
-				map.put("list", scout_list);
+				
 				
 				return map;
 			}
+			*/
+			List<PictVO> leader_list = pictService.leader_list(pictVO);
+			map.put("leader_list", leader_list);
+			map.put("info", pictVO);
+			List<PictVO> scout_list = pictService.scout_list(pictVO);
+			map.put("scout_list", scout_list);
+			return map;
 			
 		}
 		else {
