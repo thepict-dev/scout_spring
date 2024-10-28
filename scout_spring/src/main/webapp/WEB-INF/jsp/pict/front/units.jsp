@@ -431,7 +431,7 @@
 			//엑셀 다운받기 위함
 			$('#TROOPNO').val(troopno)
 			var param = {
-				troopno : troopno,
+				troopno : troopno+"",
 				year : $('#search_year').val(),
 			}
 			$('#unit_leader_list').children().remove();

@@ -707,7 +707,6 @@ public class PictController {
 	}
 	@RequestMapping(value = "/units_excel")
 	public void units_excel(@ModelAttribute("searchVO") PictVO pictVO, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		Date today = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
 		String current_year = dateFormat.format(today);
@@ -1099,7 +1098,7 @@ public class PictController {
 			String troopno = param.get("troopno").toString();
 			String year = param.get("year").toString();
 			pictVO.setSearch_year(year);
-			pictVO.setTROOPNO(troopno);
+			pictVO.setTROOPNO(troopno+"");
 			
 			
 			pictVO = pictService.fn_get_units_info(pictVO);
