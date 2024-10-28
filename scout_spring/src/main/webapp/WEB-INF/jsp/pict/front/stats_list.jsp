@@ -50,10 +50,10 @@
 		                        <div class="counts">
 		                            <p><span>${resultList.current}</span>명</p>
 		                            <c:if test="${resultList.current - resultList.pre > 0}">
-		                            	<div class="decrease"><img src="/front_img/count-down.png" alt="">${resultList.current - resultList.pre}명</div>
+		                            	<div class="decrease"><img src="/front_img/count-up.png" alt="">${resultList.current - resultList.pre}명</div>
 	                            	</c:if>
 	                            	<c:if test="${resultList.current - resultList.pre < 0}">
-		                            	<div class="increase"><img src="/front_img/count-up.png" alt="">${resultList.pre - resultList.current}명</div>
+		                            	<div class="increase"><img src="/front_img/count-down.png" alt="">${resultList.pre - resultList.current}명</div>
 	                            	</c:if>
 		                        </div>
 		                        <span>대원과 지도자수를 합산한 인원수입니다</span><br>

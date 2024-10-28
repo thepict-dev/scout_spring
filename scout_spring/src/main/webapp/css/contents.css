@@ -139,17 +139,17 @@
     min-width: 952px;
 }
 .tableWrapper.users table{
-    min-width: 1216px;
+    min-width: 700px;
 }
 .tableWrapper.orgTableWrapper table{
-    min-width: 1150px;
+    min-width: 750px;
 }
 .tableWrapper.unitTableWrapper table{
-    min-width: 2000px;
+    min-width: 700px;
 }
 .tableWrapper table th{
     height: 44px; 
-    padding: 8px 24px 8px 12px;
+    padding: 12px 24px 12px 12px;
     vertical-align: middle;
     background-color: var(--grey-200); 
     border-bottom: 1px solid var(--grey-100);
@@ -187,7 +187,7 @@
 }
 .tableWrapper.users table th:nth-child(2){
     position: sticky; 
-    left: 85.5px;
+    left: 105px;
     top: 0;
     z-index: 3;
 }
@@ -213,10 +213,10 @@
     left: 110.5px;
 }
 .tableWrapper.users table td:nth-child(2){
-    left: 85.5px;
+    left: 105px;
 }
 .tableWrapper.orgTableWrapper table td:nth-child(2){
-    left: 93.5px;
+    left: 111.9px;
 }
 .tableWrapper table td:last-child{
     border-right: 0;
@@ -476,7 +476,7 @@
     border-collapse: separate;
     border-spacing: 0;
     width: 100%;
-    min-width: 2600px;
+    min-width: 1200px;
 }
 .tableContainer.orgContainer .tableWrapper table{
     min-width: 998px;
@@ -489,7 +489,7 @@
 .tableContainer.infoTableContainer .tableWrapper table th,
 .tableContainer.orgContainer .tableWrapper table th{
     height: 22px; 
-    padding: 8px 24px 8px 12px;
+    padding: 12px 24px 12px 12px;
     vertical-align: middle;
     background-color: var(--grey-200); 
     border-bottom: 1px solid var(--grey-100);

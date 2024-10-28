@@ -118,17 +118,17 @@
                     <div class="tableWrapper orgTableWrapper">
                         <table>
                             <colgroup>
-                                <col width="9%" />
-                                <col width="7%" />
-                                <col width="14%" />
-                                <col width="9%" />
-                                <col width="9%" />
+                                <col width="15%" />
                                 <col width="10%" />
+                                <col width="27%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="18%" />
                             </colgroup>
                             <thead>
                                 <tr>
 	                                <th rowspan="2">지구연합회</th>
-	                                <th rowspan="2" style="left: 93.5px;">대번호</th>
+	                                <th rowspan="2" style="left: 111.9px;">대번호</th>
 	                                <th rowspan="2">단위대명</th>
 	                                <th rowspan="2">스카우트구분</th>
 	                                <th rowspan="2">단위대구분</th>

@@ -121,17 +121,17 @@
                     <div class="tableWrapper unitTableWrapper">
                         <table>
                             <colgroup>
-                                <col width="14.285%" />
-                                <col width="14.285%" />
-                                <col width="14.285%" />
-                                <col width="14.285%" />
-                                <col width="14.285%" />
-                                <col width="14.285%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="22%" />
+                                <col width="18%" />
+                                <col width="15%" />
+                                <col width="15%" />
                             </colgroup>
                             <thead>
                                 <tr>
 	                                <th rowspan="2">지구연합회</th>
-	                                <th rowspan="2">대번호</th>
+	                                <th rowspan="2" style="left: 105px">대번호</th>
 	                                <th rowspan="2">단위대명</th>
 	                                <th rowspan="2">스카우트구분</th>
 	                                <th rowspan="2">단위대구분</th>
@@ -143,7 +143,7 @@
 	                            <c:forEach var="units_list" items="${units_list}" varStatus="status">
 									<tr onclick="fn_get_units_info(${units_list.TROOPNO})">
 										<td>${units_list.PARENTTROOPNAME}</td>
-										<td>${units_list.DISPTROOPNO}</td>
+										<td style="left: 105px">${units_list.DISPTROOPNO}</td>
 										<td>${units_list.TROOPNAME}</td>
 										<td>${units_list.SCOUTCLSNAME}</td>
 										<td>${units_list.TROOPCLSNAME}</td>

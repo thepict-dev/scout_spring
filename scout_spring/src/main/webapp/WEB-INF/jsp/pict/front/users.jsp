@@ -112,12 +112,12 @@
                     <div class="tableWrapper users">
                         <table>
                             <colgroup>
-                                <col width="10%" />
-                                <col width="10%" />
-                                <col width="10%" />
-                                <col width="10%" />
-                                <col width="10%" />
-                                <col width="9%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="20%" />
+                                <col width="13%" />
+                                <col width="22%" />
+                                <col width="15%" />
                             </colgroup>
                             <thead>
                                 <tr>
@@ -355,18 +355,18 @@
                                 <div class="tableWrapper">
                                     <table>
                                         <colgroup>
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
+                                            <col width="5%" />
+                                            <col width="5%" />
+                                            <col width="10%" />
+                                            <col width="10%" />
+                                            <col width="17%" />
+                                            <col width="7%" />
+                                            <col width="7%" />
+                                            <col width="7%" />
+                                            <col width="7%" />
+                                            <col width="7%" />
+                                            <col width="10%" />
+                                            <col width="8%" />
                                         </colgroup>
                                         <thead id="div_scout">
                                             <tr>
@@ -401,18 +401,18 @@
                                 <div class="tableWrapper" id="div_leader">
                                     <table>
                                         <colgroup>
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
-                                            <col width="8.333%" />
+                                            <col width="5%" />
+                                            <col width="5%" />
+                                            <col width="10%" />
+                                            <col width="10%" />
+                                            <col width="17%" />
+                                            <col width="7%" />
+                                            <col width="7%" />
+                                            <col width="7%" />
+                                            <col width="7%" />
+                                            <col width="7%" />
+                                            <col width="10%" />
+                                            <col width="8%" />
                                         </colgroup>
                                         <thead id="div_leader">
                                             <tr>
