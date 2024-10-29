@@ -836,6 +836,7 @@
 		where 1=1
 		and l.TROOPNO = #{TROOPNO}
 		and left(l.STARTDAY, '4') = #{search_year}
+		order by m.KNAME asc
 	</select>
 	
 	<select id="fn_get_units_scout" resultType="pictVO">
@@ -849,6 +850,7 @@
 		where 1=1
 		and s.TROOPNO = #{TROOPNO}
 		and left(s.STARTDAY, '4') = #{search_year}
+		order by m.KNAME asc
 	</select>	
 	
 	
