@@ -613,7 +613,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td rowspan="3">서울북부</td>
+                                <td rowspan="2">서울북부</td>
                                 <td>사무처장</td>
                                 <td>(공 석)</td>
                                 <td>02-755-6402</td>
@@ -621,11 +621,6 @@
                             <tr>
                                 <td>팀장</td>
                                 <td>정경훈</td>
-                                <td>02-752-1804</td>
-                            </tr>
-                            <tr>
-                                <td>인턴</td>
-                                <td>김재호</td>
                                 <td>02-752-1804</td>
                             </tr>
                             <tr>

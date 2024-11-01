@@ -262,7 +262,7 @@
                                 </ul>
                                 <ul>
                                     <li><p>Tel</p><span>063-232-8100</span></li>
-                                    <li><p>E-mail</p><span>jeonbukscout@hanmail.net</span></li>
+                                    <li><p>E-mail</p><span>jbscout8100@naver.com</span></li>
                                 </ul>
                             </div>
                         </div>
