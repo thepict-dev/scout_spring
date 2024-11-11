@@ -112,14 +112,9 @@
 	                                        </tbody>
 	                                    </table>
 	                                </div>
-	                                <!-- 
-	                                <div class="tableButtons" style="justify-content: flex-end;">
-	                                    <div class="buttons">
-	                                        <a href="#lnk" onclick="fn_submit()" class="smButton"><img src="/front_img/download.png" alt="">엑셀 내려받기</a>
-	                                    </div>
-	                                </div>
-	                                 -->
 	                            </div>
+	                            
+	                            <!-- 
 	                            <div class="tableContainer">
 	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
 	                                	<h2 class="subTitles">대원</h2>
@@ -149,15 +144,9 @@
 	                                        </tbody>
 	                                    </table>
 	                                </div>
-	                                <!-- 
-	                                <div class="tableButtons" style="justify-content: flex-end;">
-	                                    <div class="buttons">
-	                                        <a href="#lnk" onclick="fn_submit()" class="smButton"><img src="/front_img/download.png" alt="">엑셀 내려받기</a>
-	                                    </div>
-	                                </div>
-	                                 -->
 	                            </div>
                             </div>
+                             -->
                             <div class="buttonWrapper">
                                 <a href="#lnk"><img src="/front_img/right-arr.png" alt="" onclick="list_act()"></a>
                                 <a href="#lnk"><img src="/front_img/left-arr.png" alt="" onclick="list_react()"></a>
@@ -201,14 +190,8 @@
 	                                        </tbody>
 	                                    </table>
 	                                </div>
-	                                <div class="tableButtons" style="justify-content: flex-end;">
-	                                <!-- 
-	                                    <div class="buttons">
-	                                        <a href="#lnk" onclick="fn_submit()" class="smButton"><img src="/front_img/download.png" alt="">엑셀 업로드</a>
-	                                    </div>
-	                                     -->
-	                                </div>
 	                            </div>
+	                            <!-- 
 	                            <div class="tableContainer">
 	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
 	                                	<h2 class="subTitles">대원</h2>
@@ -240,14 +223,8 @@
 	                                        </tbody>
 	                                    </table>
 	                                </div>
-	                                <div class="tableButtons" style="justify-content: flex-end;">
-	                                <!-- 
-	                                    <div class="buttons">
-	                                        <a href="#lnk" onclick="fn_submit()" class="smButton"><img src="/front_img/download.png" alt="">엑셀 업로드</a>
-	                                    </div>
-	                                    -->
-	                                </div>
 	                            </div>
+	                             -->
                             </div>
                         </div>
                         <div class="tableButtons inputsPd topBd" style="justify-content: flex-end;">
