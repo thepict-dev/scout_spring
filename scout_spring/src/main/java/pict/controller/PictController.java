@@ -81,7 +81,7 @@ public class PictController {
 				return "redirect:/admin/front/users";
 			}
 			else if(authority.equals("sub_admin")) {
-				return "redirect:/admin/front/scout_whole_register";
+				return "redirect:/admin/front/units";
 			}
 			else {
 				return "redirect:/";
@@ -3736,6 +3736,21 @@ public class PictController {
 		
 		//재영 작업
 		List<PictVO> scout_stats_list = pictService.stats_rate_page(pictVO);
+		
+		Collections.sort(scout_stats_list, new Comparator<PictVO>() {
+            @Override
+            public int compare(PictVO p1, PictVO p2) {
+                // '전체 합계'인 경우를 마지막으로 정렬
+                if ("전체 합계".equals(p1.getASSOCIATIONCODE()) && !"전체 합계".equals(p2.getASSOCIATIONCODE())) {
+                    return 1; // p1을 뒤로
+                } else if (!"전체 합계".equals(p1.getASSOCIATIONCODE()) && "전체 합계".equals(p2.getASSOCIATIONCODE())) {
+                    return -1; // p2를 뒤로
+                } else {
+                    // 그 외의 경우에는 ASSOCIATIONCODE 기준으로 오름차순 정렬
+                    return p1.getASSOCIATIONCODE().compareTo(p2.getASSOCIATIONCODE());
+                }
+            }
+        });
 		model.addAttribute("resultList", scout_stats_list);
 		model.addAttribute("pictVO", pictVO);
 		return "pict/front/stats_rate";

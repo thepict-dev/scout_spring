@@ -1648,7 +1648,13 @@
 		JOIN associationcode ac ON s.ASSOCIATIONCODE = ac.ASSOCIATIONCODE
 		WHERE LEFT(s.STARTDAY, 4) = #{search_year}
 		GROUP BY ac.ASSOCIATIONCODE WITH ROLLUP
-		ORDER BY CASE WHEN ac.ASSOCIATIONCODE IS NULL THEN 1 ELSE 0 END, ac.ASSOCIATIONCODE;
+		ORDER BY 
+	    CASE 
+	        WHEN ac.ASSOCIATIONCODE = 200 THEN 1
+	        WHEN ac.ASSOCIATIONCODE IS NULL THEN 2
+	        ELSE 0
+	    END, 
+	    ac.ASSOCIATIONCODE;
 	</select>
 
 	<!-- 육성단체 조직 -->
@@ -1778,9 +1784,7 @@
 		    FROM scout s
 		    LEFT JOIN associationcode ac ON s.ASSOCIATIONCODE = ac.ASSOCIATIONCODE
 		    WHERE LEFT(s.STARTDAY, 4) = #{search_year}
-		    
 		    GROUP BY ac.ASSOCIATIONCODE, ac.ASSOCIATIONNAME
-		    ORDER BY ac.ASSOCIATIONCODE
 		),
 		PreviousYearData AS (
 		    SELECT
@@ -1800,7 +1804,6 @@
 		    LEFT JOIN associationcode ac ON s.ASSOCIATIONCODE = ac.ASSOCIATIONCODE
 		    WHERE LEFT(s.STARTDAY, 4) = #{pre_year}
 		    GROUP BY ac.ASSOCIATIONCODE
-		    ORDER BY ac.ASSOCIATIONCODE
 		)
 		SELECT
 		    cy.ASSOCIATIONCODE,
@@ -1852,7 +1855,16 @@
 		    ROUND((SUM(cy.`currentnotapplicable`) / SUM(py.`premissing`)) * 100, 2),
 		    ROUND((SUM(cy.`currentnotapproved`) / SUM(py.`premissingapproval`)) * 100, 2)
 		FROM CurrentYearData cy
-		LEFT JOIN PreviousYearData py ON cy.ASSOCIATIONCODE = py.ASSOCIATIONCODE;
+		LEFT JOIN PreviousYearData py ON cy.ASSOCIATIONCODE = py.ASSOCIATIONCODE
+		
+		ORDER BY 
+		    CASE 
+		        WHEN ASSOCIATIONCODE = 200 THEN 1
+		        WHEN ASSOCIATIONCODE IS NULL THEN 2
+		        ELSE 0
+		    END,
+		    ASSOCIATIONCODE;
+
 			
 	</select>
 	
@@ -1986,8 +1998,13 @@
 	JOIN associationcode ac ON s.ASSOCIATIONCODE = ac.ASSOCIATIONCODE
 	WHERE LEFT(s.STARTDAY, 4) = #{search_year}
 	GROUP BY ac.ASSOCIATIONCODE WITH ROLLUP
-	ORDER BY CASE WHEN ac.ASSOCIATIONCODE IS NULL THEN 1 ELSE 0 END, ac.ASSOCIATIONCODE;
-    
+	ORDER BY 
+    CASE 
+        WHEN ac.ASSOCIATIONCODE = 200 THEN 1
+        WHEN ac.ASSOCIATIONCODE IS NULL THEN 2
+        ELSE 0
+    END, 
+    ac.ASSOCIATIONCODE;
     
 	</select>
 	

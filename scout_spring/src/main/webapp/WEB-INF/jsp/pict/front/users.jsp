@@ -28,6 +28,10 @@
 			            		<p class="inputCaption">회원번호</p>
 		            			<input type="text" class="lgThinInput" name="search_memberno" id="search_memberno" value="${pictVO.search_memberno}" onkeypress="if(event.keyCode == 13){search_list(); return false;}" placeholder="내용을 입력하세요…">
 	            			</div>
+	            			<div class="inputBox">
+                                <p class="inputCaption">성명</p>
+                                <input type="text" name="search_kname" id="search_kname" value="${pictVO.search_kname}" class="lgThinInput">
+                            </div>
             			</div>
                         <div class="inputsContainer mt20">
                             <div class="inputBox">
@@ -35,14 +39,6 @@
                                 <input type="date" name="search_birthday" id="search_birthday" value="${pictVO.search_birthday}" class="lgThinInput" maxlength="8" max="9999-12-31">
                             </div>
                             <div class="inputBox">
-                                <p class="inputCaption">가입이력</p>
-                                <select name="search_history" id="search_history" class="lgThinSelect">
-                                    <option value="" <c:if test="${pictVO.search_history eq ''}">selected</c:if>>선택하세요.</option>
-	                                <option value="1" <c:if test="${pictVO.search_history eq '1'}">selected</c:if>>대원</option>
-	                                <option value="2" <c:if test="${pictVO.search_history eq '2'}">selected</c:if>>지도자</option>
-	                                <option value="3" <c:if test="${pictVO.search_history eq '3'}">selected</c:if>>평생회원</option>
-                                </select>
-                            </div><div class="inputBox">
                                 <p class="inputCaption">소속연맹</p>
                                 <select name="search_associationcode" id="search_associationcode" class="lgThinSelect">
                                 	<option value="" <c:if test="${pictVO.search_associationcode eq ''}">selected</c:if>>전체</option>
@@ -51,12 +47,19 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                        </div>
-                        <div class="inputsContainer mt20">
                             <div class="inputBox">
-                                <p class="inputCaption">성명</p>
-                                <input type="text" name="search_kname" id="search_kname" value="${pictVO.search_kname}" class="lgThinInput">
+                                <p class="inputCaption">세부등급</p>
+                                <select name="search_history" id="search_history" class="lgThinSelect">
+                                    <option value="" <c:if test="${pictVO.search_history eq ''}">selected</c:if>>선택하세요.</option>
+	                                <option value="1" <c:if test="${pictVO.search_history eq '1'}">selected</c:if>>대원</option>
+	                                <option value="2" <c:if test="${pictVO.search_history eq '2'}">selected</c:if>>지도자</option>
+	                                <!-- <option value="3" <c:if test="${pictVO.search_history eq '3'}">selected</c:if>>평생회원</option> -->
+                                </select>
                             </div>
+                            
+                        </div>
+                        <!-- 
+                        <div class="inputsContainer mt20">
                             <div class="inputBox">
                                 <p class="inputCaption">회원구분</p>
                                 <select name="search_memclscode" id="search_memclscode" class="smThinSelect">
@@ -74,6 +77,7 @@
                                 </select>
                             </div>
                         </div>
+                         -->
                         <!-- 
                         <div class="inputsContainer mt20">
                             <div class="inputBox">
@@ -193,6 +197,26 @@
                                         <input type="text" name="MEMBERNO" id="MEMBERNO" readonly placeholder="내용을 입력하세요…" class="lgThinInput">
                                     </div>
                                     <div class="inputBox">
+                                        <p class="inputCaption">성명(한글)</p>
+                                        <input type="text"  name="KNAME" id="KNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
+                                    </div>
+                                    <div class="inputBox">
+                                        <p class="inputCaption">생년월일</p>
+                                        <input type="date" name="BIRTHDAY" id="BIRTHDAY" class="lgThinInput" max="9999-12-31">
+                                    </div>
+                                    <div class="inputBox genderContainer">
+                                        <div class="gender">
+                                            <input type="radio" name="SEX" value="M" id="SEX_M">
+                                            <label for="SEX_M">남</label>
+                                        </div>
+                                        <div class="gender">
+                                            <input type="radio" name="SEX" value="W" id="SEX_W">
+                                            <label for="SEX_W">여</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="inputsContainer">
+                                    <div class="inputBox">
                                         <p class="inputCaption">회원구분</p>
                                         <select name="MEMCLSCODE" id="MEMCLSCODE" class="smThinSelect">
                                             <option value="1">개인</option>
@@ -209,18 +233,12 @@
                                         </select>
                                     </div>
                                     <div class="inputBox">
-                                        <p class="inputCaption">세부등급</p>
+                                        <p class="inputCaption">회원세부등급</p>
                                         <select name="TROOPRANK" id="TROOPRANK" class="lgThinSelect">
                                         	<option value="">------</option>
                                             <option value="0">대원</option>
                                             <option value="1">지도자</option>
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="inputsContainer">
-                                    <div class="inputBox">
-                                        <p class="inputCaption">생년월일</p>
-                                        <input type="date" name="BIRTHDAY" id="BIRTHDAY" class="lgThinInput" max="9999-12-31">
                                     </div>
                                     <div class="inputBox">
                                         <p class="inputCaption">전종여부</p>
@@ -267,26 +285,16 @@
 	                                    </select>
 	                                </div>
                                 </div>
+                                <!-- 
                                 <div class="inputsContainer">
-                                    <div class="inputBox">
-                                        <p class="inputCaption">성명(한글)</p>
-                                        <input type="text"  name="KNAME" id="KNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                    </div>
+                                    
                                     <div class="inputBox">
                                         <p class="inputCaption">성명(영문)</p>
                                         <input type="text"  name="ENAME" id="ENAME" placeholder="내용을 입력하세요…" class="lgThinInput">
                                     </div>
-                                    <div class="inputBox genderContainer">
-                                        <div class="gender">
-                                            <input type="radio" name="SEX" value="M" id="SEX_M">
-                                            <label for="SEX_M">남</label>
-                                        </div>
-                                        <div class="gender">
-                                            <input type="radio" name="SEX" value="W" id="SEX_W">
-                                            <label for="SEX_W">여</label>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
+                                 -->
                             </div>
                         </div>
                         <div class="inputsContainer inputsPd_">
@@ -938,7 +946,7 @@
 			
 			if((memberno == '' || memberno == undefined || memberno == null) && (kname == '' || kname == undefined || kname == null) 
 					&& (search_start == '' || search_start == undefined || search_start == null) && (search_end == '' || search_end == undefined || search_end == null)){
-				alert("회원번호나 이름은 혹은 등록시작, 종료일은 필수값 입니다.")
+				alert("회원번호나 이름은 필수값 입니다.")
 				return false;
 			}
 			else{

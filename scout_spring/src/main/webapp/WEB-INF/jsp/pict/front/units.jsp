@@ -47,6 +47,7 @@
 	                    <p class="inputCaption">연맹/지구</p>
 	                    <div class="inputsAlign">
 		                    <select name="search_associationcode" id="search_associationcode" onchange="fn_get_unitylist_organ()" class="smThinSelect">
+		                    	<option value="">전체</option>
 								<c:forEach var="association_list" items="${association_list}" varStatus="status">
 									<option value="${association_list.ASSOCIATIONCODE}" <c:if test="${association_list.ASSOCIATIONCODE eq pictVO.search_associationcode}">selected</c:if>> ${association_list.ASSOCIATIONNAME}</option>
 								</c:forEach>
