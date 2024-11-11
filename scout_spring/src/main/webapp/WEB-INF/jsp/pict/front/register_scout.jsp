@@ -113,46 +113,12 @@
 	                                    </table>
 	                                </div>
 	                            </div>
-	                            
-	                            <!-- 
-	                            <div class="tableContainer">
-	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-	                                	<h2 class="subTitles">대원</h2>
-	                                </div>
-	                                <div class="tableWrapper" style="height: 300px; margin-top: 0;">
-	                                    <table style="min-width: unset;">
-	                                        <colgroup>
-	                                            <col width="8%" />
-	                                            <col width="15%" />
-	                                            <col width="15%" />
-	                                            <col width="15%" />
-	                                            <col width="15%" />
-	                                            <col width="22%" />
-	                                        </colgroup>
-	                                        <thead>
-	                                            <tr>
-	                                                <th style="white-space: nowrap;"><input type="checkbox" class="check" title="전체선택" id="scout_all_check" onchange="allCheck_left_scout(this);" data-check="left_scout_list"><label for="scout_all_check" class="lableOnly"></label></th>
-	                                                <th style="left: unset;">이름</th>
-	                                                <th>평생회원</th>
-	                                                <th>스카우트구분</th>
-	                                                <th>스카우트직책</th>
-	                                                <th>연맹지구독</th>
-	                                            </tr>
-	                                        </thead>
-	                                        <tbody id="search_prev_scout_list">
-	                                            
-	                                        </tbody>
-	                                    </table>
-	                                </div>
-	                            </div>
                             </div>
-                             -->
                             <div class="buttonWrapper">
                                 <a href="#lnk"><img src="/front_img/right-arr.png" alt="" onclick="list_act()"></a>
                                 <a href="#lnk"><img src="/front_img/left-arr.png" alt="" onclick="list_react()"></a>
                             </div>
-                            <!-- 우측 -->
-                            <div class="doubleTable">
+                        	<div class="doubleTable">
 	                            <div class="tableContainer">
 	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
 	                                	<h2 class="subTitles">당해년도</h2>
@@ -191,40 +157,6 @@
 	                                    </table>
 	                                </div>
 	                            </div>
-	                            <!-- 
-	                            <div class="tableContainer">
-	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-	                                	<h2 class="subTitles">대원</h2>
-	                                </div>
-	                                <div class="tableWrapper" style="height: 300px; margin-top: 0;">
-	                                    <table style="min-width: unset;">
-	                                        <colgroup>
-	                                            <col width="10%" />
-	                                            <col width="15%" />
-	                                            <col width="15%" />
-	                                            <col width="15%" />
-	                                            <col width="15%" />
-	                                            <col width="15%" />
-	                                            <col width="15%" />
-	                                        </colgroup>
-	                                        <thead>
-	                                            <tr>
-	                                                <th style="white-space: nowrap;">선택</th>
-	                                                <th style="left: unset;">이름</th>
-	                                                <th>평생회원</th>
-	                                                <th>스카우트구분</th>
-	                                                <th>스카우트직책</th>
-	                                                <th>등록비</th>
-	                                                <th>연맹지구독</th>
-	                                            </tr>
-	                                        </thead>
-	                                        <tbody id="scout_target_list">
-	                                            
-	                                        </tbody>
-	                                    </table>
-	                                </div>
-	                            </div>
-	                             -->
                             </div>
                         </div>
                         <div class="tableButtons inputsPd topBd" style="justify-content: flex-end;">
@@ -237,6 +169,73 @@
             </div>
         </div>
     </div>
+    <!-- 
+    <div class="tableContainer">
+    	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        	<h2 class="subTitles">대원</h2>
+        </div>
+        <div class="tableWrapper" style="height: 300px; margin-top: 0;">
+            <table style="min-width: unset;">
+                <colgroup>
+                    <col width="8%" />
+                    <col width="15%" />
+                    <col width="15%" />
+                    <col width="15%" />
+                    <col width="15%" />
+                    <col width="22%" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th style="white-space: nowrap;"><input type="checkbox" class="check" title="전체선택" id="scout_all_check" onchange="allCheck_left_scout(this);" data-check="left_scout_list"><label for="scout_all_check" class="lableOnly"></label></th>
+                        <th style="left: unset;">이름</th>
+                        <th>평생회원</th>
+                        <th>스카우트구분</th>
+                        <th>스카우트직책</th>
+                        <th>연맹지구독</th>
+                    </tr>
+                </thead>
+                <tbody id="search_prev_scout_list">
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+   </div>
+    -->
+    <!-- 
+    <div class="tableContainer">
+    	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        	<h2 class="subTitles">대원</h2>
+        </div>
+        <div class="tableWrapper" style="height: 300px; margin-top: 0;">
+            <table style="min-width: unset;">
+                <colgroup>
+                    <col width="10%" />
+                    <col width="15%" />
+                    <col width="15%" />
+                    <col width="15%" />
+                    <col width="15%" />
+                    <col width="15%" />
+                    <col width="15%" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th style="white-space: nowrap;">선택</th>
+                        <th style="left: unset;">이름</th>
+                        <th>평생회원</th>
+                        <th>스카우트구분</th>
+                        <th>스카우트직책</th>
+                        <th>등록비</th>
+                        <th>연맹지구독</th>
+                    </tr>
+                </thead>
+                <tbody id="scout_target_list">
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+     -->
     <!-- 단위대팝업 -->
     <div id="regiSearchPopup" class="modalContainer">
         <div class="modalInner lg">
@@ -331,6 +330,7 @@
             </form>
         </div>
     </div>
+    
 	<textarea id="hiddenTextarea" style="display:none;"></textarea>
 	<textarea id="price_info" style="display:none;"></textarea>
 	<input type="hidden" id="current_year" >
