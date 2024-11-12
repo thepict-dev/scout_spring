@@ -850,7 +850,7 @@
 	row-gap: 30px;
 }
 
-#leader_list tr, #scout_list tr, #searchResultList tr, #relation_list tr, #search_relation_list tr, #group_list tr, #org_list tr, #unit_list tr, #admin_list tr, #former_body tr{
+#leader_list tr, #scout_list tr, #searchResultList tr, #relation_list tr, #search_relation_list tr, #group_list tr, #org_list tr, #unit_list tr, #admin_list tr, #former_body tr, #new_member_list tr{
 	cursor: pointer;
 }
 tbody tr.active td{

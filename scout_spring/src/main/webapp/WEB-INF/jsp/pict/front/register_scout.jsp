@@ -99,8 +99,8 @@
 	                                        </colgroup>
 	                                        <thead>
 	                                            <tr>
-	                                                <th style="white-space: nowrap;"><input type="checkbox" class="check" title="전체선택" id="leader_all_check" onchange="allCheck_left_leader(this);" data-check="left_leader_list"><label for="leader_all_check" class="lableOnly"></label></th>
-	                                                <th>구분</th>
+	                                                <th style="position: unset;"><input type="checkbox" class="check" title="전체선택" id="leader_all_check" onchange="allCheck_left_leader(this);" data-check="left_leader_list"><label for="leader_all_check" class="lableOnly"></label></th>
+	                                                <th style="position: unset;">구분</th>
 	                                                <th>회원번호</th>
 	                                                <th>성명</th>
 	                                                <th>생년월일</th>
@@ -145,8 +145,8 @@
 	                                        </colgroup>
 	                                        <thead>
 	                                            <tr>
-	                                                <th style="white-space: nowrap;">선택</th>
-	                                                <th>구분</th>
+	                                                <th style="position: unset;">선택</th>
+	                                                <th style="position: unset;">구분</th>
 	                                                <th>회원번호</th>
 	                                                <th>성명</th>
 	                                                <th>생년월일</th>
@@ -545,7 +545,7 @@
 							leader_html +='<tr>'+
 							'<td style="position: unset; vertical-align: middle;">' +
                         	'<input type="checkbox" data-check="left_leader_list" class="check js-check_left_leader" name="leader_check" id="selection_leader_'+data.leader_list[i].memberno+'" data-id="'+data.leader_list[i].memberno+'")"><label for="selection_leader_'+data.leader_list[i].memberno+'" class="lableOnly"></label></td>'+
-                        	'<td id="owner_type_'+data.leader_list[i].memberno+'">지도자</td>' +
+                        	'<td id="owner_type_'+data.leader_list[i].memberno+'" style="position: unset;">지도자</td>' +
                         	'<td>'+data.leader_list[i].memberno+'</td>'+
                         	'<td style="vertical-align: middle;" id="leader_name_'+data.leader_list[i].memberno+'">'+data.leader_list[i].kname+'</td>'+
                         	'<td id="leader_birthday_'+data.leader_list[i].memberno+'">'+data.leader_list[i].birthday+'</td>'+
@@ -667,7 +667,7 @@
                             '<td style="position: unset; vertical-align: middle;">'+
                             '<input type="checkbox" data-check="left_leader_list" class="check js-check_left_leader" name="leader_check" id="selection_scout_'+data.scout_list[i].memberno+'" data-id="'+data.scout_list[i].memberno+'"><label for="selection_scout_'+data.scout_list[i].memberno+'" class="lableOnly"></label>'+
                             '</td>'+
-                            '<td id="owner_type_'+data.scout_list[i].memberno+'">대원</td>' +
+                            '<td id="owner_type_'+data.scout_list[i].memberno+'" style="position: unset;">대원</td>' +
                             '<td style="left:unset; vertical-align: middle;" id="scout_memberno_'+data.scout_list[i].memberno+'">'+data.scout_list[i].memberno+'</td>'+
                             '<td style="left:unset; vertical-align: middle;" id="scout_name_'+data.scout_list[i].memberno+'">'+data.scout_list[i].kname+'</td>'+
                             '<td id="scout_birthday_'+data.scout_list[i].memberno+'">'+data.leader_list[i].birthday+'</td>'+
