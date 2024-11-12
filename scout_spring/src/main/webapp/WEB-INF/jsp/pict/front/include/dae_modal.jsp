@@ -50,6 +50,15 @@
 						<option value="Y">평생회원</option>
 					</select>
 				</div>
+				<div class="inputBox">
+					<p class="inputCaption">성별</p>
+					<select name="newsex" id="newsex" class="smThinSelect">
+						<option value="">----</option>
+						<option value="M">남</option>
+						<option value="W">여</option>
+					</select>
+				</div>
+				<!-- 
                 <div class="inputBox">
 					<p class="inputCaption">관리지도자 여부</p>
 					<select name="newleader_adminy" id="newleader_adminy" class="smThinSelect">
@@ -57,6 +66,7 @@
 						<option value="Y">Y</option>
 					</select>
 				</div>
+				 -->
             </div>
             <div class="inputsContainer">
                 <div class="inputBox" style="display:none" id="newleader_1">
@@ -115,6 +125,18 @@
 						<option value="42">부영조장</option>
 						<option value="43">조장</option>
 						<option value="44">부조장</option>
+					</select>
+				</div>
+				<div class="inputBox" id="newscout_3">
+					<p class="inputCaption">학년</p>
+					<select name="scoutyear" id="scoutyear" class="lgThinSelect">
+						<option value="">-----</option>
+						<option value="1">1학년</option>
+						<option value="2">2학년</option>
+						<option value="3">3학년</option>
+						<option value="4">4학년</option>
+						<option value="5">5학년</option>
+						<option value="6">6학년</option>
 					</select>
 				</div>
                 <div class="inputBox" style="justify-content: center; margin-top: 15px;">
@@ -176,12 +198,14 @@
 			$('#newleader_2').css("display", 'flex')
 			$('#newscout_1').css("display", 'none')
 			$('#newscout_2').css("display", 'none')
+			$('#newscout_3').css("display", 'none')
 		}
 		else{
 			$('#newleader_1').css("display", 'none')
 			$('#newleader_2').css("display", 'none')
 			$('#newscout_1').css("display", 'flex')
 			$('#newscout_2').css("display", 'flex')
+			$('#newscout_3').css("display", 'flex')
 		}
 	})
 	function fn_select_person(memberno, name, birthday, mobile, troopscouty, troopleadery, lifemembery, adminy){
@@ -207,7 +231,7 @@
 		
 		if((memberno == '' || memberno == undefined || memberno == null) && 
 				(newname == '' || newname == undefined || newname == null || newbirthday == '' || newbirthday == undefined || newbirthday == null || newmobile == '' || newmobile == undefined || newmobile == null)) {
-			alert("회원번호 혹은 이름,생년,연락처는 필수값 입니다..");
+			alert("회원번호 혹은 이름,생년,연락처는 필수값 입니다.");
 			$("#newname").focus();
 			return false;
 		} 
@@ -215,7 +239,7 @@
 		
 		
 		$('#initial-loading').css('display', 'flex')
-		
+		$('#is_list_data').val("N")
 		var param = {
 			memberno : memberno,
 			kname : newname,
@@ -284,7 +308,7 @@
 		}
 		else if(is_list_data == 'Y' && new_or_origin == "Y"){
 			console.log("리스트가 있고 선택도 했어")
-			debugger
+			
 			var text = "등록하시겠습니까?";
 			var newmemberno = $('#dmy_memberno').val();
 			var newname = $('#dmy_name').val();
@@ -292,9 +316,13 @@
 			var newmobile = $('#dmy_mobile').val();
 			var newtype = $('#dmy_type').val();
 			var newlife = $('#dmy_life').val();
-			var newadminy = $('#newleader_adminy').val();
+			var newadminy = ''
 			var magacnt_y = $('#newleader_magacnt').prop('checked') == true ? "Y" : "N"
-	
+			var newsex = $('#newsex').val();
+			var sex = ""
+			if(newsex == "W") sex = '여'
+			if(newsex == "M") sex = '남'
+					
 			if(confirm(text)){
 				var html = ""
 				var price_info = JSON.parse($('#price_info').val());
@@ -311,14 +339,16 @@
                     	'<td style="position: unset;">'+
                         '<input type="checkbox" name="leader_remove_chk" id="selection_act_leader_'+newmemberno+'" data-id="'+newmemberno+'"><label for="selection_act_leader_'+newmemberno+'" class="lableOnly"></label>'+
                     	'</td>'+
-                    	'<td style="position: unset;">'+newadminy+'</td>'+
+                    	'<td style="position: unset;">지도자</td>'+
+                    	'<td>'+newmemberno+'</td>'+
                     	'<td>'+newname+'</td>'+
-                    	'<td>'+newlife+'</td>'+
+                    	'<td>'+newbirthday+'</td>'+
+                    	'<td>'+sex+'</td>'+
                     	'<td>'+$("#newleaderpositioncode1 :selected").text()+'</td>'+
                     	'<td>'+$("#newleaderpositioncode2 :selected").text()+'</td>'+
-                    	'<td>'+total_price+'</td>'+
                     	'<td>'+magacnt_y+'</td>'+
-                		'</tr>'
+                    	'<td>'+newlife+'</td>'+
+                    	'</tr>'
 	           		$('#leader_target_list').append(html)
 	           		
 	           		
@@ -336,6 +366,7 @@
 					json.PARRENTTROOPNO = $('#parrent_troop_no').val()
 					json.maga_price = 0
 					json.ADMINY = newadminy
+					
 					
 					
 					json.LEADERPOSITIONCODE1 = $('#newleaderpositioncode1').val()
@@ -356,6 +387,7 @@
 					if(scoutclscode == '04') price = price_info.cls04new
 					if(scoutclscode == '05') price = price_info.cls05new
 					if(scoutclscode == '06') price = price_info.cls06new
+					var scoutyear =  $("#scoutyear").val();
 					
 					var maga_price = 0
 					if(magacnt_y == 'Y'){
@@ -367,19 +399,23 @@
                     	'<td style="position: unset;">'+
                         '<input type="checkbox" name="scout_remove_chk" id="selection_act_scout_'+newmemberno+'" data-id="'+newmemberno+'"><label for="selection_act_scout_'+newmemberno+'" class="lableOnly"></label>'+
                     	'</td>'+
-                    	'<td style="position: unset;">'+newname+'</td>'+
-                    	'<td>'+newlife+'</td>'+
+                    	'<td style="position: unset;">대원</td>'+
+                    	'<td>'+newmemberno+'</td>'+
+                    	'<td>'+newname+'</td>'+
+                    	'<td>'+newbirthday+'</td>'+
+                    	'<td>'+sex+'</td>'+
                     	'<td>'+$("#newscoutpositioncode1 :selected").text()+'</td>'+
                     	'<td>'+$("#newscoutpositioncode2 :selected").text()+'</td>'+
                     	'<td>'+total_price+'</td>'+
                     	'<td>'+magacnt_y+'</td>'+
+                    	'<td>'+scoutyear+'</td>'+
                 		'</tr>'
-	           		$('#scout_target_list').append(html)
+	           		$('#leader_target_list').append(html)
 	           		
 
 					
 					var json ={}
-	           		json.MEMBERNO = "new_"+new_cnt
+	           		json.MEMBERNO = newmemberno
 					json.KNAME = newname
 					json.LIFEMEMBERY = newlife
 					json.price = price
@@ -396,7 +432,7 @@
 					json.scoutpositioncodename = $("#newscoutpositioncode2 :selected").text()
 					json.BIRTHDAY = newbirthday
 					json.MOBILE= newmobile;
-	           		
+	           		json.scoutyear = scoutyear;
 					check_list.push(json);
 				}
 				
@@ -425,7 +461,11 @@
 			var newlife = $('#newlife').val();
 			var newadminy = $('#newleader_adminy').val();
 			var magacnt_y = $('#newleader_magacnt').prop('checked') == true ? "Y" : "N"
-					
+			var newsex = $('#newsex').val();
+			var sex = ""
+			if(newsex == "W") sex = '여'
+			if(newsex == "M") sex = '남'
+			
 			if (newname == null || newname == undefined || newname == ''){
 				alert("성명을 입력해주세요.");
 				$("#newname").focus();
@@ -470,13 +510,16 @@
 	               	'<td style="position: unset;">'+
 	                '<input type="checkbox" name="leader_remove_chk" id="selection_act_leader_new_'+new_cnt+'" data-id="new_'+new_cnt+'"><label for="selection_act_leader_new_'+new_cnt+'" class="lableOnly"></label>'+
 	               	'</td>'+
-	               	'<td style="position: unset;">'+newadminy+'</td>'+
-	               	'<td>'+newname+'</td>'+
-	               	'<td>'+newlife+'</td>'+
+	               	'<td style="position: unset;">지도자</td>'+
+                	'<td>'+newmemberno+'</td>'+
+                	'<td>'+newname+'</td>'+
+                	'<td>'+newbirthday+'</td>'+
+                	'<td>'+sex+'</td>'+
+	               	
 	               	'<td>'+$("#newleaderpositioncode1 :selected").text()+'</td>'+
                 	'<td>'+$("#newleaderpositioncode2 :selected").text()+'</td>'+
-                	'<td>'+total_price+'</td>'+
 	               	'<td>'+magacnt_y+'</td>'+
+	               	'<td>'+newlife+'</td>'+
 	           		'</tr>'
 	           		$('#leader_target_list').append(html)
 	           		
@@ -484,7 +527,7 @@
 					
 					
 	           		var json ={}
-	           		json.MEMBERNO = new_cnt + "_new"
+	           		json.MEMBERNO = "new_"+new_cnt
 					json.KNAME = newname
 					json.LIFEMEMBERY = newlife
 					json.price = price
@@ -494,8 +537,8 @@
 					json.TROOPNO = $('#troop_no').val()
 					json.PARRENTTROOPNO = $('#parrent_troop_no').val()
 					json.maga_price = maga_price
-					json.ADMINY = newadminy
-					
+					json.ADMINY = ''
+					json.sex = newsex
 					
 					json.LEADERPOSITIONCODE1 = $('#newleaderpositioncode1').val()
 					json.LEADERPOSITIONCODE2 = $('#newleaderpositioncode2').val()
@@ -507,6 +550,7 @@
 				}
 				else{
 					var scoutclscode =  $("#newscoutpositioncode1").val();
+					var scoutyear =  $("#scoutyear").val();
 					var price = price_info.cls01new
 					if(scoutclscode == '01') price = price_info.cls01new
 					if(scoutclscode == '02') price = price_info.cls02new
@@ -525,19 +569,24 @@
 	               	'<td style="position: unset;">'+
 	                '<input type="checkbox" name="scout_remove_chk" id="selection_act_scout_new_'+new_cnt+'" data-id="new_'+new_cnt+'"><label for="selection_act_scout_new_'+new_cnt+'" class="lableOnly"></label>'+
 	               	'</td>'+
-	               	'<td style="position: unset;">'+newname+'</td>'+
-	               	'<td>'+newlife+'</td>'+
+	               	'<td style="position: unset;">대원</td>'+
+                	'<td>'+newmemberno+'</td>'+
+                	'<td>'+newname+'</td>'+
+                	'<td>'+newbirthday+'</td>'+
+                	'<td>'+sex+'</td>'+
 	               	'<td>'+$("#newscoutpositioncode1 :selected").text()+'</td>'+
 	               	'<td>'+$("#newscoutpositioncode2 :selected").text()+'</td>'+
-	               	'<td>'+total_price+'</td>'+
 	               	'<td>'+magacnt_y+'</td>'+
+	               	'<td>'+scoutyear+'</td>'+
 	           		'</tr>'
-	           		$('#scout_target_list').append(html)
+	           		$('#leader_target_list').append(html)
 	           		
 					
 	           		var json ={}
 	           		json.MEMBERNO = "new_"+new_cnt
 					json.KNAME = newname
+					json.sex = newsex
+					json.scoutyear = scoutyear
 					json.LIFEMEMBERY = newlife
 					json.price = price
 					json.SCOUTMAGACNT = magacnt_y
@@ -572,7 +621,7 @@
 				$("#daePopup").removeClass("active");
 			}
 		}
-		
+		current_cnt()
 
 	}
 	
@@ -587,9 +636,14 @@
 			alert("조회를 통해 단위대를 선택해주세요.")
 			return false;
 		}
-		$('#newname').val('')
-		$('#newbirthday').val('')
-		$('#newmobile').val('')
+		$('#newmemberno').val("")
+	    $('#newname').val("")
+	    $('#newbirthday').val("")
+	    $('#newmobile').val("")
+	    $('#newsex').val("")
+	    
+	    $('#new_member_list').children().remove();
+
 		$('#newtype').val('S')
 		$('#newlife').val('N')
 		$('#daePopup select').niceSelect('update')

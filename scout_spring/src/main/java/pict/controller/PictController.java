@@ -3353,10 +3353,11 @@ public class PictController {
 					else {
 						String scoutclscode = item.get("SCOUTCLSCODE").toString();
 						String scoutpositioncode = item.get("SCOUTPOSITIONCODE").toString();
+						String scoutyear = item.get("scoutyear").toString();
 						
 						pictVO.setSCOUTCLSCODE(scoutclscode);
 						pictVO.setSCOUTPOSITIONCODE(scoutpositioncode);
-						
+						pictVO.setSCOUTSCHOOLYEAR(scoutyear);
 						pictService.scout_whole_register(pictVO);
 
 					}
@@ -3369,6 +3370,7 @@ public class PictController {
 					String TROOPSCOUTY = item.get("type").toString().equals("scout") ? "Y" : "N";
 					String TROOPLEADERY = item.get("type").toString().equals("leader") ? "Y" : "N";
 					String LIFEMEMBERY = item.get("LIFEMEMBERY").toString();
+					String sex = item.get("sex").toString();
 					
 					pictVO.setKNAME(KNAME);
 					pictVO.setBIRTHDAY(BIRTHDAY);
@@ -3377,6 +3379,7 @@ public class PictController {
 					pictVO.setTROOPLEADERY(TROOPLEADERY);
 					pictVO.setLIFEMEMBERY(LIFEMEMBERY);
 					pictVO.setMEMCLSCODE("1");
+					pictVO.setSEX(sex);
 					pictService.new_person(pictVO);
 					
 					System.out.println("새로운 사람 넣고서 그 멤바NO값!!!!!!!!!" + pictVO.getMEMBERNO());
@@ -3409,6 +3412,7 @@ public class PictController {
 					
 					//지도자연공
 					if(item.get("type").equals("leader")) {
+						System.out.println("지도자 넣을때 신규");
 						String leaderpositioncode1 = item.get("LEADERPOSITIONCODE1").toString();
 						String leaderpositioncode2 = item.get("LEADERPOSITIONCODE2").toString();
 						String adminy = item.get("ADMINY").toString();
@@ -3422,9 +3426,12 @@ public class PictController {
 					}
 					//대원연공
 					else {
+						System.out.println("대원 넣을때 신규");
 						String scoutclscode = item.get("SCOUTCLSCODE").toString();
 						String scoutpositioncode = item.get("SCOUTPOSITIONCODE").toString();
+						String scoutyear = item.get("scoutyear").toString();
 						
+						pictVO.setSCOUTSCHOOLYEAR(scoutyear);
 						pictVO.setSCOUTCLSCODE(scoutclscode);
 						pictVO.setSCOUTPOSITIONCODE(scoutpositioncode);
 						

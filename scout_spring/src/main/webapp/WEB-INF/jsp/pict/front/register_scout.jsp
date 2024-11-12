@@ -81,6 +81,7 @@
 	                            <div class="tableContainer">
 	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
 	                                	<h2 class="subTitles">작년도</h2>
+	                                	<span id="prev_count"></span>
                                     </div>
 	                                <div class="tableWrapper" style="height:550px; margin-top: 0;">
 	                                    <table style="min-width: unset;">
@@ -125,6 +126,7 @@
 	                            <div class="tableContainer">
 	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
 	                                	<h2 class="subTitles">당해년도</h2>
+	                                	<span id="current_count"></span>
                                         <a href="#lnk" class="smButton daeButton" style="padding: 0 8px;">신규등록</a>
                                     </div>
 	                                <div class="tableWrapper" style="height: 550px; margin-top: 0;">
@@ -173,73 +175,6 @@
             </div>
         </div>
     </div>
-    <!-- 
-    <div class="tableContainer">
-    	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-        	<h2 class="subTitles">대원</h2>
-        </div>
-        <div class="tableWrapper" style="height: 300px; margin-top: 0;">
-            <table style="min-width: unset;">
-                <colgroup>
-                    <col width="8%" />
-                    <col width="15%" />
-                    <col width="15%" />
-                    <col width="15%" />
-                    <col width="15%" />
-                    <col width="22%" />
-                </colgroup>
-                <thead>
-                    <tr>
-                        <th style="white-space: nowrap;"><input type="checkbox" class="check" title="전체선택" id="scout_all_check" onchange="allCheck_left_scout(this);" data-check="left_scout_list"><label for="scout_all_check" class="lableOnly"></label></th>
-                        <th style="left: unset;">이름</th>
-                        <th>평생회원</th>
-                        <th>스카우트구분</th>
-                        <th>스카우트직책</th>
-                        <th>연맹지구독</th>
-                    </tr>
-                </thead>
-                <tbody id="search_prev_scout_list">
-                    
-                </tbody>
-            </table>
-        </div>
-    </div>
-   </div>
-    -->
-    <!-- 
-    <div class="tableContainer">
-    	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-        	<h2 class="subTitles">대원</h2>
-        </div>
-        <div class="tableWrapper" style="height: 300px; margin-top: 0;">
-            <table style="min-width: unset;">
-                <colgroup>
-                    <col width="10%" />
-                    <col width="15%" />
-                    <col width="15%" />
-                    <col width="15%" />
-                    <col width="15%" />
-                    <col width="15%" />
-                    <col width="15%" />
-                </colgroup>
-                <thead>
-                    <tr>
-                        <th style="white-space: nowrap;">선택</th>
-                        <th style="left: unset;">이름</th>
-                        <th>평생회원</th>
-                        <th>스카우트구분</th>
-                        <th>스카우트직책</th>
-                        <th>등록비</th>
-                        <th>연맹지구독</th>
-                    </tr>
-                </thead>
-                <tbody id="scout_target_list">
-                    
-                </tbody>
-            </table>
-        </div>
-    </div>
-     -->
     <!-- 단위대팝업 -->
     <div id="regiSearchPopup" class="modalContainer">
         <div class="modalInner lg">
@@ -378,7 +313,7 @@
 		//지도자 좌측
 		function allCheck_left_leader(target) {
 			var $id = $(target).data('check');
-		
+			
 			var $check = $('.js-check_left_leader[data-check="'+$id+'"]');
 		
 			if($(target).prop('checked'))
@@ -610,11 +545,11 @@
 							leader_html +='<tr>'+
 							'<td style="position: unset; vertical-align: middle;">' +
                         	'<input type="checkbox" data-check="left_leader_list" class="check js-check_left_leader" name="leader_check" id="selection_leader_'+data.leader_list[i].memberno+'" data-id="'+data.leader_list[i].memberno+'")"><label for="selection_leader_'+data.leader_list[i].memberno+'" class="lableOnly"></label></td>'+
-                        	'<td>지도자</td>' +
+                        	'<td id="owner_type_'+data.leader_list[i].memberno+'">지도자</td>' +
                         	'<td>'+data.leader_list[i].memberno+'</td>'+
                         	'<td style="vertical-align: middle;" id="leader_name_'+data.leader_list[i].memberno+'">'+data.leader_list[i].kname+'</td>'+
-                        	'<td>'+data.leader_list[i].birthday+'</td>'+
-                        	'<td>'+sex+'</td>'+
+                        	'<td id="leader_birthday_'+data.leader_list[i].memberno+'">'+data.leader_list[i].birthday+'</td>'+
+                        	'<td id="leader_sex_'+data.leader_list[i].memberno+'">'+sex+'</td>'+
                         	'<td>'+
                             '<select name="" id="leaderpositioncode1_'+data.leader_list[i].memberno+'" class="tableSelect" style="width: 100%; height: 100%;">'+
                             '<option value="01" '+leaderpositioncode1_1+'>협조</option>'+
@@ -730,13 +665,13 @@
 							
 							scout_html +='<tr>'+
                             '<td style="position: unset; vertical-align: middle;">'+
-                            '<input type="checkbox" data-check="left_scout_list" class="check js-check_left_scout" name="scout_check" id="selection_scout_'+data.scout_list[i].memberno+'" data-id="'+data.scout_list[i].memberno+'"><label for="selection_scout_'+data.scout_list[i].memberno+'" class="lableOnly"></label>'+
+                            '<input type="checkbox" data-check="left_leader_list" class="check js-check_left_leader" name="leader_check" id="selection_scout_'+data.scout_list[i].memberno+'" data-id="'+data.scout_list[i].memberno+'"><label for="selection_scout_'+data.scout_list[i].memberno+'" class="lableOnly"></label>'+
                             '</td>'+
-                            '<td>대원</td>' +
-                            '<td style="left:unset; vertical-align: middle;" id="scout_name_'+data.scout_list[i].memberno+'">'+data.scout_list[i].memberno+'</td>'+
+                            '<td id="owner_type_'+data.scout_list[i].memberno+'">대원</td>' +
+                            '<td style="left:unset; vertical-align: middle;" id="scout_memberno_'+data.scout_list[i].memberno+'">'+data.scout_list[i].memberno+'</td>'+
                             '<td style="left:unset; vertical-align: middle;" id="scout_name_'+data.scout_list[i].memberno+'">'+data.scout_list[i].kname+'</td>'+
-                            '<td>'+data.leader_list[i].birthday+'</td>'+
-                        	'<td>'+sex+'</td>'+
+                            '<td id="scout_birthday_'+data.scout_list[i].memberno+'">'+data.leader_list[i].birthday+'</td>'+
+                        	'<td id="scout_sex_'+data.scout_list[i].memberno+'">'+sex+'</td>'+
                             
                             '<td>'+
 							'<select name="scoutclscode" id="scoutclscode_'+data.scout_list[i].memberno+'" class="tableSelect" style="width: 100%; height: 100%;">'+
@@ -787,6 +722,10 @@
 						
 						//$('#search_prev_scout_list').append(scout_html)
 						$('#search_prev_leader_list').append(scout_html)
+						var leader_cnt = data.leader_list.length;
+						var scout_cnt = data.scout_list.length
+						var total = Number(leader_cnt) + Number(scout_cnt)
+						$('#prev_count').text("지도자 : " + leader_cnt +'명 / 대원 : ' + scout_cnt + '명 / 합계 : ' + total + '명')
 						
 						
 					}
@@ -851,6 +790,7 @@
 		}
 		function list_react(){
 			var data = JSON.parse($('#hiddenTextarea').val());
+			
 			$("input[name='leader_remove_chk']:checked").each(function (e){
 				var chk_id =  $(this).data("id");
 				
@@ -869,113 +809,133 @@
 				})
 				$('#hiddenTextarea').val(JSON.stringify(data))
 			})
+			current_cnt()
 		}
 		
 		function list_act(){
 			if(confirm("당해년도 리스트를 초기화하고 반영하시겠습니까?")){
 				$('#leader_target_list').children().remove();
-				$('#scout_target_list').children().remove();
 				var troop_associationcode = '${troop_associationcode}'
 					
 				var price_info = JSON.parse($('#price_info').val());
 				var check_list = []
 				$("input[name='leader_check']:checked").each(function (e){
 					var memberno = $(this).data("id");
-					var ADMINY = $('#leader_adminy_'+memberno).val()
-					var KNAME = $('#leader_name_'+memberno).text()
-					var LIFEMEMBERY = $('#leader_life_'+memberno).text()
-					var LEADERPOSITIONCODE1 = $('#leaderpositioncode1_'+memberno).val()
-					var LEADERPOSITIONCODE2 = $('#leaderpositioncode2_'+memberno).val()
-					var leaderpositioncodename1 = $('#leaderpositioncode1_'+memberno + ' option:checked').text()
-					var leaderpositioncodename2 = $('#leaderpositioncode2_'+memberno + ' option:checked').text()
-					var SCOUTMAGACNT = $('#leader_magacnt_'+memberno).is(':checked') ? 'Y' : "N";
-					var maga_price = 0
-					
-					
-					var price = price_info.cls99;
-					if(LEADERPOSITIONCODE2 == '01'){
-						price = 0
+					var type = $('#owner_type_'+memberno).text()
+					if(type == '지도자'){
+						var ADMINY = $('#leader_adminy_'+memberno).val()
+						var KNAME = $('#leader_name_'+memberno).text()
+						var LIFEMEMBERY = "";
+						if($('#leader_life_'+memberno).val() == 'Y'){
+							LIFEMEMBERY ='Y'
+						}
+						else{
+							LIFEMEMBERY ='N'
+						}
+						var LEADERPOSITIONCODE1 = $('#leaderpositioncode1_'+memberno).val()
+						var LEADERPOSITIONCODE2 = $('#leaderpositioncode2_'+memberno).val()
+						var leaderpositioncodename1 = $('#leaderpositioncode1_'+memberno + ' option:checked').text()
+						var leaderpositioncodename2 = $('#leaderpositioncode2_'+memberno + ' option:checked').text()
+						var SCOUTMAGACNT = $('#leader_magacnt_'+memberno).is(':checked') ? 'Y' : "N";
+						var maga_price = 0
+						var sex = $('#leader_sex_'+memberno).text()
+						var birthday = $('#leader_birthday_'+memberno).text()
+						
+						var price = price_info.cls99;
+						if(LEADERPOSITIONCODE2 == '01'){
+							price = 0
+						}
+						if(LIFEMEMBERY == '평생회원'){
+							price = 0
+						}
+						if(SCOUTMAGACNT == 'Y'){
+							maga_price = Number(10000)
+						}
+								
+						//troop_associationcode
+						var json ={}
+						var target_associationcode = $('#ASSOCIATIONCODE').val();
+						if(target_associationcode == '' || target_associationcode == null || target_associationcode == undefined) target_associationcode =troop_associationcode 
+						
+						json.MEMBERNO = memberno
+						json.ADMINY = ''
+						json.KNAME = KNAME
+						json.LIFEMEMBERY = LIFEMEMBERY
+						json.LEADERPOSITIONCODE1 = LEADERPOSITIONCODE1
+						json.LEADERPOSITIONCODE2 = LEADERPOSITIONCODE2
+						json.leaderpositioncodename1 = leaderpositioncodename1
+						json.leaderpositioncodename2 = leaderpositioncodename2
+						json.price = price
+						json.SCOUTMAGACNT = SCOUTMAGACNT
+						json.type = "leader"
+						json.ASSOCIATIONCODE = troop_associationcode
+						json.TROOPNO = $('#troop_no').val()
+						json.PARRENTTROOPNO = $('#parrent_troop_no').val()
+						json.maga_price = maga_price
+						json.sex = sex
+						json.birthday = birthday
+						check_list.push(json);
 					}
-					if(LIFEMEMBERY == '평생회원'){
-						price = 0
-					}
-					if(SCOUTMAGACNT == 'Y'){
-						maga_price = Number(10000)
-					}
-							
-					//troop_associationcode
-					var json ={}
-					var target_associationcode = $('#ASSOCIATIONCODE').val();
-					if(target_associationcode == '' || target_associationcode == null || target_associationcode == undefined) target_associationcode =troop_associationcode 
-					
-					json.MEMBERNO = memberno
-					json.ADMINY = ADMINY
-					json.KNAME = KNAME
-					json.LIFEMEMBERY = LIFEMEMBERY
-					json.LEADERPOSITIONCODE1 = LEADERPOSITIONCODE1
-					json.LEADERPOSITIONCODE2 = LEADERPOSITIONCODE2
-					json.leaderpositioncodename1 = leaderpositioncodename1
-					json.leaderpositioncodename2 = leaderpositioncodename2
-					json.price = price
-					json.SCOUTMAGACNT = SCOUTMAGACNT
-					json.type = "leader"
-					json.ASSOCIATIONCODE = troop_associationcode
-					json.TROOPNO = $('#troop_no').val()
-					json.PARRENTTROOPNO = $('#parrent_troop_no').val()
-					json.maga_price = maga_price
-					check_list.push(json);
-				});
-				
-				$("input[name='scout_check']:checked").each(function (e){
-					var memberno = $(this).data("id");
-					var KNAME = $('#scout_name_'+memberno).text()
-					var LIFEMEMBERY = $('#scout_life_'+memberno).text()
-					var SCOUTCLSCODE = $('#scoutclscode_'+memberno).val()
-					var SCOUTPOSITIONCODE = $('#scoutpositioncode_'+memberno).val()
-					var scoutclscodename = $('#scoutclscode_'+memberno + ' option:checked').text()
-					var scoutpositioncodename = $('#scoutpositioncode_'+memberno + ' option:checked').text()
-					var SCOUTMAGACNT = $('#scout_magacnt_'+memberno).is(':checked') ? 'Y' : "N"
-					var price = $('#scout_regi_price_'+memberno).val()
-					var maga_price = 0
-					
-					var price = price_info.cls01
-					
-					if(SCOUTCLSCODE == '02') price = price_info.cls02
-					if(SCOUTCLSCODE == '03') price = price_info.cls03
-					if(SCOUTCLSCODE == '04') price = price_info.cls04
-					if(SCOUTCLSCODE == '05') price = price_info.cls05
-					if(SCOUTCLSCODE == '06') price = price_info.cls06
-					
-					if(LIFEMEMBERY == '평생회원'){
-						price = 0
-					}
-					if(SCOUTMAGACNT == 'Y'){
-						maga_price = Number(10000)
+					else{
+						var KNAME = $('#scout_name_'+memberno).text()
+						var SCOUTCLSCODE = $('#scoutclscode_'+memberno).val()
+						var SCOUTPOSITIONCODE = $('#scoutpositioncode_'+memberno).val()
+						var scoutclscodename = $('#scoutclscode_'+memberno + ' option:checked').text()
+						var scoutpositioncodename = $('#scoutpositioncode_'+memberno + ' option:checked').text()
+						var SCOUTMAGACNT = $('#scout_magacnt_'+memberno).is(':checked') ? 'Y' : "N"
+						var price = $('#scout_regi_price_'+memberno).val()
+						var maga_price = 0
+						var sex = $('#scout_sex_'+memberno).text()
+						var birthday = $('#scout_birthday_'+memberno).text()
+						
+						var scoutyear = $('#scoutyear_'+memberno).val()
+						if(scoutyear != '' && scoutyear != null && scoutyear != undefined) scoutyear = scoutyear+'학년'
+						var price = price_info.cls01
+						
+						if(SCOUTCLSCODE == '02') price = price_info.cls02
+						if(SCOUTCLSCODE == '03') price = price_info.cls03
+						if(SCOUTCLSCODE == '04') price = price_info.cls04
+						if(SCOUTCLSCODE == '05') price = price_info.cls05
+						if(SCOUTCLSCODE == '06') price = price_info.cls06
+						
+						if(LIFEMEMBERY == '평생회원'){
+							price = 0
+						}
+						if(SCOUTMAGACNT == 'Y'){
+							maga_price = Number(10000)
+						}
+						
+						var target_associationcode = $('#ASSOCIATIONCODE').val();
+						if(target_associationcode == '' || target_associationcode == null || target_associationcode == undefined) target_associationcode =troop_associationcode 
+						
+						var json ={}
+						json.MEMBERNO = memberno
+						json.KNAME = KNAME
+						json.LIFEMEMBERY = LIFEMEMBERY
+						json.SCOUTCLSCODE = SCOUTCLSCODE
+						json.SCOUTPOSITIONCODE = SCOUTPOSITIONCODE
+						json.scoutclscodename = scoutclscodename
+						json.scoutpositioncodename = scoutpositioncodename
+						json.price = price
+						json.SCOUTMAGACNT = SCOUTMAGACNT
+						json.type = "scout"
+						json.ASSOCIATIONCODE = target_associationcode
+						json.TROOPNO = $('#troop_no').val()
+						json.PARRENTTROOPNO = $('#parrent_troop_no').val()
+						json.maga_price = maga_price
+						json.sex = sex
+						json.birthday = birthday
+						json.scoutyear = scoutyear
+						check_list.push(json);
 					}
 					
-					var target_associationcode = $('#ASSOCIATIONCODE').val();
-					if(target_associationcode == '' || target_associationcode == null || target_associationcode == undefined) target_associationcode =troop_associationcode 
 					
-					var json ={}
-					json.MEMBERNO = memberno
-					json.KNAME = KNAME
-					json.LIFEMEMBERY = LIFEMEMBERY
-					json.SCOUTCLSCODE = SCOUTCLSCODE
-					json.SCOUTPOSITIONCODE = SCOUTPOSITIONCODE
-					json.scoutclscodename = scoutclscodename
-					json.scoutpositioncodename = scoutpositioncodename
-					json.price = price
-					json.SCOUTMAGACNT = SCOUTMAGACNT
-					json.type = "scout"
-					json.ASSOCIATIONCODE = target_associationcode
-					json.TROOPNO = $('#troop_no').val()
-					json.PARRENTTROOPNO = $('#parrent_troop_no').val()
-					json.maga_price = maga_price
-					check_list.push(json);
+					
 				});
 				
 				var leader_html = ""
 				var scout_html = ""
+				
 				for(var i=0; i<check_list.length; i++){
 					var total_price = Number(check_list[i].price) + Number(check_list[i].maga_price) 
 					if(check_list[i].type == 'leader'){
@@ -984,13 +944,16 @@
 	                    	'<td style="position: unset;">'+
 	                        '<input type="checkbox" name="leader_remove_chk" id="selection_act_leader_'+check_list[i].MEMBERNO+'" data-id="'+check_list[i].MEMBERNO+'"><label for="selection_act_leader_'+check_list[i].MEMBERNO+'" class="lableOnly"></label>'+
 	                    	'</td>'+
-	                    	'<td style="position: unset;">'+check_list[i].ADMINY+'</td>'+
+	                    	'<td style="position: unset;">지도자</td>'+
+	                    	'<td>'+check_list[i].MEMBERNO+'</td>'+
 	                    	'<td>'+check_list[i].KNAME+'</td>'+
-	                    	'<td>'+check_list[i].LIFEMEMBERY+'</td>'+
+	                    	'<td>'+check_list[i].birthday+'</td>'+
+	                    	'<td>'+check_list[i].sex+'</td>'+
 	                    	'<td>'+check_list[i].leaderpositioncodename1+'</td>'+
 	                    	'<td>'+check_list[i].leaderpositioncodename2+'</td>'+
-	                    	'<td>'+total_price+'</td>'+
+	                    	//'<td>'+total_price+'</td>'+
 	                    	'<td>'+check_list[i].SCOUTMAGACNT+'</td>'+
+	                    	'<td>'+check_list[i].LIFEMEMBERY+'</td>'+
 	                		'</tr>'
 					}
 					else{
@@ -999,19 +962,27 @@
 	                    	'<td style="position: unset;">'+
 	                        '<input type="checkbox" name="scout_remove_chk" id="selection_act_scout_'+check_list[i].MEMBERNO+'" data-id="'+check_list[i].MEMBERNO+'"><label for="selection_act_scout_'+check_list[i].MEMBERNO+'" class="lableOnly"></label>'+
 	                    	'</td>'+
-	                    	'<td style="position: unset;">'+check_list[i].KNAME+'</td>'+
-	                    	'<td>'+check_list[i].LIFEMEMBERY+'</td>'+
+	                    	'<td style="position: unset;">지도자</td>'+
+	                    	'<td>'+check_list[i].MEMBERNO+'</td>'+
+	                    	'<td>'+check_list[i].KNAME+'</td>'+
+	                    	'<td>'+check_list[i].birthday+'</td>'+
+	                    	'<td>'+check_list[i].sex+'</td>'+
 	                    	'<td>'+check_list[i].scoutclscodename+'</td>'+
 	                    	'<td>'+check_list[i].scoutpositioncodename+'</td>'+
-	                    	'<td>'+total_price+'</td>'+
+	                    	//'<td>'+total_price+'</td>'+
 	                    	'<td>'+check_list[i].SCOUTMAGACNT+'</td>'+
+	                    	'<td>'+check_list[i].scoutyear+'</td>'+
+	                    	
 	                		'</tr>'
 					}
 				}
 				$('#leader_target_list').append(leader_html)
-				$('#scout_target_list').append(scout_html)
+				$('#leader_target_list').append(scout_html)
+				//$('#scout_target_list').append(scout_html)
 				$('#hiddenTextarea').val(JSON.stringify(check_list))
 				$('.contentsContainer select').niceSelect('update')
+				
+				current_cnt()
 			}
 		}
 		
@@ -1033,7 +1004,7 @@
 			var data = JSON.parse($('#hiddenTextarea').val());
 			var html = ""
 			var whole_price = 0
-			debugger
+			
 			for(var i=0; i<data.length; i++){
 				var total_price = Number(data[i].price) + Number(data[i].maga_price)
 				var leader_life = "Y"
@@ -1073,7 +1044,7 @@
 			if(confirm("최종 제출 하시겠습니까?")){
 				$('#initial-loading').css('display', 'flex')
 				var data = JSON.parse($('#hiddenTextarea').val());
-				debugger
+				
 				$.ajax({
 					url : "/admin/whole_register_input"
 					, type : "POST"
@@ -1105,6 +1076,7 @@
 		// 팝업 열기
 		$(document).on("click", ".regiSearch", function (e){
 		    let target = $(this).attr("href");
+		    
 		    $(target).addClass("active");
 		});
 		// 팝업닫기
@@ -1116,6 +1088,7 @@
 		// 팝업 열기
 		$(document).on("click", ".regiButton", function (e){
 		    let target = $(this).attr("href");
+		    
 		    if($('#hiddenTextarea').val() != ''){
 		    	$(target).addClass("active");	
 		    }
@@ -1125,6 +1098,20 @@
 		$("#regiConfirmPopup button").click(function(){
 		    $("#regiConfirmPopup").removeClass("active");
 		});
+		
+		function current_cnt(){
+			var data = JSON.parse($('#hiddenTextarea').val());
+			var scout_cnt = 0
+			var leader_cnt =0;
+			
+			for(var i=0; i<data.length; i++){
+				if(data[i].type == 'leader') leader_cnt++;
+				if(data[i].type == 'scout') scout_cnt++;
+			}
+			var total = Number(leader_cnt) + Number(scout_cnt)
+			
+			$('#current_count').text("지도자 : " + leader_cnt +'명 / 대원 : ' + scout_cnt + '명 / 합계 : ' + total + '명')
+		}
 	</script>
 	<%@ include file="./include/dae_modal.jsp" %>
 </html>
