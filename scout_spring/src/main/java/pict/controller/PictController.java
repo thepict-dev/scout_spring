@@ -1791,6 +1791,7 @@ public class PictController {
 	@RequestMapping("/person_save")
 	@ResponseBody
 	public String person_save(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		System.out.println(param.get("SEX").toString());
 		try {
 			
 			String MEMBERNO = param.get("MEMBERNO").toString();
@@ -1798,7 +1799,7 @@ public class PictController {
 			String MEMGRADECODE = param.get("MEMGRADECODE").toString();
 			String BIRTHDAY = param.get("BIRTHDAY").toString();
 			String KNAME = param.get("KNAME").toString();
-			String ENAME = param.get("ENAME").toString();
+			//String ENAME = param.get("ENAME").toString();
 			String SEX = param.get("SEX").toString();
 			String HTELNO = param.get("HTELNO").toString();
 			String MOBILE = param.get("MOBILE").toString();
@@ -1834,7 +1835,7 @@ public class PictController {
 			pictVO.setMEMGRADECODE(MEMGRADECODE);
 			pictVO.setBIRTHDAY(BIRTHDAY);
 			pictVO.setKNAME(KNAME);
-			pictVO.setENAME(ENAME);
+			//pictVO.setENAME(ENAME);
 			pictVO.setSEX(SEX);
 			pictVO.setHTELNO(HTELNO);
 			pictVO.setMOBILE(MOBILE);
@@ -1855,7 +1856,6 @@ public class PictController {
 			pictVO.setLIFEMEMBERNO(LIFEMEMBERNO);
 			pictVO.setLIFEENTERDATE(LIFEENTERDATE);
 			pictVO.setLIFESTATUS(LIFESTATUS);
-			
 			
 			pictService.person_save(pictVO);
 			

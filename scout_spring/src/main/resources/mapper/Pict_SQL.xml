@@ -189,7 +189,7 @@
 
 	<!-- 회원정보 수정 -->
 	<update id="person_save" parameterType="pictVO">
-		update member set MEMCLSCODE= #{MEMCLSCODE}, MEMGRADECODE =#{MEMGRADECODE}, BIRTHDAY=#{BIRTHDAY}, KNAME=#{KNAME}, ENAME=#{ENAME}, SEX=#{SEX}, MOBILE=#{MOBILE}, EMAIL=#{EMAIL},
+		update member set MEMCLSCODE= #{MEMCLSCODE}, MEMGRADECODE =#{MEMGRADECODE}, BIRTHDAY=#{BIRTHDAY}, KNAME=#{KNAME}, SEX=#{SEX}, MOBILE=#{MOBILE}, EMAIL=#{EMAIL},
 		SMSYN=#{SMSYN}, EMAILYN=#{EMAILYN}, JOBCODE=#{JOBCODE}, HPOSTCODE= #{HPOSTCODE}, HADDR=#{HADDR}, UPDATEDATE = now(), EMPLOYEEY = #{EMPLOYEEY}, HTELNO =#{HTELNO},
 		LEADERSCORE =#{LEADERSCORE}, SCOUTSCHOOLYEAR =#{SCOUTSCHOOLYEAR}, SCOUTSCHOOLBAN =#{SCOUTSCHOOLBAN}, TROOPSCOUTY=#{TROOPSCOUTY}, TROOPLEADERY=#{TROOPLEADERY},
 		BIGO=#{BIGO}, LIFEMEMBERY=#{LIFEMEMBERY}, LIFERANK= #{LIFERANK}, LIFEMEMBERNO = #{LIFEMEMBERNO}, LIFEENTERDATE=#{LIFEENTERDATE}, LIFESTATUS=#{LIFESTATUS}
@@ -920,7 +920,8 @@
 		select l.ASSOCIATIONCODE, l.idx, l.ADMINY, m.KNAME, m.LIFEMEMBERY, LEADERPOSITIONCODE1, LEADERPOSITIONCODE2, l.SCOUTMAGACNT, m.MEMBERNO, t.TROOPNAME, t.PARENT_TROOPNO as PARENTTROOPNO,
 		ifnull(ap.cls99, 0) as cls99, ifnull(ap.cls99new, 0) as cls99new,
 		(case when l.LEADERPOSITIONCODE1 = '01' then '협조' when l.LEADERPOSITIONCODE1 = '02' then '훈육' else '전종' end) as LEADERPOSITION,
-		(select LEADERPOSITIONNAME from leaderpositioncode lp where lp.LEADERPOSITIONCODE1 = l.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2) as LEADERPOSITIONNAME
+		(select LEADERPOSITIONNAME from leaderpositioncode lp where lp.LEADERPOSITIONCODE1 = l.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2) as LEADERPOSITIONNAME,
+		m.SEX, m.BIRTHDAY
 		from leader l
 		left outer join member m on l.MEMBERNO = m.MEMBERNO
 		left outer join troop t on t.TROOPNO = l.TROOPNO 
@@ -932,7 +933,8 @@
 		select s.ASSOCIATIONCODE, s.idx, m.KNAME, m.LIFEMEMBERY, s.SCOUTCLSCODE, s.SCOUTPOSITIONCODE, s.SCOUTMAGACNT, m.MEMBERNO, t.TROOPNAME, t.PARENT_TROOPNO as PARENTTROOPNO,
 		ifnull(ap.cls01, 0) as cls01, ifnull(ap.cls02, 0) as cls02, ifnull(ap.cls03, 0) as cls03, ifnull(ap.cls04, 0) as cls04, ifnull(ap.cls05, 0) as cls05, ifnull(ap.cls06, 0) as cls06,  
 		ifnull(ap.cls01new, 0) as cls01new, ifnull(ap.cls02new, 0) as cls02new, ifnull(ap.cls03new, 0) as cls03new, ifnull(ap.cls04new, 0) as cls04new, ifnull(ap.cls05new, 0) as cls05new, ifnull(ap.cls06new, 0) as cls06new,
-		sp.SCOUTPOSITIONNAME, sc.SCOUTCLSNAME
+		sp.SCOUTPOSITIONNAME, sc.SCOUTCLSNAME,
+		m.SEX, m.BIRTHDAY
 		from scout s
 		left outer join member m on s.MEMBERNO = m.MEMBERNO
 		left outer join troop t on t.TROOPNO = s.TROOPNO

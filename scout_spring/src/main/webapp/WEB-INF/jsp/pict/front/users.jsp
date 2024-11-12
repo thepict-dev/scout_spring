@@ -863,8 +863,9 @@
 				return false;
 			}
 			
-			var sex = "M"
+			var sex = ""
 			if(document.getElementById("SEX_W").checked) sex = "W";
+			if(document.getElementById("SEX_M").checked) sex = "M";
 			
 			var param = {
 				MEMBERNO : $('#MEMBERNO').val(),

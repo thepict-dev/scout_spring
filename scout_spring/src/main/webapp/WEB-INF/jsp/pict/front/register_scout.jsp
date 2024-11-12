@@ -82,29 +82,32 @@
 	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
 	                                	<h2 class="subTitles">작년도</h2>
                                     </div>
-	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-	                                	<h2 class="subTitles">지도자</h2>
-                                    </div>
-	                                <div class="tableWrapper" style="height: 300px; margin-top: 0;">
+	                                <div class="tableWrapper" style="height:550px; margin-top: 0;">
 	                                    <table style="min-width: unset;">
 	                                        <colgroup>
 	                                            <col width="8%" />
-	                                            <col width="16%" />
-	                                            <col width="11%" />
-	                                            <col width="15%" />
-	                                            <col width="15%" />
-	                                            <col width="15%" />
-	                                            <col width="20%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
 	                                        </colgroup>
 	                                        <thead>
 	                                            <tr>
 	                                                <th style="white-space: nowrap;"><input type="checkbox" class="check" title="전체선택" id="leader_all_check" onchange="allCheck_left_leader(this);" data-check="left_leader_list"><label for="leader_all_check" class="lableOnly"></label></th>
-	                                                <th style="left: unset;">관리지도자여부</th>
-	                                                <th>이름</th>
-	                                                <th>평생회원여부</th>
-	                                                <th>지도자직책1</th>
-	                                                <th>지도자직책2</th>
-	                                                <th>연맹지구독여부</th>
+	                                                <th>구분</th>
+	                                                <th>회원번호</th>
+	                                                <th>성명</th>
+	                                                <th>생년월일</th>
+	                                                <th>성별</th>
+	                                                <th>직책1</th>
+	                                                <th>직책2</th>
+	                                                <th>연맹지</th>
+	                                                <th>비고</th>
 	                                            </tr>
 	                                        </thead>
 	                                        <tbody id="search_prev_leader_list">
@@ -124,31 +127,32 @@
 	                                	<h2 class="subTitles">당해년도</h2>
                                         <a href="#lnk" class="smButton daeButton" style="padding: 0 8px;">신규등록</a>
                                     </div>
-	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-	                                	<h2 class="subTitles">지도자</h2>
-                                    </div>
-	                                <div class="tableWrapper" style="height: 300px; margin-top: 0;">
+	                                <div class="tableWrapper" style="height: 550px; margin-top: 0;">
 	                                    <table style="min-width: unset;">
 	                                        <colgroup>
 	                                            <col width="8%" />
-	                                            <col width="13%" />
-	                                            <col width="9%" />
-	                                            <col width="15%" />
-	                                            <col width="15%" />
-	                                            <col width="15%" />
 	                                            <col width="10%" />
-	                                            <col width="15%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
 	                                        </colgroup>
 	                                        <thead>
 	                                            <tr>
 	                                                <th style="white-space: nowrap;">선택</th>
-	                                                <th style="left: unset;">관리지도자</th>
-	                                                <th>이름</th>
-	                                                <th>평생회원</th>
-	                                                <th>지도자직책1</th>
-	                                                <th>지도자직책2</th>
-	                                                <th>등록비</th>
-	                                                <th>연맹지구독</th>
+	                                                <th>구분</th>
+	                                                <th>회원번호</th>
+	                                                <th>성명</th>
+	                                                <th>생년월일</th>
+	                                                <th>성별</th>
+	                                                <th>직책1</th>
+	                                                <th>직책2</th>
+	                                                <th>연맹지</th>
+	                                                <th>비고</th>
 	                                            </tr>
 	                                        </thead>
 	                                        <tbody id="leader_target_list">
@@ -536,13 +540,21 @@
 						for(var i=0; i<data.leader_list.length; i++){
 							$('#troop_name').val(data.leader_list[i].troopname)
 							$('#parrent_troop_no').val(data.leader_list[i].parenttroopno);
-							var adminy = ''
-							var adminn = ''
-							if(data.leader_list[i].adminy == 'Y') adminy = 'selected'
-							if(data.leader_list[i].adminy != 'Y') adminn = 'selected'
 							
-							var life =''
-							if(data.leader_list[i].lifemembery == 'Y') life ='평생회원'
+							var life_y ='';
+							var life_n = ''
+							if(data.leader_list[i].lifemembery == 'Y') {
+								life_y ='selected'
+								life_n = ''
+							}
+							else{
+								life_y =''
+								life_n = 'selected'
+							}
+							
+							var sex = '';
+							if(data.leader_list[i].sex == 'M') sex = '남'
+							if(data.leader_list[i].sex == 'W') sex = '여'
 							
 							var leaderpositioncode1_1 =''
 							var leaderpositioncode1_2 =''
@@ -598,14 +610,11 @@
 							leader_html +='<tr>'+
 							'<td style="position: unset; vertical-align: middle;">' +
                         	'<input type="checkbox" data-check="left_leader_list" class="check js-check_left_leader" name="leader_check" id="selection_leader_'+data.leader_list[i].memberno+'" data-id="'+data.leader_list[i].memberno+'")"><label for="selection_leader_'+data.leader_list[i].memberno+'" class="lableOnly"></label></td>'+
-                        	'<td style="position: unset; vertical-align: middle;">'+    
-                            '<select name="leader_adminy" id="leader_adminy_'+data.leader_list[i].memberno+'" class="tableSelect" style="width: 100%; height: 100%;">'+
-                            '<option value="Y" '+ adminy +'>Y</option>'+
-                            '<option value="N" '+ adminn +'>N</option>'+
-                            '</select>'+
-                        	'</td>'+
+                        	'<td>지도자</td>' +
+                        	'<td>'+data.leader_list[i].memberno+'</td>'+
                         	'<td style="vertical-align: middle;" id="leader_name_'+data.leader_list[i].memberno+'">'+data.leader_list[i].kname+'</td>'+
-                        	'<td style="left:unset; vertical-align: middle;" id="leader_life_'+data.leader_list[i].memberno+'">'+life+'</td>'+
+                        	'<td>'+data.leader_list[i].birthday+'</td>'+
+                        	'<td>'+sex+'</td>'+
                         	'<td>'+
                             '<select name="" id="leaderpositioncode1_'+data.leader_list[i].memberno+'" class="tableSelect" style="width: 100%; height: 100%;">'+
                             '<option value="01" '+leaderpositioncode1_1+'>협조</option>'+
@@ -624,20 +633,25 @@
                             '<option value="06" '+leaderpositioncode2_6+'>대위원</option>'+
                             '<option value="07" '+leaderpositioncode2_7+'>육성회장</option>'+
                             '<option value="08" '+leaderpositioncode2_8+'>협조지도자</option>'+
-                            
                             '<option value="09" '+leaderpositioncode2_9_2+'>단대장</option>'+
                             '<option value="10" '+leaderpositioncode2_10+'>대장</option>'+
                             '<option value="11" '+leaderpositioncode2_11+'>부대장</option>'+
                             '<option value="12" '+leaderpositioncode2_12+'>로버</option>'+
-                           
                             '<option value="13" '+leaderpositioncode2_13+'>전종지도자</option>'+
                             '<option value="99" '+leaderpositioncode2_99+'>기타</option>'+
-                            
                             '</select>'+
                         	'</td>'+
                         	'<td style="vertical-align: middle;">'+
                         	'<input type="checkbox" id="leader_magacnt_'+data.leader_list[i].memberno+'" '+scoutmagacnt+' value="Y"><label for="leader_magacnt_'+data.leader_list[i].memberno+'" class="lableOnly"></label>'+
                         	'</td>'+
+                        	
+                        	'<td>'+
+                            '<select name="" id="leader_life_'+data.leader_list[i].memberno+'" class="tableSelect" style="width: 100%; height: 100%;">'+
+                            '<option value="Y" '+life_y+'>평생회원</option>'+
+                            '<option value="N" '+life_n+'>-----</option>'+
+                            '</select>'+
+                        	'</td>'+
+                        	
                     		'</tr>'
 						}
 						$('#search_prev_leader_list').append(leader_html)
@@ -705,6 +719,10 @@
 							if(data.scout_list[i].scoutpositioncode == '43') scoutpositioncode2_43 ='selected'
 							if(data.scout_list[i].scoutpositioncode == '44') scoutpositioncode2_44 ='selected'
 							
+							var sex = '';
+							if(data.scout_list[i].sex == 'M') sex = '남'
+							if(data.scout_list[i].sex == 'W') sex = '여'
+							
 							var scoutmagacnt_scout = ''
 							if(data.scout_list[i].scoutmagacnt != '0') {
 								scoutmagacnt_scout ='checked';
@@ -714,8 +732,12 @@
                             '<td style="position: unset; vertical-align: middle;">'+
                             '<input type="checkbox" data-check="left_scout_list" class="check js-check_left_scout" name="scout_check" id="selection_scout_'+data.scout_list[i].memberno+'" data-id="'+data.scout_list[i].memberno+'"><label for="selection_scout_'+data.scout_list[i].memberno+'" class="lableOnly"></label>'+
                             '</td>'+
+                            '<td>대원</td>' +
+                            '<td style="left:unset; vertical-align: middle;" id="scout_name_'+data.scout_list[i].memberno+'">'+data.scout_list[i].memberno+'</td>'+
                             '<td style="left:unset; vertical-align: middle;" id="scout_name_'+data.scout_list[i].memberno+'">'+data.scout_list[i].kname+'</td>'+
-                            '<td style="left:unset; vertical-align: middle;" id="scout_life_'+data.scout_list[i].memberno+'">'+life_scout+'</td>'+
+                            '<td>'+data.leader_list[i].birthday+'</td>'+
+                        	'<td>'+sex+'</td>'+
+                            
                             '<td>'+
 							'<select name="scoutclscode" id="scoutclscode_'+data.scout_list[i].memberno+'" class="tableSelect" style="width: 100%; height: 100%;">'+
 							'<option value="">-----</option>'+
@@ -747,10 +769,24 @@
 							'<td style="vertical-align: middle;">'+
 							'<input type="checkbox" id="scout_magacnt_'+data.scout_list[i].memberno+'" '+scoutmagacnt_scout+' value="Y"><label for="scout_magacnt_'+data.scout_list[i].memberno+'" class="lableOnly"></label>'+
 							'</td>'+
+							
+							'<td>'+
+							'<select name="scoutyear" id="scoutyear_'+data.scout_list[i].memberno+'" class="tableSelect" style="width: 100%; height: 100%;">'+
+							'<option value="">-----</option>'+
+							'<option value="1">1</option>'+
+							'<option value="2">2</option>'+
+							'<option value="3">3</option>'+
+							'<option value="4">4</option>'+
+							'<option value="5">5</option>'+
+							'<option value="6">6</option>'+
+							'</select>'+
+							'</td>'+
+							
                         	'</tr>'
 						}
 						
-						$('#search_prev_scout_list').append(scout_html)
+						//$('#search_prev_scout_list').append(scout_html)
+						$('#search_prev_leader_list').append(scout_html)
 						
 						
 					}
