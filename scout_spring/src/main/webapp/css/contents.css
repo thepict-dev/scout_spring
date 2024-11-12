@@ -496,6 +496,10 @@
  	color: var(--text-color); 
     text-align: left;
 }
+.tableContainer.infoTableContainer .tableWrapper table th{
+    padding: 8px 24px 8px 8px;
+	
+}
 .tableContainer.historyContent .tableWrapper table th:first-child,
 .tableContainer.relationContainer .tableWrapper table th:first-child,
 .tableContainer.infoTableContainer .tableWrapper table th:first-child,
@@ -536,6 +540,11 @@
     .tableContainer.relationContainer{
         padding: 16px 24px;
     }
+}
+
+.tableContainer.infoTableContainer .tableWrapper table td{
+    padding: 8px 24px 8px 8px;
+	
 }
 
 .tableButtons.rightBtns{
