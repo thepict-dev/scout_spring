@@ -468,7 +468,7 @@
 				, success : function(data, status, xhr) {
 					$('#search_prev_leader_list').children().remove();
 					$('#search_prev_scout_list').children().remove();
-					
+					console.log(data)
 					if(data.leader_list && data.leader_list.length > 0){
 						//지도자 테이블
 						var leader_html = ""
@@ -541,10 +541,11 @@
 							if(data.leader_list[i].scoutmagacnt != '0') {
 								scoutmagacnt ='checked';
 							}
-							
+							var disable = "";
+							if(data.leader_list[i].isexist == 'Y') disable = "disabled"
 							leader_html +='<tr>'+
 							'<td style="position: unset; vertical-align: middle;">' +
-                        	'<input type="checkbox" data-check="left_leader_list" class="check js-check_left_leader" name="leader_check" id="selection_leader_'+data.leader_list[i].memberno+'" data-id="'+data.leader_list[i].memberno+'")"><label for="selection_leader_'+data.leader_list[i].memberno+'" class="lableOnly"></label></td>'+
+                        	'<input type="checkbox" '+disable+' data-check="left_leader_list" class="check js-check_left_leader" name="leader_check" id="selection_leader_'+data.leader_list[i].memberno+'" data-id="'+data.leader_list[i].memberno+'")"><label for="selection_leader_'+data.leader_list[i].memberno+'" class="lableOnly"></label></td>'+
                         	'<td id="owner_type_'+data.leader_list[i].memberno+'" style="position: unset;">지도자</td>' +
                         	'<td>'+data.leader_list[i].memberno+'</td>'+
                         	'<td style="vertical-align: middle;" id="leader_name_'+data.leader_list[i].memberno+'">'+data.leader_list[i].kname+'</td>'+
@@ -662,10 +663,12 @@
 							if(data.scout_list[i].scoutmagacnt != '0') {
 								scoutmagacnt_scout ='checked';
 							}
+							var disable = "";
+							if(data.scout_list[i].isexist == 'Y') disable = "disabled"
 							
 							scout_html +='<tr>'+
                             '<td style="position: unset; vertical-align: middle;">'+
-                            '<input type="checkbox" data-check="left_leader_list" class="check js-check_left_leader" name="leader_check" id="selection_scout_'+data.scout_list[i].memberno+'" data-id="'+data.scout_list[i].memberno+'"><label for="selection_scout_'+data.scout_list[i].memberno+'" class="lableOnly"></label>'+
+                            '<input type="checkbox" '+disable+' data-check="left_leader_list" class="check js-check_left_leader" name="leader_check" id="selection_scout_'+data.scout_list[i].memberno+'" data-id="'+data.scout_list[i].memberno+'"><label for="selection_scout_'+data.scout_list[i].memberno+'" class="lableOnly"></label>'+
                             '</td>'+
                             '<td id="owner_type_'+data.scout_list[i].memberno+'" style="position: unset;">대원</td>' +
                             '<td style="left:unset; vertical-align: middle;" id="scout_memberno_'+data.scout_list[i].memberno+'">'+data.scout_list[i].memberno+'</td>'+
@@ -874,6 +877,10 @@
 						json.maga_price = maga_price
 						json.sex = sex
 						json.birthday = birthday
+						
+						json.excludecode = ''
+						json.nationcode = ''
+							
 						check_list.push(json);
 					}
 					else{
@@ -926,6 +933,10 @@
 						json.sex = sex
 						json.birthday = birthday
 						json.scoutyear = scoutyear
+						
+						json.excludecode = ''
+						json.nationcode = ''
+						
 						check_list.push(json);
 					}
 					
@@ -1042,9 +1053,10 @@
 		}
 		function final_submit(){
 			if(confirm("최종 제출 하시겠습니까?")){
+				
 				$('#initial-loading').css('display', 'flex')
 				var data = JSON.parse($('#hiddenTextarea').val());
-				
+				debugger
 				$.ajax({
 					url : "/admin/whole_register_input"
 					, type : "POST"

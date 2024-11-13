@@ -43,7 +43,7 @@
 						<option value="L">지도자</option>
 					</select>
 				</div>
-				<div class="inputBox">
+				<div class="inputBox" id="newleader_0" style="display:none">
 					<p class="inputCaption">평생회원 여부*</p>
 					<select name="newlife" id="newlife" class="smThinSelect">
 						<option value="N">----</option>
@@ -58,15 +58,6 @@
 						<option value="W">여</option>
 					</select>
 				</div>
-				<!-- 
-                <div class="inputBox">
-					<p class="inputCaption">관리지도자 여부</p>
-					<select name="newleader_adminy" id="newleader_adminy" class="smThinSelect">
-						<option value="N">N</option>
-						<option value="Y">Y</option>
-					</select>
-				</div>
-				 -->
             </div>
             <div class="inputsContainer">
                 <div class="inputBox" style="display:none" id="newleader_1">
@@ -139,9 +130,34 @@
 						<option value="6">6학년</option>
 					</select>
 				</div>
-                <div class="inputBox" style="justify-content: center; margin-top: 15px;">
+				
+				<div class="inputBox">
+					<p class="inputCaption">면제코드</p>
+					<select name="excludecode" id="excludecode" class="lgThinSelect">
+						<option value="">면제없음</option>
+                        <option value="01">연맹지원</option>
+                        <option value="02">신체장애</option>
+                        <option value="04">조직변경</option>
+                        <option value="05">평생회원</option>
+                        <option value="06">육성단체대표</option>
+                        <option value="07">중복가입</option>
+                        <option value="08">다문화</option>
+                        <option value="99">기타</option>
+					</select>
+				</div>
+				<div class="inputBox">
+					<p class="inputCaption">국가코드</p>
+					<select name="nationcode" id="nationcode" class="lgThinSelect">
+						<option value="ko">대한민국</option>
+                        <option value="cn">중국</option>
+					</select>
+				</div>
+				<div class="inputBox" style="justify-content: center; margin-top: 15px;">
 					<input type="checkbox" id="newleader_magacnt"><label for="newleader_magacnt">연맹지구독여부</label>
 				</div>
+				
+				
+				
                 <div class="buttons" style="justify-content: flex-end; width: 100%;">
                 	<a href="#lnk" class="smButton" onclick="dae_modal_search()"><img src="/front_img/search2.png" alt="">조회</a>
                 </div>
@@ -194,19 +210,23 @@
 	$("#newtype").change(function(){
 		var newtype = $('#newtype').val()
 		if(newtype == 'L'){
+			$('#newleader_0').css("display", 'flex')
 			$('#newleader_1').css("display", 'flex')
 			$('#newleader_2').css("display", 'flex')
 			$('#newscout_1').css("display", 'none')
 			$('#newscout_2').css("display", 'none')
 			$('#newscout_3').css("display", 'none')
+		
 		}
 		else{
+			$('#newleader_0').css("display", 'none')
 			$('#newleader_1').css("display", 'none')
 			$('#newleader_2').css("display", 'none')
 			$('#newscout_1').css("display", 'flex')
 			$('#newscout_2').css("display", 'flex')
 			$('#newscout_3').css("display", 'flex')
-		}
+
+	}
 	})
 	function fn_select_person(memberno, name, birthday, mobile, troopscouty, troopleadery, lifemembery, adminy){
 		$('#dmy_memberno').val(memberno)
@@ -329,6 +349,14 @@
 				var check_list = []
 				if(newtype == 'L'){
 					var price = price_info.cls99new;
+					//면제코드 부여시
+					if($('#excludecode').val() != ''){
+						price = 0;
+					}
+					if($('#newleaderpositioncode2').val() == '01'){
+						price = 0
+					}
+					
 					var maga_price = 0
 					if(magacnt_y == 'Y'){
 						maga_price = Number(10000)
@@ -376,6 +404,9 @@
 					json.BIRTHDAY = newbirthday
 					json.MOBILE= newmobile;
 					
+					json.excludecode = $('#excludecode').val()
+					json.nationcode = $('#nationcode').val()
+					
 					check_list.push(json);
 				}
 				else{
@@ -387,6 +418,12 @@
 					if(scoutclscode == '04') price = price_info.cls04new
 					if(scoutclscode == '05') price = price_info.cls05new
 					if(scoutclscode == '06') price = price_info.cls06new
+					
+					//면제코드 부여시
+					if($('#excludecode').val() != ''){
+						price = 0;
+					}
+					
 					var scoutyear =  $("#scoutyear").val();
 					
 					var maga_price = 0
@@ -433,6 +470,10 @@
 					json.BIRTHDAY = newbirthday
 					json.MOBILE= newmobile;
 	           		json.scoutyear = scoutyear;
+	           		
+	           		json.excludecode = $('#excludecode').val()
+					json.nationcode = $('#nationcode').val()
+					
 					check_list.push(json);
 				}
 				
@@ -500,6 +541,14 @@
 				var check_list = []
 				if(newtype == 'L'){
 					var price = price_info.cls99new;
+					//면제코드 부여시
+					if($('#excludecode').val() != ''){
+						price = 0;
+					}
+					if($('#newleaderpositioncode2').val() == '01'){
+						price = 0
+					}
+					
 					var maga_price = 0
 					if(magacnt_y == 'Y'){
 						maga_price = Number(10000)
@@ -546,6 +595,10 @@
 					json.leaderpositioncodename2 = $("#newleaderpositioncode2 :selected").text();
 					json.BIRTHDAY = newbirthday
 					json.MOBILE= newmobile;
+					
+					json.excludecode = $('#excludecode').val()
+					json.nationcode = $('#nationcode').val()
+					
 					check_list.push(json);
 				}
 				else{
@@ -558,7 +611,10 @@
 					if(scoutclscode == '04') price = price_info.cls04new
 					if(scoutclscode == '05') price = price_info.cls05new
 					if(scoutclscode == '06') price = price_info.cls06new
-					
+					//면제코드 부여시
+					if($('#excludecode').val() != ''){
+						price = 0;
+					}
 					var maga_price = 0
 					if(magacnt_y == 'Y'){
 						maga_price = Number(10000)
@@ -603,6 +659,9 @@
 					json.BIRTHDAY = newbirthday
 					json.MOBILE= newmobile;
 	           		
+	           		json.excludecode = $('#excludecode').val()
+					json.nationcode = $('#nationcode').val()
+					
 					check_list.push(json);
 				}
 				
@@ -641,6 +700,9 @@
 	    $('#newbirthday').val("")
 	    $('#newmobile').val("")
 	    $('#newsex').val("")
+	    
+	    $('#excludecode').val("")
+	    $('#nationcode').val("ko")
 	    
 	    $('#new_member_list').children().remove();
 

@@ -3254,7 +3254,8 @@ public class PictController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
 		String current_year = dateFormat.format(today);
 		int prev_year = Integer.parseInt(current_year) - 1;
-		pictVO.setSearch_year(prev_year+"");
+		pictVO.setPre_year(prev_year+"");
+		pictVO.setSearch_year(current_year);
 		
 		String troopno = param.get("troopno").toString();
 		HashMap<String, Object> map = new HashMap<String, Object>();		
@@ -3322,6 +3323,7 @@ public class PictController {
 					String scoutmagacnt = item.get("SCOUTMAGACNT").toString().equals("Y") ? "1" : "0";
 					String scoutmagafee = item.get("maga_price").toString();
 					String entryfee = item.get("price").toString();
+					String excludecode = item.get("excludecode").toString();
 					
 					pictVO.setMEMBERNO(memberno);
 					pictVO.setTROOPNO(troopno);
@@ -3335,6 +3337,7 @@ public class PictController {
 					pictVO.setSCOUTMAGAFEE(scoutmagafee);
 					pictVO.setENTRYFEE(entryfee);
 					
+					pictVO.setFEEEXCLUDECODE(excludecode);
 					
 					//지도자연공
 					if(item.get("type").equals("leader")) {
@@ -3371,6 +3374,8 @@ public class PictController {
 					String TROOPLEADERY = item.get("type").toString().equals("leader") ? "Y" : "N";
 					String LIFEMEMBERY = item.get("LIFEMEMBERY").toString();
 					String sex = item.get("sex").toString();
+					String excludecode = item.get("excludecode").toString();
+					String nationcode = item.get("nationcode").toString();
 					
 					pictVO.setKNAME(KNAME);
 					pictVO.setBIRTHDAY(BIRTHDAY);
@@ -3380,6 +3385,7 @@ public class PictController {
 					pictVO.setLIFEMEMBERY(LIFEMEMBERY);
 					pictVO.setMEMCLSCODE("1");
 					pictVO.setSEX(sex);
+					pictVO.setNationcode(nationcode);
 					pictService.new_person(pictVO);
 					
 					System.out.println("새로운 사람 넣고서 그 멤바NO값!!!!!!!!!" + pictVO.getMEMBERNO());
@@ -3408,7 +3414,7 @@ public class PictController {
 					pictVO.setSCOUTMAGACNT(scoutmagacnt);
 					pictVO.setSCOUTMAGAFEE(scoutmagafee);
 					pictVO.setENTRYFEE(entryfee);
-					
+					pictVO.setFEEEXCLUDECODE(excludecode);
 					
 					//지도자연공
 					if(item.get("type").equals("leader")) {

@@ -422,9 +422,9 @@
 		<selectKey keyProperty="MEMBERNO" resultType="string" order="AFTER">
 	        select max(cast(MEMBERNO as unsigned)) MEMBERNO from member
 	    </selectKey>
-		insert into member (MEMBERNO, MEMCLSCODE, MEMGRADECODE, BIRTHDAY, EMPLOYEEY, KNAME, ENAME, SEX, HTELNO, MOBILE, EMAIL, SMSYN, EMAILYN, JOBCODE, HPOSTCODE, HADDR, ENTERDATE, TROOPSCOUTY, TROOPLEADERY, LIFEMEMBERY)
+		insert into member (MEMBERNO, MEMCLSCODE, MEMGRADECODE, BIRTHDAY, EMPLOYEEY, KNAME, ENAME, SEX, HTELNO, MOBILE, EMAIL, SMSYN, EMAILYN, JOBCODE, HPOSTCODE, HADDR, ENTERDATE, TROOPSCOUTY, TROOPLEADERY, LIFEMEMBERY, nationcode)
 		values(
-			(select max(cast(MEMBERNO as unsigned)) + 1 from member t), #{MEMCLSCODE}, #{MEMGRADECODE}, #{BIRTHDAY}, #{EMPLOYEEY}, #{KNAME}, #{ENAME}, #{SEX}, #{HTELNO}, #{MOBILE}, #{EMAIL}, #{SMSYN}, #{EMAILYN}, #{JOBCODE}, #{HPOSTCODE}, #{HADDR}, now(), #{TROOPSCOUTY},#{TROOPLEADERY},#{LIFEMEMBERY}
+			(select max(cast(MEMBERNO as unsigned)) + 1 from member t), #{MEMCLSCODE}, #{MEMGRADECODE}, #{BIRTHDAY}, #{EMPLOYEEY}, #{KNAME}, #{ENAME}, #{SEX}, #{HTELNO}, #{MOBILE}, #{EMAIL}, #{SMSYN}, #{EMAILYN}, #{JOBCODE}, #{HPOSTCODE}, #{HADDR}, now(), #{TROOPSCOUTY},#{TROOPLEADERY},#{LIFEMEMBERY}, #{nationcode}
 		)
 	</insert>
 	
@@ -921,12 +921,13 @@
 		ifnull(ap.cls99, 0) as cls99, ifnull(ap.cls99new, 0) as cls99new,
 		(case when l.LEADERPOSITIONCODE1 = '01' then '협조' when l.LEADERPOSITIONCODE1 = '02' then '훈육' else '전종' end) as LEADERPOSITION,
 		(select LEADERPOSITIONNAME from leaderpositioncode lp where lp.LEADERPOSITIONCODE1 = l.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2) as LEADERPOSITIONNAME,
-		m.SEX, m.BIRTHDAY
+		m.SEX, m.BIRTHDAY,
+		IF(EXISTS (SELECT 1 FROM leader l2 WHERE l2.TROOPNO = l.TROOPNO AND LEFT(l2.STARTDAY, 4) = #{search_year} AND l2.MEMBERNO = l.MEMBERNO), 'Y', 'N') AS isexist
 		from leader l
 		left outer join member m on l.MEMBERNO = m.MEMBERNO
 		left outer join troop t on t.TROOPNO = l.TROOPNO 
-		left outer join association_price ap on ap.ASSOCIATIONCODE = l.ASSOCIATIONCODE and ap.YEAR = #{search_year}
-		where l.TROOPNO = #{TROOPNO} and left(l.STARTDAY, 4) = #{search_year} and l.CONFIRMY = #{CONFIRMY}
+		left outer join association_price ap on ap.ASSOCIATIONCODE = l.ASSOCIATIONCODE and ap.YEAR = #{pre_year}
+		where l.TROOPNO = #{TROOPNO} and left(l.STARTDAY, 4) = #{pre_year} and l.CONFIRMY = #{CONFIRMY}
 	</select>
 	
 	<select id="prev_scout_list" resultType="pictVO">
@@ -934,14 +935,15 @@
 		ifnull(ap.cls01, 0) as cls01, ifnull(ap.cls02, 0) as cls02, ifnull(ap.cls03, 0) as cls03, ifnull(ap.cls04, 0) as cls04, ifnull(ap.cls05, 0) as cls05, ifnull(ap.cls06, 0) as cls06,  
 		ifnull(ap.cls01new, 0) as cls01new, ifnull(ap.cls02new, 0) as cls02new, ifnull(ap.cls03new, 0) as cls03new, ifnull(ap.cls04new, 0) as cls04new, ifnull(ap.cls05new, 0) as cls05new, ifnull(ap.cls06new, 0) as cls06new,
 		sp.SCOUTPOSITIONNAME, sc.SCOUTCLSNAME,
-		m.SEX, m.BIRTHDAY
+		m.SEX, m.BIRTHDAY,
+		IF(EXISTS (SELECT 1 FROM scout s2 WHERE s2.TROOPNO = s.TROOPNO AND LEFT(s2.STARTDAY, 4) = #{search_year} AND s2.MEMBERNO = s.MEMBERNO), 'Y', 'N') AS isexist
 		from scout s
 		left outer join member m on s.MEMBERNO = m.MEMBERNO
 		left outer join troop t on t.TROOPNO = s.TROOPNO
-		left outer join association_price ap on ap.ASSOCIATIONCODE = s.ASSOCIATIONCODE and ap.YEAR = #{search_year}
+		left outer join association_price ap on ap.ASSOCIATIONCODE = s.ASSOCIATIONCODE and ap.YEAR = #{pre_year}
 		left outer join scoutpositioncode sp on sp.SCOUTPOSITIONCODE = s.SCOUTPOSITIONCODE
 		left outer join scoutclscode sc on sc.SCOUTCLSCODE = s.SCOUTCLSCODE
-		where s.TROOPNO = #{TROOPNO} and left(STARTDAY, 4) = #{search_year} and CONFIRMY =#{CONFIRMY}
+		where s.TROOPNO = #{TROOPNO} and left(STARTDAY, 4) = #{pre_year} and CONFIRMY =#{CONFIRMY}
 	</select>
 	
 	<select id="former_list" resultType="pictVO">
@@ -1044,13 +1046,13 @@
 	</select>
 	
 	<insert id="leader_whole_register" parameterType="pictVO">
-		INSERT INTO leader(MEMBERNO, TROOPNO, STARTDAY, ENDDAY, ASSOCIATIONCODE, PARENT_TROOPNO, PAYY, CONFIRMY, SCOUTMAGACNT, SCOUTMAGAFEE, ENTRYFEE, LEADERPOSITIONCODE1, LEADERPOSITIONCODE2, ADMINY, ENTERDATE, ENTERPGM) 
-		VALUES (#{MEMBERNO},#{TROOPNO},#{STARTDAY},#{ENDDAY},#{ASSOCIATIONCODE},#{PARENTTROOPNO},#{PAYY},#{CONFIRMY},#{SCOUTMAGACNT},#{SCOUTMAGAFEE},#{ENTRYFEE},#{LEADERPOSITIONCODE1},#{LEADERPOSITIONCODE2},#{ADMINY},now(), "일괄등록")
+		INSERT INTO leader(MEMBERNO, TROOPNO, STARTDAY, ENDDAY, ASSOCIATIONCODE, PARENT_TROOPNO, PAYY, CONFIRMY, SCOUTMAGACNT, SCOUTMAGAFEE, ENTRYFEE, LEADERPOSITIONCODE1, LEADERPOSITIONCODE2, ADMINY, ENTERDATE, ENTERPGM, FEEEXCLUDECODE) 
+		VALUES (#{MEMBERNO},#{TROOPNO},#{STARTDAY},#{ENDDAY},#{ASSOCIATIONCODE},#{PARENTTROOPNO},#{PAYY},#{CONFIRMY},#{SCOUTMAGACNT},#{SCOUTMAGAFEE},#{ENTRYFEE},#{LEADERPOSITIONCODE1},#{LEADERPOSITIONCODE2},#{ADMINY},now(), "일괄등록", #{FEEEXCLUDECODE})
 	</insert>
 	
 	<insert id="scout_whole_register" parameterType="pictVO">
-		INSERT INTO scout(MEMBERNO, TROOPNO, STARTDAY, ENDDAY, ASSOCIATIONCODE, PARENT_TROOPNO, PAYY, CONFIRMY, SCOUTMAGACNT, SCOUTMAGAFEE, ENTRYFEE, SCOUTCLSCODE, SCOUTPOSITIONCODE, ENTERDATE, ENTERPGM, SCOUTSCHOOLYEAR) 
-		VALUES (#{MEMBERNO},#{TROOPNO},#{STARTDAY},#{ENDDAY},#{ASSOCIATIONCODE},#{PARENTTROOPNO},#{PAYY},#{CONFIRMY},#{SCOUTMAGACNT},#{SCOUTMAGAFEE},#{ENTRYFEE},#{SCOUTCLSCODE},#{SCOUTPOSITIONCODE},now(), "일괄등록", #{SCOUTSCHOOLYEAR})
+		INSERT INTO scout(MEMBERNO, TROOPNO, STARTDAY, ENDDAY, ASSOCIATIONCODE, PARENT_TROOPNO, PAYY, CONFIRMY, SCOUTMAGACNT, SCOUTMAGAFEE, ENTRYFEE, SCOUTCLSCODE, SCOUTPOSITIONCODE, ENTERDATE, ENTERPGM, SCOUTSCHOOLYEAR, FEEEXCLUDECODE) 
+		VALUES (#{MEMBERNO},#{TROOPNO},#{STARTDAY},#{ENDDAY},#{ASSOCIATIONCODE},#{PARENTTROOPNO},#{PAYY},#{CONFIRMY},#{SCOUTMAGACNT},#{SCOUTMAGAFEE},#{ENTRYFEE},#{SCOUTCLSCODE},#{SCOUTPOSITIONCODE},now(), "일괄등록", #{SCOUTSCHOOLYEAR}, #{FEEEXCLUDECODE})
 	</insert>
 	
 	<update id="leader_whole_confirm" parameterType="pictVO">

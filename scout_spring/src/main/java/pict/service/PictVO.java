@@ -403,9 +403,23 @@ public class PictVO extends PictDefaultVO {
 	private String leaderposition3w;
 	private String leaderposition4m;
 	private String leaderposition4w;
+	private String isexist;
+	private String nationcode;
 	
 	
 	
+	public String getNationcode() {
+		return nationcode;
+	}
+	public void setNationcode(String nationcode) {
+		this.nationcode = nationcode;
+	}
+	public String getIsexist() {
+		return isexist;
+	}
+	public void setIsexist(String isexist) {
+		this.isexist = isexist;
+	}
 	public String getLeaderposition1m() {
 		return leaderposition1m;
 	}
