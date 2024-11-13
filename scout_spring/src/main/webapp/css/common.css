@@ -264,6 +264,9 @@ input.circleCheck[type=checkbox] + label {
     background-position: 0 1px;
     margin-left: 10px;
 }
+input[type=checkbox]:disabled + label {
+    background-image: url('/front_img/disable-check.png');
+}
 input.circleCheck[type=checkbox]:checked + label {
     background-image: url('/front_img/checked2.png');
 }
