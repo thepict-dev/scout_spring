@@ -315,11 +315,15 @@
 			var $id = $(target).data('check');
 			
 			var $check = $('.js-check_left_leader[data-check="'+$id+'"]');
-		
-			if($(target).prop('checked'))
-				$check.prop('checked', true);
-			else
-				$check.prop('checked', false);
+
+			
+			if ($(target).prop('checked')) {
+		        // 전체 선택
+		        $check.not(':disabled').prop('checked', true);
+		    } else {
+		        // 전체 해제
+		        $check.not(':disabled').prop('checked', false);
+		    }
 		}
 		//대원좌측
 		function allCheck_left_scout(target) {
