@@ -358,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // leader_list와 scout_list 테이블에 이벤트 위임 설정
     document.addEventListener('click', function(event) {
         // 클릭된 요소가 leader_list 또는 scout_list 내의 tr 요소인지 확인
-        const clickedRow = event.target.closest('#leader_list tr, #scout_list tr, #searchResultList tr, #relation_list tr, #search_relation_list tr, #group_list tr, #org_list tr, #unit_list tr, #admin_list tr, #former_body tr');
+        const clickedRow = event.target.closest('#leader_list tr, #scout_list tr, #searchResultList tr, #relation_list tr, #search_relation_list tr, #group_list tr, #org_list tr, #unit_list tr, #admin_list tr, #former_body tr, #leader_target_list tr');
         if (clickedRow) {
             const table = clickedRow.closest('table');
             const rows = table.querySelectorAll('tr');

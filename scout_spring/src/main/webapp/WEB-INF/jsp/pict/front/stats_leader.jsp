@@ -59,7 +59,7 @@
 	                            <thead>
 	                                <tr>
 	                                    <th rowspan="2">구분</th>
-	                                    <th rowspan="2">등록</th>
+	                                    <th rowspan="2" style="left: unset;">등록</th>
 	                                    <th rowspan="2">미승인</th>
 	                                    <th rowspan="2">계속등록</th>
 	                                    <th rowspan="2">신규등록</th>
@@ -70,21 +70,21 @@
 	                                    <th colspan="3" style="text-align:center">합계</th>
 	                                </tr>
 	                                <tr>
-	                                    <th>남자</th>
-	                                    <th>여자</th>
-	                                    <th>계</th>
-	                                    <th>남자</th>
-	                                    <th>여자</th>
-	                                    <th>계</th>
-	                                    <th>남자</th>
-	                                    <th>여자</th>
-	                                    <th>계</th>
-	                                    <th>남자</th>
-	                                    <th>여자</th>
-	                                    <th>계</th>
-	                                    <th>남자</th>
-	                                    <th>여자</th>
-	                                    <th>계</th>
+	                                    <th style="top: 44px;">남자</th>
+	                                    <th style="top: 44px;">여자</th>
+	                                    <th style="top: 44px;">계</th>
+	                                    <th style="top: 44px;">남자</th>
+	                                    <th style="top: 44px;">여자</th>
+	                                    <th style="top: 44px;">계</th>
+	                                    <th style="top: 44px;">남자</th>
+	                                    <th style="top: 44px;">여자</th>
+	                                    <th style="top: 44px;">계</th>
+	                                    <th style="top: 44px;">남자</th>
+	                                    <th style="top: 44px;">여자</th>
+	                                    <th style="top: 44px;">계</th>
+	                                    <th style="top: 44px;">남자</th>
+	                                    <th style="top: 44px;">여자</th>
+	                                    <th style="top: 44px;">계</th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>
@@ -116,7 +116,7 @@
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '240'}">기독교</c:if>
 					                        	<c:if test="${resultList.ASSOCIATIONCODE eq '전체 합계'}">전체 합계</c:if>
 		                                    </td>
-		                                    <td>
+		                                    <td style="left: unset;">
 		                                    	<c:if test="${empty resultList.registerconfirm}">0</c:if>
 		                                    	<c:if test="${!empty resultList.registerconfirm}">${resultList.registerconfirm}</c:if>
 	                                    	</td>

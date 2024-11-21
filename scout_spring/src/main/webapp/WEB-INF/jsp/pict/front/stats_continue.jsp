@@ -55,16 +55,16 @@
 	                            		<th colspan="5" style="text-align:center">계속</th>
 	                            	</tr>
 	                                <tr>
-	                                    <th>비버</th>
-	                                    <th>컵</th>
-	                                    <th>스카우트</th>
-	                                    <th>벤처</th>
-	                                    <th>복합</th>
-	                                    <th>비버</th>
-	                                    <th>컵</th>
-	                                    <th>스카우트</th>
-	                                    <th>벤처</th>
-	                                    <th>복합</th>
+	                                    <th style="top: 44px;">비버</th>
+	                                    <th style="top: 44px;">컵</th>
+	                                    <th style="top: 44px;">스카우트</th>
+	                                    <th style="top: 44px;">벤처</th>
+	                                    <th style="top: 44px;">복합</th>
+	                                    <th style="top: 44px;">비버</th>
+	                                    <th style="top: 44px;">컵</th>
+	                                    <th style="top: 44px;">스카우트</th>
+	                                    <th style="top: 44px;">벤처</th>
+	                                    <th style="top: 44px;">복합</th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>

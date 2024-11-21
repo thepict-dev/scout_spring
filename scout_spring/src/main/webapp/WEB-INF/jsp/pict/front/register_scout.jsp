@@ -99,8 +99,8 @@
 	                                        </colgroup>
 	                                        <thead>
 	                                            <tr>
-	                                                <th style="position: unset;"><input type="checkbox" class="check" title="전체선택" id="leader_all_check" onchange="allCheck_left_leader(this);" data-check="left_leader_list"><label for="leader_all_check" class="lableOnly"></label></th>
-	                                                <th style="position: unset;">구분</th>
+	                                                <th><input type="checkbox" class="check" title="전체선택" id="leader_all_check" onchange="allCheck_left_leader(this);" data-check="left_leader_list"><label for="leader_all_check" class="lableOnly"></label></th>
+	                                                <th style="left: 67.5px;">구분</th>
 	                                                <th>회원번호</th>
 	                                                <th>성명</th>
 	                                                <th>생년월일</th>

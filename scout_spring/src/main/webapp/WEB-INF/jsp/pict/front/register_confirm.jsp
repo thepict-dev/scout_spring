@@ -76,11 +76,11 @@
 	                                                <th rowspan="2">최종승인일</th>
 	                                            </tr>
 	                                            <tr>
-	                                                <th>지도자</th>
-	                                                <th>대원</th>
-	                                                <th>연맹지</th>
-	                                                <th>금액</th>
-	                                                <th>신청일</th>
+	                                                <th style="top: 44px;">지도자</th>
+	                                                <th style="top: 44px;">대원</th>
+	                                                <th style="top: 44px;">연맹지</th>
+	                                                <th style="top: 44px;">금액</th>
+	                                                <th style="top: 44px;">신청일</th>
 	                                            </tr>
 	                                        </thead>
 	                                        <tbody id="leader_target_list">

@@ -57,27 +57,27 @@
 	                            <thead>
 	                            	<tr>
 	                            		<th rowspan="2" style="text-align:center">연맹</th>
-	                            		<th colspan="9" style="text-align:center">${pictVO.search_year}년 인원</th>
+	                            		<th colspan="9" style="text-align:center; left: unset;">${pictVO.search_year}년 인원</th>
 	                            		<th colspan="8" style="text-align:center">전년대비 비율</th>
 	                            	</tr>
 	                                <tr>
-	                                    <th>비버</th>
-	                                    <th>컵</th>
-	                                    <th>스카우트</th>
-	                                    <th>벤처</th>
-	                                    <th>복합</th>
-	                                    <th>기타</th>
-	                                    <th>미해당</th>
-	                                    <th>미승인</th>
-	                                    <th>계</th>
-	                                    <th>비버</th>
-	                                    <th>컵</th>
-	                                    <th>스카우트</th>
-	                                    <th>벤처</th>
-	                                    <th>복합</th>
-	                                    <th>기타</th>
-	                                    <th>미해당</th>
-	                                    <th>미승인</th>
+	                                    <th style="top: 44px;">비버</th>
+	                                    <th style="top: 44px;">컵</th>
+	                                    <th style="top: 44px;">스카우트</th>
+	                                    <th style="top: 44px;">벤처</th>
+	                                    <th style="top: 44px;">복합</th>
+	                                    <th style="top: 44px;">기타</th>
+	                                    <th style="top: 44px;">미해당</th>
+	                                    <th style="top: 44px;">미승인</th>
+	                                    <th style="top: 44px;">계</th>
+	                                    <th style="top: 44px;">비버</th>
+	                                    <th style="top: 44px;">컵</th>
+	                                    <th style="top: 44px;">스카우트</th>
+	                                    <th style="top: 44px;">벤처</th>
+	                                    <th style="top: 44px;">복합</th>
+	                                    <th style="top: 44px;">기타</th>
+	                                    <th style="top: 44px;">미해당</th>
+	                                    <th style="top: 44px;">미승인</th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>
@@ -91,7 +91,7 @@
 	                                    			전체 합계
 	                                    		</c:if>
 	                                    	</td>
-		                                    <td>
+		                                    <td style="left: unset;">
 		                                    	<c:if test="${empty resultList.currentbeaber}">0</c:if>
 		                                    	<c:if test="${!empty resultList.currentbeaber}">${resultList.currentbeaber}</c:if>
 	                                    	</td>
