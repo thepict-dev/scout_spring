@@ -928,6 +928,7 @@
 		left outer join troop t on t.TROOPNO = l.TROOPNO 
 		left outer join association_price ap on ap.ASSOCIATIONCODE = l.ASSOCIATIONCODE and ap.YEAR = #{pre_year}
 		where l.TROOPNO = #{TROOPNO} and left(l.STARTDAY, 4) = #{pre_year} and l.CONFIRMY = #{CONFIRMY}
+		order by m.KNAME asc
 	</select>
 	
 	<select id="prev_scout_list" resultType="pictVO">
@@ -944,6 +945,7 @@
 		left outer join scoutpositioncode sp on sp.SCOUTPOSITIONCODE = s.SCOUTPOSITIONCODE
 		left outer join scoutclscode sc on sc.SCOUTCLSCODE = s.SCOUTCLSCODE
 		where s.TROOPNO = #{TROOPNO} and left(STARTDAY, 4) = #{pre_year} and CONFIRMY =#{CONFIRMY}
+		order by m.KNAME asc
 	</select>
 	
 	<select id="former_list" resultType="pictVO">
@@ -2040,6 +2042,74 @@
 		FROM member 
 		WHERE LIFEMEMBERY = 'Y';
 				
+	</select>
+	
+	
+	<select id="current_leader_list" resultType="pictVO">
+		select l.ASSOCIATIONCODE, l.idx, l.ADMINY, m.KNAME, m.LIFEMEMBERY, LEADERPOSITIONCODE1, LEADERPOSITIONCODE2, l.SCOUTMAGACNT, m.MEMBERNO, t.TROOPNAME, t.PARENT_TROOPNO as PARENTTROOPNO,
+		(case when l.LEADERPOSITIONCODE1 = '01' then '협조' when l.LEADERPOSITIONCODE1 = '02' then '훈육' else '전종' end) as LEADERPOSITION,
+		(select LEADERPOSITIONNAME from leaderpositioncode lp where lp.LEADERPOSITIONCODE1 = l.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2) as LEADERPOSITIONNAME,
+		m.SEX, m.BIRTHDAY, l.ENTRYFEE, l.SCOUTMAGACNT
+		from leader l
+		left outer join member m on l.MEMBERNO = m.MEMBERNO
+		left outer join troop t on t.TROOPNO = l.TROOPNO 
+		where  left(l.STARTDAY, 4) = #{search_year} and l.CONFIRMY = 'N' and l.TROOPNO = #{TROOPNO}
+		order by m.KNAME asc;
+	</select>
+	
+	<select id="current_scout_list" resultType="pictVO">
+		select s.ASSOCIATIONCODE, s.idx, m.KNAME, m.LIFEMEMBERY, s.SCOUTCLSCODE, s.SCOUTPOSITIONCODE, s.SCOUTMAGACNT, m.MEMBERNO, t.TROOPNAME, t.PARENT_TROOPNO as PARENTTROOPNO,
+		sp.SCOUTPOSITIONNAME, sc.SCOUTCLSNAME,
+		m.SEX, m.BIRTHDAY, s.ENTRYFEE, s.SCOUTMAGACNT
+		from scout s
+		left outer join member m on s.MEMBERNO = m.MEMBERNO
+		left outer join troop t on t.TROOPNO = s.TROOPNO
+		left outer join scoutpositioncode sp on sp.SCOUTPOSITIONCODE = s.SCOUTPOSITIONCODE
+		left outer join scoutclscode sc on sc.SCOUTCLSCODE = s.SCOUTCLSCODE
+		where left(STARTDAY, 4) = #{search_year} and CONFIRMY ='N' and s.TROOPNO = #{TROOPNO}
+		order by m.KNAME asc
+	</select>
+	
+	
+	
+	<select id="leader_organ_list" resultType="pictVO">
+		SELECT 
+		    a.ASSOCIATIONCODE,
+		    a.ASSOCIATIONNAME,
+		    t.TROOPNO,
+		    t.TROOPNAME,
+			COUNT(CASE WHEN l.CONFIRMY = 'N' AND LEFT(l.STARTDAY, 4) = #{search_year} THEN 1 END) AS LEADERCNT,
+			SUM(CASE WHEN l.CONFIRMY = 'N' AND LEFT(l.STARTDAY, 4) = #{search_year} THEN l.SCOUTMAGACNT ELSE 0 END) AS LEADERMAGACNT, 
+			SUM(CASE WHEN l.CONFIRMY = 'N' AND LEFT(l.STARTDAY, 4) = #{search_year} THEN l.ENTRYFEE ELSE 0 END) AS LEADERPRICE,
+			max(l.ENTERDATE) as ENTERDATE, max(l.CONFIRMDATE) as CONFIRMDATE
+		FROM troop t
+		JOIN associationcode a ON a.ASSOCIATIONCODE = t.ASSOCIATIONCODE
+		LEFT JOIN leader l ON l.TROOPNO = t.TROOPNO 
+		WHERE 
+		    (l.TROOPNO IS NOT NULL )  
+		    AND LEFT(l.STARTDAY, 4) = #{search_year}
+		    AND l.CONFIRMY = 'N'
+		GROUP BY a.ASSOCIATIONCODE, a.ASSOCIATIONNAME, t.TROOPNO, t.TROOPNAME
+	</select>
+	
+	<select id="scout_organ_list" resultType="pictVO">
+		SELECT 
+		    a.ASSOCIATIONCODE,
+		    a.ASSOCIATIONNAME,
+		    t.TROOPNO,
+		    t.TROOPNAME,
+			COUNT(CASE WHEN s.CONFIRMY = 'N' AND LEFT(s.STARTDAY, 4) = #{search_year} THEN 1 END) AS SCOUTCNT,
+			SUM(CASE WHEN s.CONFIRMY = 'N' AND LEFT(s.STARTDAY, 4) = #{search_year} THEN s.SCOUTMAGACNT ELSE 0 END) AS SCOUTMAGACNT, 
+			SUM(CASE WHEN s.CONFIRMY = 'N' AND LEFT(s.STARTDAY, 4) = #{search_year} THEN s.ENTRYFEE ELSE 0 END) AS SCOUTPRICE,
+			max(s.ENTERDATE) as ENTERDATE, max(s.CONFIRMDATE) as CONFIRMDATE
+		FROM troop t
+		JOIN associationcode a ON a.ASSOCIATIONCODE = t.ASSOCIATIONCODE
+		LEFT JOIN scout s ON s.TROOPNO = t.TROOPNO 
+		WHERE 
+		    (s.TROOPNO IS NOT NULL )  
+		    AND LEFT(s.STARTDAY, 4) = #{search_year}
+		    AND s.CONFIRMY = 'N'
+		GROUP BY a.ASSOCIATIONCODE, a.ASSOCIATIONNAME, t.TROOPNO, t.TROOPNAME
 	</select>
 	
 	

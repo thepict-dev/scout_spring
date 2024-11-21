@@ -3,6 +3,7 @@
 <%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn"	   uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>	
 <html lang="ko">
@@ -47,31 +48,6 @@
 			                        <input type="text" name="search_text" id="search_text" class="lgThinInput" placeholder="내용을 입력해주세요..." onkeypress="if(event.keyCode == 13){organ_search('number');}">
                                 </div>
                             </div>
-                            <!-- 
-                            <div class="searchContainer">
-                                <p class="inputCaption">단위대 구분</p>
-                                <div class="inputsAlign">
-                                    <select name="TROOPCLSCODE1" id="TROOPCLSCODE1" onchange="fn_troopclscode_search()" class="lgThinSelect">
-                                        <option value="">-----</option>
-                                        <option value="01">학교대</option>
-                                        <option value="02">지역대</option>
-                                        <option value="03">동우대</option>
-                                        <option value="04">특수대</option>
-                                    </select>
-                                    <select name="TROOPCLSCODE2" id="TROOPCLSCODE2" class="lgThinSelect">
-                                        <option value="">-----</option>
-                                    </select>
-                                </div>
-                            </div>
-                             -->
-                             <!-- 
-                            <div class="searchContainer">
-                                <p class="inputCaption">단위대명</p>
-                                <div class="inputsAlign">
-                                    <input type="text"  name="TROOPNAME" id="TROOPNAME" placeholder="내용을 입력하세요…" class="lgThinInput">
-                                </div>
-                            </div>
-                             -->
                             <div class="btnContainer organ" style="justify-content: flex-start; margin-top: 5px;">
                                 <a href="#regiSearchPopup" onclick="troop_search()" class="smButton searches purple regiSearch"><img src="/front_img/search2.png" alt="">조회</a>
                             </div>
@@ -79,54 +55,85 @@
                         <div class="registrationWrap">
                             <div class="doubleTable">
 	                            <div class="tableContainer">
-	                                <h2 class="subTitles">당해년도</h2>
 	                                <div class="tableWrapper" style="height: 300px;">
 	                                    <table style="min-width: unset;">
 	                                        <colgroup>
-	                                            <col width="8%" />
-	                                            <col width="16%" />
-	                                            <col width="11%" />
-	                                            <col width="15%" />
-	                                            <col width="15%" />
-	                                            <col width="15%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
 	                                            <col width="20%" />
 	                                        </colgroup>
 	                                        <thead>
 	                                            <tr>
-	                                                <th style="white-space: nowrap;"><input type="checkbox" class="check" title="전체선택" id="leader_all_check" onchange="allCheck_left_leader(this);" data-check="left_leader_list"><label for="leader_all_check" class="lableOnly"></label></th>
-	                                                <th style="left: unset;">관리지도자여부</th>
-	                                                <th>이름</th>
-	                                                <th>평생회원여부</th>
-	                                                <th>지도자직책1</th>
-	                                                <th>지도자직책2</th>
-	                                                <th>연맹지구독여부</th>
+	                                                <th rowspan="2">연맹</th>
+	                                                <th rowspan="2">단위대</th>
+	                                                <th rowspan="2">일괄승인</th>
+	                                                <th colspan="5">승인 신청 현황</th>
+	                                                <th rowspan="2">최종승인일</th>
+	                                            </tr>
+	                                            <tr>
+	                                                <th>지도자</th>
+	                                                <th>대원</th>
+	                                                <th>연맹지</th>
+	                                                <th>금액</th>
+	                                                <th>신청일</th>
 	                                            </tr>
 	                                        </thead>
 	                                        <tbody id="leader_target_list">
-	                                            
+	                                            <c:forEach var="mergedList" items="${mergedList}" varStatus="status">
+		                                            <tr onclick="fn_troop_person_list('${mergedList.TROOPNO}')">
+			                                            <td>${mergedList.ASSOCIATIONNAME}</td>
+			                                            <td>${mergedList.TROOPNAME}</td>
+			                                            <td><input type="checkbox" class="check" title="단위대선택" id="troop_chk_${mergedList.TROOPNO}" data-id="${mergedList.TROOPNO}"><label for="troop_chk_${mergedList.TROOPNO}" class="lableOnly"></label></td>
+			                                            <td><fmt:formatNumber value="${mergedList.LEADERCNT}" maxFractionDigits="0" /></td>
+			                                            <td><fmt:formatNumber value="${mergedList.SCOUTCNT}" maxFractionDigits="0" /></td>
+			                                            <td><fmt:formatNumber value="${mergedList.SCOUTMAGACNT + mergedList.LEADERMAGACNT}" maxFractionDigits="0" /></td>
+			                                            <td><fmt:formatNumber value="${mergedList.SCOUTPRICE + mergedList.LEADERPRICE}" maxFractionDigits="0" /></td>
+			                                            <td>${fn:substring(mergedList.ENTERDATE,0,11)}</td>
+			                                            <td>${fn:substring(mergedList.CONFIRMDATE,0,11)}</td>
+		                                            </tr>
+		                                        </c:forEach>
 	                                        </tbody>
 	                                    </table>
 	                                </div>
 	                            </div>
+	                            
 	                            <div class="tableContainer">
+	                            	<h2 class="subTitles">상세리스트</h2>
 	                                <div class="tableWrapper" style="height: 300px;">
 	                                    <table style="min-width: unset;">
 	                                        <colgroup>
+	                                            <col width="10%" />
 	                                            <col width="8%" />
-	                                            <col width="15%" />
-	                                            <col width="15%" />
-	                                            <col width="15%" />
-	                                            <col width="15%" />
-	                                            <col width="22%" />
+	                                            <col width="8%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="8%" />
+	                                            <col width="10%" />
+	                                            <col width="10%" />
+	                                            <col width="8%" />
+	                                            <col width="8%" />
+	                                            <col width="8%" />
 	                                        </colgroup>
 	                                        <thead>
 	                                            <tr>
-	                                                <th style="white-space: nowrap;"><input type="checkbox" class="check" title="전체선택" id="scout_all_check" onchange="allCheck_left_scout(this);" data-check="left_scout_list"><label for="scout_all_check" class="lableOnly"></label></th>
-	                                                <th style="left: unset;">이름</th>
-	                                                <th>평생회원여부</th>
-	                                                <th>스카우트구분</th>
-	                                                <th>스카우트직책</th>
-	                                                <th>연맹지구독여부</th>
+	                                               	<th>단위대</th>
+	                                               	<th>개별체크</th>
+	                                               	<th>구분</th>
+	                                               	<th>회원번호</th>
+	                                               	<th>성명</th>
+	                                               	<th>생년월일</th>
+	                                               	<th>성별</th>
+	                                               	<th>직책1</th>
+	                                               	<th>직책2</th>
+	                                               	<th>등록비</th>
+	                                               	<th>연맹지</th>
+	                                               	<th>계</th>
 	                                            </tr>
 	                                        </thead>
 	                                        <tbody id="scout_target_list">
@@ -205,6 +212,89 @@
 				$('.contentsContainer select').niceSelect('update')	
 			}
 		});
+		
+		function fn_troop_person_list(troopno){
+			var param = {
+					troopno : troopno,
+				}
+			
+			$.ajax({
+				url : "/admin/current_troop_info"
+				, type : "POST"
+				, data : JSON.stringify(param)
+				, contentType : "application/json"
+				, dataType : "json"
+				, async : true
+				, success : function(data, status, xhr) {
+					console.log(data)
+					$('#scout_target_list').children().remove();
+					var leader_html = ""
+					var scout_html = ""
+					var leader_list = data.leader_list
+					var scout_list = data.scout_list
+					if(data.leader_list && data.leader_list.length > 0){
+						for(var i=0; i<leader_list.length; i++){
+							var maga = "N"
+							if(leader_list[i].scoutmagacnt >= '1') maga = ""
+							leader_html +=
+								'<tr>'+
+								'<td>'+leader_list[i].troopname+ '</td>' +
+		                    	'<td style="position: unset;">'+
+		                        '<input type="checkbox" class="check" title="사람선택" id="person_chk_'+leader_list[i].memberno+'"><label for="person_chk_'+leader_list[i].memberno+'" class="lableOnly"></label>'+
+		                    	'</td>'+
+		                    	'<td>지도자</td>'+
+		                    	'<td>'+leader_list[i].memberno+'</td>'+
+		                    	'<td>'+leader_list[i].kname+'</td>'+
+		                    	'<td>'+leader_list[i].birthday+'</td>'+
+		                    	'<td>'+leader_list[i].sex+'</td>'+
+		                    	'<td>'+leader_list[i].leaderposition+'</td>'+
+		                    	'<td>'+leader_list[i].leaderpositionname+'</td>'+
+		                    	'<td>'+leader_list[i].entryfee+'</td>'+
+		                    	'<td>'+leader_list[i].scoutmagacnt+'</td>'+
+		                    	'<td>'+99999+'</td>'+
+		                		'</tr>'
+							
+						}
+						$('#scout_target_list').append(leader_html)
+						$('.contentsContainer select').niceSelect('update')
+					}
+					if(data.scout_list && data.scout_list.length > 0){
+						for(var i=0; i<scout_list.length; i++){
+							var maga = "N"
+							if(scout_list[i].scoutmagacnt >= '1') maga = "Y"
+							scout_html +=
+								'<tr>'+
+								'<td>'+scout_list[i].troopname+ '</td>' +
+		                    	'<td style="position: unset;">'+
+		                        '<input type="checkbox" class="check" title="사람선택" id="person_chk_'+scout_list[i].memberno+'"><label for="person_chk_'+scout_list[i].memberno+'" class="lableOnly"></label>'+
+		                    	'</td>'+
+		                    	'<td>대원</td>'+
+		                    	'<td>'+scout_list[i].memberno+'</td>'+
+		                    	'<td>'+scout_list[i].kname+'</td>'+
+		                    	'<td>'+scout_list[i].birthday+'</td>'+
+		                    	'<td>'+scout_list[i].sex+'</td>'+
+		                    	'<td>'+scout_list[i].scoutclsname+'</td>'+
+		                    	'<td>'+scout_list[i].scoutpositionname+'</td>'+
+		                    	'<td>'+scout_list[i].entryfee+'</td>'+
+		                    	'<td>'+scout_list[i].scoutmagacnt+'</td>'+
+		                    	'<td>'+99999+'</td>'+
+		                		'</tr>'
+						}
+						
+						$('#scout_target_list').append(scout_html)
+						
+						
+						$('.contentsContainer select').niceSelect('update')
+					}
+				}
+				
+				, error : function(xhr, status, error) {
+					console.log(xhr)
+					console.log("에러")
+					alert("오류가 발생하였습니다.")
+				}
+			});
+		}
 	
 		//지도자 좌측
 		function allCheck_left_leader(target) {
@@ -271,6 +361,7 @@
 			}
 			
 		}
+		/*
 		function choose_troop(){
 			var listVar = $('input[name=selection_list]:checked').val();
 			$('#troop_no').val(listVar);
@@ -352,6 +443,7 @@
 			});
 			
 		}
+		*/
 		function fn_get_unitylist_org(){
 			var param = {
 					associationcode : $('#ASSOCIATIONCODE').val(),

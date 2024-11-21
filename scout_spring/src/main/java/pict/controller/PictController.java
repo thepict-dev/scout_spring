@@ -3505,9 +3505,60 @@ public class PictController {
 		model.addAttribute("association_list", association_list);
 		model.addAttribute("unity_list", unity_list);
 		
+		
+		
+		//대승인 들어가자마자 지도자, 대원 하나라도 등록된게 있는지 조회해서 리스트 취합
+		Date today = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String current_year = dateFormat.format(today);
+		pictVO.setSearch_year(current_year+"");
+		
+		List<PictVO> leader_organ_list = pictService.leader_organ_list(pictVO);
+		
+		
+		List<PictVO> scout_organ_list = pictService.scout_organ_list(pictVO);
+		
+		List<PictVO> mergedList = mergeAndRemoveDuplicates(leader_organ_list, scout_organ_list);
+		
+		mergedList.sort(Comparator.comparing(PictVO::getASSOCIATIONCODE));
+
+		model.addAttribute("mergedList", mergedList);
+		
 		model.addAttribute("pictVO", pictVO);
 		return "pict/front/register_confirm";
 	}
+	
+	
+	public static List<PictVO> mergeAndRemoveDuplicates(List<PictVO> leaderList, List<PictVO> scoutList) {
+        // Map을 사용해서 ASSOCIATIONCODE와 TROOPNO를 기준으로 합침
+        Map<String, PictVO> mergedMap = new HashMap<>();
+
+        // leader_organ_list에서 데이터 처리
+        for (PictVO leaderVO : leaderList) {
+            String key = leaderVO.getASSOCIATIONCODE() + "-" + leaderVO.getTROOPNO();
+            mergedMap.putIfAbsent(key, leaderVO);
+        }
+
+        // scout_organ_list에서 데이터 처리
+        for (PictVO scoutVO : scoutList) {
+            String key = scoutVO.getASSOCIATIONCODE() + "-" + scoutVO.getTROOPNO();
+            PictVO existingVO = mergedMap.get(key);
+            if (existingVO != null) {
+                // 기존 값에 추가 (SCOUTCNT, SCOUTMAGACNT, SCOUTPRICE 합침)
+                existingVO.setSCOUTCNT(scoutVO.getSCOUTCNT());
+                existingVO.setSCOUTMAGACNT(scoutVO.getSCOUTMAGACNT());
+                existingVO.setSCOUTPRICE(scoutVO.getSCOUTPRICE());
+            } else {
+                // 새로운 ASSOCIATIONCODE와 TROOPNO면 추가
+                mergedMap.put(key, scoutVO);
+            }
+        }
+
+        return new ArrayList<>(mergedMap.values());
+    }
+
+	
+	
 	//대승인에서 단위대 대원/리스트 당해년도꺼 가져와
 	@RequestMapping("/current_troop_info")
 	@ResponseBody
@@ -3521,13 +3572,15 @@ public class PictController {
 		HashMap<String, Object> map = new HashMap<String, Object>();		
 		pictVO.setTROOPNO(troopno);
 		pictVO.setCONFIRMY("N");
-		List<PictVO> prev_leader_list = pictService.prev_leader_list(pictVO);
+		List<PictVO> prev_leader_list = pictService.current_leader_list(pictVO);
 		if(prev_leader_list.size() > 0) {
+			System.out.println("지도자가 있어야해");
 			map.put("leader_list", prev_leader_list);
 		}
 		
-		List<PictVO> prev_scout_list = pictService.prev_scout_list(pictVO);
+		List<PictVO> prev_scout_list = pictService.current_scout_list(pictVO);
 		if(prev_scout_list.size() > 0) {
+			System.out.println("대원이 있어야해");
 			map.put("scout_list", prev_scout_list);
 			
 		}

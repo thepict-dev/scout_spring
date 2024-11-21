@@ -677,7 +677,7 @@
                             '<td id="owner_type_'+data.scout_list[i].memberno+'" style="position: unset;">대원</td>' +
                             '<td style="left:unset; vertical-align: middle;" id="scout_memberno_'+data.scout_list[i].memberno+'">'+data.scout_list[i].memberno+'</td>'+
                             '<td style="left:unset; vertical-align: middle;" id="scout_name_'+data.scout_list[i].memberno+'">'+data.scout_list[i].kname+'</td>'+
-                            '<td id="scout_birthday_'+data.scout_list[i].memberno+'">'+data.leader_list[i].birthday+'</td>'+
+                            '<td id="scout_birthday_'+data.scout_list[i].memberno+'">'+data.scout_list[i].birthday+'</td>'+
                         	'<td id="scout_sex_'+data.scout_list[i].memberno+'">'+sex+'</td>'+
                             
                             '<td>'+
@@ -977,7 +977,7 @@
 	                    	'<td style="position: unset;">'+
 	                        '<input type="checkbox" name="scout_remove_chk" id="selection_act_scout_'+check_list[i].MEMBERNO+'" data-id="'+check_list[i].MEMBERNO+'"><label for="selection_act_scout_'+check_list[i].MEMBERNO+'" class="lableOnly"></label>'+
 	                    	'</td>'+
-	                    	'<td style="position: unset;">지도자</td>'+
+	                    	'<td style="position: unset;">대원</td>'+
 	                    	'<td>'+check_list[i].MEMBERNO+'</td>'+
 	                    	'<td>'+check_list[i].KNAME+'</td>'+
 	                    	'<td>'+check_list[i].birthday+'</td>'+

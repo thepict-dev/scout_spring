@@ -242,6 +242,14 @@ public interface PictMapper {
 
 	PictVO life_sub_info(PictVO pictVO) throws Exception;
 
+	List<PictVO> current_leader_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> current_scout_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> leader_organ_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> scout_organ_list(PictVO pictVO) throws Exception;
+
 	
 
 }

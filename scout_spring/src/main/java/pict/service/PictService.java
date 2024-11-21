@@ -240,6 +240,14 @@ public interface PictService {
 
 	public PictVO life_sub_info(PictVO pictVO) throws Exception;
 
+	public List<PictVO> current_leader_list(PictVO pictVO) throws Exception;
+
+	public List<PictVO> current_scout_list(PictVO pictVO) throws Exception;
+
+	public List<PictVO> leader_organ_list(PictVO pictVO) throws Exception;
+
+	public List<PictVO> scout_organ_list(PictVO pictVO) throws Exception;
+
 
 
 }

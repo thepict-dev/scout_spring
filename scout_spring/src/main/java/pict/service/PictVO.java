@@ -407,7 +407,29 @@ public class PictVO extends PictDefaultVO {
 	private String nationcode;
 	
 	
+	private String LEADERPRICE;
+	private String SCOUTPRICE;
+	private String CONFIRMDATE;
 	
+	
+	public String getCONFIRMDATE() {
+		return CONFIRMDATE;
+	}
+	public void setCONFIRMDATE(String cONFIRMDATE) {
+		CONFIRMDATE = cONFIRMDATE;
+	}
+	public String getLEADERPRICE() {
+		return LEADERPRICE;
+	}
+	public void setLEADERPRICE(String lEADERPRICE) {
+		LEADERPRICE = lEADERPRICE;
+	}
+	public String getSCOUTPRICE() {
+		return SCOUTPRICE;
+	}
+	public void setSCOUTPRICE(String sCOUTPRICE) {
+		SCOUTPRICE = sCOUTPRICE;
+	}
 	public String getNationcode() {
 		return nationcode;
 	}
