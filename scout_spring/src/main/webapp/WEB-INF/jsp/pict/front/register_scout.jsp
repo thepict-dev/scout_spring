@@ -145,9 +145,9 @@
 	                                        </colgroup>
 	                                        <thead>
 	                                            <tr>
-	                                                <th style="position: unset;">선택</th>
-	                                                <th style="position: unset;">구분</th>
-	                                                <th>회원번호</th>
+	                                                <th>선택</th>
+	                                                <th style="left: 69px;">구분</th>
+	                 	                            <th>회원번호</th>
 	                                                <th>성명</th>
 	                                                <th>생년월일</th>
 	                                                <th>성별</th>
