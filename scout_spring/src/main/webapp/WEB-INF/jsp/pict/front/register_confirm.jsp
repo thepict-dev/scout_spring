@@ -105,7 +105,7 @@
 	                            </div>
 	                            <div class="tableButtons inputsPd topBd" style="justify-content: flex-end;">
 		                            <div class="btnContainer organ">
-		                                <a href="#regiConfirmPopup" class="normalButton purple" onclick="whole_confirm()">승인</a>
+		                                <a href="#lnl" id="regiConfirmButton" class="normalButton purple" onclick="whole_confirm()">승인</a>
 		                            </div>
 		                        </div>
 	                            
@@ -260,6 +260,11 @@
 	<%@ include file="./include/error_page.jsp" %>
 	</body>
 	<script>
+		
+		$('#regiConfirmButton').click(function(){
+			$('#regiConfirmPopup').addClass('active');
+		});
+		
 		$(document).ready(function() {
 		    
 		    var login_associationcode = '${session}'
