@@ -3513,6 +3513,9 @@ public class PictController {
 		String current_year = dateFormat.format(today);
 		pictVO.setSearch_year(current_year+"");
 		
+		System.out.println("연맹번호 : " + pictVO.getASSOCIATIONCODE());
+
+		System.out.println("연맹번호 로그인 : " + associationcode);
 		List<PictVO> leader_organ_list = pictService.leader_organ_list(pictVO);
 		
 		

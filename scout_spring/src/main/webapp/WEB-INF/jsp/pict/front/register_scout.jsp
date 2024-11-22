@@ -830,6 +830,7 @@
 					var memberno = $(this).data("id");
 					var type = $('#owner_type_'+memberno).text()
 					if(type == '지도자'){
+						debugger
 						var ADMINY = $('#leader_adminy_'+memberno).val()
 						var KNAME = $('#leader_name_'+memberno).text()
 						var LIFEMEMBERY = "";
@@ -875,7 +876,7 @@
 						json.price = price
 						json.SCOUTMAGACNT = SCOUTMAGACNT
 						json.type = "leader"
-						json.ASSOCIATIONCODE = troop_associationcode
+						json.ASSOCIATIONCODE = target_associationcode
 						json.TROOPNO = $('#troop_no').val()
 						json.PARRENTTROOPNO = $('#parrent_troop_no').val()
 						json.maga_price = maga_price

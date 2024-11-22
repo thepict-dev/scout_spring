@@ -25,6 +25,7 @@
             <div class="joinContainer">
                 <div class="fomrTabContent signContainer" style="border-top: 0;">
                     <form action="" id="register" name="register" method="post" enctype="multipart/form-data">
+                    <!-- 
                     	<h2 class="subTitles" style="padding: 16px 24px; background: var(--grey-50);">조회</h2>
                         <div class="regiSearch" style="padding-bottom: 16px; background: var(--grey-50);">
                             <div class="searchContainer">
@@ -52,6 +53,7 @@
                                 <a href="#regiSearchPopup" onclick="troop_search()" class="smButton searches purple regiSearch"><img src="/front_img/search2.png" alt="">조회</a>
                             </div>
                         </div>
+                         -->
                         <div class="registrationWrap">
                             <div class="doubleTable">
 	                            <div class="tableContainer">
@@ -72,15 +74,15 @@
 	                                                <th rowspan="2">연맹</th>
 	                                                <th rowspan="2">단위대</th>
 	                                                <th rowspan="2">일괄승인</th>
-	                                                <th colspan="5">승인 신청 현황</th>
-	                                                <th rowspan="2">최종승인일</th>
+	                                                <th colspan="5" style="text-align:center">승인 신청 현황</th>
+	                                                <th rowspan="2" style="text-align:center">최종승인일</th>
 	                                            </tr>
 	                                            <tr>
-	                                                <th style="top: 44px;">지도자</th>
-	                                                <th style="top: 44px;">대원</th>
-	                                                <th style="top: 44px;">연맹지</th>
-	                                                <th style="top: 44px;">금액</th>
-	                                                <th style="top: 44px;">신청일</th>
+	                                                <th style="top: 44px; text-align:center">지도자</th>
+	                                                <th style="top: 44px; text-align:center">대원</th>
+	                                                <th style="top: 44px; text-align:center">연맹지</th>
+	                                                <th style="top: 44px; text-align:center">금액</th>
+	                                                <th style="top: 44px; text-align:center">신청일</th>
 	                                            </tr>
 	                                        </thead>
 	                                        <tbody id="leader_target_list">
@@ -88,19 +90,24 @@
 		                                            <tr onclick="fn_troop_person_list('${mergedList.TROOPNO}')">
 			                                            <td>${mergedList.ASSOCIATIONNAME}</td>
 			                                            <td>${mergedList.TROOPNAME}</td>
-			                                            <td><input type="checkbox" class="check" title="단위대선택" id="troop_chk_${mergedList.TROOPNO}" data-id="${mergedList.TROOPNO}"><label for="troop_chk_${mergedList.TROOPNO}" class="lableOnly"></label></td>
-			                                            <td><fmt:formatNumber value="${mergedList.LEADERCNT}" maxFractionDigits="0" /></td>
-			                                            <td><fmt:formatNumber value="${mergedList.SCOUTCNT}" maxFractionDigits="0" /></td>
-			                                            <td><fmt:formatNumber value="${mergedList.SCOUTMAGACNT + mergedList.LEADERMAGACNT}" maxFractionDigits="0" /></td>
-			                                            <td><fmt:formatNumber value="${mergedList.SCOUTPRICE + mergedList.LEADERPRICE}" maxFractionDigits="0" /></td>
-			                                            <td>${fn:substring(mergedList.ENTERDATE,0,11)}</td>
-			                                            <td>${fn:substring(mergedList.CONFIRMDATE,0,11)}</td>
+			                                            <td><input type="checkbox" class="check" name="troop_check" title="단위대선택" id="troop_chk_${mergedList.TROOPNO}" data-id="${mergedList.TROOPNO}"><label for="troop_chk_${mergedList.TROOPNO}" class="lableOnly"></label></td>
+			                                            <td style="text-align:center"><fmt:formatNumber value="${mergedList.LEADERCNT}" maxFractionDigits="0" /></td>
+			                                            <td style="text-align:center"><fmt:formatNumber value="${mergedList.SCOUTCNT}" maxFractionDigits="0" /></td>
+			                                            <td style="text-align:center"><fmt:formatNumber value="${mergedList.SCOUTMAGACNT + mergedList.LEADERMAGACNT}" maxFractionDigits="0" /></td>
+			                                            <td style="text-align:center"><fmt:formatNumber value="${mergedList.SCOUTPRICE + mergedList.LEADERPRICE}" maxFractionDigits="0" /></td>
+			                                            <td style="text-align:center">${fn:substring(mergedList.ENTERDATE,0,11)}</td>
+			                                            <td style="text-align:center">${fn:substring(mergedList.CONFIRMDATE,0,11)}</td>
 		                                            </tr>
 		                                        </c:forEach>
 	                                        </tbody>
 	                                    </table>
 	                                </div>
 	                            </div>
+	                            <div class="tableButtons inputsPd topBd" style="justify-content: flex-end;">
+		                            <div class="btnContainer organ">
+		                                <a href="#regiConfirmPopup" class="normalButton purple" onclick="whole_confirm()">승인</a>
+		                            </div>
+		                        </div>
 	                            
 	                            <div class="tableContainer">
 	                            	<h2 class="subTitles">상세리스트</h2>
@@ -146,12 +153,65 @@
                         </div>
                         <div class="tableButtons inputsPd topBd" style="justify-content: flex-end;">
                             <div class="btnContainer organ">
-                                <a href="#lnk" class="normalButton purple" onclick="fn_submit()">승인</a>
+                            	<a href="#lnk" class="normalButton purple" onclick="fn_cancel()">등록취소</a>
+								<a href="#lnk" class="normalButton purple" onclick="fn_confirm()">승인</a>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+    <!-- 최종팝업 -->
+    <div id="regiConfirmPopup" class="modalContainer">
+        <div class="modalInner lg">
+            <button type="button"><img src="/front_img/close.png" alt=""></button>
+            <div class="modalTit">
+                <p>대승인 리스트 확인</p>
+            </div>
+            <form action="">
+                <div class="regiConTop">
+                    <p id="final_sosok"></p>
+                </div>
+                <div class="tableContainer">
+                    <h2 class="subTitles">대등록 리스트</h2>
+                    <div class="tableWrapper" style="height: 500px;">
+                        <table style="min-width: unset;">
+                            <colgroup>
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="10%" />
+                            </colgroup>
+                            <thead>
+                            	<tr>
+                            		<th>지도자/대원</th>
+                            		<th>평생회원</th>
+                            		<th>직책/스카우트</th>
+                            		<th>직책</th>
+                            		<th>등록비</th>
+                            		<th>이름</th>
+                            		<th>연맹지구독</th>
+                            	</tr>
+                            </thead>
+                            <tbody id="final_list">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="regiConBottom">
+                    <p id="price_text"></p>
+                </div>
+                <div class="tableButtons" style="justify-content: flex-end; padding: 0 24px 60px 0;">
+                    <div class="buttons">
+                        <a href="#lnk" class="white normalButton" onclick="final_submit()">제출</a>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <!-- 단위대팝업 -->
@@ -213,6 +273,15 @@
 			}
 		});
 		
+		function whole_confirm(){
+			var check_list = []
+			$("input[name='troop_check']:checked").each(function (e){
+				var troopno = $(this).data("id");
+				console.log(troopno)
+			})
+		}
+		
+		
 		function fn_troop_person_list(troopno){
 			var param = {
 					troopno : troopno,
@@ -234,6 +303,12 @@
 					var scout_list = data.scout_list
 					if(data.leader_list && data.leader_list.length > 0){
 						for(var i=0; i<leader_list.length; i++){
+							var total_price = 0;
+							total_price = Number(leader_list[i].entryfee) + (Number(leader_list[i].scoutmagacnt) * 10000)
+							total_price = total_price +''
+							var sex = "";
+							if(leader_list[i].sex == 'W') sex = '여'
+							if(leader_list[i].sex == 'M') sex = '남'
 							var maga = "N"
 							if(leader_list[i].scoutmagacnt >= '1') maga = ""
 							leader_html +=
@@ -246,20 +321,25 @@
 		                    	'<td>'+leader_list[i].memberno+'</td>'+
 		                    	'<td>'+leader_list[i].kname+'</td>'+
 		                    	'<td>'+leader_list[i].birthday+'</td>'+
-		                    	'<td>'+leader_list[i].sex+'</td>'+
+		                    	'<td>'+sex+'</td>'+
 		                    	'<td>'+leader_list[i].leaderposition+'</td>'+
 		                    	'<td>'+leader_list[i].leaderpositionname+'</td>'+
-		                    	'<td>'+leader_list[i].entryfee+'</td>'+
+		                    	'<td>'+leader_list[i].entryfee.replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td>'+
 		                    	'<td>'+leader_list[i].scoutmagacnt+'</td>'+
-		                    	'<td>'+99999+'</td>'+
+		                    	'<td>'+total_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td>'+
 		                		'</tr>'
-							
 						}
 						$('#scout_target_list').append(leader_html)
 						$('.contentsContainer select').niceSelect('update')
 					}
 					if(data.scout_list && data.scout_list.length > 0){
 						for(var i=0; i<scout_list.length; i++){
+							var total_price = 0;
+							total_price = Number(scout_list[i].entryfee) + (Number(scout_list[i].scoutmagacnt) * 10000)
+							var sex = "";
+							if(scout_list[i].sex == 'W') sex = '여'
+							if(scout_list[i].sex == 'M') sex = '남'
+							total_price = total_price +''
 							var maga = "N"
 							if(scout_list[i].scoutmagacnt >= '1') maga = "Y"
 							scout_html +=
@@ -272,12 +352,12 @@
 		                    	'<td>'+scout_list[i].memberno+'</td>'+
 		                    	'<td>'+scout_list[i].kname+'</td>'+
 		                    	'<td>'+scout_list[i].birthday+'</td>'+
-		                    	'<td>'+scout_list[i].sex+'</td>'+
+		                    	'<td>'+sex+'</td>'+
 		                    	'<td>'+scout_list[i].scoutclsname+'</td>'+
 		                    	'<td>'+scout_list[i].scoutpositionname+'</td>'+
-		                    	'<td>'+scout_list[i].entryfee+'</td>'+
+		                    	'<td>'+scout_list[i].entryfee.replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td>'+
 		                    	'<td>'+scout_list[i].scoutmagacnt+'</td>'+
-		                    	'<td>'+99999+'</td>'+
+		                    	'<td>'+total_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td>'+
 		                		'</tr>'
 						}
 						
@@ -557,6 +637,10 @@
 		// 팝업닫기
 		$("#regiSearchPopup button").click(function(){
 		    $("#regiSearchPopup").removeClass("active");
+		});
+		// 팝업닫기
+		$("#regiConfirmPopup button").click(function(){
+		    $("#regiConfirmPopup").removeClass("active");
 		});
 	</script>
 </html>

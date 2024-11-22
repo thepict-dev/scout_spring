@@ -2049,7 +2049,7 @@
 		select l.ASSOCIATIONCODE, l.idx, l.ADMINY, m.KNAME, m.LIFEMEMBERY, LEADERPOSITIONCODE1, LEADERPOSITIONCODE2, l.SCOUTMAGACNT, m.MEMBERNO, t.TROOPNAME, t.PARENT_TROOPNO as PARENTTROOPNO,
 		(case when l.LEADERPOSITIONCODE1 = '01' then '협조' when l.LEADERPOSITIONCODE1 = '02' then '훈육' else '전종' end) as LEADERPOSITION,
 		(select LEADERPOSITIONNAME from leaderpositioncode lp where lp.LEADERPOSITIONCODE1 = l.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2) as LEADERPOSITIONNAME,
-		m.SEX, m.BIRTHDAY, l.ENTRYFEE, l.SCOUTMAGACNT
+		ifnull(m.SEX, '') SEX, ifnull(m.BIRTHDAY, '') BIRTHDAY, l.ENTRYFEE, l.SCOUTMAGACNT
 		from leader l
 		left outer join member m on l.MEMBERNO = m.MEMBERNO
 		left outer join troop t on t.TROOPNO = l.TROOPNO 
@@ -2059,8 +2059,8 @@
 	
 	<select id="current_scout_list" resultType="pictVO">
 		select s.ASSOCIATIONCODE, s.idx, m.KNAME, m.LIFEMEMBERY, s.SCOUTCLSCODE, s.SCOUTPOSITIONCODE, s.SCOUTMAGACNT, m.MEMBERNO, t.TROOPNAME, t.PARENT_TROOPNO as PARENTTROOPNO,
-		sp.SCOUTPOSITIONNAME, sc.SCOUTCLSNAME,
-		m.SEX, m.BIRTHDAY, s.ENTRYFEE, s.SCOUTMAGACNT
+		ifnull(sp.SCOUTPOSITIONNAME, '') SCOUTPOSITIONNAME, ifnull(sc.SCOUTCLSNAME, '') SCOUTCLSNAME,
+		ifnull(m.SEX, '') SEX, ifnull(m.BIRTHDAY, '') BIRTHDAY, s.ENTRYFEE, s.SCOUTMAGACNT
 		from scout s
 		left outer join member m on s.MEMBERNO = m.MEMBERNO
 		left outer join troop t on t.TROOPNO = s.TROOPNO
@@ -2089,6 +2089,9 @@
 		    (l.TROOPNO IS NOT NULL )  
 		    AND LEFT(l.STARTDAY, 4) = #{search_year}
 		    AND l.CONFIRMY = 'N'
+		    <if test="ASSOCIATIONCODE != null and ASSOCIATIONCODE != ''">
+		    	and t.ASSOCIATIONCODE = #{ASSOCIATIONCODE}
+		    </if>
 		GROUP BY a.ASSOCIATIONCODE, a.ASSOCIATIONNAME, t.TROOPNO, t.TROOPNAME
 	</select>
 	
@@ -2109,6 +2112,9 @@
 		    (s.TROOPNO IS NOT NULL )  
 		    AND LEFT(s.STARTDAY, 4) = #{search_year}
 		    AND s.CONFIRMY = 'N'
+		    <if test="ASSOCIATIONCODE != null and ASSOCIATIONCODE != ''">
+		    	and t.ASSOCIATIONCODE = #{ASSOCIATIONCODE}
+		    </if>
 		GROUP BY a.ASSOCIATIONCODE, a.ASSOCIATIONNAME, t.TROOPNO, t.TROOPNAME
 	</select>
 	
