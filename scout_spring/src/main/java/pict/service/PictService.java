@@ -264,6 +264,8 @@ public interface PictService {
 
 	public void scout_individual_confirm(PictVO pictVO) throws Exception;
 
+	public List<PictVO> mig_data_list(PictVO pictVO) throws Exception;
+
 
 
 }

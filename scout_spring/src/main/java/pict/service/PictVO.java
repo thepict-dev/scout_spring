@@ -411,8 +411,44 @@ public class PictVO extends PictDefaultVO {
 	private String SCOUTPRICE;
 	private String CONFIRMDATE;
 	private String condition;
+	private String EVENTNO;
+	private String EVENTNAME;
+	private String EVENTSTARTDAY;
+	private String EVENTENDDAY;
+	private String EVENTCLSNAME;
 	
 	
+	
+	public String getEVENTNO() {
+		return EVENTNO;
+	}
+	public void setEVENTNO(String eVENTNO) {
+		EVENTNO = eVENTNO;
+	}
+	public String getEVENTNAME() {
+		return EVENTNAME;
+	}
+	public void setEVENTNAME(String eVENTNAME) {
+		EVENTNAME = eVENTNAME;
+	}
+	public String getEVENTSTARTDAY() {
+		return EVENTSTARTDAY;
+	}
+	public void setEVENTSTARTDAY(String eVENTSTARTDAY) {
+		EVENTSTARTDAY = eVENTSTARTDAY;
+	}
+	public String getEVENTENDDAY() {
+		return EVENTENDDAY;
+	}
+	public void setEVENTENDDAY(String eVENTENDDAY) {
+		EVENTENDDAY = eVENTENDDAY;
+	}
+	public String getEVENTCLSNAME() {
+		return EVENTCLSNAME;
+	}
+	public void setEVENTCLSNAME(String eVENTCLSNAME) {
+		EVENTCLSNAME = eVENTCLSNAME;
+	}
 	public String getCondition() {
 		return condition;
 	}

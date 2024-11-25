@@ -266,6 +266,8 @@ public interface PictMapper {
 
 	void scout_individual_confirm(PictVO pictVO) throws Exception;
 
+	List<PictVO> mig_data_list(PictVO pictVO) throws Exception;
+
 
 
 	

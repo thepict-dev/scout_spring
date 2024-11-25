@@ -752,6 +752,12 @@ public class PictServiceImpl implements PictService {
 		pictMapper.scout_individual_confirm(pictVO);
 	}
 
+	@Override
+	public List<PictVO> mig_data_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.mig_data_list(pictVO);
+	}
+
 
 
 	

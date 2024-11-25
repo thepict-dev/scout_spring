@@ -133,6 +133,7 @@
                     <li><a href="#lnk">훈련</a></li>
                     <li><a href="#lnk">포상</a></li>
                     <li><a href="#lnk">봉사</a></li>
+                    <li><a href="#lnk">이전자료</a></li>
                 </ul>
                 <div class="tabInner active">
                     <h3 class="myTitles">연공 정보</h3>
@@ -214,6 +215,42 @@
                     </div>
                 </div>
                  -->
+                 <div class="tabInner">
+                    <h3 class="myTitles">이전자료</h3>
+                    <div class="myInfoContents">
+                        <div class="organTableWrapper">
+                            <table>
+                                <colgroup>
+                                    <col width="10%" />
+                                    <col width="17%" />
+                                    <col width="18%" />
+                                    <col width="30%" />
+                                    <col width="25%" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>연맹</th>
+                                        <th>단위대</th>
+                                        <th>대분류</th>
+                                    	<th>명칭</th>
+                                    	<th>기간</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                	<c:forEach var="list" items="${mig_data}" varStatus="status">
+	                                    <tr>
+	                                        <td>${list.ASSOCIATIONNAME}</td>
+	                                        <td>${list.TROOPNAME}</td>
+	                                        <td>${list.EVENTCLSNAME}</td>
+	                                        <td>${list.EVENTNAME}</td>
+	                                        <td>${list.EVENTSTARTDAY} ~ ${list.EVENTENDDAY}</td>
+	                                    </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="buttonContainer find myInfo">

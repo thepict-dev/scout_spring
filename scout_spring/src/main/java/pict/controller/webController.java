@@ -129,6 +129,7 @@ public class webController {
 		
 		pictVO = pictService.member_info(pictVO);
 		List<PictVO> list = null;
+		List<PictVO> mig_data = null;
 		if(pictVO != null) {
 			if(pictVO.getTROOPSCOUTY() != null && pictVO.getTROOPSCOUTY().equals("Y")) {
 				list = pictService.scout_list(pictVO);
@@ -136,8 +137,12 @@ public class webController {
 			else if(pictVO.getTROOPLEADERY() != null && pictVO.getTROOPLEADERY().equals("Y")) {
 				list = pictService.leader_list(pictVO);
 			}
-			
+			mig_data = pictService.mig_data_list(pictVO);
 		}
+		
+		model.addAttribute("mig_data", mig_data);
+		
+		
 		List<?> job_list= pictService.job_list(pictVO);
 		model.addAttribute("job_list", job_list);
 		
