@@ -830,7 +830,6 @@
 					var memberno = $(this).data("id");
 					var type = $('#owner_type_'+memberno).text()
 					if(type == '지도자'){
-						debugger
 						var ADMINY = $('#leader_adminy_'+memberno).val()
 						var KNAME = $('#leader_name_'+memberno).text()
 						var LIFEMEMBERY = "";

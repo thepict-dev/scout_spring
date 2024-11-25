@@ -704,5 +704,55 @@ public class PictServiceImpl implements PictService {
 		return pictMapper.scout_organ_list(pictVO);
 	}
 
+	@Override
+	public void register_delete_leader(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.register_delete_leader(pictVO);
+	}
+
+	@Override
+	public void register_delete_scout(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.register_delete_scout(pictVO);
+	}
+
+	@Override
+	public List<PictVO> leader_register_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.leader_register_list(pictVO);
+	}
+
+	@Override
+	public List<PictVO> scout_register_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.scout_register_list(pictVO);
+	}
+
+	@Override
+	public void current_leader_list_confirm(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.current_leader_list_confirm(pictVO);
+	}
+
+	@Override
+	public void current_scout_list_confirm(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.current_scout_list_confirm(pictVO);
+	}
+
+	@Override
+	public void leader_individual_confirm(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.leader_individual_confirm(pictVO);
+	}
+
+	@Override
+	public void scout_individual_confirm(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		pictMapper.scout_individual_confirm(pictVO);
+	}
+
+
+
 	
 }

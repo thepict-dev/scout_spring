@@ -2049,7 +2049,7 @@
 		select l.ASSOCIATIONCODE, l.idx, l.ADMINY, m.KNAME, m.LIFEMEMBERY, LEADERPOSITIONCODE1, LEADERPOSITIONCODE2, l.SCOUTMAGACNT, m.MEMBERNO, t.TROOPNAME, t.PARENT_TROOPNO as PARENTTROOPNO,
 		(case when l.LEADERPOSITIONCODE1 = '01' then '협조' when l.LEADERPOSITIONCODE1 = '02' then '훈육' else '전종' end) as LEADERPOSITION,
 		(select LEADERPOSITIONNAME from leaderpositioncode lp where lp.LEADERPOSITIONCODE1 = l.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2) as LEADERPOSITIONNAME,
-		ifnull(m.SEX, '') SEX, ifnull(m.BIRTHDAY, '') BIRTHDAY, l.ENTRYFEE, l.SCOUTMAGACNT
+		ifnull(m.SEX, '') SEX, ifnull(m.BIRTHDAY, '') BIRTHDAY, l.ENTRYFEE, l.SCOUTMAGACNT, l.SCOUTMAGAFEE
 		from leader l
 		left outer join member m on l.MEMBERNO = m.MEMBERNO
 		left outer join troop t on t.TROOPNO = l.TROOPNO 
@@ -2060,7 +2060,7 @@
 	<select id="current_scout_list" resultType="pictVO">
 		select s.ASSOCIATIONCODE, s.idx, m.KNAME, m.LIFEMEMBERY, s.SCOUTCLSCODE, s.SCOUTPOSITIONCODE, s.SCOUTMAGACNT, m.MEMBERNO, t.TROOPNAME, t.PARENT_TROOPNO as PARENTTROOPNO,
 		ifnull(sp.SCOUTPOSITIONNAME, '') SCOUTPOSITIONNAME, ifnull(sc.SCOUTCLSNAME, '') SCOUTCLSNAME,
-		ifnull(m.SEX, '') SEX, ifnull(m.BIRTHDAY, '') BIRTHDAY, s.ENTRYFEE, s.SCOUTMAGACNT
+		ifnull(m.SEX, '') SEX, ifnull(m.BIRTHDAY, '') BIRTHDAY, s.ENTRYFEE, s.SCOUTMAGACNT, s.SCOUTMAGAFEE
 		from scout s
 		left outer join member m on s.MEMBERNO = m.MEMBERNO
 		left outer join troop t on t.TROOPNO = s.TROOPNO
@@ -2118,6 +2118,55 @@
 		GROUP BY a.ASSOCIATIONCODE, a.ASSOCIATIONNAME, t.TROOPNO, t.TROOPNAME
 	</select>
 	
+	
+	
+	<delete id="register_delete_leader" parameterType="pictVO">
+		delete from leader where idx = #{idx}
+	</delete>
+	
+	<delete id="register_delete_scout" parameterType="pictVO">
+		delete from scout where idx = #{idx}
+	</delete>
+	
+	<select id="leader_register_list" resultType="pictVO">
+	
+		SELECT m.KNAME, m.LIFEMEMBERY, t.TROOPNAME, l.*, (case when l.LEADERPOSITIONCODE1 = '01' then '협조' when l.LEADERPOSITIONCODE1 = '02' then '훈육' when l.LEADERPOSITIONCODE1 = '03' then '전종' else '' end) as LEADERPOSITION,
+		ifnull((select LEADERPOSITIONNAME from leaderpositioncode lp where lp.LEADERPOSITIONCODE1 = l.LEADERPOSITIONCODE1 and lp.LEADERPOSITIONCODE2 = l.LEADERPOSITIONCODE2), '') as LEADERPOSITIONNAME
+		FROM leader l
+        left outer join troop t on l.TROOPNO = t.TROOPNO
+		left outer join member m on l.MEMBERNO = m.MEMBERNO
+		WHERE FIND_IN_SET(l.idx, #{condition}) > 0;
+
+	</select>
+	
+	<select id="scout_register_list" resultType="pictVO">
+		SELECT m.KNAME, m.LIFEMEMBERY, t.TROOPNAME, s.* , sc.SCOUTCLSNAME, sp.SCOUTPOSITIONNAME
+		FROM scout s 
+        left outer join troop t on s.TROOPNO = t.TROOPNO
+		left outer join member m on m.MEMBERNO = s.MEMBERNO
+		left outer join scoutclscode sc on sc.SCOUTCLSCODE = s.SCOUTCLSCODE
+		left outer join scoutpositioncode sp on sp.SCOUTPOSITIONCODE = s.SCOUTPOSITIONCODE
+  		WHERE FIND_IN_SET(s.idx, #{condition}) > 0
+	</select>
+	
+	<!-- 일괄승인 -->
+	<update id="current_leader_list_confirm" parameterType="pictVO">
+		update leader set CONFIRMY = 'Y' where TROOPNO = #{TROOPNO} and left(STARTDAY, 4) = #{search_year} and CONFIRMY = 'N'
+	</update>
+	
+	<update id="current_scout_list_confirm" parameterType="pictVO">
+		update scout set CONFIRMY = 'Y' where TROOPNO = #{TROOPNO} and left(STARTDAY, 4) = #{search_year} and CONFIRMY = 'N'
+	</update>
+	
+	
+	<!-- 개별승인 -->
+	<update id="leader_individual_confirm" parameterType="pictVO">
+		update leader set CONFIRMY = 'Y' where idx = #{idx}
+	</update>
+	
+	<update id="scout_individual_confirm" parameterType="pictVO">
+		update scout set CONFIRMY = 'Y' where idx = #{idx}
+	</update>
 	
 	
 </mapper>

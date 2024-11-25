@@ -248,6 +248,22 @@ public interface PictService {
 
 	public List<PictVO> scout_organ_list(PictVO pictVO) throws Exception;
 
+	public void register_delete_leader(PictVO pictVO) throws Exception;
+
+	public void register_delete_scout(PictVO pictVO) throws Exception;
+
+	public List<PictVO> leader_register_list(PictVO pictVO) throws Exception;
+
+	public List<PictVO> scout_register_list(PictVO pictVO) throws Exception;
+
+	public void current_leader_list_confirm(PictVO pictVO) throws Exception;
+
+	public void current_scout_list_confirm(PictVO pictVO) throws Exception;
+
+	public void leader_individual_confirm(PictVO pictVO) throws Exception;
+
+	public void scout_individual_confirm(PictVO pictVO) throws Exception;
+
 
 
 }

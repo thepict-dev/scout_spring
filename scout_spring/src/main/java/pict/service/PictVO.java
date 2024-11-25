@@ -410,8 +410,15 @@ public class PictVO extends PictDefaultVO {
 	private String LEADERPRICE;
 	private String SCOUTPRICE;
 	private String CONFIRMDATE;
+	private String condition;
 	
 	
+	public String getCondition() {
+		return condition;
+	}
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
 	public String getCONFIRMDATE() {
 		return CONFIRMDATE;
 	}

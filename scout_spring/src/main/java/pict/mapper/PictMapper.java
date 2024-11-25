@@ -250,6 +250,24 @@ public interface PictMapper {
 
 	List<PictVO> scout_organ_list(PictVO pictVO) throws Exception;
 
+	void register_delete_leader(PictVO pictVO) throws Exception;
+
+	void register_delete_scout(PictVO pictVO) throws Exception;
+
+	List<PictVO> leader_register_list(PictVO pictVO) throws Exception;
+
+	List<PictVO> scout_register_list(PictVO pictVO) throws Exception;
+
+	void current_leader_list_confirm(PictVO pictVO) throws Exception;
+
+	void current_scout_list_confirm(PictVO pictVO) throws Exception;
+
+	void leader_individual_confirm(PictVO pictVO) throws Exception;
+
+	void scout_individual_confirm(PictVO pictVO) throws Exception;
+
+
+
 	
 
 }

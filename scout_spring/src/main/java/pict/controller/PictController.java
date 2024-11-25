@@ -3559,49 +3559,190 @@ public class PictController {
 
         return new ArrayList<>(mergedMap.values());
     }
-
 	
+	//대승인에서의 삭제
+	@RequestMapping("/register_delete")
+	@ResponseBody
+	public HashMap<String, Object> register_delete(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		HashMap<String, Object> map = new HashMap<String, Object>();		
+		try {
+			
+			//지도자 삭제
+			String check_list = param.get("leader_list").toString();
+			check_list = check_list.replaceAll("[\\[\\]]", "");
+			String[] arr = check_list.split(", ");
+			for(int i=0; i<arr.length; i++) {
+				System.out.println("지도자 연공삭제 해야함");
+				System.out.println(arr[i]);
+				if(arr[i] != null && arr[i] != "") {
+					pictVO.setIdx(Integer.parseInt(arr[i]));
+					pictService.register_delete_leader(pictVO);
+				}
+			}
+			
+			//대원 삭제
+			String check_list2 = param.get("scout_list").toString();
+			check_list2 = check_list2.replaceAll("[\\[\\]]", "");
+			String[] arr2 = check_list2.split(", ");
+			for(int i=0; i<arr2.length; i++) {
+				System.out.println("대원 연공삭제 해야함");
+				System.out.println(arr2[i]);
+				if(arr2[i] != null && arr2[i] != "") {
+					pictVO.setIdx(Integer.parseInt(arr2[i]));
+					pictService.register_delete_scout(pictVO);
+				}
+				
+			}
+			
+			
+			map.put("result", "Y");
+			return map;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getStackTrace());
+			map.put("result", "N");
+			return map;
+		}
+		
+	}
+	
+	//대승인에서 개별승인을 위한 리스트
+	@RequestMapping("/get_register_person_list")
+	@ResponseBody
+	public HashMap<String, Object> get_register_person_list(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		HashMap<String, Object> map = new HashMap<String, Object>();		
+		try {
+			
+			//지도자 리스트
+			String check_list = param.get("leader_list").toString();
+			check_list = check_list.replaceAll("[\\[\\]]", "");
+			check_list = check_list.replaceAll(" ", "");
+			pictVO.setCondition(check_list);
+			
+			List<PictVO> leader_register_list = pictService.leader_register_list(pictVO);
+			
+			
+			//대원 리스트
+			String check_list2 = param.get("scout_list").toString();
+			check_list2 = check_list2.replaceAll("[\\[\\]]", "");
+			check_list2 = check_list2.replaceAll(" ", "");
+			pictVO.setCondition(check_list2);
+			
+			List<PictVO> scout_register_list = pictService.scout_register_list(pictVO);
+
+
+			map.put("leader_list",leader_register_list);
+			map.put("scout_list",scout_register_list);
+			return map;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getStackTrace());
+			map.put("result", "N");
+			return map;
+		}
+		
+	}
+	
+	//대승인에서 일괄승인을 위한 리스트
+	@RequestMapping("/get_register_troop_list")
+	@ResponseBody
+	public HashMap<String, Object> get_register_troop_list(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
+		HashMap<String, Object> map = new HashMap<String, Object>();		
+		try {
+			Date today = new Date();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+			String current_year = dateFormat.format(today);
+			pictVO.setSearch_year(current_year+"");
+			
+			String check_list = param.get("troop_list").toString();
+			check_list = check_list.replaceAll("[\\[\\]]", "");
+			System.out.println(check_list);
+			String[] arr = check_list.split(", ");
+			
+			
+			for(int i=0; i<arr.length; i++) {
+				pictVO.setTROOPNO(arr[i]);
+				
+				pictService.current_leader_list_confirm(pictVO);
+				pictService.current_scout_list_confirm(pictVO);
+
+			}
+			map.put("result", "Y");
+			return map;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getStackTrace());
+			map.put("result", "N");
+			return map;
+		}
+		
+	}
 	
 	//대승인에서 단위대 대원/리스트 당해년도꺼 가져와
 	@RequestMapping("/current_troop_info")
 	@ResponseBody
 	public HashMap<String, Object> current_troop_info(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody Map<String, Object> param) throws Exception {	
-		Date today = new Date();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
-		String current_year = dateFormat.format(today);
-		pictVO.setSearch_year(current_year+"");
-		
-		String troopno = param.get("troopno").toString();
-		HashMap<String, Object> map = new HashMap<String, Object>();		
-		pictVO.setTROOPNO(troopno);
-		pictVO.setCONFIRMY("N");
-		List<PictVO> prev_leader_list = pictService.current_leader_list(pictVO);
-		if(prev_leader_list.size() > 0) {
-			System.out.println("지도자가 있어야해");
-			map.put("leader_list", prev_leader_list);
-		}
-		
-		List<PictVO> prev_scout_list = pictService.current_scout_list(pictVO);
-		if(prev_scout_list.size() > 0) {
-			System.out.println("대원이 있어야해");
-			map.put("scout_list", prev_scout_list);
+		HashMap<String, Object> map = new HashMap<String, Object>();	
+		try {
+			Date today = new Date();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+			String current_year = dateFormat.format(today);
+			pictVO.setSearch_year(current_year+"");
 			
+			String troopno = param.get("troopno").toString();
+				
+			pictVO.setTROOPNO(troopno);
+			pictVO.setCONFIRMY("N");
+			List<PictVO> prev_leader_list = pictService.current_leader_list(pictVO);
+			if(prev_leader_list.size() > 0) {
+				System.out.println("지도자가 있어야해");
+				map.put("leader_list", prev_leader_list);
+			}
+			
+			List<PictVO> prev_scout_list = pictService.current_scout_list(pictVO);
+			if(prev_scout_list.size() > 0) {
+				System.out.println("대원이 있어야해");
+				map.put("scout_list", prev_scout_list);
+				
+			}
+			return map;
 		}
-		return map;
+		catch(Exception e) {
+			e.printStackTrace();
+			return map;
+		}
 	}
 	//대등록에서 일괄승인
 	@RequestMapping("/whole_register_confirm")
 	@ResponseBody
-	public HashMap<String, Object> whole_register_confirm(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request, @RequestBody List<Map<String, Object>> data) throws Exception {
+	public HashMap<String, Object> whole_register_confirm(@ModelAttribute("pictVO") PictVO pictVO, ModelMap model, HttpServletRequest request,  @RequestBody Map<String, Object> param) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		try {
-			for (Map<String, Object> item : data) {
-				String idx = item.get("idx").toString();
-				pictVO.setIdx(Integer.parseInt(idx));
-				
-				if(item.get("type").equals("leader")) pictService.leader_whole_confirm(pictVO);
-				else pictService.scout_whole_confirm(pictVO);
+			
+			String check_list = param.get("leader_list").toString();
+			check_list = check_list.replaceAll("[\\[\\]]", "");
+			String[] arr = check_list.split(", ");
+			
+			String check_list2 = param.get("scout_list").toString();
+			check_list2 = check_list2.replaceAll("[\\[\\]]", "");
+			String[] arr2 = check_list2.split(", ");
+			
+			//지도자 리스트
+			for(int i=0; i<arr.length; i++) {
+				pictVO.setIdx(Integer.parseInt(arr[i]));
+				pictService.leader_individual_confirm(pictVO);
 			}
+			
+			//대원리스트
+			for(int i=0; i<arr2.length; i++) {
+				pictVO.setIdx(Integer.parseInt(arr2[i]));
+				pictService.scout_individual_confirm(pictVO);
+			}
+			
+			
 			map.put("result", "Y");
 			
 		}
