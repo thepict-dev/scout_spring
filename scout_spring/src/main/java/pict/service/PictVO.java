@@ -416,9 +416,37 @@ public class PictVO extends PictDefaultVO {
 	private String EVENTSTARTDAY;
 	private String EVENTENDDAY;
 	private String EVENTCLSNAME;
+	private String PASSNUM;
+	private String CERTNUM;
+	private String COMPLETIONY;
+	private String category;
 	
 	
 	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getPASSNUM() {
+		return PASSNUM;
+	}
+	public void setPASSNUM(String pASSNUM) {
+		PASSNUM = pASSNUM;
+	}
+	public String getCERTNUM() {
+		return CERTNUM;
+	}
+	public void setCERTNUM(String cERTNUM) {
+		CERTNUM = cERTNUM;
+	}
+	public String getCOMPLETIONY() {
+		return COMPLETIONY;
+	}
+	public void setCOMPLETIONY(String cOMPLETIONY) {
+		COMPLETIONY = cOMPLETIONY;
+	}
 	public String getEVENTNO() {
 		return EVENTNO;
 	}

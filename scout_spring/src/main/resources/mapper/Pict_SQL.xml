@@ -2171,12 +2171,14 @@
 	<select id="mig_data_list" resultType="pictVO">
 		select e.EVENTNO, a.ASSOCIATIONNAME, t.TROOPNAME, t.TROOPNO, em.YYYY, e.EVENTNAME, e.EVENTSTARTDAY, e.EVENTENDDAY
 		, (select EVENTCLSNAME from eventclscode ec where ec.EVENTCLSCODE1 = e.EVENTCLSCODE1 and ec.EVENTCLSCODE2 = e.EVENTCLSCODE2 and ec.EVENTCLSCODE3 = e.EVENTCLSCODE3) as EVENTCLSNAME
+		, em.PASSNUM, em.CERTNUM, em.COMPLETIONY, e.category
 		from eventmember em 
 		left outer join event e on e.EVENTNO = em.EVENTNO
 		left outer join troop t on em.TROOPNO = t.TROOPNO
 		left outer join associationcode a on a.ASSOCIATIONCODE = em.ASSOCIATIONCODE
 		
 		where em.MEMBERNO = #{MEMBERNO}
+		and em.COMPLETIONY = 'Y'
 		order by e.EVENTSTARTDAY desc
 	</select>
 	

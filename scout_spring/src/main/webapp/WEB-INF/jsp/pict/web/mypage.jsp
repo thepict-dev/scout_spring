@@ -132,8 +132,7 @@
                     <li><a href="#lnk">자격</a></li>
                     <li><a href="#lnk">훈련</a></li>
                     <li><a href="#lnk">포상</a></li>
-                    <li><a href="#lnk">봉사</a></li>
-                    <li><a href="#lnk">이전자료</a></li>
+                    <li><a href="#lnk">행사/봉사</a></li>
                 </ul>
                 <div class="tabInner active">
                     <h3 class="myTitles">연공 정보</h3>
@@ -190,33 +189,96 @@
                 <div class="tabInner">
                 	<p class="emptyComment">현재 준비중인 기능입니다.</p>
                 </div>
-                <div class="tabInner">
-                	<p class="emptyComment">현재 준비중인 기능입니다.</p>
-                </div>
-                <div class="tabInner">
-                	<p class="emptyComment">현재 준비중인 기능입니다.</p>
-                </div>
-                <div class="tabInner">
-                	<p class="emptyComment">현재 준비중인 기능입니다.</p>
-                </div>
-                <div class="tabInner">
-                	<p class="emptyComment">현재 준비중인 기능입니다.</p>
-                </div>
-                <!-- 
-                <div class="tabInner">
-                    <h3 class="myTitles">대원/진보</h3>
+               	<div class="tabInner">
+                    <h3 class="myTitles">자격</h3>
                     <div class="myInfoContents">
-                        <ul class="badges">
-                            <li>
-                                <span><img src="/user_img/jam00-1.jpg" alt=""></span>
-                                <p>토끼</p>
-                            </li>
-                        </ul>
+                        <div class="organTableWrapper">
+                            <table>
+                                <colgroup>
+                                    <col width="10%" />
+                                    <col width="12%" />
+                                    <col width="12%" />
+                                    <col width="22%" />
+                                    <col width="12%" />
+                                    <col width="12%" />
+                                    <col width="20%" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>연맹</th>
+                                        <th>단위대</th>
+                                        <th>대분류</th>
+                                    	<th>명칭</th>
+                                    	<th>수료번호</th>
+                                    	<th>자격번호</th>
+                                    	<th>기간</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                	<c:forEach var="list" items="${mig_data}" varStatus="status">
+                                		<c:if test="${list.category eq '1'  || list.category eq 1}">
+		                                    <tr>
+		                                        <td>${list.ASSOCIATIONNAME}</td>
+		                                        <td>${list.TROOPNAME}</td>
+		                                        <td>${list.EVENTCLSNAME}</td>
+		                                        <td>${list.EVENTNAME}</td>
+		                                        <td>${list.PASSNUM}</td>
+		                                        <td>${list.CERTNUM}</td>
+		                                        <td>${list.EVENTSTARTDAY} ~ ${list.EVENTENDDAY}</td>
+		                                    </tr>
+	                                    </c:if>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-                 -->
-                 <div class="tabInner">
-                    <h3 class="myTitles">이전자료</h3>
+               	<div class="tabInner">
+                    <h3 class="myTitles">훈련</h3>
+                    <div class="myInfoContents">
+                        <div class="organTableWrapper">
+                            <table>
+                                <colgroup>
+                                    <col width="10%" />
+                                    <col width="12%" />
+                                    <col width="12%" />
+                                    <col width="22%" />
+                                    <col width="12%" />
+                                    <col width="12%" />
+                                    <col width="20%" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>연맹</th>
+                                        <th>단위대</th>
+                                        <th>대분류</th>
+                                    	<th>명칭</th>
+                                    	<th>수료번호</th>
+                                    	<th>자격번호</th>
+                                    	<th>기간</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                	<c:forEach var="list" items="${mig_data}" varStatus="status">
+                                		<c:if test="${list.category eq '2' || list.category eq 2}">
+		                                    <tr>
+		                                        <td>${list.ASSOCIATIONNAME}</td>
+		                                        <td>${list.TROOPNAME}</td>
+		                                        <td>${list.EVENTCLSNAME}</td>
+		                                        <td>${list.EVENTNAME}</td>
+		                                        <td>${list.PASSNUM}</td>
+		                                        <td>${list.CERTNUM}</td>
+		                                        <td>${list.EVENTSTARTDAY} ~ ${list.EVENTENDDAY}</td>
+		                                    </tr>
+	                                    </c:if>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+               	<div class="tabInner">
+                    <h3 class="myTitles">포상</h3>
                     <div class="myInfoContents">
                         <div class="organTableWrapper">
                             <table>
@@ -238,19 +300,77 @@
                                 </thead>
                                 <tbody>
                                 	<c:forEach var="list" items="${mig_data}" varStatus="status">
-	                                    <tr>
-	                                        <td>${list.ASSOCIATIONNAME}</td>
-	                                        <td>${list.TROOPNAME}</td>
-	                                        <td>${list.EVENTCLSNAME}</td>
-	                                        <td>${list.EVENTNAME}</td>
-	                                        <td>${list.EVENTSTARTDAY} ~ ${list.EVENTENDDAY}</td>
-	                                    </tr>
+                                		<c:if test="${list.category eq '3' || list.category eq 3}">
+		                                    <tr>
+		                                        <td>${list.ASSOCIATIONNAME}</td>
+		                                        <td>${list.TROOPNAME}</td>
+		                                        <td>${list.EVENTCLSNAME}</td>
+		                                        <td>${list.EVENTNAME}</td>
+		                                        <td>${list.EVENTSTARTDAY} ~ ${list.EVENTENDDAY}</td>
+		                                    </tr>
+	                                    </c:if>
                                     </c:forEach>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+               	<div class="tabInner">
+                    <h3 class="myTitles">행사/봉사</h3>
+                    <div class="myInfoContents">
+                        <div class="organTableWrapper">
+                            <table>
+                                <colgroup>
+                                    <col width="10%" />
+                                    <col width="17%" />
+                                    <col width="18%" />
+                                    <col width="30%" />
+                                    <col width="25%" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>연맹</th>
+                                        <th>단위대</th>
+                                        <th>대분류</th>
+                                    	<th>명칭</th>
+                                    	<th>기간</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                	<c:forEach var="list" items="${mig_data}" varStatus="status">
+                                		<c:if test="${list.category eq '4' || list.category eq 4}">
+		                                    <tr>
+		                                        <td>${list.ASSOCIATIONNAME}</td>
+		                                        <td>${list.TROOPNAME}</td>
+		                                        <td>${list.EVENTCLSNAME}</td>
+		                                        <td>${list.EVENTNAME}</td>
+		                                        <td>${list.EVENTSTARTDAY} ~ ${list.EVENTENDDAY}</td>
+		                                    </tr>
+	                                    </c:if>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 
+                <div class="tabInner">
+                	<p class="emptyComment">현재 준비중인 기능입니다.</p>
+                </div>
+                
+                <div class="tabInner">
+                    <h3 class="myTitles">대원/진보</h3>
+                    <div class="myInfoContents">
+                        <ul class="badges">
+                            <li>
+                                <span><img src="/user_img/jam00-1.jpg" alt=""></span>
+                                <p>토끼</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                 -->
             </div>
         </div>
         <div class="buttonContainer find myInfo">
