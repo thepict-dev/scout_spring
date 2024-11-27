@@ -77,20 +77,20 @@
                         <!-- 리스트 -->
                         <div class="registrationWrap">
                         	<!-- 좌측 -->
-                        	<div class="doubleTable">
+                        	<div class="doubleTable" style="width: calc(50% - 21px);">
 	                            <div class="tableContainer">
 	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
 	                                	<h2 class="subTitles">작년도</h2>
 	                                	<span id="prev_count"></span>
                                     </div>
 	                                <div class="tableWrapper" style="height:550px; margin-top: 0;">
-	                                    <table style="min-width: unset;">
+	                                    <table style="min-width: 1080px; table-layout: fixed;">
 	                                        <colgroup>
-	                                            <col width="8%" />
+	                                            <col width="5%" />
 	                                            <col width="10%" />
 	                                            <col width="10%" />
 	                                            <col width="10%" />
-	                                            <col width="10%" />
+	                                            <col width="13%" />
 	                                            <col width="10%" />
 	                                            <col width="10%" />
 	                                            <col width="10%" />
@@ -99,8 +99,8 @@
 	                                        </colgroup>
 	                                        <thead>
 	                                            <tr>
-	                                                <th><input type="checkbox" class="check" title="전체선택" id="leader_all_check" onchange="allCheck_left_leader(this);" data-check="left_leader_list"><label for="leader_all_check" class="lableOnly"></label></th>
-	                                                <th style="left: 67.5px;">구분</th>
+	                                                <th style="left: unset;"><input type="checkbox" class="check" title="전체선택" id="leader_all_check" onchange="allCheck_left_leader(this);" data-check="left_leader_list"><label for="leader_all_check" class="lableOnly"></label></th>
+	                                                <th style="left: unset;">구분</th>
 	                                                <th>회원번호</th>
 	                                                <th>성명</th>
 	                                                <th>생년월일</th>
@@ -122,7 +122,7 @@
                                 <a href="#lnk"><img src="/front_img/right-arr.png" alt="" onclick="list_act()"></a>
                                 <a href="#lnk"><img src="/front_img/left-arr.png" alt="" onclick="list_react()"></a>
                             </div>
-                        	<div class="doubleTable">
+                        	<div class="doubleTable" style="width: calc(50% - 21px);">
 	                            <div class="tableContainer">
 	                            	<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
 	                                	<h2 class="subTitles">당해년도</h2>
@@ -130,13 +130,13 @@
                                         <a href="#lnk" class="smButton daeButton" style="padding: 0 8px;">신규등록</a>
                                     </div>
 	                                <div class="tableWrapper" style="height: 550px; margin-top: 0;">
-	                                    <table style="min-width: unset;">
+	                                    <table style="min-width: 1080px; table-layout: fixed;">
 	                                        <colgroup>
-	                                            <col width="8%" />
+	                                            <col width="5%" />
 	                                            <col width="10%" />
 	                                            <col width="10%" />
 	                                            <col width="10%" />
-	                                            <col width="10%" />
+	                                            <col width="13%" />
 	                                            <col width="10%" />
 	                                            <col width="10%" />
 	                                            <col width="10%" />
@@ -145,8 +145,8 @@
 	                                        </colgroup>
 	                                        <thead>
 	                                            <tr>
-	                                                <th>선택</th>
-	                                                <th style="left: 69px;">구분</th>
+	                                                <th style="left: unset;">선택</th>
+	                                                <th style="left: unset;">구분</th>
 	                 	                            <th>회원번호</th>
 	                                                <th>성명</th>
 	                                                <th>생년월일</th>

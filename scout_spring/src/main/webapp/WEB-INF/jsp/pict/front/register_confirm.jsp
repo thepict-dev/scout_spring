@@ -31,19 +31,20 @@
 	                                <div class="tableWrapper" style="height: 300px;">
 	                                    <table style="min-width: unset;">
 	                                        <colgroup>
+	                                            <col width="8%" />
+	                                            <col width="17%" />
+	                                            <col width="8%" />
+	                                            <col width="9.5%" />
+	                                            <col width="9.5%" />
+	                                            <col width="9.5%" />
+	                                            <col width="9.5%" />
 	                                            <col width="10%" />
 	                                            <col width="10%" />
-	                                            <col width="10%" />
-	                                            <col width="10%" />
-	                                            <col width="10%" />
-	                                            <col width="10%" />
-	                                            <col width="10%" />
-	                                            <col width="20%" />
 	                                        </colgroup>
 	                                        <thead>
 	                                            <tr>
 	                                                <th rowspan="2">연맹</th>
-	                                                <th rowspan="2">단위대</th>
+	                                                <th rowspan="2" style="left: unset;">단위대</th>
 	                                                <th rowspan="2">일괄승인</th>
 	                                                <th colspan="5" style="text-align:center">승인 신청 현황</th>
 	                                                <th rowspan="2" style="text-align:center">최종승인일</th>
@@ -60,7 +61,7 @@
 	                                            <c:forEach var="mergedList" items="${mergedList}" varStatus="status">
 		                                            <tr onclick="fn_troop_person_list('${mergedList.TROOPNO}')">
 			                                            <td>${mergedList.ASSOCIATIONNAME}</td>
-			                                            <td>${mergedList.TROOPNAME}</td>
+			                                            <td style="left: unset;">${mergedList.TROOPNAME}</td>
 			                                            <td><input type="checkbox" class="check" name="troop_check" title="단위대선택" id="troop_chk_${mergedList.TROOPNO}" data-id="${mergedList.TROOPNO}"><label for="troop_chk_${mergedList.TROOPNO}" class="lableOnly"></label></td>
 			                                            <td style="text-align:center"><fmt:formatNumber value="${mergedList.LEADERCNT}" maxFractionDigits="0" /></td>
 			                                            <td style="text-align:center"><fmt:formatNumber value="${mergedList.SCOUTCNT}" maxFractionDigits="0" /></td>
