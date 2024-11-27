@@ -266,6 +266,10 @@ public interface PictService {
 
 	public List<PictVO> mig_data_list(PictVO pictVO) throws Exception;
 
+	public List<PictVO> stats_detail_list(PictVO pictVO) throws Exception;
+
+	public PictVO life_max_info(PictVO pictVO) throws Exception;
+
 
 
 }

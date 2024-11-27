@@ -268,6 +268,10 @@ public interface PictMapper {
 
 	List<PictVO> mig_data_list(PictVO pictVO) throws Exception;
 
+	List<PictVO> stats_detail_list(PictVO pictVO) throws Exception;
+
+	PictVO life_max_info(PictVO pictVO) throws Exception;
+
 
 
 	

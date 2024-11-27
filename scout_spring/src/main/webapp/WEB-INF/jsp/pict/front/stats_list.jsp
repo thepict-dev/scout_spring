@@ -20,7 +20,12 @@
 	            <ul class="statsContainer">
 	            	<c:forEach var="resultList" items="${resultList}" varStatus="status">
 		                <li>
-		                    <a href="">
+		                	<c:if test="${resultList.ASSOCIATIONCODE ne '전체 합계'}">
+		                		<a href="/admin/front/stats_detail_list?ASSOCIATIONCODE=${resultList.ASSOCIATIONCODE}">
+		                	</c:if>
+		                	<c:if test="${resultList.ASSOCIATIONCODE eq '전체 합계'}">
+		                		<a href="#lnk">
+		                	</c:if>
 		                        <p>
 		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '011'}">서울북부연맹</c:if>
 		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '012'}">서울남부연맹</c:if>
@@ -45,7 +50,7 @@
 		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '220'}">원불교연맹</c:if>
 		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '230'}">불교연맹</c:if>
 		                        	<c:if test="${resultList.ASSOCIATIONCODE eq '240'}">기독교연맹</c:if>
-		                        	 총계
+		                        	총계
 	                        	</p>
 		                        <div class="counts">
 		                            <p><span>${resultList.current}</span>명</p>

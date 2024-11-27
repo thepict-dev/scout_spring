@@ -1499,6 +1499,12 @@ public class PictController {
 		
 		List<PictVO> association_list = pictService.association_list(pictVO);
 		model.addAttribute("association_list", association_list);
+		
+		
+		PictVO maxvo = new PictVO();
+		maxvo = pictService.life_max_info(pictVO);
+		model.addAttribute("maxvo", maxvo);
+		
 		return "pict/front/life_list";
 	}
 	
@@ -3918,6 +3924,224 @@ public class PictController {
 		model.addAttribute("resultList", scout_stats_list);
 		model.addAttribute("pictVO", pictVO);
 		return "pict/front/stats_scout";
+	}
+	
+	//연맹별등록(상세 리스트 대원/지도자)
+	@RequestMapping("/front/stats_detail_list")
+	public String stats_detail_list(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr) throws Exception {
+		
+		String sessions = (String) request.getSession().getAttribute("authority");
+		if (sessions == null || sessions == "null") {
+			return "redirect:/admin/pict_login";
+		}
+		if(pictVO != null && pictVO.getSearch_year() != null) {
+			String current_year = pictVO.getSearch_year();
+			pictVO.setSearch_year(current_year);
+		}
+		else {
+			Date today = new Date();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+			String current_year = dateFormat.format(today);
+			model.addAttribute("current_year", current_year);
+			pictVO.setSearch_year(current_year);
+		}
+		
+		String authority = (String) request.getSession().getAttribute("authority");
+		
+		if (authority == null || authority == "null" || authority.equals("") || !authority.equals("jeonjong")) {
+			model.addAttribute("message", "해당 메뉴는 전종지도자만 활용 가능한 메뉴입니다.");
+			model.addAttribute("retType", ":location");
+			model.addAttribute("retUrl", "/admin/main");
+			
+			return "pict/main/message";
+		}
+		
+		//재영 작업
+		List<PictVO> scout_stats_list = pictService.stats_detail_list(pictVO);
+		model.addAttribute("resultList", scout_stats_list);
+		model.addAttribute("pictVO", pictVO);
+		
+		
+		int scout = 0;
+		int leader = 0;
+		int whole = 0;
+		for(int i=0; i<scout_stats_list.size(); i++) {
+			if(scout_stats_list.get(i).getType().equals("지도자")) leader++;
+			if(scout_stats_list.get(i).getType().equals("대원")) scout++;
+		}
+		whole = scout + leader;
+		
+		model.addAttribute("scout", scout);
+		model.addAttribute("leader", leader);
+		model.addAttribute("whole", whole);
+		
+		
+		return "pict/front/stats_detail_list";
+	}
+	
+	@RequestMapping("/front/stats_detail_excel")
+	public void stats_detail_excel(@ModelAttribute("pictVO") PictVO pictVO, HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes rttr, HttpServletResponse response) throws Exception {
+		
+
+		if(pictVO != null && pictVO.getSearch_year() != null) {
+			String current_year = pictVO.getSearch_year();
+			pictVO.setSearch_year(current_year);
+		}
+		else {
+			Date today = new Date();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+			String current_year = dateFormat.format(today);
+			model.addAttribute("current_year", current_year);
+			pictVO.setSearch_year(current_year);
+		}
+
+		//재영 작업
+		List<PictVO> attendance_list = pictService.stats_detail_list(pictVO);
+		
+		HSSFWorkbook objWorkBook = new HSSFWorkbook();
+        HSSFSheet objSheet = null;
+        HSSFRow objRow = null;
+        HSSFCell objCell = null;       //셀 생성
+
+        //제목 폰트
+        HSSFFont font = objWorkBook.createFont();
+        HSSFFont font_title = objWorkBook.createFont();
+        font_title.setFontHeightInPoints((short)11);
+        font.setFontHeightInPoints((short)9);
+        font.setFontName("맑은고딕");
+		int rowIndex = 0;
+		
+		HSSFCellStyle styleHd_title = objWorkBook.createCellStyle(); // 제목 스타일
+		HSSFCellStyle styleHd = objWorkBook.createCellStyle();    //내용 스타일
+		
+		styleHd_title.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+		styleHd_title.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		
+		// 각항목 테두리
+		styleHd.setBorderRight(BorderStyle.THIN);
+		styleHd.setBorderLeft(BorderStyle.THIN);
+		styleHd.setBorderTop(BorderStyle.THIN);
+		styleHd.setBorderBottom(BorderStyle.THIN);
+		styleHd.setWrapText(true);//자동 줄바꿈
+
+		styleHd_title.setBorderRight(BorderStyle.THIN);
+		styleHd_title.setBorderLeft(BorderStyle.THIN);
+		styleHd_title.setBorderTop(BorderStyle.THIN);
+		styleHd_title.setBorderBottom(BorderStyle.THIN);
+					
+        objSheet = objWorkBook.createSheet("첫번째 시트");     //워크시트 생성
+		
+		
+		//헤더
+        objRow = objSheet.createRow(0);
+        objRow.setHeight ((short) 0x150);
+        
+        objCell = objRow.createCell(0);
+        objCell.setCellValue("지도자/대원");
+        objCell.setCellStyle(styleHd_title);
+
+        objCell = objRow.createCell(1);
+        objCell.setCellValue("연맹");
+        objCell.setCellStyle(styleHd_title);
+		
+        objCell = objRow.createCell(2);
+        objCell.setCellValue("단위대명");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(3);
+        objCell.setCellValue("성명");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(4);
+        objCell.setCellValue("연락처");
+        objCell.setCellStyle(styleHd_title);
+        
+        
+        objCell = objRow.createCell(5);
+        objCell.setCellValue("생년월일");
+        objCell.setCellStyle(styleHd_title);
+        
+        objCell = objRow.createCell(6);
+        objCell.setCellValue("성별");
+        objCell.setCellStyle(styleHd_title);
+        
+		//바디
+        int doublecnt = 0;
+		for(int i=0; i<attendance_list.size(); i++) {
+        	//순서
+			objRow = objSheet.createRow(i+1+doublecnt);
+	        objRow.setHeight ((short) 0x150);
+	        objSheet.autoSizeColumn(i);
+	        
+	        //회원번호
+	        objCell = objRow.createCell(0);
+	        objCell.setCellValue(attendance_list.get(i).getType());
+	        objSheet.setColumnWidth(0, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //회원명
+	        objCell = objRow.createCell(1);
+	        objCell.setCellValue(attendance_list.get(i).getASSOCIATIONNAME());
+	        objSheet.setColumnWidth(1, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+
+	        //생년월일
+	        objCell = objRow.createCell(2);
+	        objCell.setCellValue(attendance_list.get(i).getTROOPNAME());
+	        objSheet.setColumnWidth(2, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //대번호
+	        objCell = objRow.createCell(3);
+	        objCell.setCellValue(attendance_list.get(i).getKNAME());
+	        objSheet.setColumnWidth(3, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //단위대명
+	        objCell = objRow.createCell(4);
+	        objCell.setCellValue(attendance_list.get(i).getMOBILE());
+	        objSheet.setColumnWidth(4, (short)0x2000);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //회원구분
+	        objCell = objRow.createCell(5);
+	        objCell.setCellValue(attendance_list.get(i).getBIRTHDAY());
+	        objSheet.setColumnWidth(5, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+        	
+        	//회원등급
+	        String sex = "";
+	        if(attendance_list.get(i).getSEX() != null) {
+		        if(attendance_list.get(i).getSEX().equals("W")) sex = "여";
+	    		if(attendance_list.get(i).getSEX().equals("M")) sex = "남";
+	        }
+	        objCell = objRow.createCell(6);
+	        objCell.setCellValue(sex);
+	        objSheet.setColumnWidth(6, (short)0x1000);
+	        objCell.setCellStyle(styleHd);
+	        
+        }
+	        
+	      
+	       
+		String filename = "통계_연맹별회원목록";
+		String header = request.getHeader("User-Agent");
+		if(header.contains("Edge") || header.contains("MSIE")) {
+			filename = URLEncoder.encode(filename, "UTF-8").replaceAll("//+", "%20");
+		}
+		else if(header.contains("Chrome") || header.contains("Opera") || header.contains("Firefox")) {
+			filename = new String(filename.getBytes("UTF-8"), "ISO-8859-1");
+		}
+        
+        response.setHeader("Content-Disposition", "ATTachment; Filename=" +filename +".xls");
+
+        OutputStream fileOut  = response.getOutputStream();
+        objWorkBook.write(fileOut);
+        fileOut.close();
+
+        response.getOutputStream().flush();
+        response.getOutputStream().close();
 	}
 
 	//전년대비비율

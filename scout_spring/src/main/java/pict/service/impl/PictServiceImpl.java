@@ -758,6 +758,18 @@ public class PictServiceImpl implements PictService {
 		return pictMapper.mig_data_list(pictVO);
 	}
 
+	@Override
+	public List<PictVO> stats_detail_list(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.stats_detail_list(pictVO);
+	}
+
+	@Override
+	public PictVO life_max_info(PictVO pictVO) throws Exception {
+		// TODO Auto-generated method stub
+		return pictMapper.life_max_info(pictVO);
+	}
+
 
 
 	

@@ -2183,4 +2183,25 @@
 		order by e.EVENTSTARTDAY desc
 	</select>
 	
+	<select id="stats_detail_list" resultType="pictVO">
+		select m.MEMBERNO, m.KNAME, m.BIRTHDAY, t.TROOPNAME, "지도자" as type, m.SEX, m.MOBILE, a.ASSOCIATIONNAME
+		from leader l
+		left outer join member m on l.MEMBERNO = m.MEMBERNO
+		left outer join troop t on l.TROOPNO = t.TROOPNO
+		left outer join associationcode a on a.ASSOCIATIONCODE = l.ASSOCIATIONCODE
+		where left(l.STARTDAY, 4) = #{search_year} and l.ASSOCIATIONCODE = #{ASSOCIATIONCODE}
+		union all
+		select m.MEMBERNO, m.KNAME, m.BIRTHDAY, t.TROOPNAME, "대원" as type, m.SEX, m.MOBILE, a.ASSOCIATIONNAME
+		from scout s
+		left outer join member m on s.MEMBERNO = m.MEMBERNO
+		left outer join troop t on s.TROOPNO = t.TROOPNO
+		left outer join associationcode a on a.ASSOCIATIONCODE = s.ASSOCIATIONCODE
+		where left(s.STARTDAY, 4) = #{search_year} and s.ASSOCIATIONCODE = #{ASSOCIATIONCODE}
+	</select>
+	
+	<select id="life_max_info" resultType="pictVO">
+		select max(cast(LIFEMEMBERNO as unsigned)) as MEMBERNO from member
+	</select>
+	
+	
 </mapper>

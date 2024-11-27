@@ -3,6 +3,7 @@
 <%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn"	   uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>	
 <html lang="ko">
@@ -86,10 +87,13 @@
                                <div class="tableTopButton">
 			                    	<h2 class="subTitles">사용자 조회 내용</h2>
 			                    	<div>
-			                    		<span>골드:${vo.lifeg}건 </span>
-			                    		<span>실버:${vo.lifes}건 </span>
-			                    		<span>일반:${vo.lifec}건</span>
-			                    		<span>전체:${vo.lifec + vo.lifes + vo.lifeg}건</span>
+			                    		<span>골드:<fmt:formatNumber value="${vo.lifeg}" maxFractionDigits="0" />건 </span>
+			                    		
+			                    		<span>실버:<fmt:formatNumber value="${vo.lifes}" maxFractionDigits="0" />건 </span>
+			                    		<span>일반:<fmt:formatNumber value="${vo.lifec}" maxFractionDigits="0" />건</span>
+			                    		<span>전체:<fmt:formatNumber value="${vo.lifes + vo.lifes + vo.lifec}" maxFractionDigits="0" />건</span>
+			                    		<span style="color : red">최종발급번호 : ${maxvo.MEMBERNO}</span>
+			                    		
 			                    	</div>
 			                    	<div class="topButtonWrapper">
 				                    	<select name="search_associationcode_form" id="search_associationcode_form" class="lgThinSelect" style="margin-top:5px">
