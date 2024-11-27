@@ -1607,6 +1607,10 @@ public class PictController {
         objCell.setCellValue("평생회원등록일");
         objCell.setCellStyle(styleHd_title);
         
+        objCell = objRow.createCell(10);
+        objCell.setCellValue("주소지");
+        objCell.setCellStyle(styleHd_title);
+        
 		//바디
         int doublecnt = 0;
 		for(int i=0; i<attendance_list.size(); i++) {
@@ -1695,6 +1699,12 @@ public class PictController {
 	        objCell = objRow.createCell(9);
 	        objCell.setCellValue(attendance_list.get(i).getLIFEENTERDATE());
 	        objSheet.setColumnWidth(9, (short)0x1500);
+	        objCell.setCellStyle(styleHd);
+	        
+	        //주소지
+	        objCell = objRow.createCell(10);
+	        objCell.setCellValue(attendance_list.get(i).getHADDR());
+	        objSheet.setColumnWidth(10, (short)0x4000);
 	        objCell.setCellStyle(styleHd);
 	        
         }
