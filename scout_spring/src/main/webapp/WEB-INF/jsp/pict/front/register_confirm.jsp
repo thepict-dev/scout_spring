@@ -76,7 +76,7 @@
 	                            </div>
 	                            <div class="tableButtons inputsPd topBd" style="justify-content: flex-end;">
 		                            <div class="btnContainer organ">
-		                                <a href="#lnl" id="" class="normalButton purple" onclick="whole_confirm()">승인</a>
+		                                <a href="#lnl" id="" class="normalButton purple" onclick="whole_confirm()">일괄승인</a>
 		                            </div>
 		                        </div>
 	                            <textarea id="hiddenTextarea" style="display:none;"></textarea>
@@ -125,7 +125,7 @@
                         <div class="tableButtons inputsPd topBd" style="justify-content: flex-end;">
                             <div class="btnContainer organ">
                             	<a href="#lnk" class="normalButton purple" onclick="fn_cancel()">등록취소</a>
-								<a href="#lnk" class="normalButton purple" onclick="fn_confirm()">승인</a>
+								<a href="#lnk" class="normalButton purple" onclick="fn_confirm()">개별승인</a>
                             </div>
                         </div>
                     </form>
@@ -437,6 +437,10 @@
 							var total_price = 0;
 							total_price = Number(leader_list[i].entryfee) + (Number(leader_list[i].scoutmagacnt) * 10000)
 							total_price = total_price +''
+							
+							var entryfee = '0'
+							if(leader_list[i].entryfee != null && leader_list[i].entryfee != '' && leader_list[i].entryfee != undefined)
+								entryfee = leader_list[i].entryfee
 							var sex = "";
 							if(leader_list[i].sex == 'W') sex = '여'
 							if(leader_list[i].sex == 'M') sex = '남'
@@ -455,7 +459,7 @@
 		                    	'<td>'+sex+'</td>'+
 		                    	'<td>'+leader_list[i].leaderposition+'</td>'+
 		                    	'<td>'+leader_list[i].leaderpositionname+'</td>'+
-		                    	'<td>'+leader_list[i].entryfee.replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td>'+
+		                    	'<td>'+entryfee.replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td>'+
 		                    	'<td>'+leader_list[i].scoutmagacnt+'</td>'+
 		                    	'<td>'+total_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td>'+
 		                		'</tr>'
@@ -467,6 +471,11 @@
 						for(var i=0; i<scout_list.length; i++){
 							var total_price = 0;
 							total_price = Number(scout_list[i].entryfee) + (Number(scout_list[i].scoutmagacnt) * 10000)
+							
+							var entryfee = '0'
+							if(scout_list[i].entryfee != null && scout_list[i].entryfee != '' && scout_list[i].entryfee != undefined)
+								entryfee = scout_list[i].entryfee
+								
 							var sex = "";
 							if(scout_list[i].sex == 'W') sex = '여'
 							if(scout_list[i].sex == 'M') sex = '남'
@@ -486,7 +495,7 @@
 		                    	'<td>'+sex+'</td>'+
 		                    	'<td>'+scout_list[i].scoutclsname+'</td>'+
 		                    	'<td>'+scout_list[i].scoutpositionname+'</td>'+
-		                    	'<td>'+scout_list[i].entryfee.replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td>'+
+		                    	'<td>'+entryfee.replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td>'+
 		                    	'<td>'+scout_list[i].scoutmagacnt+'</td>'+
 		                    	'<td>'+total_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td>'+
 		                		'</tr>'
