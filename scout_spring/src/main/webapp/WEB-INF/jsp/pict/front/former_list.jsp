@@ -12,7 +12,7 @@
 	<body>
 		<%@ include file="./include/lnb.jsp" %>
 		<c:import url="./include/header.jsp">
-			<c:param name="pageParent" value="스카우트 통합 관리"/>
+			<c:param name="pageParent" value="기본설정관리"/>
 	    	<c:param name="pageTitle" value="전종리스트"/>
 	    </c:import>
 	    <div class="contentsContainer">

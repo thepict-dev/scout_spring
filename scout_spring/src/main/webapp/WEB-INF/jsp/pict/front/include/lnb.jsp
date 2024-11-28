@@ -56,7 +56,6 @@
 	                    <li><a href="/admin/front/units">단위대 통합 관리</a></li>
 	                    <li><a href="/admin/front/signup_org">신규 조직 등록</a></li>
 	                    <li><a href="/admin/front/signup">신규 회원 등록</a></li>
-	                    <li><a href="/admin/front/former_list">전종 리스트</a></li>
 	                    <li><a href="/admin/front/life_list">평생회원 관리</a></li>
 	                </ul>
 	            </li>
@@ -104,6 +103,7 @@
 	                <a href="#lnk">기본설정관리</a>
 	                <ul class="subNav">
 	                    <li><a href="/admin/front/association_price">연맹별납부액관리</a></li>
+	                    <li><a href="/admin/front/former_list">전종 리스트</a></li>
 	                </ul>
 	            </li>
 	        </ul>
