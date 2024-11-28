@@ -729,8 +729,10 @@
 						
 						//$('#search_prev_scout_list').append(scout_html)
 						$('#search_prev_leader_list').append(scout_html)
-						var leader_cnt = data.leader_list.length;
-						var scout_cnt = data.scout_list.length
+						var leader_cnt = 0
+						if(data.leader_list && data.leader_list != undefined) leader_cnt = data.leader_list.length;
+						var scout_cnt = 0;
+						if(data.scout_list && data.scout_list != undefined) scout_list = data.scout_list.length;
 						var total = Number(leader_cnt) + Number(scout_cnt)
 						$('#prev_count').text("지도자 : " + leader_cnt +'명 / 대원 : ' + scout_cnt + '명 / 합계 : ' + total + '명')
 						
