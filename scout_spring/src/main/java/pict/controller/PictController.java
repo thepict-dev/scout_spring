@@ -3955,6 +3955,8 @@ public class PictController {
 			
 			return "pict/main/message";
 		}
+		List<PictVO> association_list = pictService.association_list(pictVO);
+		model.addAttribute("association_list", association_list);
 		
 		//재영 작업
 		List<PictVO> scout_stats_list = pictService.stats_detail_list(pictVO);

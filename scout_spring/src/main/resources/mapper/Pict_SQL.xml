@@ -2190,6 +2190,9 @@
 		left outer join troop t on l.TROOPNO = t.TROOPNO
 		left outer join associationcode a on a.ASSOCIATIONCODE = l.ASSOCIATIONCODE
 		where left(l.STARTDAY, 4) = #{search_year} and l.ASSOCIATIONCODE = #{ASSOCIATIONCODE}
+		<if test="TROOPNO != null and TROOPNO != ''">
+			and l.TROOPNO = #{TROOPNO}
+		</if>
 		union all
 		select m.MEMBERNO, m.KNAME, m.BIRTHDAY, t.TROOPNAME, "대원" as type, m.SEX, m.MOBILE, a.ASSOCIATIONNAME
 		from scout s
@@ -2197,6 +2200,9 @@
 		left outer join troop t on s.TROOPNO = t.TROOPNO
 		left outer join associationcode a on a.ASSOCIATIONCODE = s.ASSOCIATIONCODE
 		where left(s.STARTDAY, 4) = #{search_year} and s.ASSOCIATIONCODE = #{ASSOCIATIONCODE}
+		<if test="TROOPNO != null and TROOPNO != ''">
+			and s.TROOPNO = #{TROOPNO}
+		</if>
 	</select>
 	
 	<select id="life_max_info" resultType="pictVO">

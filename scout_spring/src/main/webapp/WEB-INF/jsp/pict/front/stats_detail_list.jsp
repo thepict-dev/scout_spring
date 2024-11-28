@@ -13,8 +13,8 @@
 	<body>
 		<%@ include file="./include/lnb.jsp" %>
 		<c:import url="./include/header.jsp">
-			<c:param name="pageParent" value="통계 및 현황"/>
-	    	<c:param name="pageTitle" value="연맹별 상세 리스트"/>
+			<c:param name="pageParent" value="회원등록관리"/>
+	    	<c:param name="pageTitle" value="연맹별 등록 리스트"/>
 	    </c:import>
         <div class="contentsContainer">
 	        <div class="statsWrapper">
@@ -23,11 +23,33 @@
 	                    <h2 class="subTitles">조회 결과</h2>
 	                    <div class="organSearch stats">
 	                        <div class="searchContainer">
-	                            <p class="inputCaption">연도</p>
-	                            <div class="inputsAlign stats">
-	                                <input type="text" name="search_year" id="search_year" class="smThinInput" placeholder="연도를 입력해주세요." value="${pictVO.search_year}">
-	                            </div>
-	                        </div>
+			                    <p class="inputCaption">연도</p>
+			                    <div class="inputsAlign">
+				                    <input type="text" id="search_year" name="search_year" value="${pictVO.search_year }">
+								</div>
+		                	</div>
+		                	
+		                	<div class="searchContainer">
+			                    <p class="inputCaption">연맹</p>
+			                    <div class="inputsAlign">
+				                    <select name="ASSOCIATIONCODE" id="ASSOCIATIONCODE" onchange="fn_get_trooplist()" class="smThinSelect">
+				                    	<option value="">전체</option>
+										<c:forEach var="association_list" items="${association_list}" varStatus="status">
+											<option value="${association_list.ASSOCIATIONCODE}" <c:if test="${association_list.ASSOCIATIONCODE eq pictVO.ASSOCIATIONCODE}">selected</c:if>> ${association_list.ASSOCIATIONNAME}</option>
+										</c:forEach>
+									</select>
+								</div>
+		                	</div>
+		                	
+		                	<div class="searchContainer">
+			                    <p class="inputCaption">단위대</p>
+			                    <div class="inputsAlign">
+				                    <select class="js-example-basic-single" name="TROOPNO" id="TROOPNO">
+									  	<option value="">단위대를 검색하세요.</option>
+									</select>
+								</div>
+		                	</div>
+		                	
 	                        <a href="#lnk" onclick="fn_search()" class="basicButton purple" style="height:35px; margin-top:20px"><img src="/front_img/search.png" alt="">조회</a>
 	                    </div>
 	                </form>
@@ -82,16 +104,49 @@
 	    </div>
 	</body>
 	<script>
+		function fn_get_trooplist(){
+			var param = {
+				associationcode : $('#ASSOCIATIONCODE').val(),
+			}
+			console.log($('#ASSOCIATIONCODE').val())
+			$.ajax({
+				url : "/admin/get_login_troop"
+				, type : "POST"
+				, data : JSON.stringify(param)
+				, contentType : "application/json"
+				, dataType : "json"
+				, async : false
+				, success : function(data, status, xhr) {
+					var html ="";
+					if(data.list){
+						console.log()
+						var arr = data.list;
+						$('#TROOPNO').children().remove();
+						html += '<option value="">전체</option>'
+						for(var i=0; i<arr.length; i++){
+							html += '<option value="'+ arr[i].troopno +'">'+arr[i].troopname+"(" + arr[i].disptroopno +')</option>'
+							
+						}
+						$('#TROOPNO').append(html)
+					}
+				}
+				, error : function(xhr, status, error) {
+					console.log(xhr)
+					console.log("에러")
+				}
+			});
+		}
+	
 		function excel(){
 			if(confirm("상세 리스트를 엑셀 다운로드 하시겠습니까?")){
 				var code = '${pictVO.ASSOCIATIONCODE}'
-				$("#search_form").attr("action", "/admin/front/stats_detail_excel?ASSOCIATIONCODE="+code);
+				$("#search_form").attr("action", "/admin/front/stats_detail_excel");
 				$("#search_form").submit();
 			}
 		}
 		function fn_search(){
 			var code = '${pictVO.ASSOCIATIONCODE}'
-			$("#search_form").attr("action", "/admin/front/stats_detail_list?ASSOCIATIONCODE="+code);
+			$("#search_form").attr("action", "/admin/front/stats_detail_list");
 			$("#search_form").submit();
 		}	
 	</script>

@@ -67,6 +67,7 @@
 	                    <li><a href="/admin/front/scout_whole_register">대등록</a></li>
 	                    <li><a href="/admin/front/scout_whole_confirm">대승인</a></li>
 	                    <li><a href="/admin/front/local_list">스카우트 가입 관리</a></li>
+	                    <li><a href="/admin/front/stats_detail_list">연맹별 등록리스트</a></li>
 	                </ul>
 	            </li>
 	            <li>
