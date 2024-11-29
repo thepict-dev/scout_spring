@@ -41,10 +41,10 @@
 								</div>
 		                	</div>
 		                	
-		                	<div class="searchContainer">
+		                	<div class="loginInputs">
 			                    <p class="inputCaption">단위대</p>
 			                    <div class="inputsAlign">
-				                    <select name="TROOPNO" id="TROOPNO" class="lgThinSelect">
+				                    <select name="TROOPNO" id="TROOPNO" class="js-example-basic-single">
 									  	<option value="">단위대를 선택하세요.</option>
 									</select>
 								</div>
@@ -104,6 +104,11 @@
 	    </div>
 	</body>
 	<script>
+		//셀렉
+		$(document).ready(function() {
+		    $('.js-example-basic-single').select2();
+		});
+	
 		$(document).ready(function(){
 			var associationcode = '${pictVO.ASSOCIATIONCODE}'
 			fn_get_trooplist(associationcode)
@@ -140,7 +145,6 @@
 							
 						}
 						$('#TROOPNO').append(html);
-		                $('#TROOPNO').niceSelect('update');
 					}
 				}
 				, error : function(xhr, status, error) {
