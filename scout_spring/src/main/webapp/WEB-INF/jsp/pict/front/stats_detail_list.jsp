@@ -104,11 +104,22 @@
 	    </div>
 	</body>
 	<script>
-		function fn_get_trooplist(){
+		$(document).ready(function(){
+			var associationcode = '${pictVO.ASSOCIATIONCODE}'
+			fn_get_trooplist(associationcode)
+		})
+		function fn_get_trooplist(associationcode){
+			var acode = associationcode;
+			if($('#ASSOCIATIONCODE').val() != null && $('#ASSOCIATIONCODE').val() != '' && $('#ASSOCIATIONCODE').val() != undefined)
+				acode = $('#ASSOCIATIONCODE').val()
+			
+			var troopno = '${pictVO.TROOPNO}'
+			if($('#TROOPNO').val() != null && $('#TROOPNO').val() != '' && $('#TROOPNO').val() != undefined)
+				troopno = $('#TROOPNO').val();
 			var param = {
-				associationcode : $('#ASSOCIATIONCODE').val(),
+				associationcode : acode,
+				troopno : troopno
 			}
-			console.log($('#ASSOCIATIONCODE').val())
 			$.ajax({
 				url : "/admin/get_login_troop"
 				, type : "POST"
@@ -119,12 +130,13 @@
 				, success : function(data, status, xhr) {
 					var html ="";
 					if(data.list){
-						console.log()
 						var arr = data.list;
 						$('#TROOPNO').children().remove();
 						html += '<option value="">전체</option>'
 						for(var i=0; i<arr.length; i++){
-							html += '<option value="'+ arr[i].troopno +'">'+arr[i].troopname+"(" + arr[i].disptroopno +')</option>'
+							var select = "";
+							if(troopno == arr[i].troopno) select = "selected"
+							html += '<option value="'+ arr[i].troopno +'" '+select+'>'+arr[i].troopname+"(" + arr[i].disptroopno +')</option>'
 							
 						}
 						$('#TROOPNO').append(html);
