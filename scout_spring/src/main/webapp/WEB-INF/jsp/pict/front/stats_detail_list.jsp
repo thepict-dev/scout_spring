@@ -19,7 +19,7 @@
         <div class="contentsContainer">
 	        <div class="statsWrapper">
 	            <div class="fomrTabContent active">
-	                <form action="" class="organSearchForm stats" id="search_form" name="search_form" method="post" enctype="multipart/form-data">
+	                <form action="" class="organSearchForm stats" id="search_form" name="search_form" method="post" enctype="multipart/form-data" style="overflow-y: visible;">
 	                    <h2 class="subTitles">조회 결과</h2>
 	                    <div class="organSearch stats">
 	                        <div class="searchContainer">
@@ -44,8 +44,8 @@
 		                	<div class="searchContainer">
 			                    <p class="inputCaption">단위대</p>
 			                    <div class="inputsAlign">
-				                    <select class="js-example-basic-single" name="TROOPNO" id="TROOPNO">
-									  	<option value="">단위대를 검색하세요.</option>
+				                    <select name="TROOPNO" id="TROOPNO" class="lgThinSelect">
+									  	<option value="">단위대를 선택하세요.</option>
 									</select>
 								</div>
 		                	</div>
@@ -127,7 +127,8 @@
 							html += '<option value="'+ arr[i].troopno +'">'+arr[i].troopname+"(" + arr[i].disptroopno +')</option>'
 							
 						}
-						$('#TROOPNO').append(html)
+						$('#TROOPNO').append(html);
+		                $('#TROOPNO').niceSelect('update');
 					}
 				}
 				, error : function(xhr, status, error) {
