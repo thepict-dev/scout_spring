@@ -109,23 +109,23 @@
 	                
 	                <div class="pagination">
 		            	<c:if test="${pictVO.pageNumber ne 1}">
-		            		<a href="/admin/front/local_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=1"><img src="/user_img/first.png" alt=""></a>
-		            		<a href="/admin/front/local_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${pictVO.pageNumber - 1 < 1 ? 1 : pictVO.pageNumber - 1}"><img src="/user_img/prev.png" alt=""></a>
+		            		<a href="/admin/front/local_list?search_associationcode=${pictVO.search_associationcode}&search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=1"><img src="/user_img/first.png" alt=""></a>
+		            		<a href="/admin/front/local_list?search_associationcode=${pictVO.search_associationcode}&search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${pictVO.pageNumber - 1 < 1 ? 1 : pictVO.pageNumber - 1}"><img src="/user_img/prev.png" alt=""></a>
 		            	</c:if>
 		            	
 		            	
 		            	<c:forEach var="i" begin="${pictVO.startPage}" end="${pictVO.endPage}">
 							<c:if test="${i eq pictVO.pageNumber}">
-								<a href="/admin/front/local_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${i}" class="active">${i}</a>
+								<a href="/admin/front/local_list?search_associationcode=${pictVO.search_associationcode}&search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${i}" class="active">${i}</a>
 							</c:if>
 							<c:if test="${i ne pictVO.pageNumber}">
-								<a href="/admin/front/local_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${i}" >${i}</a>
+								<a href="/admin/front/local_list?search_associationcode=${pictVO.search_associationcode}&search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${i}" >${i}</a>
 							</c:if>
 						</c:forEach>
 		                
 		                <c:if test="${pictVO.lastPage ne pictVO.pageNumber}">
-							<li><a href="/admin/front/local_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${pictVO.pageNumber + 1 > pictVO.lastPage ?  pictVO.lastPage : pictVO.pageNumber + 1}"><img src="/user_img/next.png" alt=""></a></li>
-							<li><a href="/admin/front/local_list?search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${pictVO.lastPage}"><img src="/user_img/last.png" alt=""></a></li>
+							<li><a href="/admin/front/local_list?search_associationcode=${pictVO.search_associationcode}&search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${pictVO.pageNumber + 1 > pictVO.lastPage ?  pictVO.lastPage : pictVO.pageNumber + 1}"><img src="/user_img/next.png" alt=""></a></li>
+							<li><a href="/admin/front/local_list?search_associationcode=${pictVO.search_associationcode}&search_text=${pictVO.search_text}&search_status=${pictVO.search_status}&pageNumber=${pictVO.lastPage}"><img src="/user_img/last.png" alt=""></a></li>
 						</c:if>
 		            </div>
 	            </div>
