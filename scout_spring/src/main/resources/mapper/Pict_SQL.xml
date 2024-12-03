@@ -883,37 +883,45 @@
 	
 	<!-- 대등록에서 단위대조회 -->
 	<select id="troop_search" resultType="pictVO">
-		select t.TROOPNO, a.ASSOCIATIONNAME, (select TROOPNAME from troop t1 where t1.TROOPNO = t.PARENT_TROOPNO limit 1) as PARENTTROOPNAME, t.DISPTROOPNO, t.TROOPNAME
-		from troop t
-		left outer join associationcode a on t.ASSOCIATIONCODE = a.ASSOCIATIONCODE
-		where 1=1
-		<if test="ASSOCIATIONCODE != null and ASSOCIATIONCODE != ''">
-			and a.ASSOCIATIONCODE = #{ASSOCIATIONCODE}
-		</if>
-		<if test="PARENTTROOPNO != null and PARENTTROOPNO != ''">
-			and t.PARENT_TROOPNO = #{PARENTTROOPNO}
+		SELECT
+			t.troopno
+			, a.associationname
+			, (SELECT troopname FROM troop t1 WHERE t1.troopno = t.parent_troopno LIMIT 1) as parenttroopname
+			, t.disptroopno
+			, t.troopname
+		FROM 
+			troop t
+			LEFT OUTER JOIN associationcode a ON t.associationcode = a.associationcode
+		WHERE 1=1
+			<if test="ASSOCIATIONCODE != null and ASSOCIATIONCODE != ''">
+				and a.ASSOCIATIONCODE = #{ASSOCIATIONCODE}
 			</if>
-		<if test="TROOPCLSCODE1 != null and TROOPCLSCODE1 != ''">
-			and t.TROOPCLSCODE1 = #{TROOPCLSCODE1}
-		</if>
-		<if test="TROOPCLSCODE2 != null and TROOPCLSCODE2 != ''">
-			and t.TROOPCLSCODE2 = #{TROOPCLSCODE2}
-		</if>
-		<if test="TROOPNAME != null and TROOPNAME != ''">
-			and t.TROOPNAME LIKE CONCAT('%', #{TROOPNAME}, '%')
-		</if>
-		
-		<if test="search_text != null and search_text != ''">
-			<if test="search_type != null and search_type != '' and search_type == 'number'">
-				and t.DISPTROOPNO = #{search_text}
+			<if test="PARENTTROOPNO != null and PARENTTROOPNO != ''">
+				and t.PARENT_TROOPNO = #{PARENTTROOPNO}
+				</if>
+			<if test="TROOPCLSCODE1 != null and TROOPCLSCODE1 != ''">
+				and t.TROOPCLSCODE1 = #{TROOPCLSCODE1}
 			</if>
-			<if test="search_type != null and search_type != '' and search_type == 'text'">
-				and (
-					t.TROOPNAME LIKE CONCAT('%', #{search_text}, '%')	
-					) 
+			<if test="TROOPCLSCODE2 != null and TROOPCLSCODE2 != ''">
+				and t.TROOPCLSCODE2 = #{TROOPCLSCODE2}
 			</if>
-		</if>
-		
+			<if test="TROOPNAME != null and TROOPNAME != ''">
+				and t.TROOPNAME LIKE CONCAT('%', #{TROOPNAME}, '%')
+			</if>
+			
+			<if test="search_text != null and search_text != ''">
+				<if test="search_type != null and search_type != '' and search_type == 'number'">
+					and t.DISPTROOPNO = #{search_text}
+				</if>
+				<if test="search_type != null and search_type != '' and search_type == 'text'">
+					and (
+						t.TROOPNAME LIKE CONCAT('%', #{search_text}, '%')	
+						) 
+				</if>
+			</if>
+		ORDER BY
+			  disptroopno+0 ASC
+			, disptroopno ASC
 	</select>
 	
 	<select id="prev_leader_list" resultType="pictVO">
@@ -2184,7 +2192,7 @@
 	</select>
 	
 	<select id="stats_detail_list" resultType="pictVO">
-		select m.MEMBERNO, m.KNAME, m.BIRTHDAY, t.TROOPNAME, "지도자" as type, m.SEX, m.MOBILE, a.ASSOCIATIONNAME
+		select t.disptroopno, m.MEMBERNO, m.KNAME, m.BIRTHDAY, t.TROOPNAME, "지도자" as type, m.SEX, m.MOBILE, a.ASSOCIATIONNAME
 		from leader l
 		left outer join member m on l.MEMBERNO = m.MEMBERNO
 		left outer join troop t on l.TROOPNO = t.TROOPNO
@@ -2194,7 +2202,7 @@
 			and l.TROOPNO = #{TROOPNO}
 		</if>
 		union all
-		select m.MEMBERNO, m.KNAME, m.BIRTHDAY, t.TROOPNAME, "대원" as type, m.SEX, m.MOBILE, a.ASSOCIATIONNAME
+		select t.disptroopno, m.MEMBERNO, m.KNAME, m.BIRTHDAY, t.TROOPNAME, "대원" as type, m.SEX, m.MOBILE, a.ASSOCIATIONNAME
 		from scout s
 		left outer join member m on s.MEMBERNO = m.MEMBERNO
 		left outer join troop t on s.TROOPNO = t.TROOPNO
@@ -2203,6 +2211,9 @@
 		<if test="TROOPNO != null and TROOPNO != ''">
 			and s.TROOPNO = #{TROOPNO}
 		</if>
+		order by 
+			  disptroopno+0 ASC
+			, disptroopno ASC
 	</select>
 	
 	<select id="life_max_info" resultType="pictVO">
