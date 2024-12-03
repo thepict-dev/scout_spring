@@ -908,7 +908,6 @@
 			<if test="TROOPNAME != null and TROOPNAME != ''">
 				and t.TROOPNAME LIKE CONCAT('%', #{TROOPNAME}, '%')
 			</if>
-			
 			<if test="search_text != null and search_text != ''">
 				<if test="search_type != null and search_type != '' and search_type == 'number'">
 					and t.DISPTROOPNO = #{search_text}
@@ -919,9 +918,6 @@
 						) 
 				</if>
 			</if>
-		ORDER BY
-			  disptroopno+0 ASC
-			, disptroopno ASC
 	</select>
 	
 	<select id="prev_leader_list" resultType="pictVO">
@@ -1471,15 +1467,19 @@
 	</update>
 	
 	<select id="login_troop_list" resultType="pictVO">
-		SELECT *
-		FROM troop t1
-		WHERE t1.ASSOCIATIONCODE = #{ASSOCIATIONCODE}  
-		AND
-		NOT EXISTS (
-		    SELECT 1
-		    FROM troop t2
-		    WHERE t1.TROOPNO = t2.PARENT_TROOPNO
-		);
+		SELECT
+			*
+		FROM
+			troop t1
+		WHERE 1=1
+			AND t1.ASSOCIATIONCODE = #{ASSOCIATIONCODE}  
+			AND NOT EXISTS (
+			    SELECT 1
+			    FROM troop t2
+			    WHERE t1.TROOPNO = t2.PARENT_TROOPNO
+			)
+		ORDER BY
+			disptroopno+0 ASC
 	</select>
 	
 	<select id="login_troop_list2" resultType="pictVO">
@@ -2211,9 +2211,6 @@
 		<if test="TROOPNO != null and TROOPNO != ''">
 			and s.TROOPNO = #{TROOPNO}
 		</if>
-		order by 
-			  disptroopno+0 ASC
-			, disptroopno ASC
 	</select>
 	
 	<select id="life_max_info" resultType="pictVO">
