@@ -694,27 +694,30 @@
 						for(var i=0; i<arr.length; i++){
 							html += '<tr id="leader_list_row_'+arr[i].idx+'" onclick="fn_leader_info('+arr[i].idx+')">'+
 								'<td>' + Number(i+1) + '</td>' +
-								'<td>' + arr[i].adminy + '</td>'+
 								'<td>' + arr[i].year + '</td>'+
 								'<td>' + arr[i].associationname + '</td>'+
 								'<td>' + arr[i].unity + '</td>'+
 								'<td>' + arr[i].troopname + '</td>'+
 								'<td>' + arr[i].leaderposition + '</td>'+
 								'<td>' + arr[i].leaderpositionname + '</td>'+
-								'<td>' + arr[i].orgname  + '</td>'+
-								'<td>' + arr[i].scoutmagacnt  + '</td>'+
-								'<td>Y</td>'+
 								'<td>' + arr[i].confirmy + '</td>'+
-								'<td>' + arr[i].payy + '</td>'+
+								'<td>' + arr[i].entryfee + '</td>'+
+								'<td>' + arr[i].scoutmagacnt  + '</td>'+
 								'<td>' + arr[i].enterdate.substring(0,11) + '</td>'+
+								'<td></td>'+
+								
+								/*
+								'<td>' + arr[i].orgname  + '</td>'+
+								'<td>Y</td>'+
+								'<td>' + arr[i].payy + '</td>'+
 								'<td></td>'+
 								'<td></td>'+
 								'<td>' + arr[i].leaderorgpositionname + '</td>'+
-								'<td>' + arr[i].entryfee + '</td>'+
 								'<td>' + Number(arr[i].scoutmagacnt) * 10000  + '</td>'+
 								'<td>X</td>'+
 								'<td>X</td>'+
 								'<td>' + arr[i].year + '-01-01 ~ ' + arr[i].year + '-12-31' + '</td>'+
+								*/
 								'</tr>';
 						}
 						$('#leader_list').append(html)
